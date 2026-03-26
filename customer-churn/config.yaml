@@ -1,0 +1,82 @@
+# Customer Churn Competition Configuration
+# Playground Series S6E3 - Predict Customer Churn
+# Metric: AUC-ROC | Deadline: 2026-03-31
+
+name: "Predict Customer Churn"
+slug: "playground-series-s6e3"
+description: "Binary classification: predict telecom customer churn probability"
+
+data:
+  train_path: "data/train.csv"
+  test_path: "data/test.csv"
+  sample_submission_path: "data/sample_submission.csv"
+  original_data_path: null  # Set to path of original IBM Telco dataset if downloaded
+  target_column: "Churn"
+  id_column: "id"
+
+evaluation:
+  metric: "roc_auc"
+  metric_direction: "maximize"
+  cv_strategy: "stratified_kfold"
+  cv_folds: 5
+  cv_seed: 42
+
+submission:
+  competition_slug: "playground-series-s6e3"
+  submission_columns: ["id", "Churn"]
+  prediction_type: "probability"
+  max_daily_submissions: 5
+
+hardware:
+  gpu_device: "cuda:0"
+  gpu_memory_gb: 10.0
+  use_gpu: true
+  n_jobs: -1
+
+experiment:
+  max_experiments: 100
+  time_budget_seconds: 600
+  results_file: "experiments/results.tsv"
+  checkpoint_dir: "checkpoints"
+  auto_submit: false
+
+models:
+  lgbm_baseline:
+    type: lgbm
+    n_estimators: 1000
+    learning_rate: 0.05
+    num_leaves: 31
+
+  xgb_baseline:
+    type: xgb
+    n_estimators: 1000
+    learning_rate: 0.05
+    max_depth: 6
+
+  catboost_baseline:
+    type: catboost
+    iterations: 1000
+    learning_rate: 0.05
+    depth: 6
+
+feature_engineering:
+  # Churn-specific feature ideas
+  service_columns:
+    - "PhoneService"
+    - "MultipleLines"
+    - "InternetService"
+    - "OnlineSecurity"
+    - "OnlineBackup"
+    - "DeviceProtection"
+    - "TechSupport"
+    - "StreamingTV"
+    - "StreamingMovies"
+  interaction_columns:
+    - "tenure"
+    - "MonthlyCharges"
+    - "TotalCharges"
+    - "Contract"
+    - "InternetService"
+  ratio_pairs:
+    - ["TotalCharges", "tenure"]
+    - ["MonthlyCharges", "tenure"]

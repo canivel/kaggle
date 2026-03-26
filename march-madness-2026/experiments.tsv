@@ -1,0 +1,6 @@
+experiment_id	description	brier_score	per_season_scores	notes	kept
+1	Mega Ensemble XGB+LGBM+LR+NN	0.023449	"{""2021"": 0.026856, ""2022"": 0.026853, ""2023"": 0.019595, ""2024"": 0.03049, ""2025"": 0.013575}"	weights 0.30+0.30+0.15+0.25	yes
+2	TabPFN (default)	0.25	"{""2021"": 0.25, ""2022"": 0.25, ""2023"": 0.25, ""2024"": 0.25, ""2025"": 0.25}"	research_tabpfn.py | 2026-03-18 09:46	no
+3	TabPFN (StandardScaler)	0.25	"{""2021"": 0.25, ""2022"": 0.25, ""2023"": 0.25, ""2024"": 0.25, ""2025"": 0.25}"	research_tabpfn.py | 2026-03-18 09:46	no
+R05	Mega ensemble: ft_transformer+lgbm+lr+nn	0.021524	"{""2021"": 0.023996, ""2022"": 0.023404, ""2023"": 0.019177, ""2024"": 0.026913, ""2025"": 0.014222}"	"weights: {""ft_transformer"": 0.168, ""lgbm"": 0.291, ""lr"": 0.203, ""nn"": 0.335}"	yes
+NOVEL	HPCE: optimal_ensemble	0.013445	"{""2021"": 0.014732, ""2022"": 0.014288, ""2023"": 0.008893, ""2024"": 0.021061, ""2025"": 0.00825}"	Novel HPCE approach: TabPFN+KAN+VennABERS+SuperLearner+TempScaling	yes

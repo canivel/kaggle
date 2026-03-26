@@ -1,0 +1,15 @@
+[project]
+name = "customer-churn"
+version = "0.1.0"
+description = "Kaggle Playground Series S6E3 - Predict Customer Churn"
+requires-python = ">=3.11"
+dependencies = [
+    "kaggle-agent",
+    "scipy>=1.14.0",
+]
+
+[tool.uv.sources]
+kaggle-agent = { path = "../kaggle-agent", editable = true }
+
+[tool.hatch.build.targets.wheel]
+packages = []

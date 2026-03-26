@@ -1,0 +1,8 @@
+id	description	val_accuracy	status	timestamp	notes
+001	QLoRA r=16 alpha=32 3ep — baseline	N/A	discarded	2026-03-19T09:18:14.567914	r=16 a=32 ep=3 lr=0.0002 qlora=True
+002	QLoRA r=32 alpha=64 3ep	N/A	discarded	2026-03-19T09:18:46.966302	r=32 a=64 ep=3 lr=0.0002 qlora=True
+003	QLoRA r=16 alpha=32 5ep lower lr	N/A	discarded	2026-03-19T09:19:21.983172	r=16 a=32 ep=5 lr=5e-05 qlora=True
+004	QLoRA r=32 alpha=32 3ep longer seq	N/A	discarded	2026-03-19T09:19:54.132058	r=32 a=32 ep=3 lr=0.0001 qlora=True
+005	QLoRA r=8 alpha=16 3ep small rank	N/A	discarded	2026-03-19T09:20:26.608931	r=8 a=16 ep=3 lr=0.0002 qlora=True
+006	QLoRA r=16 alpha=32 3ep — baseline	N/A	discarded	2026-03-19T09:35:02.958454	r=16 a=32 ep=3 lr=0.0002 qlora=True
+007	QLoRA r=32 alpha=64 3ep	N/A	discarded	2026-03-19T09:53:46.020708	r=32 a=64 ep=3 lr=0.0002 qlora=True

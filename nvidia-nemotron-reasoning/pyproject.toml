@@ -1,0 +1,50 @@
+[project]
+name = "nvidia-nemotron-reasoning"
+version = "0.1.0"
+description = "LoRA fine-tuning pipeline for the NVIDIA Nemotron Reasoning Challenge"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # Core ML stack
+    "torch>=2.5.0",
+    "torchvision>=0.20.0",
+    # HuggingFace ecosystem
+    "transformers>=4.47.0",
+    "peft>=0.14.0",
+    "trl>=0.13.0",
+    "datasets>=3.2.0",
+    "accelerate>=1.2.0",
+    "tokenizers>=0.21.0",
+    "huggingface-hub>=0.27.0",
+    # Quantization (QLoRA on RTX 3080)
+    "bitsandbytes>=0.45.0",
+    # Data
+    "pandas>=2.1.0",
+    "numpy>=1.26.0",
+    "scikit-learn>=1.5.0",
+    "pyarrow>=18.0.0",
+    # Competition
+    "kaggle>=2.0.0",
+    # Utils
+    "python-dotenv>=1.0.0",
+    "tqdm>=4.67.0",
+    "rich>=13.9.0",
+    # vLLM is Linux-only — install separately on Kaggle/cloud GPU:
+    # uv pip install vllm  (on Linux A100/H100)
+]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu128" },
+]
+torchvision = [
+    { index = "pytorch-cu128" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv]
+cache-dir = "F:/uv-cache"

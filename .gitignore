@@ -1,0 +1,80 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+dist/
+build/
+*.whl
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# UV
+uv.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Data files (too large for git)
+*.csv
+*.zip
+*.parquet
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.npy
+*.npz
+!sample_submission.csv
+
+# Model checkpoints
+checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# Kaggle
+.kaggle/
+
+# Secrets
+.env
+*.key
+credentials.json
+
+# Logs
+*.log
+wandb/
+
+# HuggingFace cache
+hf-cache/
+
+# UV cache
+.uv-cache/
+
+# Competition data (download via kaggle CLI)
+*/data/*.csv
+*/data/*.zip
+
+# Large model outputs
+adapters/
+best_adapter/
+
+# Cloned reference repos (not our code)
+deer-flow/
+deep-past-challenge/autoresearch/
+nvidia-nemotron-reasoning/autoresearch-ref/
