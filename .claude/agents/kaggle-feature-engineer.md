@@ -67,4 +67,14 @@ You are an expert feature engineer working on a Kaggle competition.
 - Action: Consider dropping these features to reduce noise
 - Iteration: 6 (2026-03-26)
 
+### [HIGH] strategy: CRITICAL: CV-LB gap of 0.00267 (CV=0.91647, LB=0.91380). Severe overfitting.
+- Evidence: First submission: CV=0.91647, Public LB=0.91380
+- Action: Reduce overfitting: drop noisy features, increase regularization, simplify feature engineering, use more robust CV
+- Iteration: 17 (2026-03-26)
+
+### [HIGH] feature: Groupby stats and frequency encoding may be causing overfitting. Consider dropping low-importance engineered features.
+- Evidence: 46 features, many groupby stats had near-zero importance but may add noise
+- Action: Try minimal feature set (original + ratios only) vs full feature set. Compare CV-LB gap.
+- Iteration: 17 (2026-03-26)
+
 <!-- LEARNINGS END -->

@@ -121,6 +121,9 @@ Uses `kaggle-agent` framework at `f:/kaggle/kaggle-agent/`
 <!-- COMPETITION LEARNINGS START -->
 ### Discovered Insights (Auto-Updated)
 
+#### Ensemble
+- Logistic regression meta-learner on OOF may overfit. Try simpler averaging or rank averaging. (impact: medium, evidence: Stacking with logistic meta-learner: CV=0.91647 but LB=0.91380)
+
 #### Feature
 - Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_MonthlyCharges (impact: high, evidence: Feature importance from lgbm (exp 0001))
 - Low-value features: InternetService_tenure_mean, InternetService_TotalCharges_std, Contract_TotalCharges_std, InternetService_tenure_std, Contract_tenure_mean (impact: low, evidence: Near-zero importance in lgbm)
@@ -128,6 +131,7 @@ Uses `kaggle-agent` framework at `f:/kaggle/kaggle-agent/`
 - Low-value features: InternetService_tenure_mean, InternetService_TotalCharges_std, Contract_TotalCharges_std, InternetService_tenure_std, Contract_tenure_mean (impact: low, evidence: Near-zero importance in lgbm)
 - Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_TotalCharges (impact: high, evidence: Feature importance from lgbm (exp 0006))
 - Low-value features: InternetService_TotalCharges_std, InternetService_tenure_mean, InternetService_tenure_std, Contract_TotalCharges_std, Contract_tenure_mean (impact: low, evidence: Near-zero importance in lgbm)
+- Groupby stats and frequency encoding may be causing overfitting. Consider dropping low-importance engineered features. (impact: high, evidence: 46 features, many groupby stats had near-zero importance but may add noise)
 
 #### Model
 - lgbm: more leaves improves capture of complex patterns (impact: high, evidence: CV improved to 0.916217)
@@ -139,5 +143,6 @@ Uses `kaggle-agent` framework at `f:/kaggle/kaggle-agent/`
 - CRASH: XGBoost low LR high reg - XGBClassifier.fit() got an unexpected keyword argument 'callbacks' (impact: low, evidence: Experiment 0010 crashed)
 - CRASH: XGBoost wide shallow - XGBClassifier.fit() got an unexpected keyword argument 'callbacks' (impact: low, evidence: Experiment 0011 crashed)
 - CRASH: XGBoost different seed - XGBClassifier.fit() got an unexpected keyword argument 'callbacks' (impact: low, evidence: Experiment 0015 crashed)
+- CRITICAL: CV-LB gap of 0.00267 (CV=0.91647, LB=0.91380). Severe overfitting. (impact: high, evidence: First submission: CV=0.91647, Public LB=0.91380)
 
 <!-- COMPETITION LEARNINGS END -->

@@ -185,5 +185,51 @@
     "applied_to": [
       "kaggle-model-trainer"
     ]
+  },
+  {
+    "timestamp": "2026-03-26T20:46:11.048949",
+    "source_agent": "kaggle-orchestrator",
+    "phase": "submit_and_learn",
+    "iteration": 17,
+    "category": "strategy",
+    "insight": "CRITICAL: CV-LB gap of 0.00267 (CV=0.91647, LB=0.91380). Severe overfitting.",
+    "impact": "high",
+    "evidence": "First submission: CV=0.91647, Public LB=0.91380",
+    "action": "Reduce overfitting: drop noisy features, increase regularization, simplify feature engineering, use more robust CV",
+    "applied_to": [
+      "kaggle-orchestrator",
+      "kaggle-feature-engineer",
+      "kaggle-model-trainer",
+      "kaggle-ensembler"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T20:46:11.049949",
+    "source_agent": "kaggle-orchestrator",
+    "phase": "submit_and_learn",
+    "iteration": 17,
+    "category": "feature",
+    "insight": "Groupby stats and frequency encoding may be causing overfitting. Consider dropping low-importance engineered features.",
+    "impact": "high",
+    "evidence": "46 features, many groupby stats had near-zero importance but may add noise",
+    "action": "Try minimal feature set (original + ratios only) vs full feature set. Compare CV-LB gap.",
+    "applied_to": [
+      "kaggle-feature-engineer",
+      "kaggle-model-trainer"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T20:46:11.050951",
+    "source_agent": "kaggle-orchestrator",
+    "phase": "submit_and_learn",
+    "iteration": 17,
+    "category": "ensemble",
+    "insight": "Logistic regression meta-learner on OOF may overfit. Try simpler averaging or rank averaging.",
+    "impact": "medium",
+    "evidence": "Stacking with logistic meta-learner: CV=0.91647 but LB=0.91380",
+    "action": "Compare: simple average vs rank average vs stacking. Rank average is most robust.",
+    "applied_to": [
+      "kaggle-ensembler"
+    ]
   }
 ]

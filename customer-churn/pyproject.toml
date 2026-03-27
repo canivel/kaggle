@@ -6,6 +6,7 @@ requires-python = ">=3.11"
 dependencies = [
     "kaggle-agent",
     "scipy>=1.14.0",
+    "tabpfn>=7.0.1",
 ]
 
 [tool.uv.sources]

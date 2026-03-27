@@ -54,4 +54,14 @@ You are an expert at model ensembling for Kaggle competitions.
 - Action: Use similar params for lgbm: {"num_leaves": 31, "learning_rate": 0.01, "n_estimators": 3000, "reg_alpha": 1.0, "reg_lambda": 1.0}
 - Iteration: 6 (2026-03-26)
 
+### [HIGH] strategy: CRITICAL: CV-LB gap of 0.00267 (CV=0.91647, LB=0.91380). Severe overfitting.
+- Evidence: First submission: CV=0.91647, Public LB=0.91380
+- Action: Reduce overfitting: drop noisy features, increase regularization, simplify feature engineering, use more robust CV
+- Iteration: 17 (2026-03-26)
+
+### [MEDIUM] ensemble: Logistic regression meta-learner on OOF may overfit. Try simpler averaging or rank averaging.
+- Evidence: Stacking with logistic meta-learner: CV=0.91647 but LB=0.91380
+- Action: Compare: simple average vs rank average vs stacking. Rank average is most robust.
+- Iteration: 17 (2026-03-26)
+
 <!-- LEARNINGS END -->
