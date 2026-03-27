@@ -112,3 +112,17 @@ Ran 16 experiments, 3 kept.
 | Top LB (Chris Deotte) | - | 0.91762 | - |
 
 ---
+
+### Iteration 3 Results (with ORIG_proba)
+**Date**: 2026-03-27T01:11:18.134744
+
+- lgbm_s42: 0.916498
+- lgbm_s11: 0.916435
+- lgbm_reg: 0.916605
+- catboost: 0.916284
+- logistic: 0.911472
+- **Simple avg**: 0.916512
+- **Rank avg**: 0.916482
+- **Tree avg**: 0.916809
+
+---

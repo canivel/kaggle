@@ -172,7 +172,7 @@ def train_xgb_top_params(X, y, X_test, n_folds=5, seeds=[42, 11, 99]):
             y_tr, y_va = y.iloc[tr_idx], y.iloc[va_idx]
 
             model = xgb.XGBClassifier(
-                n_estimators=50000,
+                n_estimators=5000,
                 learning_rate=0.01,
                 max_depth=5,
                 min_child_weight=5,
@@ -181,9 +181,8 @@ def train_xgb_top_params(X, y, X_test, n_folds=5, seeds=[42, 11, 99]):
                 reg_alpha=1.0,
                 reg_lambda=1.0,
                 gamma=0.1,
-                early_stopping_rounds=300,
-                device="cuda",
-                enable_categorical=True,
+                early_stopping_rounds=200,
+                tree_method="hist",
                 random_state=seed,
                 verbosity=0,
                 n_jobs=-1,
@@ -222,7 +221,7 @@ def train_lgbm_top_params(X, y, X_test, n_folds=5, seeds=[42, 11, 99]):
             y_tr, y_va = y.iloc[tr_idx], y.iloc[va_idx]
 
             model = lgb.LGBMClassifier(
-                n_estimators=50000,
+                n_estimators=5000,
                 learning_rate=0.02,
                 num_leaves=63,
                 max_depth=7,
@@ -268,7 +267,7 @@ def train_catboost_top_params(X, y, X_test, cat_cols, n_folds=5, seed=42):
         y_tr, y_va = y.iloc[tr_idx], y.iloc[va_idx]
 
         model = CatBoostClassifier(
-            iterations=10000,
+            iterations=5000,
             learning_rate=0.02,
             depth=4,
             min_data_in_leaf=20,
@@ -276,9 +275,8 @@ def train_catboost_top_params(X, y, X_test, cat_cols, n_folds=5, seed=42):
             random_seed=seed,
             verbose=0,
             eval_metric="Logloss",
-            task_type="GPU",
-            devices="0",
-            early_stopping_rounds=300,
+            task_type="CPU",
+            early_stopping_rounds=200,
         )
         model.fit(X_tr, y_tr, eval_set=(X_va, y_va), verbose=0)
         oof[va_idx] = model.predict_proba(X_va)[:, 1]
