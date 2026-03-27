@@ -194,3 +194,12 @@ Ran 16 experiments, 3 kept.
 - **Rank avg**: 0.917581
 
 ---
+
+### Iteration 6 - BlamerX Reproduction
+**Date**: 2026-03-27T15:51:14.562064
+
+**CV**: 0.918790 (target: 0.91927)
+
+**Approach**: 20-fold Ridge→XGB, N-gram TE, ORIG_proba, distribution features, digit features, exact BlamerX XGB params (lr=0.0063, colsample=0.32, reg_alpha=3.5)
+
+---
