@@ -126,3 +126,71 @@ Ran 16 experiments, 3 kept.
 - **Tree avg**: 0.916809
 
 ---
+
+### Iteration 4 - Fixed Leakage + All Top Techniques
+**Date**: 2026-03-27T03:11:56.519766
+
+**Key changes**: All FE inside CV folds, 10-fold CV, digit features, bi-gram cats, target encoding
+
+- lgbm_s42: 0.917807
+- lgbm_s11: 0.917811
+- lgbm_reg: 0.917545
+- catboost: 0.916917
+- logistic: 0.911730
+- **Tree avg**: 0.917925
+- **All avg**: 0.917524
+- **Rank avg**: 0.917480
+
+---
+
+### Iteration 4 - Fixed Leakage + All Top Techniques
+**Date**: 2026-03-27T03:17:44.560072
+
+**Key changes**: All FE inside CV folds, 10-fold CV, digit features, bi-gram cats, target encoding
+
+- lgbm_s42: 0.917794
+- lgbm_s11: 0.917844
+- lgbm_reg: 0.917560
+- catboost: 0.916924
+- logistic: 0.911730
+- **Tree avg**: 0.917919
+- **All avg**: 0.917517
+- **Rank avg**: 0.917473
+
+---
+
+### Iteration 5 - Full Top-Notebook Reproduction
+**Date**: 2026-03-27T09:19:59.841502
+
+**New techniques**: Ridge stage1, XGB BlamerX params, distribution features, extended digit features, tri-grams, pseudo-labeling
+
+- lgbm_3seed: 0.918023
+- lgbm_reg: 0.917571
+- lgbm_ridge: 0.917695
+- xgb_blamerx: 0.917770
+- catboost: 0.916870
+- logistic: 0.912990
+- lgbm_pseudo: 0.917647
+- **Tree avg**: 0.917909
+- **All avg**: 0.917618
+- **Rank avg**: 0.917592
+
+---
+
+### Iteration 5 - Full Top-Notebook Reproduction
+**Date**: 2026-03-27T09:25:40.139083
+
+**New techniques**: Ridge stage1, XGB BlamerX params, distribution features, extended digit features, tri-grams, pseudo-labeling
+
+- lgbm_3seed: 0.918007
+- lgbm_reg: 0.917545
+- lgbm_ridge: 0.917724
+- xgb_blamerx: 0.917782
+- catboost: 0.916866
+- logistic: 0.912998
+- lgbm_pseudo: 0.917678
+- **Tree avg**: 0.917898
+- **All avg**: 0.917606
+- **Rank avg**: 0.917581
+
+---

@@ -231,5 +231,22 @@
     "applied_to": [
       "kaggle-ensembler"
     ]
+  },
+  {
+    "timestamp": "2026-03-27T06:39:37.385203",
+    "source_agent": "kaggle-orchestrator",
+    "phase": "submit_and_learn",
+    "iteration": 20,
+    "category": "strategy",
+    "insight": "Iter4 LB=0.91526 (CV=0.9176, gap=0.00234). Improved from 0.91380. In-fold FE helped reduce gap but still 0.00234 overfitting. Need: two-stage modeling, XGB diversity, pseudo-labels, more aggressive regularization.",
+    "impact": "high",
+    "evidence": "Sub1: LB=0.91380 (gap 0.00267). Sub4: LB=0.91526 (gap 0.00234). Top LB=0.91762.",
+    "action": "Implement BlamerX two-stage Ridge->XGB, add XGB with enable_categorical, try pseudo-labeling, increase model diversity",
+    "applied_to": [
+      "kaggle-orchestrator",
+      "kaggle-model-trainer",
+      "kaggle-feature-engineer",
+      "kaggle-ensembler"
+    ]
   }
 ]
