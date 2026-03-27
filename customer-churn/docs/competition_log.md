@@ -219,3 +219,13 @@ Submitted 80/20 blend.
 **Next**: Need novel approaches beyond GBDT. Researching cutting-edge tabular ML papers.
 
 ---
+
+### Iteration 7 - 20-Seed + Hill Climbing
+**Date**: 2026-03-27T19:18:21.309468
+
+- 20-seed LGBM + 10-seed XGB + LogReg = 31 models
+- Simple avg: 0.918209
+- Top-10 avg: 0.918265
+- **Hill climb**: 0.918296
+
+---
