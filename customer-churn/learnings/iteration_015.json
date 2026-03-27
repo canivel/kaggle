@@ -1,0 +1,16 @@
+[
+  {
+    "timestamp": "2026-03-26T20:14:00.261538",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 15,
+    "category": "strategy",
+    "insight": "CRASH: XGBoost different seed - XGBClassifier.fit() got an unexpected keyword argument 'callbacks'",
+    "impact": "low",
+    "evidence": "Experiment 0015 crashed",
+    "action": "Avoid configuration: {\"random_state\": 2024, \"max_depth\": 7}",
+    "applied_to": [
+      "kaggle-model-trainer"
+    ]
+  }
+]

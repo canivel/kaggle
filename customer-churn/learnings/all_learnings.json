@@ -1,0 +1,189 @@
+[
+  {
+    "timestamp": "2026-03-26T19:52:15.965959",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 1,
+    "category": "feature",
+    "insight": "Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_MonthlyCharges",
+    "impact": "high",
+    "evidence": "Feature importance from lgbm (exp 0001)",
+    "action": "Focus feature engineering on these features and their interactions",
+    "applied_to": [
+      "kaggle-feature-engineer",
+      "kaggle-eda"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T19:52:15.966958",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 1,
+    "category": "feature",
+    "insight": "Low-value features: InternetService_tenure_mean, InternetService_TotalCharges_std, Contract_TotalCharges_std, InternetService_tenure_std, Contract_tenure_mean",
+    "impact": "low",
+    "evidence": "Near-zero importance in lgbm",
+    "action": "Consider dropping these features to reduce noise",
+    "applied_to": [
+      "kaggle-feature-engineer"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T19:52:16.305664",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 2,
+    "category": "strategy",
+    "insight": "CRASH: XGBoost baseline with default params - XGBClassifier.fit() got an unexpected keyword argument 'callbacks'",
+    "impact": "low",
+    "evidence": "Experiment 0002 crashed",
+    "action": "Avoid configuration: {}",
+    "applied_to": [
+      "kaggle-model-trainer"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T19:54:15.696118",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 4,
+    "category": "model",
+    "insight": "lgbm: more leaves improves capture of complex patterns",
+    "impact": "high",
+    "evidence": "CV improved to 0.916217",
+    "action": "Use similar params for lgbm: {\"num_leaves\": 63, \"max_depth\": 8, \"min_child_samples\": 50}",
+    "applied_to": [
+      "kaggle-model-trainer",
+      "kaggle-ensembler"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T19:54:15.813259",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 4,
+    "category": "feature",
+    "insight": "Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_MonthlyCharges",
+    "impact": "high",
+    "evidence": "Feature importance from lgbm (exp 0004)",
+    "action": "Focus feature engineering on these features and their interactions",
+    "applied_to": [
+      "kaggle-feature-engineer",
+      "kaggle-eda"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T19:54:15.814262",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 4,
+    "category": "feature",
+    "insight": "Low-value features: InternetService_tenure_mean, InternetService_TotalCharges_std, Contract_TotalCharges_std, InternetService_tenure_std, Contract_tenure_mean",
+    "impact": "low",
+    "evidence": "Near-zero importance in lgbm",
+    "action": "Consider dropping these features to reduce noise",
+    "applied_to": [
+      "kaggle-feature-engineer"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T20:01:00.423252",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 6,
+    "category": "model",
+    "insight": "lgbm: low learning rate helps; more iterations with patience helps; stronger regularization reduces overfitting",
+    "impact": "high",
+    "evidence": "CV improved to 0.916312",
+    "action": "Use similar params for lgbm: {\"num_leaves\": 31, \"learning_rate\": 0.01, \"n_estimators\": 3000, \"reg_alpha\": 1.0, \"reg_lambda\": 1.0}",
+    "applied_to": [
+      "kaggle-model-trainer",
+      "kaggle-ensembler"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T20:01:00.801025",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 6,
+    "category": "feature",
+    "insight": "Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_TotalCharges",
+    "impact": "high",
+    "evidence": "Feature importance from lgbm (exp 0006)",
+    "action": "Focus feature engineering on these features and their interactions",
+    "applied_to": [
+      "kaggle-feature-engineer",
+      "kaggle-eda"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T20:01:00.802026",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 6,
+    "category": "feature",
+    "insight": "Low-value features: InternetService_TotalCharges_std, InternetService_tenure_mean, InternetService_tenure_std, Contract_TotalCharges_std, Contract_tenure_mean",
+    "impact": "low",
+    "evidence": "Near-zero importance in lgbm",
+    "action": "Consider dropping these features to reduce noise",
+    "applied_to": [
+      "kaggle-feature-engineer"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T20:09:03.777153",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 9,
+    "category": "strategy",
+    "insight": "CRASH: XGBoost deeper trees - XGBClassifier.fit() got an unexpected keyword argument 'callbacks'",
+    "impact": "low",
+    "evidence": "Experiment 0009 crashed",
+    "action": "Avoid configuration: {\"max_depth\": 8, \"min_child_weight\": 3, \"gamma\": 0.1}",
+    "applied_to": [
+      "kaggle-model-trainer"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T20:09:03.950790",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 10,
+    "category": "strategy",
+    "insight": "CRASH: XGBoost low LR high reg - XGBClassifier.fit() got an unexpected keyword argument 'callbacks'",
+    "impact": "low",
+    "evidence": "Experiment 0010 crashed",
+    "action": "Avoid configuration: {\"max_depth\": 5, \"learning_rate\": 0.01, \"n_estimators\": 3000, \"reg_alpha\": 1.0, \"reg_lambda\": 5.0}",
+    "applied_to": [
+      "kaggle-model-trainer"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T20:09:04.136004",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 11,
+    "category": "strategy",
+    "insight": "CRASH: XGBoost wide shallow - XGBClassifier.fit() got an unexpected keyword argument 'callbacks'",
+    "impact": "low",
+    "evidence": "Experiment 0011 crashed",
+    "action": "Avoid configuration: {\"max_depth\": 4, \"n_estimators\": 2000, \"learning_rate\": 0.03, \"subsample\": 0.7, \"colsample_bytree\": 0.6, \"min_child_weight\": 5, \"gamma\": 0.2}",
+    "applied_to": [
+      "kaggle-model-trainer"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T20:14:00.261538",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 15,
+    "category": "strategy",
+    "insight": "CRASH: XGBoost different seed - XGBClassifier.fit() got an unexpected keyword argument 'callbacks'",
+    "impact": "low",
+    "evidence": "Experiment 0015 crashed",
+    "action": "Avoid configuration: {\"random_state\": 2024, \"max_depth\": 7}",
+    "applied_to": [
+      "kaggle-model-trainer"
+    ]
+  }
+]

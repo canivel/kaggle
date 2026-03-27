@@ -51,4 +51,9 @@ Produce a structured EDA report with:
 - Action: Focus feature engineering on these features and their interactions
 - Iteration: 4 (2026-03-26)
 
+### [HIGH] feature: Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_TotalCharges
+- Evidence: Feature importance from lgbm (exp 0006)
+- Action: Focus feature engineering on these features and their interactions
+- Iteration: 6 (2026-03-26)
+
 <!-- LEARNINGS END -->

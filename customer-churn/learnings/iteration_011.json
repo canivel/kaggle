@@ -1,0 +1,16 @@
+[
+  {
+    "timestamp": "2026-03-26T20:09:04.136004",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 11,
+    "category": "strategy",
+    "insight": "CRASH: XGBoost wide shallow - XGBClassifier.fit() got an unexpected keyword argument 'callbacks'",
+    "impact": "low",
+    "evidence": "Experiment 0011 crashed",
+    "action": "Avoid configuration: {\"max_depth\": 4, \"n_estimators\": 2000, \"learning_rate\": 0.03, \"subsample\": 0.7, \"colsample_bytree\": 0.6, \"min_child_weight\": 5, \"gamma\": 0.2}",
+    "applied_to": [
+      "kaggle-model-trainer"
+    ]
+  }
+]

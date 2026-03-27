@@ -1,0 +1,16 @@
+[
+  {
+    "timestamp": "2026-03-26T20:09:03.777153",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 9,
+    "category": "strategy",
+    "insight": "CRASH: XGBoost deeper trees - XGBClassifier.fit() got an unexpected keyword argument 'callbacks'",
+    "impact": "low",
+    "evidence": "Experiment 0009 crashed",
+    "action": "Avoid configuration: {\"max_depth\": 8, \"min_child_weight\": 3, \"gamma\": 0.1}",
+    "applied_to": [
+      "kaggle-model-trainer"
+    ]
+  }
+]

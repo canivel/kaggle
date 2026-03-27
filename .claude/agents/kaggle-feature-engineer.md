@@ -57,4 +57,14 @@ You are an expert feature engineer working on a Kaggle competition.
 - Action: Consider dropping these features to reduce noise
 - Iteration: 4 (2026-03-26)
 
+### [HIGH] feature: Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_TotalCharges
+- Evidence: Feature importance from lgbm (exp 0006)
+- Action: Focus feature engineering on these features and their interactions
+- Iteration: 6 (2026-03-26)
+
+### [LOW] feature: Low-value features: InternetService_TotalCharges_std, InternetService_tenure_mean, InternetService_tenure_std, Contract_TotalCharges_std, Contract_tenure_mean
+- Evidence: Near-zero importance in lgbm
+- Action: Consider dropping these features to reduce noise
+- Iteration: 6 (2026-03-26)
+
 <!-- LEARNINGS END -->

@@ -126,11 +126,18 @@ Uses `kaggle-agent` framework at `f:/kaggle/kaggle-agent/`
 - Low-value features: InternetService_tenure_mean, InternetService_TotalCharges_std, Contract_TotalCharges_std, InternetService_tenure_std, Contract_tenure_mean (impact: low, evidence: Near-zero importance in lgbm)
 - Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_MonthlyCharges (impact: high, evidence: Feature importance from lgbm (exp 0004))
 - Low-value features: InternetService_tenure_mean, InternetService_TotalCharges_std, Contract_TotalCharges_std, InternetService_tenure_std, Contract_tenure_mean (impact: low, evidence: Near-zero importance in lgbm)
+- Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_TotalCharges (impact: high, evidence: Feature importance from lgbm (exp 0006))
+- Low-value features: InternetService_TotalCharges_std, InternetService_tenure_mean, InternetService_tenure_std, Contract_TotalCharges_std, Contract_tenure_mean (impact: low, evidence: Near-zero importance in lgbm)
 
 #### Model
 - lgbm: more leaves improves capture of complex patterns (impact: high, evidence: CV improved to 0.916217)
+- lgbm: low learning rate helps; more iterations with patience helps; stronger regularization reduces overfitting (impact: high, evidence: CV improved to 0.916312)
 
 #### Strategy
 - CRASH: XGBoost baseline with default params - XGBClassifier.fit() got an unexpected keyword argument 'callbacks' (impact: low, evidence: Experiment 0002 crashed)
+- CRASH: XGBoost deeper trees - XGBClassifier.fit() got an unexpected keyword argument 'callbacks' (impact: low, evidence: Experiment 0009 crashed)
+- CRASH: XGBoost low LR high reg - XGBClassifier.fit() got an unexpected keyword argument 'callbacks' (impact: low, evidence: Experiment 0010 crashed)
+- CRASH: XGBoost wide shallow - XGBClassifier.fit() got an unexpected keyword argument 'callbacks' (impact: low, evidence: Experiment 0011 crashed)
+- CRASH: XGBoost different seed - XGBClassifier.fit() got an unexpected keyword argument 'callbacks' (impact: low, evidence: Experiment 0015 crashed)
 
 <!-- COMPETITION LEARNINGS END -->

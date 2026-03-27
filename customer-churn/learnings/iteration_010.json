@@ -1,0 +1,16 @@
+[
+  {
+    "timestamp": "2026-03-26T20:09:03.950790",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 10,
+    "category": "strategy",
+    "insight": "CRASH: XGBoost low LR high reg - XGBClassifier.fit() got an unexpected keyword argument 'callbacks'",
+    "impact": "low",
+    "evidence": "Experiment 0010 crashed",
+    "action": "Avoid configuration: {\"max_depth\": 5, \"learning_rate\": 0.01, \"n_estimators\": 3000, \"reg_alpha\": 1.0, \"reg_lambda\": 5.0}",
+    "applied_to": [
+      "kaggle-model-trainer"
+    ]
+  }
+]

@@ -49,4 +49,9 @@ You are an expert at model ensembling for Kaggle competitions.
 - Action: Use similar params for lgbm: {"num_leaves": 63, "max_depth": 8, "min_child_samples": 50}
 - Iteration: 4 (2026-03-26)
 
+### [HIGH] model: lgbm: low learning rate helps; more iterations with patience helps; stronger regularization reduces overfitting
+- Evidence: CV improved to 0.916312
+- Action: Use similar params for lgbm: {"num_leaves": 31, "learning_rate": 0.01, "n_estimators": 3000, "reg_alpha": 1.0, "reg_lambda": 1.0}
+- Iteration: 6 (2026-03-26)
+
 <!-- LEARNINGS END -->

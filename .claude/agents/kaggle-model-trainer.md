@@ -71,4 +71,39 @@ For each model type (lgbm, xgb, catboost):
 - Action: Consider dropping these features to reduce noise
 - Iteration: 4 (2026-03-26)
 
+### [HIGH] model: lgbm: low learning rate helps; more iterations with patience helps; stronger regularization reduces overfitting
+- Evidence: CV improved to 0.916312
+- Action: Use similar params for lgbm: {"num_leaves": 31, "learning_rate": 0.01, "n_estimators": 3000, "reg_alpha": 1.0, "reg_lambda": 1.0}
+- Iteration: 6 (2026-03-26)
+
+### [HIGH] feature: Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_TotalCharges
+- Evidence: Feature importance from lgbm (exp 0006)
+- Action: Focus feature engineering on these features and their interactions
+- Iteration: 6 (2026-03-26)
+
+### [LOW] feature: Low-value features: InternetService_TotalCharges_std, InternetService_tenure_mean, InternetService_tenure_std, Contract_TotalCharges_std, Contract_tenure_mean
+- Evidence: Near-zero importance in lgbm
+- Action: Consider dropping these features to reduce noise
+- Iteration: 6 (2026-03-26)
+
+### [LOW] strategy: CRASH: XGBoost deeper trees - XGBClassifier.fit() got an unexpected keyword argument 'callbacks'
+- Evidence: Experiment 0009 crashed
+- Action: Avoid configuration: {"max_depth": 8, "min_child_weight": 3, "gamma": 0.1}
+- Iteration: 9 (2026-03-26)
+
+### [LOW] strategy: CRASH: XGBoost low LR high reg - XGBClassifier.fit() got an unexpected keyword argument 'callbacks'
+- Evidence: Experiment 0010 crashed
+- Action: Avoid configuration: {"max_depth": 5, "learning_rate": 0.01, "n_estimators": 3000, "reg_alpha": 1.0, "reg_lambda": 5.0}
+- Iteration: 10 (2026-03-26)
+
+### [LOW] strategy: CRASH: XGBoost wide shallow - XGBClassifier.fit() got an unexpected keyword argument 'callbacks'
+- Evidence: Experiment 0011 crashed
+- Action: Avoid configuration: {"max_depth": 4, "n_estimators": 2000, "learning_rate": 0.03, "subsample": 0.7, "colsample_bytree": 0.6, "min_child_weight": 5, "gamma": 0.2}
+- Iteration: 11 (2026-03-26)
+
+### [LOW] strategy: CRASH: XGBoost different seed - XGBClassifier.fit() got an unexpected keyword argument 'callbacks'
+- Evidence: Experiment 0015 crashed
+- Action: Avoid configuration: {"random_state": 2024, "max_depth": 7}
+- Iteration: 15 (2026-03-26)
+
 <!-- LEARNINGS END -->

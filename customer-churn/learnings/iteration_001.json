@@ -1,0 +1,31 @@
+[
+  {
+    "timestamp": "2026-03-26T19:52:15.965959",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 1,
+    "category": "feature",
+    "insight": "Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_MonthlyCharges",
+    "impact": "high",
+    "evidence": "Feature importance from lgbm (exp 0001)",
+    "action": "Focus feature engineering on these features and their interactions",
+    "applied_to": [
+      "kaggle-feature-engineer",
+      "kaggle-eda"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T19:52:15.966958",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 1,
+    "category": "feature",
+    "insight": "Low-value features: InternetService_tenure_mean, InternetService_TotalCharges_std, Contract_TotalCharges_std, InternetService_tenure_std, Contract_tenure_mean",
+    "impact": "low",
+    "evidence": "Near-zero importance in lgbm",
+    "action": "Consider dropping these features to reduce noise",
+    "applied_to": [
+      "kaggle-feature-engineer"
+    ]
+  }
+]

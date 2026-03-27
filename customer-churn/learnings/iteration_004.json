@@ -1,0 +1,46 @@
+[
+  {
+    "timestamp": "2026-03-26T19:54:15.696118",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 4,
+    "category": "model",
+    "insight": "lgbm: more leaves improves capture of complex patterns",
+    "impact": "high",
+    "evidence": "CV improved to 0.916217",
+    "action": "Use similar params for lgbm: {\"num_leaves\": 63, \"max_depth\": 8, \"min_child_samples\": 50}",
+    "applied_to": [
+      "kaggle-model-trainer",
+      "kaggle-ensembler"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T19:54:15.813259",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 4,
+    "category": "feature",
+    "insight": "Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_MonthlyCharges",
+    "impact": "high",
+    "evidence": "Feature importance from lgbm (exp 0004)",
+    "action": "Focus feature engineering on these features and their interactions",
+    "applied_to": [
+      "kaggle-feature-engineer",
+      "kaggle-eda"
+    ]
+  },
+  {
+    "timestamp": "2026-03-26T19:54:15.814262",
+    "source_agent": "kaggle-model-trainer",
+    "phase": "model_training",
+    "iteration": 4,
+    "category": "feature",
+    "insight": "Low-value features: InternetService_tenure_mean, InternetService_TotalCharges_std, Contract_TotalCharges_std, InternetService_tenure_std, Contract_tenure_mean",
+    "impact": "low",
+    "evidence": "Near-zero importance in lgbm",
+    "action": "Consider dropping these features to reduce noise",
+    "applied_to": [
+      "kaggle-feature-engineer"
+    ]
+  }
+]
