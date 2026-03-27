@@ -1,0 +1,22 @@
+services:
+  kaggle-runner:
+    image: python:3.11-slim
+    volumes:
+      - ../kaggle-agent:/app/kaggle-agent
+      - .:/app/competition
+      - /f/.uv-cache:/root/.cache/uv
+    working_dir: /app/competition
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    command: >
+      bash -c "
+        pip install uv &&
+        cd /app/competition &&
+        uv sync &&
+        uv run python -u run_iter5.py
+      "

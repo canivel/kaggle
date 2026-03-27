@@ -144,5 +144,6 @@ Uses `kaggle-agent` framework at `f:/kaggle/kaggle-agent/`
 - CRASH: XGBoost wide shallow - XGBClassifier.fit() got an unexpected keyword argument 'callbacks' (impact: low, evidence: Experiment 0011 crashed)
 - CRASH: XGBoost different seed - XGBClassifier.fit() got an unexpected keyword argument 'callbacks' (impact: low, evidence: Experiment 0015 crashed)
 - CRITICAL: CV-LB gap of 0.00267 (CV=0.91647, LB=0.91380). Severe overfitting. (impact: high, evidence: First submission: CV=0.91647, Public LB=0.91380)
+- Iter4 LB=0.91526 (CV=0.9176, gap=0.00234). Improved from 0.91380. In-fold FE helped reduce gap but still 0.00234 overfitting. Need: two-stage modeling, XGB diversity, pseudo-labels, more aggressive regularization. (impact: high, evidence: Sub1: LB=0.91380 (gap 0.00267). Sub4: LB=0.91526 (gap 0.00234). Top LB=0.91762.)
 
 <!-- COMPETITION LEARNINGS END -->

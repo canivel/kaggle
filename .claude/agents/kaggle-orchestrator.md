@@ -141,4 +141,9 @@ The human might be asleep. You are autonomous.
 - Action: Compare: simple average vs rank average vs stacking. Rank average is most robust.
 - Iteration: 17 (2026-03-26)
 
+### [HIGH] strategy: Iter4 LB=0.91526 (CV=0.9176, gap=0.00234). Improved from 0.91380. In-fold FE helped reduce gap but still 0.00234 overfitting. Need: two-stage modeling, XGB diversity, pseudo-labels, more aggressive regularization.
+- Evidence: Sub1: LB=0.91380 (gap 0.00267). Sub4: LB=0.91526 (gap 0.00234). Top LB=0.91762.
+- Action: Implement BlamerX two-stage Ridge->XGB, add XGB with enable_categorical, try pseudo-labeling, increase model diversity
+- Iteration: 20 (2026-03-27)
+
 <!-- LEARNINGS END -->
