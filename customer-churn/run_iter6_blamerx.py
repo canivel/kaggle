@@ -286,38 +286,39 @@ def train_blamerx(train, test, y, test_ids):
                 te1_va[feat_name] = X_va[col].map(agg[stat]).values
                 te1_te[feat_name] = X_te[col].map(agg[stat]).values
 
-        # TE Pass 2: sklearn TargetEncoder (mean with smooth)
-        te = TargetEncoder(cv=5, smooth="auto")
+        # TE Pass 2: Manual smoothed target encoding (mean)
+        global_mean = y_tr.mean()
+        smooth = 10.0
         te_mean_cols = [f"TE_mean_{c}" for c in te_columns]
-        te_tr_mean = pd.DataFrame(
-            te.fit_transform(X_tr[te_columns], y_tr),
-            columns=te_mean_cols, index=X_tr.index
-        )
-        te_va_mean = pd.DataFrame(
-            te.transform(X_va[te_columns]),
-            columns=te_mean_cols, index=X_va.index
-        )
-        te_te_mean = pd.DataFrame(
-            te.transform(X_te[te_columns]),
-            columns=te_mean_cols, index=X_te.index
-        )
+        te_tr_mean = pd.DataFrame(index=X_tr.index)
+        te_va_mean = pd.DataFrame(index=X_va.index)
+        te_te_mean = pd.DataFrame(index=X_te.index)
 
-        # TE Pass 3: N-gram TE (mean only)
-        te_ng = TargetEncoder(cv=5, smooth="auto")
+        for col in te_columns:
+            tmp = pd.DataFrame({"col": X_tr[col], "y": y_tr.values})
+            agg = tmp.groupby("col")["y"].agg(["mean", "count"])
+            # Bayesian smoothing
+            smoothed = (agg["count"] * agg["mean"] + smooth * global_mean) / (agg["count"] + smooth)
+            name = f"TE_mean_{col}"
+            te_tr_mean[name] = X_tr[col].map(smoothed).fillna(global_mean).astype("float32")
+            te_va_mean[name] = X_va[col].map(smoothed).fillna(global_mean).astype("float32")
+            te_te_mean[name] = X_te[col].map(smoothed).fillna(global_mean).astype("float32")
+
+        # TE Pass 3: N-gram TE (mean only, same smoothed approach)
         ng_mean_cols = [f"TE_ng_{c}" for c in te_ngram_columns]
+        te_ng_tr = pd.DataFrame(index=X_tr.index)
+        te_ng_va = pd.DataFrame(index=X_va.index)
+        te_ng_te = pd.DataFrame(index=X_te.index)
+
         if te_ngram_columns:
-            te_ng_tr = pd.DataFrame(
-                te_ng.fit_transform(X_tr[te_ngram_columns], y_tr),
-                columns=ng_mean_cols, index=X_tr.index
-            )
-            te_ng_va = pd.DataFrame(
-                te_ng.transform(X_va[te_ngram_columns]),
-                columns=ng_mean_cols, index=X_va.index
-            )
-            te_ng_te = pd.DataFrame(
-                te_ng.transform(X_te[te_ngram_columns]),
-                columns=ng_mean_cols, index=X_te.index
-            )
+            for col in te_ngram_columns:
+                tmp = pd.DataFrame({"col": X_tr[col].astype(str), "y": y_tr.values})
+                agg = tmp.groupby("col")["y"].agg(["mean", "count"])
+                smoothed = (agg["count"] * agg["mean"] + smooth * global_mean) / (agg["count"] + smooth)
+                name = f"TE_ng_{col}"
+                te_ng_tr[name] = X_tr[col].astype(str).map(smoothed).fillna(global_mean).astype("float32")
+                te_ng_va[name] = X_va[col].astype(str).map(smoothed).fillna(global_mean).astype("float32")
+                te_ng_te[name] = X_te[col].astype(str).map(smoothed).fillna(global_mean).astype("float32")
 
         # === ASSEMBLE FEATURES ===
         # Numeric features
