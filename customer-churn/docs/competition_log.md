@@ -229,3 +229,14 @@ Submitted 80/20 blend.
 - **Hill climb**: 0.918296
 
 ---
+
+### Iteration 9 - Improved BlamerX + RealMLP
+**Date**: 2026-03-27T22:44:55.523067
+
+- xgb: 0.918701
+- lgbm: 0.918473
+- realmlp: 0.913976
+- XGB+LGBM avg: 0.918671
+- **Deotte 3-model**: 0.918197
+
+---

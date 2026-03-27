@@ -69,4 +69,9 @@ You are an expert at model ensembling for Kaggle competitions.
 - Action: Implement BlamerX two-stage Ridge->XGB, add XGB with enable_categorical, try pseudo-labeling, increase model diversity
 - Iteration: 20 (2026-03-27)
 
+### [HIGH] strategy: CRITICAL: Hill climbing + 31 models scored WORSE on LB (0.91580) than iter6 standalone (0.91603). Seed diversity is fake diversity - LGBM seeds are too correlated. Hill climbing overfits to OOF. The 20-fold BlamerX single XGB generalizes best.
+- Evidence: Iter7 blend LB=0.91580 vs iter6 LB=0.91603. More models hurt.
+- Action: STOP adding correlated seed models. Focus on TRUE diversity: different architectures (TabM, neural, GNN). Use 20-fold CV like BlamerX. Hill climbing on correlated models is harmful.
+- Iteration: 22 (2026-03-27)
+
 <!-- LEARNINGS END -->

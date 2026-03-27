@@ -5,7 +5,9 @@ description = "Kaggle Playground Series S6E3 - Predict Customer Churn"
 requires-python = ">=3.11"
 dependencies = [
     "kaggle-agent",
+    "pytabkit>=1.7.3",
     "scipy>=1.14.0",
+    "tabm>=0.0.3",
     "tabpfn>=7.0.1",
 ]
 

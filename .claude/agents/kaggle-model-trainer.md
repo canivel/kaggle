@@ -126,4 +126,9 @@ For each model type (lgbm, xgb, catboost):
 - Action: Research cutting-edge tabular ML papers. Try: TabPFN, hill-climbing ensemble, rank calibration, adversarial validation, semi-supervised learning.
 - Iteration: 21 (2026-03-27)
 
+### [HIGH] strategy: CRITICAL: Hill climbing + 31 models scored WORSE on LB (0.91580) than iter6 standalone (0.91603). Seed diversity is fake diversity - LGBM seeds are too correlated. Hill climbing overfits to OOF. The 20-fold BlamerX single XGB generalizes best.
+- Evidence: Iter7 blend LB=0.91580 vs iter6 LB=0.91603. More models hurt.
+- Action: STOP adding correlated seed models. Focus on TRUE diversity: different architectures (TabM, neural, GNN). Use 20-fold CV like BlamerX. Hill climbing on correlated models is harmful.
+- Iteration: 22 (2026-03-27)
+
 <!-- LEARNINGS END -->

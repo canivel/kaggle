@@ -146,5 +146,6 @@ Uses `kaggle-agent` framework at `f:/kaggle/kaggle-agent/`
 - CRITICAL: CV-LB gap of 0.00267 (CV=0.91647, LB=0.91380). Severe overfitting. (impact: high, evidence: First submission: CV=0.91647, Public LB=0.91380)
 - Iter4 LB=0.91526 (CV=0.9176, gap=0.00234). Improved from 0.91380. In-fold FE helped reduce gap but still 0.00234 overfitting. Need: two-stage modeling, XGB diversity, pseudo-labels, more aggressive regularization. (impact: high, evidence: Sub1: LB=0.91380 (gap 0.00267). Sub4: LB=0.91526 (gap 0.00234). Top LB=0.91762.)
 - Iter6 BlamerX LB=0.91603 (CV=0.91879, gap=0.00276). Best LB yet but still 0.00159 from #1. CV-LB gap persists. Need: (1) novel approaches beyond GBDT, (2) better post-processing, (3) adversarial validation to understand train/test shift. (impact: high, evidence: Iter6 LB=0.91603 vs top=0.91762. Gap is consistent ~0.0027 across all submissions.)
+- CRITICAL: Hill climbing + 31 models scored WORSE on LB (0.91580) than iter6 standalone (0.91603). Seed diversity is fake diversity - LGBM seeds are too correlated. Hill climbing overfits to OOF. The 20-fold BlamerX single XGB generalizes best. (impact: high, evidence: Iter7 blend LB=0.91580 vs iter6 LB=0.91603. More models hurt.)
 
 <!-- COMPETITION LEARNINGS END -->

@@ -264,5 +264,21 @@
       "kaggle-model-trainer",
       "kaggle-researcher"
     ]
+  },
+  {
+    "timestamp": "2026-03-27T15:25:08.976501",
+    "source_agent": "kaggle-orchestrator",
+    "phase": "submit_and_learn",
+    "iteration": 22,
+    "category": "strategy",
+    "insight": "CRITICAL: Hill climbing + 31 models scored WORSE on LB (0.91580) than iter6 standalone (0.91603). Seed diversity is fake diversity - LGBM seeds are too correlated. Hill climbing overfits to OOF. The 20-fold BlamerX single XGB generalizes best.",
+    "impact": "high",
+    "evidence": "Iter7 blend LB=0.91580 vs iter6 LB=0.91603. More models hurt.",
+    "action": "STOP adding correlated seed models. Focus on TRUE diversity: different architectures (TabM, neural, GNN). Use 20-fold CV like BlamerX. Hill climbing on correlated models is harmful.",
+    "applied_to": [
+      "kaggle-orchestrator",
+      "kaggle-ensembler",
+      "kaggle-model-trainer"
+    ]
   }
 ]
