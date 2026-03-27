@@ -203,3 +203,19 @@ Ran 16 experiments, 3 kept.
 **Approach**: 20-fold Ridge→XGB, N-gram TE, ORIG_proba, distribution features, digit features, exact BlamerX XGB params (lr=0.0063, colsample=0.32, reg_alpha=3.5)
 
 ---
+
+### Adversarial Validation + Post-Processing
+**Date**: 2026-03-27
+
+**Adversarial Validation**: AUC = 0.511 → Train/test distributions are IDENTICAL.
+The CV-LB gap (~0.0027) is NOT from distribution shift. It's from overfitting to fold structure.
+
+**Iter6 LB**: 0.91603 (CV 0.91879, gap 0.00276)
+**Gap to #1**: 0.00159
+
+**Rank Calibration**: Generated blends in rank space (80/20, 70/30, 90/10).
+Submitted 80/20 blend.
+
+**Next**: Need novel approaches beyond GBDT. Researching cutting-edge tabular ML papers.
+
+---

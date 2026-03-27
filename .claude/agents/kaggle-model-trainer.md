@@ -121,4 +121,9 @@ For each model type (lgbm, xgb, catboost):
 - Action: Implement BlamerX two-stage Ridge->XGB, add XGB with enable_categorical, try pseudo-labeling, increase model diversity
 - Iteration: 20 (2026-03-27)
 
+### [HIGH] strategy: Iter6 BlamerX LB=0.91603 (CV=0.91879, gap=0.00276). Best LB yet but still 0.00159 from #1. CV-LB gap persists. Need: (1) novel approaches beyond GBDT, (2) better post-processing, (3) adversarial validation to understand train/test shift.
+- Evidence: Iter6 LB=0.91603 vs top=0.91762. Gap is consistent ~0.0027 across all submissions.
+- Action: Research cutting-edge tabular ML papers. Try: TabPFN, hill-climbing ensemble, rank calibration, adversarial validation, semi-supervised learning.
+- Iteration: 21 (2026-03-27)
+
 <!-- LEARNINGS END -->
