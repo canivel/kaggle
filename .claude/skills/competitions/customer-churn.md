@@ -117,3 +117,20 @@ Uses `kaggle-agent` framework at `f:/kaggle/kaggle-agent/`
 - Ensemble: `kaggle_agent.ensemble.stacking`
 - Tracking: `kaggle_agent.tracking.experiments`
 - Submission: `kaggle_agent.pipeline.submission`
+
+<!-- COMPETITION LEARNINGS START -->
+### Discovered Insights (Auto-Updated)
+
+#### Feature
+- Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_MonthlyCharges (impact: high, evidence: Feature importance from lgbm (exp 0001))
+- Low-value features: InternetService_tenure_mean, InternetService_TotalCharges_std, Contract_TotalCharges_std, InternetService_tenure_std, Contract_tenure_mean (impact: low, evidence: Near-zero importance in lgbm)
+- Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_MonthlyCharges (impact: high, evidence: Feature importance from lgbm (exp 0004))
+- Low-value features: InternetService_tenure_mean, InternetService_TotalCharges_std, Contract_TotalCharges_std, InternetService_tenure_std, Contract_tenure_mean (impact: low, evidence: Near-zero importance in lgbm)
+
+#### Model
+- lgbm: more leaves improves capture of complex patterns (impact: high, evidence: CV improved to 0.916217)
+
+#### Strategy
+- CRASH: XGBoost baseline with default params - XGBClassifier.fit() got an unexpected keyword argument 'callbacks' (impact: low, evidence: Experiment 0002 crashed)
+
+<!-- COMPETITION LEARNINGS END -->

@@ -114,13 +114,13 @@ class XGBModel(BaseModel):
 
     def fit(self, X: pd.DataFrame, y: pd.Series, **kwargs) -> None:
         import xgboost as xgb
-        fit_params = {}
+        params = {**self.params}
+        if "eval_set" in kwargs:
+            params["early_stopping_rounds"] = 50
+        self.model = xgb.XGBClassifier(**params)
+        fit_params = {"verbose": False}
         if "eval_set" in kwargs:
             fit_params["eval_set"] = kwargs["eval_set"]
-            fit_params["verbose"] = False
-            # Use early stopping via callbacks
-            fit_params["callbacks"] = [xgb.callback.EarlyStopping(rounds=50)]
-        self.model = xgb.XGBClassifier(**self.params)
         self.model.fit(X, y, **fit_params)
 
     def predict(self, X: pd.DataFrame) -> np.ndarray:
@@ -146,7 +146,7 @@ class CatBoostModel(BaseModel):
             "l2_leaf_reg": 3.0,
             "random_seed": 42,
             "verbose": 0,
-            "eval_metric": "AUC",
+            "eval_metric": "Logloss",
             "task_type": "GPU",
             "devices": "0",
         }

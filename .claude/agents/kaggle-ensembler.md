@@ -40,3 +40,13 @@ You are an expert at model ensembling for Kaggle competitions.
 - Never submit more than 5 times per day
 - Always validate ensemble score on OOF before submitting
 - Save submission with descriptive filename
+
+<!-- LEARNINGS START -->
+## Accumulated Learnings (Auto-Updated)
+
+### [HIGH] model: lgbm: more leaves improves capture of complex patterns
+- Evidence: CV improved to 0.916217
+- Action: Use similar params for lgbm: {"num_leaves": 63, "max_depth": 8, "min_child_samples": 50}
+- Iteration: 4 (2026-03-26)
+
+<!-- LEARNINGS END -->

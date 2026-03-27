@@ -143,8 +143,8 @@ def main():
         id_column=config.data.id_column,
     )
 
-    # Encode target
-    if y_train.dtype == object:
+    # Encode target: "Yes" -> 1, "No" -> 0
+    if not pd.api.types.is_numeric_dtype(y_train):
         y_train = (y_train == "Yes").astype(int)
 
     print(f"  Train: {X_train.shape} | Test: {X_test.shape}")

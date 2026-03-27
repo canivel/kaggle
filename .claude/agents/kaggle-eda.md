@@ -37,3 +37,18 @@ Produce a structured EDA report with:
 - Never install packages not in pyproject.toml
 - Save results to `eda/` directory
 - Use the kaggle-agent framework at `../kaggle-agent/src`
+
+<!-- LEARNINGS START -->
+## Accumulated Learnings (Auto-Updated)
+
+### [HIGH] feature: Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_MonthlyCharges
+- Evidence: Feature importance from lgbm (exp 0001)
+- Action: Focus feature engineering on these features and their interactions
+- Iteration: 1 (2026-03-26)
+
+### [HIGH] feature: Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_MonthlyCharges
+- Evidence: Feature importance from lgbm (exp 0004)
+- Action: Focus feature engineering on these features and their interactions
+- Iteration: 4 (2026-03-26)
+
+<!-- LEARNINGS END -->

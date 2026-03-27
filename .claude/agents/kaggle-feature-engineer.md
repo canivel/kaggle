@@ -33,3 +33,28 @@ You are an expert feature engineer working on a Kaggle competition.
 - Save feature pipeline as Python code
 - Test that features work on both train and test sets
 - Use the FeatureEngineer class from `kaggle_agent.pipeline.features`
+
+<!-- LEARNINGS START -->
+## Accumulated Learnings (Auto-Updated)
+
+### [HIGH] feature: Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_MonthlyCharges
+- Evidence: Feature importance from lgbm (exp 0001)
+- Action: Focus feature engineering on these features and their interactions
+- Iteration: 1 (2026-03-26)
+
+### [LOW] feature: Low-value features: InternetService_tenure_mean, InternetService_TotalCharges_std, Contract_TotalCharges_std, InternetService_tenure_std, Contract_tenure_mean
+- Evidence: Near-zero importance in lgbm
+- Action: Consider dropping these features to reduce noise
+- Iteration: 1 (2026-03-26)
+
+### [HIGH] feature: Top features: TotalCharges_div_tenure, TotalCharges, MonthlyCharges, MonthlyCharges_div_tenure, tenure_x_MonthlyCharges
+- Evidence: Feature importance from lgbm (exp 0004)
+- Action: Focus feature engineering on these features and their interactions
+- Iteration: 4 (2026-03-26)
+
+### [LOW] feature: Low-value features: InternetService_tenure_mean, InternetService_TotalCharges_std, Contract_TotalCharges_std, InternetService_tenure_std, Contract_tenure_mean
+- Evidence: Near-zero importance in lgbm
+- Action: Consider dropping these features to reduce noise
+- Iteration: 4 (2026-03-26)
+
+<!-- LEARNINGS END -->
