@@ -252,3 +252,16 @@ Submitted 80/20 blend.
 - pseudo_xgb: 0.915558
 
 ---
+
+### Iteration 11 - Lean Features + 30-fold
+**Date**: 2026-03-28T06:01:24.557037
+
+**Key change**: Lean features (~80 vs 127), 30-fold CV
+
+- xgb: 0.918090
+- lgbm: 0.917948
+- pairte: 0.894260
+- XGB+LGBM: 0.918110
+- Deotte 3-model: 0.916272
+
+---
