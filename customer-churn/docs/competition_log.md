@@ -265,3 +265,16 @@ Submitted 80/20 blend.
 - Deotte 3-model: 0.916272
 
 ---
+
+### Iteration 12 - Stacking + Conditional ORIG
+**Date**: 2026-03-28T12:39:32.994702
+
+- L0 xgb_bx: 0.918032
+- L0 xgb_deep: 0.917901
+- L0 lgbm_reg: 0.917936
+- L0 lgbm_wide: 0.917729
+- **L1 Ridge stack**: 0.918084
+- **L1 LogReg stack**: 0.918053
+- Simple avg: 0.918062
+
+---

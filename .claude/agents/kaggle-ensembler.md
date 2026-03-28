@@ -74,4 +74,9 @@ You are an expert at model ensembling for Kaggle competitions.
 - Action: STOP adding correlated seed models. Focus on TRUE diversity: different architectures (TabM, neural, GNN). Use 20-fold CV like BlamerX. Hill climbing on correlated models is harmful.
 - Iteration: 22 (2026-03-27)
 
+### [HIGH] strategy: CRITICAL PATTERN: iter6 (20-fold, 98 features) LB=0.91603 STILL BEST. iter9 (20-fold, 98 feat) LB=0.91599. iter11 (30-fold, 66 feat) LB=0.91524-0.91528. MORE FOLDS HURT LB. 20-fold with ~98 features is the sweet spot. 30-fold overfits to folds (too little val data per fold). Blending NEVER beats iter6 standalone.
+- Evidence: iter6=0.91603, iter9=0.91599, iter11_xgb=0.91524, iter11_blend=0.91528, iter7_blend=0.91580
+- Action: STOP increasing folds. STOP blending. Focus on improving the SINGLE 20-fold XGB model. The only path forward is better features or better params for 20-fold XGB standalone.
+- Iteration: 23 (2026-03-28)
+
 <!-- LEARNINGS END -->
