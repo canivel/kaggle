@@ -240,3 +240,15 @@ Submitted 80/20 blend.
 - **Deotte 3-model**: 0.918197
 
 ---
+
+### Iteration 10 - Optuna + Pair TE + Pseudo-labels
+**Date**: 2026-03-28T01:55:57.328049
+
+**Optuna best params**: {'lr': 0.006612729138639732, 'max_depth': 5, 'min_child_weight': 3, 'subsample': 0.8807689432639139, 'colsample_bytree': 0.24473038620786253, 'reg_alpha': 9.133995846860973, 'reg_lambda': 2.0736445177905036, 'gamma': 0.3974313630683448}
+
+- optuna_xgb: 0.915885
+- blamerx_xgb: 0.915878
+- pair_te_logreg: 0.811341
+- pseudo_xgb: 0.915558
+
+---
