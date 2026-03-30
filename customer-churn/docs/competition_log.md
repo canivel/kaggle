@@ -304,3 +304,17 @@ Submitted 80/20 blend.
 **CV manual**: 0.918002, **Corr**: 0.9915
 
 ---
+
+### Iteration 18 - CV Sweep (Partial - 3/8 configs)
+**Date**: 2026-03-30
+
+Configs completed before GPU released:
+- lower_lr (lr=0.003): CV=0.918543
+- blamerx_exact (lr=0.0063): CV=0.918525
+- higher_lr (lr=0.01): CV=0.918524
+
+None beat iter6's 0.918790. The difference is likely iter6's inner-fold TE stats (std/min/max) which iter18 doesn't have.
+
+Remaining configs: deeper, wider_col, narrower_col, more_reg, less_sub
+
+---
