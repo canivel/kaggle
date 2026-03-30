@@ -278,3 +278,29 @@ Submitted 80/20 blend.
 - Simple avg: 0.918062
 
 ---
+
+### Iteration 13 - Maximally Diverse Model
+**Date**: 2026-03-29T00:50:14.169391
+
+- pair_te_logreg: CV=0.836201, corr_artem=0.6777
+- catboost: CV=0.916810, corr_artem=0.9895
+- Diverse avg: CV=0.897602, corr=0.9010
+
+---
+
+### Iteration 14 - Truly Faithful BlamerX
+**Date**: 2026-03-29T02:02:31.547466
+**CV**: 0.915152, **Corr with Artem**: 0.9855
+**Fixes**: OHE for Ridge, drop raw cats for XGB, proper inner-fold TE
+
+---
+
+### Iteration 15 - Fixed BlamerX (cats as category dtype)
+**CV**: 0.915889, **Corr**: 0.9858
+
+---
+
+### Iteration 16 - Novel Features + AutoGluon
+**CV manual**: 0.918002, **Corr**: 0.9915
+
+---
