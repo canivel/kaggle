@@ -241,7 +241,8 @@ async def run_search(
         benchmark="arc-agi-3",
         max_iterations=n_iterations,
         candidates_per_iteration=2,
-        objectives=["+rhae", "-actions"],
+        # Match ArcAGI3Benchmark.objectives exactly so Pareto uses all three
+        objectives=["+rhae", "+levels", "-actions"],
         max_parallel_evals=2,
         harness_timeout_seconds=time_per_game * n_games * 2,
     )
