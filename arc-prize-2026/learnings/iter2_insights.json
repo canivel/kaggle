@@ -1,0 +1,68 @@
+{
+  "iteration": 2,
+  "approach": "StochasticGoose reproduction (1st place preview winner)",
+  "key_findings": [
+    {
+      "category": "architecture",
+      "insight": "Supervised BCE (frame change prediction) massively outperforms RL/PPO",
+      "impact": "high",
+      "evidence": "10 levels vs 0 levels (PPO) vs 1 level (random)"
+    },
+    {
+      "category": "architecture",
+      "insight": "One-hot encoding (16 channels) works well for 16-color grids",
+      "impact": "medium"
+    },
+    {
+      "category": "training",
+      "insight": "Hash-based deduplication ensures diverse experience buffer",
+      "impact": "medium"
+    },
+    {
+      "category": "training",
+      "insight": "Resetting model+buffer between levels prevents old data confusion",
+      "impact": "high"
+    },
+    {
+      "category": "hardware",
+      "insight": "GPU critical: ~40 actions/sec (GPU) vs ~2 actions/sec (CPU)",
+      "impact": "high",
+      "evidence": "20x throughput improvement with RTX 3080"
+    },
+    {
+      "category": "time_budget",
+      "insight": "3 min/game gives ~7000 actions. Winner used 8 hours (~200K+ actions)",
+      "impact": "high",
+      "evidence": "More time = more exploration = more levels. 180s only solves L1"
+    },
+    {
+      "category": "environment",
+      "insight": "10/25 public envs completed L1 with 3min budget. Easy L1s solved fast (R11L: 15 actions, LP85: 542)",
+      "impact": "medium"
+    },
+    {
+      "category": "environment",
+      "insight": "Click-only games (ACTION6) benefit most from CNN spatial reasoning",
+      "impact": "medium"
+    }
+  ],
+  "games_with_progress": {
+    "R11L": {"level": 1, "actions": 15, "time": "1s", "type": "click"},
+    "LP85": {"level": 1, "actions": 542, "time": "12s", "type": "click"},
+    "SP80": {"level": 1, "actions": 314, "time": "7s", "type": "keyboard_click"},
+    "M0R0": {"level": 1, "actions": 567, "time": "13s", "type": "keyboard_click"},
+    "FT09": {"level": 1, "actions": 710, "time": "17s", "type": "click"},
+    "CN04": {"level": 1, "actions": 1023, "time": "25s", "type": "keyboard_click"},
+    "CD82": {"level": 1, "actions": 2423, "time": "69s", "type": "keyboard_click"},
+    "AR25": {"level": 1, "actions": 2381, "time": "56s", "type": "keyboard_click"},
+    "SK48": {"level": 1, "actions": 3971, "time": "100s", "type": "keyboard_click"},
+    "VC33": {"level": 1, "actions": 4950, "time": "118s", "type": "click"}
+  },
+  "next_steps": [
+    "Increase time budget to 10-30min per game to reach L2+",
+    "Try NOT resetting model between levels (winner's TODO)",
+    "Add frame segmentation (2nd place approach)",
+    "Train on RunPod A40 with 1-2hr per game budget",
+    "Priority games for deeper training: R11L, LP85, SP80, M0R0 (fast L1)"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "sealed_at": "2026-07-22",
+  "document": "learnings/war_room/grinder_design_R17_sealing.md",
+  "thresholds": {
+    "resolver_holdout_certificate": {"holdout_pooled_det": 0.99, "wilson_lb": 0.95, "split": "4/4 alternating sorted stream ids, engine-version-scoped", "failure": "ALIASED-UNRESOLVED"},
+    "ewm_cheap_measurement": {"bar": 0.70, "plan_depth_max": 10, "pass_rule": ">=2 of 3 priced carriers {tu93, ls20, ft09-L1}", "sim_key": "phase-blind base key, no augmentation", "states": "sim-derived, not teacher-forced"},
+    "engine_drift": {"identity": "versioned-game-id equality control-run vs binding-look, per game", "drop_rule": "drifted pair DROPPED (not counted either way)", "fallback_trigger_drops": 3},
+    "control_band": {"verdict": "n=4 pooled band ILLEGAL (config-diff exceeds {(f)}: warpack)", "fallback": "2 fresh W0 seeds -> band {w0_s1,w0_s2,w0_s3}, n=3", "gpu_h": 4.4},
+    "dismantle": {"pooled_dlc": -0.10, "P_trip_null_n3band": 0.258},
+    "guard": {"boundary_lc_per_game": -0.28, "z": 1.834, "alpha_kill": 0.0333},
+    "sentinel": {"budget": 150, "unit": "game-envelope (v2)", "envelope_tolerance": 0.15, "envelope_tokens": 63000},
+    "banking": {"policy": "FULL-REPLAY-ONLY from RESET everywhere non-CLEAN; prefix-splice only in the 10 CONFIRMED CLEAN games", "replay_cost_denomination": "actions (conservative); A16 recompute must measure realized token cost and may re-denominate only with the measurement in hand"},
+    "a17_gate": {"doc": "learnings/war_room/a17_72b_screen_scope_v2.md", "capability_bar": 8, "throughput_margin": 1, "rho": "rho_action", "seeds_budgeted": 2, "marginal_trigger": "Sigma in {6,7} or branch-2 within 1"},
+    "sketch_model": {"positives": "uniform over branch range", "spurious_baseline": "S+ ~ U{0,1,2}, S- ~ U{0,1,2} independent", "annex_T": [4, 6], "alpha": 0.05, "script": "runs/r17_sealing/sketch_sensitivity.py"},
+    "branch_P_pass": {"B-/EWM-out": 0.037, "B-/EWM-in": 0.083, "B+/EWM-out": 0.194, "B+/EWM-in": 0.267},
+    "sentinel_guard_default": {
+      "amended_2026-07-23": "R17 OBJ-A / systems #19 verbatim (learnings/panel/round17/systems.md line 29); discharge learnings/panel/r17_discharge_memo.md. APPEND-ONLY new key; no existing sealed value mutated.",
+      "rule": "if the §8R16 per-window guard is unevaluable at look time AND the (a)-arm 2-seed mean sits below baseline - 0.28, (a) defaults OFF and the branch is re-labeled; otherwise the look is postponed until n=3 exists",
+      "guard_boundary_lc_per_game": -0.28,
+      "default_when_unevaluable_and_below_boundary": "OFF",
+      "otherwise": "postpone look until n=3 exists"
+    },
+    "legal_control_reanchor": {
+      "amended_2026-07-23": "R17 OBJ-C / methodology N1 (learnings/panel/round17/methodology.md line 27); discharge learnings/panel/r17_discharge_memo.md. APPEND-ONLY new key.",
+      "rule": "W1/W2 sentinel score comparisons anchor to the LEGAL control w0_s1 (not the illegal warpack baseline); widen to {w0_s1,w0_s2,w0_s3} once fallback seeds land; warpack comparison is DIAGNOSTIC ONLY",
+      "legal_control_w0_s1": 1.731,
+      "illegal_warpack_3seed_baseline_diagnostic_only": 1.454
+    }
+  }
+}
