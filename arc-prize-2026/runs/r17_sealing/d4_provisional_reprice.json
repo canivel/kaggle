@@ -1,0 +1,116 @@
+{
+ "ruling": "R-DEPTH-REPOINT (OBJ-B); PRE-SCORECARD/PROVISIONAL; NO SEAL MOVES",
+ "scorer": "duck_eval/scoring_oracle.py (level-number-weighted Sigma score_i*i / Sigma i; validated 0.00e+00 vs harness)",
+ "baselines": "runs/kernel_pulls/w0_eval_s1/benchmark.json (legal control w0_s1 per methodology N1; per-run base_actions_per_level)",
+ "lb_divisor": 25.0,
+ "channels": {
+  "tu93_L1_speed": {
+   "old_price_pts": "+0.1-0.9",
+   "type": "efficiency (L1 speed)",
+   "reprice": {
+    "applicable": true,
+    "l1_actions_control": 42,
+    "l1_baseline": 19,
+    "l1_at_cap_no_headroom": false,
+    "game_score_control": 1.4996,
+    "best_case_shave_to_parity": {
+     "game_score": 3.267,
+     "delta_pts": 1.7674,
+     "delta_lb_rail": 0.0707
+    },
+    "realistic_half_gap_shave": {
+     "game_score": 1.9361,
+     "delta_pts": 0.4366,
+     "delta_lb_rail": 0.01746
+    },
+    "l1_weight_frac": 0.0222
+   }
+  },
+  "ft09_L1_reliability": {
+   "old_price_pts": "+0.0-1.0",
+   "type": "efficiency/reliability (L1)",
+   "reprice": {
+    "applicable": true,
+    "l1_actions_control": 27,
+    "l1_baseline": 43,
+    "l1_at_cap_no_headroom": true,
+    "game_score_control": 14.2857,
+    "best_case_shave_to_parity": {
+     "game_score": 14.2857,
+     "delta_pts": 0.0,
+     "delta_lb_rail": 0.0
+    },
+    "realistic_half_gap_shave": {
+     "game_score": 14.2857,
+     "delta_pts": 0.0,
+     "delta_lb_rail": 0.0
+    },
+    "l1_weight_frac": 0.0476
+   }
+  },
+  "ls20_L1_speed": {
+   "old_price_pts": "+0.0-0.6",
+   "type": "efficiency (L1 speed) [MISNOMER: lc=0]",
+   "reprice_as_efficiency": {
+    "applicable": false,
+    "reason": "L1 not completed in the control run -> no efficiency headroom; only a completion channel can pay (see below)"
+   },
+   "reprice_as_completion": {
+    "applicable": true,
+    "game_score_control": 0.0,
+    "complete_l1_at_parity": {
+     "game_score": 3.5714,
+     "delta_pts": 3.5714,
+     "delta_lb_rail": 0.14286
+    },
+    "note": "this is a DEPTH (new-clear) event at L1, not an efficiency channel; L1 depth weight is the smallest of the game"
+   }
+  }
+ },
+ "depth_contrast_frontier": {
+  "tu93": {
+   "applicable": true,
+   "frontier_level_1based": 3,
+   "level_weight_frac": 0.0667,
+   "game_score_control": 1.4996,
+   "complete_frontier_at_parity": {
+    "game_score": 8.1662,
+    "delta_pts": 6.6667,
+    "delta_lb_rail": 0.26667
+   }
+  },
+  "ka59": {
+   "applicable": true,
+   "frontier_level_1based": 2,
+   "level_weight_frac": 0.0714,
+   "game_score_control": 2.4221,
+   "complete_frontier_at_parity": {
+    "game_score": 9.565,
+    "delta_pts": 7.1429,
+    "delta_lb_rail": 0.28571
+   }
+  },
+  "re86": {
+   "applicable": true,
+   "frontier_level_1based": 2,
+   "level_weight_frac": 0.0556,
+   "game_score_control": 1.1171,
+   "complete_frontier_at_parity": {
+    "game_score": 6.6726,
+    "delta_pts": 5.5556,
+    "delta_lb_rail": 0.22222
+   }
+  },
+  "sc25": {
+   "applicable": true,
+   "frontier_level_1based": 1,
+   "level_weight_frac": 0.0476,
+   "game_score_control": 0.0,
+   "complete_frontier_at_parity": {
+    "game_score": 4.7619,
+    "delta_pts": 4.7619,
+    "delta_lb_rail": 0.19048
+   }
+  }
+ }
+}

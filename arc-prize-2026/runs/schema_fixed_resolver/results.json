@@ -1,0 +1,250 @@
+{
+ "mandate": "R17 OBJ-I / prog-synthesis R3; C6-legal fixed hypothesis",
+ "source": "kaggle-data/schema_traces/.../world_model_v5.py (backtest-certified)",
+ "cert_bar": {
+  "det": 0.99,
+  "wilson_lb": 0.95
+ },
+ "note": "fixed external hypotheses; NO fitting, NO selection budget (C6-legal). Streams reproduce holdout_report.json benchmark engine-version set (sentinel_eval_v1 + sidecar excluded).",
+ "laws": {
+  "wa30": "mod-rate: bar filled=(mult*n+off)//D, per-level D table (world_model_v5.py L98-111); fixed key = n mod D(level), all actions tick.",
+  "ka59": "parity-inverted: bar zeros=round(64*n/budget) (L31/L51); fuse ticks one per MOVE, clicks (ACTION6) do NOT tick (L20-22); fixed key = move_count mod 2 (clicks excluded).",
+  "tr87": "floor(n/2): row63 bar=floor(n_actions/2), K=2 lv0-4 / K=4 lv5 (L19,L262-265); fixed key = n mod K(level), all actions tick."
+ },
+ "primary": {
+  "wa30": {
+   "game": "wa30",
+   "engine_version": "wa30-ee6fef47",
+   "n_streams": 8,
+   "pulls": [
+    "phase1_v5",
+    "sched_v1",
+    "w0_eval_s1",
+    "war_eval_v1",
+    "war_eval_v2",
+    "war_eval_v3",
+    "war_v2_eval_s1",
+    "seed1"
+   ],
+   "include_post_report": false,
+   "base": {
+    "determinism": 0.7388235294117647,
+    "repeat_visits": 425,
+    "aliased_keys": 105,
+    "wilson_lb": 0.6950537382318007
+   },
+   "fixed_augmented": {
+    "determinism": 0.9056603773584906,
+    "repeat_visits": 106,
+    "modal_hits": 96,
+    "aliased_keys": 10,
+    "wilson_lb": 0.834999132489902
+   },
+   "cert_bar": {
+    "det": 0.99,
+    "wilson_lb": 0.95
+   },
+   "verdict": "STAYS-ALIASED-UNRESOLVED",
+   "certified": false
+  },
+  "ka59": {
+   "game": "ka59",
+   "engine_version": "ka59-38d34dbb",
+   "n_streams": 7,
+   "pulls": [
+    "phase1_v5",
+    "sched_v1",
+    "w0_eval_s1",
+    "war_eval_v1",
+    "war_eval_v2",
+    "war_eval_v3",
+    "war_v2_eval_s1"
+   ],
+   "include_post_report": false,
+   "base": {
+    "determinism": 0.7407407407407407,
+    "repeat_visits": 108,
+    "aliased_keys": 28,
+    "wilson_lb": 0.650835089900175
+   },
+   "fixed_augmented": {
+    "determinism": 0.9464285714285714,
+    "repeat_visits": 56,
+    "modal_hits": 53,
+    "aliased_keys": 3,
+    "wilson_lb": 0.8539269093117846
+   },
+   "cert_bar": {
+    "det": 0.99,
+    "wilson_lb": 0.95
+   },
+   "verdict": "STAYS-ALIASED-UNRESOLVED",
+   "certified": false
+  },
+  "tr87": {
+   "game": "tr87",
+   "engine_version": "tr87-cd924810",
+   "n_streams": 8,
+   "pulls": [
+    "phase1_v5",
+    "sched_v1",
+    "w0_eval_s1",
+    "war_eval_v1",
+    "war_eval_v2",
+    "war_eval_v3",
+    "war_v2_eval_s1",
+    "seed1"
+   ],
+   "include_post_report": false,
+   "base": {
+    "determinism": 0.9102564102564102,
+    "repeat_visits": 156,
+    "aliased_keys": 11,
+    "wilson_lb": 0.8550045066026877
+   },
+   "fixed_augmented": {
+    "determinism": 1.0,
+    "repeat_visits": 143,
+    "modal_hits": 143,
+    "aliased_keys": 0,
+    "wilson_lb": 0.9738394125777184
+   },
+   "cert_bar": {
+    "det": 0.99,
+    "wilson_lb": 0.95
+   },
+   "verdict": "RE-ENTERS-CERTIFIED-RESOLVER-SET",
+   "certified": true
+  }
+ },
+ "appendix_with_sentinel_eval": {
+  "wa30": {
+   "game": "wa30",
+   "engine_version": "wa30-ee6fef47",
+   "n_streams": 9,
+   "pulls": [
+    "phase1_v5",
+    "sched_v1",
+    "sentinel_eval_v1",
+    "w0_eval_s1",
+    "war_eval_v1",
+    "war_eval_v2",
+    "war_eval_v3",
+    "war_v2_eval_s1",
+    "seed1"
+   ],
+   "include_post_report": true,
+   "base": {
+    "determinism": 0.727007299270073,
+    "repeat_visits": 685,
+    "aliased_keys": 170,
+    "wilson_lb": 0.6924487608139158
+   },
+   "fixed_augmented": {
+    "determinism": 0.903954802259887,
+    "repeat_visits": 177,
+    "modal_hits": 160,
+    "aliased_keys": 16,
+    "wilson_lb": 0.851580282081234
+   },
+   "cert_bar": {
+    "det": 0.99,
+    "wilson_lb": 0.95
+   },
+   "verdict": "STAYS-ALIASED-UNRESOLVED",
+   "certified": false
+  },
+  "ka59": {
+   "game": "ka59",
+   "engine_version": "ka59-38d34dbb",
+   "n_streams": 8,
+   "pulls": [
+    "phase1_v5",
+    "sched_v1",
+    "sentinel_eval_v1",
+    "w0_eval_s1",
+    "war_eval_v1",
+    "war_eval_v2",
+    "war_eval_v3",
+    "war_v2_eval_s1"
+   ],
+   "include_post_report": true,
+   "base": {
+    "determinism": 0.7417218543046358,
+    "repeat_visits": 151,
+    "aliased_keys": 38,
+    "wilson_lb": 0.6665250354949417
+   },
+   "fixed_augmented": {
+    "determinism": 0.9523809523809523,
+    "repeat_visits": 84,
+    "modal_hits": 80,
+    "aliased_keys": 4,
+    "wilson_lb": 0.8838668496724167
+   },
+   "cert_bar": {
+    "det": 0.99,
+    "wilson_lb": 0.95
+   },
+   "verdict": "STAYS-ALIASED-UNRESOLVED",
+   "certified": false
+  },
+  "tr87": {
+   "game": "tr87",
+   "engine_version": "tr87-cd924810",
+   "n_streams": 9,
+   "pulls": [
+    "phase1_v5",
+    "sched_v1",
+    "sentinel_eval_v1",
+    "w0_eval_s1",
+    "war_eval_v1",
+    "war_eval_v2",
+    "war_eval_v3",
+    "war_v2_eval_s1",
+    "seed1"
+   ],
+   "include_post_report": true,
+   "base": {
+    "determinism": 0.927461139896373,
+    "repeat_visits": 193,
+    "aliased_keys": 11,
+    "wilson_lb": 0.8819365751742537
+   },
+   "fixed_augmented": {
+    "determinism": 1.0,
+    "repeat_visits": 181,
+    "modal_hits": 181,
+    "aliased_keys": 0,
+    "wilson_lb": 0.9792175475934729
+   },
+   "cert_bar": {
+    "det": 0.99,
+    "wilson_lb": 0.95
+   },
+   "verdict": "RE-ENTERS-CERTIFIED-RESOLVER-SET",
+   "certified": true
+  }
+ },
+ "diagnostics_alt_keys": {
+  "wa30": {
+   "in_sample_pick_n%4": {
+    "determinism": 1.0,
+    "repeat_visits": 86,
+    "wilson_lb": 0.9572418027142576
+   },
+   "literal_law_n%3": {
+    "determinism": 0.9056603773584906,
+    "repeat_visits": 106,
+    "wilson_lb": 0.834999132489902
+   }
+  },
+  "ka59": {
+   "click_inclusive_n%2": {
+    "determinism": 1.0,
+    "repeat_visits": 51,
+    "wilson_lb": 0.9299533801014686
+   }
+  }
+ }
+}

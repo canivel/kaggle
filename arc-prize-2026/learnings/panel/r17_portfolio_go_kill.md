@@ -62,3 +62,37 @@ is already the recommended 2nd push.
 **PENDING-ORCHESTRATOR:** ratify GO on contract-v1.1 depth-lane (recommended) OR explicit KILL
 (accept A17″-only concentration and state it). Either way the decision is now on a dated line, not
 tabled.
+
+---
+
+## ORCHESTRATOR RATIFICATION — 2026-07-23 (dated line, concurrent with the A14 look)
+
+**Decision: GO on the contract-v1.1 depth-budget lane**, with evidence-limited scope. The
+OBJ-I gate returned a split verdict, ratified as follows:
+
+- **Gate evidence (runs/schema_fixed_resolver/report.md, C6-legal fixed hypotheses, no
+  fitting):** tr87 CERTIFIES at the sealed bar (det 1.0000, Wilson LB 0.9738, 143 pooled
+  visits — the in-sample DROP was split support-starvation, not wrong physics); wa30 and
+  ka59 FAIL under every legitimate reading and STAY UNRESOLVED. This is neither the full
+  pass nor the general-resolver-style collapse the draft gate anticipated: the law class
+  demonstrably transfers when the law is right, and fails detectably when it is not —
+  which is exactly the certify-or-reject behavior the lane needs.
+- **Depth pricing (runs/r17_sealing/d4_provisional_reprice.md):** a single frontier depth
+  event prices +0.19 to +0.29 rail vs ~0 for every efficiency channel (4–15×). The revise
+  loop and A17″ are the only depth-targeting lines; A17″-only concentration is the risk
+  rl-planning flagged.
+
+**Ratified terms:**
+1. B=150 lane: sealed as certified telemetry + efficiency rail; no longer priced as a
+   path to 1.44+ (per recommendation §1, unchanged).
+2. Depth lane GO: register the Schema-class revise loop at native budget (283–412
+   actions/game) scoped to the hard-game frontier (g50t/m0r0/sk48 class). tr87 enters
+   via the fixed-hypothesis sealed re-entry path (filed, not silently un-struck);
+   wa30/ka59 are explicitly NOT re-admitted.
+3. Adjudication date: the pre-Aug-1 A17 screen review, as recommended.
+4. Kill-switch (sealed with the registration): the lane's first certified eval must beat
+   null10 on HELD-OUT games (arXiv 2607.12227 charter); failure = KILL, fall back to
+   A17″ + frozen-fork.
+5. Push discipline note: the OBJ-I question was answered locally at $0; today's second
+   kernel push is HELD (not spent) — a fresh-stream tr87 confirmation build rides a
+   later quota slot after the panel sees this ratification.
