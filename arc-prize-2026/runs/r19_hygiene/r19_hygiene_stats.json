@@ -1,0 +1,228 @@
+{
+  "seed": 20260724,
+  "reps": 200000,
+  "date": "2026-07-24",
+  "declared_model": "t-predictive: (x - xbar) / (s*sqrt(1+1/n)) ~ t(nu=n-1)",
+  "frozen": {
+    "n": 10,
+    "mean": 0.9750000000000002,
+    "sd": 0.1557241150239744
+  },
+  "pooled": {
+    "n": 15,
+    "mean": 0.9620000000000002,
+    "sd": 0.14438044980437723
+  },
+  "draw_0.71": {
+    "frozen": {
+      "t": -1.6225334535449625,
+      "one_sided_p": 0.06956905024083115
+    },
+    "pooled": {
+      "t": -1.6899653044554386,
+      "one_sided_p": 0.05658460700048462
+    },
+    "old_gaussian_p_frozen": 0.04440323678034472
+  },
+  "exceedance_single_draw": {
+    "1.33": {
+      "frozen": {
+        "t": 2.1735825509753246,
+        "P_single_draw_ge": 0.028887685979047756
+      },
+      "pooled": {
+        "t": 2.4678858414269866,
+        "P_single_draw_ge": 0.013547261609725206
+      }
+    },
+    "1.44": {
+      "frozen": {
+        "t": 2.847087003390213,
+        "P_single_draw_ge": 0.009590054268552441
+      },
+      "pooled": {
+        "t": 3.205569109244835,
+        "P_single_draw_ge": 0.0031749099481066553
+      }
+    },
+    "1.47": {
+      "frozen": {
+        "t": 3.0307700358670013,
+        "P_single_draw_ge": 0.007114467584815813
+      },
+      "pooled": {
+        "t": 3.40675545501334,
+        "P_single_draw_ge": 0.002127661820397461
+      }
+    },
+    "1.49": {
+      "frozen": {
+        "t": 3.1532253908515266,
+        "P_single_draw_ge": 0.005838393790814443
+      },
+      "pooled": {
+        "t": 3.540879685525676,
+        "P_single_draw_ge": 0.001629717411342892
+      }
+    }
+  },
+  "max_over_101_windows_frozen": {
+    "E_max": 1.4029482535041276,
+    "median_max": 1.3776096001813785,
+    "P_touch_1.33": 0.652815,
+    "P_touch_1.44": 0.32851,
+    "P_touch_1.47": 0.262455,
+    "P_touch_1.49": 0.22516,
+    "q10_q90": [
+      1.2419560361369797,
+      1.592914606489424
+    ]
+  },
+  "max_over_101_windows_pooled": {
+    "E_max": 1.3456133226698486,
+    "P_touch_1.44": 0.175995,
+    "P_touch_1.49": 0.10074
+  },
+  "trend_frozen_n10": {
+    "mann_kendall": {
+      "S": 9,
+      "var_S": 123.0,
+      "z": 0.7213357077339458,
+      "two_sided_p": 0.47070299251140935
+    },
+    "cusum": {
+      "stat": 0.5787473141261639,
+      "perm_p": 0.7203,
+      "nperm": 20000
+    }
+  },
+  "trend_pooled_n15_orderA": {
+    "order": [
+      0.82,
+      0.89,
+      0.93,
+      1.02,
+      0.95,
+      0.91,
+      1.08,
+      0.88,
+      1.05,
+      1.33,
+      0.76,
+      0.92,
+      0.93,
+      1.14,
+      0.82
+    ],
+    "mann_kendall": {
+      "S": 13,
+      "var_S": 406.3333333333333,
+      "z": 0.5953056721669902,
+      "two_sided_p": 0.551639165086049
+    },
+    "cusum": {
+      "stat": 0.45065741452145053,
+      "perm_p": 0.9278,
+      "nperm": 20000
+    }
+  },
+  "trend_pooled_n15_orderB": {
+    "mann_kendall": {
+      "S": 15,
+      "var_S": 406.3333333333333,
+      "z": 0.6945232841948219,
+      "two_sided_p": 0.4873541039012649
+    }
+  },
+  "promotion_rule": {
+    "rule": "within first 5 arm windows: PROMOTE iff (>=2 draws > 1.33) OR (>=1 draw >= 1.44)",
+    "false_promotion_arm_eq_filler": {
+      "P_promote": 0.04923,
+      "P_rule1_only": 0.018505,
+      "P_rule2_only": 0.043185
+    },
+    "power_shift_+0.10": {
+      "P_promote": 0.137805,
+      "P_rule1_only": 0.07164,
+      "P_rule2_only": 0.11228
+    },
+    "power_shift_+0.15": {
+      "P_promote": 0.22517,
+      "P_rule1_only": 0.135005,
+      "P_rule2_only": 0.17784
+    },
+    "power_shift_+0.20": {
+      "P_promote": 0.354515,
+      "P_rule1_only": 0.24325,
+      "P_rule2_only": 0.273155
+    }
+  },
+  "harm_pause": {
+    "P_pause_healthy_frozen": 0.1559211107069728,
+    "t_frozen": -1.071484356114598,
+    "P_pause_healthy_pooled": 0.14782570312213517,
+    "t_pooled": -1.0864062671499248,
+    "P_pause_harmful_mean_0.85_frozen": 0.38323135693763416,
+    "P_pause_harmful_mean_0.80_frozen": 0.5,
+    "P_pause_harmful_mean_0.75_frozen": 0.6167686430623661
+  },
+  "resume_rule": {
+    "rule": "two resume draws; RESUME iff both >= 0.80 AND two-draw mean >= 0.90; else SHELVED",
+    "P_resume_healthy_arm_eq_filler": 0.65058,
+    "P_resume_harmful_mean_0.85": 0.28638,
+    "P_resume_harmful_mean_0.80": 0.17168
+  },
+  "mechanism_counts": {
+    "29_of_29": {
+      "rule_of_three": 0.10344827586206896,
+      "exact_clopper_pearson": 0.0981446276772957
+    },
+    "49_of_49": {
+      "rule_of_three": 0.061224489795918366,
+      "exact_clopper_pearson": 0.059306014189697054
+    }
+  },
+  "nov2_gold_forecast": {
+    "series": {
+      "2026-07-18": 1.44,
+      "2026-07-22": 1.47,
+      "2026-07-23": 1.47,
+      "2026-07-24": 1.49
+    },
+    "linear": {
+      "slope_per_day": 0.007590361445783261,
+      "nov2": 2.2512048192771217,
+      "note": "exceeds current leader 1.86 -> treated as implausible upper bound"
+    },
+    "saturating_to_ceiling": {
+      "1.61": {
+        "k": 0.04923770942735685,
+        "nov2": 1.6091242165936799
+      },
+      "1.86": {
+        "k": 0.018495398849712432,
+        "nov2": 1.801953347866718
+      },
+      "2.0": {
+        "k": 0.013696599149787448,
+        "nov2": 1.8706656806583253
+      }
+    }
+  },
+  "rank_bleed": {
+    "series": {
+      "07-20": 40,
+      "07-22": 44,
+      "07-23": 45,
+      "07-24": 49
+    },
+    "ols_slope_ranks_per_day": 2.1142857142857134,
+    "r2": 0.954006968641115,
+    "note": "single-overnight 4-rank delta is the max daily step, not the trend"
+  },
+  "supplement_pricing": {
+    "delta_E_max_per_window_CRN": 0.0005905715113312066,
+    "P_max101_ge_1.61": 0.086985,
+    "P_max101_ge_1.80": 0.01975
+  }
+}
