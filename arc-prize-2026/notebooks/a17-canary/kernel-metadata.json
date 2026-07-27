@@ -15,14 +15,12 @@
     "driessmit1/arc3-vllm-h100-wheelhouse-v3",
     "jeroencottaar/taaf-kaggle-source-share",
     "driessmit1/vrfai-qwen3-6-27b-fp8-hf-snapshot",
-    "canivel/arc-war-kit"
+    "canivel/arc-war-kit",
+    "canivel/qwen25-vl-72b-awq"
   ],
   "kernel_sources": [],
   "competition_sources": [
     "arc-prize-2026-arc-agi-3"
-  ],
-  "model_sources": [
-    "qwen-lm/qwen2.5-vl/transformers/72b-instruct-awq/2"
   ],
   "docker_image": "gcr.io/kaggle-private-byod/python@sha256:57e612b484cf3df5026ee4dcc3cb176974b22b2bc0937fb1e16132a8be4cb13c",
   "machine_shape": "NvidiaRtxPro6000"
