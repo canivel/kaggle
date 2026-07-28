@@ -1,0 +1,42 @@
+## Summary (2 sentences)
+This revision fixes the ledger provenance defect and shows genuine engineering progress on the A17 rail (boot canary PASS, v6 pushed under a sealed-walk discipline, zero scored slots consumed), but the three load-bearing allocation decisions from R21 — the readiness-gate A/B, the sentinel un-shelve rule, and the ρ_action kill threshold — are all still punted to the panel as open questions rather than proposed with numbers. Worse, the v6 full-window bench was fired *before* the kill threshold (NC-5) and the parse study (NC-4) were discharged, and the daily filler cadence continued unchanged despite the brief's own admission that filler "holds rank, it does not climb."
+
+## Objections
+
+**Prior-objection resolution first:**
+
+[MAJOR — UNRESOLVED] Filler-dominant allocation has ~zero win probability and near-zero information value — The brief now explicitly concedes the point ("P(single frozen draw ≥ 1.49) remains ≈ 2×10⁻⁴ — filler holds rank, it does not climb") and cites R21 directive #5, yet a filler draw was fired 07-28 anyway and no cadence change or value-of-information argument appears. Conceding an objection in prose while continuing the objected-to behavior is not resolution. The s-tightening streak (0.148→0.143→0.138) actually *strengthens* my case: the band is ever-better characterized, so each additional filler draw is worth ever less.
+
+[MAJOR — PARTIALLY-RESOLVED] Boristown vLLM readiness gate not scheduled — It now appears (question 3), which is progress from total omission, and the proposed prereg shape (n=3–5 gated vs frozen, one-sided at the 1.47-anchor effect size) is correct in form. But it remains *unscheduled*, framed as competing with sentinel draw #2 for slots, and handed to a panel to rank — this is the 5/5-consensus R21 directive #1 and the cheapest mechanistically-motivated intervention on the table, four days after the fork-diff memo. It should have a date, not a question mark.
+
+[MAJOR — PARTIALLY-RESOLVED] Sentinel shelved on n=1 — Question 2 now contains exactly the pre-registered rule I asked for (option (a): n ≥ 4–5, re-shelve on 2 consecutive < 0.80 or mean of first 3 < 0.80), which is statistically defensible. But the brief refuses to pick between (a) and (b), so the disposition remains "SHELVED, OPEN" — operationally identical to last round. Note also the brief's own t-predictive gives the 0.71 a one-sided p ≈ 0.07, i.e., the brief itself now documents that the harm-pause fired on a non-significant draw.
+
+[MAJOR — PARTIALLY-RESOLVED] A17 kill/success criteria not inline — G1 (recovery ≥ 0.95) and G2 (≥ 100 executed actions) are now stated with numbers inline; credit where due. But NC-5 — the ρ_action kill threshold, the single number that converts the bench into a live/dead verdict — is admitted "NOT yet discharged," and question 1 asks the *panel* to name Y. That is inverted: the authors own the ρ_action → expected-LB arithmetic (R21 directive #2) and must propose Y with its derivation; the panel's job is to attack it. The sealed walk partially mitigates the pre-registration violation, but only if Y is ratified before unsealing, and no unsealing protocol is stated.
+
+[MINOR — RESOLVED] Ledger provenance — `runs/lb_ground_truth.md` refreshed 07-28 from live API, n=14 recomputed numerically (0.9686/0.1384 ✓ against the listed draws), 07-26/07-27 draws cross-checked against submission_log.jsonl. This is exactly what I asked for. Closed.
+
+[MINOR — PARTIALLY-RESOLVED] Open questions as abdications — Questions 2 and 3 now come with concrete option structures and prereg parameters, which is better. But none of the four questions carries a *recommended* answer with a default that fires absent objection, so the ≥7-day decision latency I flagged is still baked in — and with EWM Stage-1 due Aug 4 and the A17 rail occupying build slots through ~Aug 3, question 4 is a live calendar collision left undecided.
+
+**New objections:**
+
+[MAJOR] v6 fired before its own named conditions were discharged — order-of-operations violation with a decision-theoretic cost — The brief states plainly that NC-4 (≥200-replay parse study) and NC-5 (numeric kill threshold) were not discharged when v6 launched. Firing the experiment before fixing the decision boundary invites exactly the post-hoc threshold-fitting the prereg regime exists to prevent; "user order" explains the sequencing but does not repair it. Minimum fix: Y must be ratified and logged (with the R21-#2 expected-LB mapping) *before* the sealed walk is opened, and the brief must name who holds the seal and what constitutes opening it.
+
+[MAJOR] The canary's own throughput numbers foreshadow G2 failure and nobody says so — The 1500 s slice shows ΣN = 5 executed actions across four games (~1 action per 300 s). Linear extrapolation to the 7920 s window (even generously excluding the 337 s boot) gives ~25 actions — a factor of 4 short of G2's ≥ 100. I accept the k=1 no-interpretation rule for *capability* claims, but a throughput gate is precisely what a throughput canary measures, and the brief presents these counts without noting they sit far below the survival bar. If the extrapolation is wrong (warm-up, per-game ramp, batching), say why; if it is right, the 72B route is already near-dead and the contingency ("slots revert to frozen/gated-A/B") should be pre-staged now, not after v6.
+
+[MAJOR] False scarcity between the readiness-gate A/B and sentinel draw #2 while filler burns the same slots daily — Question 3 frames the two interventions as competing for "the same filler slots," but the ledger shows a filler draw consumed every single day 07-25 through 07-28. There is no scarcity to arbitrate: replace filler draws with the A/B. Under the brief's own numbers, swapping four filler draws for a gated-vs-frozen A/B costs essentially nothing in monitoring power (the band is stationary by the team's own MK/CUSUM verdict) and buys the only currently-available test of the 1.47-anchor mechanism. The correct allocation is: readiness-gate A/B starts immediately at ~n=4, sentinel draw #2 scheduled behind it under option (a), filler reduced to 2/week — and that should have been the brief's proposal, not its question.
+
+## Questions for the authors (numbered)
+1. Propose Y yourself: given the frozen fork's executed-action count over an equivalent 7920 s window (what is that number? it is required for the ρ_action = 480/ΣN₇₂B mapping to mean anything), what ρ_action corresponds to expected-LB parity with the frozen band, and what margin below parity kills A17?
+2. What is the sealed-walk unsealing protocol — who holds the v6 output, and is it procedurally impossible to read it before Y is ratified?
+3. Does the 1500 s canary action count (ΣN = 5) include boot/warm-up dead time, and is there a per-game ramp that makes linear extrapolation to the full window pessimistic? Show the timestamped action log.
+4. What is the earliest calendar date the readiness-gate A/B's first gated draw can fire, and what blocks it from being tomorrow?
+5. If A17 dies at the v6 gate, what occupies the Aug 3–Nov 2 build slots — does EWM Stage-1 automatically unblock, or does its 0.99-bar latent-state audit remain the bottleneck regardless?
+
+## What I cannot judge
+The vLLM/AWQ serving internals (whether the 337 s boot-to-serve and the hermes tool-call parser results generalize from canary to full window), the Kaggle kernel resource-accounting specifics (session caps, GPU-h billing of the "zero-budget" build route), and the eval-rail/doctrinal evidence cited in the sentinel disposition memo, which I have not seen. My throughput-extrapolation objection is conditional on the canary slice being representative; question 3 is how the authors rebut it.
+
+## Verdict: MAJOR-REVISION
+
+## Score: 5/10
+
+The engineering execution and measurement hygiene have visibly improved (ledger clean, gates partially inlined, zero scored slots burned on A17), but a strategy brief that ends with its four most consequential resource-allocation decisions posed as open questions — while the daily filler cadence it admits is valueless continues to consume the very slots those decisions would allocate — has not yet done the planning it exists to do.
