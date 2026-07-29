@@ -1,0 +1,39 @@
+{
+  "look": "A17 v6 full-window bench — sealed branch read",
+  "date": "2026-07-29",
+  "governing_instruments": [
+    "learnings/a17_gates_numeric_2026-07-27.md (kill line sealed 07-27)",
+    "learnings/a17_threshold_commit_2026-07-28.md (branches sealed pre-observation, commit 4ecf49a @ 2026-07-28T08:29:22-04:00, v6 RUNNING at seal time)"
+  ],
+  "kernel": "canivel/arc3-a17-72b-canary",
+  "version": 6,
+  "seed": 1,
+  "read_validity": {
+    "games_present": "4/4 (ft09-0d8bbf25, lp85-305b61c3, sb26-7fbdac44, vc33-5430563c)",
+    "window_s": [7920.0, 7920.0, 7926.5, 7928.6],
+    "window_drift_warn": false,
+    "verdict": "VALID READ (no void condition under amendment sec7.2)"
+  },
+  "measurement": {
+    "sigma_n_72b": 5,
+    "per_game_n": {"ft09-0d8bbf25": 2, "sb26-7fbdac44": 1, "lp85-305b61c3": 0, "vc33-5430563c": 2},
+    "per_game_lc": {"ft09-0d8bbf25": 0, "sb26-7fbdac44": 0, "lp85-305b61c3": 0, "vc33-5430563c": 0},
+    "rho_action_frozen_form": "480/5 = 96.0 (kill line: >3.5)",
+    "g1_parse_recovery": "8/1044 successful action parses over all LLM calls (native 0/1044, fenced-recovery 8/1044, hard fails 1036/1044) — FAIL vs >=0.95",
+    "g2_executed_actions": "5 — FAIL vs >=100",
+    "g3_cadence": "all 5 actions in first ~90 s (11:28:51-11:30:17Z); actions_total frozen at 5 from heartbeat t=720 s to window end",
+    "mechanism_evidence": "learnings/a17_v6_diagnosis_2026-07-29.md — deterministic format-non-compliance livelock: 1047 vLLM requests all HTTP 200, finish_reason=stop 1044/1044, zero truncation, zero native hermes tool-call emissions in free-form dialogue; model ends turns with bare 'python' and repeats byte-identical text under re-prompt"
+  },
+  "branch_decision": {
+    "rule": "B2 — S1 = 5 < 138 (any margin): exactly ONE confirmation seed fires as next-day kernel slot-1; NO parameter, prompt, or harness change between seeds",
+    "action_taken": "v7 seed-2 pushed 2026-07-29 (kernel push 1/2 today) via duck_eval/a17/build_v7_seed2.py; build script PROVES v7 = v6 with only the two seed substrings changed (all other cells byte-identical); pull-back verified: metadata model_sources=[] + canivel/qwen25-vl-72b-awq attached, code carries seed=2 + A17_WINDOW_S=7920; status RUNNING at fire time",
+    "next_read": "B2a if seed-2 sigma_n < 138 (72B route DEAD, no third seed, no fix lane; build priority reverts to boristown readiness-gate A/B); B2b if seed-2 >= 138 (discordant, escalate to Sunday panel 2026-08-02, no verdict)"
+  },
+  "prior_vs_outcome": "sealed honest prior was FAIL with projection sigma_n ~26-33; observed 5 undershot the projection ~5-6x; the projection assumed the v5 slice rate was warmup-suppressed, but diagnosis shows the true mechanism (format livelock after first ~90 s) makes N nearly window-length-invariant",
+  "nc_status": {
+    "NC-4": "DISCHARGED by v6 data: 1044 parse attempts analyzed (>=200 required), raw counts published in diagnosis",
+    "NC-9": "SATISFIED pre-observation (commit 4ecf49a before v6 COMPLETE)",
+    "NC-10": "IN PROGRESS (k=2 via v7 seed-2, no changes between seeds)",
+    "NC-12": "OPEN (GPU parity: canary metadata machine_shape=NvidiaRtxPro6000 matches the frozen fork family metadata; scored-rerun log grep not possible — reruns expose no logs; parity argument is metadata-level only, noted for Sunday panel)"
+  }
+}
