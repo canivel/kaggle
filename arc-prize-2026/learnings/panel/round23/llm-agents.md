@@ -1,0 +1,37 @@
+## Summary (2 sentences)
+
+The brief is operationally disciplined (pre-registered watch-rule fired and was executed, entry gates carry real evidence artifacts), but the centerpiece R23 decision — ratifying the boristown A/B — rests on three load-bearing assumptions that are each unsupported: that the readiness gate has a live causal mechanism in our environment (its own gate-eval shows it firing at 0.0s latency, i.e., a behavioral no-op), that yw8837's σ≈0.24 can be imported to both excuse the low draws and set the corrected promote bar, and that "LB head frozen" rules out a platform-side change affecting *fresh* runs. Until those are patched, option (a) is statistically incoherent and the A/B risks burning 4 draws on a treatment with an expected effect of ~0 while the gold cutoff climbs.
+
+## Objections
+
+**[MAJOR] The A/B's treatment mechanism is empirically a no-op in the observed condition — "GATE fired vllm_ready_latency_s=0.0".** Both gate-eval seeds report the vLLM readiness gate arming and firing at 0.0s latency, meaning vLLM was already ready and the gate changed *nothing* about execution. If readiness latency is 0 in our environment, the gate cannot be the causal explanation for boristown's 1.47, and the expected treatment effect of the gated arm is ≈0 — you are about to spend 4 scored draws A/B-testing dead code. The non-harm screens (Δlc +0.112/+0.152 with sd 0.537, 9W/7L) are consistent with pure noise, not benefit. Before ratification, supply the base rate of vLLM cold-start delays/failures across our historical Kaggle runs (kernel logs): if the gate has never been observed to wait >0s in-environment, the correct EV comparison is 4 draws of ~zero-effect A/B vs. 4 draws advancing the compaction lane the brief itself calls "strategically necessary regardless."
+
+**[MAJOR] σ≈0.24 is imported from yw8837 with zero provenance verification, then used twice in opposite directions.** The brief uses yw8837's published duck-family σ≈0.24 both to normalize the 0.65/0.68 pair ("18.5%, ordinary") and to derive the corrected promote bar 1.1701. But our own n=19 record gives s=0.159, and no fork-diff of yw8837's artifact, account environment, seed policy, or n exists (contrast: boristown got a real fork-diff memo). If yw8837's fork differs functionally, or their variance reflects a different GPU/quantization regime, both the reassurance and the 1.1701 bar are built on sand — and note the convenient asymmetry: the imported σ is used to *dismiss* alarming evidence and to *justify* proceeding. Required: a fork-diff + ledger provenance check for yw8837 equivalent to `fork_diff_boristown_2026-07-24.md` before σ=0.24 appears in any decision rule.
+
+**[MAJOR] "Not an infra event" is logically insufficient — the evidence checked is insensitive to the failure mode that matters.** A frozen LB head and an intact banked 1.33 only show that *historical* scores weren't rescored; they say nothing about a platform-side change (new Kaggle docker image, GPU pool rotation, eval-server behavior) that affects only *fresh* runs — which is exactly what a change-point after draw 17, coinciding with a date boundary and producing two consecutive lows from a byte-identical artifact, would look like. The harness is frozen; therefore any real level shift must come from the environment, and the brief never diffs the environment. Required: pull kernel run logs for the 08-01 and 08-02 draws and diff image tag, GPU model, wall-clock runtime, and per-game completion counts against the 07-31 (1.10) draw. This is a one-hour check that directly discriminates "left-tail luck" from "regime change" better than any of the three statistical tests run.
+
+**[MAJOR] Design interaction: if the suspected step-down is real, the prereg's own harm-pause (<0.80) makes the A/B self-aborting and uninterpretable.** The change-point scan estimates the new level at ~0.665; under that regime, gated draws will trip the <0.80 harm-pause with high probability *regardless of the gate's true effect*, and the A/B terminates as spurious "harm." Conversely, under option (a) alone, no gated draw from a 0.665-level regime can plausibly reach a 1.1701 promote bar, so the design can only ever output "fail" — a foregone conclusion is not an experiment. Only option (b) (interleaved contemporaneous controls, paired test) is robust to the level ambiguity; the brief should not present (a) as a coequal standalone option, and R23 should either adopt (b)/(c)-then-(b) or explicitly re-derive the harm-pause threshold conditional on the stationarity re-check outcome.
+
+**[MINOR] A22 prereg sealed 08-01 is already up for amendment on 08-02 based on a research-sweep skim of Living-Harness (arXiv:2607.26598).** Amending a sealed prereg one day after sealing, on the strength of an unreplicated paper summary and before any smoke of the graph-state payload variant, is exactly the prereg churn the team's own governance exists to prevent. Either run the amendment as a pre-specified secondary arm or defer it to the next A22 cycle; do not reopen the seal for a citation.
+
+**[MINOR] Agenda framing inverts strategic priority.** The brief itself establishes that the gate arm's best-case ceiling (~boristown's 1.47 tail) is below the gold cutoff (1.54) and that the compaction lane is necessary "regardless of A/B outcome," yet the A/B is billed as "THE decision" and A22 pushes are staged "strictly behind A/B needs." If the A/B slips or self-aborts (see the harm-pause objection), compaction loses calendar days it cannot recover before Nov 2. State an explicit slot budget split rather than a strict priority ordering.
+
+## Questions for the authors (numbered)
+
+1. Has the vLLM readiness gate *ever* been observed to wait >0s in our Kaggle environment (any run, any seed)? What is the historical base rate of vLLM cold-start latency/failure across our submission kernel logs?
+2. What is the provenance of yw8837's σ≈0.24 — n, artifact sha, account environment, and has a fork-diff been done? Why is it admissible for the promote bar but boristown required a full diff memo?
+3. Diff the kernel logs (image tag, GPU model, runtime, per-game completions) for the 0.65 and 0.68 draws vs. the 07-31 1.10 draw — what changed?
+4. Under the hypothesized 0.665-level regime, what is P(≥1 of 4 gated draws < 0.80), and what happens to the A/B when harm-pause trips? Is that termination pre-registered as distinguishable from true harm?
+5. What is the power of the 4-draw gated arm under option (b) to detect a true effect of +0.10 / +0.20 at σ=0.16 and σ=0.24? If power < 0.5 at +0.10, why is this the priority slot allocation?
+6. The offline bench means "1.43 / 1.94 (unscored)" — what are these numbers benchmarks *of*, and why are they cited at all if "not decision metrics"?
+
+## What I cannot judge
+
+- The internal validity of the specific statistical machinery (Mann-Kendall implementation, CUSUM h=4 vs h=5 calibration, permutation test details in `stationarity_2026-08-02.md`) — I can only sanity-check the logic; defer to the panel's statistics reviewer.
+- The byte-level Kaggle API/leaderboard verification claims (I take the ledger and CSV pulls as stated).
+- Kaggle-specific submission mechanics beyond harness behavior (quota accounting, scoring-pipeline internals).
+- The contents of cited evidence files I have not independently read (`entry_gate_discharge_2026-08-02.md`, the fork-diff memos); my objections stand on what the brief itself reports from them.
+
+## Verdict: MAJOR-REVISION
+
+## Score: 4/10

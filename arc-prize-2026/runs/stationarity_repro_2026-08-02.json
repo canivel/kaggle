@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "generated": "2026-08-02T12:43:31.869337+00:00",
+    "seed": 20260802,
+    "ledger": [
+      0.82,
+      0.89,
+      0.93,
+      1.02,
+      0.95,
+      1.33,
+      0.92,
+      0.93,
+      1.14,
+      0.82,
+      1.05,
+      0.84,
+      1.02,
+      0.9,
+      1.03,
+      0.85,
+      1.1,
+      0.65,
+      0.68
+    ],
+    "n": 19,
+    "prereg_constants": {
+      "CUSUM_H_STATE": 4,
+      "CUSUM_H_STRICT": 5,
+      "CUSUM_K": 0.5,
+      "MIN_SEGMENT": 3,
+      "PERM_B": 20000,
+      "SIM_N": 10000,
+      "CP_ALPHA": 0.01
+    },
+    "sealed_control": {
+      "mu": 0.9727,
+      "s": 0.1343,
+      "n": 15
+    }
+  },
+  "ledger_stats": {
+    "mean_n19": 0.9405263157894738,
+    "s_n19": 0.15883162588136207,
+    "mean_last2": 0.665,
+    "mean_prior17": 0.9729411764705884,
+    "z_065_vs_sealed": -2.4028294862248694,
+    "z_068_vs_sealed": -2.179448994787788
+  },
+  "mann_kendall": {
+    "S": -14,
+    "varS": 814.0,
+    "z": -0.45564976420130804,
+    "p": 0.6486418517513601,
+    "sen_slope": -0.0050000000000000044
+  },
+  "cusum": {
+    "path": [
+      -1.1370067014147436,
+      -1.752792256142964,
+      -2.0707371556217424,
+      -1.7185405807892777,
+      -1.8875651526433361,
+      0.7728965003723007,
+      0.38049143708116173,
+      0.06254653760238316,
+      1.3082650781831715,
+      0.17125837676842792,
+      0.746835443037974,
+      -0.24125093075204862,
+      0.11094564408041607,
+      -0.4303797468354439,
+      -0.0037230081906187706,
+      -0.917349218168281,
+      0.030528667163067347,
+      -2.372300819061802,
+      -4.5517498138495895
+    ],
+    "final": -4.5517498138495895,
+    "maxabs": 4.5517498138495895,
+    "tabular_lower_min": -3.582278481012658,
+    "crosses_h4": true,
+    "crosses_h5": false
+  },
+  "changepoint": {
+    "max_t_unconstrained": 8.64463035195121,
+    "split_unconstrained": 17,
+    "max_t_minseg3": 1.4022471179305176,
+    "split_minseg3": 15,
+    "t_prereg_last2": 8.64463035195121,
+    "perm_p_unconstrained": 0.011749412529373532,
+    "perm_p_minseg3": 0.72036398180091
+  },
+  "pair_prob_068": {
+    "gauss_sealed": {
+      "per_draw": 0.014649164901872654,
+      "specific_adjacent_pair": 0.00021459803232225764,
+      "any_consecutive_pair_in_n": 0.0038039499156721224,
+      "expected_count_in_n": 0.2783341331355804
+    },
+    "t_fit": {
+      "per_draw": 0.02665294397631372,
+      "specific_adjacent_pair": 0.0007103794226045178,
+      "any_consecutive_pair_in_n": 0.012407509542694428,
+      "expected_count_in_n": 0.5064059355499607
+    },
+    "yw_sigma024": {
+      "per_draw": 0.11131143383796877,
+      "specific_adjacent_pair": 0.012390235303064498,
+      "any_consecutive_pair_in_n": 0.18529270871057424,
+      "expected_count_in_n": 2.1149172429214067
+    }
+  },
+  "memo_checks": {
+    "mk_S": {
+      "got": -14,
+      "memo": -14,
+      "ok": true
+    },
+    "mk_varS": {
+      "got": 814.0,
+      "memo": 814.0,
+      "ok": true
+    },
+    "mk_z": {
+      "got": -0.45564976420130804,
+      "memo": -0.456,
+      "ok": true
+    },
+    "mk_p": {
+      "got": 0.6486418517513601,
+      "memo": 0.649,
+      "ok": true
+    },
+    "sen_slope": {
+      "got": -0.0050000000000000044,
+      "memo": -0.005,
+      "ok": true
+    },
+    "cusum_final": {
+      "got": -4.5517498138495895,
+      "memo": -4.55,
+      "ok": true
+    },
+    "cusum_maxabs": {
+      "got": 4.5517498138495895,
+      "memo": 4.55,
+      "ok": true
+    },
+    "cusum_tabular_min": {
+      "got": -3.582278481012658,
+      "memo": -3.58,
+      "ok": true
+    },
+    "cp_maxt": {
+      "got": 8.64463035195121,
+      "memo": 8.64,
+      "ok": true
+    },
+    "cp_prereg_t": {
+      "got": 8.64463035195121,
+      "memo": 8.65,
+      "ok": true
+    },
+    "cp_perm_p": {
+      "got": 0.011749412529373532,
+      "memo": 0.0032,
+      "ok": false
+    },
+    "perdraw_gauss": {
+      "got": 0.014649164901872654,
+      "memo": 0.0147,
+      "ok": true
+    },
+    "perdraw_t": {
+      "got": 0.02665294397631372,
+      "memo": 0.0267,
+      "ok": true
+    },
+    "pair_gauss": {
+      "got": 0.0038039499156721224,
+      "memo": 0.0038,
+      "ok": true
+    },
+    "pair_t": {
+      "got": 0.012407509542694428,
+      "memo": 0.0124,
+      "ok": true
+    },
+    "perdraw_yw": {
+      "got": 0.11131143383796877,
+      "memo": 0.111,
+      "ok": true
+    },
+    "pair_yw": {
+      "got": 0.18529270871057424,
+      "memo": 0.185,
+      "ok": true
+    }
+  },
+  "memo_checks_summary": {
+    "n_checks": 17,
+    "n_reproduced": 16,
+    "failures": [
+      "cp_perm_p"
+    ]
+  },
+  "nc15b_false_alarm": {
+    "n": 19,
+    "alpha": 0.01,
+    "n_sims": 10000,
+    "ref_size": 200000,
+    "false_alarm_rate": 0.0104,
+    "median_p": 0.4970175,
+    "p05": 0.049231000000000004
+  },
+  "nc13_sigma_compat": {
+    "sealed_n15_s1343": {
+      "n": 15,
+      "s": 0.1343,
+      "sigma0": 0.24,
+      "df": 14,
+      "chi2_stat": 4.383869097222222,
+      "P(s<=obs | sigma0)": 0.007321593846214524,
+      "P(s>=obs | sigma0)": 0.9926784061537854,
+      "p_two_sided": 0.014643187692429048,
+      "sigma_95CI": [
+        0.0983246003277435,
+        0.21180439735597448
+      ],
+      "sigma0_inside_95CI": false
+    },
+    "record_n19_s159": {
+      "n": 19,
+      "s": 0.15883162588136207,
+      "sigma0": 0.24,
+      "df": 18,
+      "chi2_stat": 7.883589181286552,
+      "P(s<=obs | sigma0)": 0.019680584955091694,
+      "P(s>=obs | sigma0)": 0.9803194150449083,
+      "p_two_sided": 0.03936116991018339,
+      "sigma_95CI": [
+        0.1200151830570932,
+        0.23488410546019695
+      ],
+      "sigma0_inside_95CI": false
+    }
+  },
+  "nc13_harm_pause_fixed": {
+    "sealed_regime": {
+      "per_draw": 0.09923426479327835,
+      "any_in_k": 0.3416642648575178,
+      "k": 4
+    },
+    "yw_sigma024_regime": {
+      "per_draw": 0.23589078837669586,
+      "any_in_k": 0.659104128848202,
+      "k": 4
+    },
+    "stepdown_mu0665_sealed_s": {
+      "per_draw": 0.8426026618411063,
+      "any_in_k": 0.9993862527857895,
+      "k": 4
+    }
+  },
+  "paired_harm_pause": {
+    "definition": "pause iff gated_draw < mean(trailing_k contemporaneous fillers) - c*s(trailing_k)",
+    "trailing_k": 4,
+    "false_fire_rates_under_null": {
+      "sealed_s1343_c1.5": 0.13709,
+      "sealed_s1343_c2.0": 0.085385,
+      "yw_sigma024_c1.5": 0.136565,
+      "yw_sigma024_c2.0": 0.085685,
+      "wide_intermediate_s019_c1.5": 0.135515,
+      "wide_intermediate_s019_c2.0": 0.086135,
+      "POWER_gate_down0.15_sealed_c1.5": 0.41984
+    },
+    "note": "false-fire is invariant to mu and (near-)invariant to sigma because the criterion is scale-relative to the contemporaneous fillers."
+  }
+}

@@ -1,0 +1,31 @@
+## Summary (2 sentences)
+The brief is well-instrumented and honest about the two-draw slump, but its centerpiece — firing the boristown A/B today under a "raised bar" guard — rests on gate-eval evidence that never exercised the readiness gate's actual failure mode (0.0s ready latency on non-Kaggle hardware) and on promote-bar arithmetic that corrects σ while leaving μ pinned to a seal the authors' own change-point scan just rejected. Additionally, a 4-draw gated arm at σ≈0.13–0.24 is badly underpowered for any plausible effect size, so the daily-quota spend risks producing an uninterpretable answer either way.
+
+## Objections
+
+[MAJOR] The readiness gate was never actually tested — `vllm_ready_latency_s=0.0` is a null observation, not a green marker. The boristown diff's causal hypothesis is that a vLLM readiness gate prevents early episodes from hitting a not-yet-warm server during Kaggle cold start. A gate that "fired" at 0.0s latency means the server was already up when first polled: the gate was armed but the race condition it exists to prevent never occurred, so the eval confirms only that the gate is inert when unneeded. Before ratification, run a fault-injection leg (artificially delay vLLM startup by 60–150s) showing the gate holds requests correctly and episodes complete, plus at least one measurement of the actual vLLM ready-latency distribution in the Kaggle scoring environment — not on an RTX PRO 6000 workstation, whose NVMe/PCIe/VRAM profile makes cold-start timing incomparable to Kaggle's allocation.
+
+[MAJOR] Guard option (a) is statistically incoherent: it corrects σ but not μ, and the direction-of-bias claim is wrong under the step-down hypothesis. The corrected bar 1.1701 is (as far as I can reconstruct) sealed-μ 0.9727 plus a σ=0.24 quantile — but the change-point scan the authors cite estimates a level shift 0.973→0.665. If the process actually stepped down, both arms sample from the lower regime and a fixed bar anchored to the old mean is biased *against* promotion (false negative), not toward spurious promotion; only under-dispersion-vs-seal biases toward promotion, and the proposal conflates the two. Only option (b) — interleaved contemporaneous controls with a paired test — is robust to both mean shift and variance misspecification; R23 should mandate (b) and drop (a) as a standalone remedy.
+
+[MAJOR] No power analysis: 4 gated draws cannot resolve any realistic gate effect, so the A/B burns quota to produce noise. The plausible effect size (boristown 1.47 single draw vs our band; realistically +0.05 to +0.15 mean lift) against σ=0.1343 gives SE≈0.067 at n=4 — power well under 30% at any sane α; under the σ≈0.24 regime the arm is hopeless (SE≈0.12). With ~92 daily slots remaining to Nov 2, the marginal cost of sizing the gated arm at n=8–10 (interleaved, per objection 2) is small and the alternative is an INCONCLUSIVE outcome that will itself consume more panel rounds. Present the power calculation and slot budget through the deadline before sealing.
+
+[MAJOR] Quota economics vs the gold ceiling: the arm being prioritized has a confirmed tail (1.47) already below the gold cutoff (1.54) which is rising +0.05/week. Linear extrapolation over the ~13 weeks to deadline puts the cutoff far above anything the frozen-fork-plus-gate family has ever drawn; yet agenda item 2 stages the compaction lane "strictly behind A/B needs." The brief itself concedes the compaction lane is "strategically necessary regardless of A/B outcome" — then the slot allocation should reflect that, e.g., a fixed split (A/B interleaved draws on odd days, compaction eval draws begin as soon as its prereg allows) rather than strict serialization. Justify the serialization with a projected-cutoff model or change it.
+
+[MINOR] σ≈0.24 is borrowed from an external account (yw8837) with unknown GPU allocation, quantization, and runtime config. Duck-family variance is plausibly dominated by serving-side effects (episode timeouts, token throughput, warm-up) that differ across accounts and hardware draws; using that number both to excuse the 0.65/0.68 pair (18.5% "ordinary") and to set the decision bar is double duty for an unvalidated parameter. State the provenance (n of yw8837 draws, hardware) or down-weight it.
+
+[MINOR] Gate timeout semantics unspecified: `timeout=180s` — fail-open or fail-closed? If Kaggle cold-start ready latency can exceed 180s (large model load on slower disks is routinely 3–6 min), a fail-open gate silently reverts to the ungated behavior (A/B contamination) and a fail-closed gate risks a 0.0-score draw. Specify and test the timeout path in the fault-injection leg.
+
+## Questions for the authors (numbered)
+1. What GPU and disk profile does the Kaggle scoring container actually provide for this competition, and what is the measured vLLM time-to-ready distribution there (n≥3)? How often does it exceed 180s?
+2. On gate timeout, does the harness fail open (proceed ungated) or fail closed (abort)? Which did boristown's fork implement?
+3. Exactly how was 1.1701 computed — what μ, what quantile, what n of gated draws? If μ is the sealed 0.9727, reconcile with your own change-point estimate of 0.665.
+4. What is the pre-registered power of the 4-draw gated arm against a +0.10 mean lift under (i) σ=0.1343 and (ii) σ=0.24?
+5. How many submission slots do you budget between today and Nov 2 for: A/B gated, A/B interleaved controls, compaction-lane evals, and reserve? Show the ledger.
+6. How many draws underlie yw8837's published σ≈0.24, and on what hardware/account regime?
+
+## What I cannot judge
+The internal governance machinery (§7.1 seal, R23 ratification protocol, prereg amendment procedure); the substantive merit of the Living-Harness paper and the A22 compaction design beyond its slot cost; the credibility of the Kaggle discussions sweep (host post, Yakunin caution); the statistical fine points of the permutation-corrected change-point scan with a 2-point right segment (that belongs to the stats reviewer, though I flag n₂=2 as fragile).
+
+## Verdict: MAJOR-REVISION
+
+## Score: 5/10
