@@ -1,56 +1,50 @@
-"""S1 / L0 — state-threaded, abstention-aware re-verification of the exec_wm sims.
+"""S1 / L0 — state-threaded re-verification of the exec_wm sims.
 
-R24 proposal `learnings/war_room/r24_successor_lane_proposal_2026-08-08.md` §4 row S1:
+SEALED SPEC: `duck_eval/r24_prep/s1_sealed_spec_2026-08-10.md` §9, committed at
+`fd57f31bda84260d6f45a5de13b73b101316902f` BEFORE this runner was amended and
+before any result existed. The prereg commit SHA is recorded in every artifact
+this script writes.
 
-    "offline re-verification of the 24 existing sims under Tycho's protocol:
-     replay from level frame 0 WITH STATE THREADING, report accepted transition
-     match AND coverage per game, on-trajectory"
+WHAT CHANGED ON 2026-08-10 (§9.3 of the sealed spec)
+----------------------------------------------------
+The original version of this file (preserved at the prereg commit) implemented
+the R24 proposal's S1 as written. R24 held that S1 because its endpoint was
+uninterpretable, and the seal retired it:
 
-This is a THIN WRAPPER: it imports nothing from the sims but their public
-`simulate(state, action_id, x, y) -> (next_state, reward_class, done)` contract
-(the same contract `exec_wm/validate_sim.py` documents) and re-uses the trace
-parsing conventions of `scripts/ewm_replay_dryrun.py`. It does not modify any
-existing campaign file.
+  * REMOVED — `coverage`, `coverage_strict`, `accepted_match`,
+    `n_identity_abstain`, `n_committed`, `carrier*`, `verdict: EXPANDED/
+    NOT_EXPANDED`, `gained`, `lost`.  `coverage_strict` is measured at exactly
+    1.0 (0 sim errors, 0 selfdiffs over 4,996 banked steps) and the
+    identity-abstention proxy was computed from the observed label, so it was
+    circular AND mechanically inflated `accepted_match`.  Emitting any of these
+    fields VOIDS the run.
+  * NEW PRIMARY (E1) — the threaded survival horizon.  Per (game, source,
+    segment): the number of consecutive threaded steps from segment start that
+    exactly match the recorded settled frame, before the first mismatch.  Per
+    (game, source): the MEDIAN over that source's segments.  Per game:
+    `H_g = MIN over the three war_eval sources` of that median.  Threshold
+    `H_g >= 10` (R16 §9.2's registered executor plan depth).
+    E1 is computed ONLY over the 13 games that have never been replayed
+    on-trajectory; the 12 SAT12 games are replayed as an anchor and are
+    explicitly barred from contributing.
+  * NEW E3 — `module_reset_delta_steps`: the whole replay is run a second time
+    with the module reset hooks suppressed, and the two prediction streams are
+    compared step by step.  Pre-registered to be exactly 0 for tr87 on all
+    three sources and for g50t on v1/v2; a non-zero value there is a runner
+    defect and VOIDS the run.
+  * NEW E4 — `engine_matches_kaggle` on every row; every summary reported both
+    pooled and split on it.
+  * SOURCES — `gpt56_full` removed (2 of its 5 streams carry different engine
+    hashes from the war-eval build).  `--source` now takes a comma-separated
+    list and defaults to all three war_eval pulls.
 
-WHAT IS DIFFERENT FROM THE 2026-07-18 DRY-RUN (`scripts/ewm_replay_dryrun.py`)
------------------------------------------------------------------------------
-1. **State threading.** The old harness was TEACHER-FORCED: every prediction
-   started from the recorded pre-action frame, so mismatches never cascaded and
-   the reported number was a per-frame independent accuracy. Here the sim's own
-   output is fed back in (`pred_{t+1} = simulate(pred_t, a_t)`) for the whole
-   level-segment, which is what an executor would actually experience. The
-   teacher-forced number is still computed in the same pass so the two
-   protocols are reported side by side (arm A/B, zero extra runs).
-2. **Level-segment episodes.** Replay restarts at "level frame 0": the recorded
-   `initial` frame, every post-RESET frame, and every post-level-completion
-   frame. The old harness never restarted and never reset sim module state.
-3. **Module-state reset.** g50t/re86/tr87 carry module-level hidden counters
-   (`reset_state` / `reset_phase` / `reset_step_parity`). The old harness loaded
-   the module once per game and never reset it, so its counters were desynced
-   from the first segment boundary onwards. Here the reset hook (when the sim
-   exposes one) is called at every segment start.
-4. **Coverage / abstention.** The sims have NO abstention channel (no
-   `UNKNOWN=-1`; the return is a 3-tuple with a concrete grid). Coverage is
-   therefore reported under an explicit operational proxy, three ways, so the
-   panel can pick the one it wants to seal:
-       coverage_strict     = (steps - errors) / steps
-       coverage_committed  = (steps - errors - identity_abstentions) / steps
-       identity abstention = the sim returned its input frame unchanged WHILE
-                             the recorded transition did change the board
-                             (several sims document this as their explicit
-                             "we can't tell from one frame" fallback, e.g.
-                             g50t action 5).
-   `accepted_match` is the match rate over COMMITTED steps only, per Tycho.
-   `match_all_steps` (matches / all steps) is also emitted so the result is
-   directly comparable to the 2026-07-18 numbers.
-
-Usage
------
-    .venv/Scripts/python.exe duck_eval/r24_prep/s1_threaded_replay.py --dry-run
-    .venv/Scripts/python.exe duck_eval/r24_prep/s1_threaded_replay.py \
-        --source war_eval_v1 --out runs/r24_prep/s1_threaded_replay.json
+`match_all_steps` and `teacher_forced_match_all_steps` are retained as
+comparability channels to `runs/ewm_dryrun/report.md` and are explicitly
+NON-GATING.
 
 CPU-only, read-only w.r.t. sims and traces, no network, no Kaggle push, $0.
+Deterministic replay of recorded data: no RNG is drawn, so one run is the
+complete result and there is no seed to vary.
 """
 from __future__ import annotations
 
@@ -61,6 +55,7 @@ import importlib.util
 import json
 import platform
 import re
+import statistics
 import subprocess
 import sys
 import time
@@ -71,21 +66,37 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
 SIM_DIR = ROOT / "exec_wm" / "sims"
+SPEC = "duck_eval/r24_prep/s1_sealed_spec_2026-08-10.md"
+PREREG_COMMIT = "fd57f31bda84260d6f45a5de13b73b101316902f"
 
+# gpt56_full REMOVED — sealed spec §5.2 (su15 4c352 vs 1944f, vc33 9851e vs 54305).
 SOURCES = {
     "war_eval_v1": ROOT / "runs/kernel_pulls/war_eval_v1/artifacts",
     "war_eval_v2": ROOT / "runs/kernel_pulls/war_eval_v2/artifacts",
     "war_eval_v3": ROOT / "runs/kernel_pulls/war_eval_v3/artifacts",
-    "gpt56_full": ROOT / "runs/gpt56_probe/experiment_full/artifacts",
 }
-PRIMARY_SOURCE = "war_eval_v1"
+ALL_SOURCES = list(SOURCES)
 
 MOUSE_RE = re.compile(r"MOUSE\(row=(\d+), col=(\d+)\)")
 RESET_HOOKS = ("reset_state", "reset_phase", "reset_step_parity")
 
-# Held-out state_exact% from exec_wm/scale_summary.md (24 games; bp35 was never
-# scale-validated and is carried as None).
-HELD_OUT = {
+# ---- the sealed E1 partition (spec §3, §9.1). Frozen; may not be edited. -----
+NEVER_MEASURED_13 = ["ar25", "bp35", "cd82", "cn04", "dc22", "g50t", "ka59",
+                     "m0r0", "r11l", "re86", "sc25", "sk48", "wa30"]
+ANCHOR_SAT12 = ["ft09", "lf52", "lp85", "ls20", "s5i5", "sb26", "sp80", "su15",
+                "tn36", "tr87", "tu93", "vc33"]
+
+# ---- the sealed threshold and decision rule (spec §9.1, §9.2). Frozen. -------
+H_THRESHOLD = 10
+PREREGISTERED_E1_EXPECTATION = 0
+# E3 void conditions: (game, source) pairs whose module_reset_delta MUST be 0.
+E3_PREREGISTERED_ZEROS = [("tr87", "war_eval_v1"), ("tr87", "war_eval_v2"),
+                          ("tr87", "war_eval_v3"), ("g50t", "war_eval_v1"),
+                          ("g50t", "war_eval_v2")]
+
+# In-sample state_exact% from exec_wm/scale_summary.md:22-45 (NOT held out —
+# --split all; see the CORRECTION block in that file). bp35 never validated.
+IN_SAMPLE_STATE_EXACT = {
     "ar25": 80.0, "cd82": 60.5, "cn04": 77.5, "dc22": 50.5, "ft09": 100.0,
     "g50t": 73.0, "ka59": 60.5, "lf52": 100.0, "lp85": 100.0, "ls20": 100.0,
     "m0r0": 57.5, "r11l": 23.0, "re86": 90.5, "s5i5": 99.5, "sb26": 100.0,
@@ -93,32 +104,15 @@ HELD_OUT = {
     "tr87": 100.0, "tu93": 100.0, "vc33": 99.5, "wa30": 65.0, "bp35": None,
 }
 
-# Prior carrier set that S1's gate must beat, from
-# learnings/stuck_review_v2_2026-07-23.md L13:
-#   "EWM clean carrier set shrinks to {tn36, tu93, ls20, ft09-L1}"
-PRIOR_CARRIER_SET = ["ft09", "ls20", "tn36", "tu93"]
-
-# Engine-determinism verdicts, learnings/daily_brief_2026-07-20.md L37.
-ENGINE_VERDICT = {
-    **{g: "CLEAN" for g in ("ar25", "bp35", "ft09", "lf52", "lp85", "ls20",
-                            "r11l", "sp80", "su15", "tn36", "tu93")},
-    **{g: "ALIASED-RESOLVABLE" for g in ("cd82", "cn04", "dc22", "ka59", "re86",
-                                         "s5i5", "sb26", "sc25", "tr87", "vc33",
-                                         "wa30")},
-    **{g: "ALIASED-UNRESOLVED" for g in ("g50t", "sk48", "m0r0")},
-}
-
-# PROPOSED, NOT SEALED. The R24 minute must fix these before the run counts as
-# evidence, otherwise the gate is post-hoc. Derived from the criterion actually
-# used on 2026-07-20 ("step_acc 0.92-0.97 AND clean/resolvable").
-DEFAULT_CARRIER_MATCH_MIN = 0.92
-DEFAULT_CARRIER_COVERAGE_MIN = 0.50
-DEFAULT_CARRIER_REQUIRE_RESOLVABLE = True
-
 
 # ------------------------------------------------------------------ utilities
 def sha256_file(p: Path) -> str:
     return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
+def hash_grid(g) -> str:
+    return hashlib.blake2b(json.dumps(g, separators=(",", ":")).encode(),
+                           digest_size=8).hexdigest()
 
 
 def git_info() -> dict:
@@ -130,6 +124,18 @@ def git_info() -> dict:
             return "unavailable"
     return {"commit": _run("git", "rev-parse", "HEAD"),
             "dirty": bool(_run("git", "status", "--porcelain"))}
+
+
+def engine_match_table() -> dict:
+    """engine_matches_kaggle per game, from the 25-game determinism audit."""
+    p = ROOT / "runs" / "war_eval_v1" / "determinism_audit_25.json"
+    out = {}
+    if p.exists():
+        for g in json.loads(p.read_text(encoding="utf-8")).get("games", []):
+            gid = (g.get("game") or "").split("-")[0]
+            if gid:
+                out[gid] = not g.get("version_mismatch_vs_kaggle", False)
+    return out
 
 
 def load_sim(game_id: str, tag: str):
@@ -201,28 +207,33 @@ def segments(events):
 
 
 # --------------------------------------------------------------------- replay
-def replay_game(gid: str, fp: Path) -> dict:
-    """State-threaded (+ teacher-forced A/B) replay of one recorded trace."""
+def replay_game(gid: str, fp: Path, do_reset: bool = True) -> dict:
+    """State-threaded replay of one recorded trace.
+
+    `do_reset=True`  -> module reset hook fired at every segment start (S1).
+    `do_reset=False` -> hooks never fired, i.e. the 2026-07-18 harness's
+                        behaviour; used only to measure `module_reset_delta_steps`.
+    The teacher-forced channel is computed in the same pass (arm A/B, no extra
+    run) and is NON-GATING.
+    """
     with open(fp, encoding="utf-8") as f:
         events = [json.loads(ln) for ln in f if ln.strip()]
 
     mod_a = load_sim(gid, "a")
     mod_b = load_sim(gid, "b")
     sim_a, sim_b = mod_a.simulate, mod_b.simulate
-    reset_hook = None
+    reset_hook = next((h for h in RESET_HOOKS
+                       if callable(getattr(mod_a, h, None))), None)
 
     r = {
         "n_segments": 0, "n_steps": 0,
         "n_error": 0, "n_selfdiff": 0,
-        "n_identity_abstain": 0, "n_obs_changed": 0,
-        "n_match_threaded": 0, "n_match_threaded_committed": 0,
-        "n_committed": 0,
-        "n_match_teacher_forced": 0,
+        "n_match_threaded": 0, "n_match_teacher_forced": 0,
         "n_done_agree": 0, "n_done_total": 0,
-        "n_reward_total": 0,
-        "survival_steps": [],      # threaded steps before first mismatch, per segment
+        "segment_survivals": [],   # threaded steps survived, per segment
         "segment_lengths": [],
-        "per_action": {},          # aid -> {n, match_threaded, match_tf, abstain, error}
+        "pred_hashes": [],         # per-step predicted-state hash (for E3)
+        "reset_hook": reset_hook,
     }
 
     for seed_board, _seed_lvl, acts in segments(events):
@@ -231,8 +242,9 @@ def replay_game(gid: str, fp: Path) -> dict:
             continue
         r["n_segments"] += 1
         r["segment_lengths"].append(len(steps))
-        reset_hook = sim_reset(mod_a) or reset_hook
-        sim_reset(mod_b)
+        if do_reset:
+            sim_reset(mod_a)
+            sim_reset(mod_b)
 
         pred = [list(row) for row in seed_board]
         obs_prev = seed_board
@@ -242,14 +254,7 @@ def replay_game(gid: str, fp: Path) -> dict:
         for ev in steps:
             aid, x, y = parse_action(ev)
             obs_next = ev["board"]
-            pa = r["per_action"].setdefault(
-                str(aid), {"n": 0, "match_threaded": 0, "match_tf": 0,
-                           "abstain": 0, "error": 0})
-            pa["n"] += 1
             r["n_steps"] += 1
-            obs_changed = obs_next != obs_prev
-            if obs_changed:
-                r["n_obs_changed"] += 1
 
             # ---- threaded prediction (the S1 protocol) -------------------
             err = False
@@ -266,23 +271,13 @@ def replay_game(gid: str, fp: Path) -> dict:
             except Exception:  # noqa: BLE001
                 err = True
                 r["n_error"] += 1
-                pa["error"] += 1
-                pred_next = pred  # hold state; the step is uncommitted
+                pred_next = pred  # hold state
+
+            r["pred_hashes"].append(hash_grid(pred_next))
 
             if not err:
-                identity = pred_next == pred
-                abstain = identity and obs_changed
-                if abstain:
-                    r["n_identity_abstain"] += 1
-                    pa["abstain"] += 1
-                else:
-                    r["n_committed"] += 1
-                match = pred_next == obs_next
-                if match:
+                if pred_next == obs_next:
                     r["n_match_threaded"] += 1
-                    pa["match_threaded"] += 1
-                    if not abstain:
-                        r["n_match_threaded_committed"] += 1
                     if not broken:
                         survived += 1
                 else:
@@ -290,34 +285,31 @@ def replay_game(gid: str, fp: Path) -> dict:
                 r["n_done_total"] += 1
                 if bool(p1[2]) == bool(ev.get("level_completed", False)):
                     r["n_done_agree"] += 1
-                r["n_reward_total"] += 1
             else:
                 broken = True
 
-            # ---- teacher-forced prediction (legacy protocol, same pass) ---
+            # ---- teacher-forced channel (legacy protocol, NON-GATING) -----
             try:
                 q = sim_a([list(row) for row in obs_prev], aid, x, y)
                 qa = np.asarray(q[0], dtype=np.uint8)
                 if qa.shape == (64, 64) and qa.tolist() == obs_next:
                     r["n_match_teacher_forced"] += 1
-                    pa["match_tf"] += 1
             except Exception:  # noqa: BLE001
                 pass
 
             pred = pred_next
             obs_prev = obs_next
 
-        r["survival_steps"].append(survived)
+        r["segment_survivals"].append(survived)
 
-    r["reset_hook"] = reset_hook
     return r
 
 
-def score_game(gid: str, source: str, trace_id: str, fp: Path, r: dict,
-               cfg: dict) -> dict:
+def score_row(gid: str, source: str, trace_id: str, fp: Path, r: dict,
+              delta_steps: int, engine_match) -> dict:
     steps = r["n_steps"]
-    committed = r["n_committed"]
-    out = {
+    surv = r["segment_survivals"]
+    return {
         "game": gid,
         "source": source,
         "trace_id": trace_id,
@@ -326,44 +318,28 @@ def score_game(gid: str, source: str, trace_id: str, fp: Path, r: dict,
         "sim_sha256": sha256_file(SIM_DIR / f"{gid}_sim.py"),
         "sim_reset_hook": r["reset_hook"],
         "sim_has_module_state": r["reset_hook"] is not None,
-        "engine_determinism_verdict": ENGINE_VERDICT.get(gid, "UNKNOWN"),
-        "held_out_state_exact_pct": HELD_OUT.get(gid),
+        "engine_matches_kaggle": engine_match,
+        "in_sample_state_exact_pct": IN_SAMPLE_STATE_EXACT.get(gid),
         "n_segments": r["n_segments"],
         "n_steps": steps,
         "segment_lengths": r["segment_lengths"],
+        # ---- E1 primary --------------------------------------------------
+        "segment_survivals": surv,
+        "median_survival": (statistics.median(surv) if surv else None),
+        "mean_survival": (round(sum(surv) / len(surv), 3) if surv else None),
+        "max_survival": (max(surv) if surv else None),
+        # ---- E3 ----------------------------------------------------------
+        "module_reset_delta_steps": delta_steps,
+        # ---- comparability channels, NON-GATING --------------------------
+        "match_all_steps": (round(r["n_match_threaded"] / steps, 4)
+                            if steps else None),
+        "teacher_forced_match_all_steps": (
+            round(r["n_match_teacher_forced"] / steps, 4) if steps else None),
         "n_error": r["n_error"],
         "n_selfdiff": r["n_selfdiff"],
-        "n_obs_changed": r["n_obs_changed"],
-        "n_identity_abstain": r["n_identity_abstain"],
-        "n_committed": committed,
-        # ---- the two S1 metrics ------------------------------------------
-        "accepted_match": (r["n_match_threaded_committed"] / committed
-                           if committed else None),
-        "coverage": (committed / steps) if steps else None,
-        "coverage_strict": ((steps - r["n_error"]) / steps) if steps else None,
-        # ---- comparability channels --------------------------------------
-        "match_all_steps": (r["n_match_threaded"] / steps) if steps else None,
-        "teacher_forced_match_all_steps": (r["n_match_teacher_forced"] / steps
-                                           if steps else None),
-        "mean_survival_steps": (sum(r["survival_steps"]) / len(r["survival_steps"])
-                                if r["survival_steps"] else None),
-        "max_survival_steps": max(r["survival_steps"], default=None),
         "done_flag_agree": (f"{r['n_done_agree']}/{r['n_done_total']}"
                             if r["n_done_total"] else None),
-        "per_action": r["per_action"],
     }
-    am, cv = out["accepted_match"], out["coverage"]
-    reasons = []
-    if am is None or am < cfg["carrier_match_min"]:
-        reasons.append(f"accepted_match {am} < {cfg['carrier_match_min']}")
-    if cv is None or cv < cfg["carrier_coverage_min"]:
-        reasons.append(f"coverage {cv} < {cfg['carrier_coverage_min']}")
-    if (cfg["carrier_require_resolvable"]
-            and out["engine_determinism_verdict"] == "ALIASED-UNRESOLVED"):
-        reasons.append("engine ALIASED-UNRESOLVED")
-    out["carrier"] = not reasons
-    out["carrier_fail_reasons"] = reasons
-    return out
 
 
 # ----------------------------------------------------------------------- main
@@ -380,47 +356,46 @@ def discover(source: str) -> list[tuple[str, str, Path]]:
     return found
 
 
+def horizon_block(games: list[str], per_game: dict) -> dict:
+    """H_g = min over sources of median_survival, + the sealed >=10 test."""
+    rows, passes = {}, []
+    for g in games:
+        med = per_game.get(g, {})
+        vals = [med[s] for s in ALL_SOURCES if med.get(s) is not None]
+        H = min(vals) if len(vals) == len(ALL_SOURCES) else None
+        rows[g] = {
+            "median_survival_per_source": {s: med.get(s) for s in ALL_SOURCES},
+            "H_g": H,
+            "n_sources": len(vals),
+            "passes_H_ge_10": (H is not None and H >= H_THRESHOLD),
+        }
+        if rows[g]["passes_H_ge_10"]:
+            passes.append(g)
+    return {"n_games": len(games), "games": rows,
+            "n_pass_H_ge_10": len(passes), "pass_list": sorted(passes)}
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(
-        description="S1/L0 state-threaded exec_wm re-verification (offline, $0).")
-    ap.add_argument("--source", default=PRIMARY_SOURCE,
-                    choices=[*SOURCES, "all"],
-                    help="recorded trace source (default: war_eval_v1)")
+        description="S1/L0 state-threaded exec_wm horizon measurement "
+                    "(offline, $0). Sealed spec: " + SPEC)
+    ap.add_argument("--source", default=",".join(ALL_SOURCES),
+                    help="comma-separated list (default: all three war_eval pulls)")
     ap.add_argument("--games", default="", help="comma-separated game filter")
     ap.add_argument("--out", default="runs/r24_prep/s1_threaded_replay.json")
-    ap.add_argument("--carrier-match-min", type=float,
-                    default=DEFAULT_CARRIER_MATCH_MIN)
-    ap.add_argument("--carrier-coverage-min", type=float,
-                    default=DEFAULT_CARRIER_COVERAGE_MIN)
-    ap.add_argument("--allow-unresolvable-carriers", action="store_true")
-    ap.add_argument("--authorized-by", default="UNSEALED-R24-PENDING",
-                    help="R24 minute reference; recorded in the provenance header")
+    ap.add_argument("--authorized-by", default="UNSEALED",
+                    help="sealed-spec reference; recorded in the provenance header")
     ap.add_argument("--dry-run", action="store_true",
                     help="resolve + import every asset, print the plan, run NOTHING")
     args = ap.parse_args()
 
-    srcs = list(SOURCES) if args.source == "all" else [args.source]
+    srcs = [s.strip() for s in args.source.split(",") if s.strip()]
+    for s in srcs:
+        if s not in SOURCES:
+            print(f"unknown source {s!r}; known: {ALL_SOURCES}", file=sys.stderr)
+            return 2
     only = {g.strip() for g in args.games.split(",") if g.strip()}
-    cfg = {
-        "mode": "state_threaded",
-        "segment_rule": "initial | post-RESET frame | post-level-completion frame",
-        "reset_module_state_at_segment_start": True,
-        "teacher_forced_ab_in_same_pass": True,
-        "coverage_definition": {
-            "commit": "sim returned a valid 64x64 grid AND did not return its "
-                      "input unchanged while the recorded transition changed "
-                      "the board",
-            "abstention_channel_in_sims": False,
-            "note": "the sims expose no UNKNOWN/-1 channel; identity-on-change "
-                    "is an OPERATIONAL PROXY and must be sealed by R24",
-        },
-        "carrier_match_min": args.carrier_match_min,
-        "carrier_coverage_min": args.carrier_coverage_min,
-        "carrier_require_resolvable": not args.allow_unresolvable_carriers,
-        "carrier_thresholds_status": "PROPOSED — NOT SEALED BY R24",
-        "prior_carrier_set": PRIOR_CARRIER_SET,
-        "gate": "carrier set must EXPAND beyond the prior 4",
-    }
+    emt = engine_match_table()
 
     plan = []
     for s in srcs:
@@ -433,57 +408,108 @@ def main() -> int:
             plan.append((s, gid, tid, fp))
 
     if args.dry_run:
-        print(f"S1 dry-run — repo {ROOT}")
-        print(f"sim dir: {SIM_DIR}  ({len(list(SIM_DIR.glob('*_sim.py')))} *_sim.py "
-              f"files, active sims exclude *_v1/_v2 variants)")
-        bad = 0
-        seen = set()
+        print(f"S1 dry-run — repo {ROOT}; spec {SPEC} @ {PREREG_COMMIT[:12]}")
+        bad, seen = 0, set()
         for s, gid, tid, fp in plan:
             if gid in seen:
                 continue
             seen.add(gid)
             try:
                 m = load_sim(gid, "dry")
-                hook = next((h for h in RESET_HOOKS if callable(getattr(m, h, None))),
-                            None)
-                print(f"  OK  {gid:5s} sim import + simulate(); reset_hook={hook}; "
-                      f"trace={fp.name}")
+                hook = next((h for h in RESET_HOOKS
+                             if callable(getattr(m, h, None))), None)
+                print(f"  OK  {gid:5s} reset_hook={hook}; trace={fp.name}")
             except Exception as exc:  # noqa: BLE001
                 bad += 1
                 print(f"  FAIL {gid:5s} {type(exc).__name__}: {exc}")
-        print(f"\nplanned: {len(plan)} (source, game) replays over "
-              f"{len(seen)} distinct sims; {bad} sim import failures")
-        print(f"carrier thresholds (PROPOSED, NOT SEALED): "
-              f"accepted_match >= {cfg['carrier_match_min']}, "
-              f"coverage >= {cfg['carrier_coverage_min']}, "
-              f"require_resolvable={cfg['carrier_require_resolvable']}")
+        print(f"\nplanned: {len(plan)} (source, game) replays over {len(seen)} "
+              f"sims; {bad} import failures")
+        print(f"E1 population (13): {NEVER_MEASURED_13}")
+        print(f"anchor, non-contributing (12): {ANCHOR_SAT12}")
+        print(f"threshold H_g >= {H_THRESHOLD}; pre-registered E1 = "
+              f"{PREREGISTERED_E1_EXPECTATION}")
         print("no experiment executed (--dry-run)")
         return 0 if bad == 0 else 1
 
     t0 = time.time()
     rows = []
+    med_by_game: dict[str, dict] = {}
     for s, gid, tid, fp in plan:
-        r = replay_game(gid, fp)
-        row = score_game(gid, s, tid, fp, r, cfg)
+        r = replay_game(gid, fp, do_reset=True)
+        # E3: same trace, same order, reset hooks suppressed.
+        if r["reset_hook"] is None:
+            delta = 0
+        else:
+            r0 = replay_game(gid, fp, do_reset=False)
+            delta = sum(1 for a, b in zip(r["pred_hashes"], r0["pred_hashes"])
+                        if a != b) + abs(len(r["pred_hashes"])
+                                         - len(r0["pred_hashes"]))
+        row = score_row(gid, s, tid, fp, r, delta, emt.get(gid))
         rows.append(row)
-        print(f"[{s}] {gid}: accepted_match={row['accepted_match']} "
-              f"coverage={row['coverage']} "
-              f"(all-steps {row['match_all_steps']}, "
-              f"TF {row['teacher_forced_match_all_steps']}) "
-              f"carrier={row['carrier']}", flush=True)
+        med_by_game.setdefault(gid, {})[s] = row["median_survival"]
+        print(f"[{s}] {gid}: segs={row['n_segments']} steps={row['n_steps']} "
+              f"median_surv={row['median_survival']} max={row['max_survival']} "
+              f"(all-steps {row['match_all_steps']}, TF "
+              f"{row['teacher_forced_match_all_steps']}) "
+              f"reset_delta={delta}", flush=True)
 
-    primary = [r for r in rows if r["source"] == PRIMARY_SOURCE] or rows
-    carriers = sorted({r["game"] for r in primary if r["carrier"]})
+    e1 = horizon_block(NEVER_MEASURED_13, med_by_game)
+    anchor = horizon_block(ANCHOR_SAT12, med_by_game)
+
+    # ---- E3 void check (sealed spec §4.4 R5) -----------------------------
+    violations = [{"game": g, "source": s,
+                   "module_reset_delta_steps": next(
+                       (r["module_reset_delta_steps"] for r in rows
+                        if r["game"] == g and r["source"] == s), None)}
+                  for g, s in E3_PREREGISTERED_ZEROS]
+    violations = [v for v in violations
+                  if v["module_reset_delta_steps"] not in (0, None)]
+    void = bool(violations)
+
+    # ---- the sealed decision rule (spec §9.2) ----------------------------
+    n = e1["n_pass_H_ge_10"]
+    if void:
+        verdict, action = "VOID", "runner defect: E3 pre-registered zero violated"
+    elif n == 0:
+        verdict, action = "L1 NO-GO", (
+            "S5 does not open; bank the clean second negative on THIS endpoint; "
+            "exec-wm closes as an execution substrate, C1/C2/C3 retained as "
+            "schema only; lane (a) proceeds on P1/P3")
+    elif n <= 2:
+        verdict, action = "L1 HELD", (
+            "author the abstention interface for the identified games only; "
+            "re-read at R26")
+    else:
+        verdict, action = "L1 GO", (
+            "authorise L1 for the identified set, conditional on the already-"
+            "ratified workstation-authoring rule")
+
+    # ---- E4 engine stratification ----------------------------------------
+    def _strat(pred):
+        sel = [r for r in rows if pred(r) and r["median_survival"] is not None]
+        return {"n_rows": len(sel),
+                "mean_median_survival": (
+                    round(sum(r["median_survival"] for r in sel) / len(sel), 3)
+                    if sel else None),
+                "mean_match_all_steps": (
+                    round(sum(r["match_all_steps"] for r in sel) / len(sel), 4)
+                    if sel else None)}
+
     out = {
         "provenance": {
             "script": "duck_eval/r24_prep/s1_threaded_replay.py",
             "script_sha256": sha256_file(Path(__file__)),
+            "sealed_spec": SPEC,
+            "sealed_spec_sha256": sha256_file(ROOT / SPEC),
+            "prereg_commit": PREREG_COMMIT,
+            "prereg_commit_note": "the sealed spec and its expectation were "
+                                  "committed at this SHA BEFORE this run; the "
+                                  "prereg is provably prior to the outcome",
             "generated_utc": datetime.now(timezone.utc).isoformat(),
             "git": git_info(),
             "python": sys.version.split()[0],
             "platform": platform.platform(),
             "numpy": np.__version__,
-            "proposal": "learnings/war_room/r24_successor_lane_proposal_2026-08-08.md §4 S1",
             "authorized_by": args.authorized_by,
             "cost": {"usd": 0, "kaggle_pushes": 0, "gpu": "none (CPU only)"},
             "rng": "none — replay is fully deterministic; no seeds are drawn",
@@ -491,29 +517,70 @@ def main() -> int:
                         for s in srcs},
             "wallclock_s": round(time.time() - t0, 1),
         },
-        "config": cfg,
-        "games": rows,
-        "summary": {
-            "n_rows": len(rows),
-            "primary_source": PRIMARY_SOURCE,
-            "n_games_primary": len({r["game"] for r in primary}),
-            "carrier_set": carriers,
-            "n_carriers": len(carriers),
-            "prior_carrier_set": PRIOR_CARRIER_SET,
-            "n_prior_carriers": len(PRIOR_CARRIER_SET),
-            "gained": sorted(set(carriers) - set(PRIOR_CARRIER_SET)),
-            "lost": sorted(set(PRIOR_CARRIER_SET) - set(carriers)),
-            "gate": "carrier set must EXPAND beyond ~4 games",
-            "verdict": ("EXPANDED" if len(carriers) > len(PRIOR_CARRIER_SET)
-                        else "NOT_EXPANDED"),
-            "verdict_status": "ADVISORY until R24 seals the carrier thresholds",
+        "config": {
+            "mode": "state_threaded",
+            "segment_rule": "initial | post-RESET frame | post-level-completion frame",
+            "reset_module_state_at_segment_start": True,
+            "teacher_forced_ab_in_same_pass": True,
+            "primary_statistic": "survival = consecutive threaded steps from "
+                                 "segment start matching the recorded settled "
+                                 "frame exactly, before the first mismatch",
+            "per_source_aggregate": "median over that source's segments",
+            "per_game_aggregate": "H_g = min over the 3 war_eval sources",
+            "threshold": f"H_g >= {H_THRESHOLD}",
+            "threshold_provenance": "R16 §9.2 registered executor plan depth <=10",
+            "E1_population_13": NEVER_MEASURED_13,
+            "anchor_population_12_non_contributing": ANCHOR_SAT12,
+            "prereg_expectation_E1": PREREGISTERED_E1_EXPECTATION,
+            "decision_rule": "0 -> L1 NO-GO; 1-2 -> L1 HELD; >=3 -> L1 GO",
+            "removed_by_seal": ["coverage", "coverage_strict", "accepted_match",
+                                "n_identity_abstain", "n_committed", "carrier",
+                                "carrier_set", "gained", "lost",
+                                "EXPANDED/NOT_EXPANDED"],
+            "non_gating_channels": ["match_all_steps",
+                                    "teacher_forced_match_all_steps",
+                                    "n_error", "n_selfdiff", "done_flag_agree"],
+        },
+        "rows": rows,
+        "E1_never_measured_13": e1,
+        "anchor_sat12_12": anchor,
+        "E3_module_reset": {
+            "preregistered_zeros": [list(x) for x in E3_PREREGISTERED_ZEROS],
+            "violations": violations,
+            "void": void,
+            "nonzero_rows": [{"game": r["game"], "source": r["source"],
+                              "delta": r["module_reset_delta_steps"]}
+                             for r in rows if r["module_reset_delta_steps"]],
+        },
+        "E4_engine_stratification": {
+            "engine_matched": _strat(lambda r: r["engine_matches_kaggle"] is True),
+            "engine_mismatched": _strat(lambda r: r["engine_matches_kaggle"] is False),
+            "pooled": _strat(lambda r: True),
+        },
+        "result": {
+            "E1_n_pass_H_ge_10": n,
+            "E1_pass_list": e1["pass_list"],
+            "prereg_expectation": PREREGISTERED_E1_EXPECTATION,
+            "matched_expectation": n == PREREGISTERED_E1_EXPECTATION,
+            "verdict": verdict,
+            "action": action,
+            "anchor_n_pass_non_contributing": anchor["n_pass_H_ge_10"],
+            "anchor_pass_list_non_contributing": anchor["pass_list"],
         },
     }
     op = ROOT / args.out
     op.parent.mkdir(parents=True, exist_ok=True)
     op.write_text(json.dumps(out, indent=2), encoding="utf-8")
-    print(f"\ncarrier set ({len(carriers)}): {', '.join(carriers) or '-'}  "
-          f"prior {PRIOR_CARRIER_SET} -> {out['summary']['verdict']}")
+
+    print(f"\n{'='*78}")
+    print(f"E1 (13 never-measured games): {n} reach H_g >= {H_THRESHOLD}  "
+          f"{e1['pass_list'] or '-'}")
+    print(f"pre-registered expectation: {PREREGISTERED_E1_EXPECTATION}  -> "
+          f"{'MATCHED' if n == PREREGISTERED_E1_EXPECTATION else 'NOT MATCHED'}")
+    print(f"anchor SAT12 (non-contributing): {anchor['n_pass_H_ge_10']} "
+          f"{anchor['pass_list'] or '-'}")
+    print(f"E3 void: {void}  {violations if violations else ''}")
+    print(f"VERDICT: {verdict} — {action}")
     print(f"written: {op}")
     return 0
 

@@ -1,0 +1,2951 @@
+{
+  "provenance": {
+    "script": "duck_eval/r24_prep/s1_threaded_replay.py",
+    "script_sha256": "73982e5dfb028be12ca7fb0f3a8252eb6f34f9e28404abf3a3b735ba65515fb2",
+    "sealed_spec": "duck_eval/r24_prep/s1_sealed_spec_2026-08-10.md",
+    "sealed_spec_sha256": "7eefb113ff111af0bc75e622e2355824dc1749e2a8573e10cb7c06a2ac3d6770",
+    "prereg_commit": "fd57f31bda84260d6f45a5de13b73b101316902f",
+    "prereg_commit_note": "the sealed spec and its expectation were committed at this SHA BEFORE this run; the prereg is provably prior to the outcome",
+    "generated_utc": "2026-08-10T12:53:09.271450+00:00",
+    "git": {
+      "commit": "fd57f31bda84260d6f45a5de13b73b101316902f",
+      "dirty": true
+    },
+    "python": "3.12.11",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy": "2.4.4",
+    "authorized_by": "duck_eval/r24_prep/s1_sealed_spec_2026-08-10.md \u00a79 @ fd57f31; coordinator authorisation 2026-08-10",
+    "cost": {
+      "usd": 0,
+      "kaggle_pushes": 0,
+      "gpu": "none (CPU only)"
+    },
+    "rng": "none \u2014 replay is fully deterministic; no seeds are drawn",
+    "sources": {
+      "war_eval_v1": "runs/kernel_pulls/war_eval_v1/artifacts",
+      "war_eval_v2": "runs/kernel_pulls/war_eval_v2/artifacts",
+      "war_eval_v3": "runs/kernel_pulls/war_eval_v3/artifacts"
+    },
+    "wallclock_s": 33.4
+  },
+  "config": {
+    "mode": "state_threaded",
+    "segment_rule": "initial | post-RESET frame | post-level-completion frame",
+    "reset_module_state_at_segment_start": true,
+    "teacher_forced_ab_in_same_pass": true,
+    "primary_statistic": "survival = consecutive threaded steps from segment start matching the recorded settled frame exactly, before the first mismatch",
+    "per_source_aggregate": "median over that source's segments",
+    "per_game_aggregate": "H_g = min over the 3 war_eval sources",
+    "threshold": "H_g >= 10",
+    "threshold_provenance": "R16 \u00a79.2 registered executor plan depth <=10",
+    "E1_population_13": [
+      "ar25",
+      "bp35",
+      "cd82",
+      "cn04",
+      "dc22",
+      "g50t",
+      "ka59",
+      "m0r0",
+      "r11l",
+      "re86",
+      "sc25",
+      "sk48",
+      "wa30"
+    ],
+    "anchor_population_12_non_contributing": [
+      "ft09",
+      "lf52",
+      "lp85",
+      "ls20",
+      "s5i5",
+      "sb26",
+      "sp80",
+      "su15",
+      "tn36",
+      "tr87",
+      "tu93",
+      "vc33"
+    ],
+    "prereg_expectation_E1": 0,
+    "decision_rule": "0 -> L1 NO-GO; 1-2 -> L1 HELD; >=3 -> L1 GO",
+    "removed_by_seal": [
+      "coverage",
+      "coverage_strict",
+      "accepted_match",
+      "n_identity_abstain",
+      "n_committed",
+      "carrier",
+      "carrier_set",
+      "gained",
+      "lost",
+      "EXPANDED/NOT_EXPANDED"
+    ],
+    "non_gating_channels": [
+      "match_all_steps",
+      "teacher_forced_match_all_steps",
+      "n_error",
+      "n_selfdiff",
+      "done_flag_agree"
+    ]
+  },
+  "rows": [
+    {
+      "game": "ar25",
+      "source": "war_eval_v1",
+      "trace_id": "ar25-0c556536",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/ar25-0c556536_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/ar25_sim.py",
+      "sim_sha256": "b389ed882793261a4fdd7fbc8ab39e631c9c1bc0e2fb27248f35d328df97258e",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 80.0,
+      "n_segments": 4,
+      "n_steps": 200,
+      "segment_lengths": [
+        21,
+        34,
+        142,
+        3
+      ],
+      "segment_survivals": [
+        15,
+        0,
+        1,
+        0
+      ],
+      "median_survival": 0.5,
+      "mean_survival": 4.0,
+      "max_survival": 15,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.08,
+      "teacher_forced_match_all_steps": 0.11,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "198/200"
+    },
+    {
+      "game": "bp35",
+      "source": "war_eval_v1",
+      "trace_id": "bp35-0a0ad940",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/bp35-0a0ad940_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/bp35_sim.py",
+      "sim_sha256": "1c418b0fd1b3913812925142a475e760988c571adfe02ca47ff9b8f1551d6176",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": null,
+      "n_segments": 6,
+      "n_steps": 119,
+      "segment_lengths": [
+        56,
+        9,
+        9,
+        16,
+        26,
+        3
+      ],
+      "segment_survivals": [
+        3,
+        0,
+        0,
+        7,
+        0,
+        0
+      ],
+      "median_survival": 0.0,
+      "mean_survival": 1.667,
+      "max_survival": 7,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.084,
+      "teacher_forced_match_all_steps": 0.3697,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "118/119"
+    },
+    {
+      "game": "cd82",
+      "source": "war_eval_v1",
+      "trace_id": "cd82-fb555c5d",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/cd82-fb555c5d_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/cd82_sim.py",
+      "sim_sha256": "9950ecae64658650ce43c84b0e395b51b8a40ef10200f7872c8521fb204c4869",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 60.5,
+      "n_segments": 2,
+      "n_steps": 140,
+      "segment_lengths": [
+        100,
+        40
+      ],
+      "segment_survivals": [
+        1,
+        1
+      ],
+      "median_survival": 1.0,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0214,
+      "teacher_forced_match_all_steps": 0.4071,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "140/140"
+    },
+    {
+      "game": "cn04",
+      "source": "war_eval_v1",
+      "trace_id": "cn04-2fe56bfb",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/cn04-2fe56bfb_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/cn04_sim.py",
+      "sim_sha256": "ccd10bcf12ad9e4be0b85e508f641e79be0288ad86b5fe19707cf60a8504b39f",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 77.5,
+      "n_segments": 4,
+      "n_steps": 300,
+      "segment_lengths": [
+        75,
+        75,
+        75,
+        75
+      ],
+      "segment_survivals": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "median_survival": 1.0,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0133,
+      "teacher_forced_match_all_steps": 0.3433,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "300/300"
+    },
+    {
+      "game": "dc22",
+      "source": "war_eval_v1",
+      "trace_id": "dc22-fdcac232",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/dc22-fdcac232_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/dc22_sim.py",
+      "sim_sha256": "dc98a4e3b4f7701e2bb8ff4fcf167964e1d2ac8372e1082f355423dcac89e4f9",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 50.5,
+      "n_segments": 1,
+      "n_steps": 61,
+      "segment_lengths": [
+        61
+      ],
+      "segment_survivals": [
+        2
+      ],
+      "median_survival": 2,
+      "mean_survival": 2.0,
+      "max_survival": 2,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0328,
+      "teacher_forced_match_all_steps": 0.3607,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "61/61"
+    },
+    {
+      "game": "ft09",
+      "source": "war_eval_v1",
+      "trace_id": "ft09-0d8bbf25",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/ft09-0d8bbf25_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/ft09_sim.py",
+      "sim_sha256": "94b3279735267c44be258a3de150449343431f18e3db3d64c585b9ca2bfbec8c",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 5,
+      "n_steps": 132,
+      "segment_lengths": [
+        36,
+        34,
+        36,
+        25,
+        1
+      ],
+      "segment_survivals": [
+        36,
+        34,
+        36,
+        24,
+        0
+      ],
+      "median_survival": 34,
+      "mean_survival": 26.0,
+      "max_survival": 36,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.9848,
+      "teacher_forced_match_all_steps": 0.9848,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "131/132"
+    },
+    {
+      "game": "g50t",
+      "source": "war_eval_v1",
+      "trace_id": "g50t-5849a774",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/g50t-5849a774_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/g50t_sim.py",
+      "sim_sha256": "9867edbc94988c7118a48aae6f118c8ce9da110e9007c973e695f981dc699871",
+      "sim_reset_hook": "reset_state",
+      "sim_has_module_state": true,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 73.0,
+      "n_segments": 1,
+      "n_steps": 62,
+      "segment_lengths": [
+        62
+      ],
+      "segment_survivals": [
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0161,
+      "teacher_forced_match_all_steps": 0.3548,
+      "n_error": 0,
+      "n_selfdiff": 31,
+      "done_flag_agree": "62/62"
+    },
+    {
+      "game": "ka59",
+      "source": "war_eval_v1",
+      "trace_id": "ka59-38d34dbb",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/ka59-38d34dbb_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/ka59_sim.py",
+      "sim_sha256": "7016d455651a94b4391140a9d3464d538ec00f558c317aa4f1f9877a7efd7712",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 60.5,
+      "n_segments": 2,
+      "n_steps": 117,
+      "segment_lengths": [
+        77,
+        40
+      ],
+      "segment_survivals": [
+        1,
+        1
+      ],
+      "median_survival": 1.0,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0171,
+      "teacher_forced_match_all_steps": 0.2564,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "116/117"
+    },
+    {
+      "game": "lf52",
+      "source": "war_eval_v1",
+      "trace_id": "lf52-271a04aa",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/lf52-271a04aa_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/lf52_sim.py",
+      "sim_sha256": "943c818f8f3e6b652b72074bb9751a0be56e3c4bfbdb4f3aa3b93e4c0b07f2ad",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 2,
+      "n_steps": 73,
+      "segment_lengths": [
+        22,
+        51
+      ],
+      "segment_survivals": [
+        0,
+        0
+      ],
+      "median_survival": 0.0,
+      "mean_survival": 0.0,
+      "max_survival": 0,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.3288,
+      "teacher_forced_match_all_steps": 0.3014,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "72/73"
+    },
+    {
+      "game": "lp85",
+      "source": "war_eval_v1",
+      "trace_id": "lp85-305b61c3",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/lp85-305b61c3_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/lp85_sim.py",
+      "sim_sha256": "9fd374252b18b1c3ca71a9e722d02e36b1a613613fed1da009c96431b7111a55",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 3,
+      "n_steps": 71,
+      "segment_lengths": [
+        8,
+        60,
+        3
+      ],
+      "segment_survivals": [
+        7,
+        0,
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 2.667,
+      "max_survival": 7,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.1127,
+      "teacher_forced_match_all_steps": 0.1127,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "70/71"
+    },
+    {
+      "game": "ls20",
+      "source": "war_eval_v1",
+      "trace_id": "ls20-9607627b",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/ls20-9607627b_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/ls20_sim.py",
+      "sim_sha256": "65e3a9e10b81b0eda5304aace6b1d89b5d96ad95adf945531a4cd96f0848d677",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 2,
+      "n_steps": 91,
+      "segment_lengths": [
+        61,
+        30
+      ],
+      "segment_survivals": [
+        50,
+        0
+      ],
+      "median_survival": 25.0,
+      "mean_survival": 25.0,
+      "max_survival": 50,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.5495,
+      "teacher_forced_match_all_steps": 0.6374,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "90/91"
+    },
+    {
+      "game": "m0r0",
+      "source": "war_eval_v1",
+      "trace_id": "m0r0-492f87ba",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/m0r0-492f87ba_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/m0r0_sim.py",
+      "sim_sha256": "6c1cfbcdd1bd4ffa2df8291efb2b1cda6013b7b99ff34b838fe599dfd326e091",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 57.5,
+      "n_segments": 3,
+      "n_steps": 322,
+      "segment_lengths": [
+        151,
+        116,
+        55
+      ],
+      "segment_survivals": [
+        1,
+        1,
+        0
+      ],
+      "median_survival": 1,
+      "mean_survival": 0.667,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0062,
+      "teacher_forced_match_all_steps": 0.5031,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "321/322"
+    },
+    {
+      "game": "r11l",
+      "source": "war_eval_v1",
+      "trace_id": "r11l-495a7899",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/r11l-495a7899_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/r11l_sim.py",
+      "sim_sha256": "d3ccfedcabeefbe6878c4d905293ce543129a76a5d6a596ad52bb0eecb28b8a7",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 23.0,
+      "n_segments": 2,
+      "n_steps": 81,
+      "segment_lengths": [
+        25,
+        56
+      ],
+      "segment_survivals": [
+        0,
+        0
+      ],
+      "median_survival": 0.0,
+      "mean_survival": 0.0,
+      "max_survival": 0,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0123,
+      "teacher_forced_match_all_steps": 0.0617,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "80/81"
+    },
+    {
+      "game": "re86",
+      "source": "war_eval_v1",
+      "trace_id": "re86-8af5384d",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/re86-8af5384d_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/re86_sim.py",
+      "sim_sha256": "88cfb7c8b0a99ad49b2e544a145ea4c76cb7d5fdbcd7ffd44c8e77fafe0245f4",
+      "sim_reset_hook": "reset_phase",
+      "sim_has_module_state": true,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 90.5,
+      "n_segments": 4,
+      "n_steps": 294,
+      "segment_lengths": [
+        64,
+        100,
+        100,
+        30
+      ],
+      "segment_survivals": [
+        4,
+        0,
+        0,
+        0
+      ],
+      "median_survival": 0.0,
+      "mean_survival": 1.0,
+      "max_survival": 4,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0204,
+      "teacher_forced_match_all_steps": 0.2925,
+      "n_error": 0,
+      "n_selfdiff": 111,
+      "done_flag_agree": "293/294"
+    },
+    {
+      "game": "s5i5",
+      "source": "war_eval_v1",
+      "trace_id": "s5i5-18d95033",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/s5i5-18d95033_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/s5i5_sim.py",
+      "sim_sha256": "2145630129ec7559b198ed7b0efdadfc1e1f808d8fcd60ca777ab089cfab702e",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 99.5,
+      "n_segments": 3,
+      "n_steps": 68,
+      "segment_lengths": [
+        50,
+        13,
+        5
+      ],
+      "segment_survivals": [
+        3,
+        0,
+        0
+      ],
+      "median_survival": 0,
+      "mean_survival": 1.0,
+      "max_survival": 3,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0441,
+      "teacher_forced_match_all_steps": 0.2647,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "67/68"
+    },
+    {
+      "game": "sb26",
+      "source": "war_eval_v1",
+      "trace_id": "sb26-7fbdac44",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/sb26-7fbdac44_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/sb26_sim.py",
+      "sim_sha256": "f65aeb85f6fe239c24cafe6032b449c53f39fee8a9574c574259ef57208e4971",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 2,
+      "n_steps": 111,
+      "segment_lengths": [
+        9,
+        102
+      ],
+      "segment_survivals": [
+        0,
+        0
+      ],
+      "median_survival": 0.0,
+      "mean_survival": 0.0,
+      "max_survival": 0,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0,
+      "teacher_forced_match_all_steps": 0.1622,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "110/111"
+    },
+    {
+      "game": "sc25",
+      "source": "war_eval_v1",
+      "trace_id": "sc25-635fd71a",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/sc25-635fd71a_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/sc25_sim.py",
+      "sim_sha256": "79e1e36e6c4c490c85854d6d2b9b1dbfc9d7f5d2646f34016a537d513e72ac2c",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 72.5,
+      "n_segments": 6,
+      "n_steps": 181,
+      "segment_lengths": [
+        55,
+        26,
+        26,
+        5,
+        51,
+        18
+      ],
+      "segment_survivals": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "median_survival": 0.0,
+      "mean_survival": 0.333,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.011,
+      "teacher_forced_match_all_steps": 0.3591,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "179/181"
+    },
+    {
+      "game": "sk48",
+      "source": "war_eval_v1",
+      "trace_id": "sk48-d8078629",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/sk48-d8078629_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/sk48_sim.py",
+      "sim_sha256": "7a4dee8dbe78fe296ddccce744a61056122253c25de2100bd7637eadf123530a",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 38.0,
+      "n_segments": 2,
+      "n_steps": 265,
+      "segment_lengths": [
+        199,
+        66
+      ],
+      "segment_survivals": [
+        2,
+        0
+      ],
+      "median_survival": 1.0,
+      "mean_survival": 1.0,
+      "max_survival": 2,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0075,
+      "teacher_forced_match_all_steps": 0.2792,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "265/265"
+    },
+    {
+      "game": "sp80",
+      "source": "war_eval_v1",
+      "trace_id": "sp80-589a99af",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/sp80-589a99af_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/sp80_sim.py",
+      "sim_sha256": "0a332e8291111c1b7712a0daf1f206d01f8b63db2602b33337f59e04fa048b28",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 14,
+      "n_steps": 228,
+      "segment_lengths": [
+        7,
+        19,
+        11,
+        27,
+        13,
+        6,
+        21,
+        27,
+        11,
+        26,
+        30,
+        13,
+        12,
+        5
+      ],
+      "segment_survivals": [
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_survival": 0.0,
+      "mean_survival": 0.429,
+      "max_survival": 6,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0263,
+      "teacher_forced_match_all_steps": 0.0263,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "227/228"
+    },
+    {
+      "game": "su15",
+      "source": "war_eval_v1",
+      "trace_id": "su15-1944f8ab",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/su15-1944f8ab_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/su15_sim.py",
+      "sim_sha256": "4e9e4527c0537514884ba1462dbcdb808f9ee5dcfd8a670944556244af0558d5",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 99.5,
+      "n_segments": 4,
+      "n_steps": 94,
+      "segment_lengths": [
+        18,
+        39,
+        33,
+        4
+      ],
+      "segment_survivals": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_survival": 0.0,
+      "mean_survival": 0.0,
+      "max_survival": 0,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0,
+      "teacher_forced_match_all_steps": 0.3085,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "93/94"
+    },
+    {
+      "game": "tn36",
+      "source": "war_eval_v1",
+      "trace_id": "tn36-ef4dde99",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/tn36-ef4dde99_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/tn36_sim.py",
+      "sim_sha256": "049057165426a1d0aa04c452de450be1f091dbf5c824183c0a0bab2be5c23e33",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 3,
+      "n_steps": 115,
+      "segment_lengths": [
+        8,
+        61,
+        46
+      ],
+      "segment_survivals": [
+        7,
+        1,
+        21
+      ],
+      "median_survival": 7,
+      "mean_survival": 9.667,
+      "max_survival": 21,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.2522,
+      "teacher_forced_match_all_steps": 0.5304,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "114/115"
+    },
+    {
+      "game": "tr87",
+      "source": "war_eval_v1",
+      "trace_id": "tr87-cd924810",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/tr87-cd924810_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/tr87_sim.py",
+      "sim_sha256": "6eae1bd4aae82e51d1d7c1bd141060d1e94abcd1992a0b9a526d2fa95b7eeea7",
+      "sim_reset_hook": "reset_step_parity",
+      "sim_has_module_state": true,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 1,
+      "n_steps": 127,
+      "segment_lengths": [
+        127
+      ],
+      "segment_survivals": [
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0079,
+      "teacher_forced_match_all_steps": 0.4094,
+      "n_error": 0,
+      "n_selfdiff": 63,
+      "done_flag_agree": "127/127"
+    },
+    {
+      "game": "tu93",
+      "source": "war_eval_v1",
+      "trace_id": "tu93-0768757b",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/tu93-0768757b_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/tu93_sim.py",
+      "sim_sha256": "59bf9ae33697ad21645b9fe5dd196e01d318649caa72a5ca77a142664b151715",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 12,
+      "n_steps": 145,
+      "segment_lengths": [
+        50,
+        18,
+        5,
+        4,
+        4,
+        5,
+        4,
+        11,
+        4,
+        4,
+        20,
+        16
+      ],
+      "segment_survivals": [
+        50,
+        17,
+        4,
+        3,
+        3,
+        4,
+        3,
+        10,
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_survival": 3.0,
+      "mean_survival": 7.833,
+      "max_survival": 50,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.6483,
+      "teacher_forced_match_all_steps": 0.731,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "143/145"
+    },
+    {
+      "game": "vc33",
+      "source": "war_eval_v1",
+      "trace_id": "vc33-5430563c",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/vc33-5430563c_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/vc33_sim.py",
+      "sim_sha256": "09be845b9b5e9770ddd0bd4da2c0c741fbbfb7495d519ca2b7d2692518369cb2",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 99.5,
+      "n_segments": 3,
+      "n_steps": 88,
+      "segment_lengths": [
+        29,
+        25,
+        34
+      ],
+      "segment_survivals": [
+        2,
+        0,
+        0
+      ],
+      "median_survival": 0,
+      "mean_survival": 0.667,
+      "max_survival": 2,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.1023,
+      "teacher_forced_match_all_steps": 0.2386,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "86/88"
+    },
+    {
+      "game": "wa30",
+      "source": "war_eval_v1",
+      "trace_id": "wa30-ee6fef47",
+      "trace_file": "runs/kernel_pulls/war_eval_v1/artifacts/wa30-ee6fef47_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/wa30_sim.py",
+      "sim_sha256": "a8bf691ac7a4b61d66ded7525fbd3434dac88053534b4123f8c872d76c53529a",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 65.0,
+      "n_segments": 1,
+      "n_steps": 107,
+      "segment_lengths": [
+        107
+      ],
+      "segment_survivals": [
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0093,
+      "teacher_forced_match_all_steps": 0.271,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "107/107"
+    },
+    {
+      "game": "ar25",
+      "source": "war_eval_v2",
+      "trace_id": "ar25-0c556536",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/ar25-0c556536_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/ar25_sim.py",
+      "sim_sha256": "b389ed882793261a4fdd7fbc8ab39e631c9c1bc0e2fb27248f35d328df97258e",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 80.0,
+      "n_segments": 3,
+      "n_steps": 119,
+      "segment_lengths": [
+        22,
+        66,
+        31
+      ],
+      "segment_survivals": [
+        11,
+        0,
+        0
+      ],
+      "median_survival": 0,
+      "mean_survival": 3.667,
+      "max_survival": 11,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0924,
+      "teacher_forced_match_all_steps": 0.1008,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "118/119"
+    },
+    {
+      "game": "bp35",
+      "source": "war_eval_v2",
+      "trace_id": "bp35-0a0ad940",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/bp35-0a0ad940_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/bp35_sim.py",
+      "sim_sha256": "1c418b0fd1b3913812925142a475e760988c571adfe02ca47ff9b8f1551d6176",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": null,
+      "n_segments": 10,
+      "n_steps": 464,
+      "segment_lengths": [
+        64,
+        64,
+        44,
+        46,
+        46,
+        54,
+        38,
+        50,
+        34,
+        24
+      ],
+      "segment_survivals": [
+        3,
+        0,
+        0,
+        0,
+        0,
+        3,
+        5,
+        3,
+        3,
+        3
+      ],
+      "median_survival": 3.0,
+      "mean_survival": 2.0,
+      "max_survival": 5,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0431,
+      "teacher_forced_match_all_steps": 0.6078,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "464/464"
+    },
+    {
+      "game": "cd82",
+      "source": "war_eval_v2",
+      "trace_id": "cd82-fb555c5d",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/cd82-fb555c5d_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/cd82_sim.py",
+      "sim_sha256": "9950ecae64658650ce43c84b0e395b51b8a40ef10200f7872c8521fb204c4869",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 60.5,
+      "n_segments": 1,
+      "n_steps": 82,
+      "segment_lengths": [
+        82
+      ],
+      "segment_survivals": [
+        0
+      ],
+      "median_survival": 0,
+      "mean_survival": 0.0,
+      "max_survival": 0,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0,
+      "teacher_forced_match_all_steps": 0.3293,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "82/82"
+    },
+    {
+      "game": "cn04",
+      "source": "war_eval_v2",
+      "trace_id": "cn04-2fe56bfb",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/cn04-2fe56bfb_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/cn04_sim.py",
+      "sim_sha256": "ccd10bcf12ad9e4be0b85e508f641e79be0288ad86b5fe19707cf60a8504b39f",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 77.5,
+      "n_segments": 3,
+      "n_steps": 184,
+      "segment_lengths": [
+        75,
+        75,
+        34
+      ],
+      "segment_survivals": [
+        1,
+        1,
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0163,
+      "teacher_forced_match_all_steps": 0.2663,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "184/184"
+    },
+    {
+      "game": "dc22",
+      "source": "war_eval_v2",
+      "trace_id": "dc22-fdcac232",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/dc22-fdcac232_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/dc22_sim.py",
+      "sim_sha256": "dc98a4e3b4f7701e2bb8ff4fcf167964e1d2ac8372e1082f355423dcac89e4f9",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 50.5,
+      "n_segments": 1,
+      "n_steps": 46,
+      "segment_lengths": [
+        46
+      ],
+      "segment_survivals": [
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0217,
+      "teacher_forced_match_all_steps": 0.4348,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "46/46"
+    },
+    {
+      "game": "ft09",
+      "source": "war_eval_v2",
+      "trace_id": "ft09-0d8bbf25",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/ft09-0d8bbf25_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/ft09_sim.py",
+      "sim_sha256": "94b3279735267c44be258a3de150449343431f18e3db3d64c585b9ca2bfbec8c",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 3,
+      "n_steps": 45,
+      "segment_lengths": [
+        26,
+        7,
+        12
+      ],
+      "segment_survivals": [
+        25,
+        0,
+        0
+      ],
+      "median_survival": 0,
+      "mean_survival": 8.333,
+      "max_survival": 25,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.5556,
+      "teacher_forced_match_all_steps": 0.5556,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "43/45"
+    },
+    {
+      "game": "g50t",
+      "source": "war_eval_v2",
+      "trace_id": "g50t-5849a774",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/g50t-5849a774_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/g50t_sim.py",
+      "sim_sha256": "9867edbc94988c7118a48aae6f118c8ce9da110e9007c973e695f981dc699871",
+      "sim_reset_hook": "reset_state",
+      "sim_has_module_state": true,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 73.0,
+      "n_segments": 1,
+      "n_steps": 65,
+      "segment_lengths": [
+        65
+      ],
+      "segment_survivals": [
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0154,
+      "teacher_forced_match_all_steps": 0.3231,
+      "n_error": 0,
+      "n_selfdiff": 32,
+      "done_flag_agree": "65/65"
+    },
+    {
+      "game": "ka59",
+      "source": "war_eval_v2",
+      "trace_id": "ka59-38d34dbb",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/ka59-38d34dbb_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/ka59_sim.py",
+      "sim_sha256": "7016d455651a94b4391140a9d3464d538ec00f558c317aa4f1f9877a7efd7712",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 60.5,
+      "n_segments": 2,
+      "n_steps": 122,
+      "segment_lengths": [
+        16,
+        106
+      ],
+      "segment_survivals": [
+        1,
+        1
+      ],
+      "median_survival": 1.0,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0164,
+      "teacher_forced_match_all_steps": 0.3443,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "121/122"
+    },
+    {
+      "game": "lf52",
+      "source": "war_eval_v2",
+      "trace_id": "lf52-271a04aa",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/lf52-271a04aa_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/lf52_sim.py",
+      "sim_sha256": "943c818f8f3e6b652b72074bb9751a0be56e3c4bfbdb4f3aa3b93e4c0b07f2ad",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 2,
+      "n_steps": 131,
+      "segment_lengths": [
+        30,
+        101
+      ],
+      "segment_survivals": [
+        0,
+        1
+      ],
+      "median_survival": 0.5,
+      "mean_survival": 0.5,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.229,
+      "teacher_forced_match_all_steps": 0.4962,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "130/131"
+    },
+    {
+      "game": "lp85",
+      "source": "war_eval_v2",
+      "trace_id": "lp85-305b61c3",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/lp85-305b61c3_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/lp85_sim.py",
+      "sim_sha256": "9fd374252b18b1c3ca71a9e722d02e36b1a613613fed1da009c96431b7111a55",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 2,
+      "n_steps": 24,
+      "segment_lengths": [
+        9,
+        15
+      ],
+      "segment_survivals": [
+        8,
+        0
+      ],
+      "median_survival": 4.0,
+      "mean_survival": 4.0,
+      "max_survival": 8,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.3333,
+      "teacher_forced_match_all_steps": 0.4583,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "23/24"
+    },
+    {
+      "game": "ls20",
+      "source": "war_eval_v2",
+      "trace_id": "ls20-9607627b",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/ls20-9607627b_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/ls20_sim.py",
+      "sim_sha256": "65e3a9e10b81b0eda5304aace6b1d89b5d96ad95adf945531a4cd96f0848d677",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 1,
+      "n_steps": 78,
+      "segment_lengths": [
+        78
+      ],
+      "segment_survivals": [
+        48
+      ],
+      "median_survival": 48,
+      "mean_survival": 48.0,
+      "max_survival": 48,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.6154,
+      "teacher_forced_match_all_steps": 0.9231,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "78/78"
+    },
+    {
+      "game": "m0r0",
+      "source": "war_eval_v2",
+      "trace_id": "m0r0-492f87ba",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/m0r0-492f87ba_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/m0r0_sim.py",
+      "sim_sha256": "6c1cfbcdd1bd4ffa2df8291efb2b1cda6013b7b99ff34b838fe599dfd326e091",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 57.5,
+      "n_segments": 2,
+      "n_steps": 152,
+      "segment_lengths": [
+        151,
+        1
+      ],
+      "segment_survivals": [
+        1,
+        1
+      ],
+      "median_survival": 1.0,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0132,
+      "teacher_forced_match_all_steps": 0.5724,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "152/152"
+    },
+    {
+      "game": "r11l",
+      "source": "war_eval_v2",
+      "trace_id": "r11l-495a7899",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/r11l-495a7899_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/r11l_sim.py",
+      "sim_sha256": "d3ccfedcabeefbe6878c4d905293ce543129a76a5d6a596ad52bb0eecb28b8a7",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 23.0,
+      "n_segments": 8,
+      "n_steps": 436,
+      "segment_lengths": [
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        16
+      ],
+      "segment_survivals": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_survival": 0.0,
+      "mean_survival": 0.0,
+      "max_survival": 0,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0,
+      "teacher_forced_match_all_steps": 0.1628,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "436/436"
+    },
+    {
+      "game": "re86",
+      "source": "war_eval_v2",
+      "trace_id": "re86-8af5384d",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/re86-8af5384d_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/re86_sim.py",
+      "sim_sha256": "88cfb7c8b0a99ad49b2e544a145ea4c76cb7d5fdbcd7ffd44c8e77fafe0245f4",
+      "sim_reset_hook": "reset_phase",
+      "sim_has_module_state": true,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 90.5,
+      "n_segments": 3,
+      "n_steps": 163,
+      "segment_lengths": [
+        32,
+        48,
+        83
+      ],
+      "segment_survivals": [
+        2,
+        0,
+        0
+      ],
+      "median_survival": 0,
+      "mean_survival": 0.667,
+      "max_survival": 2,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0368,
+      "teacher_forced_match_all_steps": 0.1104,
+      "n_error": 0,
+      "n_selfdiff": 65,
+      "done_flag_agree": "161/163"
+    },
+    {
+      "game": "s5i5",
+      "source": "war_eval_v2",
+      "trace_id": "s5i5-18d95033",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/s5i5-18d95033_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/s5i5_sim.py",
+      "sim_sha256": "2145630129ec7559b198ed7b0efdadfc1e1f808d8fcd60ca777ab089cfab702e",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 99.5,
+      "n_segments": 1,
+      "n_steps": 50,
+      "segment_lengths": [
+        50
+      ],
+      "segment_survivals": [
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.02,
+      "teacher_forced_match_all_steps": 0.3,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "50/50"
+    },
+    {
+      "game": "sb26",
+      "source": "war_eval_v2",
+      "trace_id": "sb26-7fbdac44",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/sb26-7fbdac44_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/sb26_sim.py",
+      "sim_sha256": "f65aeb85f6fe239c24cafe6032b449c53f39fee8a9574c574259ef57208e4971",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 3,
+      "n_steps": 254,
+      "segment_lengths": [
+        20,
+        116,
+        118
+      ],
+      "segment_survivals": [
+        0,
+        0,
+        0
+      ],
+      "median_survival": 0,
+      "mean_survival": 0.0,
+      "max_survival": 0,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0,
+      "teacher_forced_match_all_steps": 0.1063,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "253/254"
+    },
+    {
+      "game": "sc25",
+      "source": "war_eval_v2",
+      "trace_id": "sc25-635fd71a",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/sc25-635fd71a_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/sc25_sim.py",
+      "sim_sha256": "79e1e36e6c4c490c85854d6d2b9b1dbfc9d7f5d2646f34016a537d513e72ac2c",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 72.5,
+      "n_segments": 6,
+      "n_steps": 232,
+      "segment_lengths": [
+        54,
+        41,
+        11,
+        48,
+        46,
+        32
+      ],
+      "segment_survivals": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "median_survival": 0.0,
+      "mean_survival": 0.333,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0086,
+      "teacher_forced_match_all_steps": 0.2241,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "230/232"
+    },
+    {
+      "game": "sk48",
+      "source": "war_eval_v2",
+      "trace_id": "sk48-d8078629",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/sk48-d8078629_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/sk48_sim.py",
+      "sim_sha256": "7a4dee8dbe78fe296ddccce744a61056122253c25de2100bd7637eadf123530a",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 38.0,
+      "n_segments": 1,
+      "n_steps": 75,
+      "segment_lengths": [
+        75
+      ],
+      "segment_survivals": [
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0133,
+      "teacher_forced_match_all_steps": 0.2267,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "75/75"
+    },
+    {
+      "game": "sp80",
+      "source": "war_eval_v2",
+      "trace_id": "sp80-589a99af",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/sp80-589a99af_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/sp80_sim.py",
+      "sim_sha256": "0a332e8291111c1b7712a0daf1f206d01f8b63db2602b33337f59e04fa048b28",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 9,
+      "n_steps": 215,
+      "segment_lengths": [
+        30,
+        30,
+        30,
+        15,
+        30,
+        20,
+        30,
+        28,
+        2
+      ],
+      "segment_survivals": [
+        11,
+        9,
+        29,
+        15,
+        6,
+        12,
+        30,
+        13,
+        2
+      ],
+      "median_survival": 12,
+      "mean_survival": 14.111,
+      "max_survival": 30,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.6326,
+      "teacher_forced_match_all_steps": 0.8791,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "215/215"
+    },
+    {
+      "game": "su15",
+      "source": "war_eval_v2",
+      "trace_id": "su15-1944f8ab",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/su15-1944f8ab_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/su15_sim.py",
+      "sim_sha256": "4e9e4527c0537514884ba1462dbcdb808f9ee5dcfd8a670944556244af0558d5",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 99.5,
+      "n_segments": 6,
+      "n_steps": 174,
+      "segment_lengths": [
+        32,
+        21,
+        33,
+        32,
+        34,
+        22
+      ],
+      "segment_survivals": [
+        0,
+        0,
+        2,
+        0,
+        2,
+        0
+      ],
+      "median_survival": 0.0,
+      "mean_survival": 0.667,
+      "max_survival": 2,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.023,
+      "teacher_forced_match_all_steps": 0.1494,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "173/174"
+    },
+    {
+      "game": "tn36",
+      "source": "war_eval_v2",
+      "trace_id": "tn36-ef4dde99",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/tn36-ef4dde99_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/tn36_sim.py",
+      "sim_sha256": "049057165426a1d0aa04c452de450be1f091dbf5c824183c0a0bab2be5c23e33",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 3,
+      "n_steps": 142,
+      "segment_lengths": [
+        61,
+        61,
+        20
+      ],
+      "segment_survivals": [
+        61,
+        61,
+        20
+      ],
+      "median_survival": 61,
+      "mean_survival": 47.333,
+      "max_survival": 61,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 1.0,
+      "teacher_forced_match_all_steps": 1.0,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "142/142"
+    },
+    {
+      "game": "tr87",
+      "source": "war_eval_v2",
+      "trace_id": "tr87-cd924810",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/tr87-cd924810_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/tr87_sim.py",
+      "sim_sha256": "6eae1bd4aae82e51d1d7c1bd141060d1e94abcd1992a0b9a526d2fa95b7eeea7",
+      "sim_reset_hook": "reset_step_parity",
+      "sim_has_module_state": true,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 2,
+      "n_steps": 253,
+      "segment_lengths": [
+        128,
+        125
+      ],
+      "segment_survivals": [
+        1,
+        1
+      ],
+      "median_survival": 1.0,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0079,
+      "teacher_forced_match_all_steps": 0.3794,
+      "n_error": 0,
+      "n_selfdiff": 126,
+      "done_flag_agree": "253/253"
+    },
+    {
+      "game": "tu93",
+      "source": "war_eval_v2",
+      "trace_id": "tu93-0768757b",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/tu93-0768757b_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/tu93_sim.py",
+      "sim_sha256": "59bf9ae33697ad21645b9fe5dd196e01d318649caa72a5ca77a142664b151715",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 9,
+      "n_steps": 122,
+      "segment_lengths": [
+        50,
+        24,
+        4,
+        4,
+        10,
+        6,
+        4,
+        4,
+        16
+      ],
+      "segment_survivals": [
+        50,
+        23,
+        3,
+        3,
+        9,
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_survival": 3,
+      "mean_survival": 9.778,
+      "max_survival": 50,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.7213,
+      "teacher_forced_match_all_steps": 0.7787,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "120/122"
+    },
+    {
+      "game": "vc33",
+      "source": "war_eval_v2",
+      "trace_id": "vc33-5430563c",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/vc33-5430563c_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/vc33_sim.py",
+      "sim_sha256": "09be845b9b5e9770ddd0bd4da2c0c741fbbfb7495d519ca2b7d2692518369cb2",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 99.5,
+      "n_segments": 4,
+      "n_steps": 150,
+      "segment_lengths": [
+        48,
+        50,
+        50,
+        2
+      ],
+      "segment_survivals": [
+        2,
+        0,
+        0,
+        1
+      ],
+      "median_survival": 0.5,
+      "mean_survival": 0.75,
+      "max_survival": 2,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.08,
+      "teacher_forced_match_all_steps": 0.6667,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "149/150"
+    },
+    {
+      "game": "wa30",
+      "source": "war_eval_v2",
+      "trace_id": "wa30-ee6fef47",
+      "trace_file": "runs/kernel_pulls/war_eval_v2/artifacts/wa30-ee6fef47_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/wa30_sim.py",
+      "sim_sha256": "a8bf691ac7a4b61d66ded7525fbd3434dac88053534b4123f8c872d76c53529a",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 65.0,
+      "n_segments": 1,
+      "n_steps": 198,
+      "segment_lengths": [
+        198
+      ],
+      "segment_survivals": [
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0051,
+      "teacher_forced_match_all_steps": 0.303,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "198/198"
+    },
+    {
+      "game": "ar25",
+      "source": "war_eval_v3",
+      "trace_id": "ar25-0c556536",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/ar25-0c556536_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/ar25_sim.py",
+      "sim_sha256": "b389ed882793261a4fdd7fbc8ab39e631c9c1bc0e2fb27248f35d328df97258e",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 80.0,
+      "n_segments": 2,
+      "n_steps": 85,
+      "segment_lengths": [
+        37,
+        48
+      ],
+      "segment_survivals": [
+        3,
+        0
+      ],
+      "median_survival": 1.5,
+      "mean_survival": 1.5,
+      "max_survival": 3,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0353,
+      "teacher_forced_match_all_steps": 0.0941,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "84/85"
+    },
+    {
+      "game": "bp35",
+      "source": "war_eval_v3",
+      "trace_id": "bp35-0a0ad940",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/bp35-0a0ad940_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/bp35_sim.py",
+      "sim_sha256": "1c418b0fd1b3913812925142a475e760988c571adfe02ca47ff9b8f1551d6176",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": null,
+      "n_segments": 13,
+      "n_steps": 355,
+      "segment_lengths": [
+        47,
+        4,
+        64,
+        35,
+        16,
+        16,
+        16,
+        64,
+        64,
+        10,
+        9,
+        9,
+        1
+      ],
+      "segment_survivals": [
+        1,
+        0,
+        64,
+        26,
+        7,
+        7,
+        7,
+        64,
+        7,
+        1,
+        0,
+        0,
+        1
+      ],
+      "median_survival": 7,
+      "mean_survival": 14.231,
+      "max_survival": 64,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.5211,
+      "teacher_forced_match_all_steps": 0.7718,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "354/355"
+    },
+    {
+      "game": "cd82",
+      "source": "war_eval_v3",
+      "trace_id": "cd82-fb555c5d",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/cd82-fb555c5d_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/cd82_sim.py",
+      "sim_sha256": "9950ecae64658650ce43c84b0e395b51b8a40ef10200f7872c8521fb204c4869",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 60.5,
+      "n_segments": 3,
+      "n_steps": 207,
+      "segment_lengths": [
+        100,
+        100,
+        7
+      ],
+      "segment_survivals": [
+        0,
+        0,
+        1
+      ],
+      "median_survival": 0,
+      "mean_survival": 0.333,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0048,
+      "teacher_forced_match_all_steps": 0.2174,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "207/207"
+    },
+    {
+      "game": "cn04",
+      "source": "war_eval_v3",
+      "trace_id": "cn04-2fe56bfb",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/cn04-2fe56bfb_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/cn04_sim.py",
+      "sim_sha256": "ccd10bcf12ad9e4be0b85e508f641e79be0288ad86b5fe19707cf60a8504b39f",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 77.5,
+      "n_segments": 3,
+      "n_steps": 181,
+      "segment_lengths": [
+        75,
+        75,
+        31
+      ],
+      "segment_survivals": [
+        1,
+        1,
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0166,
+      "teacher_forced_match_all_steps": 0.1823,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "181/181"
+    },
+    {
+      "game": "dc22",
+      "source": "war_eval_v3",
+      "trace_id": "dc22-fdcac232",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/dc22-fdcac232_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/dc22_sim.py",
+      "sim_sha256": "dc98a4e3b4f7701e2bb8ff4fcf167964e1d2ac8372e1082f355423dcac89e4f9",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 50.5,
+      "n_segments": 1,
+      "n_steps": 89,
+      "segment_lengths": [
+        89
+      ],
+      "segment_survivals": [
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0112,
+      "teacher_forced_match_all_steps": 0.3708,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "89/89"
+    },
+    {
+      "game": "ft09",
+      "source": "war_eval_v3",
+      "trace_id": "ft09-0d8bbf25",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/ft09-0d8bbf25_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/ft09_sim.py",
+      "sim_sha256": "94b3279735267c44be258a3de150449343431f18e3db3d64c585b9ca2bfbec8c",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 1,
+      "n_steps": 40,
+      "segment_lengths": [
+        40
+      ],
+      "segment_survivals": [
+        40
+      ],
+      "median_survival": 40,
+      "mean_survival": 40.0,
+      "max_survival": 40,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 1.0,
+      "teacher_forced_match_all_steps": 1.0,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "40/40"
+    },
+    {
+      "game": "g50t",
+      "source": "war_eval_v3",
+      "trace_id": "g50t-5849a774",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/g50t-5849a774_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/g50t_sim.py",
+      "sim_sha256": "9867edbc94988c7118a48aae6f118c8ce9da110e9007c973e695f981dc699871",
+      "sim_reset_hook": "reset_state",
+      "sim_has_module_state": true,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 73.0,
+      "n_segments": 2,
+      "n_steps": 89,
+      "segment_lengths": [
+        86,
+        3
+      ],
+      "segment_survivals": [
+        1,
+        1
+      ],
+      "median_survival": 1.0,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0225,
+      "teacher_forced_match_all_steps": 0.3933,
+      "n_error": 0,
+      "n_selfdiff": 44,
+      "done_flag_agree": "88/89"
+    },
+    {
+      "game": "ka59",
+      "source": "war_eval_v3",
+      "trace_id": "ka59-38d34dbb",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/ka59-38d34dbb_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/ka59_sim.py",
+      "sim_sha256": "7016d455651a94b4391140a9d3464d538ec00f558c317aa4f1f9877a7efd7712",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 60.5,
+      "n_segments": 3,
+      "n_steps": 188,
+      "segment_lengths": [
+        21,
+        127,
+        40
+      ],
+      "segment_survivals": [
+        1,
+        1,
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.016,
+      "teacher_forced_match_all_steps": 0.0851,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "187/188"
+    },
+    {
+      "game": "lf52",
+      "source": "war_eval_v3",
+      "trace_id": "lf52-271a04aa",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/lf52-271a04aa_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/lf52_sim.py",
+      "sim_sha256": "943c818f8f3e6b652b72074bb9751a0be56e3c4bfbdb4f3aa3b93e4c0b07f2ad",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 1,
+      "n_steps": 101,
+      "segment_lengths": [
+        101
+      ],
+      "segment_survivals": [
+        0
+      ],
+      "median_survival": 0,
+      "mean_survival": 0.0,
+      "max_survival": 0,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.2079,
+      "teacher_forced_match_all_steps": 0.7525,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "101/101"
+    },
+    {
+      "game": "lp85",
+      "source": "war_eval_v3",
+      "trace_id": "lp85-305b61c3",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/lp85-305b61c3_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/lp85_sim.py",
+      "sim_sha256": "9fd374252b18b1c3ca71a9e722d02e36b1a613613fed1da009c96431b7111a55",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 4,
+      "n_steps": 138,
+      "segment_lengths": [
+        6,
+        61,
+        63,
+        8
+      ],
+      "segment_survivals": [
+        5,
+        0,
+        1,
+        3
+      ],
+      "median_survival": 2.0,
+      "mean_survival": 2.25,
+      "max_survival": 5,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0652,
+      "teacher_forced_match_all_steps": 0.087,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "137/138"
+    },
+    {
+      "game": "ls20",
+      "source": "war_eval_v3",
+      "trace_id": "ls20-9607627b",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/ls20-9607627b_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/ls20_sim.py",
+      "sim_sha256": "65e3a9e10b81b0eda5304aace6b1d89b5d96ad95adf945531a4cd96f0848d677",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 1,
+      "n_steps": 66,
+      "segment_lengths": [
+        66
+      ],
+      "segment_survivals": [
+        14
+      ],
+      "median_survival": 14,
+      "mean_survival": 14.0,
+      "max_survival": 14,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.2121,
+      "teacher_forced_match_all_steps": 0.803,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "66/66"
+    },
+    {
+      "game": "m0r0",
+      "source": "war_eval_v3",
+      "trace_id": "m0r0-492f87ba",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/m0r0-492f87ba_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/m0r0_sim.py",
+      "sim_sha256": "6c1cfbcdd1bd4ffa2df8291efb2b1cda6013b7b99ff34b838fe599dfd326e091",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 57.5,
+      "n_segments": 3,
+      "n_steps": 303,
+      "segment_lengths": [
+        151,
+        151,
+        1
+      ],
+      "segment_survivals": [
+        1,
+        1,
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0099,
+      "teacher_forced_match_all_steps": 0.538,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "303/303"
+    },
+    {
+      "game": "r11l",
+      "source": "war_eval_v3",
+      "trace_id": "r11l-495a7899",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/r11l-495a7899_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/r11l_sim.py",
+      "sim_sha256": "d3ccfedcabeefbe6878c4d905293ce543129a76a5d6a596ad52bb0eecb28b8a7",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 23.0,
+      "n_segments": 2,
+      "n_steps": 50,
+      "segment_lengths": [
+        7,
+        43
+      ],
+      "segment_survivals": [
+        0,
+        1
+      ],
+      "median_survival": 0.5,
+      "mean_survival": 0.5,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.02,
+      "teacher_forced_match_all_steps": 0.06,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "49/50"
+    },
+    {
+      "game": "re86",
+      "source": "war_eval_v3",
+      "trace_id": "re86-8af5384d",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/re86-8af5384d_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/re86_sim.py",
+      "sim_sha256": "88cfb7c8b0a99ad49b2e544a145ea4c76cb7d5fdbcd7ffd44c8e77fafe0245f4",
+      "sim_reset_hook": "reset_phase",
+      "sim_has_module_state": true,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 90.5,
+      "n_segments": 3,
+      "n_steps": 235,
+      "segment_lengths": [
+        35,
+        100,
+        100
+      ],
+      "segment_survivals": [
+        4,
+        0,
+        0
+      ],
+      "median_survival": 0,
+      "mean_survival": 1.333,
+      "max_survival": 4,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0255,
+      "teacher_forced_match_all_steps": 0.1574,
+      "n_error": 0,
+      "n_selfdiff": 95,
+      "done_flag_agree": "234/235"
+    },
+    {
+      "game": "s5i5",
+      "source": "war_eval_v3",
+      "trace_id": "s5i5-18d95033",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/s5i5-18d95033_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/s5i5_sim.py",
+      "sim_sha256": "2145630129ec7559b198ed7b0efdadfc1e1f808d8fcd60ca777ab089cfab702e",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 99.5,
+      "n_segments": 2,
+      "n_steps": 62,
+      "segment_lengths": [
+        19,
+        43
+      ],
+      "segment_survivals": [
+        2,
+        0
+      ],
+      "median_survival": 1.0,
+      "mean_survival": 1.0,
+      "max_survival": 2,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0323,
+      "teacher_forced_match_all_steps": 0.129,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "61/62"
+    },
+    {
+      "game": "sb26",
+      "source": "war_eval_v3",
+      "trace_id": "sb26-7fbdac44",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/sb26-7fbdac44_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/sb26_sim.py",
+      "sim_sha256": "f65aeb85f6fe239c24cafe6032b449c53f39fee8a9574c574259ef57208e4971",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 3,
+      "n_steps": 173,
+      "segment_lengths": [
+        12,
+        131,
+        30
+      ],
+      "segment_survivals": [
+        0,
+        0,
+        1
+      ],
+      "median_survival": 0,
+      "mean_survival": 0.333,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0173,
+      "teacher_forced_match_all_steps": 0.1618,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "172/173"
+    },
+    {
+      "game": "sc25",
+      "source": "war_eval_v3",
+      "trace_id": "sc25-635fd71a",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/sc25-635fd71a_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/sc25_sim.py",
+      "sim_sha256": "79e1e36e6c4c490c85854d6d2b9b1dbfc9d7f5d2646f34016a537d513e72ac2c",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 72.5,
+      "n_segments": 3,
+      "n_steps": 100,
+      "segment_lengths": [
+        51,
+        45,
+        4
+      ],
+      "segment_survivals": [
+        1,
+        0,
+        0
+      ],
+      "median_survival": 0,
+      "mean_survival": 0.333,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.03,
+      "teacher_forced_match_all_steps": 0.38,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "100/100"
+    },
+    {
+      "game": "sk48",
+      "source": "war_eval_v3",
+      "trace_id": "sk48-d8078629",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/sk48-d8078629_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/sk48_sim.py",
+      "sim_sha256": "7a4dee8dbe78fe296ddccce744a61056122253c25de2100bd7637eadf123530a",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 38.0,
+      "n_segments": 1,
+      "n_steps": 167,
+      "segment_lengths": [
+        167
+      ],
+      "segment_survivals": [
+        1
+      ],
+      "median_survival": 1,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.006,
+      "teacher_forced_match_all_steps": 0.2994,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "167/167"
+    },
+    {
+      "game": "sp80",
+      "source": "war_eval_v3",
+      "trace_id": "sp80-589a99af",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/sp80-589a99af_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/sp80_sim.py",
+      "sim_sha256": "0a332e8291111c1b7712a0daf1f206d01f8b63db2602b33337f59e04fa048b28",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 6,
+      "n_steps": 180,
+      "segment_lengths": [
+        13,
+        15,
+        45,
+        45,
+        45,
+        17
+      ],
+      "segment_survivals": [
+        12,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_survival": 0.0,
+      "mean_survival": 2.0,
+      "max_survival": 12,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0667,
+      "teacher_forced_match_all_steps": 0.0667,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "179/180"
+    },
+    {
+      "game": "su15",
+      "source": "war_eval_v3",
+      "trace_id": "su15-1944f8ab",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/su15-1944f8ab_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/su15_sim.py",
+      "sim_sha256": "4e9e4527c0537514884ba1462dbcdb808f9ee5dcfd8a670944556244af0558d5",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 99.5,
+      "n_segments": 1,
+      "n_steps": 26,
+      "segment_lengths": [
+        26
+      ],
+      "segment_survivals": [
+        0
+      ],
+      "median_survival": 0,
+      "mean_survival": 0.0,
+      "max_survival": 0,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0,
+      "teacher_forced_match_all_steps": 0.8077,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "26/26"
+    },
+    {
+      "game": "tn36",
+      "source": "war_eval_v3",
+      "trace_id": "tn36-ef4dde99",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/tn36-ef4dde99_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/tn36_sim.py",
+      "sim_sha256": "049057165426a1d0aa04c452de450be1f091dbf5c824183c0a0bab2be5c23e33",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 2,
+      "n_steps": 122,
+      "segment_lengths": [
+        61,
+        61
+      ],
+      "segment_survivals": [
+        57,
+        44
+      ],
+      "median_survival": 50.5,
+      "mean_survival": 50.5,
+      "max_survival": 57,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.8279,
+      "teacher_forced_match_all_steps": 0.9836,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "122/122"
+    },
+    {
+      "game": "tr87",
+      "source": "war_eval_v3",
+      "trace_id": "tr87-cd924810",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/tr87-cd924810_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/tr87_sim.py",
+      "sim_sha256": "6eae1bd4aae82e51d1d7c1bd141060d1e94abcd1992a0b9a526d2fa95b7eeea7",
+      "sim_reset_hook": "reset_step_parity",
+      "sim_has_module_state": true,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 2,
+      "n_steps": 182,
+      "segment_lengths": [
+        128,
+        54
+      ],
+      "segment_survivals": [
+        1,
+        1
+      ],
+      "median_survival": 1.0,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.011,
+      "teacher_forced_match_all_steps": 0.4066,
+      "n_error": 0,
+      "n_selfdiff": 91,
+      "done_flag_agree": "182/182"
+    },
+    {
+      "game": "tu93",
+      "source": "war_eval_v3",
+      "trace_id": "tu93-0768757b",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/tu93-0768757b_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/tu93_sim.py",
+      "sim_sha256": "59bf9ae33697ad21645b9fe5dd196e01d318649caa72a5ca77a142664b151715",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 100.0,
+      "n_segments": 7,
+      "n_steps": 309,
+      "segment_lengths": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        46,
+        13
+      ],
+      "segment_survivals": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        45,
+        13
+      ],
+      "median_survival": 50,
+      "mean_survival": 44.0,
+      "max_survival": 50,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.9968,
+      "teacher_forced_match_all_steps": 0.9968,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "308/309"
+    },
+    {
+      "game": "vc33",
+      "source": "war_eval_v3",
+      "trace_id": "vc33-5430563c",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/vc33-5430563c_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/vc33_sim.py",
+      "sim_sha256": "09be845b9b5e9770ddd0bd4da2c0c741fbbfb7495d519ca2b7d2692518369cb2",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": false,
+      "in_sample_state_exact_pct": 99.5,
+      "n_segments": 5,
+      "n_steps": 163,
+      "segment_lengths": [
+        20,
+        50,
+        50,
+        11,
+        32
+      ],
+      "segment_survivals": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_survival": 0,
+      "mean_survival": 0.2,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.0736,
+      "teacher_forced_match_all_steps": 0.3681,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "161/163"
+    },
+    {
+      "game": "wa30",
+      "source": "war_eval_v3",
+      "trace_id": "wa30-ee6fef47",
+      "trace_file": "runs/kernel_pulls/war_eval_v3/artifacts/wa30-ee6fef47_p0_events.jsonl",
+      "sim_file": "exec_wm/sims/wa30_sim.py",
+      "sim_sha256": "a8bf691ac7a4b61d66ded7525fbd3434dac88053534b4123f8c872d76c53529a",
+      "sim_reset_hook": null,
+      "sim_has_module_state": false,
+      "engine_matches_kaggle": true,
+      "in_sample_state_exact_pct": 65.0,
+      "n_segments": 2,
+      "n_steps": 334,
+      "segment_lengths": [
+        200,
+        134
+      ],
+      "segment_survivals": [
+        1,
+        1
+      ],
+      "median_survival": 1.0,
+      "mean_survival": 1.0,
+      "max_survival": 1,
+      "module_reset_delta_steps": 0,
+      "match_all_steps": 0.006,
+      "teacher_forced_match_all_steps": 0.4132,
+      "n_error": 0,
+      "n_selfdiff": 0,
+      "done_flag_agree": "334/334"
+    }
+  ],
+  "E1_never_measured_13": {
+    "n_games": 13,
+    "games": {
+      "ar25": {
+        "median_survival_per_source": {
+          "war_eval_v1": 0.5,
+          "war_eval_v2": 0,
+          "war_eval_v3": 1.5
+        },
+        "H_g": 0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "bp35": {
+        "median_survival_per_source": {
+          "war_eval_v1": 0.0,
+          "war_eval_v2": 3.0,
+          "war_eval_v3": 7
+        },
+        "H_g": 0.0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "cd82": {
+        "median_survival_per_source": {
+          "war_eval_v1": 1.0,
+          "war_eval_v2": 0,
+          "war_eval_v3": 0
+        },
+        "H_g": 0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "cn04": {
+        "median_survival_per_source": {
+          "war_eval_v1": 1.0,
+          "war_eval_v2": 1,
+          "war_eval_v3": 1
+        },
+        "H_g": 1.0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "dc22": {
+        "median_survival_per_source": {
+          "war_eval_v1": 2,
+          "war_eval_v2": 1,
+          "war_eval_v3": 1
+        },
+        "H_g": 1,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "g50t": {
+        "median_survival_per_source": {
+          "war_eval_v1": 1,
+          "war_eval_v2": 1,
+          "war_eval_v3": 1.0
+        },
+        "H_g": 1,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "ka59": {
+        "median_survival_per_source": {
+          "war_eval_v1": 1.0,
+          "war_eval_v2": 1.0,
+          "war_eval_v3": 1
+        },
+        "H_g": 1.0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "m0r0": {
+        "median_survival_per_source": {
+          "war_eval_v1": 1,
+          "war_eval_v2": 1.0,
+          "war_eval_v3": 1
+        },
+        "H_g": 1,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "r11l": {
+        "median_survival_per_source": {
+          "war_eval_v1": 0.0,
+          "war_eval_v2": 0.0,
+          "war_eval_v3": 0.5
+        },
+        "H_g": 0.0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "re86": {
+        "median_survival_per_source": {
+          "war_eval_v1": 0.0,
+          "war_eval_v2": 0,
+          "war_eval_v3": 0
+        },
+        "H_g": 0.0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "sc25": {
+        "median_survival_per_source": {
+          "war_eval_v1": 0.0,
+          "war_eval_v2": 0.0,
+          "war_eval_v3": 0
+        },
+        "H_g": 0.0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "sk48": {
+        "median_survival_per_source": {
+          "war_eval_v1": 1.0,
+          "war_eval_v2": 1,
+          "war_eval_v3": 1
+        },
+        "H_g": 1.0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "wa30": {
+        "median_survival_per_source": {
+          "war_eval_v1": 1,
+          "war_eval_v2": 1,
+          "war_eval_v3": 1.0
+        },
+        "H_g": 1,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      }
+    },
+    "n_pass_H_ge_10": 0,
+    "pass_list": []
+  },
+  "anchor_sat12_12": {
+    "n_games": 12,
+    "games": {
+      "ft09": {
+        "median_survival_per_source": {
+          "war_eval_v1": 34,
+          "war_eval_v2": 0,
+          "war_eval_v3": 40
+        },
+        "H_g": 0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "lf52": {
+        "median_survival_per_source": {
+          "war_eval_v1": 0.0,
+          "war_eval_v2": 0.5,
+          "war_eval_v3": 0
+        },
+        "H_g": 0.0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "lp85": {
+        "median_survival_per_source": {
+          "war_eval_v1": 1,
+          "war_eval_v2": 4.0,
+          "war_eval_v3": 2.0
+        },
+        "H_g": 1,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "ls20": {
+        "median_survival_per_source": {
+          "war_eval_v1": 25.0,
+          "war_eval_v2": 48,
+          "war_eval_v3": 14
+        },
+        "H_g": 14,
+        "n_sources": 3,
+        "passes_H_ge_10": true
+      },
+      "s5i5": {
+        "median_survival_per_source": {
+          "war_eval_v1": 0,
+          "war_eval_v2": 1,
+          "war_eval_v3": 1.0
+        },
+        "H_g": 0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "sb26": {
+        "median_survival_per_source": {
+          "war_eval_v1": 0.0,
+          "war_eval_v2": 0,
+          "war_eval_v3": 0
+        },
+        "H_g": 0.0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "sp80": {
+        "median_survival_per_source": {
+          "war_eval_v1": 0.0,
+          "war_eval_v2": 12,
+          "war_eval_v3": 0.0
+        },
+        "H_g": 0.0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "su15": {
+        "median_survival_per_source": {
+          "war_eval_v1": 0.0,
+          "war_eval_v2": 0.0,
+          "war_eval_v3": 0
+        },
+        "H_g": 0.0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "tn36": {
+        "median_survival_per_source": {
+          "war_eval_v1": 7,
+          "war_eval_v2": 61,
+          "war_eval_v3": 50.5
+        },
+        "H_g": 7,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "tr87": {
+        "median_survival_per_source": {
+          "war_eval_v1": 1,
+          "war_eval_v2": 1.0,
+          "war_eval_v3": 1.0
+        },
+        "H_g": 1,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "tu93": {
+        "median_survival_per_source": {
+          "war_eval_v1": 3.0,
+          "war_eval_v2": 3,
+          "war_eval_v3": 50
+        },
+        "H_g": 3.0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      },
+      "vc33": {
+        "median_survival_per_source": {
+          "war_eval_v1": 0,
+          "war_eval_v2": 0.5,
+          "war_eval_v3": 0
+        },
+        "H_g": 0,
+        "n_sources": 3,
+        "passes_H_ge_10": false
+      }
+    },
+    "n_pass_H_ge_10": 1,
+    "pass_list": [
+      "ls20"
+    ]
+  },
+  "E3_module_reset": {
+    "preregistered_zeros": [
+      [
+        "tr87",
+        "war_eval_v1"
+      ],
+      [
+        "tr87",
+        "war_eval_v2"
+      ],
+      [
+        "tr87",
+        "war_eval_v3"
+      ],
+      [
+        "g50t",
+        "war_eval_v1"
+      ],
+      [
+        "g50t",
+        "war_eval_v2"
+      ]
+    ],
+    "violations": [],
+    "void": false,
+    "nonzero_rows": []
+  },
+  "E4_engine_stratification": {
+    "engine_matched": {
+      "n_rows": 30,
+      "mean_median_survival": 6.283,
+      "mean_match_all_steps": 0.1996
+    },
+    "engine_mismatched": {
+      "n_rows": 45,
+      "mean_median_survival": 4.611,
+      "mean_match_all_steps": 0.1364
+    },
+    "pooled": {
+      "n_rows": 75,
+      "mean_median_survival": 5.28,
+      "mean_match_all_steps": 0.1617
+    }
+  },
+  "result": {
+    "E1_n_pass_H_ge_10": 0,
+    "E1_pass_list": [],
+    "prereg_expectation": 0,
+    "matched_expectation": true,
+    "verdict": "L1 NO-GO",
+    "action": "S5 does not open; bank the clean second negative on THIS endpoint; exec-wm closes as an execution substrate, C1/C2/C3 retained as schema only; lane (a) proceeds on P1/P3",
+    "anchor_n_pass_non_contributing": 1,
+    "anchor_pass_list_non_contributing": [
+      "ls20"
+    ]
+  }
+}
