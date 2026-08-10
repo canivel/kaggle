@@ -1,0 +1,2475 @@
+{
+  "n_active_sims": 25,
+  "active_sims": [
+    "ar25",
+    "bp35",
+    "cd82",
+    "cn04",
+    "dc22",
+    "ft09",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "ls20",
+    "m0r0",
+    "r11l",
+    "re86",
+    "s5i5",
+    "sb26",
+    "sc25",
+    "sk48",
+    "sp80",
+    "su15",
+    "tn36",
+    "tr87",
+    "tu93",
+    "vc33",
+    "wa30"
+  ],
+  "A_abstention": {
+    "n_with_abstention_channel": 0,
+    "games_with_abstention_channel": [],
+    "n_identity_return_capable": 24,
+    "identity_return_capable": [
+      "ar25",
+      "bp35",
+      "cd82",
+      "cn04",
+      "dc22",
+      "ft09",
+      "ka59",
+      "lf52",
+      "lp85",
+      "ls20",
+      "m0r0",
+      "r11l",
+      "re86",
+      "s5i5",
+      "sb26",
+      "sc25",
+      "sk48",
+      "sp80",
+      "su15",
+      "tn36",
+      "tr87",
+      "tu93",
+      "vc33",
+      "wa30"
+    ],
+    "per_sim": [
+      {
+        "game": "ar25",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "bp35",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "cd82",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "cn04",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "dc22",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "ft09",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "g50t",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": false,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "ka59",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "lf52",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "lp85",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "ls20",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "m0r0",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "r11l",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "re86",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "s5i5",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "sb26",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "sc25",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "sk48",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "sp80",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "su15",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "tn36",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "tr87",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "tu93",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "vc33",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      },
+      {
+        "game": "wa30",
+        "has_simulate": true,
+        "n_args": 4,
+        "return_arities": [
+          3
+        ],
+        "returns_none_state": false,
+        "returns_negative_state": false,
+        "abstain_tokens": [],
+        "can_return_input_unchanged": true,
+        "has_abstention_channel": false
+      }
+    ]
+  },
+  "B_module_state": {
+    "n_stateful": 3,
+    "stateful": [
+      "g50t",
+      "re86",
+      "tr87"
+    ],
+    "with_named_reset_hook": [
+      "g50t",
+      "re86",
+      "tr87"
+    ],
+    "stateful_without_reset_hook": [],
+    "per_sim": [
+      {
+        "game": "ar25",
+        "module_level_names": [
+          "BG_PLAYFIELD",
+          "BOTTOM_ROW",
+          "BOTTOM_VAL",
+          "DECO",
+          "DECO_C0",
+          "DECO_R0",
+          "DIVIDER_COLS",
+          "DIVIDER_VAL",
+          "GridLike",
+          "L_TEMPLATE",
+          "METER_COL",
+          "METER_VAL",
+          "R0_MAX",
+          "R0_MIN",
+          "R_TEMPLATE",
+          "SPRITE_H",
+          "SPRITE_W",
+          "STEP"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 277
+      },
+      {
+        "game": "bp35",
+        "module_level_names": [
+          "BG_PLAYFIELD",
+          "GridLike",
+          "SPRITE_H",
+          "SPRITE_LEFT_MAX",
+          "SPRITE_LEFT_MIN",
+          "SPRITE_L_TEMPLATE",
+          "SPRITE_ROW0",
+          "SPRITE_ROW1",
+          "SPRITE_R_TEMPLATE",
+          "SPRITE_STEP",
+          "SPRITE_W"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 204
+      },
+      {
+        "game": "cd82",
+        "module_level_names": [
+          "COUNTER_FILLED",
+          "COUNTER_ROW",
+          "COUNTER_TICKED",
+          "GridLike",
+          "ROTATION_TABLE",
+          "_DATA_PATH",
+          "_THIS_DIR",
+          "_ns"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 137
+      },
+      {
+        "game": "cn04",
+        "module_level_names": [
+          "ACTION_SHIFTS",
+          "BG",
+          "GridLike",
+          "LOCK",
+          "TIMER",
+          "WALL"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 188
+      },
+      {
+        "game": "dc22",
+        "module_level_names": [
+          "COL_MAX",
+          "COL_MIN",
+          "COUNTER_LEN",
+          "COUNTER_ROW",
+          "COUNTER_TICK_VALUE",
+          "GridLike",
+          "LOWER_PATH",
+          "LOWER_TOP_ROW",
+          "PLAYER_COLOR",
+          "ROW_BOTTOM",
+          "UPPER_PATH"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 192
+      },
+      {
+        "game": "ft09",
+        "module_level_names": [
+          "CENTER_TILE",
+          "COUNTER_CELLS_PER_FLIP",
+          "COUNTER_FULL",
+          "COUNTER_ROW",
+          "COUNTER_USED",
+          "GridLike",
+          "TILE_COLS",
+          "TILE_ROWS"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 137
+      },
+      {
+        "game": "g50t",
+        "module_level_names": [
+          "ACTION_DELTAS",
+          "BG_PATH",
+          "GRID_STEP",
+          "GridLike",
+          "SPRITE_COLOR",
+          "SPRITE_SIZE",
+          "_CALL_INDEX",
+          "_LAST_KEY",
+          "_PANEL_L",
+          "_PANEL_R"
+        ],
+        "globals_rebound_in_functions": [
+          "_CALL_INDEX",
+          "_LAST_KEY"
+        ],
+        "has_module_state": true,
+        "reset_hooks": [
+          "reset_state"
+        ],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 220
+      },
+      {
+        "game": "ka59",
+        "module_level_names": [
+          "ACTION_DELTAS",
+          "COUNTER_CELL",
+          "COUNTER_ROW",
+          "COUNTER_TICKED",
+          "GOAL_CENTER",
+          "GridLike",
+          "OUTER_BG",
+          "PLAYFIELD_BG",
+          "SPRITE_COLOR",
+          "SPRITE_HOLE",
+          "WALL"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 185
+      },
+      {
+        "game": "lf52",
+        "module_level_names": [
+          "GridLike"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 73
+      },
+      {
+        "game": "lp85",
+        "module_level_names": [
+          "BG",
+          "BOT_ROW0",
+          "BOT_ROW1",
+          "GridLike",
+          "LCOL0",
+          "LCOL1",
+          "LEFT_BUTTON_BBOX",
+          "LIFE_REMAIN",
+          "LIFE_USED",
+          "LIVES_PER_CLICK",
+          "RCOL0",
+          "RCOL1",
+          "RIGHT_BUTTON_BBOX",
+          "TILE_COLS",
+          "TILE_H",
+          "TILE_ROWS",
+          "TILE_W",
+          "TOP_ROW0",
+          "TOP_ROW1"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 196
+      },
+      {
+        "game": "ls20",
+        "module_level_names": [
+          "COUNTER_C0",
+          "COUNTER_C1",
+          "COUNTER_FILL",
+          "COUNTER_OFF",
+          "COUNTER_ROW_A",
+          "COUNTER_ROW_B",
+          "DELTAS",
+          "GridLike",
+          "LANE_LINE",
+          "PLAYFIELD_BG",
+          "RESPAWN_RC",
+          "SCORE_FULL",
+          "SCORE_PAIRS",
+          "SPRITE_COLOR_BOT",
+          "SPRITE_COLOR_TOP",
+          "SPRITE_TEMPLATE",
+          "WALL"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 245
+      },
+      {
+        "game": "m0r0",
+        "module_level_names": [
+          "BLOCK",
+          "COUNTER",
+          "CURSOR",
+          "GridLike",
+          "PLAYFIELD",
+          "STEP",
+          "WALL_A",
+          "WALL_B"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 193
+      },
+      {
+        "game": "r11l",
+        "module_level_names": [
+          "COUNTER_COL",
+          "COUNTER_FILL",
+          "DOUBLE_TICK_MOD",
+          "DOUBLE_TICK_REMAINDER",
+          "DOUBLE_TICK_Y_MAX",
+          "GridLike"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 95
+      },
+      {
+        "game": "re86",
+        "module_level_names": [
+          "BG",
+          "CURSOR",
+          "DEFAULT_ARM_LEN",
+          "GridLike",
+          "OBSTACLE_RING",
+          "PATTERN",
+          "SWAP_FULL_THRESHOLD",
+          "TIMER_ROW",
+          "_PHASE"
+        ],
+        "globals_rebound_in_functions": [
+          "_PHASE"
+        ],
+        "has_module_state": true,
+        "reset_hooks": [
+          "reset_phase"
+        ],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 365
+      },
+      {
+        "game": "s5i5",
+        "module_level_names": [
+          "GridLike",
+          "_BG",
+          "_BUDDY",
+          "_LIT_BL",
+          "_LIT_TR",
+          "_PAIRS",
+          "_PANEL_BL",
+          "_PANEL_TR"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 149
+      },
+      {
+        "game": "sb26",
+        "module_level_names": [
+          "COUNTER_FROM",
+          "COUNTER_ROW",
+          "COUNTER_TO",
+          "GridLike"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 76
+      },
+      {
+        "game": "sc25",
+        "module_level_names": [
+          "BAR_COL0",
+          "BAR_COL1",
+          "BUTTON_COL_CENTRES",
+          "BUTTON_ROW_CENTRES",
+          "GridLike",
+          "PANEL_X_MAX",
+          "PANEL_X_MIN",
+          "PANEL_Y_MAX",
+          "PANEL_Y_MIN",
+          "SPRITE_COL_MAX",
+          "SPRITE_COL_MIN",
+          "SPRITE_H",
+          "SPRITE_ROW0",
+          "SPRITE_ROW1",
+          "SPRITE_STEP",
+          "SPRITE_W",
+          "STAMP_VAL",
+          "TPL_A",
+          "TPL_B",
+          "TPL_C",
+          "TPL_D",
+          "TUBE_BG"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 193
+      },
+      {
+        "game": "sk48",
+        "module_level_names": [
+          "GridLike",
+          "_CURSOR_COLS",
+          "_CURSOR_FRAME_TOP_OFFSET",
+          "_PATTERN",
+          "_PATTERN_BG",
+          "_SLOT_COLS",
+          "_SLOT_ROWS"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 151
+      },
+      {
+        "game": "sp80",
+        "module_level_names": [
+          "FUEL_EMPTY",
+          "FUEL_FULL",
+          "GridLike",
+          "K3_TRIGGERS",
+          "PADDLE_C0_MAX",
+          "PADDLE_C0_MIN",
+          "PADDLE_COLOR",
+          "PADDLE_H",
+          "PADDLE_R0_MAX",
+          "PADDLE_R0_MIN",
+          "PADDLE_W",
+          "PLAYFIELD_BG",
+          "STEP"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 147
+      },
+      {
+        "game": "su15",
+        "module_level_names": [
+          "COUNTER_ROW",
+          "COUNTER_VAL",
+          "GridLike",
+          "MARKER_ROW",
+          "PLAYFIELD_Y_MIN",
+          "WARNING_VAL"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 127
+      },
+      {
+        "game": "tn36",
+        "module_level_names": [
+          "BUTTON_CENTERS",
+          "BUTTON_DX_MAX",
+          "BUTTON_ROWS_VERT",
+          "BUTTON_ROW_HORIZ",
+          "BUTTON_Y_HORIZ",
+          "BUTTON_Y_VERT",
+          "COUNTDOWN_COL_MAX",
+          "COUNTDOWN_COL_MIN",
+          "COUNTDOWN_FULL",
+          "COUNTDOWN_ROW",
+          "COUNTDOWN_USED",
+          "GridLike",
+          "TOGGLE_A",
+          "TOGGLE_B"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 131
+      },
+      {
+        "game": "tr87",
+        "module_level_names": [
+          "BWD_TABLE",
+          "FWD_TABLE",
+          "GridLike",
+          "ICON_R0",
+          "ICON_R1",
+          "ICON_W",
+          "SLOTS",
+          "_BRACKET_BG",
+          "_BRACKET_FG",
+          "_seen_first_call",
+          "_step_parity"
+        ],
+        "globals_rebound_in_functions": [
+          "_seen_first_call",
+          "_step_parity"
+        ],
+        "has_module_state": true,
+        "reset_hooks": [
+          "reset_step_parity"
+        ],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 300
+      },
+      {
+        "game": "tu93",
+        "module_level_names": [
+          "ACTION_DELTA",
+          "ACTION_TO_FACING",
+          "BG_OPEN",
+          "BG_OUTSIDE",
+          "CELL_SIZE",
+          "DOUBLE_TICK_N6",
+          "FACING_DOWN",
+          "FACING_LEFT",
+          "FACING_RIGHT",
+          "FACING_UP",
+          "GOAL",
+          "GridLike",
+          "ROW_TIMER",
+          "SPRITE_ARROW",
+          "SPRITE_BODY",
+          "STEP",
+          "WALL"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 195
+      },
+      {
+        "game": "vc33",
+        "module_level_names": [
+          "BG_FILLED",
+          "BG_UNFILLED",
+          "DOUBLE_FLIP_R7",
+          "GridLike"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 84
+      },
+      {
+        "game": "wa30",
+        "module_level_names": [
+          "BG",
+          "BODY",
+          "GridLike",
+          "HEAD",
+          "SPRITE_SIZE",
+          "TILE_COLORS",
+          "TILE_INTERIOR",
+          "TILE_SIZE"
+        ],
+        "globals_rebound_in_functions": [],
+        "has_module_state": false,
+        "reset_hooks": [],
+        "other_zero_arg_global_rebinders": [],
+        "sim_lines": 171
+      }
+    ]
+  },
+  "C_streams": {
+    "war_eval_v1": {
+      "exists": true,
+      "n_streams": 25,
+      "games": {
+        "ar25": {
+          "trace_id": "ar25-0c556536",
+          "engine_hash": "0c556536",
+          "n_initial_frames": 1,
+          "n_action_events": 201,
+          "n_action_events_with_board": 201,
+          "n_reset_actions": 1,
+          "n_level_completions": 2,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "bp35": {
+          "trace_id": "bp35-0a0ad940",
+          "engine_hash": "0a0ad940",
+          "n_initial_frames": 1,
+          "n_action_events": 123,
+          "n_action_events_with_board": 123,
+          "n_reset_actions": 4,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "cd82": {
+          "trace_id": "cd82-fb555c5d",
+          "engine_hash": "fb555c5d",
+          "n_initial_frames": 1,
+          "n_action_events": 141,
+          "n_action_events_with_board": 141,
+          "n_reset_actions": 1,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "cn04": {
+          "trace_id": "cn04-2fe56bfb",
+          "engine_hash": "2fe56bfb",
+          "n_initial_frames": 1,
+          "n_action_events": 304,
+          "n_action_events_with_board": 304,
+          "n_reset_actions": 4,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "dc22": {
+          "trace_id": "dc22-fdcac232",
+          "engine_hash": "fdcac232",
+          "n_initial_frames": 1,
+          "n_action_events": 61,
+          "n_action_events_with_board": 61,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "ft09": {
+          "trace_id": "ft09-0d8bbf25",
+          "engine_hash": "0d8bbf25",
+          "n_initial_frames": 1,
+          "n_action_events": 135,
+          "n_action_events_with_board": 135,
+          "n_reset_actions": 3,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "g50t": {
+          "trace_id": "g50t-5849a774",
+          "engine_hash": "5849a774",
+          "n_initial_frames": 1,
+          "n_action_events": 62,
+          "n_action_events_with_board": 62,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "ka59": {
+          "trace_id": "ka59-38d34dbb",
+          "engine_hash": "38d34dbb",
+          "n_initial_frames": 1,
+          "n_action_events": 117,
+          "n_action_events_with_board": 117,
+          "n_reset_actions": 0,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "lf52": {
+          "trace_id": "lf52-271a04aa",
+          "engine_hash": "271a04aa",
+          "n_initial_frames": 1,
+          "n_action_events": 73,
+          "n_action_events_with_board": 73,
+          "n_reset_actions": 0,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "lp85": {
+          "trace_id": "lp85-305b61c3",
+          "engine_hash": "305b61c3",
+          "n_initial_frames": 1,
+          "n_action_events": 72,
+          "n_action_events_with_board": 72,
+          "n_reset_actions": 1,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "ls20": {
+          "trace_id": "ls20-9607627b",
+          "engine_hash": "9607627b",
+          "n_initial_frames": 1,
+          "n_action_events": 91,
+          "n_action_events_with_board": 91,
+          "n_reset_actions": 0,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "m0r0": {
+          "trace_id": "m0r0-492f87ba",
+          "engine_hash": "492f87ba",
+          "n_initial_frames": 1,
+          "n_action_events": 323,
+          "n_action_events_with_board": 323,
+          "n_reset_actions": 1,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "r11l": {
+          "trace_id": "r11l-495a7899",
+          "engine_hash": "495a7899",
+          "n_initial_frames": 1,
+          "n_action_events": 81,
+          "n_action_events_with_board": 81,
+          "n_reset_actions": 0,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "re86": {
+          "trace_id": "re86-8af5384d",
+          "engine_hash": "8af5384d",
+          "n_initial_frames": 1,
+          "n_action_events": 296,
+          "n_action_events_with_board": 296,
+          "n_reset_actions": 2,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "s5i5": {
+          "trace_id": "s5i5-18d95033",
+          "engine_hash": "18d95033",
+          "n_initial_frames": 1,
+          "n_action_events": 69,
+          "n_action_events_with_board": 69,
+          "n_reset_actions": 1,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "sb26": {
+          "trace_id": "sb26-7fbdac44",
+          "engine_hash": "7fbdac44",
+          "n_initial_frames": 1,
+          "n_action_events": 111,
+          "n_action_events_with_board": 111,
+          "n_reset_actions": 0,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "sc25": {
+          "trace_id": "sc25-635fd71a",
+          "engine_hash": "635fd71a",
+          "n_initial_frames": 1,
+          "n_action_events": 184,
+          "n_action_events_with_board": 184,
+          "n_reset_actions": 3,
+          "n_level_completions": 2,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "sk48": {
+          "trace_id": "sk48-d8078629",
+          "engine_hash": "d8078629",
+          "n_initial_frames": 1,
+          "n_action_events": 266,
+          "n_action_events_with_board": 266,
+          "n_reset_actions": 1,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "sp80": {
+          "trace_id": "sp80-589a99af",
+          "engine_hash": "589a99af",
+          "n_initial_frames": 1,
+          "n_action_events": 240,
+          "n_action_events_with_board": 240,
+          "n_reset_actions": 12,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "su15": {
+          "trace_id": "su15-1944f8ab",
+          "engine_hash": "1944f8ab",
+          "n_initial_frames": 1,
+          "n_action_events": 96,
+          "n_action_events_with_board": 96,
+          "n_reset_actions": 2,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "tn36": {
+          "trace_id": "tn36-ef4dde99",
+          "engine_hash": "ef4dde99",
+          "n_initial_frames": 1,
+          "n_action_events": 116,
+          "n_action_events_with_board": 116,
+          "n_reset_actions": 1,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "tr87": {
+          "trace_id": "tr87-cd924810",
+          "engine_hash": "cd924810",
+          "n_initial_frames": 1,
+          "n_action_events": 127,
+          "n_action_events_with_board": 127,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "tu93": {
+          "trace_id": "tu93-0768757b",
+          "engine_hash": "0768757b",
+          "n_initial_frames": 1,
+          "n_action_events": 154,
+          "n_action_events_with_board": 154,
+          "n_reset_actions": 9,
+          "n_level_completions": 2,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "vc33": {
+          "trace_id": "vc33-5430563c",
+          "engine_hash": "5430563c",
+          "n_initial_frames": 1,
+          "n_action_events": 88,
+          "n_action_events_with_board": 88,
+          "n_reset_actions": 0,
+          "n_level_completions": 2,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "wa30": {
+          "trace_id": "wa30-ee6fef47",
+          "engine_hash": "ee6fef47",
+          "n_initial_frames": 1,
+          "n_action_events": 107,
+          "n_action_events_with_board": 107,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        }
+      }
+    },
+    "war_eval_v2": {
+      "exists": true,
+      "n_streams": 25,
+      "games": {
+        "ar25": {
+          "trace_id": "ar25-0c556536",
+          "engine_hash": "0c556536",
+          "n_initial_frames": 1,
+          "n_action_events": 120,
+          "n_action_events_with_board": 120,
+          "n_reset_actions": 1,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "bp35": {
+          "trace_id": "bp35-0a0ad940",
+          "engine_hash": "0a0ad940",
+          "n_initial_frames": 1,
+          "n_action_events": 474,
+          "n_action_events_with_board": 474,
+          "n_reset_actions": 10,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "cd82": {
+          "trace_id": "cd82-fb555c5d",
+          "engine_hash": "fb555c5d",
+          "n_initial_frames": 1,
+          "n_action_events": 82,
+          "n_action_events_with_board": 82,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "cn04": {
+          "trace_id": "cn04-2fe56bfb",
+          "engine_hash": "2fe56bfb",
+          "n_initial_frames": 1,
+          "n_action_events": 186,
+          "n_action_events_with_board": 186,
+          "n_reset_actions": 2,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "dc22": {
+          "trace_id": "dc22-fdcac232",
+          "engine_hash": "fdcac232",
+          "n_initial_frames": 1,
+          "n_action_events": 46,
+          "n_action_events_with_board": 46,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "ft09": {
+          "trace_id": "ft09-0d8bbf25",
+          "engine_hash": "0d8bbf25",
+          "n_initial_frames": 1,
+          "n_action_events": 45,
+          "n_action_events_with_board": 45,
+          "n_reset_actions": 0,
+          "n_level_completions": 2,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "g50t": {
+          "trace_id": "g50t-5849a774",
+          "engine_hash": "5849a774",
+          "n_initial_frames": 1,
+          "n_action_events": 65,
+          "n_action_events_with_board": 65,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "ka59": {
+          "trace_id": "ka59-38d34dbb",
+          "engine_hash": "38d34dbb",
+          "n_initial_frames": 1,
+          "n_action_events": 122,
+          "n_action_events_with_board": 122,
+          "n_reset_actions": 0,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "lf52": {
+          "trace_id": "lf52-271a04aa",
+          "engine_hash": "271a04aa",
+          "n_initial_frames": 1,
+          "n_action_events": 131,
+          "n_action_events_with_board": 131,
+          "n_reset_actions": 0,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "lp85": {
+          "trace_id": "lp85-305b61c3",
+          "engine_hash": "305b61c3",
+          "n_initial_frames": 1,
+          "n_action_events": 24,
+          "n_action_events_with_board": 24,
+          "n_reset_actions": 0,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "ls20": {
+          "trace_id": "ls20-9607627b",
+          "engine_hash": "9607627b",
+          "n_initial_frames": 1,
+          "n_action_events": 78,
+          "n_action_events_with_board": 78,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "m0r0": {
+          "trace_id": "m0r0-492f87ba",
+          "engine_hash": "492f87ba",
+          "n_initial_frames": 1,
+          "n_action_events": 153,
+          "n_action_events_with_board": 153,
+          "n_reset_actions": 1,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "r11l": {
+          "trace_id": "r11l-495a7899",
+          "engine_hash": "495a7899",
+          "n_initial_frames": 1,
+          "n_action_events": 443,
+          "n_action_events_with_board": 443,
+          "n_reset_actions": 7,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "re86": {
+          "trace_id": "re86-8af5384d",
+          "engine_hash": "8af5384d",
+          "n_initial_frames": 1,
+          "n_action_events": 163,
+          "n_action_events_with_board": 163,
+          "n_reset_actions": 0,
+          "n_level_completions": 2,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "s5i5": {
+          "trace_id": "s5i5-18d95033",
+          "engine_hash": "18d95033",
+          "n_initial_frames": 1,
+          "n_action_events": 51,
+          "n_action_events_with_board": 51,
+          "n_reset_actions": 1,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "sb26": {
+          "trace_id": "sb26-7fbdac44",
+          "engine_hash": "7fbdac44",
+          "n_initial_frames": 1,
+          "n_action_events": 256,
+          "n_action_events_with_board": 256,
+          "n_reset_actions": 2,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "sc25": {
+          "trace_id": "sc25-635fd71a",
+          "engine_hash": "635fd71a",
+          "n_initial_frames": 1,
+          "n_action_events": 235,
+          "n_action_events_with_board": 235,
+          "n_reset_actions": 3,
+          "n_level_completions": 2,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "sk48": {
+          "trace_id": "sk48-d8078629",
+          "engine_hash": "d8078629",
+          "n_initial_frames": 1,
+          "n_action_events": 75,
+          "n_action_events_with_board": 75,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "sp80": {
+          "trace_id": "sp80-589a99af",
+          "engine_hash": "589a99af",
+          "n_initial_frames": 1,
+          "n_action_events": 223,
+          "n_action_events_with_board": 223,
+          "n_reset_actions": 8,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "su15": {
+          "trace_id": "su15-1944f8ab",
+          "engine_hash": "1944f8ab",
+          "n_initial_frames": 1,
+          "n_action_events": 178,
+          "n_action_events_with_board": 178,
+          "n_reset_actions": 4,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "tn36": {
+          "trace_id": "tn36-ef4dde99",
+          "engine_hash": "ef4dde99",
+          "n_initial_frames": 1,
+          "n_action_events": 144,
+          "n_action_events_with_board": 144,
+          "n_reset_actions": 2,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "tr87": {
+          "trace_id": "tr87-cd924810",
+          "engine_hash": "cd924810",
+          "n_initial_frames": 1,
+          "n_action_events": 254,
+          "n_action_events_with_board": 254,
+          "n_reset_actions": 1,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "tu93": {
+          "trace_id": "tu93-0768757b",
+          "engine_hash": "0768757b",
+          "n_initial_frames": 1,
+          "n_action_events": 128,
+          "n_action_events_with_board": 128,
+          "n_reset_actions": 6,
+          "n_level_completions": 2,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "vc33": {
+          "trace_id": "vc33-5430563c",
+          "engine_hash": "5430563c",
+          "n_initial_frames": 1,
+          "n_action_events": 152,
+          "n_action_events_with_board": 152,
+          "n_reset_actions": 2,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "wa30": {
+          "trace_id": "wa30-ee6fef47",
+          "engine_hash": "ee6fef47",
+          "n_initial_frames": 1,
+          "n_action_events": 198,
+          "n_action_events_with_board": 198,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        }
+      }
+    },
+    "war_eval_v3": {
+      "exists": true,
+      "n_streams": 25,
+      "games": {
+        "ar25": {
+          "trace_id": "ar25-0c556536",
+          "engine_hash": "0c556536",
+          "n_initial_frames": 1,
+          "n_action_events": 85,
+          "n_action_events_with_board": 85,
+          "n_reset_actions": 0,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "bp35": {
+          "trace_id": "bp35-0a0ad940",
+          "engine_hash": "0a0ad940",
+          "n_initial_frames": 1,
+          "n_action_events": 366,
+          "n_action_events_with_board": 366,
+          "n_reset_actions": 11,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "cd82": {
+          "trace_id": "cd82-fb555c5d",
+          "engine_hash": "fb555c5d",
+          "n_initial_frames": 1,
+          "n_action_events": 209,
+          "n_action_events_with_board": 209,
+          "n_reset_actions": 2,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "cn04": {
+          "trace_id": "cn04-2fe56bfb",
+          "engine_hash": "2fe56bfb",
+          "n_initial_frames": 1,
+          "n_action_events": 183,
+          "n_action_events_with_board": 183,
+          "n_reset_actions": 2,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "dc22": {
+          "trace_id": "dc22-fdcac232",
+          "engine_hash": "fdcac232",
+          "n_initial_frames": 1,
+          "n_action_events": 89,
+          "n_action_events_with_board": 89,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "ft09": {
+          "trace_id": "ft09-0d8bbf25",
+          "engine_hash": "0d8bbf25",
+          "n_initial_frames": 1,
+          "n_action_events": 40,
+          "n_action_events_with_board": 40,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "g50t": {
+          "trace_id": "g50t-5849a774",
+          "engine_hash": "5849a774",
+          "n_initial_frames": 1,
+          "n_action_events": 89,
+          "n_action_events_with_board": 89,
+          "n_reset_actions": 0,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "ka59": {
+          "trace_id": "ka59-38d34dbb",
+          "engine_hash": "38d34dbb",
+          "n_initial_frames": 1,
+          "n_action_events": 189,
+          "n_action_events_with_board": 189,
+          "n_reset_actions": 1,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "lf52": {
+          "trace_id": "lf52-271a04aa",
+          "engine_hash": "271a04aa",
+          "n_initial_frames": 1,
+          "n_action_events": 101,
+          "n_action_events_with_board": 101,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "lp85": {
+          "trace_id": "lp85-305b61c3",
+          "engine_hash": "305b61c3",
+          "n_initial_frames": 1,
+          "n_action_events": 140,
+          "n_action_events_with_board": 140,
+          "n_reset_actions": 2,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "ls20": {
+          "trace_id": "ls20-9607627b",
+          "engine_hash": "9607627b",
+          "n_initial_frames": 1,
+          "n_action_events": 66,
+          "n_action_events_with_board": 66,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "m0r0": {
+          "trace_id": "m0r0-492f87ba",
+          "engine_hash": "492f87ba",
+          "n_initial_frames": 1,
+          "n_action_events": 305,
+          "n_action_events_with_board": 305,
+          "n_reset_actions": 2,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "r11l": {
+          "trace_id": "r11l-495a7899",
+          "engine_hash": "495a7899",
+          "n_initial_frames": 1,
+          "n_action_events": 50,
+          "n_action_events_with_board": 50,
+          "n_reset_actions": 0,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "re86": {
+          "trace_id": "re86-8af5384d",
+          "engine_hash": "8af5384d",
+          "n_initial_frames": 1,
+          "n_action_events": 237,
+          "n_action_events_with_board": 237,
+          "n_reset_actions": 2,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "s5i5": {
+          "trace_id": "s5i5-18d95033",
+          "engine_hash": "18d95033",
+          "n_initial_frames": 1,
+          "n_action_events": 62,
+          "n_action_events_with_board": 62,
+          "n_reset_actions": 0,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "sb26": {
+          "trace_id": "sb26-7fbdac44",
+          "engine_hash": "7fbdac44",
+          "n_initial_frames": 1,
+          "n_action_events": 174,
+          "n_action_events_with_board": 174,
+          "n_reset_actions": 1,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "sc25": {
+          "trace_id": "sc25-635fd71a",
+          "engine_hash": "635fd71a",
+          "n_initial_frames": 1,
+          "n_action_events": 102,
+          "n_action_events_with_board": 102,
+          "n_reset_actions": 2,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "sk48": {
+          "trace_id": "sk48-d8078629",
+          "engine_hash": "d8078629",
+          "n_initial_frames": 1,
+          "n_action_events": 167,
+          "n_action_events_with_board": 167,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "sp80": {
+          "trace_id": "sp80-589a99af",
+          "engine_hash": "589a99af",
+          "n_initial_frames": 1,
+          "n_action_events": 184,
+          "n_action_events_with_board": 184,
+          "n_reset_actions": 4,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "su15": {
+          "trace_id": "su15-1944f8ab",
+          "engine_hash": "1944f8ab",
+          "n_initial_frames": 1,
+          "n_action_events": 26,
+          "n_action_events_with_board": 26,
+          "n_reset_actions": 0,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "tn36": {
+          "trace_id": "tn36-ef4dde99",
+          "engine_hash": "ef4dde99",
+          "n_initial_frames": 1,
+          "n_action_events": 124,
+          "n_action_events_with_board": 124,
+          "n_reset_actions": 2,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "tr87": {
+          "trace_id": "tr87-cd924810",
+          "engine_hash": "cd924810",
+          "n_initial_frames": 1,
+          "n_action_events": 183,
+          "n_action_events_with_board": 183,
+          "n_reset_actions": 1,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "tu93": {
+          "trace_id": "tu93-0768757b",
+          "engine_hash": "0768757b",
+          "n_initial_frames": 1,
+          "n_action_events": 314,
+          "n_action_events_with_board": 314,
+          "n_reset_actions": 5,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "vc33": {
+          "trace_id": "vc33-5430563c",
+          "engine_hash": "5430563c",
+          "n_initial_frames": 1,
+          "n_action_events": 165,
+          "n_action_events_with_board": 165,
+          "n_reset_actions": 2,
+          "n_level_completions": 2,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "wa30": {
+          "trace_id": "wa30-ee6fef47",
+          "engine_hash": "ee6fef47",
+          "n_initial_frames": 1,
+          "n_action_events": 335,
+          "n_action_events_with_board": 335,
+          "n_reset_actions": 1,
+          "n_level_completions": 0,
+          "full_board_coverage": true,
+          "has_sim": true
+        }
+      }
+    },
+    "gpt56_full": {
+      "exists": true,
+      "n_streams": 5,
+      "games": {
+        "ft09": {
+          "trace_id": "ft09-0d8bbf25",
+          "engine_hash": "0d8bbf25",
+          "n_initial_frames": 1,
+          "n_action_events": 100,
+          "n_action_events_with_board": 100,
+          "n_reset_actions": 0,
+          "n_level_completions": 5,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "lp85": {
+          "trace_id": "lp85-305b61c3",
+          "engine_hash": "305b61c3",
+          "n_initial_frames": 1,
+          "n_action_events": 100,
+          "n_action_events_with_board": 100,
+          "n_reset_actions": 0,
+          "n_level_completions": 4,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "sb26": {
+          "trace_id": "sb26-7fbdac44",
+          "engine_hash": "7fbdac44",
+          "n_initial_frames": 1,
+          "n_action_events": 100,
+          "n_action_events_with_board": 100,
+          "n_reset_actions": 0,
+          "n_level_completions": 5,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "su15": {
+          "trace_id": "su15-4c352900",
+          "engine_hash": "4c352900",
+          "n_initial_frames": 1,
+          "n_action_events": 54,
+          "n_action_events_with_board": 54,
+          "n_reset_actions": 1,
+          "n_level_completions": 1,
+          "full_board_coverage": true,
+          "has_sim": true
+        },
+        "vc33": {
+          "trace_id": "vc33-9851e02b",
+          "engine_hash": "9851e02b",
+          "n_initial_frames": 1,
+          "n_action_events": 100,
+          "n_action_events_with_board": 100,
+          "n_reset_actions": 0,
+          "n_level_completions": 3,
+          "full_board_coverage": true,
+          "has_sim": true
+        }
+      }
+    }
+  },
+  "D_old_dryrun": {
+    "script": "scripts/ewm_replay_dryrun.py",
+    "loads_sim_once_per_game": true,
+    "calls_any_reset_hook": false,
+    "teacher_forced": true,
+    "sat12_filter_present": true,
+    "sat12": [
+      "ft09",
+      "lf52",
+      "lp85",
+      "ls20",
+      "s5i5",
+      "sb26",
+      "sp80",
+      "su15",
+      "tn36",
+      "tr87",
+      "tu93",
+      "vc33"
+    ],
+    "per_source_games": {
+      "war_eval_v1": [
+        "ft09",
+        "lf52",
+        "lp85",
+        "ls20",
+        "s5i5",
+        "sb26",
+        "sp80",
+        "su15",
+        "tn36",
+        "tr87",
+        "tu93",
+        "vc33"
+      ],
+      "war_eval_v2": [
+        "ft09",
+        "lf52",
+        "lp85",
+        "ls20",
+        "s5i5",
+        "sb26",
+        "sp80",
+        "su15",
+        "tn36",
+        "tr87",
+        "tu93",
+        "vc33"
+      ],
+      "war_eval_v3": [
+        "ft09",
+        "lf52",
+        "lp85",
+        "ls20",
+        "s5i5",
+        "sb26",
+        "sp80",
+        "su15",
+        "tn36",
+        "tr87",
+        "tu93",
+        "vc33"
+      ],
+      "gpt56_full": [
+        "ft09",
+        "lp85",
+        "sb26",
+        "su15",
+        "vc33"
+      ]
+    }
+  },
+  "E_engines": {
+    "local_engine_dirs": {
+      "ar25": {
+        "dir": "ar25",
+        "engine_hash": null
+      },
+      "bp35": {
+        "dir": "bp35",
+        "engine_hash": null
+      },
+      "cd82": {
+        "dir": "cd82",
+        "engine_hash": null
+      },
+      "cn04": {
+        "dir": "cn04",
+        "engine_hash": null
+      },
+      "dc22": {
+        "dir": "dc22",
+        "engine_hash": null
+      },
+      "ft09": {
+        "dir": "ft09",
+        "engine_hash": null
+      },
+      "g50t": {
+        "dir": "g50t",
+        "engine_hash": null
+      },
+      "ka59": {
+        "dir": "ka59",
+        "engine_hash": null
+      },
+      "lf52": {
+        "dir": "lf52",
+        "engine_hash": null
+      },
+      "lp85": {
+        "dir": "lp85",
+        "engine_hash": null
+      },
+      "ls20": {
+        "dir": "ls20",
+        "engine_hash": null
+      },
+      "m0r0": {
+        "dir": "m0r0",
+        "engine_hash": null
+      },
+      "r11l": {
+        "dir": "r11l",
+        "engine_hash": null
+      },
+      "re86": {
+        "dir": "re86",
+        "engine_hash": null
+      },
+      "s5i5": {
+        "dir": "s5i5",
+        "engine_hash": null
+      },
+      "sb26": {
+        "dir": "sb26",
+        "engine_hash": null
+      },
+      "sc25": {
+        "dir": "sc25",
+        "engine_hash": null
+      },
+      "sk48": {
+        "dir": "sk48",
+        "engine_hash": null
+      },
+      "sp80": {
+        "dir": "sp80",
+        "engine_hash": null
+      },
+      "su15": {
+        "dir": "su15",
+        "engine_hash": null
+      },
+      "tn36": {
+        "dir": "tn36",
+        "engine_hash": null
+      },
+      "tr87": {
+        "dir": "tr87",
+        "engine_hash": null
+      },
+      "tu93": {
+        "dir": "tu93",
+        "engine_hash": null
+      },
+      "vc33": {
+        "dir": "vc33",
+        "engine_hash": null
+      },
+      "wa30": {
+        "dir": "wa30",
+        "engine_hash": null
+      }
+    },
+    "determinism_audit_25_present": true,
+    "determinism_audit_25_per_game": {
+      "ar25": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "ar25-0c556536",
+        "verdict": "DETERMINISTIC"
+      },
+      "bp35": {
+        "version_mismatch_vs_kaggle": false,
+        "benchmark_game_id": "bp35-0a0ad940",
+        "verdict": "DETERMINISTIC"
+      },
+      "cd82": {
+        "version_mismatch_vs_kaggle": false,
+        "benchmark_game_id": "cd82-fb555c5d",
+        "verdict": "DETERMINISTIC"
+      },
+      "cn04": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "cn04-2fe56bfb",
+        "verdict": "DETERMINISTIC"
+      },
+      "dc22": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "dc22-fdcac232",
+        "verdict": "DETERMINISTIC"
+      },
+      "ft09": {
+        "version_mismatch_vs_kaggle": false,
+        "benchmark_game_id": "ft09-0d8bbf25",
+        "verdict": "DETERMINISTIC"
+      },
+      "g50t": {
+        "version_mismatch_vs_kaggle": false,
+        "benchmark_game_id": "g50t-5849a774",
+        "verdict": "DETERMINISTIC"
+      },
+      "ka59": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "ka59-38d34dbb",
+        "verdict": "DETERMINISTIC"
+      },
+      "lf52": {
+        "version_mismatch_vs_kaggle": false,
+        "benchmark_game_id": "lf52-271a04aa",
+        "verdict": "DETERMINISTIC"
+      },
+      "lp85": {
+        "version_mismatch_vs_kaggle": false,
+        "benchmark_game_id": "lp85-305b61c3",
+        "verdict": "DETERMINISTIC"
+      },
+      "ls20": {
+        "version_mismatch_vs_kaggle": false,
+        "benchmark_game_id": "ls20-9607627b",
+        "verdict": "DETERMINISTIC"
+      },
+      "m0r0": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "m0r0-492f87ba",
+        "verdict": "DETERMINISTIC"
+      },
+      "r11l": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "r11l-495a7899",
+        "verdict": "DETERMINISTIC"
+      },
+      "re86": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "re86-8af5384d",
+        "verdict": "DETERMINISTIC"
+      },
+      "s5i5": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "s5i5-18d95033",
+        "verdict": "DETERMINISTIC"
+      },
+      "sb26": {
+        "version_mismatch_vs_kaggle": false,
+        "benchmark_game_id": "sb26-7fbdac44",
+        "verdict": "DETERMINISTIC"
+      },
+      "sc25": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "sc25-635fd71a",
+        "verdict": "DETERMINISTIC"
+      },
+      "sk48": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "sk48-d8078629",
+        "verdict": "DETERMINISTIC"
+      },
+      "sp80": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "sp80-589a99af",
+        "verdict": "DETERMINISTIC"
+      },
+      "su15": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "su15-1944f8ab",
+        "verdict": "DETERMINISTIC"
+      },
+      "tn36": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "tn36-ef4dde99",
+        "verdict": "DETERMINISTIC"
+      },
+      "tr87": {
+        "version_mismatch_vs_kaggle": false,
+        "benchmark_game_id": "tr87-cd924810",
+        "verdict": "DETERMINISTIC"
+      },
+      "tu93": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "tu93-0768757b",
+        "verdict": "DETERMINISTIC"
+      },
+      "vc33": {
+        "version_mismatch_vs_kaggle": true,
+        "benchmark_game_id": "vc33-5430563c",
+        "verdict": "DETERMINISTIC"
+      },
+      "wa30": {
+        "version_mismatch_vs_kaggle": false,
+        "benchmark_game_id": "wa30-ee6fef47",
+        "verdict": "DETERMINISTIC"
+      }
+    }
+  },
+  "F_banked_tf": {
+    "present": true,
+    "n_games": 12,
+    "games": {
+      "ft09": {
+        "tf_acc": {
+          "war_eval_v1": 0.9848,
+          "war_eval_v2": 0.5556,
+          "war_eval_v3": 1.0
+        },
+        "across_source_range": 0.4444,
+        "first_divergence_step": {
+          "war_eval_v1": 130,
+          "war_eval_v2": 25,
+          "war_eval_v3": null
+        },
+        "engine_matches_kaggle": true
+      },
+      "lf52": {
+        "tf_acc": {
+          "war_eval_v1": 0.3014,
+          "war_eval_v2": 0.4962,
+          "war_eval_v3": 0.7525
+        },
+        "across_source_range": 0.4511,
+        "first_divergence_step": {
+          "war_eval_v1": 0,
+          "war_eval_v2": 0,
+          "war_eval_v3": 0
+        },
+        "engine_matches_kaggle": true
+      },
+      "lp85": {
+        "tf_acc": {
+          "war_eval_v1": 0.1127,
+          "war_eval_v2": 0.4583,
+          "war_eval_v3": 0.087
+        },
+        "across_source_range": 0.3714,
+        "first_divergence_step": {
+          "war_eval_v1": 7,
+          "war_eval_v2": 8,
+          "war_eval_v3": 5
+        },
+        "engine_matches_kaggle": true
+      },
+      "ls20": {
+        "tf_acc": {
+          "war_eval_v1": 0.6374,
+          "war_eval_v2": 0.9231,
+          "war_eval_v3": 0.803
+        },
+        "across_source_range": 0.2857,
+        "first_divergence_step": {
+          "war_eval_v1": 50,
+          "war_eval_v2": 48,
+          "war_eval_v3": 14
+        },
+        "engine_matches_kaggle": true
+      },
+      "s5i5": {
+        "tf_acc": {
+          "war_eval_v1": 0.2647,
+          "war_eval_v2": 0.3,
+          "war_eval_v3": 0.129
+        },
+        "across_source_range": 0.171,
+        "first_divergence_step": {
+          "war_eval_v1": 3,
+          "war_eval_v2": 1,
+          "war_eval_v3": 2
+        },
+        "engine_matches_kaggle": false
+      },
+      "sb26": {
+        "tf_acc": {
+          "war_eval_v1": 0.1622,
+          "war_eval_v2": 0.1063,
+          "war_eval_v3": 0.1618
+        },
+        "across_source_range": 0.0559,
+        "first_divergence_step": {
+          "war_eval_v1": 0,
+          "war_eval_v2": 0,
+          "war_eval_v3": 0
+        },
+        "engine_matches_kaggle": true
+      },
+      "sp80": {
+        "tf_acc": {
+          "war_eval_v1": 0.0263,
+          "war_eval_v2": 0.8791,
+          "war_eval_v3": 0.0667
+        },
+        "across_source_range": 0.8528,
+        "first_divergence_step": {
+          "war_eval_v1": 6,
+          "war_eval_v2": 11,
+          "war_eval_v3": 12
+        },
+        "engine_matches_kaggle": false
+      },
+      "su15": {
+        "tf_acc": {
+          "war_eval_v1": 0.3085,
+          "war_eval_v2": 0.1494,
+          "war_eval_v3": 0.8077
+        },
+        "across_source_range": 0.6583,
+        "first_divergence_step": {
+          "war_eval_v1": 0,
+          "war_eval_v2": 0,
+          "war_eval_v3": 0
+        },
+        "engine_matches_kaggle": false
+      },
+      "tn36": {
+        "tf_acc": {
+          "war_eval_v1": 0.5304,
+          "war_eval_v2": 1.0,
+          "war_eval_v3": 0.9836
+        },
+        "across_source_range": 0.4696,
+        "first_divergence_step": {
+          "war_eval_v1": 7,
+          "war_eval_v2": null,
+          "war_eval_v3": 57
+        },
+        "engine_matches_kaggle": false
+      },
+      "tr87": {
+        "tf_acc": {
+          "war_eval_v1": 0.8189,
+          "war_eval_v2": 0.7708,
+          "war_eval_v3": 0.8187
+        },
+        "across_source_range": 0.0481,
+        "first_divergence_step": {
+          "war_eval_v1": 18,
+          "war_eval_v2": 21,
+          "war_eval_v3": 2
+        },
+        "engine_matches_kaggle": true
+      },
+      "tu93": {
+        "tf_acc": {
+          "war_eval_v1": 0.731,
+          "war_eval_v2": 0.7787,
+          "war_eval_v3": 0.9968
+        },
+        "across_source_range": 0.2657,
+        "first_divergence_step": {
+          "war_eval_v1": 67,
+          "war_eval_v2": 73,
+          "war_eval_v3": 295
+        },
+        "engine_matches_kaggle": false
+      },
+      "vc33": {
+        "tf_acc": {
+          "war_eval_v1": 0.2386,
+          "war_eval_v2": 0.6667,
+          "war_eval_v3": 0.3681
+        },
+        "across_source_range": 0.428,
+        "first_divergence_step": {
+          "war_eval_v1": 2,
+          "war_eval_v2": 2,
+          "war_eval_v3": 1
+        },
+        "engine_matches_kaggle": false
+      }
+    },
+    "total_steps_all_sources": 4996,
+    "total_sim_error": 0,
+    "total_selfdiff": 0,
+    "coverage_strict_is_1_0_everywhere": true,
+    "median_across_source_range": 0.3997,
+    "n_ge_0_92_per_source": {
+      "war_eval_v1": [
+        "ft09"
+      ],
+      "war_eval_v2": [
+        "ls20",
+        "tn36"
+      ],
+      "war_eval_v3": [
+        "ft09",
+        "tn36",
+        "tu93"
+      ]
+    },
+    "engine_matched_games": [
+      "ft09",
+      "lf52",
+      "lp85",
+      "ls20",
+      "sb26",
+      "tr87"
+    ],
+    "engine_mismatched_games": [
+      "s5i5",
+      "sp80",
+      "su15",
+      "tn36",
+      "tu93",
+      "vc33"
+    ],
+    "mean_v1_tf_acc_matched": 0.5029,
+    "mean_v1_tf_acc_mismatched": 0.3499
+  },
+  "G_segment_boundaries": {
+    "g50t": {
+      "war_eval_v1": {
+        "n_sim_calls": 62,
+        "segment_boundaries": [],
+        "n_extra_segments": 0,
+        "boundary_call_indices_parity": []
+      },
+      "war_eval_v2": {
+        "n_sim_calls": 65,
+        "segment_boundaries": [],
+        "n_extra_segments": 0,
+        "boundary_call_indices_parity": []
+      },
+      "war_eval_v3": {
+        "n_sim_calls": 89,
+        "segment_boundaries": [
+          [
+            "LEVEL_COMPLETED",
+            86
+          ]
+        ],
+        "n_extra_segments": 1,
+        "boundary_call_indices_parity": [
+          0
+        ]
+      }
+    },
+    "re86": {
+      "war_eval_v1": {
+        "n_sim_calls": 294,
+        "segment_boundaries": [
+          [
+            "LEVEL_COMPLETED",
+            64
+          ],
+          [
+            "RESET",
+            164
+          ],
+          [
+            "RESET",
+            264
+          ]
+        ],
+        "n_extra_segments": 3,
+        "boundary_call_indices_parity": [
+          0,
+          0,
+          0
+        ]
+      },
+      "war_eval_v2": {
+        "n_sim_calls": 163,
+        "segment_boundaries": [
+          [
+            "LEVEL_COMPLETED",
+            32
+          ],
+          [
+            "LEVEL_COMPLETED",
+            80
+          ]
+        ],
+        "n_extra_segments": 2,
+        "boundary_call_indices_parity": [
+          0,
+          0
+        ]
+      },
+      "war_eval_v3": {
+        "n_sim_calls": 235,
+        "segment_boundaries": [
+          [
+            "LEVEL_COMPLETED",
+            35
+          ],
+          [
+            "RESET",
+            135
+          ],
+          [
+            "RESET",
+            235
+          ]
+        ],
+        "n_extra_segments": 3,
+        "boundary_call_indices_parity": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "tr87": {
+      "war_eval_v1": {
+        "n_sim_calls": 127,
+        "segment_boundaries": [],
+        "n_extra_segments": 0,
+        "boundary_call_indices_parity": []
+      },
+      "war_eval_v2": {
+        "n_sim_calls": 253,
+        "segment_boundaries": [
+          [
+            "RESET",
+            128
+          ]
+        ],
+        "n_extra_segments": 1,
+        "boundary_call_indices_parity": [
+          0
+        ]
+      },
+      "war_eval_v3": {
+        "n_sim_calls": 182,
+        "segment_boundaries": [
+          [
+            "RESET",
+            128
+          ]
+        ],
+        "n_extra_segments": 1,
+        "boundary_call_indices_parity": [
+          0
+        ]
+      }
+    }
+  }
+}
