@@ -1,4 +1,259 @@
-# LB ground truth — refreshed 2026-08-02 (live Kaggle API: submissions + leaderboard head)
+# LB ground truth — refreshed 2026-08-14 (live Kaggle API: submissions + leaderboard head)
+
+Refresh 2026-08-14: incorporated the 08-14 00:07Z frozen draw **0.70** (API COMPLETE, frozen-fork
+filler `canivel/arc3-duck-repro`, description **"AUTO-REFILL … auto-armed by scripts/daily_submit.py
+because the queue was empty"**). **`runs/ledger.json` is STALE as of this write (still n=30 / latest
+0.78 / 08-13) — the ledger recompute by `scripts/ledger.py` is OWED.** Pending that, INFERRED here
+only: n=31, mean ≈ **0.9368**, z(0.70) vs the n=30 stats ≈ **−1.61**, trailing-4 **0.9975 → 0.9100**.
+0.70 is the **second-lowest draw of the campaign** (record min 0.65, 08-01) and the **second
+consecutive sub-0.80** (0.78 → 0.70). The retired fixed-0.80 leg would have fired; the leg that
+actually binds since **R23 (08-02)** is the **paired harm-pause (trailing-4 −1.5s ⇒ a −0.228 move)**,
+and the realized move is **−0.0875**, comfortably inside it — the record stays **resolved-STATIONARY**.
+Public max **UNCHANGED at 1.33** (per R25-N3 ρ̂_draw ≈ 0 the max is not the selection currency).
+Second day running that the only thing on the board was the eternal fallback.
+LB cross-check 08-14T~06:00 local (archived `runs/lb_daily/lb_2026-08-14.csv`, top-20):
+**the board did not move at all.** Every top-20 name and every top-20 score is **identical to 08-13**;
+only submission timestamps changed. **cstl FLAT at 2.70** (resubmitted 08-13 20:08, no gain) — the
+first non-rising day for the leader since it stepped up. **TOP-5 PRIZE CUTOFF FLAT at 1.64 for a
+SECOND day** (#5 BambooCopter Analytics 1.64 on submission-time tiebreak ahead of GeniusYY 1.64;
+Tufa Labs 1.62 still out at #7). **GOLD CUTOFF (top-13) HOLDS at 1.58 for a SIXTH flat day** (#13
+Biubiu). No new entrant, and the largest score delta anywhere in the top-20 is **0.00**.
+**CORRECTION TO THE 08-12 ENTRY BELOW — cstl did NOT "enter" at 2.52.** Our own archived CSVs show
+cstl at **1.59 from 08-04 through 08-09**, i.e. parked inside the dense 1.58–1.61 shared-public-
+artifact (duck) band, then **1.59 → 2.52 in one submission (08-11 18:25, +0.93) → 2.70 (08-12 20:02)
+→ flat**. It is a *band team that found a step*, not an outsider — so the +0.93 is a delta on top of
+an artifact **we also run**, and the artifact family's ceiling is therefore **≥ 2.70**, which refutes
+the ≈1.26–1.36 efficiency-reframe ceiling as a property of the *family* rather than of *our
+configuration of it*. Do not read cstl's flat scores as evidence of a deterministic agent: the public
+LB shows **best** score with **latest** submission date, so flatness only means later runs did not beat
+the best. **cstl is now traced to WHO but not to WHAT**: teamId 16364346 is a two-person team,
+`tehnar` ("Tehnar", Software Engineer, Amsterdam NL, 11y; pedigree is *competitive agents in
+simulation* — NeurIPS 2024 Lux AI S3 116/701, ACM ICPC Finals 2016, Russian AI Cup tooling) and
+`gatamaz` ("TG", San Francisco, 9y, this is the only competition he has ever entered). Both handles
+carry **zero ARC artifacts** — tehnar's only public notebook is an 11-year-old Theano CNN and his only
+forum post is an 8-year-old PyCharm comment; `github.com/tehnar` (Vsevolod Stepanov, INFERRED from
+handle + SPbAU/ICPC/AI-Cup repos) has **0 public events** and no ARC or agent repo; no arXiv, no X, no
+ARC-Prize community-leaderboard entry. **No trace found for the mechanism — none is proposed here.**
+**OUR RANK IS #100, NOT "below #49"** — that figure had been carried unrecomputed since 08-09 and the
+last real count was #63 on 08-01. Directly counted from the rank-ordered top-200 today: **94 teams
+strictly above, 9 tied at 1.33 spanning ranks #95–#103** (we are 6th in the tie block; Peter 1.34 at
+#94). That is **−37 ranks in 13 days on a byte-unchanged banked score.** Gap to gold **0.25** and gap
+to the prize line **0.31**, both flat vs 08-13 — the flat *gaps* are the comfortable number and the
+*rank* is the honest one. Full sweep, including the discussion dispositions (3 new posts, **0 ADOPT**)
+and an independent 50,140-response replication of the 08-13 memory-channel finding, is in
+`learnings/discsweep_2026-08-14.md`.
+
+Refresh 2026-08-13: incorporated the 08-13 00:07Z frozen draw **0.78** (API COMPLETE,
+frozen-fork filler `canivel/arc3-duck-repro` v3) → record ledger **n=30, mean 0.9447,
+s 0.1519** (re-derived from the API by `scripts/ledger.py`, written to `runs/ledger.json`
+— no retyped prose). Interior draw, z ≈ **−1.13** vs the n=29 stats; the record minimum is
+unchanged at **0.65**, so this is well inside the observed range. It **ends the five-draw
+interior recovery** (0.87 → 0.89 → 1.05 → 1.09 → 1.07 → **0.78**). **Trailing-4 mean falls
+1.025 → 0.9975**, back under 1.00 after a single day above it; mean down (0.9503 → 0.9447)
+and dispersion up (0.1513 → 0.1519), reversing both of yesterday's moves. **The watch-rule
+does NOT arm.** 0.78 sits below the old fixed-0.80 line, but that leg was **retired at R23
+(08-02)** and replaced by the **paired harm-pause (trailing-4 −1.5s ⇒ a −0.228 move)**; the
+realized trailing-4 move is **−0.0275**, an order of magnitude inside the trigger, so the
+record stays **resolved-STATIONARY**. Public max **UNCHANGED at 1.33** — per the R25-N3
+ρ̂_draw ≈ 0 finding the max is not the selection currency. Sealed mean-of-4 promotion bar at
+n=30 = **1.0821** (was 1.0876 at n=29 — a low draw *lowers* the bar; it drifts with the
+record and must be re-read from `runs/ledger.json` at prereg time, not cached).
+LB cross-check 08-13T~06:00 local (archived `runs/lb_daily/lb_2026-08-13.csv`, top-20):
+**the leader extends, the chased band is flat.** **cstl 2.52 → 2.70** (+0.18, submitted
+08-12 20:02) — still **zero public kernels, zero datasets on both handles**, and now
+roughly **z ≈ +5** beyond the field's single-draw process; it remains untraced and is not a
+target. **YUTO KOJIMA 1.86** re-submitted (08-13 00:09) with no score change. **TOP-5 PRIZE
+CUTOFF FLAT at 1.64** for the first time after the 1.62 → 1.64 tightening: #5 is now
+**BambooCopter Analytics 1.64** on submission-time tiebreak ahead of GeniusYY 1.64, and
+**Tufa Labs 1.62 stays out of the prize band at #7**. **GOLD CUTOFF (top-13) HOLDS at 1.58
+for a FIFTH flat day** — Biubiu #13 / ippeiogawa #14, DhanaLakshmiMalla 1.60 holding #12.
+Head otherwise static: Andy liu 1.69, Lord Han Solo 1.65, Tecnod8.AI / FOYSAL / hvp /
+Helmut AGI all 1.61; anngle / NoOneAhead 1.56 at the #17–18 mark. **Our 1.33 unchanged —
+gap to gold 0.25 and gap to the prize line 0.31, both flat vs 08-12.** Consistent with the
+08-11 sweep's monotone-deceleration read: the head runs away while the band we chase stalls.
+No builds in flight: **`arc3-duck-effnote-eval` v1 (EFFNOTE arm, pushed 08-13) is terminal
+COMPLETE**, and `arc3-duck-animation-eval` v1 is terminal COMPLETE with its **M0 result
+still NOT pulled** (owed since 08-12). **Two result pulls are outstanding**; per the 08-13
+prereg the effnote arm's only legal primary is **B1 vs the control-spread minimum 0.3986**,
+with the arm's own first-half/second-half contrast barred. `arc3-duck-repro` and
+`arc3-duck-compaction-eval` also remain terminal COMPLETE.
+
+Refresh 2026-08-12: incorporated the 08-12 00:07Z frozen draw **1.07** (API COMPLETE,
+frozen-fork filler `canivel/arc3-duck-repro` v3) → record ledger **n=29, mean 0.9503,
+s 0.1513** (re-derived from the API by `scripts/ledger.py`, written to `runs/ledger.json`
+— no retyped prose). Interior draw, z ≈ **+0.81** vs the n=28 stats, far above the 0.80
+line ⇒ the resolved-STATIONARY watch-rule does **NOT** re-arm; **fifth consecutive
+interior result** (0.87 → 0.89 → 1.05 → 1.09 → 1.07), a marginal step down from 1.09 but
+the second-highest draw since 08-05's 1.21. **Trailing-4 mean 1.025 (was 0.975) — first
+trailing-4 above 1.00 in the record**; mean up, dispersion down again (0.1523 → 0.1513).
+Public max UNCHANGED at **1.33** — per the R25-N3 ρ̂_draw ≈ 0 finding the max is not the
+selection currency. Sealed mean-of-4 promotion bar at n=29 = **1.0876** (was 1.0848 at
+n=28 — the bar drifts with the record, so it must be re-read from `runs/ledger.json` at
+prereg time, not cached).
+LB cross-check 08-12T~06:00 local (archived `runs/lb_daily/lb_2026-08-12.csv`, top-20):
+**a new #1 by a wide margin.** **cstl enters at 2.52** (submitted 08-11 18:25) — **+0.66
+over the previous leader** YUTO KOJIMA (1.86), the largest single-entrant jump of the
+campaign and the first score above 2.0 on this board. **TOP-5 PRIZE CUTOFF TIGHTENS
+1.62 → 1.64**: cstl's insertion shifts everyone below down one rank, so #5 is now GeniusYY
+1.64 and **Tufa Labs 1.62 falls out of the prize band one day after entering it**.
+**GOLD CUTOFF (top-13) HOLDS at 1.58 for a fourth flat day**, composition shifting again:
+DhanaLakshmiMalla enters at **1.60 (#11)**, so the 1.58 pack at #12–13 is Biubiu /
+ippeiogawa and **Nkosi Ndwandwe slips #13 → #14, out of gold** (yesterday Tufa's entry
+pushed out Yuchen20, who now sits #15). Head otherwise static: Andy liu 1.69, Lord Han
+Solo 1.65, Tecnod8.AI / FOYSAL / hvp / Helmut AGI all 1.61; Mathurin Ache / anngle /
+NoOneAhead 1.56 at #16–18. Our 1.33 remains below #49; **gap to gold 0.25 unchanged, gap
+to the prize line widens 0.29 → 0.31** — i.e. the head is running away while the band we
+actually chase is flat, consistent with the 08-11 sweep's monotone-deceleration read
+(+0.003/day realized vs +0.01/day planned) at the gold line.
+No builds in flight: `arc3-duck-animation-eval` (animation-awareness arm, pushed 08-11)
+is now terminal **COMPLETE** with its **M0 result NOT yet pulled** (first item for the day
+session; M0 is the only readable endpoint per the prereg power-honesty clause), and
+`arc3-duck-repro` / `arc3-duck-compaction-eval` both remain terminal COMPLETE.
+
+Refresh 2026-08-11: incorporated the 08-11 00:07Z frozen draw **1.09** (API COMPLETE,
+frozen-fork filler `canivel/arc3-duck-repro` v3) → record ledger **n=28, mean 0.9461,
+s 0.1523** (re-derived from the API by `scripts/ledger.py`, written to `runs/ledger.json`
+— no retyped prose). Interior-high draw, z ≈ **+0.98** vs the n=27 stats, far above the
+0.80 line ⇒ the resolved-STATIONARY watch-rule does **NOT** re-arm; **fourth consecutive
+interior recovery** (0.87 → 0.89 → 1.05 → 1.09) and the highest draw since 08-05's 1.21.
+Trailing-4 mean **0.975** (was 0.8975). Public max UNCHANGED at **1.33** — 1.09 does not
+touch it, and per the R25-N3 ρ̂_draw ≈ 0 finding the max is not the selection currency.
+Sealed mean-of-4 promotion bar at n=28 = **1.0848** (was 1.0801 at n=27 — the bar drifts
+with the record, so it must be re-read from `runs/ledger.json` at prereg time, not cached).
+LB cross-check 08-11T~06:00 local (archived `runs/lb_daily/lb_2026-08-11.csv`, top-20):
+**one real entrant, and it is upstream.** **Tufa Labs enters the top-20 at 1.62 (#5)** —
+the authors of the harness our eternal-fallback fork descends from
+(`tufa-labs-duck-harness-june-30-milestone-winner`) — shifting every team below them down
+exactly one rank. **GOLD CUTOFF (top-13) HOLDS at 1.58 for a third flat day**, but the
+band composition changed: Yuchen20 is pushed **#13 → #14** and out of gold by Tufa's
+insertion, so the 1.58 pack is now Biubiu / ippeiogawa / Nkosi Ndwandwe at #11–13.
+**Top-5 prize cutoff TIGHTENS 1.61 → 1.62** (Tufa takes the #5 slot; Tecnod8.AI, FOYSAL,
+Helmut AGI at 1.61 fall to #6–8). Scott Le Grand (1.50) drops out of the archived top-20.
+Head above is otherwise static: KOJIMA 1.86 #1 (resubmitted 08-11 00:00, unchanged), Andy
+liu 1.69, Lord Han Solo 1.65, GeniusYY 1.64. Our 1.33 remains below #49; gap to gold 0.25
+unchanged, gap to the prize line widens 0.28 → 0.29. No builds in flight
+(`arc3-duck-compaction-eval` and `arc3-duck-repro` both terminal COMPLETE).
+
+**STEP-1 verification (state-of-campaign review, 2026-08-09, independent recompute):** live LB
+re-pulled (`kaggle competitions leaderboard`, top-20 archived `runs/lb_daily/lb_2026-08-09.csv`) —
+head order matches this doc exactly (KOJIMA 1.86 #1, Andy liu 1.69, Lord Han Solo 1.65, GeniusYY
+1.64; gold/top-13 line 1.58; top-5 prize line 1.61; our 1.33 below #49). Full submission ledger
+re-pulled from the Kaggle API (36 scored rows since 2026-06-26). Independent recompute of the daily
+draw distribution: over the 26 most-recent draws the mean is 0.931–0.939 and σ̂ 0.160–0.166
+depending on ledger-membership convention (whether the 07-24 A21 exploration draw and the five
+war-v1/scheduler draws are counted); the daily process's canonical **n=26, mean 0.9365, s 0.1540**
+falls inside that envelope and is confirmed to central-tendency. **The strategic point is
+unchanged and is the headline: our per-draw MEAN is ~0.93, and per host thread 729985 the prize is
+the PRIVATE twin of the two selected submissions, not public E[max] — see
+`learnings/state_of_campaign_2026-08-09.md` §A.**
+
+Refresh 2026-08-10: incorporated the 08-10 00:07Z frozen draw **1.05** (API COMPLETE,
+frozen-fork filler `canivel/arc3-duck-repro` v3) → record ledger **n=27, mean 0.9407,
+s 0.1526**. Interior-high draw (z ≈ **+0.74** vs n=26 stats), far above the 0.80 line —
+the resolved-STATIONARY watch-rule does **NOT** re-arm; **third consecutive interior
+recovery** (0.87 → 0.89 → 1.05) and the highest draw since 08-05's 1.21, trailing-4 mean
+0.8975 (was 0.9025). Our public max is UNCHANGED at **1.33** — 1.05 does not touch it,
+and per the R25-N3 ρ̂_draw ≈ 0 finding the max is not the selection currency anyway.
+LB cross-check 08-10T~06:00 local (archived `runs/lb_daily/lb_2026-08-10.csv`, top-20):
+**the top-20 is score-static vs 08-09 — every rank/score identical.** KOJIMA 1.86 frozen
+#1 (resubmitted 08-10 00:00, unchanged); Andy liu 1.69, Lord Han Solo 1.65, GeniusYY
+1.64; Tecnod8.AI / FOYSAL / Helmut AGI 1.61 (#5–7), DhanaLakshmiMalla 1.60, cstl 1.59.
+**GOLD CUTOFF (top-13) HOLDS at 1.58 — second flat day** after the 08-09 step 1.56 →
+1.58 (Biubiu, ippeiogawa, Nkosi Ndwandwe, Yuchen20 = #10–13). Top-5 prize cutoff HOLDS
+at **1.61**. The only apparent top-20 delta is **cosmetic and must not be read as churn**:
+teamId 15520570 renamed *Dinesh kumar Thiyagarajan* → *"Whatever it takes..."* (same team,
+same 1.50, same #19). Our 1.33 remains below #49; gap to gold 0.25, unchanged. No builds
+in flight (`arc3-duck-compaction-eval` and `arc3-duck-repro` both terminal COMPLETE).
+
+Refresh 2026-08-09: incorporated the 08-09 00:07Z frozen draw **0.89** (API COMPLETE,
+frozen-fork filler) → record ledger **n=26, mean 0.9365, s 0.1540**. Interior draw
+(z ≈ −0.31 vs n=25 stats), ABOVE the 0.80 line — the resolved-STATIONARY watch-rule
+does **NOT** re-arm (needs a fresh consecutive sub-0.80 pair); second consecutive
+interior recovery (0.87 → 0.89), trailing-4 mean 0.9025. LB cross-check 08-09T~06:00
+local (archived `runs/lb_daily/lb_2026-08-09.csv`, top-20): KOJIMA 1.86 frozen #1
+(resubmitted 08-09 00:03, unchanged); head order static (Andy liu 1.69, Lord Han Solo
+1.65 resubmitted unchanged, GeniusYY 1.64). **GOLD CUTOFF MOVED: top-13 line rises
+1.56 → 1.58, ending a four-day flat** — Helmut AGI enters at 1.61 (#7) and the whole
+1.58 pack (Biubiu, ippeiogawa, Nkosi Ndwandwe, Yuchen20) is now #10–13, pushing
+Mathurin Ache / anngle / NoOneAhead (1.56) out of the gold band to #14–16. Top-5 prize
+cutoff HOLDS at 1.61 (Tecnod8.AI, FOYSAL — Helmut AGI is the third 1.61 and lands #7
+on tiebreak). Our 1.33 below #49; gap to gold widens to 0.25. No builds in flight
+(compaction lane DEAD 08-07; `arc3-duck-compaction-eval` COMPLETE-terminal); day
+session = R24 FULL PANEL on the successor-lane proposal + weekly KAOS/fingerprints.
+
+Refresh 2026-08-08: incorporated the 08-08 00:07Z frozen draw **0.87** (API COMPLETE,
+frozen-fork filler) → record ledger **n=25, mean 0.9384, s 0.1569**. Interior draw
+(z ≈ −0.45 vs n=24 stats), ABOVE the 0.80 line — the fired-and-resolved-STATIONARY
+watch-rule (0.77, 0.78 on 08-06/08-07) does **NOT re-fire**; it re-arms only on a
+future sub-0.80 pair. Third-lowest of the last 5 draws but unremarkable. LB cross-check
+08-08T~06:00 local (archived `runs/lb_daily/lb_2026-08-08.csv`, top-20): KOJIMA 1.86
+frozen #1 (resubmitted 08-08 00:00, score unchanged); head order unchanged (Andy liu
+1.69, Lord Han Solo 1.65 — resubmitted 08-07 unchanged, GeniusYY 1.64); **gold cutoff
+(top-13) HOLDS at 1.56 — fourth flat day** (#13–15 Mathurin Ache / anngle / NoOneAhead);
+top-5 prize cutoff holds 1.61 (Tecnod8.AI, FOYSAL); 1.58 pack unchanged (Biubiu,
+ippeiogawa, Nkosi Ndwandwe, Yuchen20) + cstl 1.59. Our 1.33 below #49. No builds in
+flight (compaction lane DEAD 08-07; kernel COMPLETE-terminal); day session = R24 prep
+(Prime Agent / Tycho portability assessment → successor-lane proposal doc).
+
+Refresh 2026-08-07: incorporated the 08-07 00:09Z frozen draw **0.78** (API COMPLETE,
+frozen-fork filler) → record ledger **n=24, mean 0.9413, s 0.1596**. Interior-low draw
+(z ≈ −1.06 vs n=23 stats), but it is the SECOND consecutive sub-0.80 (0.77 → 0.78):
+**the pre-registered two-consecutive watch-rule FIRED** — a stationarity re-check is
+owed (precedent: 08-02 fire → NC-15 repro, verdict stationary; note both draws sit
+just under the 0.80 line vs the 0.65/0.68 dip, so prior is tail-noise, but the check
+must run). Trailing-4 mean 0.9325. LB cross-check 08-07T~06:00 local (archived
+`runs/lb_daily/lb_2026-08-07.csv`, top-20): KOJIMA 1.86 frozen #1 (resubmitted 08-07
+00:30, score unchanged); head order unchanged (Andy liu 1.69, Lord Han Solo 1.65,
+GeniusYY 1.64); **gold cutoff (top-13) HOLDS at 1.56 — third flat day** (#13–15 all
+1.56, Mathurin Ache new name at the line); 1.58 pack now 4 names + cstl 1.59 above it.
+Our 1.33 below #49. A22 v2.1 (pure-eviction, digest-OFF) kernel v3 COMPLETE overnight —
+banner canary + seed-1 K3 screen is the day-session's first action (K3 FAIL ⇒ lane DEAD).
+
+Refresh 2026-08-06: incorporated the 08-06 00:07Z frozen draw **0.77** (API COMPLETE,
+frozen-fork filler) → record ledger **n=23, mean 0.9483, s 0.1594**. Low draw
+(z ≈ −1.18 vs n=22 stats): below the quoted 0.82 band-low but above the 0.65 record
+low; FIRST sub-0.80 since the 07-31/08-02 dip (0.65/0.68) — **watch-rule ARMED, not
+fired** (fires on two consecutive sub-0.80; prior draw was 1.21). Snapping back from
+the 1.21 high to 0.77 in one day re-confirms the frozen artifact's own variance spans
+~0.6 of LB. LB cross-check 08-06T~06:00 local (archived `runs/lb_daily/lb_2026-08-06.csv`
+— first day of the daily CSV archive, process-gap fix from the 08-04 intel sweep):
+KOJIMA 1.86 frozen #1; head order unchanged (Andy liu 1.69, Lord Han Solo 1.65,
+GeniusYY 1.64); gold cutoff (top-13) HOLDS at 1.56 (second flat day); top-10 cutoff
+1.58, the dense pack at 1.58 persists and gained a NEW name (Nkosi Ndwandwe) — shared
+public-artifact signature strengthening. Our 1.33 below #49; A22 v2 build COMPLETE
+overnight, banner read + M1 screen is today's action.
+
+Refresh 2026-08-05: incorporated the 08-05 00:07Z frozen draw **1.21** (API COMPLETE,
+frozen-fork filler) → record ledger **n=22, mean 0.9564, s 0.1582**. Interior but strong
+(z ≈ +1.76 vs n=21 stats): highest draw since the 07-18 record 1.33; no band change
+(0.82–1.33 holds), no watch-rule (rules watch the low side); fourth consecutive
+interior draw — stationarity verdict keeps holding, and the high tail is a reminder
+the frozen artifact's own variance spans ~0.7 of LB. LB cross-check 08-05T~12:30Z:
+KOJIMA 1.86 frozen; **NEW #3 Lord Han Solo 1.65**; gold cutoff (top-13) HOLDS at 1.56
+(first non-rising day since 07-28), top-10 cutoff 1.58 with a dense 4-way pack at
+1.58 — the pack suggests a shared public artifact at 1.58, i.e. the effective
+"published ceiling" may have moved above the 1.47 boristown anchor. Our 1.33 slide
+continues; A22 v2 (region-aware eviction) is the lane — eval push today,
+measurement-only.
+
+Refresh 2026-08-04: incorporated the 08-04 00:07Z frozen draw **0.97** (API COMPLETE,
+frozen-fork filler) → record ledger **n=21, mean 0.9443, s 0.1514**. Interior draw
+(z ≈ +0.17 vs n=20 stats): no watch-rule fire, no band change; third consecutive
+interior draw post the 0.65/0.68 dip (stationarity verdict holding). LB cross-check
+08-04T~13:00Z: head frozen (KOJIMA 1.86, Andy liu 1.69, GeniusYY 1.64); **gold cutoff
+(top-13) risen AGAIN to 1.56** (08-03: 1.54; 07-28: 1.49), top-10 cutoff 1.58; new
+name FOYSAL 1.61 at #5. Drift rate ~0.02/day at the gold line — our 1.33 keeps
+sliding on pure drift; only a mechanism win moves us (A22 v2 is the lane).
+
+Refresh 2026-08-03: incorporated the 08-03 00:07Z frozen draw **0.99** (API COMPLETE,
+"frozen-fork filler (eternal fallback)") → record ledger **n=20, mean 0.9430, s 0.1552**.
+0.99 is interior (z ≈ +0.31 vs prior n=19 stats): no band change, no watch-rule fire; the
+0.65/0.68 dip did NOT continue (consistent with the NC-15 stationarity verdict — n₂=2 tail
+artifact, not a regime change). Paired harm-pause rule (trailing-4 −1.5s) applies to gated
+arms only; not evaluated on filler draws. LB cross-check 08-03T~12:30Z: head frozen
+(KOJIMA 1.86), #2 Andy liu 1.69 (NEW since 08-02), #3 GeniusYY 1.64; **gold band risen
+again — 1.54 is now ~#13–14, top-10 cutoff ≈ 1.56–1.58** (was 1.54 on 08-02, 1.49 on
+07-28). Our 1.33 continues its pure-drift rank slide.
 
 Refresh 2026-08-02: incorporated the 08-02 00:07Z frozen draw **0.68** (API COMPLETE,
 "frozen-fork filler (eternal fallback)") → record ledger **n=19, mean 0.9405, s 0.1590**.
@@ -36,8 +291,8 @@ arc-prize-2026-arc-agi-3. Verification command:
 
 ## Draw-by-draw scored ledger (all API-verified)
 
-Frozen-fork record ledger (n=18): 0.82, 0.89, 0.93, 1.02, 0.95, 1.33, 0.92, 0.93, 1.14,
-0.82, 1.05, 0.84, 1.02, 0.90, 1.03, 0.85, 1.10, 0.65 → mean 0.9550, s ≈ 0.1500
+Frozen-fork record ledger (n=20): 0.82, 0.89, 0.93, 1.02, 0.95, 1.33, 0.92, 0.93, 1.14,
+0.82, 1.05, 0.84, 1.02, 0.90, 1.03, 0.85, 1.10, 0.65, 0.68, 0.99 → mean 0.9430, s ≈ 0.1552
 (recomputed `uv run python`; was n=17 / 0.9729 / 0.1332 before the 08-01 draw — mean
 dropped 0.018, s widened 0.013 from the single 0.65 low draw). **A/B control
 parameters remain FROZEN at n=15 (mean 0.9727, s 0.1343) per the sealed prereg draft

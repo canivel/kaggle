@@ -1,0 +1,107 @@
+{
+  "generated_at": "2026-08-14T02:09:58Z",
+  "split": "train",
+  "environments_dir": "F:\\kaggle\\arc-prize-2026\\runs\\harness_diff_0813\\ds\\jeroencottaar_taaf-kaggle-source\\src\\re-arc-3\\re_arc\\environment_files",
+  "config": {
+    "out": "F:/kaggle/arc-prize-2026/runs/lora_lane/v1deep",
+    "limit": 40,
+    "target_examples": 600,
+    "max_actions": 240,
+    "target_levels": 4,
+    "first_batch": 3,
+    "batch_size": 8,
+    "min_ratio": 0.6,
+    "split": "train",
+    "seed": 0,
+    "seeds": 2,
+    "shard": "6/8",
+    "games": "airtime_glider-0001,alternating_helpers-0001,beat_dock_buttons-0001,blink-0001,bottomless_pit-0001,easy_taps-0001,fan_drift-0001,flood_fill-0001,flux-0001,frequency_lock-0001,ghost-0001,glyph-0001,junction_click_maze-0001,laseretch,leap_frog-0001,match_sliders-0001,maze-0001,mirrorshot-0001,pathfinder-0001,pattern_match_sequence-0001,pick_and_place-0001,re_create-0001,rook-0001,rotate_pattern-0002,rotor_junction-0001,scale_gate_flood-0001,sliders-0001,ss99-0001,stack_equalizer-0001,taps-0001,trail_follow_touch_all_floor_a1-0001,weav-0001,wire_the_circuit-0001",
+    "inline_images": false
+  },
+  "counts": {
+    "envs_attempted": 4,
+    "envs_with_usable_plan": 4,
+    "examples": 11,
+    "distinct_images": 54,
+    "image_refs": 22
+  },
+  "split_sizes": {
+    "train": 129,
+    "dev": 36,
+    "eval": 25
+  },
+  "efficiency": {
+    "ratio_human_over_agent_mean": 0.932,
+    "ratio_median": 1.0,
+    "ratio_min": 0.727,
+    "ratio_max": 1.0,
+    "at_or_better_than_human": 3,
+    "total_plan_actions": 35,
+    "total_human_actions": 32,
+    "total_raw_search_actions": 387
+  },
+  "click_rendering": {
+    "derived_clicks": 6,
+    "literal_clicks": 2,
+    "derived_click_fraction": 0.75
+  },
+  "wall_clock_s": 105.9,
+  "per_game": [
+    {
+      "game_id": "fan_drift-0001",
+      "raw_actions": 40,
+      "pruned_actions": 5,
+      "levels": 1,
+      "human_actions": 5,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 12.1,
+      "status": "ok",
+      "turns": 2,
+      "derived_clicks": 3,
+      "literal_clicks": 1
+    },
+    {
+      "game_id": "leap_frog-0001",
+      "raw_actions": 43,
+      "pruned_actions": 4,
+      "levels": 1,
+      "human_actions": 4,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 25.3,
+      "status": "ok",
+      "turns": 2,
+      "derived_clicks": 3,
+      "literal_clicks": 1
+    },
+    {
+      "game_id": "rook-0001",
+      "raw_actions": 240,
+      "pruned_actions": 11,
+      "levels": 2,
+      "human_actions": 8,
+      "ratio": 0.727,
+      "verified": true,
+      "search_s": 36.0,
+      "status": "ok",
+      "turns": 4,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "trail_follow_touch_all_floor_a1-0001",
+      "raw_actions": 64,
+      "pruned_actions": 15,
+      "levels": 1,
+      "human_actions": 15,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 25.9,
+      "status": "ok",
+      "turns": 3,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    }
+  ]
+}

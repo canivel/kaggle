@@ -1,0 +1,149 @@
+{
+  "generated_at": "2026-08-14T02:26:04Z",
+  "split": "train",
+  "environments_dir": "F:\\kaggle\\arc-prize-2026\\runs\\harness_diff_0813\\ds\\jeroencottaar_taaf-kaggle-source\\src\\re-arc-3\\re_arc\\environment_files",
+  "config": {
+    "out": "F:/kaggle/arc-prize-2026/runs/lora_lane/v1hard",
+    "limit": 96,
+    "target_examples": 600,
+    "max_actions": 200,
+    "target_levels": 2,
+    "first_batch": 3,
+    "batch_size": 8,
+    "min_ratio": 0.45,
+    "split": "train",
+    "seed": 0,
+    "seeds": 6,
+    "shard": "0/6",
+    "games": "avoid_the_lava_timed_hazards-0001,axis_reflect-0001,bombdroptactics-0001,boulder_mirror_beam_combo-0001,boulder_push_roll-0001,breakout-0001,catch_eggs-0001,circuit_connect_path_drawing_by_clicks-0001,coin_collector_collect_all-0001,color_washer_route-0001,column_sculptor-0001,command_twins-0001,corner_hall_match-0001,crane_dipper-0001,dash_puzzle-0001,deliver_the_package-0001,dodge_ball-0001,domino_socket-0001,footprint_walker-0001,frogger-0001,ft09_close-0001,gravity_flip-0001,gravity_platformer-0001,greedy_friend_meeting-0001,grid_archery-0001,hazard_baton-0001,hazard_skip_portals-0001,herding-0001,hinge_bridge-0001,hll1-0001,ice_stop-0001,js26-0001,key_door-0001,lantern_moths-0001,latch_bridges-0001,latch_holders-0001,light_out-0001,light_shadow-0001,limited_turns-0001,locksmith_warded_routes-0001,ls20_close-0001,magnet-0001,make_all_same-0001,maze_runner_reach_the_goal-0001,mirror_greedy_friend-0001,mirror_match-0001,mirrored-0001,moving_platforms_manual_animation-0001,nonogram_picross_lite_visual_clues-0001,one_enemy_duel-0001,one_screen_precision_jumps-0001,one_way_warp_maze-0001,outline_painter_pads-0001,paint_snakes-0001,path_connect_sequence-0001,pattern_match_sequence_2-0001,pong_solo_training_walls-0001,push-0001,push_enemies_into_hazards-0001,pushlane-0001,pushonlybridges-0001,reticle-0001,roomswap-0001,row_pulse_packing-0001,rows-0001,sf01-0001,shape_mold_gpt-0001,shortest_route_challenge-0001,signal_chain-0001,skewer-0001,sokoban-0001,split_wing_maze-0001,splitlink-0001,stamp_press-0001,switch_doors_toggle_walls-0001,sync-0001,szgt-0001,teleport_maze-0001,teleport_pads_click_to_select_destination-0001,timed_patrol_crossing-0001,timing_gate-0001,tron_light_cycles-0001,turn-0001,warp_hallways-0001,wide_body_ember_route-0001,winch_line-0001,windmolen-0001,zigclick-0001,debug_identify_the_agent-0001,identify_the_agent-0002,keys-0001,memory-0001,orbx-0001,sliding_rows-0001,splitpathclick-0001,swch-0001",
+    "inline_images": false
+  },
+  "counts": {
+    "envs_attempted": 16,
+    "envs_with_usable_plan": 2,
+    "examples": 11,
+    "distinct_images": 27,
+    "image_refs": 56
+  },
+  "split_sizes": {
+    "train": 129,
+    "dev": 36,
+    "eval": 25
+  },
+  "efficiency": {
+    "ratio_human_over_agent_mean": 0.792,
+    "ratio_median": 0.792,
+    "ratio_min": 0.585,
+    "ratio_max": 1.0,
+    "at_or_better_than_human": 1,
+    "total_plan_actions": 68,
+    "total_human_actions": 41,
+    "total_raw_search_actions": 202
+  },
+  "click_rendering": {
+    "derived_clicks": 0,
+    "literal_clicks": 0,
+    "derived_click_fraction": 0.0
+  },
+  "wall_clock_s": 1062.2,
+  "per_game": [
+    {
+      "game_id": "avoid_the_lava_timed_hazards-0001",
+      "status": "no_plan",
+      "search_s": 21.5
+    },
+    {
+      "game_id": "catch_eggs-0001",
+      "status": "no_plan",
+      "search_s": 1.1
+    },
+    {
+      "game_id": "corner_hall_match-0001",
+      "status": "no_plan",
+      "search_s": 3.3
+    },
+    {
+      "game_id": "footprint_walker-0001",
+      "status": "no_plan",
+      "search_s": 37.1
+    },
+    {
+      "game_id": "grid_archery-0001",
+      "status": "no_plan",
+      "search_s": 48.8
+    },
+    {
+      "game_id": "ice_stop-0001",
+      "raw_actions": 14,
+      "pruned_actions": 3,
+      "levels": 1,
+      "human_actions": 3,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 45.9,
+      "status": "ok",
+      "turns": 1,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "light_out-0001",
+      "status": "no_plan",
+      "search_s": 9.7
+    },
+    {
+      "game_id": "make_all_same-0001",
+      "status": "no_plan",
+      "search_s": 7.2
+    },
+    {
+      "game_id": "nonogram_picross_lite_visual_clues-0001",
+      "status": "no_plan",
+      "search_s": 15.1
+    },
+    {
+      "game_id": "path_connect_sequence-0001",
+      "status": "no_plan",
+      "search_s": 299.1
+    },
+    {
+      "game_id": "pushonlybridges-0001",
+      "status": "no_plan",
+      "search_s": 95.1
+    },
+    {
+      "game_id": "shape_mold_gpt-0001",
+      "status": "no_plan",
+      "search_s": 35.0
+    },
+    {
+      "game_id": "splitlink-0001",
+      "status": "no_plan",
+      "search_s": 23.6
+    },
+    {
+      "game_id": "teleport_pads_click_to_select_destination-0001",
+      "status": "no_plan",
+      "search_s": 273.2
+    },
+    {
+      "game_id": "wide_body_ember_route-0001",
+      "status": "no_plan",
+      "search_s": 64.3
+    },
+    {
+      "game_id": "keys-0001",
+      "raw_actions": 188,
+      "pruned_actions": 65,
+      "levels": 2,
+      "human_actions": 38,
+      "ratio": 0.585,
+      "verified": true,
+      "search_s": 70.1,
+      "status": "ok",
+      "turns": 10,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "generated_at": "2026-08-14T02:24:31Z",
+  "split": "train",
+  "environments_dir": "F:\\kaggle\\arc-prize-2026\\runs\\harness_diff_0813\\ds\\jeroencottaar_taaf-kaggle-source\\src\\re-arc-3\\re_arc\\environment_files",
+  "config": {
+    "out": "F:/kaggle/arc-prize-2026/runs/lora_lane/v1hard",
+    "limit": 96,
+    "target_examples": 600,
+    "max_actions": 200,
+    "target_levels": 2,
+    "first_batch": 3,
+    "batch_size": 8,
+    "min_ratio": 0.45,
+    "split": "train",
+    "seed": 0,
+    "seeds": 6,
+    "shard": "1/6",
+    "games": "avoid_the_lava_timed_hazards-0001,axis_reflect-0001,bombdroptactics-0001,boulder_mirror_beam_combo-0001,boulder_push_roll-0001,breakout-0001,catch_eggs-0001,circuit_connect_path_drawing_by_clicks-0001,coin_collector_collect_all-0001,color_washer_route-0001,column_sculptor-0001,command_twins-0001,corner_hall_match-0001,crane_dipper-0001,dash_puzzle-0001,deliver_the_package-0001,dodge_ball-0001,domino_socket-0001,footprint_walker-0001,frogger-0001,ft09_close-0001,gravity_flip-0001,gravity_platformer-0001,greedy_friend_meeting-0001,grid_archery-0001,hazard_baton-0001,hazard_skip_portals-0001,herding-0001,hinge_bridge-0001,hll1-0001,ice_stop-0001,js26-0001,key_door-0001,lantern_moths-0001,latch_bridges-0001,latch_holders-0001,light_out-0001,light_shadow-0001,limited_turns-0001,locksmith_warded_routes-0001,ls20_close-0001,magnet-0001,make_all_same-0001,maze_runner_reach_the_goal-0001,mirror_greedy_friend-0001,mirror_match-0001,mirrored-0001,moving_platforms_manual_animation-0001,nonogram_picross_lite_visual_clues-0001,one_enemy_duel-0001,one_screen_precision_jumps-0001,one_way_warp_maze-0001,outline_painter_pads-0001,paint_snakes-0001,path_connect_sequence-0001,pattern_match_sequence_2-0001,pong_solo_training_walls-0001,push-0001,push_enemies_into_hazards-0001,pushlane-0001,pushonlybridges-0001,reticle-0001,roomswap-0001,row_pulse_packing-0001,rows-0001,sf01-0001,shape_mold_gpt-0001,shortest_route_challenge-0001,signal_chain-0001,skewer-0001,sokoban-0001,split_wing_maze-0001,splitlink-0001,stamp_press-0001,switch_doors_toggle_walls-0001,sync-0001,szgt-0001,teleport_maze-0001,teleport_pads_click_to_select_destination-0001,timed_patrol_crossing-0001,timing_gate-0001,tron_light_cycles-0001,turn-0001,warp_hallways-0001,wide_body_ember_route-0001,winch_line-0001,windmolen-0001,zigclick-0001,debug_identify_the_agent-0001,identify_the_agent-0002,keys-0001,memory-0001,orbx-0001,sliding_rows-0001,splitpathclick-0001,swch-0001",
+    "inline_images": false
+  },
+  "counts": {
+    "envs_attempted": 16,
+    "envs_with_usable_plan": 2,
+    "examples": 7,
+    "distinct_images": 19,
+    "image_refs": 18
+  },
+  "split_sizes": {
+    "train": 129,
+    "dev": 36,
+    "eval": 25
+  },
+  "efficiency": {
+    "ratio_human_over_agent_mean": 0.834,
+    "ratio_median": 0.834,
+    "ratio_min": 0.667,
+    "ratio_max": 1.0,
+    "at_or_better_than_human": 1,
+    "total_plan_actions": 17,
+    "total_human_actions": 13,
+    "total_raw_search_actions": 103
+  },
+  "click_rendering": {
+    "derived_clicks": 1,
+    "literal_clicks": 0,
+    "derived_click_fraction": 1.0
+  },
+  "wall_clock_s": 969.2,
+  "per_game": [
+    {
+      "game_id": "axis_reflect-0001",
+      "raw_actions": 33,
+      "pruned_actions": 12,
+      "levels": 2,
+      "human_actions": 8,
+      "ratio": 0.667,
+      "verified": true,
+      "search_s": 22.7,
+      "status": "ok",
+      "turns": 5,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "circuit_connect_path_drawing_by_clicks-0001",
+      "status": "no_plan",
+      "search_s": 91.2
+    },
+    {
+      "game_id": "crane_dipper-0001",
+      "raw_actions": 70,
+      "pruned_actions": 5,
+      "levels": 1,
+      "human_actions": 5,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 57.6,
+      "status": "ok",
+      "turns": 2,
+      "derived_clicks": 1,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "frogger-0001",
+      "status": "no_plan",
+      "search_s": 3.7
+    },
+    {
+      "game_id": "hazard_baton-0001",
+      "status": "no_plan",
+      "search_s": 34.7
+    },
+    {
+      "game_id": "js26-0001",
+      "status": "no_plan",
+      "search_s": 38.8
+    },
+    {
+      "game_id": "light_shadow-0001",
+      "status": "no_plan",
+      "search_s": 51.9
+    },
+    {
+      "game_id": "maze_runner_reach_the_goal-0001",
+      "status": "no_plan",
+      "search_s": 20.1
+    },
+    {
+      "game_id": "one_enemy_duel-0001",
+      "status": "no_plan",
+      "search_s": 192.9
+    },
+    {
+      "game_id": "pattern_match_sequence_2-0001",
+      "status": "no_plan",
+      "search_s": 237.7
+    },
+    {
+      "game_id": "reticle-0001",
+      "status": "no_plan",
+      "search_s": 3.6
+    },
+    {
+      "game_id": "shortest_route_challenge-0001",
+      "status": "no_plan",
+      "search_s": 5.9
+    },
+    {
+      "game_id": "stamp_press-0001",
+      "status": "no_plan",
+      "search_s": 28.6
+    },
+    {
+      "game_id": "timed_patrol_crossing-0001",
+      "status": "no_plan",
+      "search_s": 40.8
+    },
+    {
+      "game_id": "winch_line-0001",
+      "status": "no_plan",
+      "search_s": 31.0
+    },
+    {
+      "game_id": "memory-0001",
+      "raw_actions": 129,
+      "pruned_actions": 68,
+      "levels": 2,
+      "human_actions": 19,
+      "ratio": 0.279,
+      "verified": true,
+      "search_s": 104.7,
+      "status": "below_efficiency_floor"
+    }
+  ]
+}

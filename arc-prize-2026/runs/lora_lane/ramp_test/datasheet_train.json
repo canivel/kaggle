@@ -1,0 +1,142 @@
+{
+  "generated_at": "2026-08-14T02:35:37Z",
+  "split": "train",
+  "environments_dir": "F:\\kaggle\\arc-prize-2026\\runs\\harness_diff_0813\\ds\\jeroencottaar_taaf-kaggle-source\\src\\re-arc-3\\re_arc\\environment_files",
+  "config": {
+    "out": "F:/kaggle/arc-prize-2026/runs/lora_lane/ramp_test",
+    "limit": 6,
+    "target_examples": 80,
+    "max_actions": 160,
+    "target_levels": 2,
+    "first_batch": 3,
+    "batch_size": 32,
+    "min_ratio": 0.6,
+    "split": "train",
+    "seed": 0,
+    "seeds": 2,
+    "noops_per_level": 1,
+    "shard": "0/1",
+    "games": "alternating_helpers-0001,pathfinder-0001,mirrorshot-0001,maze-0001,blink-0001,airtime_glider-0001",
+    "inline_images": false
+  },
+  "counts": {
+    "envs_attempted": 6,
+    "envs_with_usable_plan": 6,
+    "examples": 38,
+    "distinct_images": 31,
+    "image_refs": 144
+  },
+  "split_sizes": {
+    "train": 129,
+    "dev": 36,
+    "eval": 25
+  },
+  "efficiency": {
+    "ratio_human_over_agent_mean": 0.865,
+    "ratio_median": 0.859,
+    "ratio_min": 0.7,
+    "ratio_max": 1.0,
+    "at_or_better_than_human": 1,
+    "total_plan_actions": 256,
+    "total_human_actions": 241,
+    "total_raw_search_actions": 386
+  },
+  "click_rendering": {
+    "derived_clicks": 18,
+    "literal_clicks": 4,
+    "derived_click_fraction": 0.818
+  },
+  "wall_clock_s": 175.6,
+  "per_game": [
+    {
+      "game_id": "alternating_helpers-0001",
+      "raw_actions": 10,
+      "pruned_actions": 11,
+      "levels": 2,
+      "human_actions": 9,
+      "ratio": 0.818,
+      "verified": true,
+      "search_s": 3.9,
+      "noops_injected": 2,
+      "status": "ok",
+      "turns": 6,
+      "derived_clicks": 7,
+      "literal_clicks": 4
+    },
+    {
+      "game_id": "pathfinder-0001",
+      "raw_actions": 18,
+      "pruned_actions": 20,
+      "levels": 2,
+      "human_actions": 18,
+      "ratio": 0.9,
+      "verified": true,
+      "search_s": 3.9,
+      "noops_injected": 2,
+      "status": "ok",
+      "turns": 6,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "mirrorshot-0001",
+      "raw_actions": 11,
+      "pruned_actions": 10,
+      "levels": 2,
+      "human_actions": 7,
+      "ratio": 0.7,
+      "verified": true,
+      "search_s": 4.9,
+      "noops_injected": 1,
+      "status": "ok",
+      "turns": 4,
+      "derived_clicks": 5,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "maze-0001",
+      "raw_actions": 70,
+      "pruned_actions": 71,
+      "levels": 2,
+      "human_actions": 70,
+      "ratio": 0.986,
+      "verified": true,
+      "search_s": 15.5,
+      "noops_injected": 1,
+      "status": "ok",
+      "turns": 8,
+      "derived_clicks": 2,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "blink-0001",
+      "raw_actions": 117,
+      "pruned_actions": 33,
+      "levels": 2,
+      "human_actions": 26,
+      "ratio": 0.788,
+      "verified": true,
+      "search_s": 81.2,
+      "noops_injected": 1,
+      "status": "ok",
+      "turns": 7,
+      "derived_clicks": 4,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "airtime_glider-0001",
+      "raw_actions": 160,
+      "pruned_actions": 111,
+      "levels": 1,
+      "human_actions": 111,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 23.3,
+      "noops_injected": 0,
+      "status": "ok",
+      "turns": 7,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    }
+  ]
+}

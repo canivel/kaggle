@@ -1,0 +1,185 @@
+{
+  "generated_at": "2026-08-14T00:22:50Z",
+  "split": "train",
+  "environments_dir": "F:\\kaggle\\arc-prize-2026\\runs\\harness_diff_0813\\ds\\jeroencottaar_taaf-kaggle-source\\src\\re-arc-3\\re_arc\\environment_files",
+  "config": {
+    "out": "F:/kaggle/arc-prize-2026/runs/lora_lane/v0",
+    "limit": 129,
+    "target_examples": 400,
+    "max_actions": 120,
+    "target_levels": 2,
+    "first_batch": 3,
+    "batch_size": 8,
+    "min_ratio": 0.6,
+    "split": "train",
+    "seed": 0,
+    "seeds": 3,
+    "shard": "4/6",
+    "inline_images": false
+  },
+  "counts": {
+    "envs_attempted": 21,
+    "envs_with_usable_plan": 2,
+    "examples": 2,
+    "distinct_images": 107,
+    "image_refs": 2
+  },
+  "split_sizes": {
+    "train": 129,
+    "dev": 36,
+    "eval": 25
+  },
+  "efficiency": {
+    "ratio_human_over_agent_mean": 1.167,
+    "ratio_median": 1.167,
+    "ratio_min": 1.0,
+    "ratio_max": 1.333,
+    "at_or_better_than_human": 2,
+    "total_plan_actions": 6,
+    "total_human_actions": 7,
+    "total_raw_search_actions": 28
+  },
+  "click_rendering": {
+    "derived_clicks": 5,
+    "literal_clicks": 1,
+    "derived_click_fraction": 0.833
+  },
+  "wall_clock_s": 523.9,
+  "per_game": [
+    {
+      "game_id": "beat_dock_buttons-0001",
+      "raw_actions": 18,
+      "pruned_actions": 3,
+      "levels": 1,
+      "human_actions": 3,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 10.1,
+      "status": "ok",
+      "turns": 1,
+      "derived_clicks": 3,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "breakout-0001",
+      "status": "no_plan",
+      "search_s": 10.7
+    },
+    {
+      "game_id": "command_twins-0001",
+      "status": "no_plan",
+      "search_s": 0.7
+    },
+    {
+      "game_id": "dodge_ball-0001",
+      "status": "no_plan",
+      "search_s": 1.2
+    },
+    {
+      "game_id": "footprint_walker-0001",
+      "status": "no_plan",
+      "search_s": 12.7
+    },
+    {
+      "game_id": "gravity_flip-0001",
+      "status": "no_plan",
+      "search_s": 0.8
+    },
+    {
+      "game_id": "herding-0001",
+      "status": "no_plan",
+      "search_s": 37.1
+    },
+    {
+      "game_id": "junction_click_maze-0001",
+      "raw_actions": 10,
+      "pruned_actions": 3,
+      "levels": 1,
+      "human_actions": 4,
+      "ratio": 1.333,
+      "verified": true,
+      "search_s": 6.9,
+      "status": "ok",
+      "turns": 1,
+      "derived_clicks": 2,
+      "literal_clicks": 1
+    },
+    {
+      "game_id": "latch_holders-0001",
+      "status": "no_plan",
+      "search_s": 171.6
+    },
+    {
+      "game_id": "ls20_close-0001",
+      "status": "no_plan",
+      "search_s": 65.3
+    },
+    {
+      "game_id": "memory-0001",
+      "raw_actions": 81,
+      "pruned_actions": 21,
+      "levels": 1,
+      "human_actions": 6,
+      "ratio": 0.286,
+      "verified": true,
+      "search_s": 22.8,
+      "status": "below_efficiency_floor"
+    },
+    {
+      "game_id": "nonogram_picross_lite_visual_clues-0001",
+      "status": "no_plan",
+      "search_s": 5.6
+    },
+    {
+      "game_id": "paint_snakes-0001",
+      "status": "no_plan",
+      "search_s": 4.8
+    },
+    {
+      "game_id": "pong_solo_training_walls-0001",
+      "status": "no_plan",
+      "search_s": 8.9
+    },
+    {
+      "game_id": "reticle-0001",
+      "status": "no_plan",
+      "search_s": 1.4
+    },
+    {
+      "game_id": "rows-0001",
+      "status": "no_plan",
+      "search_s": 9.3
+    },
+    {
+      "game_id": "skewer-0001",
+      "status": "no_plan",
+      "search_s": 5.5
+    },
+    {
+      "game_id": "splitpathclick-0001",
+      "raw_actions": 13,
+      "pruned_actions": 7,
+      "levels": 1,
+      "human_actions": 4,
+      "ratio": 0.571,
+      "verified": true,
+      "search_s": 14.5,
+      "status": "below_efficiency_floor"
+    },
+    {
+      "game_id": "sync-0001",
+      "status": "no_plan",
+      "search_s": 12.3
+    },
+    {
+      "game_id": "timing_gate-0001",
+      "status": "no_plan",
+      "search_s": 89.8
+    },
+    {
+      "game_id": "wide_body_ember_route-0001",
+      "status": "no_plan",
+      "search_s": 30.4
+    }
+  ]
+}

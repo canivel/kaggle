@@ -1,0 +1,5 @@
+{
+  "TAAF_KAGGLE_DATASET_SOURCES": "[\"jeroencottaar/taaf-kaggle-source-share\", \"jcole75/arc3-qwen36-runtime-wheels\", \"ippeiogawa/qwen35-122b-a10b-nvfp4\"]",
+  "TAAF_KAGGLE_INPUT_PATHS": "{\"ippeiogawa/qwen35-122b-a10b-nvfp4\": \"/kaggle/input/datasets/ippeiogawa/qwen35-122b-a10b-nvfp4\", \"jcole75/arc3-qwen36-runtime-wheels\": \"/kaggle/input/datasets/jcole75/arc3-qwen36-runtime-wheels\", \"jeroencottaar/taaf-kaggle-source-share\": \"/kaggle/input/datasets/jeroencottaar/taaf-kaggle-source-share\"}",
+  "TAAF_KAGGLE_KERNEL_SOURCES": "[]"
+}

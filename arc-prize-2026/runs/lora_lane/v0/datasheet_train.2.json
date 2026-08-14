@@ -1,0 +1,238 @@
+{
+  "generated_at": "2026-08-14T00:24:40Z",
+  "split": "train",
+  "environments_dir": "F:\\kaggle\\arc-prize-2026\\runs\\harness_diff_0813\\ds\\jeroencottaar_taaf-kaggle-source\\src\\re-arc-3\\re_arc\\environment_files",
+  "config": {
+    "out": "F:/kaggle/arc-prize-2026/runs/lora_lane/v0",
+    "limit": 129,
+    "target_examples": 400,
+    "max_actions": 120,
+    "target_levels": 2,
+    "first_batch": 3,
+    "batch_size": 8,
+    "min_ratio": 0.6,
+    "split": "train",
+    "seed": 0,
+    "seeds": 3,
+    "shard": "2/6",
+    "inline_images": false
+  },
+  "counts": {
+    "envs_attempted": 22,
+    "envs_with_usable_plan": 6,
+    "examples": 31,
+    "distinct_images": 122,
+    "image_refs": 127
+  },
+  "split_sizes": {
+    "train": 129,
+    "dev": 36,
+    "eval": 25
+  },
+  "efficiency": {
+    "ratio_human_over_agent_mean": 0.916,
+    "ratio_median": 0.896,
+    "ratio_min": 0.778,
+    "ratio_max": 1.111,
+    "at_or_better_than_human": 2,
+    "total_plan_actions": 154,
+    "total_human_actions": 146,
+    "total_raw_search_actions": 231
+  },
+  "click_rendering": {
+    "derived_clicks": 47,
+    "literal_clicks": 9,
+    "derived_click_fraction": 0.839
+  },
+  "wall_clock_s": 633.4,
+  "per_game": [
+    {
+      "game_id": "avoid_the_lava_timed_hazards-0001",
+      "status": "no_plan",
+      "search_s": 6.9
+    },
+    {
+      "game_id": "boulder_mirror_beam_combo-0001",
+      "status": "no_plan",
+      "search_s": 69.8
+    },
+    {
+      "game_id": "color_washer_route-0001",
+      "status": "no_plan",
+      "search_s": 11.8
+    },
+    {
+      "game_id": "debug_identify_the_agent-0001",
+      "raw_actions": 120,
+      "pruned_actions": 8,
+      "levels": 1,
+      "human_actions": 4,
+      "ratio": 0.5,
+      "verified": true,
+      "search_s": 8.5,
+      "status": "below_efficiency_floor"
+    },
+    {
+      "game_id": "flood_fill-0001",
+      "raw_actions": 19,
+      "pruned_actions": 11,
+      "levels": 2,
+      "human_actions": 9,
+      "ratio": 0.818,
+      "verified": true,
+      "search_s": 7.8,
+      "status": "ok",
+      "turns": 3,
+      "derived_clicks": 9,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "ghost-0001",
+      "raw_actions": 40,
+      "pruned_actions": 15,
+      "levels": 2,
+      "human_actions": 13,
+      "ratio": 0.867,
+      "verified": true,
+      "search_s": 34.2,
+      "status": "ok",
+      "turns": 4,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "hazard_baton-0001",
+      "status": "no_plan",
+      "search_s": 15.7
+    },
+    {
+      "game_id": "identify_the_agent-0002",
+      "raw_actions": 120,
+      "pruned_actions": 32,
+      "levels": 1,
+      "human_actions": 19,
+      "ratio": 0.594,
+      "verified": true,
+      "search_s": 12.4,
+      "status": "below_efficiency_floor"
+    },
+    {
+      "game_id": "laseretch",
+      "raw_actions": 55,
+      "pruned_actions": 40,
+      "levels": 2,
+      "human_actions": 37,
+      "ratio": 0.925,
+      "verified": true,
+      "search_s": 13.5,
+      "status": "ok",
+      "turns": 8,
+      "derived_clicks": 23,
+      "literal_clicks": 9
+    },
+    {
+      "game_id": "limited_turns-0001",
+      "status": "no_plan",
+      "search_s": 1.4
+    },
+    {
+      "game_id": "maze-0001",
+      "raw_actions": 70,
+      "pruned_actions": 70,
+      "levels": 2,
+      "human_actions": 70,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 13.2,
+      "status": "ok",
+      "turns": 11,
+      "derived_clicks": 2,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "mirrorshot-0001",
+      "raw_actions": 11,
+      "pruned_actions": 9,
+      "levels": 2,
+      "human_actions": 7,
+      "ratio": 0.778,
+      "verified": true,
+      "search_s": 4.1,
+      "status": "ok",
+      "turns": 3,
+      "derived_clicks": 5,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "orbx-0001",
+      "raw_actions": 120,
+      "pruned_actions": 27,
+      "levels": 1,
+      "human_actions": 10,
+      "ratio": 0.37,
+      "verified": true,
+      "search_s": 24.4,
+      "status": "below_efficiency_floor"
+    },
+    {
+      "game_id": "pattern_match_sequence_2-0001",
+      "status": "no_plan",
+      "search_s": 49.9
+    },
+    {
+      "game_id": "pushonlybridges-0001",
+      "status": "no_plan",
+      "search_s": 34.7
+    },
+    {
+      "game_id": "rotor_junction-0001",
+      "raw_actions": 36,
+      "pruned_actions": 9,
+      "levels": 1,
+      "human_actions": 10,
+      "ratio": 1.111,
+      "verified": true,
+      "search_s": 16.5,
+      "status": "ok",
+      "turns": 2,
+      "derived_clicks": 8,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "shortest_route_challenge-0001",
+      "status": "no_plan",
+      "search_s": 2.6
+    },
+    {
+      "game_id": "split_wing_maze-0001",
+      "status": "no_plan",
+      "search_s": 44.6
+    },
+    {
+      "game_id": "swch-0001",
+      "raw_actions": 108,
+      "pruned_actions": 58,
+      "levels": 2,
+      "human_actions": 28,
+      "ratio": 0.483,
+      "verified": true,
+      "search_s": 35.7,
+      "status": "below_efficiency_floor"
+    },
+    {
+      "game_id": "teleport_pads_click_to_select_destination-0001",
+      "status": "no_plan",
+      "search_s": 73.7
+    },
+    {
+      "game_id": "warp_hallways-0001",
+      "status": "no_plan",
+      "search_s": 95.2
+    },
+    {
+      "game_id": "zigclick-0001",
+      "status": "no_plan",
+      "search_s": 36.5
+    }
+  ]
+}

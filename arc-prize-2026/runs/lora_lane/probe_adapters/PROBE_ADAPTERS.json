@@ -1,0 +1,18 @@
+{
+  "noop": {
+    "tensors": 128,
+    "params": 10485760,
+    "bytes": 41962184,
+    "sha256_16": "d777d4c7a7ebec85",
+    "nonzero_lora_B_modules": 0,
+    "expected_delta": "exactly zero"
+  },
+  "probe": {
+    "tensors": 128,
+    "params": 10485760,
+    "bytes": 41962184,
+    "sha256_16": "d7d6918d01ae67f6",
+    "nonzero_lora_B_modules": 64,
+    "expected_delta": "non-zero"
+  }
+}

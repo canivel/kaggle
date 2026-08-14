@@ -1,0 +1,200 @@
+{
+  "generated_at": "2026-08-14T00:24:27Z",
+  "split": "train",
+  "environments_dir": "F:\\kaggle\\arc-prize-2026\\runs\\harness_diff_0813\\ds\\jeroencottaar_taaf-kaggle-source\\src\\re-arc-3\\re_arc\\environment_files",
+  "config": {
+    "out": "F:/kaggle/arc-prize-2026/runs/lora_lane/v0",
+    "limit": 129,
+    "target_examples": 400,
+    "max_actions": 120,
+    "target_levels": 2,
+    "first_batch": 3,
+    "batch_size": 8,
+    "min_ratio": 0.6,
+    "split": "train",
+    "seed": 0,
+    "seeds": 3,
+    "shard": "3/6",
+    "inline_images": false
+  },
+  "counts": {
+    "envs_attempted": 21,
+    "envs_with_usable_plan": 5,
+    "examples": 24,
+    "distinct_images": 122,
+    "image_refs": 89
+  },
+  "split_sizes": {
+    "train": 129,
+    "dev": 36,
+    "eval": 25
+  },
+  "efficiency": {
+    "ratio_human_over_agent_mean": 0.794,
+    "ratio_median": 0.667,
+    "ratio_min": 0.643,
+    "ratio_max": 1.0,
+    "at_or_better_than_human": 2,
+    "total_plan_actions": 136,
+    "total_human_actions": 91,
+    "total_raw_search_actions": 330
+  },
+  "click_rendering": {
+    "derived_clicks": 6,
+    "literal_clicks": 0,
+    "derived_click_fraction": 1.0
+  },
+  "wall_clock_s": 291.7,
+  "per_game": [
+    {
+      "game_id": "axis_reflect-0001",
+      "status": "no_plan",
+      "search_s": 4.3
+    },
+    {
+      "game_id": "boulder_push_roll-0001",
+      "status": "no_plan",
+      "search_s": 12.2
+    },
+    {
+      "game_id": "column_sculptor-0001",
+      "status": "no_plan",
+      "search_s": 2.6
+    },
+    {
+      "game_id": "deliver_the_package-0001",
+      "status": "no_plan",
+      "search_s": 6.1
+    },
+    {
+      "game_id": "flux-0001",
+      "raw_actions": 40,
+      "pruned_actions": 27,
+      "levels": 2,
+      "human_actions": 18,
+      "ratio": 0.667,
+      "verified": true,
+      "search_s": 10.6,
+      "status": "ok",
+      "turns": 6,
+      "derived_clicks": 1,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "glyph-0001",
+      "raw_actions": 120,
+      "pruned_actions": 56,
+      "levels": 1,
+      "human_actions": 36,
+      "ratio": 0.643,
+      "verified": true,
+      "search_s": 64.1,
+      "status": "ok",
+      "turns": 8,
+      "derived_clicks": 3,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "hazard_skip_portals-0001",
+      "status": "no_plan",
+      "search_s": 0.9
+    },
+    {
+      "game_id": "js26-0001",
+      "status": "no_plan",
+      "search_s": 14.4
+    },
+    {
+      "game_id": "latch_bridges-0001",
+      "status": "no_plan",
+      "search_s": 21.1
+    },
+    {
+      "game_id": "locksmith_warded_routes-0001",
+      "status": "no_plan",
+      "search_s": 0.6
+    },
+    {
+      "game_id": "maze_runner_reach_the_goal-0001",
+      "status": "no_plan",
+      "search_s": 7.9
+    },
+    {
+      "game_id": "moving_platforms_manual_animation-0001",
+      "status": "no_plan",
+      "search_s": 26.9
+    },
+    {
+      "game_id": "outline_painter_pads-0001",
+      "status": "no_plan",
+      "search_s": 0.7
+    },
+    {
+      "game_id": "pick_and_place-0001",
+      "raw_actions": 14,
+      "pruned_actions": 2,
+      "levels": 1,
+      "human_actions": 2,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 3.1,
+      "status": "ok",
+      "turns": 1,
+      "derived_clicks": 2,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "re_create-0001",
+      "raw_actions": 36,
+      "pruned_actions": 4,
+      "levels": 1,
+      "human_actions": 4,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 2.5,
+      "status": "ok",
+      "turns": 2,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "row_pulse_packing-0001",
+      "status": "no_plan",
+      "search_s": 33.6
+    },
+    {
+      "game_id": "signal_chain-0001",
+      "status": "no_plan",
+      "search_s": 0.9
+    },
+    {
+      "game_id": "splitlink-0001",
+      "status": "no_plan",
+      "search_s": 8.0
+    },
+    {
+      "game_id": "switch_doors_toggle_walls-0001",
+      "status": "no_plan",
+      "search_s": 18.5
+    },
+    {
+      "game_id": "timed_patrol_crossing-0001",
+      "status": "no_plan",
+      "search_s": 14.4
+    },
+    {
+      "game_id": "weav-0001",
+      "raw_actions": 120,
+      "pruned_actions": 47,
+      "levels": 1,
+      "human_actions": 31,
+      "ratio": 0.66,
+      "verified": true,
+      "search_s": 22.1,
+      "status": "ok",
+      "turns": 7,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "generated_at": "2026-08-14T02:15:20Z",
+  "split": "train",
+  "environments_dir": "F:\\kaggle\\arc-prize-2026\\runs\\harness_diff_0813\\ds\\jeroencottaar_taaf-kaggle-source\\src\\re-arc-3\\re_arc\\environment_files",
+  "config": {
+    "out": "F:/kaggle/arc-prize-2026/runs/lora_lane/v1deep",
+    "limit": 40,
+    "target_examples": 600,
+    "max_actions": 240,
+    "target_levels": 4,
+    "first_batch": 3,
+    "batch_size": 8,
+    "min_ratio": 0.6,
+    "split": "train",
+    "seed": 0,
+    "seeds": 2,
+    "shard": "3/8",
+    "games": "airtime_glider-0001,alternating_helpers-0001,beat_dock_buttons-0001,blink-0001,bottomless_pit-0001,easy_taps-0001,fan_drift-0001,flood_fill-0001,flux-0001,frequency_lock-0001,ghost-0001,glyph-0001,junction_click_maze-0001,laseretch,leap_frog-0001,match_sliders-0001,maze-0001,mirrorshot-0001,pathfinder-0001,pattern_match_sequence-0001,pick_and_place-0001,re_create-0001,rook-0001,rotate_pattern-0002,rotor_junction-0001,scale_gate_flood-0001,sliders-0001,ss99-0001,stack_equalizer-0001,taps-0001,trail_follow_touch_all_floor_a1-0001,weav-0001,wire_the_circuit-0001",
+    "inline_images": false
+  },
+  "counts": {
+    "envs_attempted": 4,
+    "envs_with_usable_plan": 4,
+    "examples": 17,
+    "distinct_images": 154,
+    "image_refs": 61
+  },
+  "split_sizes": {
+    "train": 129,
+    "dev": 36,
+    "eval": 25
+  },
+  "efficiency": {
+    "ratio_human_over_agent_mean": 2.014,
+    "ratio_median": 0.906,
+    "ratio_min": 0.643,
+    "ratio_max": 5.6,
+    "at_or_better_than_human": 2,
+    "total_plan_actions": 95,
+    "total_human_actions": 92,
+    "total_raw_search_actions": 520
+  },
+  "click_rendering": {
+    "derived_clicks": 13,
+    "literal_clicks": 0,
+    "derived_click_fraction": 1.0
+  },
+  "wall_clock_s": 427.8,
+  "per_game": [
+    {
+      "game_id": "blink-0001",
+      "raw_actions": 240,
+      "pruned_actions": 32,
+      "levels": 2,
+      "human_actions": 26,
+      "ratio": 0.812,
+      "verified": true,
+      "search_s": 206.4,
+      "status": "ok",
+      "turns": 6,
+      "derived_clicks": 4,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "glyph-0001",
+      "raw_actions": 240,
+      "pruned_actions": 56,
+      "levels": 1,
+      "human_actions": 36,
+      "ratio": 0.643,
+      "verified": true,
+      "search_s": 122.6,
+      "status": "ok",
+      "turns": 8,
+      "derived_clicks": 3,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "pattern_match_sequence-0001",
+      "raw_actions": 25,
+      "pruned_actions": 5,
+      "levels": 1,
+      "human_actions": 28,
+      "ratio": 5.6,
+      "verified": true,
+      "search_s": 79.8,
+      "status": "ok",
+      "turns": 2,
+      "derived_clicks": 5,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "ss99-0001",
+      "raw_actions": 15,
+      "pruned_actions": 2,
+      "levels": 1,
+      "human_actions": 2,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 3.9,
+      "status": "ok",
+      "turns": 1,
+      "derived_clicks": 1,
+      "literal_clicks": 0
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "generated_at": "2026-08-14T02:10:11Z",
+  "split": "train",
+  "environments_dir": "F:\\kaggle\\arc-prize-2026\\runs\\harness_diff_0813\\ds\\jeroencottaar_taaf-kaggle-source\\src\\re-arc-3\\re_arc\\environment_files",
+  "config": {
+    "out": "F:/kaggle/arc-prize-2026/runs/lora_lane/v1deep",
+    "limit": 40,
+    "target_examples": 600,
+    "max_actions": 240,
+    "target_levels": 4,
+    "first_batch": 3,
+    "batch_size": 8,
+    "min_ratio": 0.6,
+    "split": "train",
+    "seed": 0,
+    "seeds": 2,
+    "shard": "5/8",
+    "games": "airtime_glider-0001,alternating_helpers-0001,beat_dock_buttons-0001,blink-0001,bottomless_pit-0001,easy_taps-0001,fan_drift-0001,flood_fill-0001,flux-0001,frequency_lock-0001,ghost-0001,glyph-0001,junction_click_maze-0001,laseretch,leap_frog-0001,match_sliders-0001,maze-0001,mirrorshot-0001,pathfinder-0001,pattern_match_sequence-0001,pick_and_place-0001,re_create-0001,rook-0001,rotate_pattern-0002,rotor_junction-0001,scale_gate_flood-0001,sliders-0001,ss99-0001,stack_equalizer-0001,taps-0001,trail_follow_touch_all_floor_a1-0001,weav-0001,wire_the_circuit-0001",
+    "inline_images": false
+  },
+  "counts": {
+    "envs_attempted": 4,
+    "envs_with_usable_plan": 3,
+    "examples": 19,
+    "distinct_images": 68,
+    "image_refs": 74
+  },
+  "split_sizes": {
+    "train": 129,
+    "dev": 36,
+    "eval": 25
+  },
+  "efficiency": {
+    "ratio_human_over_agent_mean": 0.975,
+    "ratio_median": 1.0,
+    "ratio_min": 0.925,
+    "ratio_max": 1.0,
+    "at_or_better_than_human": 2,
+    "total_plan_actions": 68,
+    "total_human_actions": 65,
+    "total_raw_search_actions": 213
+  },
+  "click_rendering": {
+    "derived_clicks": 45,
+    "literal_clicks": 15,
+    "derived_click_fraction": 0.75
+  },
+  "wall_clock_s": 118.9,
+  "per_game": [
+    {
+      "game_id": "easy_taps-0001",
+      "raw_actions": 4,
+      "pruned_actions": 4,
+      "levels": 4,
+      "human_actions": 4,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 1.2,
+      "status": "ok",
+      "turns": 4,
+      "derived_clicks": 4,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "laseretch",
+      "raw_actions": 185,
+      "pruned_actions": 40,
+      "levels": 2,
+      "human_actions": 37,
+      "ratio": 0.925,
+      "verified": true,
+      "search_s": 98.1,
+      "status": "ok",
+      "turns": 8,
+      "derived_clicks": 23,
+      "literal_clicks": 9
+    },
+    {
+      "game_id": "re_create-0001",
+      "status": "no_plan",
+      "search_s": 0.6
+    },
+    {
+      "game_id": "taps-0001",
+      "raw_actions": 24,
+      "pruned_actions": 24,
+      "levels": 4,
+      "human_actions": 24,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 6.0,
+      "status": "ok",
+      "turns": 7,
+      "derived_clicks": 18,
+      "literal_clicks": 6
+    }
+  ]
+}

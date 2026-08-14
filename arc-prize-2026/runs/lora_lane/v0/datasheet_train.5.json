@@ -1,0 +1,227 @@
+{
+  "generated_at": "2026-08-14T00:24:56Z",
+  "split": "train",
+  "environments_dir": "F:\\kaggle\\arc-prize-2026\\runs\\harness_diff_0813\\ds\\jeroencottaar_taaf-kaggle-source\\src\\re-arc-3\\re_arc\\environment_files",
+  "config": {
+    "out": "F:/kaggle/arc-prize-2026/runs/lora_lane/v0",
+    "limit": 129,
+    "target_examples": 400,
+    "max_actions": 120,
+    "target_levels": 2,
+    "first_batch": 3,
+    "batch_size": 8,
+    "min_ratio": 0.6,
+    "split": "train",
+    "seed": 0,
+    "seeds": 3,
+    "shard": "5/6",
+    "inline_images": false
+  },
+  "counts": {
+    "envs_attempted": 21,
+    "envs_with_usable_plan": 8,
+    "examples": 25,
+    "distinct_images": 125,
+    "image_refs": 63
+  },
+  "split_sizes": {
+    "train": 129,
+    "dev": 36,
+    "eval": 25
+  },
+  "efficiency": {
+    "ratio_human_over_agent_mean": 0.942,
+    "ratio_median": 1.0,
+    "ratio_min": 0.727,
+    "ratio_max": 1.0,
+    "at_or_better_than_human": 6,
+    "total_plan_actions": 96,
+    "total_human_actions": 87,
+    "total_raw_search_actions": 329
+  },
+  "click_rendering": {
+    "derived_clicks": 16,
+    "literal_clicks": 1,
+    "derived_click_fraction": 0.941
+  },
+  "wall_clock_s": 320.8,
+  "per_game": [
+    {
+      "game_id": "blink-0001",
+      "raw_actions": 117,
+      "pruned_actions": 32,
+      "levels": 2,
+      "human_actions": 26,
+      "ratio": 0.812,
+      "verified": true,
+      "search_s": 57.6,
+      "status": "ok",
+      "turns": 6,
+      "derived_clicks": 4,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "catch_eggs-0001",
+      "status": "no_plan",
+      "search_s": 0.4
+    },
+    {
+      "game_id": "corner_hall_match-0001",
+      "status": "no_plan",
+      "search_s": 1.0
+    },
+    {
+      "game_id": "domino_socket-0001",
+      "status": "no_plan",
+      "search_s": 2.3
+    },
+    {
+      "game_id": "frequency_lock-0001",
+      "raw_actions": 39,
+      "pruned_actions": 23,
+      "levels": 2,
+      "human_actions": 23,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 9.6,
+      "status": "ok",
+      "turns": 5,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "gravity_platformer-0001",
+      "status": "no_plan",
+      "search_s": 4.3
+    },
+    {
+      "game_id": "hinge_bridge-0001",
+      "status": "no_plan",
+      "search_s": 22.3
+    },
+    {
+      "game_id": "key_door-0001",
+      "status": "no_plan",
+      "search_s": 13.9
+    },
+    {
+      "game_id": "leap_frog-0001",
+      "raw_actions": 43,
+      "pruned_actions": 4,
+      "levels": 1,
+      "human_actions": 4,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 21.7,
+      "status": "ok",
+      "turns": 2,
+      "derived_clicks": 3,
+      "literal_clicks": 1
+    },
+    {
+      "game_id": "magnet-0001",
+      "status": "no_plan",
+      "search_s": 16.1
+    },
+    {
+      "game_id": "mirror_greedy_friend-0001",
+      "status": "no_plan",
+      "search_s": 1.8
+    },
+    {
+      "game_id": "one_enemy_duel-0001",
+      "status": "no_plan",
+      "search_s": 50.1
+    },
+    {
+      "game_id": "path_connect_sequence-0001",
+      "status": "no_plan",
+      "search_s": 49.3
+    },
+    {
+      "game_id": "push-0001",
+      "status": "no_plan",
+      "search_s": 8.1
+    },
+    {
+      "game_id": "rook-0001",
+      "raw_actions": 19,
+      "pruned_actions": 11,
+      "levels": 2,
+      "human_actions": 8,
+      "ratio": 0.727,
+      "verified": true,
+      "search_s": 3.0,
+      "status": "ok",
+      "turns": 4,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "scale_gate_flood-0001",
+      "raw_actions": 15,
+      "pruned_actions": 2,
+      "levels": 1,
+      "human_actions": 2,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 2.7,
+      "status": "ok",
+      "turns": 1,
+      "derived_clicks": 1,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "sliders-0001",
+      "raw_actions": 18,
+      "pruned_actions": 7,
+      "levels": 2,
+      "human_actions": 7,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 11.4,
+      "status": "ok",
+      "turns": 3,
+      "derived_clicks": 7,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "ss99-0001",
+      "raw_actions": 14,
+      "pruned_actions": 2,
+      "levels": 1,
+      "human_actions": 2,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 4.1,
+      "status": "ok",
+      "turns": 1,
+      "derived_clicks": 1,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "szgt-0001",
+      "status": "no_plan",
+      "search_s": 1.3
+    },
+    {
+      "game_id": "trail_follow_touch_all_floor_a1-0001",
+      "raw_actions": 64,
+      "pruned_actions": 15,
+      "levels": 1,
+      "human_actions": 15,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 17.5,
+      "status": "ok",
+      "turns": 3,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "winch_line-0001",
+      "status": "no_plan",
+      "search_s": 10.7
+    }
+  ]
+}

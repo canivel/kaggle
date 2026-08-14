@@ -1,0 +1,28 @@
+# Repo had no .gitignore until 2026-08-14. Added when the LoRA lane's ~98 MB of
+# working data turned out to be entirely untracked: the rule below is what makes
+# committing the lane safe rather than a 100 MB blob push.
+#
+# Principle: track the PROVENANCE, not the BYTES. Anything that is (a) large and
+# (b) either deterministically regenerable from tracked code or already published
+# as a Kaggle dataset is excluded here — and in every such case a small manifest
+# carrying shapes, counts and sha256s IS tracked, so the artifact can be rebuilt
+# and verified without living in git history.
+
+# LoRA probe adapters: 2 x 41,962,184 B, built by duck_eval/lora/make_probe_adapters.py.
+# Published as canivel/arc3-lora-probe-adapters (2026-08-14). Provenance is kept in
+# runs/lora_lane/probe_adapters/PROBE_ADAPTERS.json (tensor counts, param counts,
+# sha256_16, nonzero_lora_B_modules) — that file is TRACKED on purpose.
+runs/lora_lane/probe_adapters/**/*.safetensors
+
+# Kernel-output site-packages dumps: third-party wheels (.so/.py) pulled back inside
+# a kernel's output for diagnosis. The DIAGNOSIS lives in the .log files next to them,
+# which are tracked; the wheels themselves are 16 MB of somebody else's binaries.
+runs/kernel_pulls/**/vllm-site-packages/
+
+# Model weight snapshots and checkpoints — always served from Kaggle datasets.
+_weights/
+_pretrained_ds/
+
+__pycache__/
+*.pyc
+.venv/

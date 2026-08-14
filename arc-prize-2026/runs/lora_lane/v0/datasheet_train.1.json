@@ -1,0 +1,223 @@
+{
+  "generated_at": "2026-08-14T00:22:35Z",
+  "split": "train",
+  "environments_dir": "F:\\kaggle\\arc-prize-2026\\runs\\harness_diff_0813\\ds\\jeroencottaar_taaf-kaggle-source\\src\\re-arc-3\\re_arc\\environment_files",
+  "config": {
+    "out": "F:/kaggle/arc-prize-2026/runs/lora_lane/v0",
+    "limit": 129,
+    "target_examples": 400,
+    "max_actions": 120,
+    "target_levels": 2,
+    "first_batch": 3,
+    "batch_size": 8,
+    "min_ratio": 0.6,
+    "split": "train",
+    "seed": 0,
+    "seeds": 3,
+    "shard": "1/6",
+    "inline_images": false
+  },
+  "counts": {
+    "envs_attempted": 22,
+    "envs_with_usable_plan": 7,
+    "examples": 17,
+    "distinct_images": 104,
+    "image_refs": 31
+  },
+  "split_sizes": {
+    "train": 129,
+    "dev": 36,
+    "eval": 25
+  },
+  "efficiency": {
+    "ratio_human_over_agent_mean": 1.67,
+    "ratio_median": 1.0,
+    "ratio_min": 0.889,
+    "ratio_max": 5.6,
+    "at_or_better_than_human": 6,
+    "total_plan_actions": 46,
+    "total_human_actions": 69,
+    "total_raw_search_actions": 240
+  },
+  "click_rendering": {
+    "derived_clicks": 19,
+    "literal_clicks": 5,
+    "derived_click_fraction": 0.792
+  },
+  "wall_clock_s": 508.9,
+  "per_game": [
+    {
+      "game_id": "alternating_helpers-0001",
+      "raw_actions": 10,
+      "pruned_actions": 9,
+      "levels": 2,
+      "human_actions": 9,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 3.8,
+      "status": "ok",
+      "turns": 4,
+      "derived_clicks": 5,
+      "literal_clicks": 4
+    },
+    {
+      "game_id": "bottomless_pit-0001",
+      "raw_actions": 98,
+      "pruned_actions": 9,
+      "levels": 1,
+      "human_actions": 8,
+      "ratio": 0.889,
+      "verified": true,
+      "search_s": 53.2,
+      "status": "ok",
+      "turns": 3,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "coin_collector_collect_all-0001",
+      "status": "no_plan",
+      "search_s": 74.8
+    },
+    {
+      "game_id": "dash_puzzle-0001",
+      "status": "no_plan",
+      "search_s": 4.4
+    },
+    {
+      "game_id": "fan_drift-0001",
+      "raw_actions": 40,
+      "pruned_actions": 5,
+      "levels": 1,
+      "human_actions": 5,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 13.9,
+      "status": "ok",
+      "turns": 2,
+      "derived_clicks": 3,
+      "literal_clicks": 1
+    },
+    {
+      "game_id": "ft09_close-0001",
+      "status": "no_plan",
+      "search_s": 135.9
+    },
+    {
+      "game_id": "grid_archery-0001",
+      "status": "no_plan",
+      "search_s": 14.1
+    },
+    {
+      "game_id": "ice_stop-0001",
+      "status": "no_plan",
+      "search_s": 12.9
+    },
+    {
+      "game_id": "lantern_moths-0001",
+      "status": "no_plan",
+      "search_s": 7.0
+    },
+    {
+      "game_id": "light_shadow-0001",
+      "status": "no_plan",
+      "search_s": 9.9
+    },
+    {
+      "game_id": "match_sliders-0001",
+      "raw_actions": 6,
+      "pruned_actions": 6,
+      "levels": 2,
+      "human_actions": 6,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 1.0,
+      "status": "ok",
+      "turns": 2,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "mirrored-0001",
+      "status": "no_plan",
+      "search_s": 4.0
+    },
+    {
+      "game_id": "one_way_warp_maze-0001",
+      "status": "no_plan",
+      "search_s": 0.6
+    },
+    {
+      "game_id": "pattern_match_sequence-0001",
+      "raw_actions": 25,
+      "pruned_actions": 5,
+      "levels": 1,
+      "human_actions": 28,
+      "ratio": 5.6,
+      "verified": true,
+      "search_s": 68.8,
+      "status": "ok",
+      "turns": 2,
+      "derived_clicks": 5,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "pushlane-0001",
+      "status": "no_plan",
+      "search_s": 14.6
+    },
+    {
+      "game_id": "rotate_pattern-0002",
+      "raw_actions": 5,
+      "pruned_actions": 5,
+      "levels": 2,
+      "human_actions": 6,
+      "ratio": 1.2,
+      "verified": true,
+      "search_s": 1.1,
+      "status": "ok",
+      "turns": 2,
+      "derived_clicks": 0,
+      "literal_clicks": 0
+    },
+    {
+      "game_id": "shape_mold_gpt-0001",
+      "status": "no_plan",
+      "search_s": 15.0
+    },
+    {
+      "game_id": "sokoban-0001",
+      "status": "no_plan",
+      "search_s": 31.1
+    },
+    {
+      "game_id": "stamp_press-0001",
+      "status": "no_plan",
+      "search_s": 11.8
+    },
+    {
+      "game_id": "teleport_maze-0001",
+      "status": "no_plan",
+      "search_s": 1.0
+    },
+    {
+      "game_id": "turn-0001",
+      "status": "no_plan",
+      "search_s": 12.0
+    },
+    {
+      "game_id": "wire_the_circuit-0001",
+      "raw_actions": 56,
+      "pruned_actions": 7,
+      "levels": 1,
+      "human_actions": 7,
+      "ratio": 1.0,
+      "verified": true,
+      "search_s": 10.3,
+      "status": "ok",
+      "turns": 2,
+      "derived_clicks": 6,
+      "literal_clicks": 0
+    }
+  ]
+}
