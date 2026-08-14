@@ -83,10 +83,17 @@ print("pull-back OK: code MATCH, 3/3 datasets survived, env identical to the fam
 PY
 
 echo "== 4. preflight (post-push) =="
+# preflight.py shells out to a BARE `kaggle`, so it needs the Scripts dir on PATH.
+# On 2026-08-14 this step died with WinError 2 in a session that had $KAGGLE by
+# absolute path but not on PATH — the push had already succeeded, so the gate was
+# silently skipped rather than failing the run. Put the dir on PATH here.
+# The `| head -20` was also removed: under `set -o pipefail` a SIGPIPE from head
+# would read as a preflight failure, and truncating a verdict is the wrong default.
+export PATH="$(dirname "$KAGGLE"):$PATH"
 python scripts/preflight.py --kernel "$KERNEL" \
   --mode structural --family duck-harness \
   --baseline notebooks/duckfork/tufa-labs-duck-harness-june-30-milestone-winner.ipynb \
-  --expect-diff-cells 2,6,8,14 | head -20
+  --expect-diff-cells 2,6,8,14
 
 echo
 echo "PUSHED AND VERIFIED. Now poll to terminal, then:"
