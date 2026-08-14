@@ -48,6 +48,34 @@ python duck_eval/a17/build_b122_boot_canary.py
 python duck_eval/a17/b122_canary_smoke.py | tail -2
 python duck_eval/a17/b122_score.py --selftest | tail -2
 
+# IDEMPOTENCE GUARD. Added 2026-08-14 after this script spent BOTH of the day's slots
+# on ONE screen: another session ran it at ~08:30 (kernel version 2) and this lane ran it
+# again at 08:33 (version 3) with byte-identical code. Neither run could tell, because the
+# pull-back in step 3 compares local to remote AFTER pushing — at which point a duplicate
+# push and a first push look exactly the same. The check has to happen BEFORE.
+echo "== 1b. idempotence check (has this exact code already been pushed?) =="
+PRECHECK="$(mktemp -d)"
+if "$KAGGLE" kernels pull "$KERNEL" -p "$PRECHECK" >/dev/null 2>&1; then
+  if python - "$NB" "$PRECHECK/arc3-b122-boot-canary.ipynb" <<'PY'
+import hashlib, json, sys
+def code_sha(p):
+    nb = json.load(open(p, encoding="utf-8"))
+    return hashlib.sha256("".join(
+        "".join(c["source"]) for c in nb["cells"] if c["cell_type"] == "code").encode()).hexdigest()
+try:
+    sys.exit(0 if code_sha(sys.argv[1]) == code_sha(sys.argv[2]) else 1)
+except Exception:
+    sys.exit(1)
+PY
+  then
+    echo "REFUSING: remote already has this exact code. A re-push would spend a slot for" >&2
+    echo "  a no-op. If you truly intend a re-run of identical code, do it deliberately" >&2
+    echo "  and record why — do not let this script do it silently." >&2
+    exit 3
+  fi
+fi
+echo "remote differs from local (or kernel absent) — push is not a duplicate"
+
 echo "== 2. push =="
 "$KAGGLE" kernels push -p "$NB_DIR_WIN"
 
