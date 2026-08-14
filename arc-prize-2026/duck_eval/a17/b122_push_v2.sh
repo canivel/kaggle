@@ -31,6 +31,18 @@ if [ "$(date +%Y-%m-%d)" != "2026-08-14" ]; then
   exit 1
 fi
 
+# EXPLICIT-INTENT INTERLOCK. Added 2026-08-14 after a near miss: this script was run to
+# TEST the date guard on a day when that guard passes, and only a SIGPIPE from `| head -3`
+# stopped it before step 2. A date check alone is not a safety property — it goes from
+# "refuses always" to "pushes always" at midnight with no change in how it is invoked.
+# A push spends a scarce slot and must never be a side effect of inspecting the script.
+if [ "${1:-}" != "--confirm-push" ]; then
+  echo "REFUSING: pass --confirm-push to actually push. Dry inspection is the default." >&2
+  echo "  (gates can be run without pushing: python duck_eval/a17/b122_canary_smoke.py)" >&2
+  exit 2
+fi
+echo "explicit intent confirmed (--confirm-push)"
+
 echo "== 1. rebuild + gates =="
 python duck_eval/a17/build_b122_boot_canary.py
 python duck_eval/a17/b122_canary_smoke.py | tail -2
