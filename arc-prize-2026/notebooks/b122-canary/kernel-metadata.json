@@ -1,0 +1,25 @@
+{
+  "id": "canivel/arc3-b122-boot-canary",
+  "title": "arc3-b122-boot-canary",
+  "code_file": "arc3-b122-boot-canary.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "gpu"
+  ],
+  "dataset_sources": [
+    "jeroencottaar/taaf-kaggle-source-share",
+    "jcole75/arc3-qwen36-runtime-wheels",
+    "ippeiogawa/qwen35-122b-a10b-nvfp4"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [
+    "arc-prize-2026-arc-agi-3"
+  ],
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:57e612b484cf3df5026ee4dcc3cb176974b22b2bc0937fb1e16132a8be4cb13c",
+  "machine_shape": "NvidiaRtxPro6000"
+}
