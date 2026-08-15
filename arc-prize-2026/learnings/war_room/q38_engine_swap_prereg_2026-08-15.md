@@ -435,3 +435,56 @@ pushed as a v2 without a fresh slot and a fresh authorization.
 re-encodes non-ASCII. Any character we author into a kernel cell must be 7-bit, or written as an
 escape. The frozen fork's own em-dashes have been quietly mangled on every push for months; it
 only became load-bearing the moment we injected a non-ASCII literal into executable code.*
+
+---
+
+## 9. POST-MORTEM — v1 ERRORed at t=425 s. **THE ENGINE WORKED. MY PROBE KILLED IT.** (append-only)
+
+**Sealed scorer verdict: `INFRA DEATH (not decisive)` — "no benchmark.json; infra signature 'Q38-EVAL FATAL'".** The third state was the right one to have built; there is no legal way to read this run as evidence about Qwen3.8's capability, in either direction.
+
+### 9.1 The log-retrieval problem is SOLVED, and the LoRA lane's conclusion was wrong
+
+The LoRA canary was diagnosed blind because `kaggle kernels output` downloads `/kaggle/working` first and this kernel's working dir holds the multi-GB `vllm-site-packages` tree; that lane recorded *"the log never arrived usefully on either CLI."* **That is false, and it cost that lane its diagnosis.** Kaggle CLI **2.2.3** (we have it at `/f/kaggle/march-madness-2026/.venv/Scripts/kaggle`, distinct from the 2.0.1 at `…/Python313/Scripts/kaggle.exe` used for pushes) has **`kernels logs`**, which streams the full stdout JSON **without touching the working dir**: 238 KB, 1,501 entries, in seconds. Every future post-mortem gets the log. `kernels files` returns empty for *all* errored kernels (checked against b122 and the LoRA canary) — it is not evidence of anything.
+
+### 9.2 Where it died — measured, to the second
+
+| t (s) | event |
+|---:|---|
+| 8.13 | `CUDA GPU check passed … ['NVIDIA RTX PRO 6000 Blackwell Server Edition']` |
+| 8.06 | `Q38-EVAL setup-commands rewrite OK (6 anchors replaced, 18 invariants held)` |
+| 8.22 | `Q38-EVAL effort-pin=medium local-render reasoning_instruction=ABSENT control(default=xhigh)=PRESENT` |
+| 8.24 → 99.8 | wheelhouse install (91.5 s) |
+| 99.8 → **394.8** | vLLM boot + **25.3 GB weight load = 295 s (4 m 55 s)**; `vLLM server ready: id='Qwen/Qwen3.8-27B-FP8', root='/kaggle/input/datasets/saltb0x/qwen3-8-27b-fp8', max_model_len 65536` |
+| 417.3 | stock smoke: **`Generated: 2 + 2 equals 4.`** |
+| 417.3 | `Q38-EVAL served=Qwen/Qwen3.8-27B-FP8` |
+| ~420 | `Q38-EVAL tool-call-roundtrip=OK mode=forced … args={"action":"ACTION6","x":3,"y":7}` |
+| ~423 | `Q38-EVAL tool-call-roundtrip=OK mode=auto parser=qwen3_coder name=submit_action` |
+| **425.5** | `RuntimeError: Q38-EVAL FATAL: MM boot probe returned empty content` → papermill → **kernel ERROR** |
+
+**Total cost: 7 min 6 s of GPU, not a GPU-hour.** The fail-loud design at least failed fast.
+
+### 9.3 Was it the engine or was it us? **US. Unambiguously.**
+
+**None of the four cleared differences bit. Every one is now confirmed GOOD in production:**
+
+1. **Blockwise FP8 on SM120 — WORKS.** The server came up and generated. The Triton-fallback risk did not manifest as a failure. (Whether it cost throughput is still unmeasured.)
+2. **Absent root `dtype` — no issue.** Model served; the `text_config.dtype` fallback held.
+3. **`vision_config.model_type` — no issue.** `Q38-EVAL engine-config` passed all field asserts and vLLM resolved the architecture.
+4. **Image-processor fast/slow path — no issue.** The multimodal request returned **HTTP 200**, not a 400 — the image was accepted and processed. (A broken processor raises inside `request_json` as `HTTPError`; the traceback is a `RuntimeError` from *my* assert.)
+
+**Plus three things this run positively established:** the engine **loads and serves in ~5 minutes**; **tool-calling works in BOTH modes including `auto` through `qwen3_coder`** — the exact path the harness uses, with arguments parsed correctly; and **the `reasoning_effort` pin bound in production** (`reasoning_instruction=ABSENT`, xhigh control PRESENT).
+
+**The defect is mine, and it is a payload bug.** My MM probe sent `max_tokens: 32` and **no `chat_template_kwargs`**, so `enable_thinking` defaulted ON. Under `--reasoning-parser qwen3` the first 32 tokens are routed to `reasoning_content` and `content` is `''`. My assert then declared *"the vision path is broken"* and raised.
+
+The proof is in the same log, seconds apart, from the same server:
+- the **stock smoke** passes `chat_template_kwargs: {'enable_thinking': False}`, `max_tokens: 96` → **non-empty content**;
+- my **auto tool-call probe** had thinking ON but `max_tokens: 256` → **succeeded**;
+- my **MM probe** had thinking ON and `max_tokens: 32` → **empty content**.
+
+The only variables separating the last two are the token budget and the image, and the image returned 200. **This is the Jason Feng finding turned on us**: 66.8 % of Qwen tool-call responses in this harness return hidden reasoning with zero visible content. Empty `content` is the *modal* behaviour of this stack, and I asserted on it.
+
+**Honest limit: I cannot fully close it from this log, and that is a second, worse defect.** The assert printed a **conclusion** ("the vision path is broken") and none of the **observation** — no `reasoning_content`, no `finish_reason`, no response body. A probe that judges without dumping its evidence cannot be audited afterwards.
+
+### 9.4 Partial signal against the sealed lines: **NONE**
+
+Zero games ran; `bm.run()` was never reached. No levels, no bench tokens/s, no actions. `CONFIRM ≥ 32 / REFUTE ≤ 25 / HARM ≤ 12` are **untouched and remain sealed**. The only performance number obtained is infrastructural: **server ready 295 s after launch**. Per-phase load timings live in `vllm-openai-server.log` inside `/kaggle/working` and were not downloaded.
