@@ -52,10 +52,16 @@ echo "== 0-. ONE-SHOT GUARD (added 2026-08-15 AFTER v1 was pushed and started ru
 # corroborating instrument and nothing that gates the measurement. So: refuse by default.
 if [ "${Q38_ALLOW_V2:-}" != "1" ]; then
   if "$KAGGLE" kernels status "$KERNEL" >/dev/null 2>&1; then
-    echo "REFUSING: $KERNEL already exists. v1 was pushed on 2026-08-15 against that day's" >&2
-    echo "  ONE free slot and its only defect is cosmetic (see the prereg addendum)." >&2
-    echo "  A v2 needs a FRESH slot and a FRESH authorization. Set Q38_ALLOW_V2=1 only when" >&2
-    echo "  you have both, and record why." >&2
+    echo "REFUSING: $KERNEL already exists (v1, pushed 2026-08-15, ERRORed at t=425s on a" >&2
+    echo "  self-inflicted MM boot assert -- see the prereg sections 9 and 10)." >&2
+    echo "" >&2
+    echo "  A v2 IS the authorized next step, but it needs THREE things, deliberately:" >&2
+    echo "    1. PUSH_DATE in this script bumped to the day you are actually pushing" >&2
+    echo "       (a date edit is the moment you re-read the ledger, not a formality);" >&2
+    echo "    2. Q38_ALLOW_V2=1 in the environment;" >&2
+    echo "    3. a FREE slot re-confirmed from ITERATION_LOG for that date (section 11.4)." >&2
+    echo "  Three deaths on this campaign came from a guard that was true when written and" >&2
+    echo "  false when used. None of these is skippable." >&2
     exit 5
   fi
 fi
@@ -193,5 +199,7 @@ echo "  $KAGGLE kernels status $KERNEL"
 echo "  $KAGGLE kernels output $KERNEL -p runs/kernel_pulls/q38_v1"
 echo "  python duck_eval/q38/q38_score.py runs/kernel_pulls/q38_v1"
 echo "Read seal: learnings/war_room/q38_engine_swap_prereg_2026-08-15.md section 4 and 7."
-echo "NOTE: kernels output downloads /kaggle/working FIRST and this kernel's working dir holds"
-echo "  the multi-GB vllm-site-packages tree — budget for that, or pull selectively."
+echo "POST-MORTEM (if it ERRORs): do NOT start with kernels output - it front-loads the"
+echo "  multi-GB vllm-site-packages tree. Use CLI 2.2.3 instead:"
+echo "    kaggle kernels logs $KERNEL > runs/kernel_pulls/q38_v1/q38.log"
+echo "  which streams full stdout with per-line timestamps and never touches /kaggle/working."

@@ -281,8 +281,42 @@ def _q38_pre_serve_asserts() -> None:
         print('Q38-EVAL gpu=' + repr(gpu), flush=True)
 
 
+def _q38_observe(tag, response, extra=''):
+    # OBSERVATION BEFORE VERDICT. v1's MM assert printed the conclusion "the vision path is
+    # broken" and none of the evidence, so the question could not be closed from the log
+    # afterwards. Every probe now emits its raw observation first, pass or fail.
+    try:
+        message = response['choices'][0]['message']
+        finish = response['choices'][0].get('finish_reason')
+    except Exception:
+        print('Q38-EVAL OBSERVE ' + tag + ' UNPARSEABLE body=' + json.dumps(response)[:400],
+              flush=True)
+        return '', ''
+    content = (message.get('content') or '')
+    reasoning = (message.get('reasoning_content') or message.get('reasoning') or '')
+    calls = message.get('tool_calls') or []
+    usage = response.get('usage') or {}
+    print('Q38-EVAL OBSERVE ' + tag
+          + ' finish_reason=' + repr(finish)
+          + ' content_chars=' + str(len(content))
+          + ' reasoning_chars=' + str(len(reasoning))
+          + ' tool_calls=' + str(len(calls))
+          + ' completion_tokens=' + str(usage.get('completion_tokens'))
+          + (' ' + extra if extra else '')
+          + ' content_head=' + repr(content[:120])
+          + ' reasoning_head=' + repr(reasoning[:120]), flush=True)
+    return content.strip(), reasoning
+
+
 def _q38_boot_asserts() -> None:
     # Runs AFTER the server is up and the stock smoke test passed.
+    #
+    # CLASSIFICATION (prereg section 10, written before this code): a gate is FATAL only if its
+    # failure would make the number MEAN something other than what we would read it as. If the
+    # failure would simply BE the number, it is REPORT-ONLY. Two gates were reclassified after
+    # v1: the tool-call and MM probes. A broken tool-call path or a dead vision path produces a
+    # genuine low score for Qwen3.8-in-this-harness - that is a true measurement, not a
+    # poisoned one, and killing the kernel for it destroys the very number we came for.
     models = request_json(VLLM_BASE_URL + '/models', timeout=60)
     ids = sorted(entry.get('id', '') for entry in models.get('data', []))
     if ids != [Q38_EXPECT_SERVED]:
@@ -290,9 +324,12 @@ def _q38_boot_asserts() -> None:
                            + repr([Q38_EXPECT_SERVED]) + ' - refusing to continue')
     print('Q38-EVAL served=' + Q38_EXPECT_SERVED, flush=True)
 
-    # Effort-pin instrument #2: ask the SERVER what it renders. vLLM's /tokenize applies the
-    # same default_chat_template_kwargs as /chat/completions, so this observes the REAL served
-    # prompt. Transport failure is non-fatal; a positive detection is fatal.
+    # Effort-pin instrument #2: ask the SERVER what it renders. /tokenize is mounted at the
+    # ROOT, not under /v1 - v1 of this kernel appended it to VLLM_BASE_URL and got a 404. The
+    # endpoint existed; my URL was wrong. Same class as the payload bug: existence verified,
+    # call shape not. Transport failure stays non-fatal; a positive detection is fatal.
+    root_url = VLLM_BASE_URL[:-3] if VLLM_BASE_URL.endswith('/v1') else VLLM_BASE_URL
+    root_url = root_url.rstrip('/')
     messages, tools = _q38_probe_messages()
 
     def _rendered(extra):
@@ -301,11 +338,7 @@ def _q38_boot_asserts() -> None:
         payload = {'model': Q38_EXPECT_SERVED, 'messages': messages, 'tools': tools,
                    'add_generation_prompt': True, 'return_token_strs': True,
                    'chat_template_kwargs': kwargs}
-        response = request_json(VLLM_BASE_URL + '/tokenize', payload=payload, timeout=120)
-        # ASCII-ONLY SOURCE, deliberately. The Kaggle CLI push path re-encodes non-ASCII
-        # (UTF-8 -> cp1252 mojibake): measured on this kernel's own v1, where a literal
-        # U+0120 arrived on Kaggle as mojibake. The BPE space/newline markers are written
-        # as ESCAPES here so the notebook file stays 7-bit clean and cannot be mangled.
+        response = request_json(root_url + '/tokenize', payload=payload, timeout=120)
         joined = ''.join(response.get('token_strs') or [])
         return joined.replace('\u0120', ' ').replace('\u010a', '\n')
 
@@ -314,9 +347,12 @@ def _q38_boot_asserts() -> None:
         control_prompt = _rendered({'reasoning_effort': 'xhigh'})
     except Exception as exc:
         served_prompt = ''
-        print('Q38-EVAL WARN effort-pin server-probe UNAVAILABLE (' + repr(exc)[:200] + ')',
-              flush=True)
+        print('Q38-EVAL WARN effort-pin server-probe UNAVAILABLE at ' + root_url
+              + '/tokenize (' + repr(exc)[:200] + ')', flush=True)
     else:
+        print('Q38-EVAL OBSERVE tokenize served_chars=' + str(len(served_prompt))
+              + ' control_chars=' + str(len(control_prompt))
+              + ' served_head=' + repr(served_prompt[:100]), flush=True)
         if 'easoning effort' not in control_prompt:
             print('Q38-EVAL WARN effort-pin server-probe is BLIND (xhigh control produced no '
                   'instruction) - not treating its ABSENT as evidence', flush=True)
@@ -340,58 +376,82 @@ def _q38_boot_asserts() -> None:
                            'minutes; an uninterpretable 2h run costs the slot.')
     print('Q38-EVAL effort-pin-certified-by=' + ','.join(Q38_PIN_CERTIFIED), flush=True)
 
-    # Tool-call round trip. FORCED choice is the A17-proven probe and gates; AUTO exercises the
-    # qwen3_coder parser exactly as the harness does and is reported, never fatal (a trivial
-    # prompt declining to call a tool is not evidence the parser is broken).
+    # --- REPORT-ONLY from here down (prereg section 10, gates N/O/P) ---------------------
+    # Every payload below is HARNESS-SHAPED: chat_template_kwargs always present and
+    # max_tokens >= 256. v1 died because the MM probe omitted chat_template_kwargs and used
+    # max_tokens=32, so thinking stayed on, all 32 tokens went to reasoning_content, and
+    # `content` was empty - the MODAL behaviour of this stack, asserted on as if it were a
+    # fault. A static lint in q38_smoke.py now enforces both properties at build time.
     forced = {'model': Q38_EXPECT_SERVED,
               'messages': [{'role': 'user',
-                            'content': 'Call the submit_action tool with action ACTION6, x 3, y 7.'}],
+                            'content': 'Call the submit_action tool with action ACTION6, '
+                                       'x 3, y 7.'}],
               'tools': tools,
               'tool_choice': {'type': 'function', 'function': {'name': 'submit_action'}},
-              'temperature': 0.0, 'max_tokens': 256}
-    response = request_json(VLLM_BASE_URL + '/chat/completions', payload=forced, timeout=300)
-    calls = response['choices'][0]['message'].get('tool_calls') or []
-    if not calls or calls[0].get('function', {}).get('name') != 'submit_action':
-        raise RuntimeError('Q38-EVAL FATAL: tool-call round-trip FAILED (silent-zero class): '
-                           + json.dumps(response)[:2000])
-    args = json.loads(calls[0]['function'].get('arguments') or '{}')
-    if 'action' not in args:
-        raise RuntimeError('Q38-EVAL FATAL: tool-call arguments missing required key action: '
-                           + repr(args))
-    print('Q38-EVAL tool-call-roundtrip=OK mode=forced name=submit_action args='
-          + json.dumps(args, sort_keys=True), flush=True)
+              'temperature': 0.0, 'max_tokens': 512,
+              'chat_template_kwargs': {'enable_thinking': False}}
+    try:
+        response = request_json(VLLM_BASE_URL + '/chat/completions', payload=forced, timeout=300)
+        _q38_observe('tool-call-forced', response)
+        calls = response['choices'][0]['message'].get('tool_calls') or []
+    except Exception as exc:
+        calls = []
+        print('Q38-EVAL WARN forced tool-call probe errored: ' + repr(exc)[:300], flush=True)
+    if calls and calls[0].get('function', {}).get('name') == 'submit_action':
+        args = json.loads(calls[0]['function'].get('arguments') or '{}')
+        print('Q38-EVAL tool-call-roundtrip=OK mode=forced args='
+              + json.dumps(args, sort_keys=True), flush=True)
+    else:
+        print('Q38-EVAL WARN tool-call-roundtrip=FAILED mode=forced - REPORT-ONLY: a broken '
+              'tool-call path yields a genuine low score, which IS the measurement. Watch the '
+              'bench for a zero-action signature.', flush=True)
 
     auto = dict(forced)
     auto['tool_choice'] = 'auto'
+    auto['chat_template_kwargs'] = {'enable_thinking': True}
     auto['messages'] = [{'role': 'user', 'content': 'Use the submit_action tool to submit '
                                                     'ACTION6 at x 3, y 7. Reply with the tool '
                                                     'call only.'}]
     try:
         response = request_json(VLLM_BASE_URL + '/chat/completions', payload=auto, timeout=300)
+        _q38_observe('tool-call-auto', response)
         calls = response['choices'][0]['message'].get('tool_calls') or []
     except Exception as exc:
         calls = []
-        print('Q38-EVAL WARN auto tool-call probe errored: ' + repr(exc)[:200], flush=True)
+        print('Q38-EVAL WARN auto tool-call probe errored: ' + repr(exc)[:300], flush=True)
     if calls:
         print('Q38-EVAL tool-call-roundtrip=OK mode=auto parser=qwen3_coder name='
               + str(calls[0].get('function', {}).get('name')), flush=True)
     else:
         print('Q38-EVAL WARN auto tool-call probe produced NO parsed call under qwen3_coder - '
-              'reported, not fatal; watch the run for a zero-action signature', flush=True)
+              'REPORT-ONLY', flush=True)
 
-    # One real image through the vision tower.
+    # One real image through the vision tower. REPORT-ONLY (gate P): this is the assert that
+    # killed v1. Thinking is OFF and the budget is 512 so that an empty `content` means the
+    # vision path really is dead rather than that the model is still thinking.
     payload = {'model': Q38_EXPECT_SERVED,
                'messages': [{'role': 'user', 'content': [
                    {'type': 'image_url',
                     'image_url': {'url': 'data:image/png;base64,' + _q38_png_b64()}},
                    {'type': 'text', 'text': 'Answer with one word: what colour is this image?'}]}],
-               'temperature': 0.0, 'max_tokens': 32}
-    response = request_json(VLLM_BASE_URL + '/chat/completions', payload=payload, timeout=300)
-    content = (response['choices'][0]['message'].get('content') or '').strip()
-    if not content:
-        raise RuntimeError('Q38-EVAL FATAL: MM boot probe returned empty content - the vision '
-                           'path is broken and MULTIMODAL_CONTEXT=current_grid would be dead')
-    print('Q38-EVAL mm-image-roundtrip=OK reply=' + repr(content[:60]), flush=True)
+               'temperature': 0.0, 'max_tokens': 512,
+               'chat_template_kwargs': {'enable_thinking': False}}
+    try:
+        response = request_json(VLLM_BASE_URL + '/chat/completions', payload=payload, timeout=300)
+        content, reasoning = _q38_observe('mm-image', response)
+    except Exception as exc:
+        content, reasoning = '', ''
+        print('Q38-EVAL WARN MM probe errored (HTTP-level, i.e. the request was REJECTED rather '
+              'than answered - that is the signature of a genuinely broken vision path): '
+              + repr(exc)[:300], flush=True)
+    if content:
+        print('Q38-EVAL mm-image-roundtrip=OK reply=' + repr(content[:60]), flush=True)
+    else:
+        print('Q38-EVAL WARN mm-image-roundtrip=EMPTY-CONTENT reasoning_chars='
+              + str(len(reasoning)) + ' - REPORT-ONLY: a dead vision path would produce a low '
+              'score, which IS the number. Read this against the per-game traces, not as a '
+              'reason to kill the run.', flush=True)
+
     print('Q38-EVAL BOOT-ASSERTS PASSED - handing off to the 25-game offline bench', flush=True)'''
 
 # (old, new) — every anchor must match EXACTLY once against the pristine setup command.

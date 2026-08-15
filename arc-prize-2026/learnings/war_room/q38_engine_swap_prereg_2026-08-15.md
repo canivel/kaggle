@@ -488,3 +488,100 @@ The only variables separating the last two are the token budget and the image, a
 ### 9.4 Partial signal against the sealed lines: **NONE**
 
 Zero games ran; `bm.run()` was never reached. No levels, no bench tokens/s, no actions. `CONFIRM ≥ 32 / REFUTE ≤ 25 / HARM ≤ 12` are **untouched and remain sealed**. The only performance number obtained is infrastructural: **server ready 295 s after launch**. Per-phase load timings live in `vllm-openai-server.log` inside `/kaggle/working` and were not downloaded.
+
+---
+
+## 10. GATE RECLASSIFICATION — written BEFORE the rebuild, per coordinator instruction (2026-08-15)
+
+Doctrine, adopted verbatim:
+
+> **Fail the kernel iff the failure would make the number MEAN something other than what we would read it as. Report-only iff the failure would simply BE the number.**
+
+**Corollary, stated explicitly rather than bent into the rule** — the rule above discriminates only among failures that still permit a number. Some failures permit no number at all (an incomplete snapshot cannot load). For those the choice is not fatal-vs-report-only but *fail now vs fail in five minutes*, and the honest justification is **cost, not poisoning**. Those gates stay fatal and are labelled `NO-NUMBER` below so nobody later mistakes a cost argument for a meaning argument.
+
+**Ambiguity policy (coordinator's instruction):** where the classification is genuinely unclear, the gate stays **FATAL** and the reason is written down. Nothing was downgraded because we are impatient for a number.
+
+### 10.1 The classification, gate by gate
+
+| # | gate | before | **after** | class | one-line justification |
+|---|---|---|---|---|---|
+| A | required snapshot files present | fatal | **FATAL** | NO-NUMBER | An incomplete snapshot cannot serve; failing pre-load turns a 5-minute wasted load into a 2-second exit. Cost argument, not poisoning. |
+| B | `quant_method == fp8` and `weight_block_size == [128,128]` | fatal | **FATAL** | POISONING | The one field that cannot be true of Qwen3.6. If it passes, the weights are not the incumbent — this is *the* gate against reading a Qwen3.6 number as a Qwen3.8 number. |
+| C | `architectures == [Qwen3_5ForConditionalGeneration]` | fatal | **FATAL** | POISONING | A different architecture is a different experiment wearing this arm's label. |
+| D | `transformers_version` starts `5.8` | fatal | **FATAL** | POISONING (weak proxy — **ambiguous, kept fatal**) | Strictly weaker than B, which already pins weight identity. Kept fatal because it is a zero-cost pre-load string compare and a version drift means the mirror is no longer the artifact we diffed in §1.2. Flagged as the one gate whose fatality rests on caution rather than necessity. |
+| E | `text_config` vocab/layers/hidden/KV/head_dim/interval | fatal | **FATAL** | POISONING | The screen's entire premise is "structural drop-in". If these differ, the thing we measured is not the thing the prereg describes. |
+| F | `image_token_id == 248056` | fatal | **FATAL** | POISONING | A drifted image token silently corrupts every multimodal prompt; the resulting score would be a number about a broken prompt pipeline, not about the engine. |
+| G | exactly 64 layer shards | fatal | **FATAL** | NO-NUMBER | A short shard set fails the load. Fail fast. |
+| H | attached template contains a `reasoning_effort` knob | fatal | **FATAL** | POISONING | Without the knob our pin is a silent no-op and the arm runs at an unknown effort — two variables read as one. |
+| I1 | pinned render still injects an instruction | fatal | **FATAL** | POISONING | Same as H: the prompt is not neutral, so the arm is not one-variable. |
+| I2 | xhigh control injects nothing (probe BLIND) | warn | **WARN** | INSTRUMENT | A blind probe proves nothing in either direction; it is an instrument fault, not an arm fault. Already correct — unchanged. |
+| I3 | system sentinel did not render | fatal | **FATAL** | POISONING (**ambiguous, kept fatal**) | If the template drops the system message, every harness prompt is malformed and the score measures that, not the engine. Could be argued as "that IS the number"; kept fatal because a silently truncated system prompt is indistinguishable from a capability result. |
+| J | cell-8 rewrite: 1 command, anchors ×1, veto absent, 18 invariants survive | fatal | **FATAL** | POISONING | A failed rewrite serves the incumbent or changes more than one variable. The canonical case for the inversion. |
+| K | `/v1/models == [Qwen/Qwen3.8-27B-FP8]` | fatal | **FATAL** | POISONING | The canonical gate. A silent incumbent read as the new engine is the one failure this screen cannot survive. |
+| L | server `/tokenize` effort probe | warn | **WARN** | INSTRUMENT | A corroborator for I1. Its absence never changes what the number means. Unchanged — **but see §10.2, its URL was wrong.** |
+| M | pin uncertified by BOTH instruments | fatal | **FATAL** | POISONING | An unknown-effort run read as a neutral-effort run. Kept fatal; it costs minutes at boot versus an uninterpretable 2-hour run. |
+| N | forced tool-call round trip | fatal | **REPORT-ONLY** | **RECLASSIFIED** | A broken tool-call path produces a genuine near-zero score for Qwen3.8-in-this-harness. That is a true measurement, not a poisoned one — it **IS** the number. Additionally now evidenced working in production (v1, both modes). |
+| O | auto tool-call round trip via `qwen3_coder` | warn | **WARN** | unchanged | Same argument as N; was already correct. |
+| P | MM image round trip | fatal | **REPORT-ONLY** | **RECLASSIFIED — this is the gate that killed v1** | A broken vision path yields a low score for Qwen3.8, which is a real result we would read correctly. It is the number, not a corruption of it. |
+
+**Net effect: exactly two gates change (N and P), both fatal → report-only, and both by the same argument.** Applied to the v1 log, the kernel would have printed two WARNs at t≈425 s and proceeded into the 25-game bench.
+
+### 10.2 Three defects in the probes themselves, fixed alongside the reclassification
+
+1. **The payload bug that actually killed v1.** The MM probe sent `max_tokens: 32` with **no `chat_template_kwargs`**, so thinking stayed on and all 32 tokens went to `reasoning_content`. **Fix:** every probe payload is now *harness-shaped* — `chat_template_kwargs` always present, `max_tokens >= 256` always. Enforced by a static lint in the smoke (§10.3), so it cannot regress.
+2. **The `/tokenize` 404 was my URL, not a missing endpoint.** I verified the route exists in the wheel (`vllm/entrypoints/serve/tokenize/api_router.py → post /tokenize`) but not the path it is mounted at. It is **root-level**, while `/v1/models` is under `/v1`; I built the URL by appending to `VLLM_BASE_URL` (which ends in `/v1`) and got `/v1/tokenize`. **Same class of error as the payload bug: I verified existence, not call shape.** Fixed — the probe now derives the root URL, and the second pin instrument comes back.
+3. **Fail-loud messages printed a conclusion and not the observation.** `"the vision path is broken"` was an inference; the response body, `finish_reason` and `len(reasoning_content)` were never printed, which is why the vision question still cannot be closed from the v1 log. **Fix:** every probe now emits a `Q38-EVAL OBSERVE …` line carrying `finish_reason`, `content_chars`, `reasoning_chars` and a truncated body **before** any verdict, pass or fail.
+
+### 10.3 Coverage boundary — the smoke now prints what it does NOT cover
+
+Adopted from the coordinator's note on *"81 passed, 0 failed is a true statement about a surface that excludes the failure region, printed with no indication of that exclusion."* The suite now ends with an explicit boundary statement naming the unvalidated surface (served-model semantics: token budgets, thinking routing, endpoint mount paths, kernel selection, throughput) and the payload lint that partially closes it. A pass count without a coverage boundary is a half-truth.
+
+---
+
+## 11. FIXES LANDED — 2026-08-15, zero slots, no push (append-only)
+
+All four authorized fixes are in. **v2 artifact: `code_sha256=8babf6de9934c3e5`, cells [2,6,8], smoke 109/0, scorer 22/0.** Nothing was pushed.
+
+### 11.1 What changed in the boot path
+
+Per §10, **exactly two gates moved fatal → report-only** (N tool-call, P MM image). Three probe defects were fixed alongside:
+
+- **Payload bug (the killer):** every generation payload is now harness-shaped — `chat_template_kwargs` always sent, `max_tokens` 512 (was 32 with no kwargs). The MM probe additionally runs with `enable_thinking: False`, so an empty `content` now means the vision path really is dead rather than that the model is still thinking.
+- **`/tokenize` 404 was our URL, not a missing endpoint** — it is mounted at the **root**, while `/v1/models` is under `/v1`, and we appended to `VLLM_BASE_URL`. Fixed by deriving the root. **The second pin instrument is restored**, and the healthy-server replay now records `effort-pin-certified-by=local-render,server-tokenize`.
+- **Observation before verdict:** a new `_q38_observe()` emits `Q38-EVAL OBSERVE <tag> finish_reason=… content_chars=… reasoning_chars=… tool_calls=… completion_tokens=… content_head=… reasoning_head=…` for **every** probe, pass or fail, *before* any judgement.
+
+### 11.2 The fix is proven by replay, not by inspection
+
+`q38_smoke.py` §6d stubs the server **exactly as v1 observed it** — `/v1/models` correct, `/tokenize` 404, tool calls fine, MM answering **200 with empty `content` and the output in `reasoning_content`** — and runs the real `_q38_boot_asserts` against it:
+
+- **the exact v1 scenario now COMPLETES** and reaches `BOOT-ASSERTS PASSED - handing off to the 25-game offline bench`;
+- it emits `WARN mm-image-roundtrip=EMPTY-CONTENT reasoning_chars=42` — **the number that would have closed the vision question in v1 and was never printed**;
+- a broken tool-call path is reported, not fatal;
+- a healthy server certifies the pin by **both** instruments;
+- **negative control: a silently-served `vrfai/Qwen3.6-27B-FP8` is STILL FATAL.** The poisoning gate is intact; only the "would BE the number" gates were relaxed.
+
+### 11.3 The static lint that would have caught v1 with no GPU
+
+`q38_smoke.py` §6b parses the injected defs' AST and enforces, on every generation payload: **`chat_template_kwargs` present** (the harness always sends it — `openai_compat.py:78`) and **`max_tokens >= 256`**. `/tokenize` payloads are exempted from the budget rule **and say so out loud** rather than being skipped silently. Negative control: the lint rejects the reconstructed v1 payload.
+
+This is the honest closure of the gap. The unreachable surface is *served-model semantics*; the reachable proxy is *payload shape*, and payload shape is where the bug actually was.
+
+### 11.4 Coverage boundary is now printed with the pass count
+
+Adopted verbatim from the coordinator's note. The suite ends with `COVERAGE BOUNDARY`, naming what is validated (structure, metadata, the rewrite executed against the real bundle, AST name resolution, real template renders, pre-serve asserts executed against a staged snapshot with negative controls, payload shape) and — more importantly — **what is not**: endpoint mount paths, response-field routing, token budgets vs thinking, kernel selection, throughput, and the number itself. *A pass count without its coverage boundary is a half-truth; v1's "81 passed, 0 failed" was true of every check it ran.*
+
+### 11.5 `kernels logs` banked where the next post-mortem will find it
+
+`duck_eval/README.md` step 3 now carries the procedure, the two-CLI trap (2.0.1 pushes and has no `logs`; **2.2.3** has it), the note that `kernels files` is empty for every errored kernel, and an explicit correction of the LoRA lane's standing "the log never arrived on either CLI". `q38_push.sh`'s post-run hint was rewritten to point at `kernels logs` first. A dated correction was appended to `learnings/war_room/lora_lane_2026-08-13.md` itself — the original text is left readable, as change control requires.
+
+### 11.6 What tomorrow's operator must do — three deliberate steps, none skippable
+
+The one-shot guard now refuses with instructions rather than a bare stop. A v2 push requires:
+
+1. **bump `PUSH_DATE`** in `q38_push.sh` to the actual push day — *the date edit is the moment you re-read the ledger, not a formality*;
+2. **`Q38_ALLOW_V2=1`** in the environment;
+3. **a free slot re-confirmed from `ITERATION_LOG.md` for that date (§11.4 discipline)**, which the script prints and refuses without.
+
+Then `bash duck_eval/q38/q38_push.sh --dry-run` and, only after reading the ledger excerpt, `--confirm-push`.
+
+**The read is unchanged and still sealed: CONFIRM-2× ≥ 32 levels · REFUTE-2× ≤ 25 · HARM ≤ 12 · INFRA DEATH.** No constant in `q38_score.py` was touched while diagnosing v1 — fixing a gate after seeing data is the antipattern the seal exists to prevent, and v1 produced no data to fit to.

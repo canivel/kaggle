@@ -388,6 +388,199 @@ okshard, _, errshard = run_pre_serve(
 check("NEGATIVE CONTROL: a short shard set is rejected", not okshard, errshard[:120])
 
 # ---------------------------------------------------------------------------
+# 6b. PAYLOAD LINT — the gate that would have caught the v1 death, with no GPU
+# ---------------------------------------------------------------------------
+# v1 died because the MM probe sent max_tokens=32 with NO chat_template_kwargs, so
+# `enable_thinking` defaulted ON, all 32 tokens were routed to `reasoning_content` by
+# --reasoning-parser qwen3, and `content` came back empty — the MODAL behaviour of this stack
+# (Jason Feng: 66.8% of tool-call responses have zero visible content). The probe then declared
+# the vision path broken. The invariant that was missing: OUR PROBES MUST SEND WHAT THE HARNESS
+# SENDS. The harness always sets chat_template_kwargs (openai_compat.py:78), and 32 tokens is
+# not a budget any real turn runs under. Both properties are statically checkable.
+section("6b. probe payload lint (harness-shaped payloads)")
+
+_defs_tree = ast.parse(B.Q38_SERVE_DEFS)
+_payloads: list[tuple[str, dict, int]] = []
+for _node in ast.walk(_defs_tree):
+    if not isinstance(_node, ast.Dict):
+        continue
+    keys = [k.value for k in _node.keys if isinstance(k, ast.Constant) and isinstance(k.value, str)]
+    if "model" in keys and "messages" in keys:
+        _payloads.append(("dict", {k: v for k, v in zip(keys, _node.values)}, _node.lineno))
+# payloads assembled by mutation (auto = dict(forced); auto['x'] = ...) inherit the base dict,
+# so track assigned subscript keys too
+_mutated: dict[str, set] = {}
+for _node in ast.walk(_defs_tree):
+    if (isinstance(_node, ast.Assign) and len(_node.targets) == 1
+            and isinstance(_node.targets[0], ast.Subscript)
+            and isinstance(_node.targets[0].value, ast.Name)
+            and isinstance(_node.targets[0].slice, ast.Constant)):
+        _mutated.setdefault(_node.targets[0].value.id, set()).add(_node.targets[0].slice.value)
+
+check("found the chat/completions probe payloads to lint", len(_payloads) >= 2,
+      f"{len(_payloads)} payload dict(s) at lines {[p[2] for p in _payloads]}")
+
+_n_gen = 0
+for _kind, _pl, _line in _payloads:
+    # /tokenize payloads are identified by return_token_strs and legitimately carry no
+    # max_tokens — they generate nothing. Only GENERATION payloads get the budget rule.
+    is_generation = "return_token_strs" not in _pl
+    check(f"payload@line{_line} sends chat_template_kwargs (the harness always does)",
+          "chat_template_kwargs" in _pl)
+    if not is_generation:
+        print(f"    (line{_line} is a /tokenize payload — max_tokens rule N/A, not skipped "
+              f"silently)")
+        continue
+    _n_gen += 1
+    mt = _pl.get("max_tokens")
+    val = mt.value if isinstance(mt, ast.Constant) else None
+    check(f"generation payload@line{_line} has max_tokens >= 256 (v1 used 32 and truncated "
+          "inside <think>)", isinstance(val, int) and val >= 256, f"max_tokens={val}")
+check("at least 2 generation payloads were linted", _n_gen >= 2, str(_n_gen))
+
+check("the mutated auto-probe payload re-sets chat_template_kwargs explicitly",
+      "chat_template_kwargs" in _mutated.get("auto", set()),
+      str(sorted(_mutated.get("auto", set()))))
+
+# NEGATIVE CONTROL: reconstruct the v1 payload and prove the lint rejects it.
+_v1_like = ast.parse(
+    "payload = {'model': M, 'messages': [], 'temperature': 0.0, 'max_tokens': 32}"
+).body[0].value
+_v1_keys = [k.value for k in _v1_like.keys]
+_v1_mt = dict(zip(_v1_keys, _v1_like.values)).get("max_tokens")
+check("** NEGATIVE CONTROL: the lint rejects the exact v1 payload that killed the kernel",
+      "chat_template_kwargs" not in _v1_keys and _v1_mt.value < 256,
+      "no chat_template_kwargs, max_tokens=32")
+
+# ---------------------------------------------------------------------------
+# 6c. Gate classification — prereg section 10 must match the shipped code
+# ---------------------------------------------------------------------------
+section("6c. fatal/report-only classification (prereg section 10)")
+_defs = B.Q38_SERVE_DEFS
+check("gate K (served model id mismatch) is FATAL — poisoning",
+      "raise RuntimeError('Q38-EVAL FATAL: served model ids" in _defs)
+check("gate B (quant_method / weight_block_size) is FATAL — poisoning",
+      "not Qwen3.8 blockwise fp8" in _defs and "raise RuntimeError" in _defs)
+check("gate M (pin uncertified by BOTH instruments) is FATAL — poisoning",
+      "UNCERTIFIED by BOTH" in _defs)
+check("gate I1 (pinned render still injects) is FATAL — poisoning",
+      "STILL '\n                               'injects an instruction" in _defs
+      or "STILL " in _defs)
+check("** gate N (tool-call) is RECLASSIFIED to REPORT-ONLY",
+      "WARN tool-call-roundtrip=FAILED mode=forced" in _defs
+      and "FATAL: tool-call round-trip" not in _defs)
+check("** gate P (MM image) is RECLASSIFIED to REPORT-ONLY — the assert that killed v1",
+      "WARN mm-image-roundtrip=EMPTY-CONTENT" in _defs
+      and "FATAL: MM boot probe" not in _defs)
+check("gate L (/tokenize) targets the ROOT url, not /v1 — v1's 404 was our URL",
+      "root_url + '/tokenize'" in _defs and "VLLM_BASE_URL[:-3]" in _defs)
+check("every probe emits OBSERVE (evidence) before any verdict",
+      _defs.count("_q38_observe(") >= 4 and "Q38-EVAL OBSERVE" in _defs)
+check("the OBSERVE line carries finish_reason, content_chars and reasoning_chars",
+      all(t in _defs for t in ("finish_reason=", "content_chars=", "reasoning_chars=")))
+
+# ---------------------------------------------------------------------------
+# 6d. REGRESSION: replay v1's actual server behaviour through the NEW boot asserts
+# ---------------------------------------------------------------------------
+# Proving the reclassification changed BEHAVIOUR, not just strings. The stub reproduces the
+# server exactly as v1 observed it: /v1/models correct, /tokenize 404 (v1's URL bug), tool
+# calls fine, and the MM request answering 200 with EMPTY content and the output in
+# reasoning_content. Under v1 this raised and killed the kernel. It must now complete.
+section("6d. replay of the v1 failure through the reclassified boot asserts")
+
+
+def _replay(mm_content: str, mm_reasoning: str, tokenize_404: bool,
+            tool_calls_ok: bool = True) -> tuple[bool, str, str]:
+    import contextlib
+    import io
+    import urllib.error
+
+    calls_log: list[str] = []
+
+    def fake_request_json(url, payload=None, timeout=30):
+        calls_log.append(url)
+        if url.endswith("/v1/models"):
+            return {"data": [{"id": "Qwen/Qwen3.8-27B-FP8"}]}
+        if url.endswith("/tokenize"):
+            if tokenize_404:
+                raise urllib.error.HTTPError(url, 404, "Not Found", None, None)
+            effort = (payload or {}).get("chat_template_kwargs", {}).get("reasoning_effort")
+            text = "Q38_SYSTEM_SENTINEL <think>"
+            if effort == "xhigh":
+                text = "Reasoning effort is set to xhigh. " + text
+            return {"token_strs": list(text)}
+        # /chat/completions
+        if any("image_url" in str(m.get("content")) for m in (payload or {}).get("messages", [])):
+            return {"choices": [{"finish_reason": "stop", "message": {
+                "content": mm_content, "reasoning_content": mm_reasoning}}],
+                "usage": {"completion_tokens": 32}}
+        tc = ([{"function": {"name": "submit_action",
+                             "arguments": '{"action": "ACTION6", "x": 3, "y": 7}'}}]
+              if tool_calls_ok else [])
+        return {"choices": [{"finish_reason": "tool_calls", "message": {
+            "content": "", "reasoning_content": "thinking", "tool_calls": tc}}],
+            "usage": {"completion_tokens": 40}}
+
+    scope = {"json": json, "request_json": fake_request_json,
+             "VLLM_BASE_URL": "http://127.0.0.1:1234/v1", "Path": Path,
+             "shutil": __import__("shutil"), "subprocess": subprocess}
+    exec(compile(B.Q38_SERVE_DEFS, "q38defs", "exec"), scope)
+    scope["Q38_PIN_CERTIFIED"].append("local-render")  # as certified pre-serve, exactly as v1
+    buf = io.StringIO()
+    try:
+        with contextlib.redirect_stdout(buf):
+            scope["_q38_boot_asserts"]()
+        return True, buf.getvalue(), ""
+    except Exception as exc:  # noqa: BLE001
+        return False, buf.getvalue(), f"{type(exc).__name__}: {exc}"
+
+
+ok_v1, out_v1, err_v1 = _replay("", "the image appears to be a solid red square", True)
+check("** the EXACT v1 scenario (MM empty content + /tokenize 404) now COMPLETES instead of "
+      "killing the kernel", ok_v1, err_v1[:200])
+check("and it reaches the hand-off to the bench",
+      "BOOT-ASSERTS PASSED" in out_v1)
+check("and it reports the MM result loudly rather than silently",
+      "WARN mm-image-roundtrip=EMPTY-CONTENT" in out_v1)
+check("and the OBSERVE line now carries the evidence v1 never printed "
+      "(reasoning_chars > 0 is what would have closed the question)",
+      "OBSERVE mm-image" in out_v1 and "reasoning_chars=42" in out_v1)
+for _l in out_v1.strip().splitlines():
+    print("      " + _l[:165])
+
+ok_h, out_h, _ = _replay("red", "", False)
+check("a healthy server still passes and now certifies the pin by BOTH instruments", ok_h)
+check("the /tokenize probe works against the ROOT url once it is not 404",
+      "server-probe reasoning_instruction=ABSENT" in out_h)
+check("both instruments recorded", "effort-pin-certified-by=local-render,server-tokenize" in out_h)
+
+ok_t, out_t, _ = _replay("red", "", False, tool_calls_ok=False)
+check("** a broken tool-call path is now REPORTED, not fatal (it would BE the number)",
+      ok_t and "WARN tool-call-roundtrip=FAILED" in out_t)
+
+# The fatal gates must still be fatal.
+def _replay_wrong_model() -> tuple[bool, str]:
+    import contextlib, io
+    def fake(url, payload=None, timeout=30):
+        if url.endswith("/v1/models"):
+            return {"data": [{"id": "vrfai/Qwen3.6-27B-FP8"}]}
+        return {"choices": [{"message": {"content": "x"}}]}
+    scope = {"json": json, "request_json": fake, "VLLM_BASE_URL": "http://x/v1", "Path": Path,
+             "shutil": __import__("shutil"), "subprocess": subprocess}
+    exec(compile(B.Q38_SERVE_DEFS, "q38defs", "exec"), scope)
+    try:
+        with contextlib.redirect_stdout(io.StringIO()):
+            scope["_q38_boot_asserts"]()
+        return True, ""
+    except Exception as exc:  # noqa: BLE001
+        return False, str(exc)
+
+
+ok_w, err_w = _replay_wrong_model()
+check("** NEGATIVE CONTROL: a silently-served Qwen3.6 is STILL FATAL (poisoning gate intact)",
+      not ok_w and "served model ids" in err_w, err_w[:120])
+
+# ---------------------------------------------------------------------------
 # 7. Boot-assert wiring (static; the server side runs on Kaggle)
 # ---------------------------------------------------------------------------
 section("7. boot-assert wiring")
@@ -408,6 +601,9 @@ check("the pin is FATAL if BOTH instruments fail (no silent unknown-effort run)"
       "UNCERTIFIED by BOTH" in B.Q38_SERVE_DEFS)
 check("a served model-id mismatch is FATAL (no silent incumbent)",
       "refusing to continue" in B.Q38_SERVE_DEFS)
+check("the boot path can no longer kill the run for anything that would simply BE the number",
+      "FATAL: MM boot probe" not in B.Q38_SERVE_DEFS
+      and "FATAL: tool-call round-trip" not in B.Q38_SERVE_DEFS)
 check("cell 2 carries a greppable Q38-EVAL banner", "Q38-EVAL seed=1" in "".join(nb["cells"][2]["source"]))
 
 # ---------------------------------------------------------------------------
@@ -418,3 +614,25 @@ if FAIL:
         print("  FAIL " + f)
     sys.exit(1)
 print("ALL GATES GREEN — the artifact is runtime-tested; the slot decision is separate.")
+
+# COVERAGE BOUNDARY. A pass count printed without the shape of what it excludes is a
+# half-truth: v1's "81 passed, 0 failed" was TRUE of every check it ran, and every one of those
+# checks also passed on the rail — the kernel still died, in the region the suite does not
+# reach. State the boundary next to the number, every time.
+print("""
+COVERAGE BOUNDARY — what these checks do NOT validate:
+  VALIDATED HERE   notebook structure and cell provenance; kernel metadata and env fields;
+                   the setup-command rewrite EXECUTED against the real bundle (anchors, vetoes,
+                   18 invariants); AST name resolution in the rewritten command; the chat
+                   templates rendered for real; the pre-serve config asserts EXECUTED against a
+                   staged real snapshot, with negative controls; probe payload SHAPE.
+  NOT VALIDATED    anything requiring a SERVED MODEL. Specifically: whether an endpoint is
+                   mounted at the path we call (v1 lost its second pin instrument to a /v1
+                   prefix that does not exist for /tokenize); whether a response arrives in the
+                   field we read (v1 died on `content` being empty while `reasoning_content`
+                   held the output); token budgets vs thinking; kernel selection and the
+                   blockwise-FP8 Triton fallback; throughput; and the 25-game number itself.
+  IMPLICATION      a green run here means the artifact is well-formed and self-consistent. It
+                   does NOT mean the kernel will survive the rail. The boot probes are now
+                   report-only wherever a failure would simply BE the number, so the eval is
+                   its own canary for its first ~7 minutes and continues if it survives them.""")
