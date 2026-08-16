@@ -776,3 +776,186 @@ So the board says a real capability is diffusing, and our controlled test says t
 - **Levels-per-action (1.70×) and tokens-per-action (2.10×) are descriptive, one seed, post hoc.** They are the strongest thing this run produced and they are **not** sealed results.
 - **No clean decode-rate measurement was obtained.**
 - **A CONFIRM would have licensed a follow-up; a REFUTE licenses nothing** except the cheap arms §12.5 names. Sunday slot 2 stays free pending the coordinator's decision.
+
+---
+
+# PART II — THE TOKEN-COST ARM (`arc3-q38-low-eval`), prereg sealed 2026-08-16 BEFORE building
+
+## 13. ★ CORRECTION FIRST: AUTHORIZED CHANGE #1 IS A NO-OP. I WAS WRONG.
+
+The coordinator authorized two changes on a premise **I supplied**, and verifying it before building refuted it. Recording this before anything else, because half the authorized arm has just evaporated.
+
+**The claim I made** (prereg §2, §12.5 reading 3, and the ITERATION_LOG entry for 08-16):
+> *"Our harness stores `assistant_message["reasoning"]`; the Qwen template reads `reasoning_content` — so the replayed `<think>` block renders EMPTY. We pay 2.1× for thinking and discard 100 % of it."*
+
+**That is false.** vLLM 0.19.0 bridges the two keys itself. `vllm/entrypoints/chat_utils.py :: _parse_chat_message_content`:
+
+```python
+reasoning = message.get("reasoning")
+...
+if role == "assistant":
+    if reasoning is not None:
+        result_msg["reasoning"] = cast(str, reasoning)
+        result_msg["reasoning_content"] = cast(str, reasoning)   # keep compatibility
+```
+
+Confirmed end-to-end, not just read: rendering the **real Qwen3.8 template** with the **exact message the harness appends** (`{"role":"assistant","reasoning":…,"tool_calls":[…]}`, tool_agent.py:1969 + 2010) gives an **empty** `<think>` block **before** normalisation and the **full reasoning text inside `<think>`** after it. The served prompt gets the reasoning.
+
+**Same error class as the last two.** I verified the harness end (`reasoning` is set, `reasoning_content` never is) and the template end (`reasoning_content` is what it reads) and never checked the path between them. That is the third time: `/tokenize` existed but not at the path I called; the MM probe's field existed but the tokens went elsewhere; here both keys existed but the server already reconciles them. **"Verified existence, not call shape" is now a named recurring defect of mine, and the countermeasure is the same each time — test the whole path, not the endpoints.**
+
+**Consequences, all of them:**
+- **Change #1 is struck.** It would have been a null edit shipped as a fix, and if the arm had improved we would have credited it.
+- **§12.5 reading 3 is WITHDRAWN.** "The harness throws away 100 % of the model's thinking" is not true.
+- **The arm is now SINGLE-VARIABLE by construction**, and the coordinator's confound dilemma dissolves. No 2×2 is needed and none is being justified.
+
+### 13.1 What the real mechanism is — measured, and it is better than the one I withdrew
+
+Re-reading the ft09 transcript for the *actual* per-turn accounting (`[ANALYZER STATUS]`):
+
+| | ft09 (0 levels, **0 actions**) | sb26 (4 levels, 153 actions) |
+|---|---|---|
+| analyzer turns | 61 | 87 |
+| `step_executed: True` | **0** | 48 |
+| yields on `turn_time_budget` | **61 / 61 (100 %)** | 22 |
+| mean `reasoning_chars` | 2,760 | 2,784 |
+
+**Every single ft09 turn ran out of its 60-second analyzer budget before executing a step** (`LOCAL_ANALYZER_YIELD_SECONDS=60`, `context_budget_tokens: 31744`). The two games think identically hard per turn; they differ in whether the turn *finishes* inside 60 s. `history_messages` reached 24–27, so the agent was carrying context, not starving for it.
+
+**The binding constraint is a 60-second per-turn wallclock yield, and thinking length decides how much of it is spent before acting.** That is a sharper, better-evidenced mechanism than the one I withdrew, and it makes `reasoning_effort=low` the exactly-correct lever rather than a plausible one. There is no context-overflow anywhere in the run (`context_overflow_recovered`: 0).
+
+**A second lever is now visible and is deliberately NOT being shipped:** `LOCAL_ANALYZER_YIELD_SECONDS` itself. It is a harness config change, it would be a second variable, and it belongs in its own arm. Registered, not taken.
+
+---
+
+## 14. THE ARM
+
+**`canivel/arc3-q38-low-eval`** (fresh slug), built from the same frozen duck fork.
+**The single change vs the run we just completed: `reasoning_effort` `"medium"` → `"low"`.**
+
+Everything else is byte-identical to the Q38 arm: same engine (`saltb0x/qwen3-8-27b-fp8`), same wheelhouse, same 18 invariants, same parsers, same 65536/32768 windows, same sampling, same `MULTIMODAL_UPSCALE=4`, cells 12 and 14 untouched.
+
+`low` injects: *"Reasoning effort is set to low. Keep your thinking brief and focused, moving directly to the conclusion without unnecessary elaboration."* Measured render delta vs `medium`: **+138 chars of system prompt** and nothing else.
+
+**One added instrument, report-only:** the decode-rate probe (§16). It runs in cell 8 *before* the bench, so it consumes kernel time (~2 min) and **zero measurement window**.
+
+### 14.1 One arm or two — the decision, and why the question changed
+
+The coordinator leaned "ship together, we lack the slots for a clean 2×2", and explicitly invited disagreement. **I do not need to disagree: the correction in §13 makes this a single-variable arm automatically.** Change #1 is not being deferred as a judgement call — it is being struck as a null edit. The arm carries one variable because there is only one real change left, which is the strongest position available and costs nothing.
+
+---
+
+## 15. THE READ — sealed before building
+
+**Primary is ACTIONS and LEVELS. Tokens/s is explicitly NOT primary** (§12.4: job-wallclock tok/s cannot separate speed from verbosity, demonstrated three lanes running).
+
+### 15.1 Two comparators, and they answer different questions
+
+| | levels | actions | tokens/action |
+|---|---:|---:|---:|
+| **B1** `duck-harness-kaggle` m=3 (Qwen3.6) | 19.33 (0.7733/game) | 4,474 | 370 |
+| **B2** Q38 arm, `effort=medium` (n=1, 2026-08-16) | 21 (0.8400/game) | 2,857 | 776 |
+
+- **vs B1** answers *"does Qwen3.8 + low beat the incumbent?"* — the campaign question. Uses the sealed K3″ machinery (σ̂ 0.141740, df 6, C(3)=2.02).
+- **vs B2** answers *"did the knob recover the actions the engine cost?"* — the mechanism question. **n=1 vs n=1: this comparison has NO error model and is DESCRIPTIVE ONLY.** Stated now so it cannot be promoted later.
+
+### 15.2 Sealed lines (in `q38low_score.py`, selftested before the push)
+
+**PRIMARY-A — levels vs B1** (identical thresholds to the Q38 arm; unchanged so the two arms are directly comparable):
+
+| verdict | condition | arm levels |
+|---|---|---|
+| **HARM** | Δlc ≤ −0.286320 | ≤ 12 |
+| **NO-LIFT** | Δlc ≤ +0.250000 | ≤ 25 |
+| **LIFT** | Δlc ≥ +0.500000 | ≥ 32 |
+| INDETERMINATE | between | 26–31 |
+
+**PRIMARY-B — actions/window vs B2** (the mechanism claim, pre-registered because the whole arm rests on it):
+
+- **ACTION-RECOVERY** iff total actions **≥ 3,665** (= B2's 2,857 + 50 % of the 1,617-action gap to B1's 4,474). Justification: the arm exists to recover the action budget the engine cost; recovering *half* of a 36 % deficit is the smallest effect that would make the mechanism story real rather than rhetorical.
+- **NO-RECOVERY** iff actions ≤ 3,100 (< 15 % of the gap).
+- **PARTIAL** between.
+- Reported alongside: **tokens/action** (B2 776, B1 370) — the term the knob is supposed to move.
+
+**The two primaries are reported jointly and neither overrides the other.** The interesting quadrant is pre-named: **ACTION-RECOVERY + NO-LIFT** would mean the knob buys actions but the shorter thinking gives back the per-action quality — i.e. the 1.70× levels/action was *bought* by the 2.10× tokens/action, and the trade is roughly neutral in both directions. That would be a real finding and it must not be read as failure.
+
+**INFRA DEATH (not decisive)** third state carried forward unchanged.
+
+**Power honesty:** unchanged from §4.3 — the levels read is well powered against large effects (80 % floor = 11.7 levels) and badly powered against small ones. The actions read has **no error model at all** (n=1 vs n=1) and is a threshold on a single draw; it is registered as a **decision rule, not a significance test**, and is labelled as such in the scorer output.
+
+### 15.3 Score-based secondary: still non-inferential, same reasons
+
+B1 mean_score 1.427/1.939/3.420 (sd 1.033, n=3); B2 2.795. ~60 % power, below the SCREEN_PROTOCOL bar. **Reported, never a verdict.** The Q38 arm's 2.795 was not a win and a higher number here will not be one either.
+
+---
+
+## 16. THE DECODE-RATE GAP — closed, cheaply, at last
+
+Named as a standing gap in §12.4 after three consecutive blind lanes. A real fix exists and costs ~2 minutes of kernel time outside the measurement window.
+
+`vllm/entrypoints/openai/chat_completion/protocol.py` supports **`ignore_eos`** and **`min_tokens`**. With `ignore_eos: True, min_tokens: 256, max_tokens: 256` every request emits **exactly 256 tokens**, so tokens/sec becomes arithmetic instead of inference. The probe runs at **fixed concurrency 1 and 8**, thinking off, fixed prompt:
+
+```
+Q38LOW-DECODE concurrency=1 tokens=256  elapsed=..s  tok/s=..
+Q38LOW-DECODE concurrency=8 tokens=2048 elapsed=..s  tok/s=..
+```
+
+**This is a true decode rate**, independent of how verbose the model chooses to be — the exact confound that made 237.83 uninterpretable. **REPORT-ONLY** under the poisoning rule: a slow engine *is* the number. Wrapped so it can never fail the run.
+
+*Caveat registered in advance:* this measures the engine at a synthetic concurrency, not the harness's live 25-game concurrency, and it is not comparable to the historical job-wallclock figures. It is a new series starting at n=1, and the Qwen3.6 point does not exist — obtaining it would cost a slot and is **not** proposed.
+
+---
+
+## 17. ft09 — does either change plausibly move it?
+
+**Yes, and `low` is aimed straight at it.** ft09's pathology is 61/61 turns yielding on the 60-second budget with `step_executed: False`; `low` shortens the thinking that consumes that budget, so it is the one change that could convert timed-out turns into executed steps. **It is worth ~2.3 levels on its own** (baseline mean 2.333; the arm scored 0), which is 14 % of the entire baseline total from a single game. The struck change #1 is irrelevant to it — the agent already had its reasoning and 24–27 messages of history and still never acted, which is precisely why the withdrawn "it forgot" story does not fit.
+
+**Pre-registered, so it cannot be claimed post hoc:** *if the arm posts ANY non-zero action count on ft09, that is direct mechanism evidence for the yield-budget explanation, independent of the primaries.* If ft09 is again 0/0, the yield explanation survives but `low` is too weak a lever for it and the next arm should target `LOCAL_ANALYZER_YIELD_SECONDS` directly. **A zero-action-game count across all 25 games is read from `benchmark.json` offline — no cell-14 change, the measurement surface stays byte-identical.**
+
+---
+
+## 18. OPEN — carried forward, NOT inherited as premises
+
+The coordinator's instruction is explicit and it is the right one: **this arm must not quietly inherit "the engine is why they jumped."** It does not.
+
+1. **The engine-generation hypothesis is REFUTED** (§12) and is not a premise here. This arm tests a knob on an engine we have measured, nothing more. **A LIFT here would say the knob helps us; it would say nothing about why anyone else jumped.**
+2. **cstl is unexplained by anything we have tested.** 2.70, banked 43 h before the release, flat six days, still #1, zero public artefacts. Untouched by this arm.
+3. **The field is still diffusing past us.** 08-15 → 08-16: ≥1.44 went **61 → 73** in 24 h, two new teams crossed 1.90, p99 1.58 → 1.61, median unchanged 0.25. **We are #130 of 2345 at a static 1.33.** Whatever is spreading, we have not identified it, and this arm is not claimed to.
+4. **The 08-13 census stands and now spans a generation boundary:** within a fixed engine generation the model explains none of the variance; harness and agent policy are the entire public variance. The engine swap was clean and the harness ate it. **This arm is a harness-policy change, which is where the census says the variance actually lives** — that, and not the engine story, is its justification.
+
+---
+
+## 19. BUILT AND SEALED — 2026-08-16, no push (append-only)
+
+**`canivel/arc3-q38-low-eval` is ready for 08-17 slot 1.** `code_sha256=29af2aef6b3399d6`, cells [2,6,8] vs the frozen fork, pure ASCII.
+
+| gate | result |
+|---|---|
+| `q38_smoke.py` (low arm) | **112 / 0** |
+| `q38_smoke.py` (medium arm, regression) | **112 / 0** |
+| `q38low_score.py --selftest` | **23 / 0** |
+| `q38_arm_diff.py` — the one-variable proof | **16 / 0** |
+| `q38low_push.sh --dry-run` today | **refuses** (date guard: 08-17, not 08-16) |
+
+**The one-variable proof is mechanised, not asserted.** `q38_arm_diff.py` builds both arms and checks that **cell 8 is byte-identical once the effort literal is normalised — 0 residual character differences across 28,096 chars.** The serve config, all 18 invariants, both probes and the decode-rate instrument are the same bytes; only cells 2 (arm banner) and 8 (the effort word) differ; metadata differs only in `id`/`title`/`code_file`; both arms attach identical `dataset_sources`. Prose cannot enforce "one variable" against a comparator arm; this does.
+
+**Three gates caught real defects while building, which is the point of having them:**
+1. the payload lint rejected the decode probe's `max_tokens: ntok` (a name it could not resolve) — fixed by using literals, with a runtime assert keeping `ntok` in sync;
+2. the smoke's effort assertions were hardcoded to `medium` and failed the low build — now parameterised, plus a new check that **neither arm contains the other's effort value**;
+3. the arm-diff caught nothing, because the first two had already been fixed — recorded so its 16/0 is not mistaken for a gate that never fires.
+
+### 19.1 Two provenance notes, both hazards if left unwritten
+
+- **`q38_push.sh` changed underneath me while I worked.** A concurrent session pushed the engine arm's v2 with it and added a pull-back verifier fix (accept differences confined to non-ASCII codepoints, since the mangled em-dash lives in the **frozen fork's own cell 16** and ASCII-hardening it would manufacture a fourth differing cell and break D2/D3/D4). That fix is correct and is inherited by `q38low_push.sh`. **But the same session had bumped `PUSH_DATE` to 2026-08-16, and my derived script silently inherited today's date for an arm authorized for 08-17.** Caught by reading the derived file rather than trusting the copy. **This is the 08-14 "a push script is SHARED MUTABLE STATE" lesson recurring in a new form: not a duplicate push this time, but a derived artifact inheriting a stale constant.** `q38low_push.sh` is pinned to **2026-08-17** and carries its own one-shot guard (`Q38LOW_ALLOW_V2=1` to override).
+- **The local medium-arm notebook has drifted from what actually ran.** `q38_arm_diff.py` rebuilds both arms, so `notebooks/q38-eval/` now contains a medium artifact that *includes the decode-rate probe* and is therefore **not** the v2 that produced the sealed 21-level result. **The pushed v2 is the record; the local file is a comparator.** `q38_push.sh`'s one-shot guard already refuses to push the engine arm again.
+
+### 19.2 Reading it
+
+```bash
+kaggle kernels output canivel/arc3-q38-low-eval -p runs/kernel_pulls/q38low_v1 \
+  --file-pattern '^(benchmark\.json|summary\.txt)$'
+python duck_eval/q38/q38low_score.py runs/kernel_pulls/q38low_v1
+kaggle kernels logs canivel/arc3-q38-low-eval > runs/kernel_pulls/q38low_v1/q38low.log
+grep -E "Q38-EVAL (DECODE|effort-pin-certified-by|served|BOOT-ASSERTS PASSED|WARN)" runs/kernel_pulls/q38low_v1/*.log
+```
+
+**The scorer was validated against the engine arm's real data before sealing**: fed `runs/kernel_pulls/q38_v2` it returns `A=NO-LIFT / B=NO-RECOVERY` and reproduces B2's own figures exactly (776 tokens/action, 0.00735 levels/action, ft09 = 0 actions). An instrument that reads the null correctly is the minimum bar before it is allowed to read the arm.

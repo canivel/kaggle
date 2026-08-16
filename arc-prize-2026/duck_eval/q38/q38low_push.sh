@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Q38 ENGINE-SWAP EVAL push + verify, as one auditable sequence (2026-08-15, the day's ONE slot).
+# Q38 TOKEN-COST ARM (reasoning_effort=low) push + verify -- 2026-08-17 slot 1.
+# Single variable vs the completed engine arm: the effort value. Prereg sections 13-18.
 #
 # Ports the two guards this campaign paid for on 2026-08-14, verbatim from
 # duck_eval/lora/lora_push_v2.sh:
@@ -25,11 +26,11 @@ set -euo pipefail
 
 REPO="/f/kaggle/arc-prize-2026"
 KAGGLE="/c/Users/dcani/AppData/Roaming/Python/Python313/Scripts/kaggle.exe"
-KERNEL="canivel/arc3-q38-engine-eval"
-NB_NAME="arc3-q38-engine-eval.ipynb"
+KERNEL="canivel/arc3-q38-low-eval"
+NB_NAME="arc3-q38-low-eval.ipynb"
 NB_DIR_WIN='F:\kaggle\arc-prize-2026\notebooks\q38-eval'   # BACKSLASH path for the CLI
-NB="$REPO/notebooks/q38-eval/$NB_NAME"
-PUSH_DATE="2026-08-16"
+NB="$REPO/notebooks/q38-low-eval/$NB_NAME"
+PUSH_DATE="2026-08-17"   # AUTHORIZED: 08-17 slot 1. Not today.
 
 cd "$REPO"
 
@@ -44,24 +45,14 @@ case "$MODE" in
     ;;
 esac
 
-echo "== 0-. ONE-SHOT GUARD (added 2026-08-15 AFTER v1 was pushed and started running) =="
-# v1 is on Kaggle and RUNNING. The local artifact has since been hardened to pure ASCII
-# (the CLI push path mangles non-ASCII; v1's /tokenize normaliser literal arrived corrupted).
-# That makes local != remote, which would let the idempotence guard wave a v2 through for a
-# NON-LOAD-BEARING fix and spend a slot we do not have. The degradation in v1 costs one
-# corroborating instrument and nothing that gates the measurement. So: refuse by default.
-if [ "${Q38_ALLOW_V2:-}" != "1" ]; then
+echo "== 0-. ONE-SHOT GUARD =="
+# The arm is one slot. If the kernel already exists, a second push needs a fresh slot and a
+# fresh authorization -- not a re-run of this script. (2026-08-14: two sessions spent both of
+# that day's slots on one artifact because nothing checked this before pushing.)
+if [ "${Q38LOW_ALLOW_V2:-}" != "1" ]; then
   if "$KAGGLE" kernels status "$KERNEL" >/dev/null 2>&1; then
-    echo "REFUSING: $KERNEL already exists (v1, pushed 2026-08-15, ERRORed at t=425s on a" >&2
-    echo "  self-inflicted MM boot assert -- see the prereg sections 9 and 10)." >&2
-    echo "" >&2
-    echo "  A v2 IS the authorized next step, but it needs THREE things, deliberately:" >&2
-    echo "    1. PUSH_DATE in this script bumped to the day you are actually pushing" >&2
-    echo "       (a date edit is the moment you re-read the ledger, not a formality);" >&2
-    echo "    2. Q38_ALLOW_V2=1 in the environment;" >&2
-    echo "    3. a FREE slot re-confirmed from ITERATION_LOG for that date (section 11.4)." >&2
-    echo "  Three deaths on this campaign came from a guard that was true when written and" >&2
-    echo "  false when used. None of these is skippable." >&2
+    echo "REFUSING: $KERNEL already exists. A v2 needs a fresh slot, a fresh ledger read and" >&2
+    echo "  Q38LOW_ALLOW_V2=1. Record why before you set it." >&2
     exit 5
   fi
 fi
@@ -101,9 +92,11 @@ fi
 
 echo
 echo "== 1. rebuild + gates =="
-python duck_eval/q38/build_q38_eval.py
-python duck_eval/q38/q38_smoke.py | tail -3
-python duck_eval/q38/q38_score.py --selftest | tail -2
+Q38_ARM=low python duck_eval/q38/build_q38_eval.py
+Q38_ARM=low python duck_eval/q38/q38_smoke.py | tail -3
+python duck_eval/q38/q38low_score.py --selftest | tail -2
+# the two arms must be one variable apart and nothing more
+python duck_eval/q38/q38_arm_diff.py
 
 echo
 echo "== 1b. idempotence check (has this exact code already been pushed?) =="
@@ -226,10 +219,11 @@ python scripts/preflight.py --kernel "$KERNEL" \
 echo
 echo "PUSHED AND VERIFIED. Poll to terminal (~2h15m expected), then:"
 echo "  $KAGGLE kernels status $KERNEL"
-echo "  $KAGGLE kernels output $KERNEL -p runs/kernel_pulls/q38_v1"
-echo "  python duck_eval/q38/q38_score.py runs/kernel_pulls/q38_v1"
-echo "Read seal: learnings/war_room/q38_engine_swap_prereg_2026-08-15.md section 4 and 7."
+echo "  $KAGGLE kernels output $KERNEL -p runs/kernel_pulls/q38low_v1"
+echo "  python duck_eval/q38/q38low_score.py runs/kernel_pulls/q38low_v1"
+echo "Read seal: learnings/war_room/q38_engine_swap_prereg_2026-08-15.md sections 15-17.
+echo "  Pull selectively: kaggle kernels output $KERNEL -p <dir> --file-pattern '^(benchmark\.json|summary\.txt)$'""
 echo "POST-MORTEM (if it ERRORs): do NOT start with kernels output - it front-loads the"
 echo "  multi-GB vllm-site-packages tree. Use CLI 2.2.3 instead:"
-echo "    kaggle kernels logs $KERNEL > runs/kernel_pulls/q38_v1/q38.log"
+echo "    kaggle kernels logs $KERNEL > runs/kernel_pulls/q38low_v1/q38.log"
 echo "  which streams full stdout with per-line timestamps and never touches /kaggle/working."

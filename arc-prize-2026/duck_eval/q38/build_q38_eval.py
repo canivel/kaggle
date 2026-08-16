@@ -82,15 +82,31 @@ OUT_DIR = REPO / "notebooks" / "q38-eval"
 OUT_NB = OUT_DIR / "arc3-q38-engine-eval.ipynb"
 OUT_META = OUT_DIR / "kernel-metadata.json"
 
-KERNEL_ID = "canivel/arc3-q38-engine-eval"
-KERNEL_TITLE = "arc3-q38-engine-eval"
+# ARM SELECTION. The engine arm (effort=medium) is COMPLETE and its result is sealed in the
+# prereg section 12 (REFUTE-2x). The low arm changes exactly one thing: the effort value.
+# Q38_ARM=low -> canivel/arc3-q38-low-eval, reasoning_effort="low".
+import os as _os
+
+_ARM = _os.environ.get("Q38_ARM", "medium").strip().lower()
+if _ARM not in ("medium", "low"):
+    raise SystemExit(f"BUILD FAIL: Q38_ARM must be 'medium' or 'low', got {_ARM!r}")
+
+if _ARM == "low":
+    KERNEL_ID = "canivel/arc3-q38-low-eval"
+    KERNEL_TITLE = "arc3-q38-low-eval"
+    OUT_DIR = REPO / "notebooks" / "q38-low-eval"
+    OUT_NB = OUT_DIR / "arc3-q38-low-eval.ipynb"
+    OUT_META = OUT_DIR / "kernel-metadata.json"
+else:
+    KERNEL_ID = "canivel/arc3-q38-engine-eval"
+    KERNEL_TITLE = "arc3-q38-engine-eval"
 
 OLD_ENGINE_DS = "driessmit1/vrfai-qwen3-6-27b-fp8-hf-snapshot"
 NEW_ENGINE_DS = "saltb0x/qwen3-8-27b-fp8"
 NEW_ENGINE_OWNER, NEW_ENGINE_SLUG = NEW_ENGINE_DS.split("/", 1)
 OLD_SERVED = "vrfai/Qwen3.6-27B-FP8"
 NEW_SERVED = "Qwen/Qwen3.8-27B-FP8"
-REASONING_EFFORT = "medium"
+REASONING_EFFORT = _ARM  # "medium" = the engine arm (COMPLETE); "low" = the token-cost arm
 
 SOURCE_DS = "jeroencottaar/taaf-kaggle-source-share"
 WHEELS_DS = "driessmit1/arc3-vllm-h100-wheelhouse-v3"
@@ -105,9 +121,11 @@ print(
     "engine={NEW_ENGINE_DS} (Qwen3.8-27B-FP8, 25.3 GB, blockwise fp8) "
     "REPLACES {OLD_ENGINE_DS} (Qwen3.6-27B-FP8, 35.9 GB) "
     "wheels={WHEELS_DS} (UNCHANGED, vLLM 0.19.0) "
-    "reasoning_effort=PINNED-{REASONING_EFFORT} (renders byte-identically to the Qwen3.6 "
-    "prompt; xhigh/low are a SEPARATE later arm) "
-    "delta=THE WEIGHTS AND NOTHING ELSE; baseline family duck-harness-kaggle (m=3, lc 18/19/21)",
+    "reasoning_effort=PINNED-{REASONING_EFFORT} "
+    "arm={_ARM} "
+    "delta(medium)=THE WEIGHTS AND NOTHING ELSE vs duck-harness-kaggle m=3 lc 18/19/21; "
+    "delta(low)=THE EFFORT KNOB AND NOTHING ELSE vs the medium arm (21 levels, 2857 actions) "
+    "primary=ACTIONS and LEVELS, never job-wallclock tokens/s",
     flush=True,
 )'''
 
@@ -308,6 +326,59 @@ def _q38_observe(tag, response, extra=''):
     return content.strip(), reasoning
 
 
+def _q38_decode_rate() -> None:
+    # THE DECODE-RATE PROBE (prereg section 16). Three consecutive model-level lanes ended with
+    # no clean tokens/s because `generated tokens/sec (job wallclock)` is total tokens over a
+    # fixed job duration - it cannot separate a fast engine from a verbose one. vLLM 0.19.0
+    # supports ignore_eos + min_tokens, so pinning both to max_tokens makes every request emit
+    # EXACTLY that many tokens and the rate becomes arithmetic. Runs BEFORE the bench, so it
+    # costs kernel time and ZERO measurement window. REPORT-ONLY: a slow engine IS the number.
+    import threading
+    import time
+
+    ntok = 256   # kept in sync with the payload literals below; asserted at run time
+    prompt = ('Write a detailed technical description of a sorting algorithm. '
+              'Continue until you are told to stop.')
+
+    def one(out, idx):
+        payload = {'model': Q38_EXPECT_SERVED,
+                   'messages': [{'role': 'user', 'content': prompt}],
+                   'temperature': 0.0, 'max_tokens': 256, 'min_tokens': 256,
+                   'ignore_eos': True,
+                   'chat_template_kwargs': {'enable_thinking': False}}
+        try:
+            r = request_json(VLLM_BASE_URL + '/chat/completions', payload=payload, timeout=600)
+            out[idx] = ((r.get('usage') or {}).get('completion_tokens') or 0)
+        except Exception as exc:
+            out[idx] = -1
+            print('Q38-EVAL WARN decode-probe request failed: ' + repr(exc)[:160], flush=True)
+
+    if ntok != 256:
+        raise RuntimeError('Q38-EVAL decode probe: ntok is out of sync with the payload')
+    for concurrency in (1, 8):
+        out = [0] * concurrency
+        threads = [threading.Thread(target=one, args=(out, i)) for i in range(concurrency)]
+        t0 = time.monotonic()
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join()
+        elapsed = time.monotonic() - t0
+        got = sum(v for v in out if v > 0)
+        exact = all(v == ntok for v in out)
+        if elapsed <= 0 or got <= 0:
+            print('Q38-EVAL WARN decode-probe concurrency=%d produced no usable timing'
+                  % concurrency, flush=True)
+            continue
+        print('Q38-EVAL DECODE concurrency=%d requested_tokens=%d generated_tokens=%d '
+              'exact_token_count=%s elapsed_s=%.2f tok_s=%.1f'
+              % (concurrency, ntok * concurrency, got, exact, elapsed, got / elapsed),
+              flush=True)
+    print('Q38-EVAL DECODE note=synthetic fixed-concurrency rate; NOT comparable to the '
+          'job-wallclock tokens/sec in summary.txt, and there is no Qwen3.6 point in this '
+          'series', flush=True)
+
+
 def _q38_boot_asserts() -> None:
     # Runs AFTER the server is up and the stock smoke test passed.
     #
@@ -451,6 +522,12 @@ def _q38_boot_asserts() -> None:
               + str(len(reasoning)) + ' - REPORT-ONLY: a dead vision path would produce a low '
               'score, which IS the number. Read this against the per-game traces, not as a '
               'reason to kill the run.', flush=True)
+
+    try:
+        _q38_decode_rate()
+    except Exception as exc:
+        print('Q38-EVAL WARN decode-rate probe errored (REPORT-ONLY): '
+              + repr(exc)[:200], flush=True)
 
     print('Q38-EVAL BOOT-ASSERTS PASSED - handing off to the 25-game offline bench', flush=True)'''
 

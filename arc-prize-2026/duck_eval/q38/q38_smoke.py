@@ -147,8 +147,13 @@ check("MODEL_OWNER swapped", "MODEL_OWNER = 'saltb0x'" in rewritten)
 check("MODEL_SLUG swapped", "MODEL_SLUG = 'qwen3-8-27b-fp8'" in rewritten)
 check("SERVED_MODEL_NAME swapped",
       "SERVED_MODEL_NAME = 'Qwen/Qwen3.8-27B-FP8'" in rewritten)
-check("reasoning_effort pinned to medium in --default-chat-template-kwargs",
-      '\'{"preserve_thinking": true, "reasoning_effort": "medium"}\'' in rewritten)
+_EFFORT_LITERAL = ('\'{"preserve_thinking": true, "reasoning_effort": "'
+                   + B.REASONING_EFFORT + '"}\'')
+check(f"reasoning_effort pinned to {B.REASONING_EFFORT} in --default-chat-template-kwargs",
+      _EFFORT_LITERAL in rewritten)
+check("the OTHER arm's effort value is absent (the two arms cannot be confused)",
+      ('"reasoning_effort": "low"' if B.REASONING_EFFORT == "medium"
+       else '"reasoning_effort": "medium"') not in rewritten)
 check("WHEELHOUSE owner/slug untouched",
       "WHEELHOUSE_OWNER = 'driessmit1'" in rewritten
       and "WHEELHOUSE_SLUG = 'arc3-vllm-h100-wheelhouse-v3'" in rewritten)
@@ -184,7 +189,7 @@ expect_added = {
     "MODEL_OWNER = 'saltb0x'",
     "MODEL_SLUG = 'qwen3-8-27b-fp8'",
     "SERVED_MODEL_NAME = 'Qwen/Qwen3.8-27B-FP8'",
-    '        \'{"preserve_thinking": true, "reasoning_effort": "medium"}\',',
+    '        ' + _EFFORT_LITERAL + ',',
     "_q38_pre_serve_asserts()",
     "_q38_boot_asserts()",
     "",
