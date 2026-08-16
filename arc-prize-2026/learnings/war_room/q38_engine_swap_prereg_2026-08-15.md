@@ -585,3 +585,194 @@ The one-shot guard now refuses with instructions rather than a bare stop. A v2 p
 Then `bash duck_eval/q38/q38_push.sh --dry-run` and, only after reading the ledger excerpt, `--confirm-push`.
 
 **The read is unchanged and still sealed: CONFIRM-2× ≥ 32 levels · REFUTE-2× ≤ 25 · HARM ≤ 12 · INFRA DEATH.** No constant in `q38_score.py` was touched while diagnosing v1 — fixing a gate after seeing data is the antipattern the seal exists to prevent, and v1 produced no data to fit to.
+
+---
+
+## 12. PUSH RECORD — v2, 2026-08-16 (append-only; nothing above was edited)
+
+**`canivel/arc3-q38-engine-eval` version 2 PUSHED and RUNNING.** 08-16 **slot 1 of 2**; slot 2 remains free. All three §11.6 steps were performed deliberately and in order: `PUSH_DATE` bumped 08-15 → 08-16 (and the stale 08-14/08-15 accounting prose in gate 0b rewritten to today's, so the script no longer prints a false statement about the slot budget), `Q38_ALLOW_V2=1`, and the free slot re-confirmed from the printed `### 2026-08-16` ledger excerpt.
+
+**Pre-push gates, run twice (dry-run then live), identical both times:** artifact `code_sha256=8babf6de9934c3e5`, cells 17, differing cells `[2,6,8]`, **smoke 109 passed / 0 failed**, **scorer selftest 22 passed / 0 failed**, idempotence guard cleared. This is a byte-exact match to the v2 fingerprint sealed in §11 — *the thing pushed is the thing that was authorized.*
+
+### 12.1 Step 3 aborted on `CODE MISMATCH`. **The artifact was right and the VERIFIER was wrong — twice.**
+
+The pull-back verify threw `AssertionError: CODE MISMATCH` on a sha compare. It was **not** a race: a second independent pull reproduced it exactly, and the difference localised to **one code cell, 527 chars local vs 529 remote**.
+
+**Defect 1 — non-ASCII round-trip mangling of a BASELINE byte.** Codepoint census: local carries a single `U+2014` EM DASH at offset **471**; remote carries `U+00E2 U+20AC U+201D` at the same offset — the textbook signature of UTF-8 bytes re-read as cp1252. Kaggle's push path did it, as §0- always said it does. **The decisive fact: that em-dash is the FROZEN FORK's own byte.** `notebooks/duckfork/tufa-labs-duck-harness-june-30-milestone-winner.ipynb` cell 16 is 527 chars with `U+2014` at offset 471 — identical. It is in a `print()` in the trailing diagnostics cell, and cell 16 is **not** one of our arm cells (`--expect-diff-cells 2,6,8`). **ASCII-hardening it would have manufactured a fourth differing cell and broken precisely the baseline byte-identity D2/D3/D4 exist to protect.** So the artifact must not change. Corroboration that this reading is not self-serving: **`preflight.py` D4 independently reached it** — `1 cell(s) at [16] differ ONLY by non-ASCII pull round-trip mangling (treated as equal)`. Preflight had been hardened for this class; step 3 had not.
+
+**Defect 2 — an assert that predated the gate it was breaking.** After Fix 1 the run reached `assert "vrfai/Qwen3.6-27B-FP8" not in remote_src.replace(...)` and failed. Cause: the incumbent name now occurs **twice**, and the second site is **`Q38_VETO = ('vrfai-qwen3-6-27b-fp8-hf-snapshot', 'vrfai/Qwen3.6-27B-FP8')`** — v2's **poisoning gate**, the §11.2 negative control whose entire job is to make a silently-served incumbent fatal. The assert was written against v1, before that constant existed. **Local and remote both have exactly 2 occurrences at exactly these 2 sites** — i.e. the check was demanding the deletion of the gate that protects the measurement.
+
+**Both fixes are to `q38_push.sh` step 3, not to the artifact, and neither relaxes anything load-bearing.** Fix 1 prefers an exact match and falls back to ASCII-normalised equality — *any ASCII-visible drift is still fatal*. Fix 2 **enumerates the two licensed sites, asserts each is PRESENT, and forbids a third** — strictly stronger than the original, which would have passed a notebook with the veto tuple deleted. The repaired step 3 was then **extracted verbatim from the script and replayed against the live remote**: `code MATCH after non-ASCII round-trip normalisation` · `pull-back OK … poisoning gate (Q38_VETO) intact`, exit 0.
+
+### 12.2 The load-bearing verification — which the abort had skipped, and which is the real lesson
+
+The abort fired *before* the dataset/env block, so the push briefly stood with **only** a sha comparison done. Re-run manually and then via the repaired script, all of it passes: **`dataset_sources` = 3/3 with the 25 GB engine `saltb0x/qwen3-8-27b-fp8` present** (the silent-drop failure mode of `feedback_kaggle_model_attach`, and the one thing most likely to void the arm), incumbent snapshot **absent**, `enable_gpu=True`, `enable_internet=False`, `machine_shape=NvidiaRtxPro6000`, `competition_sources=[arc-prize-2026-arc-agi-3]`, docker sha `…4cb13c`, and all six engine/pin tokens present including `"reasoning_effort": "medium"`. **Step 4 preflight: `ALLOW`, 0 fails / 0 warns / 5 n/a, D3 `17 cells, 8 code`, D4 `[2,6,8] MATCHES`.**
+
+**The generalisable defect: a verifier that aborts on its cheapest, least load-bearing check never runs its most load-bearing ones.** A cosmetic em-dash in someone else's cell suppressed the 25 GB-engine attachment check. Ordering matters in a gate suite, and `assert` gives none — this is the same family as `feedback_audit_the_instrument`: *the instrument was the defect, three times in three days.*
+
+**Status at time of writing: `KernelWorkerStatus.RUNNING`.** The read is unchanged and still sealed — **CONFIRM-2× ≥ 32 levels · REFUTE-2× ≤ 25 · HARM ≤ 12 · INFRA DEATH.** No constant in `q38_score.py` was touched. If it ERRORs, the post-mortem starts with `kernels logs` on **CLI 2.2.3**, never `kernels output`.
+
+---
+
+## 13. DISPOSITION ANNEX — sealed 2026-08-16, **BEFORE the kernel completed and before any output was pulled**
+
+Panel round 26 directive #1 (**5/5 reviewers, the only unanimous item**). **No constant in `q38_score.py` was touched, no
+threshold moved, nothing unsealed.** This annex adds only *operating characteristics* — what the sealed design can and
+cannot detect — which is a **pre-data power audit, not a post-hoc revision**. `prog-synthesis` put the distinction
+correctly: *"sealing protects constants from post-hoc motion, not from a pre-data power audit."* Kernel status at the
+moment of writing: **`KernelWorkerStatus.RUNNING`**.
+
+### 13.1 The disposition table
+
+Thresholds as sealed (REFUTE-2× `Δlc ≤ +0.250`, CONFIRM-2× `Δlc ≥ +0.500`), `SE(Δ) = σ̂·√(1+1/3) = 0.163667` lc/game from
+§4.3's pre-registered `σ̂ = 0.141740`. **Independently recomputed from the sealed constants, not copied:** the `δ = 0.773`
+row reproduces §4.3's own **95.3% / 0.07%**, which is the check that this arithmetic and the seal are the same object.
+
+| true Δlc (lc/game) | ≈ levels over 25 | P(REFUTE-2×) | P(INDETERMINATE) | P(CONFIRM-2×) |
+|---|---|---|---|---|
+| 0.000 (null) | 19.3 | **93.67%** | 6.22% | 0.11% |
+| 0.100 | 21.8 | **82.03%** | 17.24% | 0.73% |
+| 0.250 | 25.6 | 50.00% | 43.67% | 6.33% |
+| 0.468 (80%-power MDE) | 31.0 | 9.14% | 48.61% | 42.25% |
+| 0.773 (a true 2×) | 38.6 | 0.07% | 4.70% | **95.23%** |
+
+**80%-power MDE floor = 0.4684 lc/game = 11.7 levels over 25.** §4.3 already said this out loud before the push — *"well
+powered against a doubling, badly powered against small effects."* **The panel's shared "nobody did a power analysis"
+framing is therefore ~80% false and must not enter the log:** the MDE was sealed on 08-15; what was missing was only the
+δ-grid, which is this table.
+
+### 13.2 THE PRE-COMMITTED READING — binding, written before the data exists
+
+> **A REFUTE-2× reading kills the "2× on the local 25" claim on our harness at better than 3σ, and says NOTHING about the
+> engine's marginal value at a +0.17-class effect, which sits below this design's 11.7-level MDE and is therefore
+> UNMEASURED by this arm.**
+
+Unless the true effect is **≥ ~+0.25 lc/game, REFUTE-2× is the modal outcome BY PRE-REGISTERED DESIGN.** That is neither a
+surprise nor a power failure: the arm was sealed as a test of a **doubling**, and the verdict is literally named
+`REFUTE-2×`. It refutes **the claim**, not **the engine** — and it does not impeach our power either, because the power
+was declared honestly before the push. Per `systems`' prescription, if the realised read is REFUTE-2× it is additionally
+logged **`UNDERPOWERED-AT-PRIOR`**, because the day's re-anchored prior (**+0.17-class**, from the only two dateable
+community points: Ya Xu 1.30→1.47, FOYSAL 1.61→1.61) sits **below the MDE**.
+
+### 13.3 The LB conversion is NOT DERIVABLE — say so rather than inventing a ratio
+
+There is no defensible Δscore → Δlc conversion. The baseline's **within-null** `mean_score` spread is **1.427 / 1.939 /
+3.420** — sd **1.033 on n=3, a 2.4× spread *inside the null*.** This is why §4.4 already ruled the score-based reading
+carries no verdict. Any "+0.17 LB ⇒ X levels" claim is fabrication.
+
+### 13.4 Separately, for the LB arm (not this kernel)
+
+Recomputed from `runs/ledger.json` (n=33, mean 0.9424, s 0.1563), bar **1.0826**, mean-of-4 σ/√4 = **0.0781**: a true
+**+0.17** shift moves the draw mean to **1.1124** and clears the bar only **64.9%** of the time; under the null it clears
+**3.6%**. `systems`' figure (*"~64%"*) is **verified correct**. So even a *real* +0.17-class engine gain is closer to a
+coin-flip than a promotion on a single mean-of-4 window.
+
+### 13.5 Secondary read added per OQ-4 (methodology) — strictly descriptive
+
+A **per-game** secondary read is added to guard Le Grand's public/private-split risk. It is **explicitly non-inferential**:
+it carries **no verdict**, must **never** contaminate the primary read, and any per-game claim requires multiplicity
+correction across the ~25 games. Recorded here so it cannot later be presented as a finding.
+
+---
+
+## 12. THE VERDICT — v2 COMPLETE, 2026-08-16. **REFUTE-2× (decisive).** (append-only)
+
+```
+Q38 ENGINE-SWAP EVAL - SEALED VERDICT: REFUTE-2x (decisive)
+decisive: True
+reason:   mean dlc +0.0667 <= +0.2500: the 'consistent 2x on the local 25' claim
+          is NOT reproduced on our harness
+  levels_completed  21 over 25 games (0.8400/game)
+  baseline (m=3)    19.33 levels (0.7733/game)  [duck-harness-kaggle 18/19/21]
+  mean dlc          +0.0667 /game  (+1.67 levels over 25)   z = +0.41
+  lines             HARM <= -0.2863 | REFUTE-2x <= +0.2500 | CONFIRM-2x >= +0.5000
+  windows_drifted   0/25
+```
+
+Run clean: 25/25 games, `state=gave_up` on all (normal), zero window drift, no runtime fatals, `BOOT-ASSERTS PASSED`. **The instrument fixes worked** — the reclassified probes let the run proceed, and `_q38_observe` gave us the per-turn evidence that made §12.2 diagnosable.
+
+**The engine-generation hypothesis failed its own named primary falsifier.** §8.1 said: *"We screen Qwen3.8 and it does not beat the frozen fork. Then the engine is not the driver."* It did not beat the frozen fork. **+1.67 levels on a line that needed +12.7.**
+
+### 12.1 The score-based secondary carries NO verdict — holding the line declared in §4.3
+
+`mean_score 2.795` vs baseline `1.427 / 1.939 / 3.420` (sd 1.033, n=3). **This is not a win and may not be reported as one.** It sits *below* the best single baseline run. The pre-registered power of a score-based 2× test was ~60 %, below the SCREEN_PROTOCOL bar, and that was decided before the data existed precisely so this number could not be spun afterwards. The median tells the same story: **0.40 arm vs 0.47/0.00/0.00 baseline.** Descriptive only.
+
+### 12.2 ft09 did NOT fail to run. It ran for the full window and never took a single action.
+
+The coordinator's read of the summary line (`actions=0, tokens=0`) understates it. The benchmark record says `final_wallclock_seconds: 7920.3`, `solver_note: tokens=95317`, `history: []`. The summary's token column sums `history[].generated_tokens`, and the history is empty — **so `tokens=0` is a reporting artifact; ft09 actually burned 95,317 generated tokens.**
+
+Pulled the transcript selectively (`kernels output --file-pattern ft09` — 5.3 MB, no site-packages) and it is unambiguous:
+
+- **64 turns, every one a clean `python` tool call.** `tool_call_count: 1`, `finish_reason: tool_calls`, `tool_call_markup_in_text: no` on all of them. **The harness and the tool-call parser worked perfectly.**
+- **Zero action calls in the entire 1.4 MB transcript** — `ACTION1`…`ACTION6` appear literally 0 times.
+- **`content_chars: 0` on all 64 turns**; `reasoning_chars` mean **2,760**, max 4,938.
+- The final turn is still writing exploratory analysis (`# Let me understand the target patterns more carefully`).
+
+**This is analysis paralysis, not a harness failure, not a timeout, not an ordering artifact.** The agent spent 2 h 12 m inspecting the grid and never decided to act. **No baseline run has a single zero-action game across all 75 game-runs.** It is new behaviour under this engine.
+
+**Sensitivity — the verdict is robust and ft09 does not rescue it.** Baseline ft09 mean lc is 2.333 (joint-highest game, lc 2/2/3). Crediting the arm with:
+- ft09 at baseline mean → 23.33 levels, Δ = +0.160/game, z = +0.98 → **still REFUTE-2×**
+- ft09 at its best-ever baseline (3) → 24 levels, Δ = +0.187/game → **still REFUTE-2×**
+
+CONFIRM needs **32**. **21 is a floor, and even the most generous floor-lift lands 8 levels short.**
+
+### 12.3 The real finding: the engine is better PER ACTION and takes 36 % fewer actions
+
+| | arm (Qwen3.8) | baseline m=3 | ratio |
+|---|---:|---:|---:|
+| levels completed | 21 | 19.33 | 1.09 |
+| **total actions** | **2,857** | **4,474** | **0.64** |
+| total generated tokens (solver-note) | 2,217,229 | 1,654,728 | 1.34 |
+| **tokens per action** | **776** | **370** | **2.10** |
+| **levels per action** | **0.00735** | **0.00432** | **1.70** |
+| tok/s (job wallclock) | 237.83 | 204.55 | 1.16 |
+
+**The engine converts each action into ~1.7× more progress and spends ~2.1× more tokens getting there. On a wallclock-bound rail those cancel almost exactly, and the level count barely moves.** That is a mechanism, and it answers the coordinator's question 2 directly: **this is "better but throttled", not "no better."**
+
+The per-game pattern is consistent with it. Where the arm kept acting it gained: `sb26 +2.00` (153 actions, 4 levels), `re86 +1.33`, `sc25 +1.33`, `su15 +1.00`, `cd82 +1.00`, `ls20 +1.00`. Where it thought itself to a standstill it lost: `ft09 -2.33` (**0** actions), `tu93 -1.67`, `vc33 -1.33` (49 actions vs 139), `sp80 -1.00`, and `lp85` burned **5,096 tokens per action** across just 19 actions. **14 of 25 games sat at 93k–98k tokens** against a baseline that clustered at 64k–68k.
+
+**Caveat, stated rather than buried:** levels-per-action is a post-hoc ratio on one seed with a small integer numerator. It is descriptive and it is NOT in the sealed read. It is a hypothesis with a named test — see §12.5.
+
+### 12.4 Throughput: real-looking, not decisive, and CONFOUNDED — we still have no clean tok/s
+
+237.83 vs 204.55 (baseline sd 7.62, n=3): t = 3.78 on df=2, **two-sided p ≈ 0.063, one-sided ≈ 0.032**. Suggestive, not decisive at m=3 — and it is **not in the sealed read**.
+
+**More importantly it is not a decode-speed measurement.** `generated tokens/sec (job wallclock)` is *total generated tokens ÷ job duration*, and both runs occupied the same ~7,960 s job. So the metric is arithmetically just "how many tokens were generated", and the arm generated more **because it thinks longer per turn**, which §12.3 establishes independently. The +16 % is therefore consistent with a 29 % smaller weight footprint *and* equally consistent with pure verbosity, and this run cannot separate them.
+
+**Say it plainly: this is the third consecutive model-level lane to end without a clean tokens/s number** (b122 obtained zero; A17 anchored only the 27B). A standing instrumentation gap, now named.
+
+### 12.5 THE RECKONING — what actually explains the leaderboard, given this result
+
+**The strong form is dead.** *"The 2.5+ regime IS the engine; drop it in and get 2×"* is refuted at our own pre-registered 3.2σ line, on our own harness, with the engine verified serving (`Q38-EVAL served=Qwen/Qwen3.8-27B-FP8`, config asserts passed, pin certified). No hedging: **§2 of `research_restart_2026-08-15.md` does not survive as written.**
+
+**But the diffusion prediction in §8.2 is being CONFIRMED, and that is the tension worth sitting with.** The dated falsifier was: *"if by 2026-08-20 the 1.5–1.65 band is still flat and the top is still exactly these seven teams, the engine explanation is wrong."* Today's pull (`runs/lb_daily/lb_full_2026-08-16.csv`, n=2345) against 08-15 (n=2331):
+
+| band | 08-15 | **08-16** | Δ in 24 h |
+|---|---:|---:|---:|
+| ≥ 1.90 | 5 | **7** | +2 |
+| ≥ 1.75 | 7 | **10** | +3 |
+| ≥ 1.62 | 15 | **20** | +5 |
+| ≥ 1.44 | 61 | **73** | **+12** |
+| p99 | 1.58 | **1.61** | +0.03 |
+| median | 0.25 | 0.25 | 0 |
+
+**The wall is migrating upward exactly as predicted, and two new teams crossed 1.90** (`Fufront-RyanX-AGI-Team` 2.25 — straight into #3 — and `aRc (binary relation)` 1.91, plus `Ryan #3` at 1.88). The median is still 0.25: it remains a top-of-board phenomenon. **We are #130 of 2345 at an unchanged 1.33; we fell 11 more places overnight without doing anything wrong.**
+
+So the board says a real capability is diffusing, and our controlled test says the engine alone does not deliver it *in our harness*. Three readings survive, ranked:
+
+1. **ENGINE × HARNESS, and our harness is the limiting factor — best supported, and supported by our own numbers.** The engine really is better per action (1.70×). Our rail is wallclock-bound, so a 2.10× token cost per action eats the entire gain. A team whose harness spends fewer tokens per action — shorter prompts, tighter turn structure, a smaller context, or simply not re-sending 32k of history every turn — converts the same engine into real levels. **This is not a rescue narrative; it is the measured mechanism, and it makes the engine a necessary-but-not-sufficient component rather than the cause.**
+
+2. **The knob we deliberately deferred is now the leading candidate for the difference.** We pinned `reasoning_effort: medium` to isolate the weights — correctly, and I would do it again. But the field is running the **`xhigh` default or tuning it**, and the one value we did not test, **`low`** (*"keep your thinking brief and focused, moving directly to the conclusion"*), attacks precisely the term that cancelled our gain. **The isolation that made our test clean is also what makes it silent about the configuration everyone else is running.** That is an honest limitation of a well-designed experiment, not a flaw in it.
+
+3. **Our harness throws away 100 % of the model's thinking, and the better the thinker the worse that hurts.** ft09 showed `content_chars: 0` on all 64 turns with 2,760 chars of reasoning each. The harness stores it as `assistant_message["reasoning"]`, but the Qwen template reads **`reasoning_content`** — so on replay the `<think>` block renders **empty** (§2, established pre-push). We pay 2.1× the tokens for reasoning and then discard every one of them before the next turn. **This is our own long-standing "the agent FORGOT" root cause, now quantified and made more expensive by a better model.** A better thinker whose thoughts are thrown away is not a better agent.
+
+**What this does NOT explain, and I am not going to pretend otherwise: cstl.** 2.70, banked 43 h *before* the release, flat for five days, still #1, zero public artefacts. Nothing in this run touches it. It was chronologically immune to the engine story and it is immune to this refutation too.
+
+**Standing correction to the record:** the census conclusion the research restart "partially obsoleted" — *"within a fixed engine generation the model explains none of the variance; harness and agent policy are the entire public variance"* — **survives this test intact, and now spans a generation boundary.** We swapped one engine generation for the next, cleanly, and the harness ate the difference.
+
+### 12.6 Registered before any follow-up is proposed
+
+- **21 levels is a floor** (ft09 zero-action), and the verdict is robust to every generous correction of it.
+- **Levels-per-action (1.70×) and tokens-per-action (2.10×) are descriptive, one seed, post hoc.** They are the strongest thing this run produced and they are **not** sealed results.
+- **No clean decode-rate measurement was obtained.**
+- **A CONFIRM would have licensed a follow-up; a REFUTE licenses nothing** except the cheap arms §12.5 names. Sunday slot 2 stays free pending the coordinator's decision.
