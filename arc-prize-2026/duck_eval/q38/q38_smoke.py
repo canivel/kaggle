@@ -375,7 +375,8 @@ def run_pre_serve(model_dir: Path) -> tuple[bool, str, str]:
 ok38, out38, err38 = run_pre_serve(stage("q38_config.json", "q38_chat_template.jinja"))
 check("** pre-serve asserts PASS on the real saltb0x/qwen3-8-27b-fp8 config", ok38, err38[:220])
 check("the pin is certified by the local render inside the asserts",
-      "effort-pin=medium local-render reasoning_instruction=ABSENT" in out38)
+      f"effort-pin={B.REASONING_EFFORT} local-render marker=" in out38
+      and "-as-expected" in out38)
 for line in out38.strip().splitlines():
     print("      " + line[:170])
 
@@ -468,9 +469,9 @@ check("gate B (quant_method / weight_block_size) is FATAL — poisoning",
       "not Qwen3.8 blockwise fp8" in _defs and "raise RuntimeError" in _defs)
 check("gate M (pin uncertified by BOTH instruments) is FATAL — poisoning",
       "UNCERTIFIED by BOTH" in _defs)
-check("gate I1 (pinned render still injects) is FATAL — poisoning",
-      "STILL '\n                               'injects an instruction" in _defs
-      or "STILL " in _defs)
+check("gate I1 (render does not match the REQUESTED effort) is FATAL — poisoning, arm-aware",
+      "does not match effort=" in _defs and "wrong-arm markers" in _defs
+      and "Q38_EFFORT_MARKERS" in _defs)
 check("** gate N (tool-call) is RECLASSIFIED to REPORT-ONLY",
       "WARN tool-call-roundtrip=FAILED mode=forced" in _defs
       and "FATAL: tool-call round-trip" not in _defs)
@@ -509,10 +510,15 @@ def _replay(mm_content: str, mm_reasoning: str, tokenize_404: bool,
         if url.endswith("/tokenize"):
             if tokenize_404:
                 raise urllib.error.HTTPError(url, 404, "Not Found", None, None)
-            effort = (payload or {}).get("chat_template_kwargs", {}).get("reasoning_effort")
+            # Faithful to the real template: the request's reasoning_effort wins over the
+            # server default (request kwargs override); the DEFAULT here is the ARM's pin.
+            effort = ((payload or {}).get("chat_template_kwargs", {})
+                      .get("reasoning_effort") or B.REASONING_EFFORT)
             text = "Q38_SYSTEM_SENTINEL <think>"
             if effort == "xhigh":
                 text = "Reasoning effort is set to xhigh. " + text
+            elif effort == "low":
+                text = "Reasoning effort is set to low. Keep your thinking brief. " + text
             return {"token_strs": list(text)}
         # /chat/completions
         if any("image_url" in str(m.get("content")) for m in (payload or {}).get("messages", [])):
@@ -556,8 +562,20 @@ for _l in out_v1.strip().splitlines():
 ok_h, out_h, _ = _replay("red", "", False)
 check("a healthy server still passes and now certifies the pin by BOTH instruments", ok_h)
 check("the /tokenize probe works against the ROOT url once it is not 404",
-      "server-probe reasoning_instruction=ABSENT" in out_h)
+      "server-probe marker=" in out_h and "-as-expected" in out_h)
 check("both instruments recorded", "effort-pin-certified-by=local-render,server-tokenize" in out_h)
+
+# NEGATIVE CONTROL (the v1-of-the-low-arm death, inverted): a served prompt whose effort
+# marker does NOT match the arm's pin must be FATAL. Simulate by patching the replay default.
+_orig_effort = B.REASONING_EFFORT
+try:
+    B.REASONING_EFFORT = "xhigh" if _orig_effort != "xhigh" else "medium"
+    ok_x, _, err_x = _replay("red", "", False)
+finally:
+    B.REASONING_EFFORT = _orig_effort
+check("** NEGATIVE CONTROL: a served prompt with the WRONG effort marker is FATAL "
+      "(the pin-binding gate still has teeth)",
+      not ok_x and "does not match effort=" in err_x, err_x[:120])
 
 ok_t, out_t, _ = _replay("red", "", False, tool_calls_ok=False)
 check("** a broken tool-call path is now REPORTED, not fatal (it would BE the number)",

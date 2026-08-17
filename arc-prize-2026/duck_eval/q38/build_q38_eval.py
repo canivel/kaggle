@@ -150,8 +150,17 @@ CELL6_NEW = (
 # names defined in that process (MODEL_PATH, VLLM_BASE_URL, request_json, json, os, Path,
 # subprocess, ...). `_assert_names_resolve` in q38_smoke.py walks the rewritten command's
 # AST and fails the BUILD on any unresolved name — the gate the LoRA v1 NameError needed.
-Q38_SERVE_DEFS = r'''Q38_EXPECT_SERVED = 'Qwen/Qwen3.8-27B-FP8'
-Q38_EFFORT = 'medium'
+_SERVE_DEFS_TEMPLATE = r'''Q38_EXPECT_SERVED = 'Qwen/Qwen3.8-27B-FP8'
+Q38_EFFORT = '__Q38_EFFORT__'
+# What the ATTACHED template injects for each effort value (measured, q38_smoke.py s5):
+#   medium -> NOTHING (validated-but-silent)   low/xhigh -> an instruction sentence
+# So certifying the pin means asserting the prompt matches the REQUESTED value's
+# signature, NOT asserting silence. v1 of the low arm died because this constant was
+# stale ('medium') and the server probe treated the arm's own intended instruction as
+# a failure to bind. The kernel died BECAUSE the pin worked.
+Q38_EFFORT_MARKERS = {'medium': None, 'low': 'Reasoning effort is set to low',
+                      'xhigh': 'Reasoning effort is set to xhigh'}
+Q38_EXPECT_MARKER = Q38_EFFORT_MARKERS[Q38_EFFORT]
 Q38_REQUIRED_FILES = (
     'config.json', 'chat_template.jinja', 'generation_config.json', 'tokenizer.json',
     'tokenizer_config.json', 'preprocessor_config.json', 'model.safetensors.index.json',
@@ -277,20 +286,28 @@ def _q38_pre_serve_asserts() -> None:
         print('Q38-EVAL WARN effort-pin local-render UNAVAILABLE (' + repr(exc)[:200]
               + ') - falling back to the server probe at boot', flush=True)
     else:
+        # ARM-AWARE certification: assert the REQUESTED value's signature, never silence.
+        expect = Q38_EXPECT_MARKER
+        ok_pin = (('easoning effort' not in pinned) if expect is None
+                  else (expect in pinned))
+        wrong = [m for e, m in Q38_EFFORT_MARKERS.items()
+                 if m and e != Q38_EFFORT and m in pinned]
         if 'easoning effort' not in control:
             print('Q38-EVAL WARN effort-pin local probe is BLIND (the xhigh default injected '
-                  'nothing), so its ABSENT proves nothing - auditing the instrument, not '
-                  'trusting it', flush=True)
-        elif 'easoning effort' in pinned:
-            raise RuntimeError('Q38-EVAL FATAL: reasoning_effort=' + Q38_EFFORT + ' STILL '
-                               'injects an instruction - the prompt is not neutral and this arm '
-                               'would carry two variables, not one')
+                  'nothing), so it proves nothing - auditing the instrument, not trusting it',
+                  flush=True)
+        elif not ok_pin or wrong:
+            raise RuntimeError('Q38-EVAL FATAL: local render does not match effort='
+                               + Q38_EFFORT + ' (expected marker ' + repr(expect)
+                               + ', wrong-arm markers ' + repr(wrong)
+                               + ') - the prompt does not carry the requested effort')
         elif 'Q38_SYSTEM_SENTINEL' not in pinned:
             raise RuntimeError('Q38-EVAL FATAL: the system message did not render')
         else:
             Q38_PIN_CERTIFIED.append('local-render')
-            print('Q38-EVAL effort-pin=' + Q38_EFFORT + ' local-render reasoning_instruction='
-                  'ABSENT control(default=xhigh)=PRESENT pinned_chars=' + str(len(pinned))
+            print('Q38-EVAL effort-pin=' + Q38_EFFORT + ' local-render marker='
+                  + ('ABSENT-as-expected' if expect is None else 'PRESENT-as-expected')
+                  + ' control(default=xhigh)=PRESENT pinned_chars=' + str(len(pinned))
                   + ' control_chars=' + str(len(control)), flush=True)
 
     if shutil.which('nvidia-smi'):
@@ -424,17 +441,25 @@ def _q38_boot_asserts() -> None:
         print('Q38-EVAL OBSERVE tokenize served_chars=' + str(len(served_prompt))
               + ' control_chars=' + str(len(control_prompt))
               + ' served_head=' + repr(served_prompt[:100]), flush=True)
+        expect = Q38_EXPECT_MARKER
+        ok_pin = (('easoning effort' not in served_prompt) if expect is None
+                  else (expect in served_prompt))
+        wrong = [m for e, m in Q38_EFFORT_MARKERS.items()
+                 if m and e != Q38_EFFORT and m in served_prompt]
         if 'easoning effort' not in control_prompt:
             print('Q38-EVAL WARN effort-pin server-probe is BLIND (xhigh control produced no '
-                  'instruction) - not treating its ABSENT as evidence', flush=True)
-        elif 'easoning effort' in served_prompt:
-            raise RuntimeError('Q38-EVAL FATAL: the SERVED prompt contains a reasoning-effort '
-                               'instruction - --default-chat-template-kwargs did not bind and '
-                               'the arm carries two variables')
+                  'instruction) - not treating it as evidence', flush=True)
+        elif not ok_pin or wrong:
+            raise RuntimeError('Q38-EVAL FATAL: the SERVED prompt does not match effort='
+                               + Q38_EFFORT + ' (expected marker ' + repr(expect)
+                               + ', wrong-arm markers ' + repr(wrong)
+                               + ') - --default-chat-template-kwargs did not bind to the '
+                               'requested value')
         else:
             Q38_PIN_CERTIFIED.append('server-tokenize')
-            print('Q38-EVAL effort-pin=' + Q38_EFFORT + ' server-probe reasoning_instruction='
-                  'ABSENT control_xhigh=PRESENT served_prompt_chars=' + str(len(served_prompt)),
+            print('Q38-EVAL effort-pin=' + Q38_EFFORT + ' server-probe marker='
+                  + ('ABSENT-as-expected' if expect is None else 'PRESENT-as-expected')
+                  + ' control_xhigh=PRESENT served_prompt_chars=' + str(len(served_prompt)),
                   flush=True)
         if 'Q38_SYSTEM_SENTINEL' in served_prompt and '<think>' in served_prompt:
             print('Q38-EVAL preserve_thinking=BOUND (think block present in the served prompt)',
@@ -530,6 +555,8 @@ def _q38_boot_asserts() -> None:
               + repr(exc)[:200], flush=True)
 
     print('Q38-EVAL BOOT-ASSERTS PASSED - handing off to the 25-game offline bench', flush=True)'''
+
+Q38_SERVE_DEFS = _SERVE_DEFS_TEMPLATE.replace('__Q38_EFFORT__', REASONING_EFFORT)
 
 # (old, new) — every anchor must match EXACTLY once against the pristine setup command.
 Q38_SETUP_REWRITES: list[tuple[str, str]] = [

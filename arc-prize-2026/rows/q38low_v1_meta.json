@@ -1,0 +1,26 @@
+{
+ "prereg": "learnings/war_room/q38_engine_swap_prereg_2026-08-15.md Part II (s13-18 sealed 2026-08-16 pre-build; push record s20; postmortem s21 pending)",
+ "mechanism": "reasoning_effort medium->low on Qwen3.8-27B-FP8, single variable vs the completed medium arm; targets the 2.10x tokens/action that cancelled the engine's 1.70x levels/action on a wallclock-bound rail",
+ "sealed_lines": {
+  "PRIMARY_A_levels_vs_B1": {
+   "HARM": "<=12",
+   "NO-LIFT": "<=25",
+   "LIFT": ">=32"
+  },
+  "PRIMARY_B_actions_vs_B2": {
+   "NO-RECOVERY": "<=3100",
+   "ACTION-RECOVERY": ">=3665",
+   "note": "n=1 vs n=1 decision rule, not a significance test"
+  }
+ },
+ "measured": {
+  "outcome": "kernel ERROR at t=415s, before the bench; zero games played",
+  "death": "own boot gate: the server /tokenize probe detected 'Reasoning effort is set to low' in the served prompt and raised FATAL 'did not bind'",
+  "the_irony": "the pin BOUND CORRECTLY - the low instruction was in the served prompt because --default-chat-template-kwargs worked; the gate asserted SILENCE (the medium arm's neutrality signature) instead of the REQUESTED value's signature",
+  "root_cause": "serve-defs constant Q38_EFFORT was frozen at 'medium' by the one-variable proof itself: q38_arm_diff.py enforced byte-identity of cell 8 modulo only the chat-template-kwargs literal, which LOCKED the certification logic to the old arm's semantics",
+  "gpu_cost_minutes": 7
+ },
+ "why_informative": "This null rules out nothing about the mechanism (no game was played) but establishes an instrument-discipline finding: a one-variable proof that freezes verification logic across arms converts a correct poisoning gate into a landmine, because a gate's EXPECTED VALUES are a function of the variable while its LOGIC must be invariant. Fix shipped and negative-controlled: certification is now arm-aware (assert the requested value's marker, never silence), the arm-diff normalises declared arm-dependent tokens and asserts each arm's constant is correct, and a replay reproduces this exact death as a permanent regression test. Secondary finding: the pin mechanism (server default_chat_template_kwargs merge) is CONFIRMED WORKING in production for a second value ('low'), which the medium arm alone could not establish.",
+ "robustness": "diagnosed from kaggle kernels logs (1743 entries, full stdout, no working-dir download); the served prompt's low-instruction content is direct evidence, not inference",
+ "slot_accounting": "08-17 2/2 spent: engine-eval v3 (unintended push, wrong-dir misfire, left running as an unplanned second medium seed) + low-eval v1 (this death)"
+}

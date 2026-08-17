@@ -1,0 +1,9 @@
+[
+ {
+  "arm": "q38-low-v1",
+  "n_games": 0,
+  "levels": null,
+  "actions": null,
+  "note": "never reached the bench; INFRA DEATH at boot"
+ }
+]

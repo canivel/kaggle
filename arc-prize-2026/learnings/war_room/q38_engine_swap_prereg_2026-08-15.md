@@ -979,3 +979,56 @@ The first confirm-push printed *"Kernel version 3 successfully pushed … arc3-q
 ### 20.2 Reading it when it lands
 
 Unchanged from §19.2: selective pull, `q38low_score.py`, then `kernels logs` for the `Q38-EVAL DECODE` lines. The sealed lines are §15.2; the ft09 mechanism read is §17; the score-based reading remains non-inferential. Morning-check context worth carrying into the read: **the board moved massively overnight (gold line 1.65 → 2.00, ≥1.90 went 7 → 19, we fell to #175 of 2365 on unchanged bytes), and the field's steps are arriving as single draws on tiny submission histories — whatever is being adopted, it is cheap and transferable, and it is still UNKNOWN.** A LIFT here would be evidence about *our* rail only; it would not identify what the field found.
+
+---
+
+## 21. POST-MORTEM, LOW ARM v1 — **the kernel died because the pin WORKED** (append-only, 2026-08-17)
+
+**Sealed scorer: `INFRA DEATH (not decisive)`.** ERROR at t=415 s, before the bench; zero games; ~7 min GPU. Diagnosed from `kernels logs` (1,743 entries) in minutes — the §9.1 procedure held.
+
+### 21.1 What happened, exactly
+
+The log shows a healthy boot right up to the killer: engine config asserts passed, **`effort-pin=medium local-render`** (note the word), `served=Qwen/Qwen3.8-27B-FP8`, then:
+
+```
+RuntimeError: Q38-EVAL FATAL: the SERVED prompt contains a reasoning-effort instruction
+              - --default-chat-template-kwargs did not bind and the arm carries two variables
+```
+
+Unpack it: the served prompt contained *"Reasoning effort is set to low…"* **because the server default bound exactly as designed** — the arm's one variable was live and correct. The gate that killed the run was asserting the **medium arm's** neutrality signature (no instruction = pinned) instead of the **requested value's** signature (the low instruction present = pinned). The probe read the arm's own intended behaviour as a failure to bind.
+
+### 21.2 Root cause — the one-variable proof froze the instrument
+
+Two stale constants conspired, and both were **enforced** by my own gates:
+
+1. `Q38_SERVE_DEFS` hardcoded `Q38_EFFORT = 'medium'`. I parameterised `REASONING_EFFORT` (the chat-template-kwargs literal) when I parameterised the builder, and never the serve-defs constant — so the local-render instrument certified "medium renders silently" inside a low arm, and printed so, in a banner nobody was looking at pre-push.
+2. **`q38_arm_diff.py` guaranteed the staleness.** It proved cell 8 byte-identical across arms *modulo only the chat-template-kwargs literal* — which mechanically enforced that `Q38_EFFORT` and the silence-asserting check were **identical in both arms**. The proof that the mechanism had one variable also proved the instrument had zero.
+
+**The general lesson, and it is new to this campaign's collection:** *a gate's LOGIC must be invariant across arms, but its EXPECTED VALUES are a function of the variable. A one-variable proof that freezes both converts a correct poisoning gate into a landmine that fires precisely when the arm works.* This is the complement of `feedback_audit_the_instrument` — here the instrument was audited, sealed, negative-controlled… against the wrong arm's semantics.
+
+Also for completeness: the smoke's §6d replay stub faked `/tokenize` **without** the low instruction, so under the low arm it validated the wrong world. The instruments agreed with each other and disagreed with reality — internal consistency is not correctness.
+
+### 21.3 What this run nonetheless established
+
+- **The pin mechanism is CONFIRMED for a second value.** The medium arm proved `--default-chat-template-kwargs` binds silence; this run proved it binds **`low`** — the served prompt carried the instruction. The mechanism the next attempt depends on is now evidenced twice, in production.
+- The engine, wheelhouse, config asserts, `/tokenize` root-URL fix and `kernels logs` procedure all worked again.
+- **The mechanism question (tokens/action under `low`) is untested in either direction.** Nothing here is evidence about the arm's hypothesis.
+
+### 21.4 Fixes — shipped, negative-controlled, all local
+
+1. **Arm-aware serve defs**: `Q38_EFFORT` is substituted from `REASONING_EFFORT` at build time; a `Q38_EFFORT_MARKERS` table maps each value to its measured template signature (`medium → None`, `low`/`xhigh` → their instruction sentences).
+2. **Both pin instruments now assert the REQUESTED value's marker** — presence for low/xhigh, absence for medium — and additionally FAIL on any *wrong-arm* marker. Silence is no longer the definition of success.
+3. **`q38_arm_diff.py` normalises the declared arm-dependent tokens** (kwargs literal + `Q38_EFFORT` constant), still proves the remainder byte-identical (17/0), and **newly asserts each arm's constant is correct for its arm** — the check that would have caught v1 at build time.
+4. **The smoke's replay reproduces this death as a permanent regression test**: the fake `/tokenize` renders the arm's true served prompt; a negative control feeds a wrong-arm marker and must see the FATAL. **113/0 on both arms.**
+
+**v2 artifact: `code_sha256=7c0de2a6fcc121cf`.** NOT pushed — **08-17 is 2/2 spent** (engine-v3 misfire + this). A v2 push is tomorrow's decision, needing the three deliberate steps (`PUSH_DATE` bump, `Q38LOW_ALLOW_V2=1`, fresh ledger read).
+
+### 21.5 Journal
+
+Row logged as **exp_id 10**, verdict `VOID: INFRA DEATH (not decisive) - INSTRUMENT MIS-SPECIFICATION, not a mechanism finding: …` per the template's honesty rule, with `why_informative` carrying the instrument-discipline finding and the second-value pin confirmation. `bench harvest` + `validate --no-model` run; **`bench push` deferred — `KAOS_BENCH_TOKEN` is not in this environment** (coordinator holds the token).
+
+### 21.6 Standing state
+
+- `arc3-q38-low-eval` v1: ERROR (this). v2 built and sealed, awaiting slot + authorization.
+- `arc3-q38-engine-eval` v3 (the 06:20 misfire): **RUNNING** — an unplanned second medium seed + decode probe; its disposition remains the coordinator's call (§20.1).
+- The board pressure that motivated this arm is unchanged: #175 of 2365, gold at 2.00, the field's steps arriving as single draws on tiny histories, mechanism UNKNOWN.

@@ -1,0 +1,30 @@
+[
+ {
+  "gate": "pre-serve",
+  "name": "engine config asserts",
+  "passed": true,
+  "kill": false,
+  "detail": "all passed; engine-config banner printed"
+ },
+ {
+  "gate": "pre-serve",
+  "name": "local-render pin certification",
+  "passed": true,
+  "kill": false,
+  "detail": "PASSED WRONGLY: certified 'medium' in a low arm (stale Q38_EFFORT constant)"
+ },
+ {
+  "gate": "boot",
+  "name": "served model id",
+  "passed": true,
+  "kill": false,
+  "detail": "Qwen/Qwen3.8-27B-FP8"
+ },
+ {
+  "gate": "boot",
+  "name": "server /tokenize pin probe",
+  "passed": false,
+  "kill": true,
+  "detail": "FIRED WRONGLY: detected the arm's own intended low instruction and read it as 'did not bind'; the pin had in fact bound correctly"
+ }
+]

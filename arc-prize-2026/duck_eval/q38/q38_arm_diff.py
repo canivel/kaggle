@@ -62,8 +62,15 @@ def main() -> int:
     check("exactly cells [2, 8] differ between the arms (banner + effort literal)",
           differing == [2, 8], str(differing))
 
-    # cell 8: the ONLY textual difference may be the effort value
-    norm = b[8].replace('"reasoning_effort": "low"', '"reasoning_effort": "medium"')
+    # cell 8: the ONLY textual differences may be the DECLARED arm-dependent tokens: the
+    # chat-template-kwargs literal and the serve-defs Q38_EFFORT constant. The verification
+    # LOGIC must be identical; its EXPECTED VALUES track the arm (the low arm's v1 died
+    # because Q38_EFFORT was frozen at 'medium' by the previous version of this very check —
+    # a one-variable proof that pinned the instrument to the old arm's semantics).
+    norm = (b[8]
+            .replace('"reasoning_effort": "low"', '"reasoning_effort": "medium"')
+            .replace("Q38_EFFORT = " + chr(92) + "'low" + chr(92) + "'",
+                     "Q38_EFFORT = " + chr(92) + "'medium" + chr(92) + "'"))
     check("** cell 8 is byte-identical once the effort literal is normalised - the serve config, "
           "all 18 invariants, both probes and the decode-rate instrument are the same bytes",
           norm == a[8],
@@ -83,6 +90,9 @@ def main() -> int:
         check(f"{name} arm cell 8 is pure ASCII",
               not [c for c in src if ord(c) > 127])
 
+    check("the serve-defs Q38_EFFORT constant tracks each arm (the low-arm v1 killer)",
+          "Q38_EFFORT = " + chr(92) + "'medium" + chr(92) + "'" in a[8]
+          and "Q38_EFFORT = " + chr(92) + "'low" + chr(92) + "'" in b[8])
     check("the effort literals are actually different (this is not a no-op build)",
           '"reasoning_effort": "medium"' in a[8] and '"reasoning_effort": "low"' in b[8])
     check("neither arm contains the other's effort value",
