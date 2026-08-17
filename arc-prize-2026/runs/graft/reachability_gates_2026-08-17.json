@@ -1,0 +1,32 @@
+[
+  {
+    "gate": "Q1 harness byte-identity (fork vs stock)",
+    "outcome": "PASS",
+    "detail": "73 identical, 0 modified, 16 additive"
+  },
+  {
+    "gate": "Q2 engine identity (no confound)",
+    "outcome": "PASS",
+    "detail": "fork serves incumbent Qwen3.6"
+  },
+  {
+    "gate": "Q3 install() contract",
+    "outcome": "PASS-WITH-HAZARD",
+    "detail": "all flags default OFF; unknown flags SILENTLY ignored"
+  },
+  {
+    "gate": "Q4 bundle-marker collision",
+    "outcome": "HAZARD FOUND",
+    "detail": "REPLACE, do not attach both; corroborated by v18/v19 metadata"
+  },
+  {
+    "gate": "Q5 banking reachability",
+    "outcome": "FAIL - UNREACHABLE",
+    "detail": "0 wins in 470 campaign game-runs; trigger is run.state=='won'"
+  },
+  {
+    "gate": "Q5 transfer reachability",
+    "outcome": "FAIL - NO-OP BY CONSTRUCTION",
+    "detail": "25 unique game_ids, 0 clone siblings"
+  }
+]

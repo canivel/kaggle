@@ -1,0 +1,75 @@
+{
+  "finding": "REACHABILITY REFUTATION: the authorized 08-18 banking+transfer arm cannot fire on our rail",
+  "why_it_matters": "An arm whose treatment cannot fire is not screenable. This would have been the A9/warpack error repeated against the same mechanism five weeks later.",
+  "banking_trigger": "banking_solver.py:180 -> `if run is None or run.state != \"won\" or run.final_score is not None: return`",
+  "campaign_wide_evidence": {
+    "eval_artifacts_scanned": 23,
+    "total_game_runs": 470,
+    "runs_reaching_state_won": 0,
+    "best_levels_completed_single_game": 4,
+    "levels_per_game_range": "6-10",
+    "terminal_states_observed": {
+      "gave_up": 466,
+      "cancelled": 4
+    }
+  },
+  "transfer_premise_false_on_eval_rail": {
+    "n_passes": 1,
+    "game_runs": 25,
+    "unique_game_ids": 25,
+    "clone_siblings": 0,
+    "their_docstring": "a non-clone hidden set turns the entire stack into a measured no-op (gate phase D)"
+  },
+  "retro_explains": "war_eval_v1 (our own July warpack banking arm) posted the HIGHEST lc of any run on disk (22) and still banked nothing - because it had zero wins to bank, not because the lane was wrong. Stronger than N5's prune-bug/regime-mismatch account.",
+  "strategic_reframe_INF": "Banking multiplies the score of cards you already WIN. We have never won a card. The field's recipe is gated behind the capability we lack, not a shortcut past it. For us 1.33->2.00 remains first a CAPABILITY gap.",
+  "bundle_audit_positives_V": {
+    "fork_vs_stock": "stock + 16 additive files under src/taaf-grafts/; 0 stock files modified; 0 missing; 73/73 identical",
+    "engine": "fork serves the INCUMBENT Qwen3.6 (vrfai/Qwen3.6-27B-FP8), max_model_len 65536 - no engine confound",
+    "bundle_manifest_sha256_32": "df447f61caa181cca68049e28b139e02",
+    "grafts_manifest_sha256_32": "7705481551494b141d6a33ffec1d7a20",
+    "dataset_version_audited": "2026-08-17 00:26:06"
+  },
+  "silent_failure_modes_found_V": [
+    "install() SILENTLY IGNORES unknown flag names - a typo yields a clean-looking stock run",
+    "bundle-marker collision: attaching both bundles makes BUNDLE_DIR ambiguous (fork carries taaf-kaggle-bundle.json too); a stock resolution runs stock while looking like a clean arm",
+    "install() NEVER raises and degrades silently to stock, so a stock run and a genuine null are byte-identical in benchmark.json",
+    "trace correction: install() lives in taaf_grafts.composite, NOT __init__ (wrong import path = silent stock fallback)",
+    "hudmask is nested under goalkeep (composite.py:297) - arming it alone silently does nothing",
+    "sealed-constant defect: Q38 prereg's 0.286320 != C(3)*sigma = 2.02*0.141740 = 0.2863148; graft_score.py now DERIVES it"
+  ],
+  "amended_arm": {
+    "kernel": "canivel/arc3-graft-floor-eval",
+    "flags_on": [
+      "efficiency",
+      "retry_guard",
+      "shortcircuit",
+      "goalkeep",
+      "hudmask"
+    ],
+    "flags_forbidden_and_asserted_absent": [
+      "banking",
+      "transfer"
+    ],
+    "equals": "thtennant/arc3-duck-v19 published conservative setting",
+    "engine": "incumbent Qwen3.6 (unchanged)",
+    "primary": "mean dlc over 25 games; HARM <= -0.286315, SIGNAL >= +0.286315 (lc_total <=12 / >=27)",
+    "secondary": "mean_score, NON-INFERENTIAL, carries no verdict",
+    "status": "BUILT, GATED, NOT PUSHED (08-17 was 2/2 spent). Awaits 08-18 slot 1 + coordinator ruling.",
+    "gates_green": {
+      "builder": "idempotent, code_sha 3c047dff2e6c02fd, diff cells [2,6,12]",
+      "smoke": "36/36",
+      "scorer_selftest": "22/22",
+      "bundle_recheck": "OK on a fresh download"
+    }
+  },
+  "still_unknown": [
+    "whether the agent ever reaches state=='won' on the COMPETITION 110-run rerun (no logs retained) - the one cheap question that would reopen banking",
+    "whether the 110 scored runs really are 25 games cloned round-robin (asserted by the bundle only)",
+    "shortcircuit's 'provably monotonic non-decreasing score' claim, independently"
+  ],
+  "artifacts": [
+    "duck_eval/graft/bundle_audit_2026-08-17.md",
+    "learnings/war_room/graft_floor_prereg_2026-08-17.md",
+    "learnings/daily_brief_2026-08-17.md"
+  ]
+}
