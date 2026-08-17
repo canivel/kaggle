@@ -28,7 +28,7 @@ REPO="/f/kaggle/arc-prize-2026"
 KAGGLE="/c/Users/dcani/AppData/Roaming/Python/Python313/Scripts/kaggle.exe"
 KERNEL="canivel/arc3-q38-low-eval"
 NB_NAME="arc3-q38-low-eval.ipynb"
-NB_DIR_WIN='F:\kaggle\arc-prize-2026\notebooks\q38-eval'   # BACKSLASH path for the CLI
+NB_DIR_WIN='F:\kaggle\arc-prize-2026\notebooks\q38-low-eval'   # BACKSLASH path for the CLI
 NB="$REPO/notebooks/q38-low-eval/$NB_NAME"
 PUSH_DATE="2026-08-17"   # AUTHORIZED: 08-17 slot 1. Not today.
 
@@ -122,6 +122,18 @@ PY
 fi
 echo "remote differs from local (or the kernel does not exist yet) — this push is not a duplicate"
 
+
+echo "== 1c. push-target integrity (the dir's metadata decides where the push goes) =="
+python - "$KERNEL" <<'PY'
+import json, sys
+meta = json.load(open("F:/kaggle/arc-prize-2026/notebooks/q38-low-eval/kernel-metadata.json"))
+want = sys.argv[1]
+assert meta["id"] == want, (
+    f"PUSH-TARGET MISMATCH: dir metadata says {meta['id']!r} but this script is for {want!r}. "
+    "kaggle pushes what the DIRECTORY says, not what the script intends.")
+print(f"push target verified: {meta['id']}")
+PY
+
 if [ "$MODE" = "--dry-run" ]; then
   echo
   echo "DRY RUN COMPLETE. All pre-push gates passed. NOTHING WAS PUSHED."
@@ -188,8 +200,9 @@ assert meta["docker_image"].endswith(
 
 # The rewrite must have survived the round trip, not just the file bytes.
 remote_src = "".join("".join(c["source"]) for c in json.load(open(remote_nb, encoding="utf-8"))["cells"])
+assert '"reasoning_effort": "medium"' not in remote_src, "MEDIUM literal in the LOW arm"
 for token in ("saltb0x", "qwen3-8-27b-fp8", "Qwen/Qwen3.8-27B-FP8",
-              '"reasoning_effort": "medium"', "_q38_pre_serve_asserts", "_q38_boot_asserts"):
+              '"reasoning_effort": "low"', "_q38_pre_serve_asserts", "_q38_boot_asserts"):
     assert token in remote_src, f"remote notebook is missing {token!r}"
 # VERIFIER FIX 2 (2026-08-16): this assert predates v2's poisoning gate. The incumbent name is
 # now SUPPOSED to appear a second time -- in `Q38_VETO`, the forbidden-served-name tuple whose

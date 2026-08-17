@@ -959,3 +959,23 @@ grep -E "Q38-EVAL (DECODE|effort-pin-certified-by|served|BOOT-ASSERTS PASSED|WAR
 ```
 
 **The scorer was validated against the engine arm's real data before sealing**: fed `runs/kernel_pulls/q38_v2` it returns `A=NO-LIFT / B=NO-RECOVERY` and reproduces B2's own figures exactly (776 tokens/action, 0.00735 levels/action, ft09 = 0 actions). An instrument that reads the null correctly is the minimum bar before it is allowed to read the arm.
+
+---
+
+## 20. PUSH RECORD, 2026-08-17 — the low arm is RUNNING, after a misfire that is mine (append-only)
+
+**`canivel/arc3-q38-low-eval` v1 PUSHED and RUNNING, 08-17.** Sequence per authorization: ledger re-confirmed (§11.4 — today's morning-check section showed 0 pushes, slot 1 the coordinator's call, and the coordinator called it), `--dry-run` green (smoke 112/0 low + 112/0 medium regression, `q38low_score` selftest 23/0, arm-diff 16/0), then `--confirm-push`. Pull-back: **effort=low pinned, medium literal ABSENT, decode probe present, 3/3 `dataset_sources` incl. the 25.3 GB engine, env byte-identical, code ASCII-identical, 17 cells.** Preflight: **ALLOW, 0 fails, 0 warns, D4 = [2,6,8] EXACT.**
+
+### 20.1 INCIDENT — the first `--confirm-push` went to the WRONG KERNEL, and the accounting takes the hit
+
+The first confirm-push printed *"Kernel version 3 successfully pushed … arc3-q38-engine-eval"*. **My `NB_DIR_WIN` substitution in the derived script had silently failed to match, no assert checked it, and my post-derivation grep verified `KERNEL=` and `PUSH_DATE=` but not the one variable that actually decides where a push goes.** `kaggle kernels push -p <dir>` pushes whatever the *directory's* `kernel-metadata.json` says; the script's `KERNEL` variable is otherwise just a comment. So the engine arm's slug received a v3 carrying the drifted local medium artifact (medium + decode probe) — exactly the §19.1 hazard, one day later, through the door I had documented but not locked.
+
+- **Slot accounting: 08-17 = 2 of 2 spent.** The unintended engine-v3 push counts, per the 08-14 precedent ("an unexplained push is still a push"). No further push today under any circumstances.
+- **engine-eval v3 was left to run, deliberately.** The CLI has no cancel; `kernels delete` would destroy the sealed v2 record and is not an option. What v3 actually is: **a second seed of the medium configuration plus the decode probe** — i.e. an unplanned second draw of PRIMARY-B's n=1 comparator. Whether its result may be *used* (B2 → n=2) is **the coordinator's call, not mine**; it was not pre-registered and I am not folding it into the sealed read unilaterally. Recorded here so the decision is available, not made.
+- **Fix shipped, structural not cosmetic: step 1c "push-target integrity"** — the push script now asserts, immediately before pushing, that the target directory's `kernel-metadata.json` `id` equals the script's `KERNEL`. This closes the class (a derived script whose directory and slug disagree), not the instance. It fail-closed twice on its own bugs before passing, which is the correct order to discover them in.
+- **Two stale-derivation defects also caught by the run itself:** the step-3 verifier still asserted the *medium* literal (fixed: asserts `low` present AND `medium` absent), and §19's recorded sha `29af2aef` was stale — it predated the decode-probe literal fix; the true artifact sha is **`3c9854ffa3f2e922`** (remote ASCII-identical at `9c86789d…`, the known push-path mangling of the fork's own em-dashes).
+- **The pattern, named for the third time in three days: deriving a script by string-replacement inherits every constant the replacement misses, silently.** The 08-16 entry called a push script "shared mutable state"; the general form is that **a derived artifact is a copy of every mistake you did not explicitly overwrite**. The integrity gate is the countermeasure that does not depend on me replacing strings correctly.
+
+### 20.2 Reading it when it lands
+
+Unchanged from §19.2: selective pull, `q38low_score.py`, then `kernels logs` for the `Q38-EVAL DECODE` lines. The sealed lines are §15.2; the ft09 mechanism read is §17; the score-based reading remains non-inferential. Morning-check context worth carrying into the read: **the board moved massively overnight (gold line 1.65 → 2.00, ≥1.90 went 7 → 19, we fell to #175 of 2365 on unchanged bytes), and the field's steps are arriving as single draws on tiny submission histories — whatever is being adopted, it is cheap and transferable, and it is still UNKNOWN.** A LIFT here would be evidence about *our* rail only; it would not identify what the field found.
