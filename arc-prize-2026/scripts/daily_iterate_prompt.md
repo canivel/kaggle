@@ -54,3 +54,6 @@ HARD RULES: no cloud spend by default ($68 reserve is panel-gated); fork-never-b
 
 ## LANE OWNERSHIP (principal ruling 2026-08-18, after the v2 double-push collision):
 **One lane, one operator.** Before pushing ANY kernel, check `runs/lane_locks.json` — if the kernel/lane has an owner entry, DO NOT push it; note it in the brief and defer. Interactive lane owners register `{lane, kernel, owner, date, planned_action}` there and clear it when done. The iterate session's plan spine must never duplicate a locked lane's pending action. (Cost of the miss: 08-18 slot 2 spent on a duplicate push into the same platform incident that killed slot 1.)
+
+## END-OF-SESSION GIT PUSH (mandatory, added 2026-08-26)
+Before finishing: `git add -A && git commit -m "<one-line day summary>" && git push origin main` from F:\kaggle. The .gitignore fences weights/runs-artifacts/venvs/embedded-repos — do NOT bypass it. If add/commit fails, report the error in the handoff rather than skipping silently: a week of unpushed work was the failure mode this rule exists to prevent.
