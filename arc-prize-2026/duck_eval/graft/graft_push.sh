@@ -28,7 +28,7 @@
 #   2.  push
 #   3.  pull-back verify: code sha, cell count, all 3 dataset_sources, docker sha, GPU, machine,
 #       internet, and the graft/engine tokens in the REMOTE source
-#   4.  preflight --expect-diff-cells 2,6,12 (POST-push by design: it pulls from Kaggle, so it
+#   4.  preflight --expect-diff-cells 2,4,6,12,14 (POST-push by design: it pulls from Kaggle, so it
 #       cannot run against a slug that does not exist yet)
 #
 # Usage:  bash duck_eval/graft/graft_push.sh --dry-run       # gates only, NEVER pushes
@@ -42,7 +42,7 @@ NB_NAME="arc3-graft-floor-eval.ipynb"
 NB_DIR_WIN='F:\kaggle\arc-prize-2026\notebooks\graft-floor-eval'   # BACKSLASH path for the CLI
 NB_DIR_POSIX="$REPO/notebooks/graft-floor-eval"
 NB="$NB_DIR_POSIX/$NB_NAME"
-PUSH_DATE="2026-08-18"   # AUTHORIZED: 08-18 slot 1. 08-17 was 2/2 spent.
+PUSH_DATE="2026-08-20"   # AUTHORIZED: 08-20 slot 1, SCORE-confirmation re-run (coordinator ruling 08-19; prereg graft_confirm_prereg_2026-08-19.md). 08-19 was 2/2 spent (v3 diagnostic + v4 verdict).
 
 FORK_DS="thtennant/taaf-kaggle-source-share-fork"
 STOCK_DS="jeroencottaar/taaf-kaggle-source-share"
@@ -111,6 +111,7 @@ echo "== 1. rebuild + gates =="
 python duck_eval/graft/build_graft_eval.py
 python duck_eval/graft/graft_smoke.py | tail -3
 python duck_eval/graft/graft_score.py --selftest | tail -4
+python duck_eval/graft/graft_confirm_score.py --selftest | tail -1
 
 echo
 echo "== 1a. bundle re-audit (Kaggle attaches the LATEST version; metadata cannot pin one) =="
@@ -124,24 +125,40 @@ echo "== 1b. idempotence check (has this exact code already been pushed?) =="
 PRECHECK="$(mktemp -d)"
 if "$KAGGLE" kernels pull "$KERNEL" -p "$PRECHECK" >/dev/null 2>&1; then
   if python - "$NB" "$PRECHECK/$NB_NAME" <<'PY'
-import hashlib, json, sys
-def code_sha(p):
+import json, sys
+# 2026-08-18 FIX: this gate used an EXACT code sha and was therefore BROKEN OPEN on this rail.
+# Kaggle's push path re-reads our UTF-8 as cp1252, so any notebook carrying a non-ASCII byte
+# (the frozen fork's own em-dashes) comes back mojibake'd and an exact compare ALWAYS reported
+# "not a duplicate" -- the one guard between a scarce slot and a no-op re-push could never once
+# have fired. Step 3's pull-back verify already knew this (VERIFIER FIX 1, inherited from q38
+# 2026-08-16); step 1b did not. Same normalisation now applies here: ASCII-visible drift = a
+# genuinely different notebook; non-ASCII-only drift = the SAME code.
+def code(p):
     nb = json.load(open(p, encoding="utf-8"))
-    return hashlib.sha256("".join(
-        "".join(c["source"]) for c in nb["cells"] if c["cell_type"] == "code").encode()).hexdigest()
+    return "".join("".join(c["source"]) for c in nb["cells"] if c["cell_type"] == "code")
 try:
-    sys.exit(0 if code_sha(sys.argv[1]) == code_sha(sys.argv[2]) else 1)
+    a, b = code(sys.argv[1]), code(sys.argv[2])
+    same = (a == b) or (a.encode("ascii", "ignore") == b.encode("ascii", "ignore"))
+    sys.exit(0 if same else 1)
 except Exception:
     sys.exit(1)
 PY
   then
-    echo "REFUSING: remote already has this exact code. A re-push would spend a slot for a" >&2
-    echo "  no-op. If you truly intend a re-run of identical code, do it deliberately and" >&2
-    echo "  record why — do not let this script do it silently." >&2
-    exit 3
+    if [ "${GRAFT_ALLOW_DUPLICATE:-}" = "1" ]; then
+      echo "DUPLICATE ACKNOWLEDGED: remote already carries this exact code (ASCII-identical)."
+      echo "  Proceeding under GRAFT_ALLOW_DUPLICATE=1 -- a DELIBERATE, recorded re-run."
+    else
+      echo "REFUSING: remote already has this exact code. A re-push would spend a slot for a" >&2
+      echo "  no-op. If you truly intend a re-run of identical code, do it deliberately," >&2
+      echo "  record why, then set GRAFT_ALLOW_DUPLICATE=1." >&2
+      exit 3
+    fi
+  else
+    echo "remote exists but differs from local (ASCII-visible drift) — not a duplicate"
   fi
+else
+  echo "no remote copy could be pulled — treating as a first push (gate 0- owns existence)"
 fi
-echo "remote differs from local (or the kernel does not exist yet) — this push is not a duplicate"
 
 echo
 echo "== 1c. push-target integrity (the dir's metadata decides where the push goes) =="
@@ -251,16 +268,16 @@ export PATH="$(dirname "$KAGGLE"):$PATH"
 python scripts/preflight.py --kernel "$KERNEL" \
   --mode structural --family duck-harness \
   --baseline notebooks/duckfork/tufa-labs-duck-harness-june-30-milestone-winner.ipynb \
-  --expect-diff-cells 2,6,12
+  --expect-diff-cells 2,4,6,12,14
 
 echo
 echo "PUSHED AND VERIFIED. Poll to terminal (~2h15m expected), then:"
 echo "  $KAGGLE kernels status $KERNEL"
-echo "  $KAGGLE kernels output $KERNEL -p runs/kernel_pulls/graft_floor_v1 --file-pattern '^(benchmark\\.json|summary\\.txt)\$'"
-echo "  python duck_eval/graft/graft_score.py runs/kernel_pulls/graft_floor_v1"
-echo "Read seal: learnings/war_room/graft_floor_prereg_2026-08-17.md sections 4-5."
+echo "  $KAGGLE kernels output $KERNEL -p runs/kernel_pulls/graft_confirm_v1 --file-pattern '^(benchmark\\.json|summary\\.txt)\$'"
+echo "  python duck_eval/graft/graft_confirm_score.py runs/kernel_pulls/graft_confirm_v1"
+echo "Read seal: learnings/war_room/graft_confirm_prereg_2026-08-19.md sections 2-3 (SCORE-primary; post-hoc-motivated confirmation arm, and the report must say so)."
 echo "  The scorer needs the LOG to certify the install, so also pull logs:"
-echo "    kaggle kernels logs $KERNEL > runs/kernel_pulls/graft_floor_v1/graft.log   # CLI 2.2.3"
+echo "    kaggle kernels logs $KERNEL > runs/kernel_pulls/graft_confirm_v1/graft.log   # CLI 2.2.3"
 echo "POST-MORTEM (if it ERRORs): do NOT start with kernels output — it front-loads the"
 echo "  multi-GB vllm-site-packages tree. Use the logs route above."
 echo

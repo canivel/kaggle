@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Shrink to Fit",
+    "description": "A block on a grid is too large to fit through a narrow gap. Use resizing (shrink) to make it small enough to pass through and reach the goal tile.",
+    "num_levels": 2
+  },
+  {
+    "title": "Spin the Key",
+    "description": "An L-shaped piece blocks a corridor. Rotate it with SPACE so it aligns with the passage, then move it to the goal.",
+    "num_levels": 2
+  },
+  {
+    "title": "Portal Hop",
+    "description": "A single block sits on a grid with a wall in the middle. Step onto a teleport pad to warp to the other side and walk to the goal.",
+    "num_levels": 2
+  },
+  {
+    "title": "Buddy System",
+    "description": "Two blocks move simultaneously with the same directional input. Cooperate their movement so both reach their own goal tiles at the same time.",
+    "num_levels": 2
+  },
+  {
+    "title": "Undo the Oops",
+    "description": "Push a block toward the goal, but one wrong move sends it into a corner. Use undo to reverse the mistake and reroute to the goal.",
+    "num_levels": 2
+  },
+  {
+    "title": "Paint the Path",
+    "description": "Move a block to the goal, but you can only step on white tiles. Press SPACE to recolor a blocked red tile to white before proceeding.",
+    "num_levels": 2
+  },
+  {
+    "title": "Stack and Cross",
+    "description": "Two small blocks sit on opposite sides of a pit. Move them together to compose one larger block that bridges the gap, then cross to the goal.",
+    "num_levels": 2
+  },
+  {
+    "title": "Battery Run",
+    "description": "Your block has 5 energy. Each step costs 1. Pick up a recharge cell on the grid to refill energy and reach a goal that's 8 steps away.",
+    "num_levels": 2
+  },
+  {
+    "title": "Shape Shift Gate",
+    "description": "A gate only allows a flat horizontal shape through. Reshape your square block into a flat bar by pressing SPACE, then move through the gate to the goal.",
+    "num_levels": 2
+  },
+  {
+    "title": "Scale the Wall",
+    "description": "A small block can't climb a 2-high ledge. Use scaling (grow taller) to make it tall enough to reach the upper platform and the goal.",
+    "num_levels": 2
+  },
+  {
+    "title": "Hidden Goal",
+    "description": "The goal tile is invisible. Move your block around the grid; tiles you step on reveal whether the goal is nearby. Find and reach the hidden goal.",
+    "num_levels": 2
+  },
+  {
+    "title": "Dodge the Spike",
+    "description": "A single spike patrols back and forth on a row. Time your directional moves to cross that row safely and reach the goal on the other side.",
+    "num_levels": 2
+  },
+  {
+    "title": "Exact Steps",
+    "description": "Reach the goal in exactly 7 steps. The grid is open, so you must plan a path that uses precisely that count — no more, no less.",
+    "num_levels": 2
+  },
+  {
+    "title": "Click Switch",
+    "description": "Two sprites sit on the grid — a circle and a square. Click to switch which one you control, then guide each to its matching goal tile.",
+    "num_levels": 2
+  },
+  {
+    "title": "Arrow Swap",
+    "description": "Three colored sprites are in a row. Press left/right to cycle which sprite is active, then move the active one to the goal. Deliver all three.",
+    "num_levels": 2
+  },
+  {
+    "title": "Space Cycle",
+    "description": "Your block can be red, blue, or green — press SPACE to cycle. A gate only opens for blue. Switch to blue, pass through, then reach the goal.",
+    "num_levels": 2
+  },
+  {
+    "title": "Setup Then Go",
+    "description": "Phase 1: place a bridge tile on the grid by pressing SPACE at your chosen spot. Phase 2: press enter to lock in, then navigate your block across the bridge to the goal.",
+    "num_levels": 2
+  },
+  {
+    "title": "Remember the Code",
+    "description": "First a 3-arrow sequence is shown on screen, then you asked to input that same sequence to open a gate and reach the goal.",
+    "num_levels": 2
+  },
+  {
+    "title": "Chase Escape",
+    "description": "An adversary block mirrors your moves in reverse. Reach the goal before it catches you. The grid is small — plan a 5-move route carefully.",
+    "num_levels": 2
+  },
+  {
+    "title": "Overlap Order",
+    "description": "Three tiles on the grid must be visited in a specific color order: red, green, blue. Step on them in sequence to unlock the goal tile.",
+    "num_levels": 2
+  }
+]

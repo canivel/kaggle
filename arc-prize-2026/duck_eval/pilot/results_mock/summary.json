@@ -1,0 +1,53 @@
+{
+  "data_caveat": "Observation histories are LEVEL-0 RANDOM-EXPLORATION recordings (exec_wm/collect_observations.py), 200 tuples/game - NOT duck agent trajectories. Pre-registered caveat: transition coverage reflects random policy state visitation only.",
+  "class_a_definition": "heldout 5-step open-loop exact >= max(identity, pure-lookup, lookup+identity) + 10pp",
+  "acceptance_rule": "heldout_pp - 2.0 * gzip_KB(source)",
+  "n_games_class_a_under_logo_capped6k": 0,
+  "phase2_entry_gate": ">=4/10 Class-A on 6k-regime LOGO numbers",
+  "logo_per_game": {
+    "bp35": {
+      "selected_scaffold": "freeform",
+      "selection_mean_acceptance_other_games": -0.232421875,
+      "class_a_capped6k": false,
+      "acceptance_capped6k": -0.232421875,
+      "tokens_to_first_class_a": null
+    },
+    "r11l": {
+      "selected_scaffold": "freeform",
+      "selection_mean_acceptance_other_games": -0.232421875,
+      "class_a_capped6k": false,
+      "acceptance_capped6k": -0.232421875,
+      "tokens_to_first_class_a": null
+    }
+  },
+  "generation_lengths_per_scaffold": {
+    "freeform": {
+      "n_calls": 16,
+      "p50": 52.0,
+      "p90": 52.0,
+      "max": 52
+    }
+  },
+  "truncation_per_scaffold": {
+    "freeform": {
+      "rate": 0.0,
+      "n_truncated": 0
+    }
+  },
+  "acceptance_matrix_capped6k": {
+    "bp35": {
+      "freeform": -0.232421875
+    },
+    "r11l": {
+      "freeform": -0.232421875
+    }
+  },
+  "acceptance_matrix_uncapped32k_upper_bound_only": {
+    "bp35": {
+      "freeform": -0.232421875
+    },
+    "r11l": {
+      "freeform": -0.232421875
+    }
+  }
+}

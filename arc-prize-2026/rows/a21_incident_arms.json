@@ -1,0 +1,12 @@
+{
+  "incident": {
+    "blocked_kernel": "canivel/arc3-q38-field-eval",
+    "blocked_at": "2026-08-21T00:07:06Z",
+    "failed_checks": [
+      "D2 metadata.kaggle vs war-eval baseline",
+      "D3 cell shape 11/10 vs 17/8"
+    ],
+    "draws_lost": 0,
+    "margin_hours": 18
+  }
+}

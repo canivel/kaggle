@@ -1,0 +1,35 @@
+{
+  "round": 12,
+  "reviews": {
+    "rl-planning": {
+      "agent_id": "01KXNERQFEZ5246NBVDGJWNR9Q",
+      "status": "completed",
+      "verdict": "MAJOR-REVISION",
+      "score": 6.0,
+      "n_fatal": 0,
+      "n_major": 3,
+      "chars": 9322
+    },
+    "llm-agents": {
+      "agent_id": "01KXNERR36VBHR1P7A0G30ZMW1",
+      "status": "completed",
+      "verdict": "MAJOR-REVISION",
+      "score": 6.0,
+      "n_fatal": 0,
+      "n_major": 3,
+      "chars": 11124
+    },
+    "methodology": {
+      "agent_id": "01KXNERT1G2R2H5T3W8D3DR65A",
+      "status": "completed",
+      "verdict": "MAJOR-REVISION",
+      "score": 6.0,
+      "n_fatal": 0,
+      "n_major": 3,
+      "chars": 9137
+    }
+  },
+  "n_accept": 0,
+  "n_fatal_total": 0,
+  "pass": false
+}

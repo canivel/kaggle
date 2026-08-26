@@ -1,0 +1,2739 @@
+{
+  "agent": "notebooks/forge_agent/v60_agent.py",
+  "budget": 2000,
+  "results_a": {
+    "ar25-e3c63847": {
+      "game_id": "ar25-e3c63847",
+      "gid": "ar25",
+      "guid": "e3c63847",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          1900
+        ],
+        [
+          1,
+          100
+        ]
+      ],
+      "wall_s": 140.2,
+      "baseline_actions": [
+        17,
+        22,
+        103,
+        29,
+        29,
+        159,
+        152,
+        66
+      ],
+      "rhae": 0.0001811720262868699,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 1263,
+          "human_actions": 17,
+          "solved": true,
+          "rhae": 0.0001811720262868699
+        },
+        {
+          "level": 1,
+          "agent_actions": 100,
+          "human_actions": 22,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          1263
+        ]
+      ]
+    },
+    "bp35-0a0ad940": {
+      "game_id": "bp35-0a0ad940",
+      "gid": "bp35",
+      "guid": "0a0ad940",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          1933
+        ],
+        [
+          1,
+          67
+        ]
+      ],
+      "wall_s": 64.0,
+      "baseline_actions": [
+        15,
+        72,
+        36,
+        31,
+        31,
+        48,
+        86,
+        155,
+        163
+      ],
+      "rhae": 0.011814744801512287,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 138,
+          "human_actions": 15,
+          "solved": true,
+          "rhae": 0.011814744801512287
+        },
+        {
+          "level": 1,
+          "agent_actions": 67,
+          "human_actions": 72,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          138
+        ]
+      ]
+    },
+    "cd82-fb555c5d": {
+      "game_id": "cd82-fb555c5d",
+      "gid": "cd82",
+      "guid": "fb555c5d",
+      "ok": true,
+      "err": null,
+      "actions": 678,
+      "levels_completed": 2,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          35
+        ],
+        [
+          1,
+          42
+        ],
+        [
+          2,
+          601
+        ]
+      ],
+      "wall_s": 325.7,
+      "baseline_actions": [
+        41,
+        8,
+        30,
+        21,
+        19,
+        17
+      ],
+      "rhae": 2.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 5,
+          "human_actions": 41,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 6,
+          "human_actions": 8,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 2,
+          "agent_actions": 601,
+          "human_actions": 30,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    "cn04-65d47d14": {
+      "game_id": "cn04-65d47d14",
+      "gid": "cn04",
+      "guid": "65d47d14",
+      "ok": true,
+      "err": null,
+      "actions": 641,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          41
+        ],
+        [
+          1,
+          600
+        ]
+      ],
+      "wall_s": 318.1,
+      "baseline_actions": [
+        16,
+        54,
+        69,
+        318,
+        208,
+        114
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 10,
+          "human_actions": 16,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 600,
+          "human_actions": 54,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          10
+        ]
+      ]
+    },
+    "dc22-4c9bff3e": {
+      "game_id": "dc22-4c9bff3e",
+      "gid": "dc22",
+      "guid": "4c9bff3e",
+      "ok": true,
+      "err": null,
+      "actions": 822,
+      "levels_completed": 2,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          81
+        ],
+        [
+          1,
+          169
+        ],
+        [
+          2,
+          572
+        ]
+      ],
+      "wall_s": 304.0,
+      "baseline_actions": [
+        64,
+        117,
+        59,
+        78,
+        324,
+        550
+      ],
+      "rhae": 2.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 20,
+          "human_actions": 64,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 43,
+          "human_actions": 117,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 2,
+          "agent_actions": 572,
+          "human_actions": 59,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          20
+        ],
+        [
+          1,
+          43
+        ]
+      ]
+    },
+    "ft09-0d8bbf25": {
+      "game_id": "ft09-0d8bbf25",
+      "gid": "ft09",
+      "guid": "0d8bbf25",
+      "ok": true,
+      "err": null,
+      "actions": 325,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          37
+        ],
+        [
+          1,
+          288
+        ]
+      ],
+      "wall_s": 302.3,
+      "baseline_actions": [
+        17,
+        19,
+        15,
+        21,
+        65,
+        26
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 4,
+          "human_actions": 17,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 288,
+          "human_actions": 19,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    "g50t-5849a774": {
+      "game_id": "g50t-5849a774",
+      "gid": "g50t",
+      "guid": "5849a774",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 77.3,
+      "baseline_actions": [
+        51,
+        175,
+        86,
+        52,
+        96,
+        48,
+        67
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 51,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "ka59-9f096b4a": {
+      "game_id": "ka59-9f096b4a",
+      "gid": "ka59",
+      "guid": "9f096b4a",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 76.1,
+      "baseline_actions": [
+        39,
+        175,
+        86,
+        47,
+        21,
+        132,
+        326
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 39,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "lf52-271a04aa": {
+      "game_id": "lf52-271a04aa",
+      "gid": "lf52",
+      "guid": "271a04aa",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          1552
+        ],
+        [
+          1,
+          448
+        ]
+      ],
+      "wall_s": 19.0,
+      "baseline_actions": [
+        24,
+        81,
+        74,
+        86,
+        118,
+        148,
+        189,
+        116,
+        150,
+        225
+      ],
+      "rhae": 0.001026736137725245,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 749,
+          "human_actions": 24,
+          "solved": true,
+          "rhae": 0.001026736137725245
+        },
+        {
+          "level": 1,
+          "agent_actions": 448,
+          "human_actions": 81,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          749
+        ]
+      ]
+    },
+    "lp85-305b61c3": {
+      "game_id": "lp85-305b61c3",
+      "gid": "lp85",
+      "guid": "305b61c3",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          40
+        ],
+        [
+          1,
+          1960
+        ]
+      ],
+      "wall_s": 269.7,
+      "baseline_actions": [
+        33,
+        22,
+        31,
+        23,
+        33,
+        34,
+        73,
+        173
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 5,
+          "human_actions": 33,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 1960,
+          "human_actions": 22,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    "ls20-9607627b": {
+      "game_id": "ls20-9607627b",
+      "gid": "ls20",
+      "guid": "9607627b",
+      "ok": true,
+      "err": null,
+      "actions": 536,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          91
+        ],
+        [
+          1,
+          445
+        ]
+      ],
+      "wall_s": 320.7,
+      "baseline_actions": [
+        21,
+        123,
+        39,
+        92,
+        54,
+        108,
+        109
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 13,
+          "human_actions": 21,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 445,
+          "human_actions": 123,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          13
+        ]
+      ]
+    },
+    "m0r0-dadda488": {
+      "game_id": "m0r0-dadda488",
+      "gid": "m0r0",
+      "guid": "dadda488",
+      "ok": true,
+      "err": null,
+      "actions": 583,
+      "levels_completed": 2,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          60
+        ],
+        [
+          1,
+          70
+        ],
+        [
+          2,
+          453
+        ]
+      ],
+      "wall_s": 300.4,
+      "baseline_actions": [
+        30,
+        209,
+        83,
+        86,
+        436,
+        126
+      ],
+      "rhae": 2.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 15,
+          "human_actions": 30,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 23,
+          "human_actions": 209,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 2,
+          "agent_actions": 453,
+          "human_actions": 83,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          15
+        ],
+        [
+          1,
+          23
+        ]
+      ]
+    },
+    "r11l-aa269680": {
+      "game_id": "r11l-aa269680",
+      "gid": "r11l",
+      "guid": "aa269680",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          1973
+        ],
+        [
+          1,
+          27
+        ]
+      ],
+      "wall_s": 109.5,
+      "baseline_actions": [
+        7,
+        28,
+        30,
+        20,
+        37,
+        45
+      ],
+      "rhae": 0.0001999795939189879,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 495,
+          "human_actions": 7,
+          "solved": true,
+          "rhae": 0.0001999795939189879
+        },
+        {
+          "level": 1,
+          "agent_actions": 27,
+          "human_actions": 28,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          495
+        ]
+      ]
+    },
+    "re86-4e57566e": {
+      "game_id": "re86-4e57566e",
+      "gid": "re86",
+      "guid": "4e57566e",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 77.3,
+      "baseline_actions": [
+        28,
+        38,
+        198,
+        57,
+        84,
+        117,
+        328,
+        221
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 28,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "s5i5-a48e4b1d": {
+      "game_id": "s5i5-a48e4b1d",
+      "gid": "s5i5",
+      "guid": "a48e4b1d",
+      "ok": true,
+      "err": null,
+      "actions": 1318,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          117
+        ],
+        [
+          1,
+          1201
+        ]
+      ],
+      "wall_s": 302.8,
+      "baseline_actions": [
+        19,
+        57,
+        85,
+        203,
+        82,
+        30,
+        76,
+        56
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 13,
+          "human_actions": 19,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 1201,
+          "human_actions": 57,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          13
+        ]
+      ]
+    },
+    "sb26-7fbdac44": {
+      "game_id": "sb26-7fbdac44",
+      "gid": "sb26",
+      "guid": "7fbdac44",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 61.4,
+      "baseline_actions": [
+        18,
+        16,
+        15,
+        15,
+        31,
+        24,
+        17,
+        17
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 18,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "sc25-f9b21a2f": {
+      "game_id": "sc25-f9b21a2f",
+      "gid": "sc25",
+      "guid": "f9b21a2f",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 68.4,
+      "baseline_actions": [
+        39,
+        5,
+        32,
+        33,
+        66,
+        41
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 39,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "sk48-41055498": {
+      "game_id": "sk48-41055498",
+      "gid": "sk48",
+      "guid": "41055498",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          56
+        ],
+        [
+          1,
+          1944
+        ]
+      ],
+      "wall_s": 265.2,
+      "baseline_actions": [
+        15,
+        32,
+        35,
+        113,
+        304,
+        42,
+        63,
+        92
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 14,
+          "human_actions": 15,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 1944,
+          "human_actions": 32,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          14
+        ]
+      ]
+    },
+    "sp80-0ee2d095": {
+      "game_id": "sp80-0ee2d095",
+      "gid": "sp80",
+      "guid": "0ee2d095",
+      "ok": true,
+      "err": null,
+      "actions": 365,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          36
+        ],
+        [
+          1,
+          329
+        ]
+      ],
+      "wall_s": 314.6,
+      "baseline_actions": [
+        11,
+        18,
+        17,
+        172,
+        102,
+        152
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 4,
+          "human_actions": 11,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 329,
+          "human_actions": 18,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    "su15-4c352900": {
+      "game_id": "su15-4c352900",
+      "gid": "su15",
+      "guid": "4c352900",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 61.8,
+      "baseline_actions": [
+        18,
+        28,
+        50,
+        151,
+        18,
+        31,
+        50,
+        179,
+        41
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 18,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "tn36-ab4f63cc": {
+      "game_id": "tn36-ab4f63cc",
+      "gid": "tn36",
+      "guid": "ab4f63cc",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 49.1,
+      "baseline_actions": [
+        23,
+        22,
+        26,
+        37,
+        25,
+        56,
+        61
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 23,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "tr87-cd924810": {
+      "game_id": "tr87-cd924810",
+      "gid": "tr87",
+      "guid": "cd924810",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 79.9,
+      "baseline_actions": [
+        37,
+        30,
+        39,
+        29,
+        63,
+        119
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 37,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "tu93-2b534c15": {
+      "game_id": "tu93-2b534c15",
+      "gid": "tu93",
+      "guid": "2b534c15",
+      "ok": true,
+      "err": null,
+      "actions": 185,
+      "levels_completed": 9,
+      "terminal_state": "WIN",
+      "level_actions": [
+        [
+          0,
+          18
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          19
+        ],
+        [
+          3,
+          17
+        ],
+        [
+          4,
+          29
+        ],
+        [
+          5,
+          28
+        ],
+        [
+          6,
+          14
+        ],
+        [
+          7,
+          21
+        ],
+        [
+          8,
+          29
+        ]
+      ],
+      "wall_s": 26.2,
+      "baseline_actions": [
+        19,
+        15,
+        34,
+        42,
+        76,
+        91,
+        47,
+        23,
+        31
+      ],
+      "rhae": 9.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 18,
+          "human_actions": 19,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 10,
+          "human_actions": 15,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 2,
+          "agent_actions": 19,
+          "human_actions": 34,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 3,
+          "agent_actions": 17,
+          "human_actions": 42,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 4,
+          "agent_actions": 29,
+          "human_actions": 76,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 5,
+          "agent_actions": 28,
+          "human_actions": 91,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 6,
+          "agent_actions": 14,
+          "human_actions": 47,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 7,
+          "agent_actions": 21,
+          "human_actions": 23,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 8,
+          "agent_actions": 29,
+          "human_actions": 31,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 9,
+          "agent_actions": 0,
+          "human_actions": null,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          18
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          19
+        ],
+        [
+          3,
+          17
+        ],
+        [
+          4,
+          29
+        ],
+        [
+          5,
+          28
+        ],
+        [
+          6,
+          14
+        ],
+        [
+          7,
+          21
+        ],
+        [
+          8,
+          29
+        ]
+      ]
+    },
+    "vc33-9851e02b": {
+      "game_id": "vc33-9851e02b",
+      "gid": "vc33",
+      "guid": "9851e02b",
+      "ok": true,
+      "err": null,
+      "actions": 776,
+      "levels_completed": 2,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          30
+        ],
+        [
+          1,
+          70
+        ],
+        [
+          2,
+          676
+        ]
+      ],
+      "wall_s": 321.3,
+      "baseline_actions": [
+        6,
+        13,
+        31,
+        59,
+        92,
+        24,
+        82
+      ],
+      "rhae": 2.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 3,
+          "human_actions": 6,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 7,
+          "human_actions": 13,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 2,
+          "agent_actions": 676,
+          "human_actions": 31,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          7
+        ]
+      ]
+    },
+    "wa30-ee6fef47": {
+      "game_id": "wa30-ee6fef47",
+      "gid": "wa30",
+      "guid": "ee6fef47",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 75.9,
+      "baseline_actions": [
+        125,
+        58,
+        259,
+        113,
+        499,
+        58,
+        186,
+        134,
+        132
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 125,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    }
+  },
+  "vs": "notebooks/forge_agent/v35_agent.py",
+  "results_b": {
+    "ar25-e3c63847": {
+      "game_id": "ar25-e3c63847",
+      "gid": "ar25",
+      "guid": "e3c63847",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          1901
+        ],
+        [
+          1,
+          99
+        ]
+      ],
+      "wall_s": 140.2,
+      "baseline_actions": [
+        17,
+        22,
+        103,
+        29,
+        29,
+        159,
+        152,
+        66
+      ],
+      "rhae": 0.0001207583625166043,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 1547,
+          "human_actions": 17,
+          "solved": true,
+          "rhae": 0.0001207583625166043
+        },
+        {
+          "level": 1,
+          "agent_actions": 99,
+          "human_actions": 22,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          1547
+        ]
+      ]
+    },
+    "bp35-0a0ad940": {
+      "game_id": "bp35-0a0ad940",
+      "gid": "bp35",
+      "guid": "0a0ad940",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          1926
+        ],
+        [
+          1,
+          74
+        ]
+      ],
+      "wall_s": 73.6,
+      "baseline_actions": [
+        15,
+        72,
+        36,
+        31,
+        31,
+        48,
+        86,
+        155,
+        163
+      ],
+      "rhae": 0.16435354273192113,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 37,
+          "human_actions": 15,
+          "solved": true,
+          "rhae": 0.16435354273192113
+        },
+        {
+          "level": 1,
+          "agent_actions": 74,
+          "human_actions": 72,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          37
+        ]
+      ]
+    },
+    "cd82-fb555c5d": {
+      "game_id": "cd82-fb555c5d",
+      "gid": "cd82",
+      "guid": "fb555c5d",
+      "ok": true,
+      "err": null,
+      "actions": 672,
+      "levels_completed": 2,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          35
+        ],
+        [
+          1,
+          37
+        ],
+        [
+          2,
+          600
+        ]
+      ],
+      "wall_s": 300.8,
+      "baseline_actions": [
+        41,
+        8,
+        30,
+        21,
+        19,
+        17
+      ],
+      "rhae": 2.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 5,
+          "human_actions": 41,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 6,
+          "human_actions": 8,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 2,
+          "agent_actions": 600,
+          "human_actions": 30,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    "cn04-65d47d14": {
+      "game_id": "cn04-65d47d14",
+      "gid": "cn04",
+      "guid": "65d47d14",
+      "ok": true,
+      "err": null,
+      "actions": 641,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          41
+        ],
+        [
+          1,
+          600
+        ]
+      ],
+      "wall_s": 320.3,
+      "baseline_actions": [
+        16,
+        54,
+        69,
+        318,
+        208,
+        114
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 10,
+          "human_actions": 16,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 600,
+          "human_actions": 54,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          10
+        ]
+      ]
+    },
+    "dc22-4c9bff3e": {
+      "game_id": "dc22-4c9bff3e",
+      "gid": "dc22",
+      "guid": "4c9bff3e",
+      "ok": true,
+      "err": null,
+      "actions": 637,
+      "levels_completed": 2,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          80
+        ],
+        [
+          1,
+          170
+        ],
+        [
+          2,
+          387
+        ]
+      ],
+      "wall_s": 300.3,
+      "baseline_actions": [
+        64,
+        117,
+        59,
+        78,
+        324,
+        550
+      ],
+      "rhae": 2.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 20,
+          "human_actions": 64,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 43,
+          "human_actions": 117,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 2,
+          "agent_actions": 387,
+          "human_actions": 59,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          20
+        ],
+        [
+          1,
+          43
+        ]
+      ]
+    },
+    "ft09-0d8bbf25": {
+      "game_id": "ft09-0d8bbf25",
+      "gid": "ft09",
+      "guid": "0d8bbf25",
+      "ok": true,
+      "err": null,
+      "actions": 421,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          37
+        ],
+        [
+          1,
+          384
+        ]
+      ],
+      "wall_s": 302.5,
+      "baseline_actions": [
+        17,
+        19,
+        15,
+        21,
+        65,
+        26
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 4,
+          "human_actions": 17,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 384,
+          "human_actions": 19,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    "g50t-5849a774": {
+      "game_id": "g50t-5849a774",
+      "gid": "g50t",
+      "guid": "5849a774",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 76.4,
+      "baseline_actions": [
+        51,
+        175,
+        86,
+        52,
+        96,
+        48,
+        67
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 51,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "ka59-9f096b4a": {
+      "game_id": "ka59-9f096b4a",
+      "gid": "ka59",
+      "guid": "9f096b4a",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 76.2,
+      "baseline_actions": [
+        39,
+        175,
+        86,
+        47,
+        21,
+        132,
+        326
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 39,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "lf52-271a04aa": {
+      "game_id": "lf52-271a04aa",
+      "gid": "lf52",
+      "guid": "271a04aa",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          1360
+        ],
+        [
+          1,
+          640
+        ]
+      ],
+      "wall_s": 20.3,
+      "baseline_actions": [
+        24,
+        81,
+        74,
+        86,
+        118,
+        148,
+        189,
+        116,
+        150,
+        225
+      ],
+      "rhae": 0.0008241569561136421,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 836,
+          "human_actions": 24,
+          "solved": true,
+          "rhae": 0.0008241569561136421
+        },
+        {
+          "level": 1,
+          "agent_actions": 640,
+          "human_actions": 81,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          836
+        ]
+      ]
+    },
+    "lp85-305b61c3": {
+      "game_id": "lp85-305b61c3",
+      "gid": "lp85",
+      "guid": "305b61c3",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          40
+        ],
+        [
+          1,
+          1960
+        ]
+      ],
+      "wall_s": 269.2,
+      "baseline_actions": [
+        33,
+        22,
+        31,
+        23,
+        33,
+        34,
+        73,
+        173
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 5,
+          "human_actions": 33,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 1960,
+          "human_actions": 22,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    "ls20-9607627b": {
+      "game_id": "ls20-9607627b",
+      "gid": "ls20",
+      "guid": "9607627b",
+      "ok": true,
+      "err": null,
+      "actions": 488,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          91
+        ],
+        [
+          1,
+          397
+        ]
+      ],
+      "wall_s": 316.7,
+      "baseline_actions": [
+        21,
+        123,
+        39,
+        92,
+        54,
+        108,
+        109
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 13,
+          "human_actions": 21,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 397,
+          "human_actions": 123,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          13
+        ]
+      ]
+    },
+    "m0r0-dadda488": {
+      "game_id": "m0r0-dadda488",
+      "gid": "m0r0",
+      "guid": "dadda488",
+      "ok": true,
+      "err": null,
+      "actions": 583,
+      "levels_completed": 2,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          60
+        ],
+        [
+          1,
+          70
+        ],
+        [
+          2,
+          453
+        ]
+      ],
+      "wall_s": 304.9,
+      "baseline_actions": [
+        30,
+        209,
+        83,
+        86,
+        436,
+        126
+      ],
+      "rhae": 2.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 15,
+          "human_actions": 30,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 23,
+          "human_actions": 209,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 2,
+          "agent_actions": 453,
+          "human_actions": 83,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          15
+        ],
+        [
+          1,
+          23
+        ]
+      ]
+    },
+    "r11l-aa269680": {
+      "game_id": "r11l-aa269680",
+      "gid": "r11l",
+      "guid": "aa269680",
+      "ok": true,
+      "err": null,
+      "actions": 411,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          312
+        ],
+        [
+          1,
+          99
+        ]
+      ],
+      "wall_s": 320.6,
+      "baseline_actions": [
+        7,
+        28,
+        30,
+        20,
+        37,
+        45
+      ],
+      "rhae": 0.05444444444444445,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 30,
+          "human_actions": 7,
+          "solved": true,
+          "rhae": 0.05444444444444445
+        },
+        {
+          "level": 1,
+          "agent_actions": 99,
+          "human_actions": 28,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          30
+        ]
+      ]
+    },
+    "re86-4e57566e": {
+      "game_id": "re86-4e57566e",
+      "gid": "re86",
+      "guid": "4e57566e",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 78.6,
+      "baseline_actions": [
+        28,
+        38,
+        198,
+        57,
+        84,
+        117,
+        328,
+        221
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 28,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "s5i5-a48e4b1d": {
+      "game_id": "s5i5-a48e4b1d",
+      "gid": "s5i5",
+      "guid": "a48e4b1d",
+      "ok": true,
+      "err": null,
+      "actions": 1318,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          117
+        ],
+        [
+          1,
+          1201
+        ]
+      ],
+      "wall_s": 301.1,
+      "baseline_actions": [
+        19,
+        57,
+        85,
+        203,
+        82,
+        30,
+        76,
+        56
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 13,
+          "human_actions": 19,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 1201,
+          "human_actions": 57,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          13
+        ]
+      ]
+    },
+    "sb26-7fbdac44": {
+      "game_id": "sb26-7fbdac44",
+      "gid": "sb26",
+      "guid": "7fbdac44",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 61.8,
+      "baseline_actions": [
+        18,
+        16,
+        15,
+        15,
+        31,
+        24,
+        17,
+        17
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 18,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "sc25-f9b21a2f": {
+      "game_id": "sc25-f9b21a2f",
+      "gid": "sc25",
+      "guid": "f9b21a2f",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 69.4,
+      "baseline_actions": [
+        39,
+        5,
+        32,
+        33,
+        66,
+        41
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 39,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "sk48-41055498": {
+      "game_id": "sk48-41055498",
+      "gid": "sk48",
+      "guid": "41055498",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          56
+        ],
+        [
+          1,
+          1944
+        ]
+      ],
+      "wall_s": 264.8,
+      "baseline_actions": [
+        15,
+        32,
+        35,
+        113,
+        304,
+        42,
+        63,
+        92
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 14,
+          "human_actions": 15,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 1944,
+          "human_actions": 32,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          14
+        ]
+      ]
+    },
+    "sp80-0ee2d095": {
+      "game_id": "sp80-0ee2d095",
+      "gid": "sp80",
+      "guid": "0ee2d095",
+      "ok": true,
+      "err": null,
+      "actions": 377,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          36
+        ],
+        [
+          1,
+          341
+        ]
+      ],
+      "wall_s": 315.7,
+      "baseline_actions": [
+        11,
+        18,
+        17,
+        172,
+        102,
+        152
+      ],
+      "rhae": 1.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 4,
+          "human_actions": 11,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 341,
+          "human_actions": 18,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    "su15-4c352900": {
+      "game_id": "su15-4c352900",
+      "gid": "su15",
+      "guid": "4c352900",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 62.7,
+      "baseline_actions": [
+        18,
+        28,
+        50,
+        151,
+        18,
+        31,
+        50,
+        179,
+        41
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 18,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "tn36-ab4f63cc": {
+      "game_id": "tn36-ab4f63cc",
+      "gid": "tn36",
+      "guid": "ab4f63cc",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 48.7,
+      "baseline_actions": [
+        23,
+        22,
+        26,
+        37,
+        25,
+        56,
+        61
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 23,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "tr87-cd924810": {
+      "game_id": "tr87-cd924810",
+      "gid": "tr87",
+      "guid": "cd924810",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 80.8,
+      "baseline_actions": [
+        37,
+        30,
+        39,
+        29,
+        63,
+        119
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 37,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "tu93-2b534c15": {
+      "game_id": "tu93-2b534c15",
+      "gid": "tu93",
+      "guid": "2b534c15",
+      "ok": true,
+      "err": null,
+      "actions": 185,
+      "levels_completed": 9,
+      "terminal_state": "WIN",
+      "level_actions": [
+        [
+          0,
+          18
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          19
+        ],
+        [
+          3,
+          17
+        ],
+        [
+          4,
+          29
+        ],
+        [
+          5,
+          28
+        ],
+        [
+          6,
+          14
+        ],
+        [
+          7,
+          21
+        ],
+        [
+          8,
+          29
+        ]
+      ],
+      "wall_s": 25.6,
+      "baseline_actions": [
+        19,
+        15,
+        34,
+        42,
+        76,
+        91,
+        47,
+        23,
+        31
+      ],
+      "rhae": 9.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 18,
+          "human_actions": 19,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 10,
+          "human_actions": 15,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 2,
+          "agent_actions": 19,
+          "human_actions": 34,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 3,
+          "agent_actions": 17,
+          "human_actions": 42,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 4,
+          "agent_actions": 29,
+          "human_actions": 76,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 5,
+          "agent_actions": 28,
+          "human_actions": 91,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 6,
+          "agent_actions": 14,
+          "human_actions": 47,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 7,
+          "agent_actions": 21,
+          "human_actions": 23,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 8,
+          "agent_actions": 29,
+          "human_actions": 31,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 9,
+          "agent_actions": 0,
+          "human_actions": null,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          18
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          19
+        ],
+        [
+          3,
+          17
+        ],
+        [
+          4,
+          29
+        ],
+        [
+          5,
+          28
+        ],
+        [
+          6,
+          14
+        ],
+        [
+          7,
+          21
+        ],
+        [
+          8,
+          29
+        ]
+      ]
+    },
+    "vc33-9851e02b": {
+      "game_id": "vc33-9851e02b",
+      "gid": "vc33",
+      "guid": "9851e02b",
+      "ok": true,
+      "err": null,
+      "actions": 776,
+      "levels_completed": 2,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          30
+        ],
+        [
+          1,
+          70
+        ],
+        [
+          2,
+          676
+        ]
+      ],
+      "wall_s": 318.0,
+      "baseline_actions": [
+        6,
+        13,
+        31,
+        59,
+        92,
+        24,
+        82
+      ],
+      "rhae": 2.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 3,
+          "human_actions": 6,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 1,
+          "agent_actions": 7,
+          "human_actions": 13,
+          "solved": true,
+          "rhae": 1.0
+        },
+        {
+          "level": 2,
+          "agent_actions": 676,
+          "human_actions": 31,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          7
+        ]
+      ]
+    },
+    "wa30-ee6fef47": {
+      "game_id": "wa30-ee6fef47",
+      "gid": "wa30",
+      "guid": "ee6fef47",
+      "ok": true,
+      "err": null,
+      "actions": 2000,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          2000
+        ]
+      ],
+      "wall_s": 77.8,
+      "baseline_actions": [
+        125,
+        58,
+        259,
+        113,
+        499,
+        58,
+        186,
+        134,
+        132
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 2000,
+          "human_actions": 125,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    }
+  }
+}

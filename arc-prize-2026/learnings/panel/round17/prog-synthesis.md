@@ -1,0 +1,33 @@
+## Summary (2 sentences)
+The diagnosis (governance overhead consuming the calendar) is plausible and the direction of R1–R5 is broadly right, but the reset is justified by explicitly unverified numbers that contradict the panel's own briefing, and its "falsifiable" success criteria in §4 are disjunctive, metric-free, and near-impossible to fail. Worse, the reset does not actually solve the problem it names as RC4: nothing in R1–R5 changes what qualifies for a scored window, so the plan may accelerate build artifacts and still deliver zero scored-regime evidence.
+
+## Objections
+
+**[MAJOR] §1's quantification contradicts the panel record and is self-declared provisional** — The proposal claims LB best 1.33, per-draw mean ≈ 0.96, leader 1.86; the panel briefing states team best 0.43 and leader 1.56. That is a ~3x discrepancy on the numbers that carry the entire "stuck" argument and the E[max] ≈ 1.39 projection in RC4, and the document itself says the re-verification (`runs/verify_2026-07-21/`) has not landed. A governance reset cannot be ratified on numbers its own authors flag as unverified and which conflict with the panel's record. Fix: attach the verification output and a reconciliation (metric definition, date, which board) before any of R1–R5 executes.
+
+**[MAJOR] RC4 is diagnosed but not treated — the reset cannot produce scored-regime evidence** — RC4 correctly identifies that the pricing rule has no information-value term, so "nothing ever qualifies." But R5 declares window discipline unchanged and no amendment adds a VOI term, an exploration budget, or a first-draw exemption. §4's headline deliverable ("first experimental scored draw since Jul 14") is therefore gated on "if any gate passes" under the exact rule the proposal proves nothing passes. Fix: propose a concrete, pre-registered mechanism — e.g., a bounded exploration budget of N scored windows through Nov 2 with an explicit per-mechanism first-draw information credit and a stopping rule — or admit the reset only fixes build-rail throughput.
+
+**[MAJOR] §4's refutation condition is disjunctive and gameable — this is not a falsifiable test** — Six heterogeneous deliverables are OR'd: landing the single easiest item ((f) defaulting in, which already passed 49/49) "confirms" the reset, while "If NONE of these lands" is the only refutation trigger. Several items have no pass/fail definition: what threshold makes A17 "capability+parity numbers" a pass, parity against which baseline (the public Milestone-1 notebook? the duck fork?), and what does "EWM Stage-1 measurement" measure? Fix: per-item binary criteria with numeric thresholds, and a conjunctive minimum (e.g., ≥4/6 with the A17 numbers mandatory, since the proposal itself calls A17 "the only wall-sized lever").
+
+**[MAJOR] R2 protects only one tail — no false-GO guard on A17** — R2 correctly requires quantified false-NO-GO probability before killing the wall-closer, but is silent on false GO: promising bench numbers from an underpowered run will create momentum toward committing scored windows. Given the per-draw variance visible in §1 (0.76–1.33 across 8 draws), any capability/parity claim needs a pre-registered sample size and variance estimate to be interpretable at all. Fix: pre-register both GO and NO-GO thresholds with a power calculation *before* the bench runs, not after the numbers exist.
+
+**[MAJOR] EWM line has no world-model fidelity metric — unfalsifiable by construction** — "Stage-0 done, blocked on latent-state audit sequencing" and "Stage-1 measurement" name no metric for what the world model is required to predict, against what held-out data, at what threshold. A learned/executable world model without a pre-registered fidelity gate (e.g., n-step transition prediction accuracy on held-out trajectories from the real rail, with a floor below which EWM-execute is killed) is exactly the kind of unmeasured synthesis line that later demands a scored window on vibes. Fix: define the Stage-1 fidelity metric and kill threshold in the R1 one-page intent before any push.
+
+**[MAJOR] R3 grandfathers R16 retroactively and its "named conditions" have no fail-consequence** — Declaring "R16 already qualifies as round one of two" applies a new rule to reviewers who scored under different incentives; their 0-FATAL scores did not mean "consent to auto-seal" when given. And converting unresolved MAJORs into owner+deadline conditions is decorative unless a lapsed deadline has a defined consequence. Fix: start the two-round clock at R17, and specify that a missed condition deadline suspends the seal pending a single-reviewer spot check.
+
+**[MINOR] "Build-rail runs are FREE" conflates quota cost with calendar and state cost** — §1 itself reports 3 of 5 recent loop-days lost to infra, including a wedge; build pushes consume the same fragile loop capacity and shared state, and the wedge shows the environment is not cleanly reversible in practice. Fix: bound R1 to N concurrent unsealed pushes, each with a checkpoint taken before push (the checkpoint machinery exists) so "reversible" is enforced rather than asserted.
+
+## Questions for the authors (numbered)
+1. Reconcile LB best 1.33 / leader 1.86 (§1) with the panel record of 0.43 / 1.56: which is current, on which board, under which metric? Has `runs/verify_2026-07-21/` completed, and what did it find?
+2. What concrete amendment to the pricing rule operationalizes RC4's "information value" — formula, exploration budget in windows, and stopping rule?
+3. For A17: what are the pre-registered GO and NO-GO numeric thresholds, the parity baseline, and the sample size justifying them given observed per-draw σ?
+4. What is the EWM Stage-1 fidelity metric, its held-out evaluation set, and its kill threshold?
+5. Under R3, what happens when a named condition's deadline lapses — does the seal revert, escalate, or nothing?
+6. Which subset of the six Aug-4 deliverables constitutes reset success, item by item, in binary terms?
+
+## What I cannot judge
+The derivation of the window break-even figure (+0.06–0.12) and Kaggle quota/scoring mechanics; the leaderboard/wall trajectory projections to November; the KAOS-specific implementation details of R4 (watchdog, wedge detector, `_agents.json` recovery); competition-specific artifact history (warpack composition, duck fork, Reki stack); and panel social dynamics behind the R13–R16 loop. I judge only the verification structure, falsifiability of the stated metrics, and the synthesis/world-model lines.
+
+## Verdict: MAJOR-REVISION
+
+## Score: 5/10

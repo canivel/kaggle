@@ -152,3 +152,22 @@ boristown A/B may fire tonight through trusted-fork preflight unaffected.
 
 No kernel pushes, no queue changes, no cloud spend. kaggle==2.0.0 CLI for pulls.
 ```
+
+---
+
+## ADDENDUM 2026-08-04 — H2 domain widening (upstream PR #74)
+
+Host comment by Greg Kamradt (08-03, thread 732419) noted arcprize/ARC-AGI-3-Agents#74
+merged: bare `arcprize.org` is now canonical over `three.arcprize.org`. H2's plain
+substring test on the legacy subdomain would PASS a notebook calling
+`https://arcprize.org/api` — the exact failure it exists to catch (and
+`duck_eval/taaf_bundle/.../taaf/game_api.py` still pins the legacy form, which the next
+upstream fork sync would flip).
+
+**Fix:** `FORBIDDEN_ENDPOINT_RE = (?:[a-z0-9-]+\.)*arcprize\.org` (case-insensitive)
+replaces the substring test; display constant renamed to `arcprize.org (any subdomain)`.
+Two new tests (bare-domain WARN, other-subdomain WARN): suite now **23/23 PASS**.
+Production regression re-run: frozen-fork daemon invocation (§3a exact command) →
+**verdict ALLOW, n_fail 0, n_warn 0, UNCHANGED**. (§3b arm-B invocation not re-run:
+A/B DORMANT since R23 and its pin artifacts unchanged by this edit; H-gates remain
+opt-in so its verdict is unchanged by construction.)

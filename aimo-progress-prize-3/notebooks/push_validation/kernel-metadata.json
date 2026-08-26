@@ -1,0 +1,20 @@
+{
+  "id": "canivel/aimo3-validation-ev-vs-baseline",
+  "title": "AIMO3 Validation EV vs Baseline",
+  "code_file": "validation_ev_vs_baseline.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": false,
+  "dataset_sources": [],
+  "model_sources": [
+    "danielhanchen/gpt-oss-120b/Transformers/default/1"
+  ],
+  "kernel_sources": [
+    "andreasbis/aimo-3-utils"
+  ],
+  "competition_sources": ["ai-mathematical-olympiad-progress-prize-3"],
+  "keywords": [],
+  "machine_shape": "NvidiaH100"
+}

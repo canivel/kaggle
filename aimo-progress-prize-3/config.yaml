@@ -1,0 +1,62 @@
+# AI Mathematical Olympiad - Progress Prize 3
+# IMO-level math problems solved via LLM reasoning + TIR
+# Metric: Exact-match accuracy | Deadline: 2026-04-15
+
+name: "AI Mathematical Olympiad - Progress Prize 3"
+slug: "ai-mathematical-olympiad-progress-prize-3"
+description: "Solve 110 IMO-level math problems using LLM reasoning with Tool-Integrated Reasoning"
+
+data:
+  reference_path: "data/reference.csv"
+  test_path: "data/test.csv"
+  sample_submission_path: "data/sample_submission.csv"
+  validation_dir: "data/validation/"
+  target_column: "answer"
+  id_column: "problem_id"
+
+evaluation:
+  metric: "accuracy"
+  metric_direction: "maximize"
+  answer_mod: 100000
+  n_problems: 110
+  n_public: 50
+  n_private: 50
+  n_reference: 10
+
+submission:
+  competition_slug: "ai-mathematical-olympiad-progress-prize-3"
+  format: "kaggle_notebook"
+  runtime_limit_hours: 9
+  internet_access: false
+  max_daily_submissions: 5
+
+hardware:
+  kaggle_gpu: "H100"
+  kaggle_vram_gb: 80
+  local_gpu: "RTX 3080"
+  local_vram_gb: 10
+  runpod_gpu: "A40"
+  runpod_vram_gb: 48
+
+inference:
+  model_primary: "nvidia/OpenMath-Nemotron-14B-Kaggle"
+  model_fallback: "AI-MO/NuminaMath-7B-TIR"
+  n_samples: 32
+  max_tokens: 8192
+  temperature: 0.7
+  top_p: 0.95
+  time_limit_per_problem: 1700
+  voting_strategy: "majority"
+  tir_enabled: true
+  tir_max_retries: 3
+  tir_code_timeout: 30
+
+experiment:
+  max_experiments: 50
+  results_file: "experiments/results.tsv"
+  checkpoint_dir: "checkpoints"
+
+timeline:
+  entry_deadline: "2026-04-08"
+  team_merger_deadline: "2026-04-08"
+  final_submission: "2026-04-15"

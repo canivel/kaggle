@@ -1,0 +1,30 @@
+[
+  {
+    "gate": "CERT-T05",
+    "name": "wallclock-window certification",
+    "passed": true,
+    "kill": true,
+    "detail": "median 3960.5, max 4003"
+  },
+  {
+    "gate": "CERT-T3",
+    "name": "wallclock-window certification",
+    "passed": true,
+    "kill": true,
+    "detail": "median 23760.8, max 23796"
+  },
+  {
+    "gate": "ANOM",
+    "name": "anomaly branch (lc<24 with turns>=2x)",
+    "passed": true,
+    "kill": false,
+    "detail": "not triggered"
+  },
+  {
+    "gate": "BAND",
+    "name": "sealed elasticity bands",
+    "passed": true,
+    "kill": false,
+    "detail": "PARTIAL 0.5114; segments 1.05 / 0.17"
+  }
+]

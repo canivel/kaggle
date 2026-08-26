@@ -1,0 +1,3484 @@
+{
+  "arm": "ALL-ARMS",
+  "mode": "full",
+  "verdict": "FAIL",
+  "n_pass": 437,
+  "n_fail": 7,
+  "n_warn": 17,
+  "n_skip": 35,
+  "elapsed_s": 160.71,
+  "checks": [
+    {
+      "group": "R",
+      "code": "budget-t05/R0.corpus",
+      "status": "PASS",
+      "message": "60 real artifacts indexed (34 pulled kernel outputs, 58 contract-clean, 2 degenerate/aborted), 1776 game_runs total",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R1.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "matches the independent computation on 58/58 real artifacts (lc_total, total_actions, mean_score)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R1b.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "refuses all 2 degenerate real artifacts (experiment_smoke.bak1, experiment_smoke.bak2...)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R2.private-base",
+      "status": "PASS",
+      "message": "private_score.score[private-base] on private_base_v1: n_games=25, lc_total=30, total_actions=1463, mean_score=5.6857964565738675",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R2.private-edge1",
+      "status": "PASS",
+      "message": "private_score.score[private-edge1] on private_edge1_v2: n_games=25, lc_total=18, total_actions=1113, mean_score=2.908505569058404",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R2.q38-field",
+      "status": "PASS",
+      "message": "q38field_score.score[q38-field] on q38_field_v1: lc_total=28, mean_score=6.172517666057636",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R2.graft-floor",
+      "status": "PASS",
+      "message": "graft_score.score[graft-floor] on graft_floor_v1: n_games=25, lc_total=18, mean_score=2.302803712568606",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R2.graft-confirm",
+      "status": "PASS",
+      "message": "graft_confirm_score.score[graft-confirm] on graft_confirm_v1: n_games=25, lc_total=14, total_actions=3734, mean_score=1.201885",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R2.q38-graft",
+      "status": "PASS",
+      "message": "q38graft_score.score[q38-graft] on q38graft_v1: lc_total=18, total_actions=1251, mean_score=3.216698",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R3.graft-confirm",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R3.graft-floor",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R3.private-base",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R3.private-edge1",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R3.q38-field",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R3.q38-graft",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R3r.private_score._lc_actions_score",
+      "status": "WARN",
+      "message": "3 malformed shape(s) silently zero this reader (guarded upstream by the pipeline's n_games gate -- see R3)",
+      "detail": "no_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nempty_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nmissing_levels_completed: PARTIAL silent zero {'lc_total': 0, 'total_actions': 36, 'mean_score': 9.5} (the D1/D2/D3 signature)\nfixture_key_games: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nmissing_final_score: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nscalar_total_actions: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}"
+    },
+    {
+      "group": "R",
+      "code": "budget-t05/R4.historical",
+      "status": "PASS",
+      "message": "D1(games)/D2(total_actions)/D3(score) all caught on runs/kernel_pulls/graft_confirm_v1/benchmark.json (each returns 0 where the oracle returns non-zero)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t05/N0.notebook",
+      "status": "PASS",
+      "message": "notebooks/budget-t05-eval/arc3-budget-t05-eval.ipynb  cells=11 code=10",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t05/N1.compile",
+      "status": "PASS",
+      "message": "all 10 code cells ast.parse clean",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t05/N1b.cellcount",
+      "status": "PASS",
+      "message": "11 cells as declared",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t05/N2.tokens",
+      "status": "PASS",
+      "message": "0 occurrences of 8 forbidden tokens",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t05/N3.flags",
+      "status": "SKIP",
+      "message": "no flag literals declared for this arm",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t05/N4.determinism",
+      "status": "PASS",
+      "message": "build_budget_eval.py['t05'] rebuilt twice -> byte-identical (2 file(s))",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t05/N5.preflight",
+      "status": "PASS",
+      "message": "preflight structural_checks (duck-harness family): 6 ok, 0 warn",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t05/N6.diff",
+      "status": "SKIP",
+      "message": "no local base notebook registered for this arm",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t05/N7.metadata",
+      "status": "WARN",
+      "message": "accelerator=nvidiaRtxPro6000; dataSources=5; dataset_sources=2 model_sources=1  [1 advisory]",
+      "detail": "nb metadata.kaggle.isGpuEnabled=False while accelerator='nvidiaRtxPro6000' (matches the certified base; enable_gpu is authoritative)"
+    },
+    {
+      "group": "N",
+      "code": "budget-t05/N8.hostgates",
+      "status": "PASS",
+      "message": "H1-H4 clean (4 checks)",
+      "detail": ""
+    },
+    {
+      "group": "H",
+      "code": "budget-t05/H*.harness",
+      "status": "SKIP",
+      "message": "fast path -- the CPU harness smoke runs on --full (~1-2 min)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "budget-t05/A1.budget-t05",
+      "status": "SKIP",
+      "message": "this arm has no pulled artifact yet -- own-arm certification cannot be exercised against real data (it will be at pull time)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "budget-t05/A2.budget-t05",
+      "status": "PASS",
+      "message": "all 6 foreign real artifacts REFUSED (graft-confirm, graft-floor, private-base, private-edge1, q38-field, q38-graft)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t05/P0.import",
+      "status": "PASS",
+      "message": "shipped NoopGuard + duck_eval/p0/board_signature_fix loaded",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t05/P1.guard_record_path",
+      "status": "PASS",
+      "message": "shipped guard blocks 0/12 identical interior no-ops under a ticking HUD -- full-grid board_changed hides every no-op (P0.3 defeat path 1, reproduces the field's 0-in-1630)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t05/P2.guard_match_path",
+      "status": "PASS",
+      "message": "with recording FORCED, the shipped guard still matches 0/12 -- the full-grid key never recurs (P0.3 defeat path 2: recorded 74, matched 0 on the real field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t05/P3.interior_key_fires",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 11/12 repeats of the same interior no-op (22 blocks on the real 1,630-action field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t05/P4.no_false_blocks",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 0/12 actions that really do change the interior (0 false blocks measured on all 1,630 real field actions)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t05/P5.animation_exempt",
+      "status": "PASS",
+      "message": "an ANIMATED action with an identical before/after interior is still not recorded as a no-op (the ft09/sb26 regression the docstring warns about stays fixed)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t05/P6.hudmask",
+      "status": "PASS",
+      "message": "HudMask finds the ticking border strip (row 7), ignores mid-board activity, and before convergence returns signatures byte-identical to the shipped board_signature (safe default)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t05/P7.p0_evidence",
+      "status": "PASS",
+      "message": "sealed P0.2/P0.3 evidence intact: 1630 real actions, shipped guard 0 blocks, interior 22, interior no-op rate 8.8%, per-game sums reconcile over 25 games",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t05/P8.reset_semantics",
+      "status": "PASS",
+      "message": "P0.1 evidence intact: with ONLY_RESET_LEVELS=true a mid-level RESET returns the byte-equal level-start frame and keeps level+score; with the flag unset it full-resets (the footgun) -- P2's premise holds and its negative control fires",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t05/P9.cadence_instrument",
+      "status": "PASS",
+      "message": "tokens-per-acting-turn / acting-turns-per-game re-derive the 08-22 BP35 diagnostic from the real artifacts on disk -- cadence_instrument validate: 31/31 checks passed",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t05/X1.budget_score",
+      "status": "PASS",
+      "message": "selftest OK -- selftest OK (12/12 checks, 0 failures)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t05/X1.graft_confirm_score",
+      "status": "PASS",
+      "message": "selftest OK --   NULL     otherwise; INFRA DEATH on any certification failure",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t05/X1.graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   SIGNAL lc_total >= 27   (mean dlc >= +0.286315)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t05/X1.private_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST: 32/32",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t05/X1.q38field_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST OK (all gates fire, good path passes)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t05/X1.q38graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   HARM <=23 | NULL 24-32 | SIGNAL >=33 | head gate lc>=28 | clickmap REQUIRED, searchmap FORBIDDEN",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t05/X3.p0_noop_repro",
+      "status": "SKIP",
+      "message": "pytest not installed in this interpreter",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t05/X4.no_harm",
+      "status": "PASS",
+      "message": "199 protected files under notebooks/ + queue + lane_locks byte-unchanged (edge-2 staging untouched)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R0.corpus",
+      "status": "PASS",
+      "message": "60 real artifacts indexed (34 pulled kernel outputs, 58 contract-clean, 2 degenerate/aborted), 1776 game_runs total",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R1.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "matches the independent computation on 58/58 real artifacts (lc_total, total_actions, mean_score)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R1b.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "refuses all 2 degenerate real artifacts (experiment_smoke.bak1, experiment_smoke.bak2...)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R2.private-base",
+      "status": "PASS",
+      "message": "private_score.score[private-base] on private_base_v1: n_games=25, lc_total=30, total_actions=1463, mean_score=5.6857964565738675",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R2.private-edge1",
+      "status": "PASS",
+      "message": "private_score.score[private-edge1] on private_edge1_v2: n_games=25, lc_total=18, total_actions=1113, mean_score=2.908505569058404",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R2.q38-field",
+      "status": "PASS",
+      "message": "q38field_score.score[q38-field] on q38_field_v1: lc_total=28, mean_score=6.172517666057636",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R2.graft-floor",
+      "status": "PASS",
+      "message": "graft_score.score[graft-floor] on graft_floor_v1: n_games=25, lc_total=18, mean_score=2.302803712568606",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R2.graft-confirm",
+      "status": "PASS",
+      "message": "graft_confirm_score.score[graft-confirm] on graft_confirm_v1: n_games=25, lc_total=14, total_actions=3734, mean_score=1.201885",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R2.q38-graft",
+      "status": "PASS",
+      "message": "q38graft_score.score[q38-graft] on q38graft_v1: lc_total=18, total_actions=1251, mean_score=3.216698",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R3.graft-confirm",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R3.graft-floor",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R3.private-base",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R3.private-edge1",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R3.q38-field",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R3.q38-graft",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R3r.private_score._lc_actions_score",
+      "status": "WARN",
+      "message": "3 malformed shape(s) silently zero this reader (guarded upstream by the pipeline's n_games gate -- see R3)",
+      "detail": "no_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nempty_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nmissing_levels_completed: PARTIAL silent zero {'lc_total': 0, 'total_actions': 36, 'mean_score': 9.5} (the D1/D2/D3 signature)\nfixture_key_games: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nmissing_final_score: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nscalar_total_actions: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}"
+    },
+    {
+      "group": "R",
+      "code": "budget-t3/R4.historical",
+      "status": "PASS",
+      "message": "D1(games)/D2(total_actions)/D3(score) all caught on runs/kernel_pulls/graft_confirm_v1/benchmark.json (each returns 0 where the oracle returns non-zero)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t3/N0.notebook",
+      "status": "PASS",
+      "message": "notebooks/budget-t3-eval/arc3-budget-t3-eval.ipynb  cells=11 code=10",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t3/N1.compile",
+      "status": "PASS",
+      "message": "all 10 code cells ast.parse clean",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t3/N1b.cellcount",
+      "status": "PASS",
+      "message": "11 cells as declared",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t3/N2.tokens",
+      "status": "PASS",
+      "message": "0 occurrences of 8 forbidden tokens",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t3/N3.flags",
+      "status": "SKIP",
+      "message": "no flag literals declared for this arm",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t3/N4.determinism",
+      "status": "PASS",
+      "message": "build_budget_eval.py['t3'] rebuilt twice -> byte-identical (2 file(s))",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t3/N5.preflight",
+      "status": "PASS",
+      "message": "preflight structural_checks (duck-harness family): 6 ok, 0 warn",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t3/N6.diff",
+      "status": "SKIP",
+      "message": "no local base notebook registered for this arm",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "budget-t3/N7.metadata",
+      "status": "WARN",
+      "message": "accelerator=nvidiaRtxPro6000; dataSources=5; dataset_sources=2 model_sources=1  [1 advisory]",
+      "detail": "nb metadata.kaggle.isGpuEnabled=False while accelerator='nvidiaRtxPro6000' (matches the certified base; enable_gpu is authoritative)"
+    },
+    {
+      "group": "N",
+      "code": "budget-t3/N8.hostgates",
+      "status": "PASS",
+      "message": "H1-H4 clean (4 checks)",
+      "detail": ""
+    },
+    {
+      "group": "H",
+      "code": "budget-t3/H*.harness",
+      "status": "SKIP",
+      "message": "fast path -- the CPU harness smoke runs on --full (~1-2 min)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "budget-t3/A1.budget-t3",
+      "status": "SKIP",
+      "message": "this arm has no pulled artifact yet -- own-arm certification cannot be exercised against real data (it will be at pull time)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "budget-t3/A2.budget-t3",
+      "status": "PASS",
+      "message": "all 6 foreign real artifacts REFUSED (graft-confirm, graft-floor, private-base, private-edge1, q38-field, q38-graft)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t3/P0.import",
+      "status": "PASS",
+      "message": "shipped NoopGuard + duck_eval/p0/board_signature_fix loaded",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t3/P1.guard_record_path",
+      "status": "PASS",
+      "message": "shipped guard blocks 0/12 identical interior no-ops under a ticking HUD -- full-grid board_changed hides every no-op (P0.3 defeat path 1, reproduces the field's 0-in-1630)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t3/P2.guard_match_path",
+      "status": "PASS",
+      "message": "with recording FORCED, the shipped guard still matches 0/12 -- the full-grid key never recurs (P0.3 defeat path 2: recorded 74, matched 0 on the real field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t3/P3.interior_key_fires",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 11/12 repeats of the same interior no-op (22 blocks on the real 1,630-action field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t3/P4.no_false_blocks",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 0/12 actions that really do change the interior (0 false blocks measured on all 1,630 real field actions)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t3/P5.animation_exempt",
+      "status": "PASS",
+      "message": "an ANIMATED action with an identical before/after interior is still not recorded as a no-op (the ft09/sb26 regression the docstring warns about stays fixed)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t3/P6.hudmask",
+      "status": "PASS",
+      "message": "HudMask finds the ticking border strip (row 7), ignores mid-board activity, and before convergence returns signatures byte-identical to the shipped board_signature (safe default)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t3/P7.p0_evidence",
+      "status": "PASS",
+      "message": "sealed P0.2/P0.3 evidence intact: 1630 real actions, shipped guard 0 blocks, interior 22, interior no-op rate 8.8%, per-game sums reconcile over 25 games",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t3/P8.reset_semantics",
+      "status": "PASS",
+      "message": "P0.1 evidence intact: with ONLY_RESET_LEVELS=true a mid-level RESET returns the byte-equal level-start frame and keeps level+score; with the flag unset it full-resets (the footgun) -- P2's premise holds and its negative control fires",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "budget-t3/P9.cadence_instrument",
+      "status": "PASS",
+      "message": "tokens-per-acting-turn / acting-turns-per-game re-derive the 08-22 BP35 diagnostic from the real artifacts on disk -- cadence_instrument validate: 31/31 checks passed",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t3/X1.budget_score",
+      "status": "PASS",
+      "message": "selftest OK -- selftest OK (12/12 checks, 0 failures)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t3/X1.graft_confirm_score",
+      "status": "PASS",
+      "message": "selftest OK --   NULL     otherwise; INFRA DEATH on any certification failure",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t3/X1.graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   SIGNAL lc_total >= 27   (mean dlc >= +0.286315)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t3/X1.private_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST: 32/32",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t3/X1.q38field_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST OK (all gates fire, good path passes)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t3/X1.q38graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   HARM <=23 | NULL 24-32 | SIGNAL >=33 | head gate lc>=28 | clickmap REQUIRED, searchmap FORBIDDEN",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t3/X3.p0_noop_repro",
+      "status": "SKIP",
+      "message": "pytest not installed in this interpreter",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "budget-t3/X4.no_harm",
+      "status": "PASS",
+      "message": "199 protected files under notebooks/ + queue + lane_locks byte-unchanged (edge-2 staging untouched)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R0.corpus",
+      "status": "PASS",
+      "message": "60 real artifacts indexed (34 pulled kernel outputs, 58 contract-clean, 2 degenerate/aborted), 1776 game_runs total",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R1.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "matches the independent computation on 58/58 real artifacts (lc_total, total_actions, mean_score)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R1b.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "refuses all 2 degenerate real artifacts (experiment_smoke.bak1, experiment_smoke.bak2...)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R2.private-base",
+      "status": "PASS",
+      "message": "private_score.score[private-base] on private_base_v1: n_games=25, lc_total=30, total_actions=1463, mean_score=5.6857964565738675",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R2.private-edge1",
+      "status": "PASS",
+      "message": "private_score.score[private-edge1] on private_edge1_v2: n_games=25, lc_total=18, total_actions=1113, mean_score=2.908505569058404",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R2.q38-field",
+      "status": "PASS",
+      "message": "q38field_score.score[q38-field] on q38_field_v1: lc_total=28, mean_score=6.172517666057636",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R2.graft-floor",
+      "status": "PASS",
+      "message": "graft_score.score[graft-floor] on graft_floor_v1: n_games=25, lc_total=18, mean_score=2.302803712568606",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R2.graft-confirm",
+      "status": "PASS",
+      "message": "graft_confirm_score.score[graft-confirm] on graft_confirm_v1: n_games=25, lc_total=14, total_actions=3734, mean_score=1.201885",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R2.q38-graft",
+      "status": "PASS",
+      "message": "q38graft_score.score[q38-graft] on q38graft_v1: lc_total=18, total_actions=1251, mean_score=3.216698",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R3.graft-confirm",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R3.graft-floor",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R3.private-base",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R3.private-edge1",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R3.q38-field",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R3.q38-graft",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R3r.private_score._lc_actions_score",
+      "status": "WARN",
+      "message": "3 malformed shape(s) silently zero this reader (guarded upstream by the pipeline's n_games gate -- see R3)",
+      "detail": "no_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nempty_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nmissing_levels_completed: PARTIAL silent zero {'lc_total': 0, 'total_actions': 36, 'mean_score': 9.5} (the D1/D2/D3 signature)\nfixture_key_games: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nmissing_final_score: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nscalar_total_actions: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}"
+    },
+    {
+      "group": "R",
+      "code": "graft-confirm/R4.historical",
+      "status": "PASS",
+      "message": "D1(games)/D2(total_actions)/D3(score) all caught on runs/kernel_pulls/graft_confirm_v1/benchmark.json (each returns 0 where the oracle returns non-zero)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-confirm/N0.notebook",
+      "status": "PASS",
+      "message": "notebooks/graft-floor-eval/arc3-graft-floor-eval.ipynb  cells=17 code=8",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-confirm/N1.compile",
+      "status": "PASS",
+      "message": "all 8 code cells ast.parse clean",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-confirm/N1b.cellcount",
+      "status": "PASS",
+      "message": "17 cells as declared",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-confirm/N2.tokens",
+      "status": "PASS",
+      "message": "0 occurrences of 3 forbidden tokens",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-confirm/N3.flags",
+      "status": "SKIP",
+      "message": "no flag literals declared for this arm",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-confirm/N4.determinism",
+      "status": "SKIP",
+      "message": "replication seed of graft-floor: byte-identical treatment (sha b0316275f53c6c85), so the two artifacts certify under each other",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-confirm/N5.preflight",
+      "status": "PASS",
+      "message": "preflight structural_checks (duck-harness family): 6 ok, 0 warn",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-confirm/N6.diff",
+      "status": "PASS",
+      "message": "diff-vs-base clean -- D1=OK; D2=OK; D3=OK; D4=OK",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-confirm/N7.metadata",
+      "status": "PASS",
+      "message": "dataset_sources=3 model_sources=0",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-confirm/N8.hostgates",
+      "status": "PASS",
+      "message": "H1-H4 clean (4 checks)",
+      "detail": ""
+    },
+    {
+      "group": "H",
+      "code": "graft-confirm/H*.harness",
+      "status": "SKIP",
+      "message": "fast path -- the CPU harness smoke runs on --full (~1-2 min)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "graft-confirm/A1.graft-confirm",
+      "status": "PASS",
+      "message": "own certification ACCEPTS its real artifact graft_confirm_v1",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "graft-confirm/A2s.graft-confirm",
+      "status": "PASS",
+      "message": "sibling arm(s) ['graft-floor'] excluded from the negative controls: same vehicle bytes, so mutual acceptance is correct",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "graft-confirm/A2.graft-confirm",
+      "status": "PASS",
+      "message": "all 4 foreign real artifacts REFUSED (private-base, private-edge1, q38-field, q38-graft)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-confirm/P0.import",
+      "status": "PASS",
+      "message": "shipped NoopGuard + duck_eval/p0/board_signature_fix loaded",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-confirm/P1.guard_record_path",
+      "status": "PASS",
+      "message": "shipped guard blocks 0/12 identical interior no-ops under a ticking HUD -- full-grid board_changed hides every no-op (P0.3 defeat path 1, reproduces the field's 0-in-1630)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-confirm/P2.guard_match_path",
+      "status": "PASS",
+      "message": "with recording FORCED, the shipped guard still matches 0/12 -- the full-grid key never recurs (P0.3 defeat path 2: recorded 74, matched 0 on the real field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-confirm/P3.interior_key_fires",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 11/12 repeats of the same interior no-op (22 blocks on the real 1,630-action field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-confirm/P4.no_false_blocks",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 0/12 actions that really do change the interior (0 false blocks measured on all 1,630 real field actions)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-confirm/P5.animation_exempt",
+      "status": "PASS",
+      "message": "an ANIMATED action with an identical before/after interior is still not recorded as a no-op (the ft09/sb26 regression the docstring warns about stays fixed)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-confirm/P6.hudmask",
+      "status": "PASS",
+      "message": "HudMask finds the ticking border strip (row 7), ignores mid-board activity, and before convergence returns signatures byte-identical to the shipped board_signature (safe default)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-confirm/P7.p0_evidence",
+      "status": "PASS",
+      "message": "sealed P0.2/P0.3 evidence intact: 1630 real actions, shipped guard 0 blocks, interior 22, interior no-op rate 8.8%, per-game sums reconcile over 25 games",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-confirm/P8.reset_semantics",
+      "status": "PASS",
+      "message": "P0.1 evidence intact: with ONLY_RESET_LEVELS=true a mid-level RESET returns the byte-equal level-start frame and keeps level+score; with the flag unset it full-resets (the footgun) -- P2's premise holds and its negative control fires",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-confirm/P9.cadence_instrument",
+      "status": "PASS",
+      "message": "tokens-per-acting-turn / acting-turns-per-game re-derive the 08-22 BP35 diagnostic from the real artifacts on disk -- cadence_instrument validate: 31/31 checks passed",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-confirm/X1.budget_score",
+      "status": "PASS",
+      "message": "selftest OK -- selftest OK (12/12 checks, 0 failures)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-confirm/X1.graft_confirm_score",
+      "status": "PASS",
+      "message": "selftest OK --   NULL     otherwise; INFRA DEATH on any certification failure",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-confirm/X1.graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   SIGNAL lc_total >= 27   (mean dlc >= +0.286315)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-confirm/X1.private_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST: 32/32",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-confirm/X1.q38field_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST OK (all gates fire, good path passes)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-confirm/X1.q38graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   HARM <=23 | NULL 24-32 | SIGNAL >=33 | head gate lc>=28 | clickmap REQUIRED, searchmap FORBIDDEN",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-confirm/X3.p0_noop_repro",
+      "status": "SKIP",
+      "message": "pytest not installed in this interpreter",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-confirm/X4.no_harm",
+      "status": "PASS",
+      "message": "199 protected files under notebooks/ + queue + lane_locks byte-unchanged (edge-2 staging untouched)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R0.corpus",
+      "status": "PASS",
+      "message": "60 real artifacts indexed (34 pulled kernel outputs, 58 contract-clean, 2 degenerate/aborted), 1776 game_runs total",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R1.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "matches the independent computation on 58/58 real artifacts (lc_total, total_actions, mean_score)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R1b.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "refuses all 2 degenerate real artifacts (experiment_smoke.bak1, experiment_smoke.bak2...)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R2.private-base",
+      "status": "PASS",
+      "message": "private_score.score[private-base] on private_base_v1: n_games=25, lc_total=30, total_actions=1463, mean_score=5.6857964565738675",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R2.private-edge1",
+      "status": "PASS",
+      "message": "private_score.score[private-edge1] on private_edge1_v2: n_games=25, lc_total=18, total_actions=1113, mean_score=2.908505569058404",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R2.q38-field",
+      "status": "PASS",
+      "message": "q38field_score.score[q38-field] on q38_field_v1: lc_total=28, mean_score=6.172517666057636",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R2.graft-floor",
+      "status": "PASS",
+      "message": "graft_score.score[graft-floor] on graft_floor_v1: n_games=25, lc_total=18, mean_score=2.302803712568606",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R2.graft-confirm",
+      "status": "PASS",
+      "message": "graft_confirm_score.score[graft-confirm] on graft_confirm_v1: n_games=25, lc_total=14, total_actions=3734, mean_score=1.201885",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R2.q38-graft",
+      "status": "PASS",
+      "message": "q38graft_score.score[q38-graft] on q38graft_v1: lc_total=18, total_actions=1251, mean_score=3.216698",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R3.graft-confirm",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R3.graft-floor",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R3.private-base",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R3.private-edge1",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R3.q38-field",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R3.q38-graft",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R3r.private_score._lc_actions_score",
+      "status": "WARN",
+      "message": "3 malformed shape(s) silently zero this reader (guarded upstream by the pipeline's n_games gate -- see R3)",
+      "detail": "no_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nempty_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nmissing_levels_completed: PARTIAL silent zero {'lc_total': 0, 'total_actions': 36, 'mean_score': 9.5} (the D1/D2/D3 signature)\nfixture_key_games: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nmissing_final_score: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nscalar_total_actions: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}"
+    },
+    {
+      "group": "R",
+      "code": "graft-floor/R4.historical",
+      "status": "PASS",
+      "message": "D1(games)/D2(total_actions)/D3(score) all caught on runs/kernel_pulls/graft_confirm_v1/benchmark.json (each returns 0 where the oracle returns non-zero)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-floor/N0.notebook",
+      "status": "PASS",
+      "message": "notebooks/graft-floor-eval/arc3-graft-floor-eval.ipynb  cells=17 code=8",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-floor/N1.compile",
+      "status": "PASS",
+      "message": "all 8 code cells ast.parse clean",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-floor/N1b.cellcount",
+      "status": "PASS",
+      "message": "17 cells as declared",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-floor/N2.tokens",
+      "status": "PASS",
+      "message": "0 occurrences of 3 forbidden tokens",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-floor/N3.flags",
+      "status": "SKIP",
+      "message": "no flag literals declared for this arm",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-floor/N4.determinism",
+      "status": "PASS",
+      "message": "build_graft_eval.py[] rebuilt twice -> byte-identical (2 file(s))",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-floor/N5.preflight",
+      "status": "PASS",
+      "message": "preflight structural_checks (duck-harness family): 6 ok, 0 warn",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-floor/N6.diff",
+      "status": "PASS",
+      "message": "diff-vs-base clean -- D1=OK; D2=OK; D3=OK; D4=OK",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-floor/N7.metadata",
+      "status": "PASS",
+      "message": "dataset_sources=3 model_sources=0",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "graft-floor/N8.hostgates",
+      "status": "PASS",
+      "message": "H1-H4 clean (4 checks)",
+      "detail": ""
+    },
+    {
+      "group": "H",
+      "code": "graft-floor/H*.harness",
+      "status": "SKIP",
+      "message": "fast path -- the CPU harness smoke runs on --full (~1-2 min)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "graft-floor/A1.graft-floor",
+      "status": "PASS",
+      "message": "own certification ACCEPTS its real artifact graft_floor_v1",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "graft-floor/A2s.graft-floor",
+      "status": "PASS",
+      "message": "sibling arm(s) ['graft-confirm'] excluded from the negative controls: same vehicle bytes, so mutual acceptance is correct",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "graft-floor/A2.graft-floor",
+      "status": "PASS",
+      "message": "all 4 foreign real artifacts REFUSED (private-base, private-edge1, q38-field, q38-graft)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-floor/P0.import",
+      "status": "PASS",
+      "message": "shipped NoopGuard + duck_eval/p0/board_signature_fix loaded",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-floor/P1.guard_record_path",
+      "status": "PASS",
+      "message": "shipped guard blocks 0/12 identical interior no-ops under a ticking HUD -- full-grid board_changed hides every no-op (P0.3 defeat path 1, reproduces the field's 0-in-1630)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-floor/P2.guard_match_path",
+      "status": "PASS",
+      "message": "with recording FORCED, the shipped guard still matches 0/12 -- the full-grid key never recurs (P0.3 defeat path 2: recorded 74, matched 0 on the real field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-floor/P3.interior_key_fires",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 11/12 repeats of the same interior no-op (22 blocks on the real 1,630-action field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-floor/P4.no_false_blocks",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 0/12 actions that really do change the interior (0 false blocks measured on all 1,630 real field actions)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-floor/P5.animation_exempt",
+      "status": "PASS",
+      "message": "an ANIMATED action with an identical before/after interior is still not recorded as a no-op (the ft09/sb26 regression the docstring warns about stays fixed)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-floor/P6.hudmask",
+      "status": "PASS",
+      "message": "HudMask finds the ticking border strip (row 7), ignores mid-board activity, and before convergence returns signatures byte-identical to the shipped board_signature (safe default)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-floor/P7.p0_evidence",
+      "status": "PASS",
+      "message": "sealed P0.2/P0.3 evidence intact: 1630 real actions, shipped guard 0 blocks, interior 22, interior no-op rate 8.8%, per-game sums reconcile over 25 games",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-floor/P8.reset_semantics",
+      "status": "PASS",
+      "message": "P0.1 evidence intact: with ONLY_RESET_LEVELS=true a mid-level RESET returns the byte-equal level-start frame and keeps level+score; with the flag unset it full-resets (the footgun) -- P2's premise holds and its negative control fires",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "graft-floor/P9.cadence_instrument",
+      "status": "PASS",
+      "message": "tokens-per-acting-turn / acting-turns-per-game re-derive the 08-22 BP35 diagnostic from the real artifacts on disk -- cadence_instrument validate: 31/31 checks passed",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-floor/X1.budget_score",
+      "status": "PASS",
+      "message": "selftest OK -- selftest OK (12/12 checks, 0 failures)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-floor/X1.graft_confirm_score",
+      "status": "PASS",
+      "message": "selftest OK --   NULL     otherwise; INFRA DEATH on any certification failure",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-floor/X1.graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   SIGNAL lc_total >= 27   (mean dlc >= +0.286315)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-floor/X1.private_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST: 32/32",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-floor/X1.q38field_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST OK (all gates fire, good path passes)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-floor/X1.q38graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   HARM <=23 | NULL 24-32 | SIGNAL >=33 | head gate lc>=28 | clickmap REQUIRED, searchmap FORBIDDEN",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-floor/X2.graft_smoke",
+      "status": "PASS",
+      "message": "OK -- SMOKE OK",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-floor/X3.p0_noop_repro",
+      "status": "SKIP",
+      "message": "pytest not installed in this interpreter",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "graft-floor/X4.no_harm",
+      "status": "PASS",
+      "message": "199 protected files under notebooks/ + queue + lane_locks byte-unchanged (edge-2 staging untouched)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R0.corpus",
+      "status": "PASS",
+      "message": "60 real artifacts indexed (34 pulled kernel outputs, 58 contract-clean, 2 degenerate/aborted), 1776 game_runs total",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R1.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "matches the independent computation on 58/58 real artifacts (lc_total, total_actions, mean_score)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R1b.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "refuses all 2 degenerate real artifacts (experiment_smoke.bak1, experiment_smoke.bak2...)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R2.private-base",
+      "status": "PASS",
+      "message": "private_score.score[private-base] on private_base_v1: n_games=25, lc_total=30, total_actions=1463, mean_score=5.6857964565738675",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R2.private-edge1",
+      "status": "PASS",
+      "message": "private_score.score[private-edge1] on private_edge1_v2: n_games=25, lc_total=18, total_actions=1113, mean_score=2.908505569058404",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R2.q38-field",
+      "status": "PASS",
+      "message": "q38field_score.score[q38-field] on q38_field_v1: lc_total=28, mean_score=6.172517666057636",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R2.graft-floor",
+      "status": "PASS",
+      "message": "graft_score.score[graft-floor] on graft_floor_v1: n_games=25, lc_total=18, mean_score=2.302803712568606",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R2.graft-confirm",
+      "status": "PASS",
+      "message": "graft_confirm_score.score[graft-confirm] on graft_confirm_v1: n_games=25, lc_total=14, total_actions=3734, mean_score=1.201885",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R2.q38-graft",
+      "status": "PASS",
+      "message": "q38graft_score.score[q38-graft] on q38graft_v1: lc_total=18, total_actions=1251, mean_score=3.216698",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R3.graft-confirm",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R3.graft-floor",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R3.private-base",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R3.private-edge1",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R3.q38-field",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R3.q38-graft",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-base/R3r.private_score._lc_actions_score",
+      "status": "WARN",
+      "message": "3 malformed shape(s) silently zero this reader (guarded upstream by the pipeline's n_games gate -- see R3)",
+      "detail": "no_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nempty_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nmissing_levels_completed: PARTIAL silent zero {'lc_total': 0, 'total_actions': 36, 'mean_score': 9.5} (the D1/D2/D3 signature)\nfixture_key_games: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nmissing_final_score: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nscalar_total_actions: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}"
+    },
+    {
+      "group": "R",
+      "code": "private-base/R4.historical",
+      "status": "PASS",
+      "message": "D1(games)/D2(total_actions)/D3(score) all caught on runs/kernel_pulls/graft_confirm_v1/benchmark.json (each returns 0 where the oracle returns non-zero)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-base/N0.notebook",
+      "status": "PASS",
+      "message": "notebooks/q38-private-eval/arc3-q38-private-eval.ipynb  cells=12 code=11",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-base/N1.compile",
+      "status": "PASS",
+      "message": "all 11 code cells ast.parse clean",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-base/N1b.cellcount",
+      "status": "PASS",
+      "message": "12 cells as declared",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-base/N2.tokens",
+      "status": "PASS",
+      "message": "0 occurrences of 7 forbidden tokens",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-base/N3.flags",
+      "status": "FAIL",
+      "message": "staged notebook is NOT the arm you asked for",
+      "detail": "PRIVATE_EDGE2_VISIBLE_CONTRACT = True, arm private-base requires False"
+    },
+    {
+      "group": "N",
+      "code": "private-base/N4.determinism",
+      "status": "PASS",
+      "message": "build_private_eval.py[False, False] rebuilt twice -> byte-identical (2 file(s))",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-base/N5.preflight",
+      "status": "PASS",
+      "message": "preflight structural_checks (duck-harness family): 6 ok, 0 warn",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-base/N6a.inserted",
+      "status": "PASS",
+      "message": "declared insertions [8] removed -> 11 cells compared against base arc3-q38-field-eval.ipynb",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-base/N6b.markdown",
+      "status": "PASS",
+      "message": "declared non-code diff cell(s) [0] do differ from base (D4 covers code cells only)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-base/N6.diff",
+      "status": "PASS",
+      "message": "diff-vs-base clean -- D1=OK; D2=OK; D3=OK; D4=OK",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-base/N7.metadata",
+      "status": "WARN",
+      "message": "accelerator=nvidiaRtxPro6000; dataSources=5; dataset_sources=2 model_sources=1  [1 advisory]",
+      "detail": "nb metadata.kaggle.isGpuEnabled=False while accelerator='nvidiaRtxPro6000' (matches the certified base; enable_gpu is authoritative)"
+    },
+    {
+      "group": "N",
+      "code": "private-base/N8.hostgates",
+      "status": "PASS",
+      "message": "H1-H4 clean (4 checks)",
+      "detail": ""
+    },
+    {
+      "group": "H",
+      "code": "private-base/H*.harness",
+      "status": "SKIP",
+      "message": "fast path -- the CPU harness smoke runs on --full (~1-2 min)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "private-base/A1.private-base",
+      "status": "PASS",
+      "message": "own certification ACCEPTS its real artifact private_base_v1",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "private-base/A2.private-base",
+      "status": "PASS",
+      "message": "all 5 foreign real artifacts REFUSED (graft-confirm, graft-floor, private-edge1, q38-field, q38-graft)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-base/P0.import",
+      "status": "PASS",
+      "message": "shipped NoopGuard + duck_eval/p0/board_signature_fix loaded",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-base/P1.guard_record_path",
+      "status": "PASS",
+      "message": "shipped guard blocks 0/12 identical interior no-ops under a ticking HUD -- full-grid board_changed hides every no-op (P0.3 defeat path 1, reproduces the field's 0-in-1630)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-base/P2.guard_match_path",
+      "status": "PASS",
+      "message": "with recording FORCED, the shipped guard still matches 0/12 -- the full-grid key never recurs (P0.3 defeat path 2: recorded 74, matched 0 on the real field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-base/P3.interior_key_fires",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 11/12 repeats of the same interior no-op (22 blocks on the real 1,630-action field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-base/P4.no_false_blocks",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 0/12 actions that really do change the interior (0 false blocks measured on all 1,630 real field actions)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-base/P5.animation_exempt",
+      "status": "PASS",
+      "message": "an ANIMATED action with an identical before/after interior is still not recorded as a no-op (the ft09/sb26 regression the docstring warns about stays fixed)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-base/P6.hudmask",
+      "status": "PASS",
+      "message": "HudMask finds the ticking border strip (row 7), ignores mid-board activity, and before convergence returns signatures byte-identical to the shipped board_signature (safe default)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-base/P7.p0_evidence",
+      "status": "PASS",
+      "message": "sealed P0.2/P0.3 evidence intact: 1630 real actions, shipped guard 0 blocks, interior 22, interior no-op rate 8.8%, per-game sums reconcile over 25 games",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-base/P8.reset_semantics",
+      "status": "PASS",
+      "message": "P0.1 evidence intact: with ONLY_RESET_LEVELS=true a mid-level RESET returns the byte-equal level-start frame and keeps level+score; with the flag unset it full-resets (the footgun) -- P2's premise holds and its negative control fires",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-base/P9.cadence_instrument",
+      "status": "PASS",
+      "message": "tokens-per-acting-turn / acting-turns-per-game re-derive the 08-22 BP35 diagnostic from the real artifacts on disk -- cadence_instrument validate: 31/31 checks passed",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-base/X1.budget_score",
+      "status": "PASS",
+      "message": "selftest OK -- selftest OK (12/12 checks, 0 failures)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-base/X1.graft_confirm_score",
+      "status": "PASS",
+      "message": "selftest OK --   NULL     otherwise; INFRA DEATH on any certification failure",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-base/X1.graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   SIGNAL lc_total >= 27   (mean dlc >= +0.286315)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-base/X1.private_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST: 32/32",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-base/X1.q38field_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST OK (all gates fire, good path passes)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-base/X1.q38graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   HARM <=23 | NULL 24-32 | SIGNAL >=33 | head gate lc>=28 | clickmap REQUIRED, searchmap FORBIDDEN",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-base/X2.private_smoke",
+      "status": "FAIL",
+      "message": "FAILED (rc=1)",
+      "detail": "[FAIL] staged variant is pure base (both flags False)\nFAILED: staged variant is pure base (both flags False)"
+    },
+    {
+      "group": "X",
+      "code": "private-base/X3.p0_noop_repro",
+      "status": "SKIP",
+      "message": "pytest not installed in this interpreter",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-base/X4.no_harm",
+      "status": "PASS",
+      "message": "199 protected files under notebooks/ + queue + lane_locks byte-unchanged (edge-2 staging untouched)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R0.corpus",
+      "status": "PASS",
+      "message": "60 real artifacts indexed (34 pulled kernel outputs, 58 contract-clean, 2 degenerate/aborted), 1776 game_runs total",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R1.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "matches the independent computation on 58/58 real artifacts (lc_total, total_actions, mean_score)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R1b.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "refuses all 2 degenerate real artifacts (experiment_smoke.bak1, experiment_smoke.bak2...)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R2.private-base",
+      "status": "PASS",
+      "message": "private_score.score[private-base] on private_base_v1: n_games=25, lc_total=30, total_actions=1463, mean_score=5.6857964565738675",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R2.private-edge1",
+      "status": "PASS",
+      "message": "private_score.score[private-edge1] on private_edge1_v2: n_games=25, lc_total=18, total_actions=1113, mean_score=2.908505569058404",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R2.q38-field",
+      "status": "PASS",
+      "message": "q38field_score.score[q38-field] on q38_field_v1: lc_total=28, mean_score=6.172517666057636",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R2.graft-floor",
+      "status": "PASS",
+      "message": "graft_score.score[graft-floor] on graft_floor_v1: n_games=25, lc_total=18, mean_score=2.302803712568606",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R2.graft-confirm",
+      "status": "PASS",
+      "message": "graft_confirm_score.score[graft-confirm] on graft_confirm_v1: n_games=25, lc_total=14, total_actions=3734, mean_score=1.201885",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R2.q38-graft",
+      "status": "PASS",
+      "message": "q38graft_score.score[q38-graft] on q38graft_v1: lc_total=18, total_actions=1251, mean_score=3.216698",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R3.graft-confirm",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R3.graft-floor",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R3.private-base",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R3.private-edge1",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R3.q38-field",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R3.q38-graft",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R3r.private_score._lc_actions_score",
+      "status": "WARN",
+      "message": "3 malformed shape(s) silently zero this reader (guarded upstream by the pipeline's n_games gate -- see R3)",
+      "detail": "no_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nempty_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nmissing_levels_completed: PARTIAL silent zero {'lc_total': 0, 'total_actions': 36, 'mean_score': 9.5} (the D1/D2/D3 signature)\nfixture_key_games: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nmissing_final_score: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nscalar_total_actions: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}"
+    },
+    {
+      "group": "R",
+      "code": "private-edge1/R4.historical",
+      "status": "PASS",
+      "message": "D1(games)/D2(total_actions)/D3(score) all caught on runs/kernel_pulls/graft_confirm_v1/benchmark.json (each returns 0 where the oracle returns non-zero)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge1/N0.notebook",
+      "status": "PASS",
+      "message": "notebooks/q38-private-eval/arc3-q38-private-eval.ipynb  cells=12 code=11",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge1/N1.compile",
+      "status": "PASS",
+      "message": "all 11 code cells ast.parse clean",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge1/N1b.cellcount",
+      "status": "PASS",
+      "message": "12 cells as declared",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge1/N2.tokens",
+      "status": "PASS",
+      "message": "0 occurrences of 7 forbidden tokens",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge1/N3.flags",
+      "status": "FAIL",
+      "message": "staged notebook is NOT the arm you asked for",
+      "detail": "PRIVATE_EDGE1_CTX_RAISE = False, arm private-edge1 requires True\nPRIVATE_EDGE2_VISIBLE_CONTRACT = True, arm private-edge1 requires False"
+    },
+    {
+      "group": "N",
+      "code": "private-edge1/N4.determinism",
+      "status": "PASS",
+      "message": "build_private_eval.py[True, False] rebuilt twice -> byte-identical (2 file(s))",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge1/N5.preflight",
+      "status": "PASS",
+      "message": "preflight structural_checks (duck-harness family): 6 ok, 0 warn",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge1/N6a.inserted",
+      "status": "PASS",
+      "message": "declared insertions [8] removed -> 11 cells compared against base arc3-q38-field-eval.ipynb",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge1/N6b.markdown",
+      "status": "PASS",
+      "message": "declared non-code diff cell(s) [0] do differ from base (D4 covers code cells only)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge1/N6.diff",
+      "status": "PASS",
+      "message": "diff-vs-base clean -- D1=OK; D2=OK; D3=OK; D4=OK",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge1/N7.metadata",
+      "status": "WARN",
+      "message": "accelerator=nvidiaRtxPro6000; dataSources=5; dataset_sources=2 model_sources=1  [1 advisory]",
+      "detail": "nb metadata.kaggle.isGpuEnabled=False while accelerator='nvidiaRtxPro6000' (matches the certified base; enable_gpu is authoritative)"
+    },
+    {
+      "group": "N",
+      "code": "private-edge1/N8.hostgates",
+      "status": "PASS",
+      "message": "H1-H4 clean (4 checks)",
+      "detail": ""
+    },
+    {
+      "group": "H",
+      "code": "private-edge1/H*.harness",
+      "status": "SKIP",
+      "message": "fast path -- the CPU harness smoke runs on --full (~1-2 min)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "private-edge1/A1.private-edge1",
+      "status": "PASS",
+      "message": "own certification ACCEPTS its real artifact private_edge1_v2",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "private-edge1/A2.private-edge1",
+      "status": "PASS",
+      "message": "all 5 foreign real artifacts REFUSED (graft-confirm, graft-floor, private-base, q38-field, q38-graft)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge1/P0.import",
+      "status": "PASS",
+      "message": "shipped NoopGuard + duck_eval/p0/board_signature_fix loaded",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge1/P1.guard_record_path",
+      "status": "PASS",
+      "message": "shipped guard blocks 0/12 identical interior no-ops under a ticking HUD -- full-grid board_changed hides every no-op (P0.3 defeat path 1, reproduces the field's 0-in-1630)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge1/P2.guard_match_path",
+      "status": "PASS",
+      "message": "with recording FORCED, the shipped guard still matches 0/12 -- the full-grid key never recurs (P0.3 defeat path 2: recorded 74, matched 0 on the real field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge1/P3.interior_key_fires",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 11/12 repeats of the same interior no-op (22 blocks on the real 1,630-action field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge1/P4.no_false_blocks",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 0/12 actions that really do change the interior (0 false blocks measured on all 1,630 real field actions)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge1/P5.animation_exempt",
+      "status": "PASS",
+      "message": "an ANIMATED action with an identical before/after interior is still not recorded as a no-op (the ft09/sb26 regression the docstring warns about stays fixed)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge1/P6.hudmask",
+      "status": "PASS",
+      "message": "HudMask finds the ticking border strip (row 7), ignores mid-board activity, and before convergence returns signatures byte-identical to the shipped board_signature (safe default)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge1/P7.p0_evidence",
+      "status": "PASS",
+      "message": "sealed P0.2/P0.3 evidence intact: 1630 real actions, shipped guard 0 blocks, interior 22, interior no-op rate 8.8%, per-game sums reconcile over 25 games",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge1/P8.reset_semantics",
+      "status": "PASS",
+      "message": "P0.1 evidence intact: with ONLY_RESET_LEVELS=true a mid-level RESET returns the byte-equal level-start frame and keeps level+score; with the flag unset it full-resets (the footgun) -- P2's premise holds and its negative control fires",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge1/P9.cadence_instrument",
+      "status": "PASS",
+      "message": "tokens-per-acting-turn / acting-turns-per-game re-derive the 08-22 BP35 diagnostic from the real artifacts on disk -- cadence_instrument validate: 31/31 checks passed",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge1/X1.budget_score",
+      "status": "PASS",
+      "message": "selftest OK -- selftest OK (12/12 checks, 0 failures)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge1/X1.graft_confirm_score",
+      "status": "PASS",
+      "message": "selftest OK --   NULL     otherwise; INFRA DEATH on any certification failure",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge1/X1.graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   SIGNAL lc_total >= 27   (mean dlc >= +0.286315)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge1/X1.private_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST: 32/32",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge1/X1.q38field_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST OK (all gates fire, good path passes)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge1/X1.q38graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   HARM <=23 | NULL 24-32 | SIGNAL >=33 | head gate lc>=28 | clickmap REQUIRED, searchmap FORBIDDEN",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge1/X2.private_smoke",
+      "status": "FAIL",
+      "message": "FAILED (rc=1)",
+      "detail": "[FAIL] staged variant is pure base (both flags False)\nFAILED: staged variant is pure base (both flags False)"
+    },
+    {
+      "group": "X",
+      "code": "private-edge1/X3.p0_noop_repro",
+      "status": "SKIP",
+      "message": "pytest not installed in this interpreter",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge1/X4.no_harm",
+      "status": "PASS",
+      "message": "199 protected files under notebooks/ + queue + lane_locks byte-unchanged (edge-2 staging untouched)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R0.corpus",
+      "status": "PASS",
+      "message": "60 real artifacts indexed (34 pulled kernel outputs, 58 contract-clean, 2 degenerate/aborted), 1776 game_runs total",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R1.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "matches the independent computation on 58/58 real artifacts (lc_total, total_actions, mean_score)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R1b.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "refuses all 2 degenerate real artifacts (experiment_smoke.bak1, experiment_smoke.bak2...)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R2.private-base",
+      "status": "PASS",
+      "message": "private_score.score[private-base] on private_base_v1: n_games=25, lc_total=30, total_actions=1463, mean_score=5.6857964565738675",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R2.private-edge1",
+      "status": "PASS",
+      "message": "private_score.score[private-edge1] on private_edge1_v2: n_games=25, lc_total=18, total_actions=1113, mean_score=2.908505569058404",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R2.q38-field",
+      "status": "PASS",
+      "message": "q38field_score.score[q38-field] on q38_field_v1: lc_total=28, mean_score=6.172517666057636",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R2.graft-floor",
+      "status": "PASS",
+      "message": "graft_score.score[graft-floor] on graft_floor_v1: n_games=25, lc_total=18, mean_score=2.302803712568606",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R2.graft-confirm",
+      "status": "PASS",
+      "message": "graft_confirm_score.score[graft-confirm] on graft_confirm_v1: n_games=25, lc_total=14, total_actions=3734, mean_score=1.201885",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R2.q38-graft",
+      "status": "PASS",
+      "message": "q38graft_score.score[q38-graft] on q38graft_v1: lc_total=18, total_actions=1251, mean_score=3.216698",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R3.graft-confirm",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R3.graft-floor",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R3.private-base",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R3.private-edge1",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R3.q38-field",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R3.q38-graft",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R3r.private_score._lc_actions_score",
+      "status": "WARN",
+      "message": "3 malformed shape(s) silently zero this reader (guarded upstream by the pipeline's n_games gate -- see R3)",
+      "detail": "no_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nempty_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nmissing_levels_completed: PARTIAL silent zero {'lc_total': 0, 'total_actions': 36, 'mean_score': 9.5} (the D1/D2/D3 signature)\nfixture_key_games: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nmissing_final_score: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nscalar_total_actions: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}"
+    },
+    {
+      "group": "R",
+      "code": "private-edge12/R4.historical",
+      "status": "PASS",
+      "message": "D1(games)/D2(total_actions)/D3(score) all caught on runs/kernel_pulls/graft_confirm_v1/benchmark.json (each returns 0 where the oracle returns non-zero)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge12/N0.notebook",
+      "status": "PASS",
+      "message": "notebooks/q38-private-eval/arc3-q38-private-eval.ipynb  cells=12 code=11",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge12/N1.compile",
+      "status": "PASS",
+      "message": "all 11 code cells ast.parse clean",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge12/N1b.cellcount",
+      "status": "PASS",
+      "message": "12 cells as declared",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge12/N2.tokens",
+      "status": "PASS",
+      "message": "0 occurrences of 7 forbidden tokens",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge12/N3.flags",
+      "status": "FAIL",
+      "message": "staged notebook is NOT the arm you asked for",
+      "detail": "PRIVATE_EDGE1_CTX_RAISE = False, arm private-edge12 requires True"
+    },
+    {
+      "group": "N",
+      "code": "private-edge12/N4.determinism",
+      "status": "PASS",
+      "message": "build_private_eval.py[True, True] rebuilt twice -> byte-identical (2 file(s))",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge12/N5.preflight",
+      "status": "PASS",
+      "message": "preflight structural_checks (duck-harness family): 6 ok, 0 warn",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge12/N6a.inserted",
+      "status": "PASS",
+      "message": "declared insertions [8] removed -> 11 cells compared against base arc3-q38-field-eval.ipynb",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge12/N6b.markdown",
+      "status": "PASS",
+      "message": "declared non-code diff cell(s) [0] do differ from base (D4 covers code cells only)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge12/N6.diff",
+      "status": "PASS",
+      "message": "diff-vs-base clean -- D1=OK; D2=OK; D3=OK; D4=OK",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge12/N7.metadata",
+      "status": "WARN",
+      "message": "accelerator=nvidiaRtxPro6000; dataSources=5; dataset_sources=2 model_sources=1  [1 advisory]",
+      "detail": "nb metadata.kaggle.isGpuEnabled=False while accelerator='nvidiaRtxPro6000' (matches the certified base; enable_gpu is authoritative)"
+    },
+    {
+      "group": "N",
+      "code": "private-edge12/N8.hostgates",
+      "status": "PASS",
+      "message": "H1-H4 clean (4 checks)",
+      "detail": ""
+    },
+    {
+      "group": "H",
+      "code": "private-edge12/H*.harness",
+      "status": "SKIP",
+      "message": "fast path -- the CPU harness smoke runs on --full (~1-2 min)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "private-edge12/A1.private-edge12",
+      "status": "SKIP",
+      "message": "this arm has no pulled artifact yet -- own-arm certification cannot be exercised against real data (it will be at pull time)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "private-edge12/A2.private-edge12",
+      "status": "PASS",
+      "message": "all 6 foreign real artifacts REFUSED (graft-confirm, graft-floor, private-base, private-edge1, q38-field, q38-graft)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge12/P0.import",
+      "status": "PASS",
+      "message": "shipped NoopGuard + duck_eval/p0/board_signature_fix loaded",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge12/P1.guard_record_path",
+      "status": "PASS",
+      "message": "shipped guard blocks 0/12 identical interior no-ops under a ticking HUD -- full-grid board_changed hides every no-op (P0.3 defeat path 1, reproduces the field's 0-in-1630)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge12/P2.guard_match_path",
+      "status": "PASS",
+      "message": "with recording FORCED, the shipped guard still matches 0/12 -- the full-grid key never recurs (P0.3 defeat path 2: recorded 74, matched 0 on the real field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge12/P3.interior_key_fires",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 11/12 repeats of the same interior no-op (22 blocks on the real 1,630-action field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge12/P4.no_false_blocks",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 0/12 actions that really do change the interior (0 false blocks measured on all 1,630 real field actions)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge12/P5.animation_exempt",
+      "status": "PASS",
+      "message": "an ANIMATED action with an identical before/after interior is still not recorded as a no-op (the ft09/sb26 regression the docstring warns about stays fixed)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge12/P6.hudmask",
+      "status": "PASS",
+      "message": "HudMask finds the ticking border strip (row 7), ignores mid-board activity, and before convergence returns signatures byte-identical to the shipped board_signature (safe default)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge12/P7.p0_evidence",
+      "status": "PASS",
+      "message": "sealed P0.2/P0.3 evidence intact: 1630 real actions, shipped guard 0 blocks, interior 22, interior no-op rate 8.8%, per-game sums reconcile over 25 games",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge12/P8.reset_semantics",
+      "status": "PASS",
+      "message": "P0.1 evidence intact: with ONLY_RESET_LEVELS=true a mid-level RESET returns the byte-equal level-start frame and keeps level+score; with the flag unset it full-resets (the footgun) -- P2's premise holds and its negative control fires",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge12/P9.cadence_instrument",
+      "status": "PASS",
+      "message": "tokens-per-acting-turn / acting-turns-per-game re-derive the 08-22 BP35 diagnostic from the real artifacts on disk -- cadence_instrument validate: 31/31 checks passed",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge12/X1.budget_score",
+      "status": "PASS",
+      "message": "selftest OK -- selftest OK (12/12 checks, 0 failures)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge12/X1.graft_confirm_score",
+      "status": "PASS",
+      "message": "selftest OK --   NULL     otherwise; INFRA DEATH on any certification failure",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge12/X1.graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   SIGNAL lc_total >= 27   (mean dlc >= +0.286315)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge12/X1.private_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST: 32/32",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge12/X1.q38field_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST OK (all gates fire, good path passes)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge12/X1.q38graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   HARM <=23 | NULL 24-32 | SIGNAL >=33 | head gate lc>=28 | clickmap REQUIRED, searchmap FORBIDDEN",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge12/X2.private_smoke",
+      "status": "FAIL",
+      "message": "FAILED (rc=1)",
+      "detail": "[FAIL] staged variant is pure base (both flags False)\nFAILED: staged variant is pure base (both flags False)"
+    },
+    {
+      "group": "X",
+      "code": "private-edge12/X3.p0_noop_repro",
+      "status": "SKIP",
+      "message": "pytest not installed in this interpreter",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge12/X4.no_harm",
+      "status": "PASS",
+      "message": "199 protected files under notebooks/ + queue + lane_locks byte-unchanged (edge-2 staging untouched)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R0.corpus",
+      "status": "PASS",
+      "message": "61 real artifacts indexed (35 pulled kernel outputs, 59 contract-clean, 2 degenerate/aborted), 1801 game_runs total",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R1.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "matches the independent computation on 59/59 real artifacts (lc_total, total_actions, mean_score)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R1b.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "refuses all 2 degenerate real artifacts (experiment_smoke.bak1, experiment_smoke.bak2...)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R2.private-base",
+      "status": "PASS",
+      "message": "private_score.score[private-base] on private_base_v1: n_games=25, lc_total=30, total_actions=1463, mean_score=5.6857964565738675",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R2.private-edge1",
+      "status": "PASS",
+      "message": "private_score.score[private-edge1] on private_edge1_v2: n_games=25, lc_total=18, total_actions=1113, mean_score=2.908505569058404",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R2.q38-field",
+      "status": "PASS",
+      "message": "q38field_score.score[q38-field] on q38_field_v1: lc_total=28, mean_score=6.172517666057636",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R2.graft-floor",
+      "status": "PASS",
+      "message": "graft_score.score[graft-floor] on graft_floor_v1: n_games=25, lc_total=18, mean_score=2.302803712568606",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R2.graft-confirm",
+      "status": "PASS",
+      "message": "graft_confirm_score.score[graft-confirm] on graft_confirm_v1: n_games=25, lc_total=14, total_actions=3734, mean_score=1.201885",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R2.q38-graft",
+      "status": "PASS",
+      "message": "q38graft_score.score[q38-graft] on q38graft_v1: lc_total=18, total_actions=1251, mean_score=3.216698",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R3.graft-confirm",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R3.graft-floor",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R3.private-base",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R3.private-edge1",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R3.q38-field",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R3.q38-graft",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R3r.private_score._lc_actions_score",
+      "status": "WARN",
+      "message": "3 malformed shape(s) silently zero this reader (guarded upstream by the pipeline's n_games gate -- see R3)",
+      "detail": "no_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nempty_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nmissing_levels_completed: PARTIAL silent zero {'lc_total': 0, 'total_actions': 36, 'mean_score': 9.5} (the D1/D2/D3 signature)\nfixture_key_games: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nmissing_final_score: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nscalar_total_actions: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}"
+    },
+    {
+      "group": "R",
+      "code": "private-edge2/R4.historical",
+      "status": "PASS",
+      "message": "D1(games)/D2(total_actions)/D3(score) all caught on runs/kernel_pulls/graft_confirm_v1/benchmark.json (each returns 0 where the oracle returns non-zero)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge2/N0.notebook",
+      "status": "PASS",
+      "message": "notebooks/q38-private-eval/arc3-q38-private-eval.ipynb  cells=12 code=11",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge2/N1.compile",
+      "status": "PASS",
+      "message": "all 11 code cells ast.parse clean",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge2/N1b.cellcount",
+      "status": "PASS",
+      "message": "12 cells as declared",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge2/N2.tokens",
+      "status": "PASS",
+      "message": "0 occurrences of 7 forbidden tokens",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge2/N3.flags",
+      "status": "PASS",
+      "message": "PRIVATE_EDGE1_CTX_RAISE=False, PRIVATE_EDGE2_VISIBLE_CONTRACT=True",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge2/N4.determinism",
+      "status": "PASS",
+      "message": "build_private_eval.py[False, True] rebuilt twice -> byte-identical (2 file(s))",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge2/N5.preflight",
+      "status": "PASS",
+      "message": "preflight structural_checks (duck-harness family): 6 ok, 0 warn",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge2/N6a.inserted",
+      "status": "PASS",
+      "message": "declared insertions [8] removed -> 11 cells compared against base arc3-q38-field-eval.ipynb",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge2/N6b.markdown",
+      "status": "PASS",
+      "message": "declared non-code diff cell(s) [0] do differ from base (D4 covers code cells only)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge2/N6.diff",
+      "status": "PASS",
+      "message": "diff-vs-base clean -- D1=OK; D2=OK; D3=OK; D4=OK",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "private-edge2/N7.metadata",
+      "status": "WARN",
+      "message": "accelerator=nvidiaRtxPro6000; dataSources=5; dataset_sources=2 model_sources=1  [1 advisory]",
+      "detail": "nb metadata.kaggle.isGpuEnabled=False while accelerator='nvidiaRtxPro6000' (matches the certified base; enable_gpu is authoritative)"
+    },
+    {
+      "group": "N",
+      "code": "private-edge2/N8.hostgates",
+      "status": "PASS",
+      "message": "H1-H4 clean (4 checks)",
+      "detail": ""
+    },
+    {
+      "group": "H",
+      "code": "private-edge2/H*.harness",
+      "status": "SKIP",
+      "message": "fast path -- the CPU harness smoke runs on --full (~1-2 min)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "private-edge2/A1.private-edge2",
+      "status": "SKIP",
+      "message": "this arm has no pulled artifact yet -- own-arm certification cannot be exercised against real data (it will be at pull time)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "private-edge2/A2.private-edge2",
+      "status": "PASS",
+      "message": "all 6 foreign real artifacts REFUSED (graft-confirm, graft-floor, private-base, private-edge1, q38-field, q38-graft)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge2/P0.import",
+      "status": "PASS",
+      "message": "shipped NoopGuard + duck_eval/p0/board_signature_fix loaded",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge2/P1.guard_record_path",
+      "status": "PASS",
+      "message": "shipped guard blocks 0/12 identical interior no-ops under a ticking HUD -- full-grid board_changed hides every no-op (P0.3 defeat path 1, reproduces the field's 0-in-1630)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge2/P2.guard_match_path",
+      "status": "PASS",
+      "message": "with recording FORCED, the shipped guard still matches 0/12 -- the full-grid key never recurs (P0.3 defeat path 2: recorded 74, matched 0 on the real field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge2/P3.interior_key_fires",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 11/12 repeats of the same interior no-op (22 blocks on the real 1,630-action field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge2/P4.no_false_blocks",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 0/12 actions that really do change the interior (0 false blocks measured on all 1,630 real field actions)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge2/P5.animation_exempt",
+      "status": "PASS",
+      "message": "an ANIMATED action with an identical before/after interior is still not recorded as a no-op (the ft09/sb26 regression the docstring warns about stays fixed)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge2/P6.hudmask",
+      "status": "PASS",
+      "message": "HudMask finds the ticking border strip (row 7), ignores mid-board activity, and before convergence returns signatures byte-identical to the shipped board_signature (safe default)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge2/P7.p0_evidence",
+      "status": "PASS",
+      "message": "sealed P0.2/P0.3 evidence intact: 1630 real actions, shipped guard 0 blocks, interior 22, interior no-op rate 8.8%, per-game sums reconcile over 25 games",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge2/P8.reset_semantics",
+      "status": "PASS",
+      "message": "P0.1 evidence intact: with ONLY_RESET_LEVELS=true a mid-level RESET returns the byte-equal level-start frame and keeps level+score; with the flag unset it full-resets (the footgun) -- P2's premise holds and its negative control fires",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "private-edge2/P9.cadence_instrument",
+      "status": "PASS",
+      "message": "tokens-per-acting-turn / acting-turns-per-game re-derive the 08-22 BP35 diagnostic from the real artifacts on disk -- cadence_instrument validate: 31/31 checks passed",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge2/X1.budget_score",
+      "status": "PASS",
+      "message": "selftest OK -- selftest OK (12/12 checks, 0 failures)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge2/X1.graft_confirm_score",
+      "status": "PASS",
+      "message": "selftest OK --   NULL     otherwise; INFRA DEATH on any certification failure",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge2/X1.graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   SIGNAL lc_total >= 27   (mean dlc >= +0.286315)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge2/X1.private_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST: 32/32",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge2/X1.q38field_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST OK (all gates fire, good path passes)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge2/X1.q38graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   HARM <=23 | NULL 24-32 | SIGNAL >=33 | head gate lc>=28 | clickmap REQUIRED, searchmap FORBIDDEN",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge2/X2.private_smoke",
+      "status": "FAIL",
+      "message": "FAILED (rc=1)",
+      "detail": "[FAIL] staged variant is pure base (both flags False)\nFAILED: staged variant is pure base (both flags False)"
+    },
+    {
+      "group": "X",
+      "code": "private-edge2/X3.p0_noop_repro",
+      "status": "SKIP",
+      "message": "pytest not installed in this interpreter",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "private-edge2/X4.no_harm",
+      "status": "PASS",
+      "message": "199 protected files under notebooks/ + queue + lane_locks byte-unchanged (edge-2 staging untouched)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R0.corpus",
+      "status": "PASS",
+      "message": "61 real artifacts indexed (35 pulled kernel outputs, 59 contract-clean, 2 degenerate/aborted), 1801 game_runs total",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R1.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "matches the independent computation on 59/59 real artifacts (lc_total, total_actions, mean_score)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R1b.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "refuses all 2 degenerate real artifacts (experiment_smoke.bak1, experiment_smoke.bak2...)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R2.private-base",
+      "status": "PASS",
+      "message": "private_score.score[private-base] on private_base_v1: n_games=25, lc_total=30, total_actions=1463, mean_score=5.6857964565738675",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R2.private-edge1",
+      "status": "PASS",
+      "message": "private_score.score[private-edge1] on private_edge1_v2: n_games=25, lc_total=18, total_actions=1113, mean_score=2.908505569058404",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R2.q38-field",
+      "status": "PASS",
+      "message": "q38field_score.score[q38-field] on q38_field_v1: lc_total=28, mean_score=6.172517666057636",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R2.graft-floor",
+      "status": "PASS",
+      "message": "graft_score.score[graft-floor] on graft_floor_v1: n_games=25, lc_total=18, mean_score=2.302803712568606",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R2.graft-confirm",
+      "status": "PASS",
+      "message": "graft_confirm_score.score[graft-confirm] on graft_confirm_v1: n_games=25, lc_total=14, total_actions=3734, mean_score=1.201885",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R2.q38-graft",
+      "status": "PASS",
+      "message": "q38graft_score.score[q38-graft] on q38graft_v1: lc_total=18, total_actions=1251, mean_score=3.216698",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R3.graft-confirm",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R3.graft-floor",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R3.private-base",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R3.private-edge1",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R3.q38-field",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R3.q38-graft",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R3r.private_score._lc_actions_score",
+      "status": "WARN",
+      "message": "3 malformed shape(s) silently zero this reader (guarded upstream by the pipeline's n_games gate -- see R3)",
+      "detail": "no_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nempty_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nmissing_levels_completed: PARTIAL silent zero {'lc_total': 0, 'total_actions': 36, 'mean_score': 9.5} (the D1/D2/D3 signature)\nfixture_key_games: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nmissing_final_score: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nscalar_total_actions: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}"
+    },
+    {
+      "group": "R",
+      "code": "q38-field/R4.historical",
+      "status": "PASS",
+      "message": "D1(games)/D2(total_actions)/D3(score) all caught on runs/kernel_pulls/graft_confirm_v1/benchmark.json (each returns 0 where the oracle returns non-zero)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-field/N0.notebook",
+      "status": "PASS",
+      "message": "notebooks/q38-field-eval/arc3-q38-field-eval.ipynb  cells=11 code=10",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-field/N1.compile",
+      "status": "PASS",
+      "message": "all 10 code cells ast.parse clean",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-field/N1b.cellcount",
+      "status": "PASS",
+      "message": "11 cells as declared",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-field/N2.tokens",
+      "status": "PASS",
+      "message": "0 occurrences of 4 forbidden tokens",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-field/N3.flags",
+      "status": "SKIP",
+      "message": "no flag literals declared for this arm",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-field/N4.determinism",
+      "status": "SKIP",
+      "message": "hand-rebased FOYSAL vehicle: no builder, so N4 (determinism) is N/A",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-field/N5.preflight",
+      "status": "PASS",
+      "message": "preflight structural_checks (duck-harness family): 6 ok, 0 warn",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-field/N6.diff",
+      "status": "SKIP",
+      "message": "no local base notebook registered for this arm",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-field/N7.metadata",
+      "status": "WARN",
+      "message": "accelerator=nvidiaRtxPro6000; dataSources=5; dataset_sources=2 model_sources=1  [1 advisory]",
+      "detail": "nb metadata.kaggle.isGpuEnabled=False while accelerator='nvidiaRtxPro6000' (matches the certified base; enable_gpu is authoritative)"
+    },
+    {
+      "group": "N",
+      "code": "q38-field/N8.hostgates",
+      "status": "PASS",
+      "message": "H1-H4 clean (4 checks)",
+      "detail": ""
+    },
+    {
+      "group": "H",
+      "code": "q38-field/H*.harness",
+      "status": "SKIP",
+      "message": "fast path -- the CPU harness smoke runs on --full (~1-2 min)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "q38-field/A1.q38-field",
+      "status": "PASS",
+      "message": "own certification ACCEPTS its real artifact q38_field_v1",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "q38-field/A2.q38-field",
+      "status": "PASS",
+      "message": "all 5 foreign real artifacts REFUSED (graft-confirm, graft-floor, private-base, private-edge1, q38-graft)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-field/P0.import",
+      "status": "PASS",
+      "message": "shipped NoopGuard + duck_eval/p0/board_signature_fix loaded",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-field/P1.guard_record_path",
+      "status": "PASS",
+      "message": "shipped guard blocks 0/12 identical interior no-ops under a ticking HUD -- full-grid board_changed hides every no-op (P0.3 defeat path 1, reproduces the field's 0-in-1630)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-field/P2.guard_match_path",
+      "status": "PASS",
+      "message": "with recording FORCED, the shipped guard still matches 0/12 -- the full-grid key never recurs (P0.3 defeat path 2: recorded 74, matched 0 on the real field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-field/P3.interior_key_fires",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 11/12 repeats of the same interior no-op (22 blocks on the real 1,630-action field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-field/P4.no_false_blocks",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 0/12 actions that really do change the interior (0 false blocks measured on all 1,630 real field actions)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-field/P5.animation_exempt",
+      "status": "PASS",
+      "message": "an ANIMATED action with an identical before/after interior is still not recorded as a no-op (the ft09/sb26 regression the docstring warns about stays fixed)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-field/P6.hudmask",
+      "status": "PASS",
+      "message": "HudMask finds the ticking border strip (row 7), ignores mid-board activity, and before convergence returns signatures byte-identical to the shipped board_signature (safe default)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-field/P7.p0_evidence",
+      "status": "PASS",
+      "message": "sealed P0.2/P0.3 evidence intact: 1630 real actions, shipped guard 0 blocks, interior 22, interior no-op rate 8.8%, per-game sums reconcile over 25 games",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-field/P8.reset_semantics",
+      "status": "PASS",
+      "message": "P0.1 evidence intact: with ONLY_RESET_LEVELS=true a mid-level RESET returns the byte-equal level-start frame and keeps level+score; with the flag unset it full-resets (the footgun) -- P2's premise holds and its negative control fires",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-field/P9.cadence_instrument",
+      "status": "PASS",
+      "message": "tokens-per-acting-turn / acting-turns-per-game re-derive the 08-22 BP35 diagnostic from the real artifacts on disk -- cadence_instrument validate: 31/31 checks passed",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-field/X1.budget_score",
+      "status": "PASS",
+      "message": "selftest OK -- selftest OK (12/12 checks, 0 failures)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-field/X1.graft_confirm_score",
+      "status": "PASS",
+      "message": "selftest OK --   NULL     otherwise; INFRA DEATH on any certification failure",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-field/X1.graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   SIGNAL lc_total >= 27   (mean dlc >= +0.286315)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-field/X1.private_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST: 32/32",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-field/X1.q38field_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST OK (all gates fire, good path passes)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-field/X1.q38graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   HARM <=23 | NULL 24-32 | SIGNAL >=33 | head gate lc>=28 | clickmap REQUIRED, searchmap FORBIDDEN",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-field/X3.p0_noop_repro",
+      "status": "SKIP",
+      "message": "pytest not installed in this interpreter",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-field/X4.no_harm",
+      "status": "PASS",
+      "message": "199 protected files under notebooks/ + queue + lane_locks byte-unchanged (edge-2 staging untouched)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R0.corpus",
+      "status": "PASS",
+      "message": "61 real artifacts indexed (35 pulled kernel outputs, 59 contract-clean, 2 degenerate/aborted), 1801 game_runs total",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R1.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "matches the independent computation on 59/59 real artifacts (lc_total, total_actions, mean_score)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R1b.private_score._lc_actions_score",
+      "status": "PASS",
+      "message": "refuses all 2 degenerate real artifacts (experiment_smoke.bak1, experiment_smoke.bak2...)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R2.private-base",
+      "status": "PASS",
+      "message": "private_score.score[private-base] on private_base_v1: n_games=25, lc_total=30, total_actions=1463, mean_score=5.6857964565738675",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R2.private-edge1",
+      "status": "PASS",
+      "message": "private_score.score[private-edge1] on private_edge1_v2: n_games=25, lc_total=18, total_actions=1113, mean_score=2.908505569058404",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R2.q38-field",
+      "status": "PASS",
+      "message": "q38field_score.score[q38-field] on q38_field_v1: lc_total=28, mean_score=6.172517666057636",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R2.graft-floor",
+      "status": "PASS",
+      "message": "graft_score.score[graft-floor] on graft_floor_v1: n_games=25, lc_total=18, mean_score=2.302803712568606",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R2.graft-confirm",
+      "status": "PASS",
+      "message": "graft_confirm_score.score[graft-confirm] on graft_confirm_v1: n_games=25, lc_total=14, total_actions=3734, mean_score=1.201885",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R2.q38-graft",
+      "status": "PASS",
+      "message": "q38graft_score.score[q38-graft] on q38graft_v1: lc_total=18, total_actions=1251, mean_score=3.216698",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R3.graft-confirm",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R3.graft-floor",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R3.private-base",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R3.private-edge1",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R3.q38-field",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R3.q38-graft",
+      "status": "PASS",
+      "message": "refuses all 8 malformed benchmark shapes placed beside its own real log (incl. the D1/D2/D3 key shapes)",
+      "detail": ""
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R3r.private_score._lc_actions_score",
+      "status": "WARN",
+      "message": "3 malformed shape(s) silently zero this reader (guarded upstream by the pipeline's n_games gate -- see R3)",
+      "detail": "no_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nempty_game_runs: all-zero {'lc_total': 0, 'total_actions': 0, 'mean_score': 0.0}\nmissing_levels_completed: PARTIAL silent zero {'lc_total': 0, 'total_actions': 36, 'mean_score': 9.5} (the D1/D2/D3 signature)\nfixture_key_games: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nmissing_final_score: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}\nscalar_total_actions: tolerated via key fallback -> {'lc_total': 3, 'total_actions': 36, 'mean_score': 9.5}"
+    },
+    {
+      "group": "R",
+      "code": "q38-graft/R4.historical",
+      "status": "PASS",
+      "message": "D1(games)/D2(total_actions)/D3(score) all caught on runs/kernel_pulls/graft_confirm_v1/benchmark.json (each returns 0 where the oracle returns non-zero)",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-graft/N0.notebook",
+      "status": "PASS",
+      "message": "notebooks/q38-graft-eval/arc3-q38-graft-eval.ipynb  cells=17 code=8",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-graft/N1.compile",
+      "status": "PASS",
+      "message": "all 8 code cells ast.parse clean",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-graft/N1b.cellcount",
+      "status": "PASS",
+      "message": "17 cells as declared",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-graft/N2.tokens",
+      "status": "PASS",
+      "message": "0 occurrences of 3 forbidden tokens",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-graft/N3.flags",
+      "status": "SKIP",
+      "message": "no flag literals declared for this arm",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-graft/N4.determinism",
+      "status": "PASS",
+      "message": "build_q38graft_eval.py[] rebuilt twice -> byte-identical (2 file(s))",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-graft/N5.preflight",
+      "status": "PASS",
+      "message": "preflight structural_checks (duck-harness family): 6 ok, 0 warn",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-graft/N6.diff",
+      "status": "PASS",
+      "message": "diff-vs-base clean -- D1=OK; D2=OK; D3=OK; D4=OK",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-graft/N7.metadata",
+      "status": "PASS",
+      "message": "dataset_sources=2 model_sources=1",
+      "detail": ""
+    },
+    {
+      "group": "N",
+      "code": "q38-graft/N8.hostgates",
+      "status": "PASS",
+      "message": "H1-H4 clean (4 checks)",
+      "detail": ""
+    },
+    {
+      "group": "H",
+      "code": "q38-graft/H*.harness",
+      "status": "SKIP",
+      "message": "fast path -- the CPU harness smoke runs on --full (~1-2 min)",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "q38-graft/A1.q38-graft",
+      "status": "PASS",
+      "message": "own certification ACCEPTS its real artifact q38graft_v1",
+      "detail": ""
+    },
+    {
+      "group": "A",
+      "code": "q38-graft/A2.q38-graft",
+      "status": "PASS",
+      "message": "all 5 foreign real artifacts REFUSED (graft-confirm, graft-floor, private-base, private-edge1, q38-field)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-graft/P0.import",
+      "status": "PASS",
+      "message": "shipped NoopGuard + duck_eval/p0/board_signature_fix loaded",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-graft/P1.guard_record_path",
+      "status": "PASS",
+      "message": "shipped guard blocks 0/12 identical interior no-ops under a ticking HUD -- full-grid board_changed hides every no-op (P0.3 defeat path 1, reproduces the field's 0-in-1630)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-graft/P2.guard_match_path",
+      "status": "PASS",
+      "message": "with recording FORCED, the shipped guard still matches 0/12 -- the full-grid key never recurs (P0.3 defeat path 2: recorded 74, matched 0 on the real field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-graft/P3.interior_key_fires",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 11/12 repeats of the same interior no-op (22 blocks on the real 1,630-action field stream)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-graft/P4.no_false_blocks",
+      "status": "PASS",
+      "message": "interior-keyed guard blocks 0/12 actions that really do change the interior (0 false blocks measured on all 1,630 real field actions)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-graft/P5.animation_exempt",
+      "status": "PASS",
+      "message": "an ANIMATED action with an identical before/after interior is still not recorded as a no-op (the ft09/sb26 regression the docstring warns about stays fixed)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-graft/P6.hudmask",
+      "status": "PASS",
+      "message": "HudMask finds the ticking border strip (row 7), ignores mid-board activity, and before convergence returns signatures byte-identical to the shipped board_signature (safe default)",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-graft/P7.p0_evidence",
+      "status": "PASS",
+      "message": "sealed P0.2/P0.3 evidence intact: 1630 real actions, shipped guard 0 blocks, interior 22, interior no-op rate 8.8%, per-game sums reconcile over 25 games",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-graft/P8.reset_semantics",
+      "status": "PASS",
+      "message": "P0.1 evidence intact: with ONLY_RESET_LEVELS=true a mid-level RESET returns the byte-equal level-start frame and keeps level+score; with the flag unset it full-resets (the footgun) -- P2's premise holds and its negative control fires",
+      "detail": ""
+    },
+    {
+      "group": "P",
+      "code": "q38-graft/P9.cadence_instrument",
+      "status": "PASS",
+      "message": "tokens-per-acting-turn / acting-turns-per-game re-derive the 08-22 BP35 diagnostic from the real artifacts on disk -- cadence_instrument validate: 31/31 checks passed",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-graft/X1.budget_score",
+      "status": "PASS",
+      "message": "selftest OK -- selftest OK (12/12 checks, 0 failures)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-graft/X1.graft_confirm_score",
+      "status": "PASS",
+      "message": "selftest OK --   NULL     otherwise; INFRA DEATH on any certification failure",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-graft/X1.graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   SIGNAL lc_total >= 27   (mean dlc >= +0.286315)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-graft/X1.private_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST: 32/32",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-graft/X1.q38field_score",
+      "status": "PASS",
+      "message": "selftest OK -- SELFTEST OK (all gates fire, good path passes)",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-graft/X1.q38graft_score",
+      "status": "PASS",
+      "message": "selftest OK --   HARM <=23 | NULL 24-32 | SIGNAL >=33 | head gate lc>=28 | clickmap REQUIRED, searchmap FORBIDDEN",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-graft/X2.graft_bundle_check",
+      "status": "PASS",
+      "message": "OK -- BUNDLE CHECK OK \u2014 byte-identical to the 2026-08-17 00:26:06 audited version.",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-graft/X3.p0_noop_repro",
+      "status": "SKIP",
+      "message": "pytest not installed in this interpreter",
+      "detail": ""
+    },
+    {
+      "group": "X",
+      "code": "q38-graft/X4.no_harm",
+      "status": "PASS",
+      "message": "199 protected files under notebooks/ + queue + lane_locks byte-unchanged (edge-2 staging untouched)",
+      "detail": ""
+    }
+  ]
+}

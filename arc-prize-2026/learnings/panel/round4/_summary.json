@@ -1,0 +1,14 @@
+{
+  "llm-agents": {
+    "agent_id": "01KWW78CYSNC11QB467C2NR8GZ",
+    "verdict": "ACCEPT",
+    "score": 9.0,
+    "n_fatal": 0
+  },
+  "methodology": {
+    "agent_id": "01KWW78F0BRYHD1G9T7G24YWRA",
+    "verdict": "MAJOR-REVISION",
+    "score": 9.0,
+    "n_fatal": 0
+  }
+}

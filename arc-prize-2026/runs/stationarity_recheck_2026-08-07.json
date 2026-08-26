@@ -1,0 +1,183 @@
+{
+  "meta": {
+    "generated": "2026-08-07T12:32:19.933001+00:00",
+    "seed": 20260807,
+    "trigger": "watch-rule FIRED: two consecutive sub-0.80 filler draws (08-06: 0.77, 08-07: 0.78)",
+    "ledger": [
+      0.82,
+      0.89,
+      0.93,
+      1.02,
+      0.95,
+      1.33,
+      0.92,
+      0.93,
+      1.14,
+      0.82,
+      1.05,
+      0.84,
+      1.02,
+      0.9,
+      1.03,
+      0.85,
+      1.1,
+      0.65,
+      0.68,
+      0.99,
+      0.97,
+      1.21,
+      0.77,
+      0.78
+    ],
+    "n": 24,
+    "sealed_original": "scripts/stationarity_repro.py (2026-08-02, unmodified)",
+    "prereg_constants": {
+      "CUSUM_H_STATE": 4,
+      "CUSUM_H_STRICT": 5,
+      "CUSUM_K": 0.5,
+      "MIN_SEGMENT": 3,
+      "PERM_B": 20000,
+      "CP_ALPHA": 0.01
+    },
+    "sealed_control": {
+      "mu": 0.9727,
+      "s": 0.1343,
+      "n": 15
+    }
+  },
+  "ledger_stats": {
+    "mean_n24": 0.94125,
+    "s_n24": 0.15946411617610431,
+    "mean_prior22": 0.9563636363636363,
+    "s_prior22": 0.15803994234567215,
+    "trailing4_mean": 0.9324999999999999,
+    "z_077_vs_sealed": -1.509307520476545,
+    "z_078_vs_sealed": -1.4348473566641844,
+    "z_077_vs_prior22": -1.1792185797942982,
+    "z_078_vs_prior23": -1.0567744322201522,
+    "mean_last2": 0.775,
+    "z_last2_mean_vs_sealed": -2.0818318784896563
+  },
+  "mann_kendall": {
+    "S": -21,
+    "varS": 1622.3333333333333,
+    "z": -0.4965465284344956,
+    "p": 0.6195088684589591,
+    "sen_slope": -0.0033936651583710395
+  },
+  "cusum": {
+    "path": [
+      -1.137,
+      -1.7528,
+      -2.0707,
+      -1.7185,
+      -1.8876,
+      0.7729,
+      0.3805,
+      0.0625,
+      1.3083,
+      0.1713,
+      0.7468,
+      -0.2413,
+      0.1109,
+      -0.4304,
+      -0.0037,
+      -0.9173,
+      0.0305,
+      -2.3723,
+      -4.5517,
+      -4.4229,
+      -4.443,
+      -2.6761,
+      -4.1854,
+      -5.6203
+    ],
+    "final": -5.620253164556962,
+    "maxabs": 5.620253164556962,
+    "tabular_lower_min": -3.582278481012658,
+    "crosses_h4": true,
+    "crosses_h5": true,
+    "tabular_crosses_h4": false
+  },
+  "changepoint": {
+    "max_t_unconstrained": 5.324328833324868,
+    "split_unconstrained": 22,
+    "max_t_minseg3": 1.4347165860672493,
+    "split_minseg3": 3,
+    "t_prereg_last2": 5.324328833324868,
+    "perm_p_unconstrained": 0.02919854007299635,
+    "perm_p_minseg3": 0.7571621418929053,
+    "perm_B": 20000
+  },
+  "pair_prob_080": {
+    "gauss_sealed": {
+      "per_draw": 0.09923426479327835,
+      "specific_adjacent_pair": 0.009847439309062483,
+      "any_consecutive_pair_in_n": 0.18896934325750914,
+      "expected_count_in_n": 2.3816223550386804
+    },
+    "t_fit_sealed": {
+      "per_draw": 0.11676787997928155,
+      "specific_adjacent_pair": 0.0136347377948559,
+      "any_consecutive_pair_in_n": 0.24941088690696567,
+      "expected_count_in_n": 2.802429119502757
+    },
+    "gauss_record_n24_fit": {
+      "per_draw": 0.1878682555294101,
+      "specific_adjacent_pair": 0.03529448143566373,
+      "any_consecutive_pair_in_n": 0.5115791538919678,
+      "expected_count_in_n": 4.508838132705843
+    }
+  },
+  "sigma_compat_yw024": {
+    "sealed_n15_s1343": {
+      "n": 15,
+      "s": 0.1343,
+      "sigma0": 0.24,
+      "df": 14,
+      "chi2_stat": 4.383869097222222,
+      "P(s<=obs | sigma0)": 0.007321593846214524,
+      "P(s>=obs | sigma0)": 0.9926784061537854,
+      "p_two_sided": 0.014643187692429048,
+      "sigma_95CI": [
+        0.0983246003277435,
+        0.21180439735597448
+      ],
+      "sigma0_inside_95CI": false
+    },
+    "record_n24": {
+      "n": 24,
+      "s": 0.15946411617610431,
+      "sigma0": 0.24,
+      "df": 23,
+      "chi2_stat": 10.153862847222225,
+      "P(s<=obs | sigma0)": 0.00971558795877731,
+      "P(s>=obs | sigma0)": 0.9902844120412226,
+      "p_two_sided": 0.01943117591755462,
+      "sigma_95CI": [
+        0.1239376778859376,
+        0.22368998117506142
+      ],
+      "sigma0_inside_95CI": false
+    }
+  },
+  "verdict": {
+    "verdict": "STATIONARY",
+    "criteria": {
+      "mk_p_gt_0.05": true,
+      "tabular_cusum_below_h4": true,
+      "changepoint_minseg3_p_ge_0.01": true
+    },
+    "cusum_note": "alarm statistic = tabular lower CUSUM (k=0.5, h=4), per 08-02 precedent; raw cumsum maxabs is diagnostic only (drifts ~-0.23 sigma/draw from the frozen-control mean offset, adjudicated stationary at 08-02 with maxabs 4.55)",
+    "headline": {
+      "mk_p": 0.6195088684589591,
+      "cusum_maxabs": 5.620253164556962,
+      "cusum_tabular_lower_min": -3.582278481012658,
+      "cp_perm_p_minseg3": 0.7571621418929053,
+      "cp_perm_p_unconstrained_diagnostic": 0.02919854007299635,
+      "pair_prob_any_in_24_sealed_gauss": 0.18896934325750914,
+      "pair_prob_any_in_24_sealed_t": 0.24941088690696567,
+      "pair_prob_any_in_24_record_fit": 0.5115791538919678
+    }
+  }
+}

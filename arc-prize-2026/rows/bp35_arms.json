@@ -1,0 +1,1 @@
+{"floor": {"tokens_per_acting_turn": "6400-9600", "acting_turns_per_game": "7-15", "actions": [55, 7, 62]}, "reference": {"tokens_per_acting_turn": "1000-1300", "acting_turns_per_game": "45-50", "actions": "120-300"}}

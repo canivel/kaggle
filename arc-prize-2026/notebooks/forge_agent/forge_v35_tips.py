@@ -101,9 +101,13 @@ def _compute_counter_mask(frames, change_threshold=0.8):
 def _masked_hash(frame, counter_mask=None):
     """Hash a frame, optionally masking counter pixels to zero.
 
-    Returns a stable 16-char hex hash. Falls back to plain hash if mask is None.
+    Returns a stable 16-char hex hash. Falls back to plain hash if mask is None
+    or if its shape doesn't match the frame (e.g. level uses different resolution).
     """
     if counter_mask is None:
+        return hashlib.md5(frame.tobytes()).hexdigest()[:16]
+    # Shape guard: mask computed on one level may not match other levels' resolution
+    if counter_mask.shape != frame.shape[:2]:
         return hashlib.md5(frame.tobytes()).hexdigest()[:16]
     f = frame.copy()
     if f.ndim == 3 and counter_mask.ndim == 2:
@@ -347,10 +351,50 @@ class BFSSolver:
                         except: pass
         return actions
 
+    def back_label_solution(self, level_idx, solution, warmup_prefix=None):
+        """v36: Replay a winning solution and emit (action, data, frame_before, reward) tuples
+        with reward = 1/(1+steps_remaining). States near the win get reward → 1.0, states
+        far from the win get lower reward. This lets the CNN buffer learn directional policy
+        (Blind Squirrel-style Dijkstra back-labeling, research findings).
+        """
+        if not self.game_cls or not solution:
+            return []
+        try:
+            g = self.game_cls()
+            g.set_level(level_idx)
+            g.perform_action(ActionInput(id=GameAction.RESET), raw=True)
+            # Replay warmup prefix (BFS may have needed setup actions)
+            if warmup_prefix:
+                for act_id, data in warmup_prefix:
+                    try:
+                        ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))
+                        g.perform_action(ai, raw=True)
+                    except:
+                        pass
+            transitions = []
+            n = len(solution)
+            for i, (act_id, data) in enumerate(solution):
+                try:
+                    frame_before = np.array(g.get_pixels(0, 0, 64, 64))
+                    ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))
+                    g.perform_action(ai, raw=True)
+                    dist_remaining = n - i - 1  # 0 at winning action, n-1 at first
+                    reward = 1.0 / (1.0 + dist_remaining)  # 1.0 at win, 0.5 one before, 0.33, ...
+                    transitions.append((act_id, data, frame_before, reward))
+                except Exception:
+                    break
+            return transitions
+        except Exception as e:
+            logger.warning(f"back_label L{level_idx}: {e}")
+            return []
+
     def solve_level(self, level_idx, max_states=200000, prev_solution=None):
         if not self.game_cls:
             return None
         self._warmup_prefix = []
+        # v36: reset counter_mask — levels can differ in resolution AND counter position.
+        # Mask will be recomputed during _probe_hidden_fields on this level's actions.
+        self._counter_mask = None
 
         game = self.game_cls()
         game.set_level(level_idx)
@@ -1756,19 +1800,14 @@ class MyAgent(Agent):
         mcts_budget = min(mcts_budget, game_budget * 0.85)  # cap at 85% of game budget
         mcts_budget = max(60.0, mcts_budget)
 
-        # v8 tiered cap: different budgets based on BFS solution length.
-        # Rationale: RHAE = (human/agent)^2, so the shorter the BFS solution,
-        # the less MCTS can improve (diminishing returns). Long solutions still
-        # get substantial budget but not unbounded — MCTS converges in ~2-3 min,
-        # the rest is waste that blocks later levels from being played.
-        if bfs_fallback is not None:
-            n = len(bfs_fallback)
-            if n <= 20:
-                mcts_budget = min(mcts_budget, 90.0)  # v7 validated
-                logger.info(f"Smart cap: BFS short ({n} steps ≤ 20), capping MCTS at 90s")
-            else:
-                mcts_budget = min(mcts_budget, 240.0)  # v8 new: long cap
-                logger.info(f"Smart cap: BFS long ({n} steps > 20), capping MCTS at 240s")
+        # v7 validated smart cap: ONLY cap short BFS solutions. Long BFS (>20)
+        # must get full MCTS budget — v6 (cap=60s) and v8 (cap=240s) both regressed
+        # to 0.18, v7 (uncapped long) hit 0.27. RHAE = (human/agent)^2 means MCTS
+        # finding dramatic shortening (100→5 steps) on long paths dominates any
+        # savings from freeing budget for later levels.
+        if bfs_fallback is not None and len(bfs_fallback) <= 20:
+            mcts_budget = min(mcts_budget, 90.0)
+            logger.info(f"Smart cap: BFS short ({len(bfs_fallback)} steps ≤ 20), capping MCTS at 90s")
 
         logger.info(f"v29 MCTS L{level_idx}: game_budget={game_budget:.0f}s, "
                     f"elapsed_game={elapsed_game:.0f}s, mcts_budget={mcts_budget:.0f}s"
@@ -1845,19 +1884,35 @@ class MyAgent(Agent):
                                             time_limit=max(5.0, shorten_budget))
 
         # v29: compare MCTS solution vs BFS fallback, use the shorter one
+        winning_sol = None
         if mcts_sol and (bfs_fallback is None or len(mcts_sol) < len(bfs_fallback)):
             logger.info(f"L{level_idx}: MCTS={len(mcts_sol)}"
                         + (f" vs BFS={len(bfs_fallback)} -> using MCTS" if bfs_fallback else " -> using MCTS (no BFS)"))
             s._mcts_solutions[level_idx] = mcts_sol
             s._mcts_solution = mcts_sol
             s._mcts_step = 0
-            return mcts_sol
+            winning_sol = mcts_sol
         elif bfs_fallback:
             logger.info(f"L{level_idx}: MCTS={len(mcts_sol) if mcts_sol else 'None'}"
                         f" vs BFS={len(bfs_fallback)} -> using BFS")
             s._bfs_solution = bfs_fallback
             s._bfs_step = 0
-            return bfs_fallback
+            winning_sol = bfs_fallback
+
+        # v36: back-label winning path into CNN buffer (Blind Squirrel-style)
+        if winning_sol and s._bfs is not None:
+            try:
+                bl_trans = s._bfs.back_label_solution(level_idx, winning_sol,
+                                                      warmup_prefix=s._bfs._warmup_prefix)
+                if bl_trans:
+                    s._mcts_seed_transitions = getattr(s, '_mcts_seed_transitions', [])
+                    s._mcts_seed_transitions.extend(bl_trans)
+                    logger.info(f"L{level_idx}: back-labeled {len(bl_trans)} winning transitions")
+            except Exception as e:
+                logger.warning(f"L{level_idx}: back-label failed: {e}")
+
+        if winning_sol is not None:
+            return winning_sol
         return None
 
     def _tensor(s, fd):

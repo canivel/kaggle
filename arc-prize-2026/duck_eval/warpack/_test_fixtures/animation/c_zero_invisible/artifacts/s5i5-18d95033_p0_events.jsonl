@@ -1,0 +1,43 @@
+{"type": "action", "action_num": 1, "analysis_step": 0, "action_display": "RIGHT", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 2, "analysis_step": 0, "action_display": "RIGHT", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 3, "analysis_step": 0, "action_display": "RIGHT", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 4, "analysis_step": 0, "action_display": "RIGHT", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 5, "analysis_step": 1, "action_display": "LEFT", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 6, "analysis_step": 1, "action_display": "RIGHT", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 7, "analysis_step": 1, "action_display": "MOUSE(row=30, col=24)", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 8, "analysis_step": 1, "action_display": "LEFT", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 9, "analysis_step": 2, "action_display": "LEFT", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 10, "analysis_step": 2, "action_display": "RIGHT", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 11, "analysis_step": 2, "action_display": "RIGHT", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 12, "analysis_step": 2, "action_display": "RIGHT", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 13, "analysis_step": 3, "action_display": "RIGHT", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 14, "analysis_step": 3, "action_display": "LEFT", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 15, "analysis_step": 3, "action_display": "DOWN", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 16, "analysis_step": 3, "action_display": "DOWN", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 17, "analysis_step": 4, "action_display": "DOWN", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 18, "analysis_step": 4, "action_display": "MOUSE(row=6, col=52)", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 19, "analysis_step": 4, "action_display": "UP", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 20, "analysis_step": 4, "action_display": "UP", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 21, "analysis_step": 5, "action_display": "RIGHT", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 22, "analysis_step": 5, "action_display": "MOUSE(row=32, col=37)", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 23, "analysis_step": 5, "action_display": "UP", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 24, "analysis_step": 5, "action_display": "LEFT", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 25, "analysis_step": 6, "action_display": "DOWN", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 26, "analysis_step": 6, "action_display": "LEFT", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 27, "analysis_step": 6, "action_display": "DOWN", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 28, "analysis_step": 6, "action_display": "DOWN", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 29, "analysis_step": 7, "action_display": "DOWN", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 30, "analysis_step": 7, "action_display": "MOUSE(row=55, col=30)", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 31, "analysis_step": 7, "action_display": "UP", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 32, "analysis_step": 7, "action_display": "LEFT", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 33, "analysis_step": 8, "action_display": "MOUSE(row=22, col=24)", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 34, "analysis_step": 8, "action_display": "MOUSE(row=22, col=24)", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 35, "analysis_step": 8, "action_display": "UP", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 36, "analysis_step": 8, "action_display": "UP", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 37, "analysis_step": 9, "action_display": "MOUSE(row=9, col=35)", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 38, "analysis_step": 9, "action_display": "LEFT", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 39, "analysis_step": 9, "action_display": "LEFT", "action_name": "ACTION6", "board_changed": false, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 40, "analysis_step": 9, "action_display": "LEFT", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 41, "analysis_step": 10, "action_display": "LEFT", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 42, "analysis_step": 10, "action_display": "DOWN", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}
+{"type": "action", "action_num": 43, "analysis_step": 10, "action_display": "UP", "action_name": "ACTION6", "board_changed": true, "batch_index": 1, "batch_size": 1, "level": 0, "reward": 0.0}

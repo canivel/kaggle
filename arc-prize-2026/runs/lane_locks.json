@@ -1,0 +1,145 @@
+{
+ "locks": [
+  {
+   "lane": "q38-field",
+   "kernel": "canivel/arc3-q38-field-eval",
+   "owner": "graft-lane agent",
+   "date": "2026-08-20",
+   "planned_action": "slot-1 SPENT 06:45; monitoring; queue-head candidate on certification by 18:00"
+  },
+  {
+   "lane": "graft-floor",
+   "kernel": "canivel/arc3-graft-floor-eval",
+   "owner": "graft-lane agent",
+   "date": "2026-08-20",
+   "planned_action": "slot-2 confirm v5 push after slot 1 in flight (graft_confirm_prereg_2026-08-19.md)"
+  },
+  {
+   "lane": "private-arm",
+   "kernel": "canivel/arc3-q38-private-eval",
+   "owner": "private-arm",
+   "date": "2026-08-21",
+   "planned_action": "BUILD COMPLETE (no push/no queue, per order): staged notebooks/q38-private-eval/ (base variant, 12 cells, code sha 03acb150d7d10242); tooling duck_eval/private/ (builder+scorer+smoke 37/37, scorer selftest 32/32 incl. 12 cross-arm negative controls); prereg private_arm_prereg_2026-08-21.md SEALED; bundle 20260815 vendored+pinned 798246d79122856c. Push session executes 08-22 per prereg section 6."
+  },
+  {
+   "lane": "q38-graft (Arm 3)",
+   "kernel": "canivel/arc3-q38-graft-eval",
+   "owner": "graft-lane agent",
+   "date": "2026-08-21",
+   "planned_action": "SLOT 1 SPENT ~06:45 (day 1/2). Arm-3 Q38xGRAFT compound; read gate = certified AND lc>=28 to head tonight; scorer duck_eval/graft/q38graft_score.py. DO NOT PUSH.",
+   "registered_by": "iterate session 2026-08-21 on behalf of the graft lane -- the owner pushed without registering; entry added protectively per the 08-18 one-lane-one-operator ruling, ownership NOT claimed"
+  },
+  {
+   "lane": "pathsafe-insurance",
+   "kernel": "canivel/arc3-duck-repro-pathsafe",
+   "owner": "graft-lane agent",
+   "date": "2026-08-21",
+   "planned_action": "SLOT 2 SPENT ~06:50 (day 2/2). Pathsafe insurance fork; becomes fallback entry as arc3-duck-repro retires. DO NOT PUSH -- both daily slots are used.",
+   "registered_by": "iterate session 2026-08-21 on behalf of the graft lane -- see above"
+  },
+  {
+   "lane": "local-rail",
+   "kernel": "(none -- this lane never pushes)",
+   "owner": "local-rail",
+   "date": "2026-08-22",
+   "planned_action": "TOOLING ONLY. Delivered scripts/local_gate.py + docs/local_gate.md: the single-command CPU pre-push gate (reader certification vs 57 REAL artifacts, notebook static gate composing scripts/preflight.py offline, harness smoke against the real taaf simulator with a stdlib OpenAI-shaped stub server, cross-arm negative controls, wrapped scorer selftests). NO pushes, NO submissions, NO queue edits, NO writes outside temp -- check X4 hashes notebooks/ + submission_queue.json + lane_locks.json before and after every run and FAILs the gate if a byte moved. Does not touch edge-2 staging or artifacts. Gate is self-negative-controlled (--self-test, 11/11).",
+   "findings": [
+    "q38field_score.py INFRA-DEATHs ALL six real pull dirs: its INFRA_SIGNATURES substring scan matches error-message literals echoed from the notebook's own setup source into every Kaggle log. It refuses q38_field_v1, the artifact whose lc 28 / 6.173 / 1639 is the hard-coded comparator in private_score.py and q38graft_score.py. Owner: q38-field lane.",
+    "private_smoke.py S2 ('staged variant is pure base') has been failing since edge-1 was staged -- a frozen certifier in the smoke, not the scorer. Owner: private lane."
+   ],
+   "registered_by": "local-rail session 2026-08-22"
+  },
+  {
+   "lane": "strategy-0822 (original-work program)",
+   "kernel": "(none -- this lane never pushes)",
+   "owner": "strategy-0822",
+   "date": "2026-08-22",
+   "planned_action": "ANALYSIS ONLY. Delivered learnings/war_room/original_program_2026-08-22.md. READ-ONLY on campaign operations: NO kernel pushes, NO submissions, NO queue edits, NO writes to notebooks/ or any other lane's staged artifacts (graft-lane and private-arm own those). Only writes: this lock entry, the war-room document, and the KAOS experiments row.",
+   "findings": [
+    "CAP THEOREM (from taaf/game.py:381-412): per-game score <= 100*k(k+1)/(N(N+1)). Efficiency above baseline cannot exceed the level-completion ceiling. Perfect efficiency on the certified field floor is worth +0.5954 local mean_score (+9.6%, ~+0.06 LB) -- the action-denominator family is arithmetically closed.",
+    "675/675 game-runs across all 27 contract-clean 25-game evals end state=gave_up at max_runtime_s_per_game=7920. The agent gets 17.0 turns/game against the harness's designed 132 (60 s yield); 85.6% of turns overrun the yield. Binding constraint = decision budget.",
+    "edge-1 mechanism on record is probably wrong: ctx 2x cut aggregate throughput to 146 tok/s (lowest of 27 runs, 49% of base) and tokens/turn 5910->3072 (-48%). An overthinking model emits MORE per turn, not half. Verdict (HARM) stands; mechanism should be re-read as a halved decision budget. Testable in a serving probe with no games.",
+    "SCREEN-SHAPE DEFECT: taaf's own submission benchmark is 110 runs = the 25 games x ~4.4 CLONES (standard_benchmarks.make_benchmark_kaggle_official_110, competition_arcade.OFFICIAL_110_RUN_COUNT). Our rail screens 1 clone. Consequence: exp 12/14's 'transfer has 0 clone siblings' is a property of the SCREEN, not the mechanism -- cross-clone transfer is reachable where it is scored. --simulate-competition-arcade is free and one flag away.",
+    "q38_field_v1's mean_score is 50.4% ONE GAME (sb26 = 77.778 of 154.3 total points). Recommend retiring raw mean_score as a primary screening statistic in favour of trim1 (mean minus best game), which fits the 5 LB anchors LINEARLY at R2=0.990."
+   ],
+   "registered_by": "strategy-0822 session 2026-08-22"
+  },
+  {
+   "lane": "strategy-perturn (per-turn-value program)",
+   "kernel": "(none -- this lane never pushes)",
+   "owner": "strategy-perturn",
+   "date": "2026-08-22",
+   "planned_action": "ANALYSIS ONLY. Delivered learnings/war_room/perturn_program_2026-08-22.md. READ-ONLY on campaign operations: NO kernel pushes, NO submissions, NO queue edits, NO writes to notebooks/ or any other lane's staged artifacts (graft-lane, local-rail and private-arm own theirs). Only writes: this lock entry, the war-room document, and the KAOS experiments row. DISCLOSED read-only operation: `kaggle kernels output` pulled for canivel/arc3-q38-field-eval and canivel/arc3-budget-t3-eval into the session scratchpad only (no GPU, no slot, no repo bytes); the field pull's benchmark.json is dict-identical to runs/kernel_pulls/q38_field_v1/benchmark.json.",
+   "findings": [
+    "WASTED-TURN TAXONOMY on the certified field floor (424 acting turns / 449 analyzer invocations / 1181 LLM generations / 1639 actions): 54.0% of acting turns sit on a level never cleared; 62.1% of generations execute no environment action and carry 49.7% of all generated characters; 53.5% of turns fire exactly one action while 12.2% fire >=8 and carry 46.9% of all actions; 3.8% of generations raise a Python traceback; 7.3% of turns are lost to a client-side Read-timeout. Tool-call FORMAT failures and finish_reason=length are BOTH 0.0% -- those two hypotheses are dead.",
+    "PER-TURN ARITHMETIC VERDICT: 195 productive turns -> 28 levels = 6.96 turns/level; the marginal turn (from T1->T3) is worth 0.0141 lc vs the average 0.0660 = 21%. Recovering ALL waste (zero inspection + zero tracebacks + zero timeouts, a physically impossible bound) is a x2.16 budget multiplier, which at the measured epsilon 0.17 is +4.0 lc => lc 32, LB ~1.78. RECOVERING WASTED TURNS CANNOT REACH 2.5. LB 2.50 (lc 45) needs x1.60 value per turn at constant 17 turns/game = converting 52% of the 229 dead turns.",
+    "RESOURCE INVERSION: because epsilon=0.17 above our operating point, extra actions are nearly worthless AND therefore nearly free (T3 spent 2184 extra actions for +0.04 mean_score). Score arithmetic bounds a retry policy: going k->k+1 at uniform action ratio r beats staying at k iff r < sqrt((k+2)/k) -- unbounded at k=0, 1.73 at k=1, 1.41 at k=2. 20 of 25 games sit at k<=1, so the retry allowance exists exactly where the levels are.",
+    "INSTRUMENT DEFECT: hard_noop_guard is armed (True) and has NEVER fired -- 0 'blocked before execution' across 1639 field-floor + 3616 T3 actions. board_signature() is blake2b of the FULL 64x64 grid (noop_guard.py:16-21) while the games render ticking HUD/timer strips, so the (level, board, action) key can essentially never recur. Its predecessor left '~12% no-op repeats'; the replacement blocks 0.0%.",
+    "LONG-RUN DEGENERATION is the mechanism behind exp 39's saturation: at 3x budget the agent emits 197 responses with NO tool call (6.0% of generations, 16.5% of all generated chars, vs 0.8% at T1) and re-runs exact-duplicate code cells 11.5% of the time (vs 2.1%); 93% of the no-tool responses fall in the last third of the run.",
+    "ROUND-1 CORRECTION: the agent DOES query `transitions` -- 16.3% of field generations, 20.1% at T3, 9.9% in the older corpus. The gap is not access to transitions; it is absence of SEARCH over them (search idioms 5.8%, explicit candidate scoring 0.2%), despite the system prompt explicitly recommending BFS.",
+    "FREE CLONE-VARIANCE DATASET FOUND: runs/tufa_example_run/benchmark.json is 20 passes x 25 games (500 game-runs, 2026-06-02) -- the campaign's only true clone-replicate artifact, never read. max-over-clones / mean-over-clones = 2.97. tr87 and wa30 are 0/20 hard walls; bp35 (0.90), r11l (0.90) and sp80 (0.65) are near-certain level-1s that our field floor scored 0 on = ~+3 lc of pure consistency."
+   ],
+   "registered_by": "strategy-perturn session 2026-08-22"
+  },
+  {
+   "lane": "weekend-prep (cadence + P2 sealing, zero GPU)",
+   "kernel": "(none -- this lane never pushes; it SEALS arms for the next build session)",
+   "owner": "weekend-prep",
+   "date": "2026-08-22",
+   "planned_action": "ZERO GPU, ZERO PUSHES, ZERO SUBMISSIONS, ZERO QUEUE EDITS. Delivered: (1) learnings/war_room/reference_config_provenance_2026-08-22.md; (2) learnings/war_room/cadence_prereg_2026-08-22.md SEALED (arms C1 cadence-effort / C2 cadence-cap); (3) learnings/war_room/p2_reset_retry_prereg_2026-08-22.md SEALED (P0.1 gate discharged); (4) duck_eval/cadence/cadence_instrument.py (validated 31/31 against real artifacts BEFORE the arms exist); (5) scripts/local_gate.py gains check group P (P0 permanent instruments, 10 checks) + standing suite X3.p0_noop_repro + self-test negative controls S12/S13. Writes are confined to those five paths plus this lock entry, the ITERATION_LOG entry and the KAOS row. NO writes to notebooks/, submission_queue.json, or any other lane's scorer/builder/staged artifact.",
+   "findings": [
+    "REFERENCE-CONFIG VERDICT: runs/tufa_example_run serves vrfai/Qwen3.6-27B-FP8; the ~1.2k tokens/acting-turn is THE MODEL, not a setting. 18 of our own Qwen3.6 pulls reproduce it (1249-1758 tpt vs reference 1406) at byte-identical analyzer settings; 10 Qwen3.8 pulls span 2462-6047. Zero overlap across 29 pulls, incl. a same-bundle control (solver label duck-harness-kaggle: 3.6 = 1457/1523/1732/1758 vs 3.8 = 2462/2462/2565/5706). We are in the WEAKER-MODEL case: Qwen3.6 tops out at lc 22 / mean 2.88 on our rail; Qwen3.8 owns lc 28/6.173 and lc 35/6.21. Adopting the reference config = reverting the model = FORBIDDEN. So is analyzer_timeout=120 (a request timeout; on Q3.8 it would abort most turns and discard their work).",
+    "CORRECTION owed to perturn_program 1.5 / A5: the reference is NOT 'a much weaker config' -- it is the PREDECESSOR MODEL at our own settings. Every clone-variance number taken from it (max/mean 2.97, tr87/wa30 0/20) is a Qwen3.6 property.",
+    "CORRECTION owed to BP35_DIAGNOSTIC 2: the '7x' is per-game on bp35/r11l/sp80 (reproduced exactly); pooled over all 25 games the same artifacts give 3.53x. Quote the per-game figure only with its three games named.",
+    "MECHANISM: generations per analyzer invocation is ~1.22 on EVERY config -- the gap is generation LENGTH (p50 618 tok on Q3.6 vs 1452 on Q3.8), not generation count. Consequence: 52.5% of Q3.8 analyzer invocations end 'turn_time_budget' with no action vs 22.1% on Q3.6. LOCAL_ANALYZER_YIELD_SECONDS=60 was calibrated for the Q3.6 generation length (55 s at 8.72 tok/s) and the model swap invalidated it (113 s at 12.88 tok/s). Treat 60 as a stale constant, not a design invariant.",
+    "STANDING GPU-BOUNDARY FINDING (empirical, moderate confidence): reconstructing per-build GPU-hours from the max relative timestamp in each pulled kernel log gives 31.4 GPU-h for builds run 2026-08-17 (Mon) .. 2026-08-22 (Sat), which reproduces the coordinator's two independently recorded checkpoints (~12.5 h on 08-21, ~26.5 h on 08-22) only if the accounting window opens Monday. NOTE: no Kaggle-side quota banner or refusal exists anywhere in our logs -- the boundary has never been OBSERVED, only inferred from our own bookkeeping. Verify with the cheapest build first on Monday before committing both slots."
+   ],
+   "registered_by": "weekend-prep session 2026-08-22"
+  },
+  {
+   "lane": "iterate-0823 (Sunday consolidation + P1 seed-1 read)",
+   "kernel": "(none -- this lane never pushes)",
+   "owner": "iterate session 2026-08-23",
+   "date": "2026-08-23",
+   "planned_action": "ZERO GPU, ZERO PUSHES, ZERO SUBMISSIONS, ZERO QUEUE EDITS. Read-only pull of the COMPLETED-but-never-pulled P1 seed-1 artifact (canivel/arc3-p1-notes-eval v1) into runs/kernel_pulls/p1_notes_v1/, scored with the already-validated cadence instrument. Writes confined to: learnings/daily_brief_2026-08-23.md, learnings/war_room/p1_seed1_read_2026-08-23.md, runs/kernel_pulls/p1_notes_v1/**, runs/local_gate_allarms_2026-08-23.json, scripts/panel_round.py (panel sandbox fix), this lock entry, ITERATION_LOG.md and the KAOS row. NO writes to notebooks/, submission_queue.json, or any other lane's scorer/builder/staged artifact.",
+   "findings": [
+    "P1 SEED 1 = DELIVERY FAILURE (proxy-based) under an INFRA-DEATH certification caveat. The arm COMPLETED on 08-22 and was NEVER PULLED. The patch APPLIED (the kernel wrote out p1_patched/ARC3-Inference/ carrying all three [notes] prints and the swapped tool description verbatim), the run was healthy (25 games, 1502 actions, all gave_up), but the model referenced the injected namespace only 5 times across all 25 transcripts against ~400 acting turns = ~1.3% write-rate (3.4% on the most conservative denominator) versus a sealed 30% bar. Descriptive only: lc 27, mean_score 4.762, trim1 4.057. CONSEQUENCE: Monday slot 2 must NOT be P1 seed 2 -- a DELIVERY FAILURE seals to re-scope-never-re-read, and the INFRA reading seals to re-run-not-advance; both refuse seed 2. Owner: P1 lane.",
+    "P1's kernel log is 0 BYTES via kaggle kernels output on TWO independent pulls, while every other retained pull has 250KB+ (q38_field 253735, private_base 254665, q38low 265185). The sealed certification is defined on log markers and therefore CANNOT be evaluated. Log capture must be fixed before any P1 rebuild. Owner: P1 lane.",
+    "INSTRUMENT DEFECT (affects every arm): benchmark.json 'label' does NOT identify the arm. P1's artifact and the certified FIELD FLOOR's artifact carry the BYTE-IDENTICAL label 'anim-20260807-anim-25g-p1'; the trailing -p1 is PASS 1 (games are keyed _p0), not the P1 arm. Any certifier reading arm identity off the label is reading a pass counter.",
+    "PANEL INFRA DEATH x2, and it is NEW: R27 -- all 5 kaos reviewers refused the @file prompt ('outside the allowed working directory F:/kaggle/kaos') and returned ~200 chars / verdict UNKNOWN, so the round scored 0/5 ACCEPT for purely mechanical reasons. Staging the prompt inside the kaos tree (scripts/panel_round.py fix, shipped) changed the failure mode but R28 still returned 0 chars with status=failed. VERIFIED UNCONTAMINATED: rounds 16-26 average 6.8k-13.8k chars with 0 blocked, so the 'R10-R20: 11 rounds, 0 accepts' record that justified suspending weekday panels is NOT an artifact of this bug.",
+    "local_gate --all-arms --no-harness: pass 437 / fail 7 / warn 17 / skip 35. All real failures are private-base/private-edge1/private-edge12 on N3.flags ('staged notebook is NOT the arm you asked for') -- one staging slot serves four private variants and currently holds private-edge2. Same root cause as local-rail's 08-22 private_smoke S2 finding. NOT a Monday blocker. --self-test PASS 13/13 including S13 cadence-instrument-can-refuse.",
+    "C1 build de-risked offline: the recipe's anchor '{\"preserve_thinking\": true}' occurs EXACTLY ONCE in the 08-07 anim bundle's setup_commands.json, so Monday's count==1 assert will not kill the build. STILL MISSING for Monday: duck_eval/cadence/cadence_score.py does not exist and local_gate registers no cadence arm (10 arms, none cadence). Both are the cadence lane's to write before pushing."
+   ],
+   "registered_by": "iterate session 2026-08-23"
+  },
+  {
+   "lane": "cadence (C1/C2/C3 turn-cadence family)",
+   "kernel": "canivel/arc3-cadence-eval (NOT YET PUSHED)",
+   "owner": "iterate session 2026-08-24",
+   "date": "2026-08-24",
+   "planned_action": "SLOT 1 = C3 yield-match, GATED on the discard-vs-truncation verification (KAOS agent c3-yield-gate-v2 -> learnings/war_room/c3_yield_verification_2026-08-24.md). Registering AT take-time per the 08-21 lesson, BEFORE any push. Unconditional prerequisites being built in parallel (they serve C1/C2/C3 alike): duck_eval/cadence/cadence_score.py + a cadence arm registered in scripts/local_gate.py ARMS. NO PUSH until the gate returns DISCARD; on PRESERVED/UNRESOLVED the slot is released and the coordinator re-scopes.",
+   "findings": [
+    "BUNDLE RE-AUDIT DISCHARGED for the C3 vehicle (coordinator item 4, 08-24): the certified field floor mounts jakobbrggen/taaf-kaggle-source-anim-20260807-anim, and ALL 75 files in that dataset are dated 2026-08-07 (kaggle datasets files --page-size 500, one distinct date). The '(jakob republished 08-22)' flag therefore refers to a DIFFERENT jakob slug, not the floor's bundle. The floor vehicle is NOT subject to the bundle-generation confound that double-caveated the 08-21 Arm 3 read.",
+    "KAOS INFRA: both fable-panel spawns of the forensic tasks DIED with 'Reached maximum number of turns (1)' -- fable-panel and opus5-panel are BOTH provider agent_sdk = text-only, no tool forwarding ('agent_sdk provider cannot forward 8 OpenAI-style tool schema(s)'). They cannot read files and are unusable for any forensic/build task. Added an additive kaos.yaml entry 'opus5-code' (provider claude_code, model_id claude-opus-5); existing entries untouched, backup at kaos.yaml.bak-20260824."
+   ],
+   "registered_by": "iterate session 2026-08-24 at take-time (pre-push)"
+  },
+  {
+   "lane": "p2-reset-retry",
+   "kernel": "canivel/arc3-p2-retry-eval (NOT YET PUSHED)",
+   "owner": "iterate session 2026-08-26",
+   "date": "2026-08-26",
+   "planned_action": "SLOT 1 (08-26) TAKEN AT REGISTRATION TIME, pre-push, per the 08-21 lesson. The 08-25 blocker is DISCHARGED: the H=4 stuck trigger was measured against retained real artifacts BEFORE the build and FIRES on 19/25 games on this very vehicle vs a sealed D1 bar of >=15/25 (>=15/25 on four corpora; 6/25 correctly REFUSE, and they are the prompt clearers) -- learnings/war_room/p2_trigger_fireability_2026-08-26.md. Remaining items (a)-(d) from 08-25 are all BUILT: (a) trigger leg + retry_mode emission, (b) attempt() announced in _PYTHON_TOOL_DESCRIPTION via the VEHICLE-verified anchor, (c) '[p2] reset semantics OK' boot check asserting the RESET-always-legal invariant in the MOUNTED bundle, (d) notebook cell at position 6 (12 cells). Plus the D2 USE instrument the 08-25 handoff demanded: AST-counted attempt() CALLS split by armed/unarmed, flushed to a job-dir report per game so the read survives a 0-byte log (the P1 failure class). Gates: local_gate --arm p2 --full PASS 57/0; p2_smoke 18/18; p2_trigger_smoke 50/50; p2_score selftest 33/33 (incl. healthy positive control, 9 cross-arm refusals, 6 real foreign artifacts refused); p2_cell_smoke 20/20 EXECUTING THE REAL CELL with 4 loud-death negative controls. Kernel canivel/arc3-p2-retry-eval, patch sha 1c862d05ed462b17, code sha ea36ecca3efba73e. NO submissions, NO queue edits (daemon owns the window).",
+   "registered_by": "iterate session 2026-08-26 at take-time (pre-push)"
+  },
+  {
+   "lane": "exec-wm (executable world model)",
+   "kernel": "canivel/arc3-execwm-eval",
+   "owner": "exec-wm build lane 2026-08-25",
+   "date": "2026-08-25",
+   "planned_action": "SLOT 1 (08-25) TAKEN AT REGISTRATION TIME, pre-push, per the 08-21 lesson. Today's ruled slot-1 arm (C3) died before spending and P2 deliberately deferred to 08-26 slot 1 (its lock stands untouched), so today's slots were 0/2 spent. Pushing v1 of the exec-WM arm: certified field-floor vehicle + ONE inserted patch cell at position 6 (12 cells, code sha 87fbe2feed3f2fd8, embedded module sha d5c4b85872d5bba5). Prereg learnings/war_room/execwm_prereg_2026-08-25.md SEALED pre-push; scorer duck_eval/execwm/execwm_score.py (selftest 15/15, cross-arm A2 all-refused); CPU smoke duck_eval/execwm/ewm_smoke.py 22/22 incl. ls20 level-1 CLEARED VIA PLAN with zero LLM on the real wheels; local_gate --arm execwm FULL PASS 54/0. NO submissions, NO queue edits (daemon owns the window). This push doubles as the weekend-prep 'cheapest build first on Monday' GPU-boundary probe. STATUS: PUSHED v1 ~18:10 EDT, status RUNNING; pull-back verified (model_sources EXACT, patch cell byte-identical). Read tomorrow per prereg section 5.",
+   "registered_by": "exec-wm build lane 2026-08-25 at take-time (pre-push)"
+  }
+ ],
+ "note_2026_08_21": "Both kernels pushed on 08-21 (06:45, 06:50) were UNREGISTERED until 08:40, i.e. the collision guard was blind for ~2h on the exact failure mode it was created for (the 08-18 v2 double-push). Registering must happen AT push time, not after."
+}

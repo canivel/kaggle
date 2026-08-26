@@ -1,0 +1,21 @@
+{
+  "armA-base-0815": {
+    "lc_total": 30,
+    "mean_score": 5.686,
+    "actions": 1463,
+    "won": 0
+  },
+  "comparator-field-floor-0807": {
+    "lc_total": 28,
+    "mean_score": 6.173,
+    "actions": 1639
+  },
+  "context-june30-generation": {
+    "lc": [
+      18,
+      18,
+      14
+    ],
+    "note": "graft-floor Q3.6 pair + Arm 3 Q38 compound"
+  }
+}

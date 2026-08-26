@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "target_class": "taaf.deploy_inline.InlineTarget",
+  "target_config": {
+    "max_runtime_s": 4200.0
+  },
+  "handle_class": "taaf.deploy_inline.InlineHandle",
+  "job_id": null,
+  "benchmark_label": "gpt56_probe_su15_a13",
+  "started_at": "2026-07-18T08:01:35.974700",
+  "host": "Canivel",
+  "pid": 39256
+}

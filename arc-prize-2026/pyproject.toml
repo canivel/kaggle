@@ -1,0 +1,50 @@
+[project]
+name = "arc-prize-2026"
+version = "0.1.0"
+description = "ARC Prize 2026 - ARC-AGI-3: Interactive reasoning benchmark"
+requires-python = ">=3.11"
+dependencies = [
+    "arc-agi",
+    "kaggle-agent",
+    "torch>=2.0",
+    "torchvision",
+    "numpy>=1.26",
+    "pandas>=2.0",
+    "scipy>=1.14",
+    "gymnasium>=1.0",
+    "stable-baselines3>=2.0",
+    "tensorboard",
+    "wandb",
+    "matplotlib",
+    "seaborn",
+    "tqdm",
+    "pyyaml",
+    "rich",
+    "Pillow",
+    "ulid-py>=1.1.0",
+    "anthropic>=0.87.0",
+    "imageio>=2.37.3",
+]
+
+[tool.uv.sources]
+kaggle-agent = { path = "../kaggle-agent", editable = true }
+torch = [
+    { index = "pytorch-cu124" },
+]
+torchvision = [
+    { index = "pytorch-cu124" },
+]
+kaos = { path = "../kaos" }
+
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+[tool.hatch.build.targets.wheel]
+packages = []
+
+[dependency-groups]
+dev = [
+    "kaos",
+]

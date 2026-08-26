@@ -1,0 +1,92 @@
+{
+ "margin": 1,
+ "capability_bar": 8,
+ "schemes": {
+  "parity_regime_capability_prong_bar8": {
+   "k=1": {
+    "P_GO_null_rowwise": 0.0,
+    "P_GO_null_indep": 0,
+    "P_NOGO_shift1_rowwise": 0.0,
+    "P_NOGO_shift1_indep": 0.0625
+   },
+   "k=2": {
+    "P_GO_null_rowwise": 0.0,
+    "P_GO_null_indep": 0,
+    "P_NOGO_shift1_rowwise": 0.0,
+    "P_NOGO_shift1_indep": 0.00390625
+   }
+  },
+  "throttled_regime_rho=2.5": {
+   "bar_sigma_nulladj_plus_margin": 5,
+   "k=1": {
+    "P_falseGO_null_rowwise": 0.0,
+    "P_falseGO_null_indep": 0,
+    "P_falseNOGO_shift1_rowwise": 0.0,
+    "P_falseNOGO_shift1_indep": 0.0
+   },
+   "k=2": {
+    "P_falseGO_null_rowwise": 0.0,
+    "P_falseGO_null_indep": 0,
+    "P_falseNOGO_shift1_rowwise": 0.0,
+    "P_falseNOGO_shift1_indep": 0.0
+   },
+   "weak_alt_plus1_single_game": {
+    "k=1": {
+     "P_GO_by_shifted_game": {
+      "ft09": 0.25,
+      "sb26": 0.25,
+      "lp85": 0.25,
+      "vc33": 0.25
+     },
+     "P_GO_avg": 0.25
+    },
+    "k=2": {
+     "P_GO_by_shifted_game": {
+      "ft09": 0.4375,
+      "sb26": 0.4375,
+      "lp85": 0.4375,
+      "vc33": 0.4375
+     },
+     "P_GO_avg": 0.4375
+    }
+   }
+  },
+  "throttled_regime_rho=3.0": {
+   "bar_sigma_nulladj_plus_margin": 4,
+   "k=1": {
+    "P_falseGO_null_rowwise": 0.0,
+    "P_falseGO_null_indep": 0,
+    "P_falseNOGO_shift1_rowwise": 0.0,
+    "P_falseNOGO_shift1_indep": 0.0
+   },
+   "k=2": {
+    "P_falseGO_null_rowwise": 0.0,
+    "P_falseGO_null_indep": 0,
+    "P_falseNOGO_shift1_rowwise": 0.0,
+    "P_falseNOGO_shift1_indep": 0.0
+   },
+   "weak_alt_plus1_single_game": {
+    "k=1": {
+     "P_GO_by_shifted_game": {
+      "ft09": 0.75,
+      "sb26": 0.75,
+      "lp85": 0.75,
+      "vc33": 0.75
+     },
+     "P_GO_avg": 0.75
+    },
+    "k=2": {
+     "P_GO_by_shifted_game": {
+      "ft09": 0.9375,
+      "sb26": 0.9375,
+      "lp85": 0.9375,
+      "vc33": 0.9375
+     },
+     "P_GO_avg": 0.9375
+    }
+   }
+  }
+ },
+ "mc_check_rho2.5_shift1_k1_P_GO": 1.0,
+ "mc_B": 100000
+}

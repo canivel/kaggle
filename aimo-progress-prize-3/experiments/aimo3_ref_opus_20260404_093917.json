@@ -1,0 +1,80 @@
+{
+  "benchmark": "AIMO3 Reference Problems (official)",
+  "model": "claude-opus-4-6 via agents",
+  "attempts": 1,
+  "score": "9/10",
+  "accuracy": 0.9,
+  "note": "gpt-oss-120b gets 4/10 on same benchmark per official PDF",
+  "results": [
+    {
+      "id": "92ba6a",
+      "expected": 50,
+      "predicted": 50,
+      "correct": true,
+      "source": "P1 easy"
+    },
+    {
+      "id": "a295e9",
+      "expected": 520,
+      "predicted": 706,
+      "correct": false,
+      "source": "P2 medium"
+    },
+    {
+      "id": "0e644e",
+      "expected": 336,
+      "predicted": 336,
+      "correct": true,
+      "source": "P3 medium"
+    },
+    {
+      "id": "9c1c5f",
+      "expected": 580,
+      "predicted": 580,
+      "correct": true,
+      "source": "P4 medium"
+    },
+    {
+      "id": "424e18",
+      "expected": 21818,
+      "predicted": 21818,
+      "correct": true,
+      "source": "P5 hard"
+    },
+    {
+      "id": "42d360",
+      "expected": 32193,
+      "predicted": 32193,
+      "correct": true,
+      "source": "P6 hard"
+    },
+    {
+      "id": "26de63",
+      "expected": 32951,
+      "predicted": 32951,
+      "correct": true,
+      "source": "P7 hard"
+    },
+    {
+      "id": "dd7f5e",
+      "expected": 160,
+      "predicted": 160,
+      "correct": true,
+      "source": "P8 hard"
+    },
+    {
+      "id": "641659",
+      "expected": 57447,
+      "predicted": 57447,
+      "correct": true,
+      "source": "P9 hard"
+    },
+    {
+      "id": "86e8e5",
+      "expected": 8687,
+      "predicted": 8687,
+      "correct": true,
+      "source": "P10 hard"
+    }
+  ]
+}

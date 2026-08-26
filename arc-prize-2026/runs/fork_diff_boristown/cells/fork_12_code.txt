@@ -1,0 +1,3 @@
+# Make one-off changes to `bm`, `bm.games`, or `bm.solver` here before the run starts.
+# Example:
+# bm.label = f"{bm.label}-debug"

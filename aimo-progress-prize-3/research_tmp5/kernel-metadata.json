@@ -1,0 +1,27 @@
+{
+  "id": "huikang/streaming-inference",
+  "id_no": 101840497,
+  "title": "streaming-inference",
+  "code_file": "streaming-inference.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": [],
+  "dataset_sources": [],
+  "kernel_sources": [
+    "huikang/pip-install-aimo3-1"
+  ],
+  "competition_sources": [
+    "ai-mathematical-olympiad-progress-prize-3"
+  ],
+  "model_sources": [
+    "danielhanchen/gpt-oss-120b/Transformers/default/1",
+    "danielhanchen/gpt-oss-20b/Transformers/default/1",
+    "qwen-lm/qwen-3/Transformers/30b-a3b-thinking-2507-fp8/1"
+  ],
+  "docker_image": "gcr.io/kaggle-images/python@sha256:bf0b407a5ed73626191ae2259063a0090ae36666c8f00ffdfae3fb543eae750d",
+  "machine_shape": "None"
+}

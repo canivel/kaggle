@@ -1,0 +1,31 @@
+## Summary (2 sentences)
+The brief is a disciplined status report — ledger arithmetic checks out (11×0.982 + 0.84 + 1.02 = 12.662; /13 ≈ 0.974 ✓) and the frozen-fork hygiene is real — but from a systems/compute-economics standpoint it is strategically hollow: it spends its entire action budget on a 72B canary of unproven feasibility while ignoring the cheapest, best-evidenced serving fix in its own war-room files (the boristown vLLM readiness gate, external anchor 1.47 vs our mean 0.982). The A17 plan carries no throughput arithmetic, no pre-registered PASS thresholds, and no quota ledger, so I cannot verify it fits the compute envelope it must live in.
+
+## Objections
+
+[MAJOR] The boristown readiness-gate diff is the highest-EV systems fix on the table and the brief allocates it zero action — Your own fork-diff (`learnings/war_room/fork_diff_boristown_2026-07-24.md`) says a byte-identical artifact whose *only functional diff is a vLLM readiness gate* drew 1.47 — above gold cutoff — while our fork's 13-draw max is 1.33 and mean 0.974. The mechanistic story is obvious to anyone who runs vLLM: without a readiness gate, the harness starts issuing actions while the server is still loading weights / compiling CUDA graphs, and the failed/timed-out early actions eat the scoring window — this also plausibly explains the wide 0.82–1.33 band as cold-start variance, not "noise." Freezing the fork is a defensible discipline against scratch-building, but it should not immunize a ~10-line serving-side change with a confirmed external anchor ≥1.47. Actionable: pre-register a small arm (n=3–5 draws) of frozen-fork + readiness-gate; if the band shifts up, the entire daily-filler regime should switch to it.
+
+[MAJOR] A17 72B feasibility is asserted, never computed — Qwen2.5-VL-72B AWQ is ~40 GB of weights before KV cache; that does not fit Kaggle's 2×T4 (32 GB, and sm_75 lacks fast AWQ kernels anyway), so you are implicitly betting on the L4×4 (96 GB) tier with TP=4, where vLLM AWQ throughput for a 72B VLM is realistically single-digit-to-low-teens tok/s decode plus vision-encoder latency per frame. With `A17_WINDOW_S=7920` (2.2 h) and, say, 500–1500 tokens per action turn, the action budget may be only tens of actions per game — possibly below the floor needed to score at all. The brief must show the arithmetic: GPUs targeted, measured tok/s from the v5 canary, tokens/action, and the implied ρ_action *before* v6 fires. "~2.5 GPU-h" for v6 is likewise unsubstantiated.
+
+[MAJOR] No pre-registered PASS/FAIL thresholds for the v5/v6 canaries — v6 "push fires only on v5 PASS," but PASS is undefined in this document in throughput terms. A boot canary that merely proves the model loads is not evidence the plan fits the window; a 72B that boots in 25 minutes and decodes at 4 tok/s "passes boot" and still fails the competition regime. Actionable: publish numeric gates now (e.g., load+warmup ≤ X s, decode ≥ Y tok/s, ≥ Z actions/hr projected) so the Sunday-only panel structure (open question 2) doesn't let an underpowered config auto-promote on a weekday via "sealed arithmetic gates" that were never sealed with the right arithmetic.
+
+[MAJOR] Quota and slot economics are entirely absent — Kaggle GPU quota (~30 h/week) must cover: daily filler submissions, the running v5 canary, v6 (~2.5 GPU-h claimed), retry slots, and any exploration draws — yet no weekly GPU-hour ledger exists anywhere in the brief. Simultaneously, daily filler draws at mean 0.974 have near-zero probability of beating the standing 1.33 (13 draws, empirical max 1.33; each additional draw's P(new max) is shrinking), so their marginal LB value is ≈0 while their quota cost is nonzero. Actionable: add a weekly compute ledger (hours per arm) and an explicit statement of what each filler draw costs in GPU-hours and submission slots, then justify the cadence against the A17 build's needs.
+
+[MINOR] Default trajectory cannot reach gold and the brief doesn't say so — Frozen band ceiling is 1.33; gold ≈1.49 with a dense wall at 1.44–1.61. Everything except A17 (and the shelved exploration arm) is treadmill. The brief should state plainly that A17 (or the readiness-gate arm above) is the only live path to the gold line, so the panel prices the v5-FAIL branch correctly — "retry slot reserved, 6 days + slack" is not a plan B, it's a countdown.
+
+[MINOR] Weekday auto-fire of v6 lacks a resource cap — Under the Sundays-only restructure, v6 pushes automatically on v5 PASS with no human in the loop until the following Sunday. Require the sealed gate to include a hard wall-clock/GPU-hour abort (e.g., kill at 3 GPU-h) so a hung vLLM boot or TP deadlock on the dataset-weights route can't silently burn a week's quota.
+
+## Questions for the authors (numbered)
+1. Which Kaggle GPU tier does A17 target (2×T4 / P100 / L4×4), and what is the measured or estimated weights+KV VRAM footprint for Qwen2.5-VL-72B-AWQ at your intended context length?
+2. What decode tok/s and time-to-first-token did the v5 canary log, and what tokens-per-action does the harness average — i.e., what is the projected action count inside `A17_WINDOW_S=7920`?
+3. What are the exact numeric PASS criteria for v5, and the G1–G4 gate thresholds v6 discharges? Where are they pre-registered?
+4. Why has the boristown vLLM readiness gate (the only functional diff behind an externally verified 1.47) not been trialed on the frozen fork? Is "frozen" a rule against *all* diffs or against scratch-building?
+5. What is the weekly GPU-hour and submission-slot budget, itemized across filler draws, A17 canaries, and exploration — and how much headroom remains this week with v5 running?
+6. Does the "~2.5 GPU-h" v6 estimate include model download from the dataset route, weight loading, and warmup, or only the scoring window?
+
+## What I cannot judge
+The research-sweep triage calls (Schema / OCM / Continual Harness relevance to war-v4), the statistical methodology choices (MK/CUSUM drift tests, harm-pause thresholds), the governance merits of the Sundays-only panel restructure, and the KAOS dream/skill-promotion internals — those belong to the other four reviewers. I also cannot verify the referenced artifacts (`a17_v6_staged_2026-07-27.md`, fork-diff doc) beyond what is quoted here.
+
+## Verdict: MAJOR-REVISION
+
+## Score: 4/10

@@ -131,7 +131,42 @@ print(
     "primary=mean_dlc HARM<=-0.286320 SIGNAL>=+0.286320 "
     "secondary=mean_score NON-INFERENTIAL",
     flush=True,
-)'''
+)
+
+# GRAFT-EVAL MOUNTCHECK v2 (2026-08-19). v1/v2 died opaquely and v3 died LABELLED because
+# the competition input's mount point MOVED: the batch environment now mounts it at
+# /kaggle/input/<comp> instead of /kaggle/input/competitions/<comp> (v3's guard printed the
+# tree and proved every declared input IS mounted). The submission-rerun environment still
+# scored the filler at 2026-08-19 00:07 EDT on the OLD layout, so the layout differs per
+# environment and may flip back at any time: resolve it once, expose GRAFT_COMP_ROOT for the
+# stock cells that need it, and fail loud if NEITHER candidate carries the wheels.
+# Bootstrap path resolution only -- no treatment change, no flag touched.
+import os as _os
+_COMP_CANDIDATES = [
+    "/kaggle/input/competitions/arc-prize-2026-arc-agi-3",
+    "/kaggle/input/arc-prize-2026-arc-agi-3",
+]
+try:
+    _tree = sorted(_os.listdir("/kaggle/input"))
+except Exception as _exc:
+    _tree = ["<unlistable: " + repr(_exc)[:120] + ">"]
+print("GRAFT-EVAL MOUNTCHECK /kaggle/input =", _tree, flush=True)
+GRAFT_COMP_ROOT = next(
+    (c for c in _COMP_CANDIDATES if _os.path.isdir(c + "/arc_agi_3_wheels")), None)
+if GRAFT_COMP_ROOT is None:
+    raise RuntimeError(
+        "GRAFT-EVAL INFRA DEATH: competition wheels absent under BOTH mount layouts "
+        + repr(_COMP_CANDIDATES) + " (/kaggle/input = " + repr(_tree) + "). This is a Kaggle "
+        "input-mounting failure, NOT an arm result. Per prereg section 4 it is INFRA DEATH -- "
+        "never a NULL, never a HARM; the mechanism is untested in either direction."
+    )
+print("GRAFT-EVAL MOUNTCHECK OK competition root =", GRAFT_COMP_ROOT, flush=True)'''
+
+CELL4_ANCHOR = '        "/kaggle/input/competitions/arc-prize-2026-arc-agi-3/arc_agi_3_wheels",'
+CELL4_NEW = '        GRAFT_COMP_ROOT + "/arc_agi_3_wheels",  # resolved in cell 2 (MOUNTCHECK v2): the mount layout changed 2026-08-18'
+
+CELL14_ANCHOR = '    competition_env_files = str(Path("/kaggle/input/competitions/arc-prize-2026-arc-agi-3/arc_agi_3_wheels").parent / "environment_files")'
+CELL14_NEW = '    competition_env_files = str(Path(GRAFT_COMP_ROOT) / "environment_files")  # resolved in cell 2 (MOUNTCHECK v2)'
 
 CELL6_ANCHOR = (
     'DATASET_SOURCES = ["jeroencottaar/taaf-kaggle-source-share", '
@@ -214,15 +249,17 @@ def build() -> tuple[Path, Path]:
         raise SystemExit("BUILD FAIL: frozen fork gained a metadata.kaggle block (preflight D2)")
 
     _set_source(cells[2], _replace_once(_cell_source(cells[2]), CELL2_ANCHOR, CELL2_NEW, "cell 2"))
+    _set_source(cells[4], _replace_once(_cell_source(cells[4]), CELL4_ANCHOR, CELL4_NEW, "cell 4"))
     _set_source(cells[6], _replace_once(_cell_source(cells[6]), CELL6_ANCHOR, CELL6_NEW, "cell 6"))
     _set_source(cells[12], _replace_once(_cell_source(cells[12]), CELL12_ANCHOR, CELL12_NEW, "cell 12"))
+    _set_source(cells[14], _replace_once(_cell_source(cells[14]), CELL14_ANCHOR, CELL14_NEW, "cell 14"))
 
     # Every other cell must be byte-identical to the frozen fork.
     pristine = json.loads(SRC_NB.read_text(encoding="utf-8"))["cells"]
     changed = [i for i, (a, b) in enumerate(zip(pristine, cells))
                if _cell_source(a) != _cell_source(b)]
-    if changed != [2, 6, 12]:
-        raise SystemExit(f"BUILD FAIL: differing cells {changed}, expected [2, 6, 12]")
+    if changed != [2, 4, 6, 12, 14]:
+        raise SystemExit(f"BUILD FAIL: differing cells {changed}, expected [2, 4, 6, 12, 14]")
 
     # The built artifact must contain the arm's flags and must NOT contain the forbidden ones.
     code = "".join(_cell_source(c) for c in cells if c["cell_type"] == "code")
@@ -301,4 +338,4 @@ if __name__ == "__main__":
     print(f"flags FORBIDDEN : {' '.join(FLAGS_FORBIDDEN)} (unreachable on this rail)")
     print(f"bundle          : {OLD_SOURCE_DS} -> {NEW_SOURCE_DS}")
     print(f"engine          : {ENGINE_DS} (UNCHANGED)")
-    print("differing cells vs frozen fork: [2, 6, 12]")
+    print("differing cells vs frozen fork: [2, 4, 6, 12, 14]")

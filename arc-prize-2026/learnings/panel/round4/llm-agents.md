@@ -1,0 +1,40 @@
+## Summary (2 sentences)
+v4 resolves all five of my round-3 objections with mechanisms that match or exceed what I asked for — the deciding LOGO prompts are now confined to the Phase-2 6k-token evidence regime under the runtime's own pre-registered eviction policy, the quantization anchor is a continuous paired statistic with an explicit validity condition and an unmeasurable-anchor branch, entry counting is single-scaffold LOGO-selected, generation headroom is measured with truncation-rate as a selection criterion, and the 1/2 closed-loop outcome has a pre-registered interpretation. What remains are three minor items at the seams between fixes (anchor SE clustering, the headroom↔window re-close coupling, and one-shot vs. loop ambiguity in the deciding LOGO), none of which blocks a Jul 7 start.
+
+## Objections
+
+**Resolution audit of my round-3 objections:**
+
+**[RESOLVED] Prior [MAJOR] NN1 — LOGO numbers not constrained to the runtime input regime.** Exactly the fix demanded, plus specifics I didn't require: transition evidence capped at 6k under the runtime's own selection/eviction policy (changed-frame first, most-recent unchanged, oldest-evicted), the 1k verify-report slot included, and the ≤32k-history number demoted to a reported upper bound that "decides nothing." The entry gate, P0 kill, and Risk 1 are all restated on 6k-regime numbers, closing the pilot-passes/kernel-flops channel. Q6 is also answered concretely (6k ≈ 40–50 transitions; the 30-transition prospective verify streams outside context).
+
+**[RESOLVED] Prior [MAJOR] NN2 — anchor criterion unmeasurable on binary n=3.** The anchor is now a battery of 5 attempts/game × 3 games, statistic = mean paired per-game difference in held-out exact-match (continuous), threshold ≤10 pp with a pre-registered validity condition (10 pp ≥ 2·SE), an expansion branch (5→10 attempts), and a defined terminal state (unmeasurable → kernel-anchored entry, same as tripped). Binary Class-A flips are a side flag only. This also completes the round-2 N1 that was PARTIALLY-RESOLVED — the architecture and the arithmetic are now both correct. One residual on the SE computation is NM1 below.
+
+**[RESOLVED] Prior [MINOR] NN3 — scaffold multiplicity.** Per-game Class-A counts only under the LOGO-selected single scaffold (selected on the other 9 games), one shot, no best-of-three; the runtime ships one scaffold; a router winner triggers a mandatory allocation re-close. This is the stricter of the two options I offered.
+
+**[RESOLVED] Prior [MINOR] NN4 — 8k headroom assumed.** Headroom is pinned to measured p90 per scaffold (8k explicitly demoted to a planning number), thinking tokens included in the logged distributions, and truncation-rate is a scaffold-selection criterion alongside acceptance score. Residual coupling with the context table is NM2 below.
+
+**[RESOLVED] Prior [MINOR] NN5 — 1/2 closed-loop uninterpreted.** Pre-registered: 1/2 satisfies entry but sets a closed-loop-thin flag; tokens-to-first-Class-A is re-measured under the gated Phase-1 `explore()` before the mid-Phase-2 zone decision; a violating re-measure forces verify-only regardless of dev count. This is precisely the interpretation rule plus re-measurement I asked for.
+
+**New objections (all minor; none execution-blocking):**
+
+**[MINOR] NM1 — Anchor SE pooled over 15 attempt pairs ignores game-level clustering.** The validity condition computes SE "from the 15 attempt pairs," treating attempts as independent; if the quantization discrepancy varies by game (plausible — games differ in model source length and prompt structure), the true SE of the 3-game mean is larger, and the pooled SE is anti-conservative — the anchor can be declared "measurable" when it is not, which is the exact failure the validity condition exists to prevent. Fix in one line: compute SE hierarchically (game-level means, df = 2, or cluster-robust over games) and pre-register that the pooled-attempt SE is reported beside it; if the hierarchical SE fails the 2·SE condition, take the expansion/unmeasurable branch.
+
+**[MINOR] NM2 — The headroom re-close can silently shrink the 6k window the deciding LOGO was run at.** If the measured gen p90 for the shipped scaffold exceeds 8k (Qwen thinking traces on code routinely do), "re-closed to measurement" forces ~2k+ out of other table lines, and the natural victims are the 6k transition window or the 4k history — but the entry-deciding LOGO numbers were produced at exactly 6k, so the entry gate would then rest on numbers from a regime the runtime no longer runs. Pre-register the re-close priority order (which lines shrink first) and the rule: if the transition window drops below 6k, the deciding LOGO battery is re-run at the re-closed window before Phase-2 entry (cheap — offline prompts on already-recorded histories).
+
+**[MINOR] NM3 — One-shot deciding LOGO vs. the multi-turn runtime loop: direction of bias unstated.** The runtime is synthesize→verify→refactor with replanning; the deciding pilot number is "one shot per game" yet includes a 1k verify-report slot — it is ambiguous whether that slot is filled (implying at least one verify→refactor iteration offline) or empty. If genuinely one-shot, the pilot underestimates the loop and the <4/10 pre-kill is conservative — it can falsely kill a Phase 2 that would have passed with its refactor budget, and the residual band (1.2–1.5) is below the leader. Pre-register either (a) the deciding number includes the runtime's verify→refactor iteration budget executed offline against the training split (held-out untouched), or (b) one-shot with the kill explicitly labeled conservative and the 4/10 bar justified at that handicap.
+
+## Questions for the authors (numbered)
+1. In the deciding LOGO prompts, is the 1k verify-report slot populated (from an offline verify pass against the training split) or empty, and how many verify→refactor iterations does the deciding attempt get? (NM3)
+2. If the measured gen p90 for the shipped scaffold is, say, 11k, which context-table lines shrink in the re-close, in what priority order, and does the entry gate then require re-running the LOGO battery at the shrunken transition window? (NM2)
+3. Will the anchor's 2·SE validity condition be evaluated on the hierarchical (game-level, df=2) SE or the pooled 15-pair SE, and what happens when they disagree? (NM1)
+4. The runtime eviction policy is "changed-frame first" — was that policy itself selected on any of the 10 pilot games, or is it fixed a priori? (If tuned on pilot games, the LOGO selection is no longer fully leave-one-out.)
+5. On the ≥2 closed-loop games: are they drawn from the 10 pilot games (evidence reuse) or disjoint, and does the LOGO-selected scaffold for those games come from the other 9 as with the offline arms?
+
+## What I cannot judge
+Kaggle quota/rerun branch mechanics and the class-B weekly ledger arithmetic (ops reviewer); RunPod A40 pricing, concurrency, and preemption accounting; the fine print of the sign-flip calibration branch, the 280-split dependence structure, the hierarchical-bootstrap CI, the confirmation-stage operating characteristics (0.78 joint power, 0.0016 per-look), χ² CIs on σ̂, and the disattenuation procedure (methods reviewer — though I note NM1 is a clustering issue they should co-sign); the AERA/Rodionov/Rudakov citations and Preview-LB claims, taken at face value; whether the vault-5 procedural variants bound anything useful about the private set; October competitive dynamics beyond their scaffolding implications.
+
+## Verdict: ACCEPT
+
+## Score: 9/10
+
+All prior MAJORs are resolved with correctly specified mechanisms; the three residual minors are one-line pre-registrations at the seams between the NN1/NN2/NN4 fixes and should be folded in before the Jul 7 kickoff, but none warrants holding the plan. Within my expertise — the scaffolding claims are now tested under the input regime, token budget, single-scaffold configuration, and hardware the runtime will actually face — this is what a decision-grade pilot looks like.

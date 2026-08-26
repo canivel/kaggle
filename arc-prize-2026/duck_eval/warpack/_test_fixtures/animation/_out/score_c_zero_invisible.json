@@ -1,0 +1,1423 @@
+{
+ "schema": "animation_score/1",
+ "generated": "2026-08-11T08:37:58",
+ "date": "c_zero_invisible",
+ "pull": "F:\\kaggle\\arc-prize-2026\\duck_eval\\warpack\\_test_fixtures\\animation\\c_zero_invisible",
+ "log": "F:\\kaggle\\arc-prize-2026\\duck_eval\\warpack\\_test_fixtures\\animation\\c_zero_invisible\\arc3-duck-animation-eval.log",
+ "log_mode": "json-array",
+ "arm_label": "duck-harness-kaggle-continuation-v1-animation-v1",
+ "prereg": "learnings/war_room/animation_prereg_2026-08-11.md",
+ "protocol": "duck_eval/SCREEN_PROTOCOL.md",
+ "external_prior": {
+  "source": "Kaggle discussion 734369 'Write Up: Taaf Anim Agent'",
+  "author": "Jakob Bruggen (Helmut AGI, #8 @ 1.61)",
+  "posted": "2026-08-11T07:55Z",
+  "swept_in": "learnings/sweeps/discussion_sweep_2026-08-11.md \u00a71.1",
+  "efficacy": "NULL: +1.4% mean score, p = 0.92 over 6 games x 4 passes",
+  "harm_mechanism": "'Tokens are the real currency, not actions.' His animation arm went 384 -> 449 tokens/action (+17%), and 'in every single game, more tokens per action meant fewer actions'. Every run in both arms hit the 132-min wall-clock cap.",
+  "tool_use": "animation() called in 21/24 runs; 2 of 181 calls landed on an informative animation",
+  "why_not_falsifying": "his flag carries all three stages; ours is stage 1 only (fixed ~45-token scalar summary, emitted only on animated actions). The retrieval tool and the proactive hint -- where his token inflation lives -- are pre-registered as explicitly OUT (prereg \u00a72.1/\u00a72.2). Locally measured token fraction: 0.00243.",
+  "consequence": "M2 (tokens/action, tokens/lc, wall-clock/action) is the metric that decides whether this arm can ever pay. M0 remains the PRIMARY pre-registered mechanism endpoint; a good M0 is mechanism DELIVERY, never an efficacy claim -- the best available efficacy evidence is his, and it is null.",
+  "k_a3_note": "K-A3 keeps its sealed threshold (<1% => else KILL) unchanged; this prior is external pre-result justification for treating a breach as fatal rather than advisory."
+ },
+ "metric_roles": {
+  "M0": "PRIMARY pre-registered mechanism endpoint (delivery, not efficacy)",
+  "M2": "DECIDING metric of this run (external prior 734369)",
+  "M1": "descriptive only; NOT SCREENABLE at m=2; no PASS/FAIL ever",
+  "M3": "descriptive"
+ },
+ "verdict": {
+  "verdict": "VOID",
+  "why": "K-A2 nonzero invisible on >=1 of ft09/cd82/sc25/ls20 -> FAIL",
+  "void_reasons": [
+   "K-A2 nonzero invisible on >=1 of ft09/cd82/sc25/ls20 -> FAIL"
+  ],
+  "kill_reasons": [],
+  "audit_method_under_review": true,
+  "note": "VOID != FAIL: rebuild, and do not record a verdict in either direction."
+ },
+ "canaries": {
+  "K-A0": {
+   "name": "banner + ANIMATION_AWARE=1 stamp",
+   "status": "PASS",
+   "outcome_if_fail": "VOID (ran VANILLA -- explicitly NOT a FAIL)",
+   "banner_present": true,
+   "banner_version": "v1",
+   "seams_patched": 4,
+   "flag_stamp_present": true,
+   "patch_failed_line": false,
+   "label_stamped": true,
+   "label": "duck-harness-kaggle-continuation-v1-animation-v1",
+   "evidence": [
+    "animation v1: ACTIVE (4 seams patched)  -  per-action intermediate-frame summary from GameState.raw.frame (taaf/game.py:170 discards all but frame[-1]; zero prior consumers). Fixed scalar schema, NO raw frames, ~45 tok, emitted only on animated actions. only_invisible=OFF (default); outcome_text=ON (default); NO no-op guard (prereg sec2.2: separately gated, downstream); zero LLM calls, no locks, g",
+    "animation-eval: SEED=1 animation-awareness ON, NO warpack/ledger-graft/sentinel/compaction (pairs with the duck-harness-kaggle-continuation-v1 family); ANIMATION_AWARE=1; NO no-op guard",
+    "animation v1: graft applied from /kaggle/input/arc-war-kit (applied=True)"
+   ]
+  },
+  "K-A1": {
+   "name": ">=1 ANIMATION event line on >=5 distinct games",
+   "status": "PASS",
+   "outcome_if_fail": "VOID",
+   "event_lines": 324,
+   "distinct_games": 13,
+   "games": [
+    "bp35",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "r11l",
+    "sb26",
+    "sk48",
+    "sp80",
+    "su15",
+    "tn36",
+    "tu93",
+    "vc33"
+   ],
+   "sidecar_games": [],
+   "sidecar_note": "per-game jsonl sidecars absent -- EXPECTED, see the emitter defect note; K-A1 is decided on the stdout event lines per prereg \u00a73",
+   "evidence": [
+    "ANIMATION v=1 kind=motion game=sk48-d8078629 action=MOUSE(row=49, col=47) frames=3 unique=2 board_unchanged=0 transient_cells=233 bbox=[6, 17, 39, 38] run_actions=161 run_multi=1 run_invisible=0"
+   ]
+  },
+  "K-A2": {
+   "name": "nonzero invisible on >=1 of ft09/cd82/sc25/ls20",
+   "status": "FAIL",
+   "outcome_if_fail": "VOID + audit method back under review",
+   "type1_games": [
+    "ft09",
+    "cd82",
+    "sc25",
+    "ls20"
+   ],
+   "invisible_by_type1_game": {
+    "ft09": 0,
+    "cd82": 0,
+    "sc25": 0,
+    "ls20": 0
+   },
+   "engaged_from_event_lines": [],
+   "engaged_from_canary_line": [],
+   "audit_method_under_review": true,
+   "evidence": [
+    "ANIMATION CANARY v=1 version=v1 actions=5852 multi=324 invisible=0 summaries=324 errors=0 games_with_events=13 games_with_invisible=0 audit_type1_engaged=NONE tokens_est=14580 token_fraction="
+   ]
+  },
+  "K-A3": {
+   "name": "animation_tokens_est / total_tokens < 1%",
+   "status": "PASS",
+   "outcome_if_fail": "KILL (arm killed, module reverted)",
+   "outcome": "",
+   "animation_tokens_est": 14580,
+   "total_tokens": 1889264,
+   "total_tokens_source": "benchmark.json sum of solver_note tokens= (generated tokens; uncached_input_tokens is 0 on this rail)",
+   "token_fraction": 0.007717290966217532,
+   "bound": 0.01,
+   "canary_line_token_fraction": null,
+   "note": "canary_report() is invoked without total_tokens by the builder, so the log's token_fraction field is empty by construction; the fraction above is computed here from the run's own token total",
+   "threshold_unchanged": true,
+   "external_justification": "K-A3 keeps its sealed threshold (<1% => else KILL) unchanged; this prior is external pre-result justification for treating a breach as fatal rather than advisory.",
+   "external_source": "Kaggle discussion 734369 'Write Up: Taaf Anim Agent'",
+   "see_also": "M2.tokens_per_action_delta_pct (directly comparable to his +17%)",
+   "evidence": [
+    "ANIMATION CANARY v=1 version=v1 actions=5852 multi=324 invisible=0 summaries=324 errors=0 games_with_events=13 games_with_invisible=0 audit_type1_engaged=NONE tokens_est=14580 token_fraction="
+   ]
+  },
+  "K-A4": {
+   "name": "animation_errors == 0",
+   "status": "PASS",
+   "outcome_if_fail": "KILL (a perception patch that raises in the action path is not shippable)",
+   "outcome": "",
+   "errors": 0,
+   "evidence": [
+    "ANIMATION CANARY v=1 version=v1 actions=5852 multi=324 invisible=0 summaries=324 errors=0 games_with_events=13 games_with_invisible=0 audit_type1_engaged=NONE tokens_est=14580 token_fraction="
+   ]
+  },
+  "canary_line_present": true,
+  "canary_unavailable_line": false
+ },
+ "canary_line": {
+  "v": "1",
+  "version": "v1",
+  "actions": 5852,
+  "multi": 324,
+  "invisible": 0,
+  "summaries": 324,
+  "errors": 0,
+  "games_with_events": 13,
+  "games_with_invisible": 0,
+  "audit_type1_engaged": [],
+  "tokens_est": 14580,
+  "token_fraction_reported": null,
+  "raw": "ANIMATION CANARY v=1 version=v1 actions=5852 multi=324 invisible=0 summaries=324 errors=0 games_with_events=13 games_with_invisible=0 audit_type1_engaged=NONE tokens_est=14580 token_fraction="
+ },
+ "M2": {
+  "deciding_metric": true,
+  "deciding_because": "M2 (tokens/action, tokens/lc, wall-clock/action) is the metric that decides whether this arm can ever pay. M0 remains the PRIMARY pre-registered mechanism endpoint; a good M0 is mechanism DELIVERY, never an efficacy claim -- the best available efficacy evidence is his, and it is null.",
+  "external_prior": {
+   "source": "Kaggle discussion 734369 'Write Up: Taaf Anim Agent'",
+   "author": "Jakob Bruggen (Helmut AGI, #8 @ 1.61)",
+   "posted": "2026-08-11T07:55Z",
+   "swept_in": "learnings/sweeps/discussion_sweep_2026-08-11.md \u00a71.1",
+   "efficacy": "NULL: +1.4% mean score, p = 0.92 over 6 games x 4 passes",
+   "harm_mechanism": "'Tokens are the real currency, not actions.' His animation arm went 384 -> 449 tokens/action (+17%), and 'in every single game, more tokens per action meant fewer actions'. Every run in both arms hit the 132-min wall-clock cap.",
+   "tool_use": "animation() called in 21/24 runs; 2 of 181 calls landed on an informative animation",
+   "why_not_falsifying": "his flag carries all three stages; ours is stage 1 only (fixed ~45-token scalar summary, emitted only on animated actions). The retrieval tool and the proactive hint -- where his token inflation lives -- are pre-registered as explicitly OUT (prereg \u00a72.1/\u00a72.2). Locally measured token fraction: 0.00243.",
+   "consequence": "M2 (tokens/action, tokens/lc, wall-clock/action) is the metric that decides whether this arm can ever pay. M0 remains the PRIMARY pre-registered mechanism endpoint; a good M0 is mechanism DELIVERY, never an efficacy claim -- the best available efficacy evidence is his, and it is null.",
+   "k_a3_note": "K-A3 keeps its sealed threshold (<1% => else KILL) unchanged; this prior is external pre-result justification for treating a breach as fatal rather than advisory."
+  },
+  "external_reference": {
+   "tokens_per_action_before": 384,
+   "tokens_per_action_after": 449,
+   "delta_pct": 17.0,
+   "label": "his stage-1+2+3 arm; ours is stage 1 only"
+  },
+  "computed": true,
+  "arm": {
+   "label": "duck-harness-kaggle-continuation-v1-animation-v1",
+   "path": "F:\\kaggle\\arc-prize-2026\\duck_eval\\warpack\\_test_fixtures\\animation\\c_zero_invisible\\benchmark.json",
+   "actions": 5852,
+   "lc": 17,
+   "gen_tokens": 1889264,
+   "wallclock_s": 198132.5,
+   "n_games": 25,
+   "actions_per_game": 234.08,
+   "wallclock_per_game": 7925.3,
+   "tokens_per_action": 322.84073820915927,
+   "tokens_per_lc": 111133.17647058824,
+   "wallclock_per_action": 33.85722829801777
+  },
+  "family": {
+   "label": "duck-harness-kaggle-continuation-v1 (m=2, pooled)",
+   "actions": 9452,
+   "lc": 26,
+   "gen_tokens": 3188167,
+   "wallclock_s": 396084.354050442,
+   "n_games": 50,
+   "actions_per_game": 189.04,
+   "wallclock_per_game": 7921.68708100884,
+   "tokens_per_action": 337.30078290308927,
+   "tokens_per_lc": 122621.80769230769,
+   "wallclock_per_action": 41.90481951443525
+  },
+  "baselines": [
+   {
+    "label": "duck-harness-kaggle-continuation-v1",
+    "path": "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\w0_eval_s1\\benchmark.json",
+    "actions": 4290,
+    "lc": 16,
+    "gen_tokens": 1549056,
+    "wallclock_s": 198054.741043174,
+    "n_games": 25,
+    "actions_per_game": 171.6,
+    "wallclock_per_game": 7922.18964172696,
+    "tokens_per_action": 361.0853146853147,
+    "tokens_per_lc": 96816.0,
+    "wallclock_per_action": 46.166606303770166
+   },
+   {
+    "label": "duck-harness-kaggle-continuation-v1",
+    "path": "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\w0_cont_eval\\benchmark.json",
+    "actions": 5162,
+    "lc": 10,
+    "gen_tokens": 1639111,
+    "wallclock_s": 198029.613007268,
+    "n_games": 25,
+    "actions_per_game": 206.48,
+    "wallclock_per_game": 7921.18452029072,
+    "tokens_per_action": 317.5340953118946,
+    "tokens_per_lc": 163911.1,
+    "wallclock_per_action": 38.36296261279892
+   }
+  ],
+  "arm_over_family": {
+   "tokens_per_action": 0.9571301182005126,
+   "tokens_per_lc": 0.9063084174183141,
+   "wallclock_per_action": 0.8079554736264818,
+   "actions_per_game": 1.238256453660601
+  },
+  "tokens_per_action_delta_pct": -4.286988179948736,
+  "tokens_per_action_vs_external": {
+   "ours_pct": -4.286988179948736,
+   "his_pct": 17.0,
+   "ratio_to_his": -0.25217577529110213,
+   "statement": "arm tokens/action is -4.29% vs the continuation-v1 family; his stage-1+2+3 arm was +17.0% (384 -> 449)"
+  },
+  "wallclock_actions_coupling": {
+   "arm_actions_per_game": 234.08,
+   "family_actions_per_game": 189.04,
+   "actions_per_game_delta_pct": 23.82564536606011,
+   "arm_executed_fewer_actions": false,
+   "statement": "the arm executed MORE OR EQUAL actions per game than the family (234.1 vs 189.0, +23.83%)",
+   "games_with_fewer_actions": [
+    "bp35",
+    "g50t",
+    "lf52",
+    "s5i5",
+    "sb26",
+    "sk48",
+    "tn36",
+    "tr87",
+    "tu93",
+    "wa30"
+   ],
+   "n_games_with_fewer_actions": 10,
+   "arm_wallclock_per_game": 7925.3,
+   "family_wallclock_per_game": 7921.68708100884,
+   "rail_is_wallclock_bound": {
+    "projected_s": 32267,
+    "cap_s": 32400,
+    "note": "our scored rail projects 32,267 s against a 32,400 s cap and all 25 games end on wall clock, not on an action limit (max_actions_per_game=None) -- so his tokens -> fewer actions -> fewer levels path transfers to us"
+   },
+   "per_game": [
+    {
+     "game": "ar25",
+     "arm_actions": 258,
+     "baseline_mean_actions": 117.5,
+     "delta_actions": 140.5,
+     "delta_pct": 119.57446808510639
+    },
+    {
+     "game": "bp35",
+     "arm_actions": 184,
+     "baseline_mean_actions": 419.5,
+     "delta_actions": -235.5,
+     "delta_pct": -56.13825983313468
+    },
+    {
+     "game": "cd82",
+     "arm_actions": 195,
+     "baseline_mean_actions": 174.0,
+     "delta_actions": 21.0,
+     "delta_pct": 12.06896551724137
+    },
+    {
+     "game": "cn04",
+     "arm_actions": 423,
+     "baseline_mean_actions": 361.0,
+     "delta_actions": 62.0,
+     "delta_pct": 17.174515235457054
+    },
+    {
+     "game": "dc22",
+     "arm_actions": 311,
+     "baseline_mean_actions": 194.5,
+     "delta_actions": 116.5,
+     "delta_pct": 59.89717223650386
+    },
+    {
+     "game": "ft09",
+     "arm_actions": 135,
+     "baseline_mean_actions": 71.5,
+     "delta_actions": 63.5,
+     "delta_pct": 88.81118881118881
+    },
+    {
+     "game": "g50t",
+     "arm_actions": 114,
+     "baseline_mean_actions": 180.0,
+     "delta_actions": -66.0,
+     "delta_pct": -36.66666666666667
+    },
+    {
+     "game": "ka59",
+     "arm_actions": 419,
+     "baseline_mean_actions": 107.0,
+     "delta_actions": 312.0,
+     "delta_pct": 291.58878504672896
+    },
+    {
+     "game": "lf52",
+     "arm_actions": 96,
+     "baseline_mean_actions": 188.0,
+     "delta_actions": -92.0,
+     "delta_pct": -48.93617021276596
+    },
+    {
+     "game": "lp85",
+     "arm_actions": 402,
+     "baseline_mean_actions": 94.5,
+     "delta_actions": 307.5,
+     "delta_pct": 325.3968253968254
+    },
+    {
+     "game": "ls20",
+     "arm_actions": 421,
+     "baseline_mean_actions": 86.5,
+     "delta_actions": 334.5,
+     "delta_pct": 386.70520231213874
+    },
+    {
+     "game": "m0r0",
+     "arm_actions": 317,
+     "baseline_mean_actions": 143.0,
+     "delta_actions": 174.0,
+     "delta_pct": 121.67832167832167
+    },
+    {
+     "game": "r11l",
+     "arm_actions": 151,
+     "baseline_mean_actions": 69.5,
+     "delta_actions": 81.5,
+     "delta_pct": 117.26618705035969
+    },
+    {
+     "game": "re86",
+     "arm_actions": 231,
+     "baseline_mean_actions": 148.0,
+     "delta_actions": 83.0,
+     "delta_pct": 56.081081081081074
+    },
+    {
+     "game": "s5i5",
+     "arm_actions": 43,
+     "baseline_mean_actions": 78.5,
+     "delta_actions": -35.5,
+     "delta_pct": -45.22292993630573
+    },
+    {
+     "game": "sb26",
+     "arm_actions": 80,
+     "baseline_mean_actions": 160.5,
+     "delta_actions": -80.5,
+     "delta_pct": -50.155763239875384
+    },
+    {
+     "game": "sc25",
+     "arm_actions": 394,
+     "baseline_mean_actions": 203.0,
+     "delta_actions": 191.0,
+     "delta_pct": 94.08866995073892
+    },
+    {
+     "game": "sk48",
+     "arm_actions": 161,
+     "baseline_mean_actions": 363.5,
+     "delta_actions": -202.5,
+     "delta_pct": -55.70839064649243
+    },
+    {
+     "game": "sp80",
+     "arm_actions": 241,
+     "baseline_mean_actions": 200.0,
+     "delta_actions": 41.0,
+     "delta_pct": 20.500000000000007
+    },
+    {
+     "game": "su15",
+     "arm_actions": 266,
+     "baseline_mean_actions": 172.0,
+     "delta_actions": 94.0,
+     "delta_pct": 54.65116279069768
+    },
+    {
+     "game": "tn36",
+     "arm_actions": 52,
+     "baseline_mean_actions": 156.5,
+     "delta_actions": -104.5,
+     "delta_pct": -66.77316293929712
+    },
+    {
+     "game": "tr87",
+     "arm_actions": 111,
+     "baseline_mean_actions": 220.0,
+     "delta_actions": -109.0,
+     "delta_pct": -49.54545454545455
+    },
+    {
+     "game": "tu93",
+     "arm_actions": 94,
+     "baseline_mean_actions": 162.0,
+     "delta_actions": -68.0,
+     "delta_pct": -41.9753086419753
+    },
+    {
+     "game": "vc33",
+     "arm_actions": 360,
+     "baseline_mean_actions": 55.0,
+     "delta_actions": 305.0,
+     "delta_pct": 554.5454545454546
+    },
+    {
+     "game": "wa30",
+     "arm_actions": 393,
+     "baseline_mean_actions": 600.5,
+     "delta_actions": -207.5,
+     "delta_pct": -34.55453788509575
+    }
+   ]
+  },
+  "note": "tokens are generated tokens (uncached_input_tokens is 0 on this rail); wall clock is final_wallclock_seconds per game"
+ },
+ "M0": {
+  "primary": true,
+  "definition": "invisible_actions / executed_actions (prereg \u00a74 M0)",
+  "executed_actions": 5852,
+  "executed_actions_from_canary": 5852,
+  "executed_actions_from_benchmark": 5852,
+  "invisible_actions": 0,
+  "multi_frame_actions": 324,
+  "invisible_rate": 0.0,
+  "multi_frame_rate": 0.05536568694463431,
+  "event_line_invisible": 0,
+  "event_line_multi": 324,
+  "event_lines_consistent_with_canary": true,
+  "log_truncation_suspected": false,
+  "offline_audit_expectation": {
+   "source": "F:\\kaggle\\arc-prize-2026\\runs\\animation\\frame_audit.json",
+   "games_multi_frame": 17,
+   "games_type1": 4,
+   "actions": 11104,
+   "invisible": 401,
+   "invisible_pct_of_actions": 3.6,
+   "multi_frame_pct": 23.2,
+   "registered": "nonzero on ft09/cd82/sc25/ls20, ~0 elsewhere (prereg \u00a74 M0)"
+  },
+  "expectation_misses": [
+   "cd82",
+   "ft09",
+   "ls20",
+   "sc25"
+  ],
+  "expectation_surprises": [],
+  "expectation_check": "DEVIATION (see misses/surprises)",
+  "per_game": [
+   {
+    "game": "ar25",
+    "audit_type": "single",
+    "executed_actions": 258,
+    "multi_frame_actions": 0,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.0,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 0.0,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 531
+   },
+   {
+    "game": "bp35",
+    "audit_type": "type2",
+    "executed_actions": 184,
+    "multi_frame_actions": 23,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.125,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 100.0,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 458
+   },
+   {
+    "game": "cd82",
+    "audit_type": "type1",
+    "executed_actions": 195,
+    "multi_frame_actions": 0,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.0,
+    "expectation": "nonzero",
+    "expectation_status": "MISS (type-1 game returned 0 invisible)",
+    "audit_invisible_pct_combined": 3.8,
+    "audit_multi_frame_pct_combined": 18.4,
+    "audit_invisible_pct_recorded": 3.6,
+    "audit_invisible_combined": 20,
+    "audit_actions_combined": 522
+   },
+   {
+    "game": "cn04",
+    "audit_type": "single",
+    "executed_actions": 423,
+    "multi_frame_actions": 0,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.0,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 0.0,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 700
+   },
+   {
+    "game": "dc22",
+    "audit_type": "single",
+    "executed_actions": 311,
+    "multi_frame_actions": 0,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.0,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 0.0,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 343
+   },
+   {
+    "game": "ft09",
+    "audit_type": "type1",
+    "executed_actions": 135,
+    "multi_frame_actions": 0,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.0,
+    "expectation": "nonzero",
+    "expectation_status": "MISS (type-1 game returned 0 invisible)",
+    "audit_invisible_pct_combined": 79.8,
+    "audit_multi_frame_pct_combined": 80.7,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 281,
+    "audit_actions_combined": 352
+   },
+   {
+    "game": "g50t",
+    "audit_type": "type2",
+    "executed_actions": 114,
+    "multi_frame_actions": 14,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.12280701754385964,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 52.6,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 346
+   },
+   {
+    "game": "ka59",
+    "audit_type": "type2",
+    "executed_actions": 419,
+    "multi_frame_actions": 52,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.12410501193317422,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 0.8,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 367
+   },
+   {
+    "game": "lf52",
+    "audit_type": "type2",
+    "executed_actions": 96,
+    "multi_frame_actions": 12,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.125,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 100.0,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 325
+   },
+   {
+    "game": "lp85",
+    "audit_type": "type2",
+    "executed_actions": 402,
+    "multi_frame_actions": 50,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.12437810945273632,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 0.3,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 309
+   },
+   {
+    "game": "ls20",
+    "audit_type": "type1",
+    "executed_actions": 421,
+    "multi_frame_actions": 0,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.0,
+    "expectation": "nonzero",
+    "expectation_status": "MISS (type-1 game returned 0 invisible)",
+    "audit_invisible_pct_combined": 3.6,
+    "audit_multi_frame_pct_combined": 6.2,
+    "audit_invisible_pct_recorded": 8.2,
+    "audit_invisible_combined": 19,
+    "audit_actions_combined": 533
+   },
+   {
+    "game": "m0r0",
+    "audit_type": "single",
+    "executed_actions": 317,
+    "multi_frame_actions": 0,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.0,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 0.0,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 354
+   },
+   {
+    "game": "r11l",
+    "audit_type": "type2",
+    "executed_actions": 151,
+    "multi_frame_actions": 18,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.11920529801324503,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 74.5,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 330
+   },
+   {
+    "game": "re86",
+    "audit_type": "single",
+    "executed_actions": 231,
+    "multi_frame_actions": 0,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.0,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 0.0,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 700
+   },
+   {
+    "game": "s5i5",
+    "audit_type": "single",
+    "executed_actions": 43,
+    "multi_frame_actions": 0,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.0,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 0.0,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 360
+   },
+   {
+    "game": "sb26",
+    "audit_type": "type2",
+    "executed_actions": 80,
+    "multi_frame_actions": 10,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.125,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 35.9,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 482
+   },
+   {
+    "game": "sc25",
+    "audit_type": "type1",
+    "executed_actions": 394,
+    "multi_frame_actions": 0,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.0,
+    "expectation": "nonzero",
+    "expectation_status": "MISS (type-1 game returned 0 invisible)",
+    "audit_invisible_pct_combined": 18.9,
+    "audit_multi_frame_pct_combined": 21.3,
+    "audit_invisible_pct_recorded": 18.8,
+    "audit_invisible_combined": 81,
+    "audit_actions_combined": 428
+   },
+   {
+    "game": "sk48",
+    "audit_type": "type2",
+    "executed_actions": 161,
+    "multi_frame_actions": 20,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.12422360248447205,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 45.2,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 511
+   },
+   {
+    "game": "sp80",
+    "audit_type": "type2",
+    "executed_actions": 241,
+    "multi_frame_actions": 30,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.12448132780082988,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 8.0,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 635
+   },
+   {
+    "game": "su15",
+    "audit_type": "type2",
+    "executed_actions": 266,
+    "multi_frame_actions": 33,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.12406015037593984,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 51.1,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 376
+   },
+   {
+    "game": "tn36",
+    "audit_type": "type2",
+    "executed_actions": 52,
+    "multi_frame_actions": 6,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.11538461538461539,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 5.4,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 355
+   },
+   {
+    "game": "tr87",
+    "audit_type": "single",
+    "executed_actions": 111,
+    "multi_frame_actions": 0,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.0,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 0.0,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 395
+   },
+   {
+    "game": "tu93",
+    "audit_type": "type2",
+    "executed_actions": 94,
+    "multi_frame_actions": 11,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.11702127659574468,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 52.2,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 358
+   },
+   {
+    "game": "vc33",
+    "audit_type": "type2",
+    "executed_actions": 360,
+    "multi_frame_actions": 45,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.125,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 0.3,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 334
+   },
+   {
+    "game": "wa30",
+    "audit_type": "single",
+    "executed_actions": 393,
+    "multi_frame_actions": 0,
+    "invisible_actions": 0,
+    "invisible_rate": 0.0,
+    "multi_frame_rate": 0.0,
+    "expectation": "~0",
+    "expectation_status": "MATCH",
+    "audit_invisible_pct_combined": 0.0,
+    "audit_multi_frame_pct_combined": 0.0,
+    "audit_invisible_pct_recorded": 0.0,
+    "audit_invisible_combined": 0,
+    "audit_actions_combined": 700
+   }
+  ]
+ },
+ "M1": {
+  "descriptive_only": true,
+  "screenable": false,
+  "screenable_statement": "NOT SCREENABLE (SCREEN_PROTOCOL \u00a71 P2)",
+  "verdict": "uninformative in both directions",
+  "verdict_note": "prereg \u00a74.1.6 / SCREEN_PROTOCOL \u00a74.6: power at m=2 is far below 50%; this run is an exploratory mechanism probe, not a screen. No PASS may be reported as non-harm; no FAIL may be reported as harm. The ONLY legal M1 verdict string is 'uninformative in both directions'.",
+  "family": "duck-harness-kaggle-continuation-v1",
+  "m": 2,
+  "baselines": [
+   {
+    "path": "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\w0_eval_s1\\benchmark.json",
+    "label": "duck-harness-kaggle-continuation-v1",
+    "label_matches_family": true,
+    "lc_total": 16
+   },
+   {
+    "path": "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\w0_cont_eval\\benchmark.json",
+    "label": "duck-harness-kaggle-continuation-v1",
+    "label_matches_family": true,
+    "lc_total": 10
+   }
+  ],
+  "all_baseline_labels_match": true,
+  "seal_arithmetic": {
+   "m": 2,
+   "C_m": 2.1,
+   "sigma_hat": 0.14174,
+   "df": 6,
+   "pooled_families": {
+    "duck-harness-kaggle-warpack-v1": {
+     "SS": 0.071467,
+     "df": 2
+    },
+    "duck-harness-kaggle": {
+     "SS": 0.007467,
+     "df": 2
+    },
+    "duck-harness-kaggle-continuation-v1": {
+     "SS": 0.0288,
+     "df": 1
+    },
+    "duck-harness-kaggle-sentinel-v2": {
+     "SS": 0.0128,
+     "df": 1
+    }
+   },
+   "k3pp_line_advisory": -0.29765400000000003,
+   "power80_floor_lc_per_game": 0.4437518365205905,
+   "power80_floor_levels": 11.093795913014763,
+   "n_games": 25,
+   "advisory_label": "ADVISORY ONLY -- C(1) and C(2) are listed in SCREEN_PROTOCOL \u00a72 'for advisory arithmetic only'; C(2) was never measured (interpolated between m=1 2.0% and m=3 4.4% type-I). Not a gate.",
+   "checks": {
+    "sigma_rederived": 0.14174,
+    "sigma_matches_sealed": true,
+    "df_rederived": 6,
+    "df_matches_sealed": true,
+    "k3pp_line_rederived": -0.2977,
+    "k3pp_matches_sealed": true,
+    "floor_rederived": 0.4438,
+    "floor_matches_sealed": false,
+    "levels_rederived": 11.09,
+    "levels_matches_sealed": true
+   },
+   "seal_arithmetic_match": false
+  },
+  "n_games_paired": 25,
+  "game_set_identical": true,
+  "computed": true,
+  "arm_lc_total": 17,
+  "baseline_lc_totals": [
+   16,
+   10
+  ],
+  "baseline_family_mean_levels": 13.0,
+  "mean_dlc": 0.16,
+  "sd_games": 0.8504900548115383,
+  "wins": 9,
+  "losses": 6,
+  "nonzero_games": 15,
+  "signflip_p_exact_two_sided": 0.421142578125,
+  "signflip_note": "descriptive significance only (SCREEN_PROTOCOL \u00a73: not a gate)",
+  "vs_advisory_k3pp_line": {
+   "line": -0.29765400000000003,
+   "mean_dlc_above_line": true,
+   "label": "ADVISORY ONLY -- may not be reported as PASS or FAIL"
+  },
+  "per_game": [
+   {
+    "game": "ar25",
+    "arm_lc": 0,
+    "baseline_lcs": [
+     1,
+     0
+    ],
+    "baseline_mean_lc": 0.5,
+    "dlc": -0.5
+   },
+   {
+    "game": "bp35",
+    "arm_lc": 0,
+    "baseline_lcs": [
+     1,
+     1
+    ],
+    "baseline_mean_lc": 1.0,
+    "dlc": -1.0
+   },
+   {
+    "game": "cd82",
+    "arm_lc": 0,
+    "baseline_lcs": [
+     0,
+     0
+    ],
+    "baseline_mean_lc": 0.0,
+    "dlc": 0.0
+   },
+   {
+    "game": "cn04",
+    "arm_lc": 0,
+    "baseline_lcs": [
+     0,
+     0
+    ],
+    "baseline_mean_lc": 0.0,
+    "dlc": 0.0
+   },
+   {
+    "game": "dc22",
+    "arm_lc": 0,
+    "baseline_lcs": [
+     0,
+     0
+    ],
+    "baseline_mean_lc": 0.0,
+    "dlc": 0.0
+   },
+   {
+    "game": "ft09",
+    "arm_lc": 1,
+    "baseline_lcs": [
+     2,
+     0
+    ],
+    "baseline_mean_lc": 1.0,
+    "dlc": 0.0
+   },
+   {
+    "game": "g50t",
+    "arm_lc": 1,
+    "baseline_lcs": [
+     0,
+     0
+    ],
+    "baseline_mean_lc": 0.0,
+    "dlc": 1.0
+   },
+   {
+    "game": "ka59",
+    "arm_lc": 0,
+    "baseline_lcs": [
+     1,
+     0
+    ],
+    "baseline_mean_lc": 0.5,
+    "dlc": -0.5
+   },
+   {
+    "game": "lf52",
+    "arm_lc": 0,
+    "baseline_lcs": [
+     1,
+     1
+    ],
+    "baseline_mean_lc": 1.0,
+    "dlc": -1.0
+   },
+   {
+    "game": "lp85",
+    "arm_lc": 1,
+    "baseline_lcs": [
+     1,
+     1
+    ],
+    "baseline_mean_lc": 1.0,
+    "dlc": 0.0
+   },
+   {
+    "game": "ls20",
+    "arm_lc": 1,
+    "baseline_lcs": [
+     0,
+     0
+    ],
+    "baseline_mean_lc": 0.0,
+    "dlc": 1.0
+   },
+   {
+    "game": "m0r0",
+    "arm_lc": 1,
+    "baseline_lcs": [
+     0,
+     0
+    ],
+    "baseline_mean_lc": 0.0,
+    "dlc": 1.0
+   },
+   {
+    "game": "r11l",
+    "arm_lc": 2,
+    "baseline_lcs": [
+     1,
+     1
+    ],
+    "baseline_mean_lc": 1.0,
+    "dlc": 1.0
+   },
+   {
+    "game": "re86",
+    "arm_lc": 1,
+    "baseline_lcs": [
+     1,
+     1
+    ],
+    "baseline_mean_lc": 1.0,
+    "dlc": 0.0
+   },
+   {
+    "game": "s5i5",
+    "arm_lc": 1,
+    "baseline_lcs": [
+     0,
+     0
+    ],
+    "baseline_mean_lc": 0.0,
+    "dlc": 1.0
+   },
+   {
+    "game": "sb26",
+    "arm_lc": 1,
+    "baseline_lcs": [
+     1,
+     1
+    ],
+    "baseline_mean_lc": 1.0,
+    "dlc": 0.0
+   },
+   {
+    "game": "sc25",
+    "arm_lc": 0,
+    "baseline_lcs": [
+     0,
+     0
+    ],
+    "baseline_mean_lc": 0.0,
+    "dlc": 0.0
+   },
+   {
+    "game": "sk48",
+    "arm_lc": 0,
+    "baseline_lcs": [
+     0,
+     0
+    ],
+    "baseline_mean_lc": 0.0,
+    "dlc": 0.0
+   },
+   {
+    "game": "sp80",
+    "arm_lc": 1,
+    "baseline_lcs": [
+     1,
+     0
+    ],
+    "baseline_mean_lc": 0.5,
+    "dlc": 0.5
+   },
+   {
+    "game": "su15",
+    "arm_lc": 2,
+    "baseline_lcs": [
+     1,
+     1
+    ],
+    "baseline_mean_lc": 1.0,
+    "dlc": 1.0
+   },
+   {
+    "game": "tn36",
+    "arm_lc": 0,
+    "baseline_lcs": [
+     0,
+     1
+    ],
+    "baseline_mean_lc": 0.5,
+    "dlc": -0.5
+   },
+   {
+    "game": "tr87",
+    "arm_lc": 1,
+    "baseline_lcs": [
+     0,
+     0
+    ],
+    "baseline_mean_lc": 0.0,
+    "dlc": 1.0
+   },
+   {
+    "game": "tu93",
+    "arm_lc": 1,
+    "baseline_lcs": [
+     2,
+     0
+    ],
+    "baseline_mean_lc": 1.0,
+    "dlc": 0.0
+   },
+   {
+    "game": "vc33",
+    "arm_lc": 0,
+    "baseline_lcs": [
+     2,
+     2
+    ],
+    "baseline_mean_lc": 2.0,
+    "dlc": -2.0
+   },
+   {
+    "game": "wa30",
+    "arm_lc": 2,
+    "baseline_lcs": [
+     0,
+     0
+    ],
+    "baseline_mean_lc": 0.0,
+    "dlc": 2.0
+   }
+  ],
+  "family_ss_recheck": {
+   "per_game_means": [
+    0.64,
+    0.4
+   ],
+   "ss": 0.0288,
+   "df": 1,
+   "sealed_ss": 0.0288,
+   "matches": true
+  }
+ },
+ "M3": {
+  "descriptive_only": true,
+  "definition": "action i counts as a repeated identical no-op iff board_changed is False AND action_display == action_display[i-1]; read from the vanilla harness per-game viewer events (artifacts/*_events.jsonl, type=action, 1:1 with benchmark history)",
+  "games": [
+   "ft09",
+   "cd82",
+   "sc25",
+   "ls20"
+  ],
+  "arm": {
+   "per_game": {
+    "ft09": {
+     "available": true,
+     "actions": 135,
+     "noop_actions": 72,
+     "noop_rate": 0.5333333333333333,
+     "repeated_identical_noops": 39,
+     "repeated_identical_noop_rate": 0.28888888888888886,
+     "longest_repeat_run": 4
+    },
+    "cd82": {
+     "available": true,
+     "actions": 195,
+     "noop_actions": 109,
+     "noop_rate": 0.558974358974359,
+     "repeated_identical_noops": 47,
+     "repeated_identical_noop_rate": 0.24102564102564103,
+     "longest_repeat_run": 3
+    },
+    "sc25": {
+     "available": true,
+     "actions": 394,
+     "noop_actions": 211,
+     "noop_rate": 0.5355329949238579,
+     "repeated_identical_noops": 98,
+     "repeated_identical_noop_rate": 0.24873096446700507,
+     "longest_repeat_run": 3
+    },
+    "ls20": {
+     "available": true,
+     "actions": 421,
+     "noop_actions": 229,
+     "noop_rate": 0.5439429928741093,
+     "repeated_identical_noops": 126,
+     "repeated_identical_noop_rate": 0.2992874109263658,
+     "longest_repeat_run": 5
+    }
+   },
+   "games_available": 4,
+   "actions": 1145,
+   "repeated_identical_noops": 310,
+   "noop_actions": 621,
+   "repeated_identical_noop_rate": 0.27074235807860264,
+   "noop_rate": 0.5423580786026201
+  },
+  "baselines": {
+   "w0_eval_s1": {
+    "per_game": {
+     "ft09": {
+      "available": true,
+      "actions": 39,
+      "noop_actions": 8,
+      "noop_rate": 0.20512820512820512,
+      "repeated_identical_noops": 0,
+      "repeated_identical_noop_rate": 0.0,
+      "longest_repeat_run": 0
+     },
+     "cd82": {
+      "available": true,
+      "actions": 144,
+      "noop_actions": 22,
+      "noop_rate": 0.1527777777777778,
+      "repeated_identical_noops": 1,
+      "repeated_identical_noop_rate": 0.006944444444444444,
+      "longest_repeat_run": 1
+     },
+     "sc25": {
+      "available": true,
+      "actions": 143,
+      "noop_actions": 13,
+      "noop_rate": 0.09090909090909091,
+      "repeated_identical_noops": 5,
+      "repeated_identical_noop_rate": 0.03496503496503497,
+      "longest_repeat_run": 1
+     },
+     "ls20": {
+      "available": true,
+      "actions": 19,
+      "noop_actions": 0,
+      "noop_rate": 0.0,
+      "repeated_identical_noops": 0,
+      "repeated_identical_noop_rate": 0.0,
+      "longest_repeat_run": 0
+     }
+    },
+    "games_available": 4,
+    "actions": 345,
+    "repeated_identical_noops": 6,
+    "noop_actions": 43,
+    "repeated_identical_noop_rate": 0.017391304347826087,
+    "noop_rate": 0.1246376811594203
+   },
+   "w0_cont_eval": {
+    "per_game": {
+     "ft09": {
+      "available": true,
+      "actions": 104,
+      "noop_actions": 9,
+      "noop_rate": 0.08653846153846154,
+      "repeated_identical_noops": 0,
+      "repeated_identical_noop_rate": 0.0,
+      "longest_repeat_run": 0
+     },
+     "cd82": {
+      "available": true,
+      "actions": 204,
+      "noop_actions": 47,
+      "noop_rate": 0.23039215686274508,
+      "repeated_identical_noops": 25,
+      "repeated_identical_noop_rate": 0.12254901960784313,
+      "longest_repeat_run": 1
+     },
+     "sc25": {
+      "available": true,
+      "actions": 263,
+      "noop_actions": 60,
+      "noop_rate": 0.22813688212927757,
+      "repeated_identical_noops": 36,
+      "repeated_identical_noop_rate": 0.13688212927756654,
+      "longest_repeat_run": 4
+     },
+     "ls20": {
+      "available": true,
+      "actions": 154,
+      "noop_actions": 3,
+      "noop_rate": 0.01948051948051948,
+      "repeated_identical_noops": 3,
+      "repeated_identical_noop_rate": 0.01948051948051948,
+      "longest_repeat_run": 2
+     }
+    },
+    "games_available": 4,
+    "actions": 725,
+    "repeated_identical_noops": 64,
+    "noop_actions": 119,
+    "repeated_identical_noop_rate": 0.08827586206896551,
+    "noop_rate": 0.16413793103448276
+   }
+  },
+  "baseline_family_pooled": {
+   "actions": 1070,
+   "repeated_identical_noops": 70,
+   "repeated_identical_noop_rate": 0.06542056074766354
+  },
+  "arm_over_family": 4.138490330630069
+ },
+ "P1": [
+  {
+   "run": "ARM c_zero_invisible",
+   "available": true,
+   "continuation_v1_banner": true,
+   "continuation_banner_evidence": "continuation v1: game-over-continuation ACTIVE (2 modules patched)",
+   "forbidden_tokens_found": {},
+   "status": "PASS",
+   "rule": "prereg \u00a74.1.1: the arm carries the continuation-v1 banner PLUS the animation banner, and NO warpack: / LEDGER / SENTINEL / 'COMPACTION ' lines. The warpack band is ILLEGAL as a control here (runs/sealed/r17_thresholds.json \u2192 thresholds.control_band)."
+  },
+  {
+   "run": "baseline w0_eval_s1",
+   "available": true,
+   "continuation_v1_banner": true,
+   "continuation_banner_evidence": "continuation v1: game-over-continuation ACTIVE (2 modules patched)",
+   "forbidden_tokens_found": {},
+   "status": "PASS",
+   "rule": "prereg \u00a74.1.1: the arm carries the continuation-v1 banner PLUS the animation banner, and NO warpack: / LEDGER / SENTINEL / 'COMPACTION ' lines. The warpack band is ILLEGAL as a control here (runs/sealed/r17_thresholds.json \u2192 thresholds.control_band)."
+  },
+  {
+   "run": "baseline w0_cont_eval",
+   "available": true,
+   "continuation_v1_banner": true,
+   "continuation_banner_evidence": "continuation v1: game-over-continuation ACTIVE (2 modules patched)",
+   "forbidden_tokens_found": {},
+   "status": "PASS",
+   "rule": "prereg \u00a74.1.1: the arm carries the continuation-v1 banner PLUS the animation banner, and NO warpack: / LEDGER / SENTINEL / 'COMPACTION ' lines. The warpack band is ILLEGAL as a control here (runs/sealed/r17_thresholds.json \u2192 thresholds.control_band)."
+  }
+ ],
+ "event_lines": 324
+}

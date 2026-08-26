@@ -1,0 +1,22 @@
+{
+  "prereg": "learnings/war_room/q38_graft_prereg_2026-08-21.md (sealed pre-build; verdict same day ~09:20 EDT)",
+  "kernel": "canivel/arc3-q38-graft-eval",
+  "version": 1,
+  "date": "2026-08-21",
+  "mechanism": "ARM 3: the public compound - tennant v21's graft stack (six flags incl. clickmap) on the Q38-xhigh engine - carried on OUR layout-tolerant v4 lineage with v21's deltas lifted verbatim from the sha-pinned pull (71f0b1a8e1e5ab7b); v21's own vehicle REJECTED pre-build (hardcoded old mount path; 4-game dup-gate commit run firing the transfer store instead of a 25-game eval).",
+  "sealed_reading_rule": "PRIMARY lc_total vs n=1 comparator (yesterday's field-floor seed lc 28): HARM <= 23, NULL 24-32, SIGNAL >= 33 (1-sigma screens, diff-SD 5.011, type-I ~16%/side DECLARED). Head gate separate: certified AND lc >= 28. Two caveats BOUND PRE-READ: vehicle difference AND bundle generation (share-fork = June-30-gen harness vs the comparator's 08-07 anim harness).",
+  "measured": {
+    "certification": "PASSED (6/6 flags incl clickmap armed; searchmap absent; served Qwen/Qwen3.8-27B-FP8; no effort pin; n=25)",
+    "lc_total": 18,
+    "mean_score": 3.217,
+    "total_actions": 1251,
+    "games_won": 0,
+    "comparator": {
+      "lc": 28,
+      "mean_score": 6.173,
+      "actions": 1639
+    },
+    "head_gate_lc28": false
+  },
+  "why_informative": "A certified HARM under a screen band - but the pre-bound caveats make it a CONFOUNDED harm, not a mechanism kill: the arm ran the June-30-generation harness (share-fork bundle) while the comparator ran the 08-07 harness, plus a vehicle difference. What the row DOES establish, descriptively: lc 18 on Q38-xhigh + June-30 harness + grafts is indistinguishable from the Q3.6 graft-floor runs (18/14) - the engine swap moved levels NOT AT ALL on the old harness generation. That is strong circumstantial support for HARNESS GENERATION carrying the field-floor's lc-28, making Arm A (08-15 bundle isolation) the decisive next experiment. Consequence: head gate failed; the certified field-floor config was re-queued as tonight's head per Arm 0."
+}

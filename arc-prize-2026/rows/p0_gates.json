@@ -1,0 +1,1 @@
+[{"gate": "P0.1", "name": "RESET level-start verified on real sim", "passed": true, "kill": true, "detail": "byte-equal frame"}, {"gate": "P0.3", "name": "guard non-fire reproduced + interior re-key fires", "passed": true, "kill": false, "detail": "0/1630 vs 22 blocks 0 false"}]

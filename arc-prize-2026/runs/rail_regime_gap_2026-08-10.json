@@ -1,0 +1,787 @@
+{
+  "generated": "2026-08-10",
+  "build_rail_pulls": [
+    {
+      "run": "a17_canary_v3",
+      "label": "duck-harness-kaggle-continuation-v1",
+      "n_games": 4,
+      "bench_wall_s": 7930.869831,
+      "sum_game_wall_s": 31699.275075854,
+      "effective_parallelism": 3.9969480966575204,
+      "launch_spread_s": 0.046681,
+      "wall_min": 7920.028427714999,
+      "wall_max": 7930.6557901060005,
+      "n_at_guillotine": 4,
+      "total_actions": 0,
+      "s_per_action": 31699.275075854,
+      "levels_completed": 0,
+      "mean_score": 0.0,
+      "kernel_wall_s": 8273.140891674,
+      "overhead_s": 342.2710606740002
+    },
+    {
+      "run": "a17_v5",
+      "label": "duck-harness-kaggle-continuation-v1-fencedrec-v1",
+      "n_games": 4,
+      "bench_wall_s": 1512.750093,
+      "sum_game_wall_s": 6025.817301638999,
+      "effective_parallelism": 3.9833527887537197,
+      "launch_spread_s": 0.037981,
+      "wall_min": 1500.0134617329998,
+      "wall_max": 1512.6703211539998,
+      "n_at_guillotine": 0,
+      "total_actions": 5,
+      "s_per_action": 1205.1634603277998,
+      "levels_completed": 0,
+      "mean_score": 0.0,
+      "kernel_wall_s": 1867.10121289,
+      "overhead_s": 354.35111988999984
+    },
+    {
+      "run": "a17_v6",
+      "label": "duck-harness-kaggle-continuation-v1-fencedrec-v1",
+      "n_games": 4,
+      "bench_wall_s": 7928.747919,
+      "sum_game_wall_s": 31695.09596603,
+      "effective_parallelism": 3.997490687032397,
+      "launch_spread_s": 0.045475,
+      "wall_min": 7920.011405013,
+      "wall_max": 7928.588584284,
+      "n_at_guillotine": 4,
+      "total_actions": 5,
+      "s_per_action": 6339.019193206,
+      "levels_completed": 0,
+      "mean_score": 0.0,
+      "kernel_wall_s": 8304.169635187,
+      "overhead_s": 375.4217161869992
+    },
+    {
+      "run": "a17_v6_full",
+      "label": "duck-harness-kaggle-continuation-v1-fencedrec-v1",
+      "n_games": 4,
+      "bench_wall_s": 7928.747919,
+      "sum_game_wall_s": 31695.09596603,
+      "effective_parallelism": 3.997490687032397,
+      "launch_spread_s": 0.045475,
+      "wall_min": 7920.011405013,
+      "wall_max": 7928.588584284,
+      "n_at_guillotine": 4,
+      "total_actions": 5,
+      "s_per_action": 6339.019193206,
+      "levels_completed": 0,
+      "mean_score": 0.0,
+      "kernel_wall_s": 8304.169635187,
+      "overhead_s": 375.4217161869992
+    },
+    {
+      "run": "a17_v7",
+      "label": "duck-harness-kaggle-continuation-v1-fencedrec-v1",
+      "n_games": 4,
+      "bench_wall_s": 7922.957716,
+      "sum_game_wall_s": 31684.471659764,
+      "effective_parallelism": 3.9990711544224022,
+      "launch_spread_s": 0.038917,
+      "wall_min": 7920.019304442001,
+      "wall_max": 7922.839648058999,
+      "n_at_guillotine": 4,
+      "total_actions": 5,
+      "s_per_action": 6336.8943319528,
+      "levels_completed": 0,
+      "mean_score": 0.0,
+      "kernel_wall_s": 8254.6763266,
+      "overhead_s": 331.7186105999999
+    },
+    {
+      "run": "a22_v2_1",
+      "label": "duck-harness-kaggle-compaction-v2.1-continuation-v1",
+      "n_games": 25,
+      "bench_wall_s": 7976.398442,
+      "sum_game_wall_s": 198115.150243644,
+      "effective_parallelism": 24.83766974333452,
+      "launch_spread_s": 0.60997,
+      "wall_min": 7920.395547167,
+      "wall_max": 7976.126339971999,
+      "n_at_guillotine": 25,
+      "total_actions": 3994,
+      "s_per_action": 49.60319234943515,
+      "levels_completed": 13,
+      "mean_score": 2.1691039502888856,
+      "kernel_wall_s": 8537.604959995,
+      "overhead_s": 561.2065179950005
+    },
+    {
+      "run": "compaction_v2",
+      "label": "duck-harness-kaggle-compaction-v2.1-continuation-v1",
+      "n_games": 25,
+      "bench_wall_s": 7976.398442,
+      "sum_game_wall_s": 198115.150243644,
+      "effective_parallelism": 24.83766974333452,
+      "launch_spread_s": 0.60997,
+      "wall_min": 7920.395547167,
+      "wall_max": 7976.126339971999,
+      "n_at_guillotine": 25,
+      "total_actions": 3994,
+      "s_per_action": 49.60319234943515,
+      "levels_completed": 13,
+      "mean_score": 2.1691039502888856,
+      "kernel_wall_s": 8537.604959995,
+      "overhead_s": 561.2065179950005
+    },
+    {
+      "run": "gate_eval_v1",
+      "label": "duck-harness-kaggle",
+      "n_games": 25,
+      "bench_wall_s": 7948.036293,
+      "sum_game_wall_s": 198051.826077692,
+      "effective_parallelism": 24.918334388095378,
+      "launch_spread_s": 0.595331,
+      "wall_min": 7920.504015089,
+      "wall_max": 7947.721378886,
+      "n_at_guillotine": 25,
+      "total_actions": 4757,
+      "s_per_action": 41.63376625555855,
+      "levels_completed": 18,
+      "mean_score": 1.4272778320624877,
+      "kernel_wall_s": 8520.710074633,
+      "overhead_s": 572.6737816329996
+    },
+    {
+      "run": "gate_eval_v2",
+      "label": "duck-harness-kaggle",
+      "n_games": 25,
+      "bench_wall_s": 7947.144512,
+      "sum_game_wall_s": 198084.898023277,
+      "effective_parallelism": 24.92529206234686,
+      "launch_spread_s": 0.624871,
+      "wall_min": 7920.196910987001,
+      "wall_max": 7946.574272283,
+      "n_at_guillotine": 25,
+      "total_actions": 4033,
+      "s_per_action": 49.11601736257798,
+      "levels_completed": 19,
+      "mean_score": 1.9386141398845698,
+      "kernel_wall_s": 8522.619332664,
+      "overhead_s": 575.4748206640006
+    },
+    {
+      "run": "phase1_v5",
+      "label": "duck-harness-kaggle-phase1-v2",
+      "n_games": 25,
+      "bench_wall_s": 7974.106034,
+      "sum_game_wall_s": 198153.332414747,
+      "effective_parallelism": 24.84959838380135,
+      "launch_spread_s": 0.605053,
+      "wall_min": 7920.270966283,
+      "wall_max": 7973.917302747001,
+      "n_at_guillotine": 25,
+      "total_actions": 4418,
+      "s_per_action": 44.851365417552515,
+      "levels_completed": 15,
+      "mean_score": 1.8232896821349964,
+      "kernel_wall_s": 8562.523094145,
+      "overhead_s": 588.4170601450005
+    },
+    {
+      "run": "sched_v1",
+      "label": "duck-harness-kaggle-sched-v1",
+      "n_games": 25,
+      "bench_wall_s": 7973.517585,
+      "sum_game_wall_s": 188887.115987357,
+      "effective_parallelism": 23.68930825997006,
+      "launch_spread_s": 0.620911,
+      "wall_min": 4413.747379917,
+      "wall_max": 7972.95861857,
+      "n_at_guillotine": 21,
+      "total_actions": 4532,
+      "s_per_action": 41.67853397779281,
+      "levels_completed": 17,
+      "mean_score": 1.3137882685048148,
+      "kernel_wall_s": 8527.00421137,
+      "overhead_s": 553.4866263700005
+    },
+    {
+      "run": "sentinel_eval_v1",
+      "label": "duck-harness-kaggle-sentinel-v2",
+      "n_games": 25,
+      "bench_wall_s": 7934.812796,
+      "sum_game_wall_s": 198047.283291083,
+      "effective_parallelism": 24.95928869184162,
+      "launch_spread_s": 0.661368,
+      "wall_min": 7920.230620074999,
+      "wall_max": 7934.385518239,
+      "n_at_guillotine": 25,
+      "total_actions": 4501,
+      "s_per_action": 44.000729458138856,
+      "levels_completed": 12,
+      "mean_score": 0.8544601615121079,
+      "kernel_wall_s": 8515.425559128,
+      "overhead_s": 580.6127631279996
+    },
+    {
+      "run": "sentinel_eval_v2",
+      "label": "duck-harness-kaggle-sentinel-v2",
+      "n_games": 25,
+      "bench_wall_s": 7927.547178,
+      "sum_game_wall_s": 198027.127843942,
+      "effective_parallelism": 24.979621489165485,
+      "launch_spread_s": 0.589797,
+      "wall_min": 7920.428716585,
+      "wall_max": 7926.974793064999,
+      "n_at_guillotine": 25,
+      "total_actions": 4730,
+      "s_per_action": 41.86620038983975,
+      "levels_completed": 16,
+      "mean_score": 2.042188675609845,
+      "kernel_wall_s": 8486.825468285,
+      "overhead_s": 559.2782902850004
+    },
+    {
+      "run": "w0_cont_eval",
+      "label": "duck-harness-kaggle-continuation-v1",
+      "n_games": 25,
+      "bench_wall_s": 7928.536862,
+      "sum_game_wall_s": 198029.613007268,
+      "effective_parallelism": 24.976816839483593,
+      "launch_spread_s": 0.618385,
+      "wall_min": 7920.246192003,
+      "wall_max": 7928.227786526,
+      "n_at_guillotine": 25,
+      "total_actions": 5162,
+      "s_per_action": 38.36296261279892,
+      "levels_completed": 10,
+      "mean_score": 0.9182422639922888,
+      "kernel_wall_s": 8524.668934962,
+      "overhead_s": 596.1320729619993
+    },
+    {
+      "run": "w0_eval_s1",
+      "label": "duck-harness-kaggle-continuation-v1",
+      "n_games": 25,
+      "bench_wall_s": 7943.144823,
+      "sum_game_wall_s": 198054.741043174,
+      "effective_parallelism": 24.93404633259247,
+      "launch_spread_s": 0.566646,
+      "wall_min": 7920.317841969001,
+      "wall_max": 7942.882832005001,
+      "n_at_guillotine": 25,
+      "total_actions": 4290,
+      "s_per_action": 46.166606303770166,
+      "levels_completed": 16,
+      "mean_score": 1.7310784240680095,
+      "kernel_wall_s": 8597.225407942,
+      "overhead_s": 654.0805849420003
+    },
+    {
+      "run": "war_eval_v1",
+      "label": "duck-harness-kaggle-warpack-v1",
+      "n_games": 25,
+      "bench_wall_s": 7940.235152,
+      "sum_game_wall_s": 198068.550509987,
+      "effective_parallelism": 24.944922501457295,
+      "launch_spread_s": 0.607059,
+      "wall_min": 7920.233641599001,
+      "wall_max": 7939.886366981001,
+      "n_at_guillotine": 25,
+      "total_actions": 3638,
+      "s_per_action": 54.444351432101975,
+      "levels_completed": 22,
+      "mean_score": 1.5794115145514749,
+      "kernel_wall_s": 8592.545253308,
+      "overhead_s": 652.3101013080004
+    },
+    {
+      "run": "war_eval_v2",
+      "label": "duck-harness-kaggle-warpack-v1",
+      "n_games": 25,
+      "bench_wall_s": 7948.294132,
+      "sum_game_wall_s": 198056.578052529,
+      "effective_parallelism": 24.918123909776945,
+      "launch_spread_s": 0.657685,
+      "wall_min": 7920.223608229001,
+      "wall_max": 7948.008489531,
+      "n_at_guillotine": 25,
+      "total_actions": 4026,
+      "s_per_action": 49.194381036395676,
+      "levels_completed": 15,
+      "mean_score": 1.6201262231835034,
+      "kernel_wall_s": 8542.266683561,
+      "overhead_s": 593.9725515609998
+    },
+    {
+      "run": "war_eval_v3",
+      "label": "duck-harness-kaggle-warpack-v1",
+      "n_games": 25,
+      "bench_wall_s": 7969.37712,
+      "sum_game_wall_s": 198139.986200544,
+      "effective_parallelism": 24.862669091576883,
+      "launch_spread_s": 0.626469,
+      "wall_min": 7920.170050997999,
+      "wall_max": 7969.155108906,
+      "n_at_guillotine": 25,
+      "total_actions": 3985,
+      "s_per_action": 49.72145199511769,
+      "levels_completed": 13,
+      "mean_score": 1.1619329113158083,
+      "kernel_wall_s": 8548.396878425,
+      "overhead_s": 579.019758424999
+    },
+    {
+      "run": "war_v2_eval_s1",
+      "label": "duck-harness-kaggle-warpack-v1-ledger-v2-ledger+escalation",
+      "n_games": 25,
+      "bench_wall_s": 7980.424443,
+      "sum_game_wall_s": 198163.261817402,
+      "effective_parallelism": 24.83116822078557,
+      "launch_spread_s": 0.588707,
+      "wall_min": 7920.178813677,
+      "wall_max": 7979.868801066001,
+      "n_at_guillotine": 25,
+      "total_actions": 4335,
+      "s_per_action": 45.71240180332226,
+      "levels_completed": 12,
+      "mean_score": 0.8928839149166755,
+      "kernel_wall_s": 8573.137384131,
+      "overhead_s": 592.7129411309998
+    }
+  ],
+  "build_rail_nulls": [
+    {
+      "run": "null10/seed101",
+      "label": "duck-null-seed101",
+      "n_games": 25,
+      "bench_wall_s": 7957.191708,
+      "sum_game_wall_s": 198097.63485871162,
+      "effective_parallelism": 24.895420661984083,
+      "launch_spread_s": 3.082062,
+      "wall_min": 7920.555832508951,
+      "wall_max": 7952.827860777266,
+      "n_at_guillotine": 25,
+      "total_actions": 3325,
+      "s_per_action": 59.578236047732815,
+      "levels_completed": 16,
+      "mean_score": 0.0
+    },
+    {
+      "run": "null10/seed102",
+      "label": "duck-null-seed102",
+      "n_games": 25,
+      "bench_wall_s": 7964.568226,
+      "sum_game_wall_s": 198138.28236388694,
+      "effective_parallelism": 24.877466893569046,
+      "launch_spread_s": 2.477728,
+      "wall_min": 7920.428374978714,
+      "wall_max": 7961.539442656562,
+      "n_at_guillotine": 25,
+      "total_actions": 3552,
+      "s_per_action": 55.78217408893214,
+      "levels_completed": 11,
+      "mean_score": 0.0
+    },
+    {
+      "run": "null10/seed103",
+      "label": "duck-null-seed103",
+      "n_games": 25,
+      "bench_wall_s": 7983.3786,
+      "sum_game_wall_s": 198400.34108348377,
+      "effective_parallelism": 24.8516763420795,
+      "launch_spread_s": 2.838346,
+      "wall_min": 7921.204025771469,
+      "wall_max": 7978.892637792043,
+      "n_at_guillotine": 25,
+      "total_actions": 3128,
+      "s_per_action": 63.427219016459006,
+      "levels_completed": 16,
+      "mean_score": 0.0
+    },
+    {
+      "run": "null10/seed104",
+      "label": "duck-null-seed104",
+      "n_games": 25,
+      "bench_wall_s": 7961.012612,
+      "sum_game_wall_s": 198241.93036817294,
+      "effective_parallelism": 24.90159732561581,
+      "launch_spread_s": 2.55908,
+      "wall_min": 7921.326177849434,
+      "wall_max": 7958.736630642787,
+      "n_at_guillotine": 25,
+      "total_actions": 3510,
+      "s_per_action": 56.47918244107491,
+      "levels_completed": 15,
+      "mean_score": 0.0
+    },
+    {
+      "run": "null10/seed105",
+      "label": "duck-null-seed105",
+      "n_games": 25,
+      "bench_wall_s": 7988.344745,
+      "sum_game_wall_s": 198153.8473435091,
+      "effective_parallelism": 24.805370032075285,
+      "launch_spread_s": 2.668037,
+      "wall_min": 7920.926966969855,
+      "wall_max": 7986.1566734891385,
+      "n_at_guillotine": 25,
+      "total_actions": 3299,
+      "s_per_action": 60.06482186829618,
+      "levels_completed": 16,
+      "mean_score": 0.0
+    },
+    {
+      "run": "null10/seed106",
+      "label": "duck-null-seed106",
+      "n_games": 25,
+      "bench_wall_s": 7964.47463,
+      "sum_game_wall_s": 198523.12466692086,
+      "effective_parallelism": 24.92607910622736,
+      "launch_spread_s": 2.731965,
+      "wall_min": 7922.243313656189,
+      "wall_max": 7962.013924252242,
+      "n_at_guillotine": 25,
+      "total_actions": 3519,
+      "s_per_action": 56.41464184908237,
+      "levels_completed": 15,
+      "mean_score": 0.0
+    },
+    {
+      "run": "null10/seed107",
+      "label": "duck-null-seed107",
+      "n_games": 25,
+      "bench_wall_s": 7965.925478,
+      "sum_game_wall_s": 198399.95329400245,
+      "effective_parallelism": 24.906076995314123,
+      "launch_spread_s": 2.438298,
+      "wall_min": 7922.275315091945,
+      "wall_max": 7964.513097581454,
+      "n_at_guillotine": 25,
+      "total_actions": 3436,
+      "s_per_action": 57.74154636030339,
+      "levels_completed": 14,
+      "mean_score": 0.0
+    },
+    {
+      "run": "null10/seed108",
+      "label": "duck-null-seed108",
+      "n_games": 25,
+      "bench_wall_s": 7963.575321,
+      "sum_game_wall_s": 198216.96428494714,
+      "effective_parallelism": 24.8904488618633,
+      "launch_spread_s": 2.572258,
+      "wall_min": 7921.349635683,
+      "wall_max": 7962.072343801148,
+      "n_at_guillotine": 25,
+      "total_actions": 3587,
+      "s_per_action": 55.25981719680712,
+      "levels_completed": 18,
+      "mean_score": 0.0
+    },
+    {
+      "run": "null10/seed109",
+      "label": "duck-null-seed109",
+      "n_games": 25,
+      "bench_wall_s": 7970.507743,
+      "sum_game_wall_s": 198412.81860074122,
+      "effective_parallelism": 24.8933725426708,
+      "launch_spread_s": 2.961781,
+      "wall_min": 7924.762804526836,
+      "wall_max": 7954.328019729815,
+      "n_at_guillotine": 25,
+      "total_actions": 3842,
+      "s_per_action": 51.64310739217627,
+      "levels_completed": 18,
+      "mean_score": 0.0
+    },
+    {
+      "run": "null10/seed110",
+      "label": "duck-null-seed110",
+      "n_games": 25,
+      "bench_wall_s": 7959.071092,
+      "sum_game_wall_s": 198275.27785114665,
+      "effective_parallelism": 24.9118616430555,
+      "launch_spread_s": 3.179277,
+      "wall_min": 7922.591842803173,
+      "wall_max": 7952.473904099315,
+      "n_at_guillotine": 25,
+      "total_actions": 3684,
+      "s_per_action": 53.820650882504516,
+      "levels_completed": 13,
+      "mean_score": 0.0
+    }
+  ],
+  "build_rail_summary": {
+    "n_runs_25game": 24,
+    "n_kernel_pull_25game": 14,
+    "bench_wall_s": {
+      "min": 7927.547178,
+      "max": 7988.344745,
+      "mean": 7960.250998708333
+    },
+    "kernel_wall_s_observed": {
+      "min": 1867.10121289,
+      "max": 8597.225407942
+    },
+    "overhead_s": {
+      "min": 553.4866263700005,
+      "max": 654.0805849420003,
+      "mean": 587.1845991817144
+    },
+    "effective_parallelism": {
+      "min": 23.68930825997006,
+      "max": 24.979621489165485
+    },
+    "launch_spread_s_max": 3.179277,
+    "frac_games_at_guillotine": 0.9933333333333333,
+    "s_per_action": {
+      "min": 38.36296261279892,
+      "max": 63.427219016459006,
+      "mean": 50.673606245300256
+    },
+    "actions_per_game": {
+      "min": 125.12,
+      "max": 206.48,
+      "mean": 158.795
+    }
+  },
+  "wave_arithmetic": {
+    "concurrency": 28,
+    "guillotine_s": 7920.0,
+    "deploy_target_max_runtime_s": 32400.0,
+    "build": {
+      "games": 25,
+      "waves": 1,
+      "projected_bench_s": 7920.0,
+      "steady_children": 25
+    },
+    "scored": {
+      "games": 110,
+      "waves": 4,
+      "projected_bench_s": 31680.0,
+      "projected_bench_h": 8.8,
+      "steady_children": 28,
+      "last_wave_children": 26
+    },
+    "scored_total_with_observed_overhead_s": 32267.184599181714,
+    "scored_margin_vs_target_s": 132.81540081828643,
+    "scored_margin_if_gateway_wait_maxed_s": -467.1845991817099,
+    "wall_ratio_scored_over_build": 4.0,
+    "concurrency_ratio_scored_over_build": 1.12
+  },
+  "vllm_saturation_25game": {
+    "20": {
+      "n": 70,
+      "median_total_tok_s": 264.4,
+      "median_per_req_tok_s": 13.219999999999999
+    },
+    "21": {
+      "n": 163,
+      "median_total_tok_s": 242.8,
+      "median_per_req_tok_s": 11.561904761904762
+    },
+    "22": {
+      "n": 242,
+      "median_total_tok_s": 248.64999999999998,
+      "median_per_req_tok_s": 11.302272727272726
+    },
+    "23": {
+      "n": 737,
+      "median_total_tok_s": 235.2,
+      "median_per_req_tok_s": 10.226086956521739
+    },
+    "24": {
+      "n": 2399,
+      "median_total_tok_s": 220.6,
+      "median_per_req_tok_s": 9.191666666666666
+    },
+    "25": {
+      "n": 5859,
+      "median_total_tok_s": 207.8,
+      "median_per_req_tok_s": 8.312000000000001
+    }
+  },
+  "vllm_queueing": {
+    "war_eval_v1": {
+      "n": 790,
+      "frac_waiting_gt0": 0.05443037974683544,
+      "max_waiting": 3
+    },
+    "war_eval_v2": {
+      "n": 791,
+      "frac_waiting_gt0": 0.045512010113780026,
+      "max_waiting": 2
+    },
+    "war_eval_v3": {
+      "n": 790,
+      "frac_waiting_gt0": 0.053164556962025315,
+      "max_waiting": 3
+    },
+    "a22_v2_1": {
+      "n": 789,
+      "frac_waiting_gt0": 0.034220532319391636,
+      "max_waiting": 4
+    },
+    "phase1_v5": {
+      "n": 791,
+      "frac_waiting_gt0": 0.012642225031605562,
+      "max_waiting": 1
+    },
+    "gate_eval_v1": {
+      "n": 789,
+      "frac_waiting_gt0": 0.03929024081115336,
+      "max_waiting": 4
+    },
+    "sched_v1": {
+      "n": 780,
+      "frac_waiting_gt0": 0.03717948717948718,
+      "max_waiting": 3
+    },
+    "w0_eval_s1": {
+      "n": 790,
+      "frac_waiting_gt0": 0.04556962025316456,
+      "max_waiting": 3
+    },
+    "w0_cont_eval": {
+      "n": 791,
+      "frac_waiting_gt0": 0.05436156763590392,
+      "max_waiting": 4
+    },
+    "sentinel_eval_v1": {
+      "n": 790,
+      "frac_waiting_gt0": 0.04810126582278481,
+      "max_waiting": 2
+    },
+    "sentinel_eval_v2": {
+      "n": 788,
+      "frac_waiting_gt0": 0.046954314720812185,
+      "max_waiting": 2
+    },
+    "war_v2_eval_s1": {
+      "n": 791,
+      "frac_waiting_gt0": 0.045512010113780026,
+      "max_waiting": 3
+    }
+  },
+  "vllm_kv": {
+    "war_eval_v1": {
+      "median_kv_pct": 75.6,
+      "max_kv_pct": 79.2
+    },
+    "war_eval_v2": {
+      "median_kv_pct": 77.0,
+      "max_kv_pct": 82.0
+    },
+    "war_eval_v3": {
+      "median_kv_pct": 75.7,
+      "max_kv_pct": 80.4
+    },
+    "a22_v2_1": {
+      "median_kv_pct": 66.0,
+      "max_kv_pct": 78.2
+    },
+    "phase1_v5": {
+      "median_kv_pct": 60.0,
+      "max_kv_pct": 70.3
+    },
+    "gate_eval_v1": {
+      "median_kv_pct": 77.5,
+      "max_kv_pct": 81.2
+    },
+    "sched_v1": {
+      "median_kv_pct": 73.4,
+      "max_kv_pct": 81.4
+    },
+    "w0_eval_s1": {
+      "median_kv_pct": 75.8,
+      "max_kv_pct": 81.1
+    },
+    "w0_cont_eval": {
+      "median_kv_pct": 77.1,
+      "max_kv_pct": 82.9
+    },
+    "sentinel_eval_v1": {
+      "median_kv_pct": 75.4,
+      "max_kv_pct": 79.1
+    },
+    "sentinel_eval_v2": {
+      "median_kv_pct": 76.5,
+      "max_kv_pct": 83.5
+    },
+    "war_v2_eval_s1": {
+      "median_kv_pct": 75.6,
+      "max_kv_pct": 83.1
+    }
+  },
+  "saturation_fit": {
+    "region": [
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "loglog_slope_per_req_vs_running": -1.9864810982631669,
+    "interpretation": "slope <= -1 => engine saturated; extra children cost per-child throughput ~1:1 or worse",
+    "per_req_tok_s_at_25": 8.312000000000001,
+    "extrapolated_per_req_tok_s_at_28_fitfit": 6.636435270943675,
+    "extrapolated_per_req_tok_s_at_28_pure_1_over_R": 7.421428571428573,
+    "derating_28_over_25_fit": 0.7984161779287384,
+    "derating_28_over_25_pure": 0.8928571428571429
+  },
+  "turn_economics": {
+    "war_turns_total": 1686,
+    "war_actions_total": 3638,
+    "turns_per_game": 67.44,
+    "actions_per_game": 145.52,
+    "s_per_turn": 117.43772241992883,
+    "s_per_action": 54.42550852116547,
+    "gen_tokens_per_turn": 930.9501779359431,
+    "tycho_lm_calls_per_game": 3500,
+    "lm_call_gap_x": 51.897983392645315,
+    "tycho_answer_tokens_per_call": 24000,
+    "answer_token_gap_x": 25.78011215724951,
+    "tycho_builder_calls_per_game": 5.88,
+    "builder_call_cost_s_at_40_steps": 4697.508896797153,
+    "builder_cost_frac_of_game_budget_at_tycho_cadence": 3.487544483985765,
+    "builder_turn_frac_if_5_turns_per_call": 0.4359430604982206,
+    "builder_turn_frac_if_1_turn_per_call": 0.08718861209964412
+  },
+  "scored_rail": {
+    "n_draws": 27,
+    "mean": 0.9407407407407408,
+    "sd": 0.15246502564714323,
+    "cv": 0.16206912175090027,
+    "min": 0.65,
+    "max": 1.33,
+    "draws_needed_per_arm_alpha05_power80": {
+      "0.05": 145.9614120956039,
+      "0.10": 36.49035302390097,
+      "0.15": 16.217934677289325,
+      "0.25": 5.838456483824157,
+      "0.40": 2.280647063993811
+    },
+    "note": "one draw = one calendar day (daily submit cap); two arms => 2x days"
+  },
+  "information_rate": {
+    "build_rail_game_obs_per_week": [
+      300,
+      325
+    ],
+    "build_rail_scalars_per_run": 25,
+    "scored_rail_scalars_per_week": 7,
+    "ratio_obs_per_week": 42.857142857142854
+  },
+  "cross_rail_score": {
+    "build_rail_mean_per_game_score_kernel_pulls": 1.5458215651653109,
+    "build_rail_13seed_grand_mean_lb_process_model": 1.593972115811736,
+    "scored_rail_mean_draw": 0.9407407407407408,
+    "ratio_scored_over_build_13seed": 0.5901864476855452,
+    "note": "CONFOUNDED: 25 public offline games vs 110 official gateway games. This is a game-set + rail composite, not a pure rail effect. lb_process_model.py already uses c=0.58 as the difficulty calibration."
+  },
+  "truncation_sensitivity": {
+    "last_wave_games": 26,
+    "fraction_of_official_set": 0.23636363636363636,
+    "observed_scored_mean": 0.9407407407407408,
+    "implied_untruncated_mean_if_last_wave_zeroed": 1.2319223985890653,
+    "c_difficulty_no_truncation": 0.5901864476855452,
+    "c_difficulty_with_full_last_wave_truncation": 0.7728632053024995,
+    "note": "NOT a measurement \u2014 a bound on how much of lb_process_model's c=0.58 could be rail truncation rather than official-set difficulty. Nothing on disk distinguishes the two."
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "agent_src": "notebooks/forge_agent/v38_agent.py",
+  "agent_class": "MyAgent",
+  "n_games": 5,
+  "total_elapsed_s": 1453.0,
+  "overall_score_avg": null,
+  "results": [
+    {
+      "game": "ka59",
+      "elapsed_s": 290.9,
+      "subprocess_exit": 0,
+      "score": null,
+      "levels_completed": null,
+      "n_levels": null,
+      "actions": null,
+      "completed": null,
+      "bfs_solved_levels": 0,
+      "bfs_timeouts": 2,
+      "run_dir": "F:\\kaggle\\arc-prize-2026\\runs\\runs-20260516-034456-v38-seedtest-ka59"
+    },
+    {
+      "game": "tr87",
+      "elapsed_s": 290.7,
+      "subprocess_exit": 0,
+      "score": null,
+      "levels_completed": null,
+      "n_levels": null,
+      "actions": null,
+      "completed": null,
+      "bfs_solved_levels": 0,
+      "bfs_timeouts": 2,
+      "run_dir": "F:\\kaggle\\arc-prize-2026\\runs\\runs-20260516-034947-v38-seedtest-tr87"
+    },
+    {
+      "game": "bp35",
+      "elapsed_s": 290.6,
+      "subprocess_exit": 0,
+      "score": null,
+      "levels_completed": null,
+      "n_levels": null,
+      "actions": null,
+      "completed": null,
+      "bfs_solved_levels": 0,
+      "bfs_timeouts": 2,
+      "run_dir": "F:\\kaggle\\arc-prize-2026\\runs\\runs-20260516-035437-v38-seedtest-bp35"
+    },
+    {
+      "game": "ft09",
+      "elapsed_s": 290.5,
+      "subprocess_exit": 0,
+      "score": null,
+      "levels_completed": null,
+      "n_levels": null,
+      "actions": null,
+      "completed": null,
+      "bfs_solved_levels": 1,
+      "bfs_timeouts": 1,
+      "run_dir": "F:\\kaggle\\arc-prize-2026\\runs\\runs-20260516-035928-v38-seedtest-ft09"
+    },
+    {
+      "game": "su15",
+      "elapsed_s": 290.4,
+      "subprocess_exit": 0,
+      "score": null,
+      "levels_completed": null,
+      "n_levels": null,
+      "actions": null,
+      "completed": null,
+      "bfs_solved_levels": 0,
+      "bfs_timeouts": 1,
+      "run_dir": "F:\\kaggle\\arc-prize-2026\\runs\\runs-20260516-040418-v38-seedtest-su15"
+    }
+  ]
+}

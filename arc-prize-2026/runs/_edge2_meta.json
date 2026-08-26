@@ -1,0 +1,22 @@
+{
+ "mechanism": "EDGE-2 forced the agent's world-model updates into the VISIBLE assistant channel via a ToolAgent system-prompt overlay (Q38-strengthened per forum 734843), on the certified 08-15 private base. Rationale was exp-17: the harness parses world-model state only from visible text while 97.64% of the model's output routes to hidden reasoning. Forcing the channel HARMED capability: lc_total 20 vs base 30 (delta -10) at a COMPARABLE action count (1555 vs 1463, ratio 1.063) -- so this is levels-harm, not a token-slowdown trade, the same shape as edge-1's context raise. The visible/hidden split measured in exp-17 is real, but the hidden reasoning channel appears LOAD-BEARING: constraining it degrades play rather than delivering retained state.",
+ "summary": "Certified read (arm=edge2; contract=True, ctx 32768, mml 65536, bundle model-20260815-q38-p1, served Qwen3.8-27B-FP8, n=25). VERDICT HARM: delta -10 vs sealed bands +-5, = -3.57 sigma against the pooled within-config seed sd of 2.80 measured the same day (exp 35), so it clears the noise floor and is not a draw artifact. Secondary non-inferential: mean_score 3.140 vs floor 6.173; games won 0. Cross-arm negative controls all REFUSE correctly (edge2 artifact as base -> INFRA DEATH exit 2; as edge1 -> refuse; base artifact as edge2 -> refuse), satisfying the exp-34 rule that identity be asserted positively AND negatively. Numbers independently recomputed outside the scorer and agree exactly.",
+ "lesson": "The private-arm sweep is now complete and unanimous: base = floor-equivalent (lc 30 vs field 28), edge-1 context-raise = HARM (18), edge-2 visible-capture contract = HARM (20). All three of the field's public defaults (yield-60, ctx-32768, unconstrained reasoning channel) are LOCALLY OPTIMAL among everything we have tested. Stop proposing single-knob perturbations of the field config: three independent edges in three days all read <= NULL. Mechanistically, the exp-17 'delivery-without-use' question gains a third option -- the hidden channel is not a leak to be plugged but working memory the model needs; capture-side fixes trade reasoning quality for observability and lose.",
+ "verdict_class": "HARM (certified, decisive: -3.57 sigma vs measured seed noise)",
+ "numbers": {
+  "lc": 20,
+  "base_lc": 30,
+  "delta": -10,
+  "actions": 1555,
+  "base_actions": 1463,
+  "actions_ratio": 1.063,
+  "mean_score": 3.14,
+  "floor_score": 6.173,
+  "games": 25,
+  "won": 0,
+  "sigma_vs_pooled_sd": -3.57
+ },
+ "prereg": "learnings/war_room/edge2_prereg_2026-08-22.md (sealed pre-push; P(SIGNAL) declared ~25%)",
+ "head_consequence": "The pre-ruled mechanical gate's NULL/HARM branch fired: tonight's head is the Arm 0 field-floor redraw (draw 3), not edge-2. Queue head set and verified ALLOW 4/4 under the daemon's exact uv-run preflight invocation.",
+ "expectation_met": "NO -- prereg expected NULL-to-SIGNAL at P(SIGNAL)~25%; outcome was below the NULL floor."
+}

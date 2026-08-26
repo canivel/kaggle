@@ -1,0 +1,37 @@
+{
+  "mechanism": "The stock duck harness demands a revised world model every turn and never checks it against the board, so an induced law survives long after the game stops obeying it. thtennant's duck-v24 graft `lawbook` (18,037 B, shipped 2026-08-24) closes that gap retrospectively-only, and its docstring publishes prequential scores taken on 8 real commit-run game-passes / 647 actions under the real 27B analyzer (probe_worldmodel.py, probe_lawstability.py, probe_objectlaw.py) -- not a random policy. Board-keyed prediction: (board, action) key recurs on 2.6% of actions and agrees with itself 47% on recurrence (reproduces the `deadend` graft's 0.486; retires schema_lite's MemoWorldModel whose 99.47% came from a random policy). Global effect signatures (changed-cell count, palette swaps, bounding box, whole-board translation) all predict at or below base rate; whole-board translation never fires once in 647 actions. Object-level laws gated on consecutive agreeing uses DO carry: run>=2 32.3%/83.7%, run>=3 25.8%/87.4%, run>=5 18.2% coverage at 92.4% precision, self-selecting by game (m0r0 102/148 at 95.1%; tn36 click game near-silent). Same falsification-against-recorded-history mechanism appears independently in three ~99-100% frontier systems (Schema/Impossible Research, arXiv 2605.05138 executable world models, NVIDIA AVO's unproductive-cycle supervisor).",
+  "summary": "Daily community brief 2026-08-25. Decision-grade find: duck-v24's `lawbook` publishes REAL-RAIL negative results that retire two world-model families for our design space at zero cost -- board-keyed memoization (2.6% recurrence / 47% agreement) and global-effect signatures (at-or-below base rate) are dead on 647 real-27B actions; only object-level laws carry (18.2% coverage @ 92.4% precision at run>=5). Named the top-3 mechanism class as REFUTATION AGAINST RECORDED HISTORY on four independent instances. Priced counter-evidence: the graft distributor sits at 1.54/#332 and an independent implementation (darkmatternet causal-guard) at 1.02/#680 -- zero board validation for any graft in the class. Same session: our field-floor config drew 1.92 (new campaign best, rank #273->#146 of 2526), taking the config to n=5 mean 1.5760 sd 0.2713, which INVALIDATES the 1.49 comparator quoted in the 08-24 coordinator ruling. Board: cstl +2.42 on ONE draw to 5.99 (largest single-draw step of the campaign), Lord Han Solo +1.63 to 4.99, Tufa and Jack Cole both DREW-NO-GAIN.",
+  "lesson": "A rival's graft docstring can be the cheapest negative-results source on the campaign: lawbook handed us two refuted world-model families measured on OUR exact rail (real 27B, not a random policy) for the price of one kernel diff -- take the free prior-killers even when the paid mechanism stays unvalidated, and never confuse the two. Corollary held: a config's own high draw is not a capability event (our 1.92 is z~+1.94 on the config's own sd, and the field independently reports the SAME submission scoring 2.11 then 0.89), so re-derive the comparator every morning -- yesterday's ruling shipped with a mean that was already stale.",
+  "brief_path": "learnings/community/brief_2026-08-25.md",
+  "pattern_path": "learnings/community/top3_pattern.md",
+  "board": {
+    "pull_utc": "2026-08-25T10:02:26Z",
+    "rows": 2526,
+    "us_rank": 146,
+    "us_score": 1.92,
+    "us_prev_rank": 273,
+    "us_prev_score": 1.63,
+    "field_floor_config_n": 5,
+    "field_floor_config_mean": 1.576,
+    "field_floor_config_sd": 0.2713,
+    "field_floor_draws": [1.59, 1.58, 1.63, 1.16, 1.92],
+    "top1": {"team": "cstl", "score": 5.99, "delta": 2.42, "subs": 35},
+    "top2": {"team": "Lord Han Solo", "score": 4.99, "delta": 1.63, "subs": 42},
+    "top3": {"team": "Tufa Labs", "score": 4.58, "delta": 0.0, "subs": 117},
+    "gold_line_top13": 2.65,
+    "prize_line_top5": 2.88,
+    "public_ceiling_foysal": 2.23,
+    "gainer_rate": "90/330 = 27.3%"
+  },
+  "artifacts_verified": [
+    "thtennant/arc3-duck-v24 (COMPLETE, 08-24 12:59) diff vs v23 = one flag lawbook:True + 2.7KB rationale",
+    "thtennant/taaf-kaggle-source-share-fork republished 08-24 12:58 -- THIRD republish in 3 days; 20 graft modules incl lawbook.py 18037 B",
+    "darkmatternet/arc3-duck-causal-guard-v1 -- Qwen 3.6 rail, author 1.02 on 2 subs",
+    "foysalemonshanto/lb-9 -- NO new version since 08-18 10:25, votes 213, board 2.23 #51"
+  ],
+  "evidence_tags": {
+    "lawbook_measurements": "V-doc (verbatim in a source-read artifact; NOT independently reproduced by us)",
+    "schema_99pct": "V-doc, self-reported, NOT verified by ARC Prize",
+    "board_deltas": "V (full download + scripts/lb_diff.py exit 0)"
+  }
+}

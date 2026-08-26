@@ -1,0 +1,25 @@
+{
+  "prereg": "learnings/war_room/private_arm_prereg_2026-08-21.md sec 4 (sealed by private-arm lane; executed by graft-lane agent)",
+  "kernel": "canivel/arc3-q38-private-eval",
+  "version": 2,
+  "date": "2026-08-21",
+  "mechanism": "EDGE-1: raise the analyzer context ceiling 2x (ctx 32768->65536, effective budget 31744->64512, vllm max_model_len 65536->131072) on the certified 08-15 base vehicle, one flag, KV arithmetic pre-checked. Motivation: the documented 31,744-token ceiling and the 'agent FORGOT' lineage.",
+  "sealed_reading_rule": "Paired primary vs same-notebook base (lc 30 / actions 1463): bands +-5 lc. Sealed KILL iff lc <= base AND actions < 0.60x base (wallclock trade).",
+  "measured": {
+    "certification": "PASSED (edge1 row: banner ctx 65536/64512/131072, serve echo mml 131072, bundle 20260815, Q38 served, no effort pin, n=25)",
+    "lc_total": 18,
+    "paired_delta": -12,
+    "mean_score": 2.909,
+    "total_actions": 1113,
+    "actions_ratio_vs_base": 0.761,
+    "games_won": 0,
+    "per_game_max": 4,
+    "base": {
+      "lc": 30,
+      "actions": 1463,
+      "score": 5.686
+    }
+  },
+  "instrument_note": "Their scorer's actions reader carries a second fixture-key sub-defect (printed 0), which made its KILL line claim a wallclock trade at ratio 0.00. Direct computation: ratio 0.761 >= 0.6 - the sealed KILL's second prong does NOT fire. Verdict rests on the paired HARM bands; the KILL mechanism story is corrected in this row.",
+  "why_informative": "A clean, certified, single-flag isolation with a decisive negative: doubling the context ceiling REDUCED levels 40% (30->18, -2.4 sigma paired) at comparable action count - capability harm, not slowdown. This kills the 'context ceiling is the binding constraint' hypothesis on this rail in its simplest form and corroborates the public 'overthinking at higher windows' testimony from the engine's own release notes discussion. Combined with today's Arm A (08-15=08-07) and exp 25/30: the field-floor defaults (yield 60, ctx 32768, xhigh) are locally optimal among all tested variations; the 2.5+ tier's edge is NOT reachable by turning any of these public knobs. Edge-2 (capture contract) remains the one untested private edge and rides on the BASE vehicle."
+}

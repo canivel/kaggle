@@ -1,0 +1,5 @@
+[
+  {"gate": "V1", "name": "submission verified on the source of truth", "passed": true, "kill": true, "detail": "55656892 PENDING 00:31:23Z, full A21 message, via competitions submissions -v"},
+  {"gate": "V2", "name": "reconciled queue/log parse clean", "passed": true, "kill": true, "detail": "pending=[filler], history carries manual-reconcile note, log event appended"},
+  {"gate": "T1", "name": "staged fix passes synthetic suite", "passed": true, "kill": true, "detail": "9/9 submit scenarios + 23/23 fall-through incl. inverse guard"}
+]

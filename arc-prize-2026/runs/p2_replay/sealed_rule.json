@@ -1,0 +1,8 @@
+{
+  "name": "stale6",
+  "cap": 0,
+  "noop_run": 0,
+  "stale_run": 6,
+  "min_batch": 2,
+  "persist": false
+}

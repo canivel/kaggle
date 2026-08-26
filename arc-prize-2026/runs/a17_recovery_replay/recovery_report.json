@@ -1,0 +1,49 @@
+{
+  "per_game": [
+    {
+      "game": "ft09-0d8bbf25_p0",
+      "turns": 109,
+      "turns_with_fenced_python": 109,
+      "recovered_ast_ok": 109,
+      "actionable": 109,
+      "multi_block_turns": 0,
+      "parse_fail_samples": []
+    },
+    {
+      "game": "lp85-305b61c3_p0",
+      "turns": 110,
+      "turns_with_fenced_python": 109,
+      "recovered_ast_ok": 109,
+      "actionable": 109,
+      "multi_block_turns": 0,
+      "parse_fail_samples": []
+    },
+    {
+      "game": "sb26-7fbdac44_p0",
+      "turns": 112,
+      "turns_with_fenced_python": 111,
+      "recovered_ast_ok": 111,
+      "actionable": 111,
+      "multi_block_turns": 0,
+      "parse_fail_samples": []
+    },
+    {
+      "game": "vc33-5430563c_p0",
+      "turns": 105,
+      "turns_with_fenced_python": 105,
+      "recovered_ast_ok": 105,
+      "actionable": 105,
+      "multi_block_turns": 0,
+      "parse_fail_samples": []
+    }
+  ],
+  "total": {
+    "turns": 436,
+    "turns_with_fenced_python": 434,
+    "recovered_ast_ok": 434,
+    "actionable": 434,
+    "multi_block_turns": 0
+  },
+  "recovery_rate": 0.9954128440366973,
+  "actionable_rate": 0.9954128440366973
+}

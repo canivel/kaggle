@@ -1,0 +1,26 @@
+{
+ "reprop": {
+  "mean_delta_pp": -4.568171946124399,
+  "p": 0.01203310489654541,
+  "a22_worse": 7,
+  "war_worse": 18
+ },
+ "refrep035": {
+  "mean_delta_pp": -0.2611712663870814,
+  "p": 0.39068603515625,
+  "a22_worse": 7,
+  "war_worse": 10
+ },
+ "refrep045": {
+  "mean_delta_pp": -0.2250525636743644,
+  "p": 0.19921875,
+  "a22_worse": 3,
+  "war_worse": 6
+ },
+ "refrep060": {
+  "mean_delta_pp": -0.05433070866141732,
+  "p": 0.5,
+  "a22_worse": 0,
+  "war_worse": 2
+ }
+}

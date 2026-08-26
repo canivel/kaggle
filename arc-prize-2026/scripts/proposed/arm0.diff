@@ -1,0 +1,41 @@
+--- scripts/daily_submit.py	2026-08-21 06:40:47.608499700 -0400
++++ scripts/proposed/daily_submit_arm0.py	2026-08-21 06:52:00.232796800 -0400
+@@ -44,12 +44,17 @@
+ COMP = "arc-prize-2026-arc-agi-3"
+ 
+ # --- eternal fallback ------------------------------------------------------
+-# The frozen fork: an unmodified fork of the Milestone-1 winner, known-good,
+-# trusted-fork preflight. THE single definition — never inline this dict.
+-FALLBACK_KERNEL = "canivel/arc3-duck-repro"
+-FALLBACK_VERSION = 3
++# ARM 0 (coordinator standing order, 2026-08-21, attribution_2026-08-21.md): the
++# DEFAULT nightly head is the FIELD-FLOOR config -- certified SIGNAL (lc 28),
++# scored 1.59 as a typical draw of ~N(1.6, 0.2), byte-faithful trusted fork of
++# the field's board-verified 2.23 artifact. The frozen June-30 duck-repro fork
++# (mean 0.93, hardcoded old mount paths) is FULLY RETIRED as fallback; pathsafe
++# exists as deeper insurance and is queued explicitly when needed.
++# THE single definition -- never inline this dict.
++FALLBACK_KERNEL = "canivel/arc3-q38-field-eval"
++FALLBACK_VERSION = 1
+ FALLBACK_FILE = "submission.parquet"
+-FALLBACK_UPSTREAM = "jeroencottaar/tufa-labs-duck-harness-june-30-milestone-winner"
++FALLBACK_UPSTREAM = "foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b"
+ AUTOREFILL_TAG = "AUTO-REFILL"
+ 
+ 
+@@ -62,13 +67,13 @@
+ 
+ 
+ def eternal_fallback_entry(note: str = "") -> dict:
+-    """The frozen-fork fallback queue entry, auto-stamped and clearly marked.
++    """The Arm-0 field-floor fallback queue entry, auto-stamped and clearly marked.
+ 
+     Single source of truth for the fallback — `scripts/queue.py refill` and
+     both auto-refill call sites in this module all go through here.
+     """
+     msg = (
+-        f"{AUTOREFILL_TAG} {utc_date()} — frozen-fork filler (eternal fallback; "
++        f"{AUTOREFILL_TAG} {utc_date()} — FIELD-FLOOR filler (Arm 0 default nightly head; "
+         f"auto-armed by scripts/daily_submit.py because the queue was empty). "
+         f"Replace with the day's build if one clears the promotion gates."
+     )

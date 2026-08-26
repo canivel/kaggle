@@ -1,0 +1,64 @@
+{
+  "config": "baseline",
+  "backend": "claude",
+  "model": "gpt-oss",
+  "attempts": 1,
+  "summary": {
+    "score": "0/3",
+    "accuracy": 0.0,
+    "by_domain": {
+      "algebra": "0/1",
+      "combinatorics": "0/2"
+    },
+    "by_difficulty": {
+      "easy": "0/3"
+    }
+  },
+  "results": [
+    {
+      "id": "aime_i_2024_01",
+      "source": "AIME I 2024 #1",
+      "domain": "algebra",
+      "difficulty": 4,
+      "expected": 204,
+      "predicted": 0,
+      "correct": false,
+      "attempts": 1,
+      "valid_answers": 0,
+      "all_answers": [
+        null
+      ],
+      "elapsed_s": 1.3
+    },
+    {
+      "id": "aime_i_2024_03",
+      "source": "AIME I 2024 #3",
+      "domain": "combinatorics",
+      "difficulty": 5,
+      "expected": 809,
+      "predicted": 0,
+      "correct": false,
+      "attempts": 1,
+      "valid_answers": 0,
+      "all_answers": [
+        null
+      ],
+      "elapsed_s": 0.3
+    },
+    {
+      "id": "aime_i_2024_04",
+      "source": "AIME I 2024 #4",
+      "domain": "combinatorics",
+      "difficulty": 5,
+      "expected": 116,
+      "predicted": 0,
+      "correct": false,
+      "attempts": 1,
+      "valid_answers": 0,
+      "all_answers": [
+        null
+      ],
+      "elapsed_s": 0.3
+    }
+  ]
+}

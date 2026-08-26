@@ -1,0 +1,8 @@
+{
+  "leak": {
+    "certifier": "duck_eval/q38/q38field_score.py",
+    "foreign_artifact": "private_base_v1",
+    "emitted": "SIGNAL mean dlc +0.426667",
+    "draws_harmed": 0
+  }
+}

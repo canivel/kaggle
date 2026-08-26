@@ -1,0 +1,398 @@
+{
+ "aggregate": {
+  "actions": 1630,
+  "animated": 377,
+  "full_noop": 74,
+  "interior_noop": 143,
+  "hud_masked_noop": 69,
+  "blocked_original": 0,
+  "blocked_interior": 22
+ },
+ "per_game": [
+  {
+   "game": "ar25-0c556536",
+   "n_actions": 87,
+   "hud_rows": [],
+   "hud_cols": [
+    63
+   ],
+   "animated": 1,
+   "full_noop": 4,
+   "interior_noop": 4,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "bp35-0a0ad940",
+   "n_actions": 55,
+   "hud_rows": [
+    63
+   ],
+   "hud_cols": [],
+   "animated": 55,
+   "full_noop": 0,
+   "interior_noop": 0,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "cd82-fb555c5d",
+   "n_actions": 71,
+   "hud_rows": [
+    63
+   ],
+   "hud_cols": [],
+   "animated": 16,
+   "full_noop": 9,
+   "interior_noop": 24,
+   "hud_masked_noop": 15,
+   "blocked_original": 0,
+   "blocked_interior": 3,
+   "repeated_interior_noop_keys": 3
+  },
+  {
+   "game": "cn04-2fe56bfb",
+   "n_actions": 91,
+   "hud_rows": [],
+   "hud_cols": [],
+   "animated": 1,
+   "full_noop": 4,
+   "interior_noop": 4,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "dc22-fdcac232",
+   "n_actions": 91,
+   "hud_rows": [
+    63
+   ],
+   "hud_cols": [],
+   "animated": 0,
+   "full_noop": 10,
+   "interior_noop": 18,
+   "hud_masked_noop": 8,
+   "blocked_original": 0,
+   "blocked_interior": 1,
+   "repeated_interior_noop_keys": 1
+  },
+  {
+   "game": "ft09-0d8bbf25",
+   "n_actions": 61,
+   "hud_rows": [
+    63
+   ],
+   "hud_cols": [],
+   "animated": 3,
+   "full_noop": 2,
+   "interior_noop": 2,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "g50t-5849a774",
+   "n_actions": 15,
+   "hud_rows": [],
+   "hud_cols": [],
+   "animated": 10,
+   "full_noop": 4,
+   "interior_noop": 4,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "ka59-38d34dbb",
+   "n_actions": 40,
+   "hud_rows": [
+    63
+   ],
+   "hud_cols": [],
+   "animated": 2,
+   "full_noop": 3,
+   "interior_noop": 7,
+   "hud_masked_noop": 4,
+   "blocked_original": 0,
+   "blocked_interior": 2,
+   "repeated_interior_noop_keys": 1
+  },
+  {
+   "game": "lf52-271a04aa",
+   "n_actions": 32,
+   "hud_rows": [
+    0
+   ],
+   "hud_cols": [],
+   "animated": 32,
+   "full_noop": 0,
+   "interior_noop": 0,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "lp85-305b61c3",
+   "n_actions": 49,
+   "hud_rows": [],
+   "hud_cols": [
+    0
+   ],
+   "animated": 3,
+   "full_noop": 1,
+   "interior_noop": 1,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "ls20-9607627b",
+   "n_actions": 207,
+   "hud_rows": [],
+   "hud_cols": [],
+   "animated": 26,
+   "full_noop": 0,
+   "interior_noop": 0,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "m0r0-492f87ba",
+   "n_actions": 109,
+   "hud_rows": [],
+   "hud_cols": [],
+   "animated": 1,
+   "full_noop": 16,
+   "interior_noop": 16,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "r11l-495a7899",
+   "n_actions": 7,
+   "hud_rows": [],
+   "hud_cols": [
+    0
+   ],
+   "animated": 3,
+   "full_noop": 0,
+   "interior_noop": 2,
+   "hud_masked_noop": 2,
+   "blocked_original": 0,
+   "blocked_interior": 1,
+   "repeated_interior_noop_keys": 1
+  },
+  {
+   "game": "re86-8af5384d",
+   "n_actions": 86,
+   "hud_rows": [
+    63
+   ],
+   "hud_cols": [],
+   "animated": 2,
+   "full_noop": 0,
+   "interior_noop": 0,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "s5i5-18d95033",
+   "n_actions": 48,
+   "hud_rows": [
+    63
+   ],
+   "hud_cols": [],
+   "animated": 1,
+   "full_noop": 5,
+   "interior_noop": 20,
+   "hud_masked_noop": 15,
+   "blocked_original": 0,
+   "blocked_interior": 1,
+   "repeated_interior_noop_keys": 1
+  },
+  {
+   "game": "sb26-7fbdac44",
+   "n_actions": 120,
+   "hud_rows": [],
+   "hud_cols": [],
+   "animated": 64,
+   "full_noop": 0,
+   "interior_noop": 0,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "sc25-635fd71a",
+   "n_actions": 37,
+   "hud_rows": [],
+   "hud_cols": [
+    62,
+    63
+   ],
+   "animated": 8,
+   "full_noop": 1,
+   "interior_noop": 4,
+   "hud_masked_noop": 3,
+   "blocked_original": 0,
+   "blocked_interior": 2,
+   "repeated_interior_noop_keys": 1
+  },
+  {
+   "game": "sk48-d8078629",
+   "n_actions": 25,
+   "hud_rows": [],
+   "hud_cols": [],
+   "animated": 18,
+   "full_noop": 7,
+   "interior_noop": 7,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "sp80-589a99af",
+   "n_actions": 60,
+   "hud_rows": [
+    0
+   ],
+   "hud_cols": [],
+   "animated": 5,
+   "full_noop": 0,
+   "interior_noop": 11,
+   "hud_masked_noop": 11,
+   "blocked_original": 0,
+   "blocked_interior": 7,
+   "repeated_interior_noop_keys": 3
+  },
+  {
+   "game": "su15-1944f8ab",
+   "n_actions": 80,
+   "hud_rows": [
+    63
+   ],
+   "hud_cols": [],
+   "animated": 77,
+   "full_noop": 3,
+   "interior_noop": 3,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "tn36-ef4dde99",
+   "n_actions": 18,
+   "hud_rows": [],
+   "hud_cols": [],
+   "animated": 5,
+   "full_noop": 0,
+   "interior_noop": 0,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "tr87-cd924810",
+   "n_actions": 60,
+   "hud_rows": [
+    63
+   ],
+   "hud_cols": [],
+   "animated": 0,
+   "full_noop": 0,
+   "interior_noop": 0,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "tu93-0768757b",
+   "n_actions": 42,
+   "hud_rows": [
+    63
+   ],
+   "hud_cols": [],
+   "animated": 42,
+   "full_noop": 0,
+   "interior_noop": 0,
+   "hud_masked_noop": 0,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  },
+  {
+   "game": "vc33-5430563c",
+   "n_actions": 24,
+   "hud_rows": [
+    0,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+   ],
+   "hud_cols": [],
+   "animated": 1,
+   "full_noop": 0,
+   "interior_noop": 10,
+   "hud_masked_noop": 10,
+   "blocked_original": 0,
+   "blocked_interior": 5,
+   "repeated_interior_noop_keys": 2
+  },
+  {
+   "game": "wa30-ee6fef47",
+   "n_actions": 115,
+   "hud_rows": [
+    63
+   ],
+   "hud_cols": [],
+   "animated": 1,
+   "full_noop": 5,
+   "interior_noop": 6,
+   "hud_masked_noop": 1,
+   "blocked_original": 0,
+   "blocked_interior": 0,
+   "repeated_interior_noop_keys": 0
+  }
+ ],
+ "example": {
+  "game": "cd82-fb555c5d",
+  "level": 0,
+  "action": "ACTION1",
+  "interior_sig": "6df60a9996d5b52e",
+  "note": "repeat of a known interior no-op; original guard did NOT block it"
+ }
+}

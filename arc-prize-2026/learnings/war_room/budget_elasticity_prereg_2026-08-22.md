@@ -1,0 +1,16 @@
+# PREREG — ARM 1: BUDGET-ELASTICITY CURVE (`arc3-budget-t05-eval` v1 + `arc3-budget-t3-eval` v1), sealed 2026-08-22 BEFORE build
+**Program:** `original_program_2026-08-22.md` §4 ARM 1 (exp 38). Slots: both of today's pushes. Operator: graft-lane agent.
+**QUESTION:** is `lc` a function of the decision budget, and with what slope? (675/675 recorded game-runs ended `gave_up` at the 7920s cap; 17 turns/game vs 132 designed.)
+**VEHICLE:** the certified field floor, byte-identical except ONE literal: `bm.solver.max_runtime_s_per_game = 7920.0` → **3960.0 (T0.5)** / **23760.0 (T3)**. Dedicated fresh slugs. Order: T0.5 first (cheap failure), T3 after T0.5 survives boot.
+**T1 COMPARATOR = TWO replicates:** field 28 + ArmA-base 30, mean **29.0** (pooled seed sd 2.80). Never a single run.
+**PRIMARY SCREENING STATISTIC: `trim1`** (mean per-game score minus best game) **+ `lc_total` co-primary. Raw mean_score RETIRED as primary** (50.4% one game).
+**CERTIFICATION (before any number; any failure ⇒ INFRA DEATH):** served `Qwen/Qwen3.8-27B-FP8` · `reasoning_effort` ABSENT · `anim-20260807` REQUIRED (08-07 bundle) · zero graft/contract/PRIVATE-ARM markers · n=25 · **solver banner echoes `max_runtime_s_per_game=<THIS ARM'S VALUE>` and NO sibling's value** (7920.0 and the other arm's constant are FORBIDDEN markers) · exp-34 rule executed: the sibling pair added as FORBIDDEN to `q38field_score` too.
+**SEALED ELASTICITY READ — ε = Δln(lc)/Δln(budget) across the three points (panel-verbatim):**
+- **ε ≥ 0.60** (lc(T3) ≥ 45 AND lc(T0.5) ≤ 22) ⇒ HIGH ELASTICITY — budget program confirmed; Arms 2/3 fire; C7 unlocks. (lc(T3)=45 is +5.7σ vs T1 mean 29 at pooled sd 2.80.)
+- **0.25 ≤ ε < 0.60** ⇒ PARTIAL — C2 reduced priority, C4 promoted.
+- **ε < 0.25** (lc(T3) ≤ 33) ⇒ **KILL THE ENTIRE BUDGET FAMILY** (C1/C2/C3/C7 die together; pivot C4+C5 week 2). *The outcome that saves six weeks.*
+- **ANOMALY branch:** lc(T3) < 24 WITH turns/game up ≥2× ⇒ NOT an elasticity read — long-run pathology (context growth/transcript/trimming); diagnose, don't score. Turns proxy defined now: `len(history)` per game_run if present, else per-level action count sum (declared, imperfect).
+**KILL:** two INFRA DEATHS on T3 ⇒ arm parked; T0.5-only read published one-sided.
+**COST:** ~1.1 + 6.8 GPU-h (week total ≈ 26.5/30 incl. this — affordable). 0 submission slots. Tonight = Arm 0 redraw regardless.
+**Gate:** `local_gate --arm budget-t05|budget-t3` before each push; non-zero exit blocks. Certified bytes snapshot per convention if any verdict certifies head-eligibility (not expected — this is a measurement arm; T3's runtime is not competition-legal and can NEVER head).
+**Corrections carried into the record with this seal:** (a) exp 33's mechanism note is AMENDED by panel evidence — ctx-2× cut throughput to the lowest of 27 runs (tokens/turn −48%): it HALVED THE BUDGET rather than "overthinking"; HARM verdict stands, mechanism story corrected (dated correction, original readable in exp 33). (b) exp 12/14's "transfer unreachable — no clone siblings" was a property of OUR SCREEN's shape, not the competition (taaf's submission benchmark = 25 games × ~4.4 clones); conclusion now qualified, no action until Arm 3's instrument correction lands.

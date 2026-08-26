@@ -1,0 +1,12 @@
+{
+  "id": "canivel/arc3-cnn-frame-change-agent",
+  "title": "ARC3 CNN Frame-Change Agent",
+  "code_file": "arc3-cnn-agent.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "competition_sources": ["arc-prize-2026-arc-agi-3"],
+  "keywords": ["arc-agi-3", "reinforcement-learning", "cnn"]
+}

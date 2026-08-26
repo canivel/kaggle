@@ -1,0 +1,4 @@
+experiment_id	timestamp	agent_type	description	rhae_score	levels_completed	total_actions	status	duration_seconds	params	notes
+0001	2026-03-29T12:28:06.478156	random	Random baseline on all 25 public envs	3.1e-05	1	3584	completed	27.9	{"seed": 42, "max_actions": 2000}	change_rate=79.54%
+0002	2026-03-29T13:14:50.689796	cnn_ppo	CNN policy + world model, PPO, 5 rounds	N/A	0	9359	completed	1078.0	{"lr": 0.0003, "batch_size": 64, "rounds": 5, "device": "cpu"}	best_eval_levels=0
+0003	2026-03-29T14:44:40.358067	winner_repro	StochasticGoose reproduction, 180s/game	N/A	10	183667	completed	4501.9	{"lr": 0.0001, "batch_size": 64, "time_per_game": 180, "device": "cuda"}	10/183 levels

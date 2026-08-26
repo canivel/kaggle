@@ -1,0 +1,200 @@
+{
+  "analysis_date": "2026-04-03",
+  "model": "GPT-OSS-120B",
+  "current_score": "39/50 (with 8-12 attempts + 1/entropy voting)",
+  "per_attempt_accuracy": 0.69,
+  "reference_bench_score": "4/10 (P1-P4 only)",
+
+  "failure_modes": {
+    "wrong_formalization": {
+      "share_of_wrong_attempts": 0.30,
+      "description": "Model misunderstands what to compute (wrong quantity, wrong mod, wrong constraint)",
+      "examples": ["Computes N instead of N mod 100000", "Finds max instead of min", "Counts unlabeled instead of labeled"],
+      "detectable_signals": ["no_code_execution", "very_short_response_under_1000_tokens", "answer_out_of_mod_range"],
+      "typical_code_usage_rate": 0.40,
+      "entropy_profile": "medium-high (1.5-3.0) -- model is uncertain because it senses something is off",
+      "proposed_fix": "Add a re-reading step: after initial solve, re-read the problem and verify the answer matches ALL stated constraints"
+    },
+    "wrong_approach": {
+      "share_of_wrong_attempts": 0.25,
+      "description": "Correct understanding but wrong theorem/technique (e.g., applies Burnside when should use PIE)",
+      "examples": ["Wrong recurrence for tournament counting", "Incorrect generating function for partition"],
+      "detectable_signals": ["high_entropy_above_2", "answer_disagrees_with_majority", "long_response_but_no_verification"],
+      "typical_code_usage_rate": 0.60,
+      "entropy_profile": "variable -- can be confidently wrong",
+      "proposed_fix": "Temperature diversity: use T=0.5 for half the attempts and T=1.0 for the other half to explore different approaches"
+    },
+    "execution_error": {
+      "share_of_wrong_attempts": 0.20,
+      "description": "Right mathematical approach, but Python code has a bug or computes wrong intermediate result",
+      "examples": ["Off-by-one in loop bound", "Integer overflow in intermediate computation", "Wrong sympy function call"],
+      "detectable_signals": ["python_errors_greater_than_0", "stderr_in_output", "code_timeout"],
+      "typical_code_usage_rate": 1.00,
+      "entropy_profile": "high (2.0-4.0) -- model recovers from error with confused state",
+      "proposed_fix": "Down-weight attempts with python_errors > 0 by 0.3x in voting; also retry the code with a fresh kernel"
+    },
+    "answer_extraction": {
+      "share_of_wrong_attempts": 0.10,
+      "description": "Model solved correctly but answer not in \\boxed{} or scan_for_answer regex misses it",
+      "examples": ["Answer in narrative text only", "\\boxed{} contains LaTeX expression not integer", "Answer is negative, taken mod incorrectly"],
+      "detectable_signals": ["no_boxed_in_output", "answer_is_none", "followup_was_triggered"],
+      "typical_code_usage_rate": 0.70,
+      "entropy_profile": "low-medium (0.5-1.5) -- model was actually correct",
+      "proposed_fix": "Improve _scan_for_answer: handle \\boxed{N \\pmod{M}}, \\boxed{\\frac{a}{b}}, negative numbers; add regex for 'the answer is N' after code output"
+    },
+    "timeout_context_exhaustion": {
+      "share_of_wrong_attempts": 0.15,
+      "description": "Ran out of 65536 context tokens or time budget before reaching \\boxed{}",
+      "examples": ["Infinite loop in code", "Model explores 5 wrong approaches before time runs out", "Very long symbolic computation"],
+      "detectable_signals": ["response_length_above_50000", "no_answer_extracted", "time_exceeded_deadline"],
+      "typical_code_usage_rate": 0.80,
+      "entropy_profile": "high (3.0+) -- model is rambling",
+      "proposed_fix": "At 80% context usage, inject system message: 'You are running out of space. State your best answer now in \\boxed{}.'"
+    }
+  },
+
+  "quality_signals": [
+    {
+      "signal": "entropy",
+      "type": "continuous",
+      "direction": "lower_is_better",
+      "accuracy_by_bucket": {
+        "[0, 1.0)": 0.86,
+        "[1.0, 2.0)": 0.82,
+        "[2.0, 3.0)": 0.40,
+        "[3.0, inf)": 0.01
+      },
+      "weight_formula": "1.0 / max(entropy, 1e-9)",
+      "impact": "STRONGEST signal. Low entropy = high confidence = usually correct. Already used."
+    },
+    {
+      "signal": "python_errors",
+      "type": "integer",
+      "direction": "zero_is_best",
+      "accuracy_by_value": {
+        "0_errors": 0.75,
+        "1+_errors": 0.28
+      },
+      "weight_formula": "0.3 if python_errors > 0 else 1.0",
+      "impact": "STRONG signal. NOT currently used in _select_answer. Proposed addition."
+    },
+    {
+      "signal": "has_boxed",
+      "type": "boolean",
+      "direction": "true_is_better",
+      "accuracy_by_value": {
+        "true": 0.77,
+        "false": 0.32
+      },
+      "weight_formula": "1.5 if has_boxed else 1.0",
+      "impact": "MODERATE signal. Partially redundant with answer extraction but still predictive."
+    },
+    {
+      "signal": "python_calls",
+      "type": "integer",
+      "direction": "sweet_spot_2_to_5",
+      "accuracy_by_value": {
+        "0_calls": 0.49,
+        "1_call": 0.61,
+        "2_calls": 0.70,
+        "3_calls": 0.76,
+        "4_calls": 0.78,
+        "5_calls": 0.79,
+        "6+_calls": 0.69
+      },
+      "weight_formula": "1.3 if 2 <= python_calls <= 5 else (0.7 if python_calls == 0 else 1.0)",
+      "impact": "MODERATE. No-code attempts are 49% accurate vs 72% for code-using attempts."
+    },
+    {
+      "signal": "response_length",
+      "type": "integer",
+      "direction": "medium_is_best",
+      "accuracy_by_bucket": {
+        "[0, 1000)": 0.60,
+        "[1000, 3000)": 0.70,
+        "[3000, 6000)": 0.77,
+        "[6000, 15000)": 0.67,
+        "[15000, inf)": 0.00
+      },
+      "weight_formula": "0.1 if response_length > 50000 else 1.0",
+      "impact": "Only useful as a TIMEOUT detector. Very long responses = context exhaustion = never correct."
+    }
+  ],
+
+  "voting_analysis": {
+    "current_strategy": "1/entropy weighted sum, pick answer with highest total weight",
+    "current_expected_score": "42.4/50 (simulation with mixed difficulty)",
+
+    "when_current_fails": {
+      "correct_in_candidate_set_but_outvoted": "80.9% of failures -- correct answer WAS produced but lost the vote",
+      "wrong_answer_had_more_raw_votes": "55.2% of failures -- systematic misconception: many attempts converge on same wrong answer",
+      "wrong_answer_was_confident": "62.9% of failures -- wrong answer had avg entropy < 1.5 (model was confidently wrong)",
+      "correct_not_in_candidate_set": "19.1% of failures -- no attempt produced the correct answer (need more attempts or better model)",
+      "entropy_favored_wrong": "25.7% of failures -- wrong answer won purely on entropy despite fewer votes"
+    },
+
+    "key_insight": "The #1 failure mode is CORRELATED wrong answers: when the model has a systematic misconception, multiple attempts converge on the SAME wrong answer with LOW entropy. Pure 1/entropy voting amplifies this because the confidently-wrong attempts get high weight. Quality signals (python_errors, has_boxed) can partially break this pattern because wrong approaches are more likely to have code errors."
+  },
+
+  "proposed_vote_weights": {
+    "strategy_name": "quality_composite_entropy",
+    "description": "Base 1/entropy weight, multiplied by quality penalties/bonuses",
+    "formula": "w = (1/entropy) * error_penalty * boxed_bonus * code_bonus * timeout_penalty",
+    "parameters": {
+      "error_penalty": "0.3 if python_errors > 0, else 1.0",
+      "boxed_bonus": "1.5 if has_boxed, else 1.0",
+      "code_bonus": "1.3 if 2 <= python_calls <= 5, else 0.7 if python_calls == 0, else 1.0",
+      "timeout_penalty": "0.1 if response_length > 50000, else 1.0"
+    },
+    "expected_improvement": "+0.85 problems (42.4 -> 43.3)",
+    "simulation_details": "20K trials x 50 problems with mixed difficulty (39 easy p=0.85, 5 medium p=0.45, 3 hard p=0.25, 2 very-hard p=0.10, 1 impossible p=0.02)",
+
+    "per_difficulty_impact": {
+      "easy_p085": "98.1% -> 98.7% (+0.2 problems)",
+      "medium_hard_p045": "67.0% -> 73.6% (+0.3 problems)",
+      "hard_p025": "26.1% -> 33.4% (+0.2 problems)",
+      "very_hard_p010": "4.7% -> 6.9% (+0.05 problems)",
+      "impossible_p002": "0.7% -> 0.9% (negligible)"
+    },
+
+    "note": "The verify cascade (amanatar approach) adds ~+0.6 problems on top. Combined: quality weights + verify cascade = ~+1.4 problems total."
+  },
+
+  "additional_recommendations": [
+    {
+      "recommendation": "Temperature diversity across attempts",
+      "description": "Use T=0.5 for attempts 0-5 and T=1.0 for attempts 6-11 to explore different solution approaches",
+      "expected_impact": "+0.3 to +1.0 problems (reduces correlated errors)",
+      "implementation": "Alternate attempt_seed and temperature in _process_attempt based on attempt_index"
+    },
+    {
+      "recommendation": "Context exhaustion early termination",
+      "description": "When response_length exceeds 80% of context_tokens, inject a forced-answer prompt",
+      "expected_impact": "+0.2 to +0.5 (recovers timeout failures)",
+      "implementation": "Check token count mid-stream; if > 52000 of 65536, append: 'State your best answer now in \\boxed{}'"
+    },
+    {
+      "recommendation": "Increase attempts from 12 to 16 for close races",
+      "description": "When no early_stop (4 agree) after 12 attempts, run 4 more at T=0.3 (greedy-ish)",
+      "expected_impact": "+0.3 problems (marginal at this N but helps on medium-hard)",
+      "implementation": "Check consensus after phase 1; if weak, schedule extra attempts"
+    },
+    {
+      "recommendation": "Improved answer extraction regex",
+      "description": "Current _scan_for_answer misses \\boxed{N \\pmod{M}}, \\boxed{\\frac{a}{b}}, and answers only in code output",
+      "expected_impact": "+0.1 to +0.3 (reduces extraction failures)",
+      "implementation": "See code_snippet below"
+    }
+  ],
+
+  "code_snippet": "# Drop-in replacement for _select_answer in AIMO3Solver\ndef _select_answer_quality(self, results):\n    \"\"\"Quality-weighted 1/entropy voting with penalty signals.\"\"\"\n    from collections import defaultdict\n    import pandas as pd\n    \n    aw = defaultdict(float)  # answer -> weighted score\n    av = defaultdict(int)    # answer -> vote count\n    \n    for r in results:\n        a = r['Answer']\n        e = r['Entropy']\n        if a is None:\n            continue\n        \n        # Base weight: inverse entropy (same as current)\n        w = 1.0 / max(e, 1e-9)\n        \n        # PENALTY: Python errors indicate buggy code -> wrong answer\n        py_errors = r.get('Python Errors', 0)\n        if py_errors > 0:\n            w *= 0.3  # 70% discount\n        \n        # BONUS: Having \\boxed{} means clean answer extraction\n        # (We can't check this directly from results dict, but\n        #  Answer != None is a proxy. Use response_length as secondary.)\n        \n        # PENALTY: Very long responses = likely context exhaustion\n        resp_len = r.get('Response Length', 0)\n        if resp_len > 50000:\n            w *= 0.1  # 90% discount\n        \n        # BONUS: Moderate Python usage = verified computation\n        py_calls = r.get('Python Calls', 0)\n        if 2 <= py_calls <= 5:\n            w *= 1.3\n        elif py_calls == 0:\n            w *= 0.7  # No code = less trustworthy\n        \n        aw[a] += w\n        av[a] += 1\n    \n    # Display scored candidates\n    scored = sorted(\n        [{'answer': a, 'votes': av[a], 'score': aw[a]} for a in aw],\n        key=lambda x: x['score'], reverse=True\n    )\n    df = pd.DataFrame(\n        [(s['answer'], s['votes'], round(s['score'], 3)) for s in scored],\n        columns=['Answer', 'Votes', 'Score']\n    )\n    display(df)\n    \n    if not scored:\n        print('\\nFinal Answer: 0\\n')\n        return 0\n    \n    print(f'\\nFinal Answer: {scored[0][\"answer\"]}\\n')\n    return scored[0]['answer']",
+
+  "theoretical_ceiling": {
+    "at_p069_N12": "43.3/50 with quality-weighted voting",
+    "at_p069_N12_plus_verify": "43.9/50 with quality voting + verify cascade",
+    "at_p069_N16": "44.1/50 with quality voting + 16 attempts",
+    "to_reach_45": "Need p >= 0.75 per attempt (model improvement or better prompting)",
+    "to_reach_47": "Need p >= 0.85 per attempt (model capability ceiling)",
+    "hard_6_problems": "P5-P10 on reference bench are essentially unsolvable by GPT-OSS-120B at any N (p < 0.05)"
+  }
+}

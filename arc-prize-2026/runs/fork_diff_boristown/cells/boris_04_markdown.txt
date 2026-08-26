@@ -1,0 +1,4 @@
+## 3. Locate the source bundle
+
+Find the uploaded TAAF source dataset by its marker file, and record where Kaggle mounted
+every attached input so setup commands and the solver can find them.

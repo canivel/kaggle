@@ -1,0 +1,5 @@
+## 4.2 Score-stability rollback
+
+The previous patch intentionally remains in this notebook for traceability, but its score-sensitive animation and prompt changes are neutralized here before the benchmark is restored. This revision retains only the minimum compatibility fix required to convert an already-visible `ACTION7` label back to the engine action.
+
+This cell restores the original solver methods, original compact action-result schema, and original system prompt. It does not change the dataset, model, sampling, concurrency, budgets, reset behavior, mouse handling, notebook metadata, existing cells, or existing outputs.

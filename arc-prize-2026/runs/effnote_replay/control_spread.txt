@@ -1,0 +1,27 @@
+EFFNOTE CONTROL SPREAD (block-free runs; note reconstructed, never applied)
+shipped module: effnote_patch v1   char bound: 700
+
+metric                                          animation_v1        a22_v2_seed1   a22_compaction_v1                    SPREAD
+------------------------------------------------------------------------------------------------------------------------------
+D1_note_rate                                          0.9651              0.9609              0.9672           0.9609 - 0.9672
+D2_stall_rate                                         0.0996              0.0913              0.0712           0.0712 - 0.0996
+D3_over_rate                                          0.2921              0.2197              0.1968           0.1968 - 0.2921
+D4_chars_mean                                       297.5400            281.2620            273.0000       273.0000 - 297.5400
+D4_chars_max                                             603                 602                 603                 602 - 603
+B1_post_stall_revisit_rate                            0.3986              0.5487              0.4751           0.3986 - 0.5487
+B1c_nonstall_revisit_rate                             0.1106              0.1992              0.1914           0.1106 - 0.1992
+B2_post_stall_noop_rate                               0.0779              0.3454              0.2777           0.0779 - 0.3454
+B2c_nonstall_noop_rate                                0.0837              0.1717              0.1675           0.0837 - 0.1717
+B3_over_target_burn_total                               2301                1267                2060               1267 - 2301
+B3_over_target_burn_cleared                              307                  32                  64                  32 - 307
+B4_stall_turn_size                                    7.2750              3.9451              5.1798           3.9451 - 7.2750
+B4_nonstall_turn_size                                 3.9429              3.4581              3.7175           3.4581 - 3.9429
+M0_median_actions_per_cleared_level                       24             39.5000                  49                   24 - 49
+M0_median_of_per_game_medians                        24.2500             44.5000                  50         24.2500 - 50.0000
+levels_cleared                                            17                  14                  17                   14 - 17
+
+animation_v1: games=25 turns=1205 actions=5151 targets=[85, 90, 95, 100] valid_action_counts=[1, 2, 3, 4, 5, 6] detector_games={'net_zero': 20, 'stagnation': 1, 'revisit': 5} detector_turn_rate={'net_zero': 0.0938, 'stagnation': 0.0041, 'revisit': 0.029}
+a22_v2_seed1: games=25 turns=997 actions=3492 targets=[85, 90, 95, 100] valid_action_counts=[1, 2, 3, 4, 5, 6] detector_games={'net_zero': 14, 'stagnation': 2, 'revisit': 3} detector_turn_rate={'net_zero': 0.0732, 'stagnation': 0.013, 'revisit': 0.0211}
+a22_compaction_v1: games=25 turns=1250 actions=4777 targets=[85, 90, 95, 100] valid_action_counts=[1, 2, 3, 4, 5, 6] detector_games={'net_zero': 16, 'stagnation': 1, 'revisit': 8} detector_turn_rate={'net_zero': 0.0632, 'stagnation': 0.0008, 'revisit': 0.028}
+
+wrote F:\kaggle\arc-prize-2026\runs\effnote_replay\control_spread.json

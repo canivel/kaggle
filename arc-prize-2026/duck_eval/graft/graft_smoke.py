@@ -28,8 +28,8 @@ WHEELS_DS = "driessmit1/arc3-vllm-h100-wheelhouse-v3"
 ENGINE_DS = "driessmit1/vrfai-qwen3-6-27b-fp8-hf-snapshot"
 SERVED_MODEL = "vrfai/Qwen3.6-27B-FP8"
 FLAGS_ON = ("efficiency", "retry_guard", "shortcircuit", "goalkeep", "hudmask")
-FLAGS_FORBIDDEN = ("banking", "transfer")
-EXPECT_DIFF_CELLS = [2, 6, 12]
+FLAGS_FORBIDDEN = ("banking", "transfer", "clickmap")  # clickmap: v21 flag, not this arm (2026-08-20)
+EXPECT_DIFF_CELLS = [2, 4, 6, 12, 14]
 
 _checks: list[tuple[bool, str]] = []
 
@@ -106,7 +106,15 @@ def main() -> int:
     # -- 6. the eval rail is untouched ------------------------------------
     # A plain BUILD is the eval: TRUE_SUBMISSION is unset outside a competition rerun, so the
     # run cell plays the 25 bundled environments offline. That branch must be frozen-fork bytes.
-    check(src[14] == fsrc[14], "run cell (14) is byte-identical to the frozen fork")
+    # MOUNTCHECK v2 (2026-08-19): the batch env's competition mount layout changed, so the run
+    # cell's ONE hardcoded path is substituted with the cell-2-resolved GRAFT_COMP_ROOT. The
+    # check's logic is unchanged -- byte-identity -- but its expected value follows the arm:
+    # fork cell 14 with EXACTLY that one line substituted. Any OTHER drift still fails.
+    _c14_anchor = '    competition_env_files = str(Path("/kaggle/input/competitions/arc-prize-2026-arc-agi-3/arc_agi_3_wheels").parent / "environment_files")'
+    _c14_new = '    competition_env_files = str(Path(GRAFT_COMP_ROOT) / "environment_files")  # resolved in cell 2 (MOUNTCHECK v2)'
+    check(fsrc[14].count(_c14_anchor) == 1, "fork run cell carries the expected single hardcoded env-files path")
+    check(src[14] == fsrc[14].replace(_c14_anchor, _c14_new),
+          "run cell (14) is fork bytes + EXACTLY the one resolved-path substitution")
     check(src[10] == fsrc[10], "benchmark-load cell (10) is byte-identical")
     check(src[8] == fsrc[8], "source-import/setup cell (8) is byte-identical (no engine rewrite)")
     check("TRUE_SUBMISSION" in src[2], "TRUE_SUBMISSION branch still present")

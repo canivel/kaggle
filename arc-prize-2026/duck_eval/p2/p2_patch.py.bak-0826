@@ -1,0 +1,238 @@
+#!/usr/bin/env python3
+"""P2 reset-anchored episodic retry -- the working-copy patch.
+
+Prereg: ``learnings/war_room/p2_reset_retry_prereg_2026-08-22.md`` (SEALED 2026-08-22).
+Gate P0.1 (RESET returns to level start) discharged on the real simulator, see prereg S2.
+
+WHAT THIS PATCHES, AND WHY IT IS SMALLER THAN THE PREREG ASSUMED
+---------------------------------------------------------------
+The prereg's S3.4 anchor list assumed ``attempt()`` needed a host-side handler wired
+through ``tool_agent.py`` alongside ``action()``.  Reading the shipped sandbox protocol
+shows it does not: ``python_tool_sandbox.py`` runs the snippet in a CHILD process that
+talks to the host over JSON lines, and ``action(...)`` is already a complete round-trip
+primitive (child sends ``{"type":"action"}``, host replies ``action_result`` + refreshed
+``state``).  ``RESET`` is a first-class action name (``inference/agent/action_names.py:14``)
+and ``taaf/game.py:184`` guarantees it is *always* legal ("Legal action ids, with RESET (0)
+always present").
+
+Therefore ``attempt(seq)`` is composed ENTIRELY from the existing ``action()`` primitive,
+inside the child process.  No new message type, no new host handler, no ``tool_agent.py``
+change for the episode machinery itself.
+
+This matters for bundle-drift risk, which is the campaign's most expensive failure class:
+
+  * ``inference/agent/python_tool_sandbox.py`` is BYTE-IDENTICAL between the
+    ``anim-20260807`` vehicle bundle and the vendored ``bundle_20260815``
+    (md5 465f3e4fb9b1 both).  The episode patch lands only here.
+  * ``inference/agent/tool_agent.py`` DIFFERS between those bundles (233 diff lines;
+    different behaviour-flag architecture, different ``_PYTHON_TOOL_DESCRIPTION``).
+    The prereg's anchors were verified against 08-15; the VEHICLE is anim-20260807.
+    Anchors touching this file are therefore re-verified here against the vehicle.
+
+Every anchor is asserted ``count == 1`` at apply time.  Any drift dies LOUDLY
+(``P2FatalDrift``) -- never a silent stock run.  That is the sealed contract.
+
+PARAMETERS (prereg S3.3, fixed pre-data, not tunable here)
+    H   = 4    consecutive acting turns on one level without a clear -> retry arms
+    K   = 5    episodes offered per retry turn
+    CAP = 40   actions per episode
+    retry disabled once k >= 4 levels cleared on that game
+    RESET-after-WIN: NEVER (the engine full-resets after WIN)
+"""
+
+from __future__ import annotations
+
+import ast
+import hashlib
+from pathlib import Path
+
+H_STUCK_TURNS = 4
+K_EPISODES = 5
+EPISODE_ACTION_CAP = 40
+RETRY_DISABLED_AT_LEVELS = 4
+
+# The vehicle bundle. Certification item 4 requires anim-20260807.
+VEHICLE_SANDBOX_MD5 = "465f3e4fb9b1"  # first 12 of md5(python_tool_sandbox.py)
+
+
+class P2FatalDrift(RuntimeError):
+    """Raised when an anchor is not present exactly once. Never swallowed."""
+
+
+# --------------------------------------------------------------------------
+# ANCHOR 1 -- python_tool_sandbox.py: define attempt() and export it.
+# The anchor is the export line for action(); we insert the definition just
+# before it and the export just after, so both land at the correct scope.
+# --------------------------------------------------------------------------
+
+_ANCHOR_SANDBOX_EXPORT = '        runtime_globals["action"] = action\n'
+
+# NOTE: the injected source lands INSIDE the child bootstrap, which is an r""" literal.
+# Triple-double-quoted docstrings would terminate that literal, so every explanatory line
+# below is a # comment. (The smoke's ast.parse caught exactly this.)
+_ATTEMPT_SRC = '''        def _p2_board_sig(frame):
+            # Cheap, stable signature of a frame for the reset-to-level-start check.
+            if frame is None:
+                return None
+            ascii_art = getattr(frame, "ascii", None)
+            if ascii_art is None:
+                return None
+            try:
+                text = ascii_art if isinstance(ascii_art, str) else str(ascii_art)
+            except Exception:  # noqa: BLE001
+                return None
+            return hashlib.md5(text.encode("utf-8", "replace")).hexdigest()[:16]
+
+        def attempt(seq):
+            # Evaluate a candidate plan from the current level start, then RESET back.
+            # Costs actions; costs no turn.  Returns a compact summary so one LLM turn
+            # can price several independent plans instead of committing to one.
+            # RESET-after-WIN is refused: if the episode clears the level we leave the
+            # game advanced and report level_completed=True (the engine full-resets
+            # after WIN, which would throw the level away).
+            normalized = _normalize_actions(seq)
+            if len(normalized) > P2_EPISODE_ACTION_CAP:
+                raise ValueError(
+                    "attempt() accepts at most %d actions; got %d."
+                    % (P2_EPISODE_ACTION_CAP, len(normalized))
+                )
+            for item in normalized:
+                if str(item.get("action", "")).strip().upper() == "RESET":
+                    raise ValueError(
+                        "attempt() issues its own RESET; do not include RESET in the sequence."
+                    )
+
+            start_frame = runtime_globals.get("current_frame")
+            start_level = getattr(start_frame, "level", None)
+            start_sig = _p2_board_sig(start_frame)
+
+            taken = 0
+            level_completed = False
+            terminal_reason = "sequence_exhausted"
+            total_reward = 0.0
+            last_result = {}
+
+            for item in normalized:
+                last_result = action([item]) or {}
+                taken += 1
+                try:
+                    total_reward += float(last_result.get("reward") or 0.0)
+                except Exception:  # noqa: BLE001
+                    pass
+                if not last_result.get("executed", True):
+                    terminal_reason = str(last_result.get("stop_reason") or "not_executed")
+                    break
+                if bool(last_result.get("level_completed")):
+                    level_completed = True
+                    terminal_reason = "level_completed"
+                    break
+                if bool(last_result.get("game_over")):
+                    terminal_reason = "game_over"
+                    break
+                if bool(last_result.get("run_complete")) or bool(last_result.get("done")):
+                    terminal_reason = "run_complete"
+                    break
+
+            # NEVER reset after a level clear -- the engine full-resets after WIN.
+            reset_issued = False
+            returned_to_start = None
+            if not level_completed and terminal_reason != "run_complete":
+                action(["RESET"])
+                reset_issued = True
+                end_sig = _p2_board_sig(runtime_globals.get("current_frame"))
+                returned_to_start = (
+                    None if (end_sig is None or start_sig is None) else bool(end_sig == start_sig)
+                )
+
+            end_frame = runtime_globals.get("current_frame")
+            board_delta = "level %s -> %s after %d action(s); %s" % (
+                start_level,
+                getattr(end_frame, "level", None),
+                taken,
+                terminal_reason,
+            )
+            return {
+                "level_completed": level_completed,
+                "reward": total_reward,
+                "actions_taken": taken,
+                "terminal_reason": terminal_reason,
+                "board_delta": board_delta[:200],
+                "reset_issued": reset_issued,
+                "returned_to_level_start": returned_to_start,
+            }
+
+'''
+
+_SANDBOX_REPLACEMENT = _ATTEMPT_SRC + _ANCHOR_SANDBOX_EXPORT + '        runtime_globals["attempt"] = attempt\n'
+
+# ANCHOR 2 -- the CHILD bootstrap needs hashlib + the cap constant.
+#
+# The child source is `_SANDBOX_BOOTSTRAP = textwrap.dedent(r"""...` with a 4-space
+# base indentation that dedent() strips.  The anchor therefore carries that base
+# indentation VERBATIM: the bare "import contextlib\n" is a substring of the indented
+# line, so it would still count == 1 and pass the assert, but the replacement would
+# splice column-0 lines into an indented block -> IndentationError at kernel import.
+# The indentation is part of the anchor, not incidental to it.
+_ANCHOR_SANDBOX_IMPORT = "    import contextlib\n"
+_SANDBOX_IMPORT_REPLACEMENT = (
+    "    import contextlib\n"
+    "    import hashlib\n"
+    "    P2_EPISODE_ACTION_CAP = %d  # [p2] sealed episode cap\n" % EPISODE_ACTION_CAP
+)
+
+
+def _read(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+def _sub_once(text: str, anchor: str, replacement: str, *, where: str) -> str:
+    count = text.count(anchor)
+    if count != 1:
+        raise P2FatalDrift(
+            "P2 FATAL: anchor count != 1 (got %d) in %s for anchor %r" % (count, where, anchor[:70])
+        )
+    return text.replace(anchor, replacement)
+
+
+def apply_patch(src_root: Path) -> dict:
+    """Apply the P2 patch to a working-copy shadow of ARC3-Inference.
+
+    ``src_root`` must be the directory that contains ``inference/``.
+    Returns a dict of applied-anchor bookkeeping. Raises P2FatalDrift on any drift.
+    """
+    src_root = Path(src_root)
+    sandbox = src_root / "inference" / "agent" / "python_tool_sandbox.py"
+    if not sandbox.is_file():
+        raise P2FatalDrift("P2 FATAL: %s not found" % sandbox)
+
+    original = _read(sandbox)
+    digest = hashlib.md5(original.encode("utf-8")).hexdigest()[:12]
+
+    text = _sub_once(
+        original, _ANCHOR_SANDBOX_IMPORT, _SANDBOX_IMPORT_REPLACEMENT, where="sandbox:imports"
+    )
+    text = _sub_once(
+        text, _ANCHOR_SANDBOX_EXPORT, _SANDBOX_REPLACEMENT, where="sandbox:action-export"
+    )
+
+    # Must compile, or the kernel dies at import with no diagnosis.
+    ast.parse(text)
+
+    sandbox.write_text(text, encoding="utf-8")
+
+    return {
+        "anchors_applied": 2,
+        "sandbox_md5_before": digest,
+        "sandbox_is_vehicle_generation": digest == VEHICLE_SANDBOX_MD5,
+        "H": H_STUCK_TURNS,
+        "K": K_EPISODES,
+        "cap": EPISODE_ACTION_CAP,
+        "banner": "[p2] reset-retry armed H=%d K=%d cap=%d"
+        % (H_STUCK_TURNS, K_EPISODES, EPISODE_ACTION_CAP),
+    }
+
+
+if __name__ == "__main__":  # pragma: no cover
+    import sys
+
+    print(apply_patch(Path(sys.argv[1])))

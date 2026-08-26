@@ -1,0 +1,74 @@
+# === CLEAR LOCAL SCORE CARD ===
+# Keep this as the final cell. It summarizes the completed local/offline run directly from `bm`.
+import re
+from html import escape
+
+from IPython.display import HTML, display
+
+if TRUE_SUBMISSION:
+    print("Official competition rerun: the local estimate card is intentionally hidden.")
+elif not getattr(bm, "game_runs", None):
+    print("No completed local benchmark data is available yet.")
+else:
+    from taaf import diagnostics as taaf_diagnostics
+
+    _summary = taaf_diagnostics.run_summary_text(bm)
+
+    def _extract(pattern, cast=str, default=None):
+        match = re.search(pattern, _summary, flags=re.MULTILINE)
+        if not match:
+            return default
+        try:
+            return cast(match.group(1).strip())
+        except Exception:
+            return default
+
+    _mean = _extract(r"^mean score:\s*([0-9.]+)\s*$", float, 0.0)
+    _median = _extract(r"^median score:\s*([0-9.]+)\s*$", float, 0.0)
+    _duration = _extract(r"^duration:\s*(.+?)\s*$", str, "unknown")
+    _games = _extract(r"^games:\s*(\d+)\s*$", int, 0)
+    _won = _extract(r"^runs:\s*\d+\s*\(won:\s*(\d+)\)\s*$", int, 0)
+    _actions = _extract(r"^total actions:\s*(\d+)\s*$", int, 0)
+    _tokens = _extract(r"^total tokens:\s*(\d+)\s*$", int, 0)
+
+    _per_game = re.findall(
+        r"^\s+\S+:\s+score=([0-9.]+),\s+levels=([0-9.]+)/([0-9.]+),",
+        _summary,
+        flags=re.MULTILINE,
+    )
+    _positive = sum(float(score) > 0 for score, _, _ in _per_game)
+    _levels_done = sum(float(done) for _, done, _ in _per_game)
+    _levels_total = sum(float(total) for _, _, total in _per_game)
+
+    _budget_s = float(globals().get("LOCAL_FAST_EVAL_SECONDS", 0.0) or 0.0)
+    _budget_label = (
+        f"{_budget_s / 60:.1f} min/game"
+        if _budget_s > 0
+        else "full local budget"
+    )
+    _level_label = (
+        f"{_levels_done:.0f}/{_levels_total:.0f}"
+        if _levels_total > 0
+        else "unknown"
+    )
+    _positive_label = (
+        f"{_positive}/{len(_per_game)}"
+        if _per_game
+        else "unknown"
+    )
+
+    display(HTML(f"""
+    <div style="border:1px solid #6b7280;border-radius:14px;padding:20px 24px;margin:14px 0;max-width:920px;font-family:Arial,sans-serif">
+      <div style="font-size:15px;font-weight:800;letter-spacing:.05em">ARC-AGI-3 LOCAL FAST EVALUATION</div>
+      <div style="font-size:46px;font-weight:850;line-height:1.15;margin-top:8px">{_mean:.2f}<span style="font-size:18px;font-weight:500"> / 100</span></div>
+      <div style="font-size:14px;margin-top:4px">Estimated mean score on the local public environments (not the official hidden-environment leaderboard score)</div>
+      <hr style="margin:16px 0;border:none;border-top:1px solid #6b7280">
+      <table style="border-collapse:collapse;width:100%;font-size:14px;line-height:1.9">
+        <tr><td>Median score</td><td><b>{_median:.2f}</b></td><td>Games fully solved</td><td><b>{_won}/{_games}</b></td></tr>
+        <tr><td>Games with positive score</td><td><b>{_positive_label}</b></td><td>Levels completed</td><td><b>{_level_label}</b></td></tr>
+        <tr><td>Total actions</td><td><b>{_actions:,}</b></td><td>Total generated tokens</td><td><b>{_tokens:,}</b></td></tr>
+        <tr><td>Benchmark duration</td><td><b>{escape(_duration)}</b></td><td>Local time budget</td><td><b>{escape(_budget_label)}</b></td></tr>
+      </table>
+      <div style="font-size:12px;margin-top:14px;opacity:.78">Fast evaluation only shortens the local per-game time budget. The gateway, model, sampling settings, concurrency, game list, and submission path remain unchanged for official competition reruns. Scores under the shortened budget are usually lower than results from the full 132-minute-per-game local evaluation.</div>
+    </div>
+    """))

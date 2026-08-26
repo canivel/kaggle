@@ -1,0 +1,12 @@
+{
+  "edge1-ctx2x": {
+    "lc_total": 18,
+    "mean_score": 2.909,
+    "actions": 1113
+  },
+  "base-0815": {
+    "lc_total": 30,
+    "mean_score": 5.686,
+    "actions": 1463
+  }
+}

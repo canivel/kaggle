@@ -1,0 +1,208 @@
+{
+  "label": "duck-phase1-seed3",
+  "seed": 3,
+  "n_passes": 1,
+  "elapsed_s": 7971.563362747431,
+  "vllm_base_url": "http://127.0.0.1:8000/v1",
+  "phase1_env": {
+    "PHASE1_EXPLORE_AFTER_TURNS": "10",
+    "PHASE1_EXPLORE_BUDGET": "8",
+    "PHASE1_MAX_EXPLORES": "6",
+    "PHASE1_EVICT_LOW_FRAC": "0.5"
+  },
+  "games": {
+    "ar25-e3c63847": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 1,
+      "number_of_levels": 8,
+      "actions": 209,
+      "generated_tokens": 97688
+    },
+    "cd82-fb555c5d": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 0,
+      "number_of_levels": 6,
+      "actions": 146,
+      "generated_tokens": 122494
+    },
+    "cn04-65d47d14": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 1,
+      "number_of_levels": 5,
+      "actions": 336,
+      "generated_tokens": 83183
+    },
+    "dc22-4c9bff3e": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 0,
+      "number_of_levels": 6,
+      "actions": 204,
+      "generated_tokens": 78218
+    },
+    "ft09-0d8bbf25": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 2,
+      "number_of_levels": 6,
+      "actions": 116,
+      "generated_tokens": 200044
+    },
+    "g50t-5849a774": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 0,
+      "number_of_levels": 7,
+      "actions": 126,
+      "generated_tokens": 64904
+    },
+    "ka59-9f096b4a": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 1,
+      "number_of_levels": 7,
+      "actions": 209,
+      "generated_tokens": 129098
+    },
+    "lf52-271a04aa": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 1,
+      "number_of_levels": 10,
+      "actions": 87,
+      "generated_tokens": 107311
+    },
+    "lp85-305b61c3": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 2,
+      "number_of_levels": 8,
+      "actions": 128,
+      "generated_tokens": 154670
+    },
+    "ls20-9607627b": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 0,
+      "number_of_levels": 7,
+      "actions": 230,
+      "generated_tokens": 93939
+    },
+    "m0r0-dadda488": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 0,
+      "number_of_levels": 6,
+      "actions": 345,
+      "generated_tokens": 51420
+    },
+    "r11l-aa269680": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 0,
+      "number_of_levels": 6,
+      "actions": 136,
+      "generated_tokens": 90756
+    },
+    "re86-4e57566e": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 1,
+      "number_of_levels": 8,
+      "actions": 309,
+      "generated_tokens": 64278
+    },
+    "s5i5-a48e4b1d": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 0,
+      "number_of_levels": 8,
+      "actions": 129,
+      "generated_tokens": 157898
+    },
+    "sb26-7fbdac44": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 1,
+      "number_of_levels": 8,
+      "actions": 175,
+      "generated_tokens": 98203
+    },
+    "sc25-f9b21a2f": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 1,
+      "number_of_levels": 6,
+      "actions": 195,
+      "generated_tokens": 112584
+    },
+    "sk48-41055498": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 0,
+      "number_of_levels": 8,
+      "actions": 129,
+      "generated_tokens": 166535
+    },
+    "sp80-0ee2d095": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 1,
+      "number_of_levels": 6,
+      "actions": 245,
+      "generated_tokens": 83723
+    },
+    "su15-4c352900": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 1,
+      "number_of_levels": 9,
+      "actions": 234,
+      "generated_tokens": 79439
+    },
+    "tn36-ab4f63cc": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 2,
+      "number_of_levels": 7,
+      "actions": 154,
+      "generated_tokens": 86368
+    },
+    "tr87-cd924810": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 0,
+      "number_of_levels": 6,
+      "actions": 181,
+      "generated_tokens": 142182
+    },
+    "tu93-2b534c15": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 1,
+      "number_of_levels": 9,
+      "actions": 202,
+      "generated_tokens": 109504
+    },
+    "vc33-9851e02b": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 2,
+      "number_of_levels": 7,
+      "actions": 128,
+      "generated_tokens": 159617
+    },
+    "wa30-ee6fef47": {
+      "score": 0.0,
+      "state": "gave_up",
+      "levels_completed": 0,
+      "number_of_levels": 9,
+      "actions": 143,
+      "generated_tokens": 107950
+    }
+  },
+  "mean_score": 0.0
+}

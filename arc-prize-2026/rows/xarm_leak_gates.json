@@ -1,0 +1,23 @@
+[
+  {
+    "gate": "G1",
+    "name": "leak reproduced (pre-fix certifier certifies private_base)",
+    "passed": true,
+    "kill": false,
+    "detail": "cross-arm SIGNAL emitted"
+  },
+  {
+    "gate": "G2",
+    "name": "post-fix: field artifact still certifies to sealed record",
+    "passed": true,
+    "kill": true,
+    "detail": "SIGNAL 28 / 6.173"
+  },
+  {
+    "gate": "G3",
+    "name": "post-fix: superset artifact refuses on identity",
+    "passed": true,
+    "kill": true,
+    "detail": "INFRA DEATH: arm-identity marker absent"
+  }
+]

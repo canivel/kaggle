@@ -1,0 +1,57 @@
+{
+  "round": 24,
+  "proposal": "learnings/war_room/r24_successor_lane_proposal_2026-08-08.md",
+  "reviewer_model": "opus (NOT claude-fable-5; see minutes s6 - round-over-round score comparison invalid)",
+  "rail": "session subagents after KAOS fable-panel rail failed (nesting guard) and fable-5 credit exhaustion",
+  "addenda": [
+    "_ADDENDUM.md",
+    "_ADDENDUM2.md",
+    "_ADDENDUM3.md"
+  ],
+  "reviews": {
+    "rl-planning": {
+      "status": "completed",
+      "verdict": "MAJOR-REVISION",
+      "score": 5.0,
+      "n_fatal": 1,
+      "n_major": 5,
+      "chars": 14881
+    },
+    "llm-agents": {
+      "status": "completed",
+      "verdict": "MAJOR-REVISION",
+      "score": 6.0,
+      "n_fatal": 1,
+      "n_major": 6,
+      "chars": 19382
+    },
+    "prog-synthesis": {
+      "status": "completed",
+      "verdict": "MAJOR-REVISION",
+      "score": 6.0,
+      "n_fatal": 1,
+      "n_major": 5,
+      "chars": 17448
+    },
+    "methodology": {
+      "status": "completed",
+      "verdict": "MAJOR-REVISION",
+      "score": 6.0,
+      "n_fatal": 2,
+      "n_major": 7,
+      "chars": 20168
+    },
+    "systems": {
+      "status": "completed",
+      "verdict": "MAJOR-REVISION",
+      "score": 6.0,
+      "n_fatal": 1,
+      "n_major": 4,
+      "chars": 14300
+    }
+  },
+  "n_accept": 0,
+  "n_fatal_total": 6,
+  "pass": false,
+  "minutes": "learnings/war_room/r24_minutes_2026-08-09.md"
+}

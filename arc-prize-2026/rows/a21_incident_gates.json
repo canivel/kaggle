@@ -1,0 +1,23 @@
+[
+  {
+    "gate": "M1",
+    "name": "submit monitor fired on anomalous skip",
+    "passed": true,
+    "kill": false,
+    "detail": "preflight-blocked event surfaced in minutes"
+  },
+  {
+    "gate": "R1",
+    "name": "re-tagged head passes the daemon's exact preflight",
+    "passed": true,
+    "kill": true,
+    "detail": "ALLOW, T1-T4 OK, code identical to upstream"
+  },
+  {
+    "gate": "R2",
+    "name": "no manual submission (window stays daemon-owned)",
+    "passed": true,
+    "kill": true,
+    "detail": "recovery via 22:37Z scheduled run"
+  }
+]

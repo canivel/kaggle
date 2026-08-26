@@ -1,0 +1,30 @@
+services:
+  vllm:
+    image: vllm/vllm-openai:latest
+    runtime: nvidia
+    ports:
+      - "8000:8000"
+    volumes:
+      - hf-cache:/root/.cache/huggingface
+    environment:
+      - HUGGING_FACE_HUB_TOKEN=${HF_TOKEN:-}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    command: >
+      --model hxac/DeepSeek-R1-0528-Qwen3-8B-AWQ-4bit
+      --quantization awq
+      --dtype auto
+      --max-model-len 8192
+      --gpu-memory-utilization 0.85
+      --enable-prefix-caching
+      --host 0.0.0.0
+      --port 8000
+      --trust-remote-code
+
+volumes:
+  hf-cache:

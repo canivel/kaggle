@@ -1,0 +1,17 @@
+{
+  "date": "2026-08-20",
+  "incident_utc": "2026-08-21T00:07:06Z",
+  "detected_by": "persistent submit monitor on runs/submission_log.jsonl (armed for the FIRST time this night, at coordinator request)",
+  "time_to_detection": "minutes (monitor event); counterfactual without monitor: discovered at the 08-21 morning check, after the 22:37Z window had ALSO blocked - a full draw lost silently",
+  "mechanism": "Two independent defects composed: (1) QUEUE-TAG HEURISTIC GAP - scripts/queue.py auto-tags preflight_mode=trusted-fork only when the substring 'duck' appears in the kernel slug (a 2026-07-09 incident fix that never generalized); the A21 head arc3-q38-field-eval missed the heuristic and drew the STRICT war-eval structural preflight, which a byte-faithful FOYSAL-lineage rebase (11 cells, own metadata.kaggle block) can never pass - D2 metadata + D3 cell-shape both FAIL by construction. (2) DAEMON NO-FALL-THROUGH - daily_submit.py logs 'preflight-blocked' and STOPS; it does not try the next queue entry, so a blocked head spends the whole night's draw silently (the eternal-fallback auto-refill only arms when the queue is EMPTY, a different condition).",
+  "recovery": "No draw lost: the block fired at the 00:07Z window with the 22:37Z window still ahead. Head entry re-tagged (trusted-fork + upstream foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b); the daemon's EXACT preflight invocation re-run manually -> ALLOW (T1-T4: code cells identical to upstream, build COMPLETE). Window stays daemon-owned; no manual submission.",
+  "fixes_shipped": [
+    "head queue entry re-tagged and verified ALLOW on the daemon's exact invocation",
+    "queue.py add takes an optional <upstream> arg; explicit upstream wins over the name heuristic; loud WARNING when a non-duck slug is queued without one"
+  ],
+  "fixes_authorized_not_deployed": [
+    "daemon fall-through on preflight-block (coordinator-sequenced: draft + synthetic tests + diff review, deploy only AFTER tonight's confirmed submit-ok; alarm artifact when ALL entries block; regression test that a healthy head is never skipped)"
+  ],
+  "lesson": "TWO, accepted verbatim by the coordinator: (1) A NAME HEURISTIC IS NOT A LINEAGE TEST - generalized: any trust decision keyed on a slug substring is the same defect class; trust must be declared per-entry (explicit upstream), not inferred from naming. (2) NO-FALL-THROUGH MEANS A BLOCKED HEAD SILENTLY SPENDS A FULL DRAW - a queue whose head can be rejected needs either fall-through or a loud alarm; 'log-and-stop' is neither. Meta-lesson: the monitor that caught this was armed for the first time THIS NIGHT - verification instrumentation pays for itself on install day; silence from an automation is not success (5th instance this month).",
+  "why_informative": "A caught near-miss row: no evidence about any mechanism-under-test, but it documents a composed two-defect failure mode in the submission rail that would have cost the campaign's first non-filler A21 draw on the same day as its first certified SIGNAL. Registered so that (a) slug-substring trust decisions are recognized as a defect class in any future tooling, and (b) the daemon's no-fall-through is on the record as authorized-for-fix with its deployment sequence, so a future reader knows the gap existed and why the fix was staged rather than hotfixed at 20:30 before a live window."
+}

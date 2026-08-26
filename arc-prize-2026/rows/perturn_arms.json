@@ -1,0 +1,6 @@
+[
+ {"arm": "field-floor T1 (certified comparator)", "max_runtime_s_per_game": 7920, "games": 25, "lc_total": 28, "mean_score": 6.173, "actions": 1639, "acting_turns": 424, "llm_generations": 1181, "action_free_generation_pct": 62.1, "dead_phase_turn_pct": 54.0, "turns_per_level_cleared": 6.96, "median_dead_time_share_pct": 88},
+ {"arm": "T3 3x budget (independent replicate of the taxonomy)", "max_runtime_s_per_game": 23760, "games": 25, "lc_total": 35, "mean_score": 6.21, "actions": 3616, "acting_turns": 921, "llm_generations": 3271, "action_free_generation_pct": 61.4, "no_tool_call_generations": 197, "no_tool_call_char_share_pct": 16.5, "exact_duplicate_code_cell_pct": 11.5, "median_dead_time_share_pct": 78},
+ {"arm": "T0.5 half budget", "max_runtime_s_per_game": 3960, "games": 25, "lc_total": 14, "actions": 786, "acting_turns": 289, "median_dead_time_share_pct": 100},
+ {"arm": "tufa 20-pass clone reference (2026-06-02, weaker config)", "passes": 20, "games": 25, "game_runs": 500, "mean_over_clones": 1.600, "max_over_clones": 4.750, "max_over_mean": 2.97, "hard_walls": 2}
+]

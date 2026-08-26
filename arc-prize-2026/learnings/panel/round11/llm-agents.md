@@ -1,0 +1,44 @@
+## Summary (2 sentences)
+This revision is materially better than round 1 — the team ran a real budget-matched 25-game screen on Kaggle hardware, adopted prereg-gated sequencing for the ledger-ON A/B (n≥3 war-v1 draws before window 1), and pre-registered the banking canary — but the screen's central finding (Δlc strongly positive, RHAE flat, LB draw below control mean) is direct empirical evidence that their primary gate statistic is Goodharted against the scoring currency. The document received is complete (terminates with the required end line); the plan still contains no quantitative account of how any track closes the 0.42 gap to a thickening wall, and the load-bearing banking mechanism has still never been observed executing.
+
+## Objections
+
+**Resolution of prior-round objections:**
+
+**[Prior #1 — sequencing incoherence] PARTIALLY-RESOLVED.** The gross incoherence is fixed: ledger-ON window 1 is now gated behind war-v1 n≥3 (prereg §4), draws #2/#3 first, first ON-window Jul 17. But the second half of my demand is unmet: no minimum-detectable-effect for the alternate-nightly A/B has been published, and the variance reconciliation (ME-NEW-11) is not mentioned at all in this brief. With war-v1's own band at n=1 ({0.91}) you cannot even state the σ under which the Jul 17 A/B will be read. Actionable: before window 1 flips ON, publish the MDE at the chosen window count using the war-v1 band's own σ̂ (post-n=3), not the frozen fork's 0.074.
+
+**[Prior #2 — ledger+escalation zero efficacy evidence] PARTIALLY-RESOLVED, and the residual is now the plan's weakest point.** The team built and ran a genuine efficacy screen — credit where due — but it screened the wrong arm: war-eval v1 ran with **ledger OFF**. The mechanism that will be flipped ON Jul 17 in scored windows still has zero efficacy evidence, local or otherwise, and Q2's proposed seeds 2–3 also test warpack-vs-null, not ledger-ON-vs-OFF. The constraint sheet's own gate ("gates need ≥3 seeds; screens are 1-seed, non-binding") is being applied to warpack but silently waived for ledger. Actionable: use one of today's two free kernel pushes for a ledger-ON local screen (even 1-seed) before Jul 17, or state inline the prereg-predicted effect size that justifies burning scored windows on an unscreened mechanism.
+
+**[Prior #3 — banking determinism unvalidated] PARTIALLY-RESOLVED.** The canary I demanded is now pre-registered (§7) and Q4 commits to building it today into war-v2 for both arms — accepted. But the brief's own honest disclosure makes this worse, not better: **zero replay events ever observed**, and the reason is structural — 1 pass/game with 0 wins means the eval configuration *cannot* exercise the replay path. Shipping a never-executed core mechanism into scored windows behind bank_strict=True is exactly the failure mode I flagged. See new objection [N2].
+
+**[Prior #4 — order stats cannot reach the wall / no gap budget] UNRESOLVED.** No per-track gap-closure budget appears anywhere in this brief, and the new evidence makes the arithmetic worse: the wall thickened (12 teams ≥1.44), best remains 1.02, and the only mechanism under active investment is RHAE-flat with an LB draw (0.91) *below* the frozen-fork control mean (0.922). The document budgets 100% of scored windows through Jul 17+ to an arm with no demonstrated lift in official currency. Actionable demand stands verbatim: state, with numbers, how much of the 0.42 each track is expected to close and under what evidence.
+
+**[Prior #5 — warpack arm has no valid control] RESOLVED.** Prereg §4's n≥3 war-v1 requirement before any ledger-ON contrast is precisely the fix I demanded, and draws #2/#3 are sequenced to satisfy it. I withdraw this objection contingent on prereg §4 actually reading as described.
+
+**[Prior #6 — fast-submit gate fail-catastrophic on n=1] UNRESOLVED.** The brief is silent on the startup assertion path and detection-signal logging. The mechanism presumably fired correctly for draw #1's rerun (n=2 now, at best); the fail-loud fix is still unimplemented and unscheduled. Restate: this is a ~0-score day if RUN_HEAVY detection misfires.
+
+**[Prior #7 — sched-v1 draw #2 kill criterion] PARTIALLY-RESOLVED.** The queue as now described (war-v1 #2 head, #3 behind) no longer contains sched-v1 draw #2, but no explicit kill decision is recorded — it evaporated rather than being disposed of. One sentence in tomorrow's brief ("sched-v1 draw #2 killed, reason X") closes this; silent queue mutation is the hygiene failure mode I was pointing at.
+
+**New objections:**
+
+**[MAJOR] [N1] The screen empirically Goodharts your own gate, and Q2(a) commits three seeds to a criterion you now know is broken.** Δlc = +0.272 (p=0.0074) with RHAE flat (p=0.61) and LB = 0.91 is not an ambiguous result — it is a demonstration that the prereg §2 primary statistic does not track the scoring currency. The author's answer to Q2 ("(a), seeds are free") defers the design question until *after* three seeds are in hand, at which point any amendment to the gate criterion is post-hoc and the Jul 17 "gate look" is either p-hacked or pre-committed to a metric with zero demonstrated LB validity. Actionable: amend prereg §2 **today, before seed 2 launches** — e.g., promote a compound criterion (Δlc positive AND RHAE non-regression) or make an RHAE-proxy primary with the power analysis redone — and note that yesterday's handoff condition ("no lc regression → draw #3 queues") auto-approved a scored window on the same broken statistic.
+
+**[MAJOR] [N2] Fix the eval config so banking can actually fire before Jul 17 — the canary alone cannot rescue a mechanism that has never executed.** With 1 pass/game, replay is structurally unreachable; the canary will read replay_attempted=0 forever in this configuration and tell you nothing. Actionable and cheap: run a local multi-pass configuration restricted to games where warpack demonstrably wins (sc25, m0r0, ar25, s5i5) so that at least one replay_attempted/replay_succeeded > 0 event is observed end-to-end with the §7 canary *before* war-v2 enters a scored window. If replay cannot be made to fire even locally under multi-pass, that is itself gate-relevant information and R2 timing must slip.
+
+**[MINOR] [N3] Q5 proposes two mutually exclusive daemon fixes with no decision, and neither carries a regression test.** "Window-day logic OR move to 20:07 EDT" is a disjunction, not a plan; the schedule-move option masks the logic bug rather than fixing it and will resurface on the next off-cadence manual submission (a pattern Q1 explicitly encourages). Pick the window-day comparison fix, add a unit test reproducing the Jul 14 22:37Z skip, and record the decision. Also correct the §1a claim that a midday submit "restores the 00:xxZ cadence" — it does not; tomorrow's daemon still fires at 22:37Z under the unfixed schedule.
+
+## Questions for the authors (numbered)
+1. What is the minimum-detectable-effect of the alternate-nightly ledger A/B at the window count you intend to read, computed with the war-v1 band's own σ̂ after n=3 — and what do you do if that σ̂ comes in near 0.5 rather than 0.074?
+2. What is the prereg-predicted RHAE (or LB) effect size for ledger-ON specifically, and on which games? If none exists, why is Jul 17 not conditional on a ledger-ON local screen?
+3. Will prereg §2's primary statistic be amended before seed 2 launches (Q2), and if so to what, exactly?
+4. Has banking's replay path ever executed with a real win, anywhere? If it fires locally under multi-pass, what is the observed replay success rate?
+5. Which of the 0.42 gap points is each track (warpack levels→RHAE conversion, ledger, order-stats over daily draws, anything else) budgeted to close, and what evidence would trigger abandoning warpack given RHAE is flat at n=1 scored / n=1 screened?
+6. Was sched-v1 draw #2 formally killed, and by what mechanism was it removed from the queue?
+7. What does the official metric actually reward — is RHAE the exact scoring currency or itself a proxy? (The lc/RHAE/LB triangle only closes if this is pinned down.)
+
+## What I cannot judge
+The correctness of the exact sign-flip test and the paired-screen statistics (defer to the panel's statistician); Kaggle platform specifics of quota-window semantics and hidden-rerun hardware parity (defer to the competition-infrastructure reviewer); whether the zero-cloud-spend constraint is strategically correct; and the internal soundness of the scorer's "0e+00" validation, which I take on faith. My assessment of the recovery/retry_guard/shortcircuit mechanisms is from the agent-scaffolding side (mechanism-vs-metric validity), not from ARC-AGI-3 game-domain knowledge.
+
+## Verdict: MAJOR-REVISION
+
+## Score: 5/10

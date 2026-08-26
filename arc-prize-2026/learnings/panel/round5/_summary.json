@@ -1,0 +1,53 @@
+{
+  "round": 5,
+  "reviews": {
+    "rl-planning": {
+      "agent_id": "01KXC7ZTMVXCG93072244FECXS",
+      "status": "completed",
+      "verdict": "MAJOR-REVISION",
+      "score": 5.0,
+      "n_fatal": 1,
+      "n_major": 5,
+      "chars": 8491
+    },
+    "llm-agents": {
+      "agent_id": "01KXC7ZVTK67G6AVP5X9PVD5V2",
+      "status": "completed",
+      "verdict": "MAJOR-REVISION",
+      "score": 5.0,
+      "n_fatal": 0,
+      "n_major": 5,
+      "chars": 7660
+    },
+    "prog-synthesis": {
+      "agent_id": "01KXC7ZY4B7T18KAH8T253YT5J",
+      "status": "completed",
+      "verdict": "MAJOR-REVISION",
+      "score": 5.0,
+      "n_fatal": 0,
+      "n_major": 6,
+      "chars": 8419
+    },
+    "methodology": {
+      "agent_id": "01KXC800E4PCAHJP0D58ACCQHZ",
+      "status": "completed",
+      "verdict": "MAJOR-REVISION",
+      "score": 5.0,
+      "n_fatal": 0,
+      "n_major": 5,
+      "chars": 7643
+    },
+    "systems": {
+      "agent_id": "01KXC802CW239XJ0WSAECWJ818",
+      "status": "completed",
+      "verdict": "MAJOR-REVISION",
+      "score": 5.0,
+      "n_fatal": 0,
+      "n_major": 5,
+      "chars": 7667
+    }
+  },
+  "n_accept": 0,
+  "n_fatal_total": 1,
+  "pass": false
+}

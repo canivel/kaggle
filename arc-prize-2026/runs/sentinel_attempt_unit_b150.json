@@ -1,0 +1,323 @@
+{
+ "budget": 150,
+ "n_game_seed_units": 75,
+ "n_budget_deaths": 6,
+ "deaths_in_multi_attempt_games": 1,
+ "frac_deaths_multi_attempt": 0.16666666666666666,
+ "median_consumed_before_fatal_attempt": 0.0,
+ "consumed_before_fatal_attempt_all": [
+  0,
+  0,
+  0,
+  0,
+  0,
+  151
+ ],
+ "target_game_attempt_counts": {
+  "ft09": [
+   1,
+   3,
+   5
+  ],
+  "ka59": [
+   2,
+   2,
+   3
+  ],
+  "lp85": [
+   2,
+   3,
+   4
+  ],
+  "re86": [
+   3,
+   4,
+   4
+  ],
+  "sb26": [
+   2,
+   3,
+   4
+  ],
+  "sc25": [
+   3,
+   6,
+   6
+  ],
+  "su15": [
+   1,
+   4,
+   6
+  ],
+  "tu93": [
+   7,
+   9,
+   12
+  ]
+ },
+ "cross_attempt_waste_episodes": [
+  {
+   "game": "sc25",
+   "seed": "war_eval_v1",
+   "total": 184,
+   "max_attempt": 54,
+   "n_attempts": 6
+  },
+  {
+   "game": "sp80",
+   "seed": "war_eval_v1",
+   "total": 240,
+   "max_attempt": 31,
+   "n_attempts": 14
+  },
+  {
+   "game": "tu93",
+   "seed": "war_eval_v1",
+   "total": 154,
+   "max_attempt": 50,
+   "n_attempts": 12
+  },
+  {
+   "game": "bp35",
+   "seed": "war_eval_v2",
+   "total": 474,
+   "max_attempt": 65,
+   "n_attempts": 11
+  },
+  {
+   "game": "r11l",
+   "seed": "war_eval_v2",
+   "total": 443,
+   "max_attempt": 61,
+   "n_attempts": 8
+  },
+  {
+   "game": "sc25",
+   "seed": "war_eval_v2",
+   "total": 235,
+   "max_attempt": 54,
+   "n_attempts": 6
+  },
+  {
+   "game": "sp80",
+   "seed": "war_eval_v2",
+   "total": 223,
+   "max_attempt": 31,
+   "n_attempts": 9
+  },
+  {
+   "game": "su15",
+   "seed": "war_eval_v2",
+   "total": 178,
+   "max_attempt": 35,
+   "n_attempts": 6
+  },
+  {
+   "game": "vc33",
+   "seed": "war_eval_v2",
+   "total": 152,
+   "max_attempt": 51,
+   "n_attempts": 4
+  },
+  {
+   "game": "bp35",
+   "seed": "war_eval_v3",
+   "total": 366,
+   "max_attempt": 65,
+   "n_attempts": 13
+  },
+  {
+   "game": "sp80",
+   "seed": "war_eval_v3",
+   "total": 184,
+   "max_attempt": 46,
+   "n_attempts": 6
+  },
+  {
+   "game": "tu93",
+   "seed": "war_eval_v3",
+   "total": 314,
+   "max_attempt": 51,
+   "n_attempts": 7
+  },
+  {
+   "game": "vc33",
+   "seed": "war_eval_v3",
+   "total": 165,
+   "max_attempt": 51,
+   "n_attempts": 5
+  }
+ ],
+ "n_cross_attempt_waste": 13,
+ "envelope_crossing_units": 33,
+ "envelope_crossing_warned_by_90pct": 18,
+ "envelope_late_or_never": [
+  {
+   "game": "re86",
+   "seed": "war_eval_v1",
+   "total": 296,
+   "first_fire": 138,
+   "n_attempts": 4
+  },
+  {
+   "game": "sc25",
+   "seed": "war_eval_v1",
+   "total": 184,
+   "first_fire": null,
+   "n_attempts": 6
+  },
+  {
+   "game": "sp80",
+   "seed": "war_eval_v1",
+   "total": 240,
+   "first_fire": null,
+   "n_attempts": 14
+  },
+  {
+   "game": "tu93",
+   "seed": "war_eval_v1",
+   "total": 154,
+   "first_fire": null,
+   "n_attempts": 12
+  },
+  {
+   "game": "bp35",
+   "seed": "war_eval_v2",
+   "total": 474,
+   "first_fire": null,
+   "n_attempts": 11
+  },
+  {
+   "game": "r11l",
+   "seed": "war_eval_v2",
+   "total": 443,
+   "first_fire": null,
+   "n_attempts": 8
+  },
+  {
+   "game": "re86",
+   "seed": "war_eval_v2",
+   "total": 163,
+   "first_fire": 154,
+   "n_attempts": 3
+  },
+  {
+   "game": "sc25",
+   "seed": "war_eval_v2",
+   "total": 235,
+   "first_fire": null,
+   "n_attempts": 6
+  },
+  {
+   "game": "sp80",
+   "seed": "war_eval_v2",
+   "total": 223,
+   "first_fire": null,
+   "n_attempts": 9
+  },
+  {
+   "game": "su15",
+   "seed": "war_eval_v2",
+   "total": 178,
+   "first_fire": null,
+   "n_attempts": 6
+  },
+  {
+   "game": "vc33",
+   "seed": "war_eval_v2",
+   "total": 152,
+   "first_fire": null,
+   "n_attempts": 4
+  },
+  {
+   "game": "bp35",
+   "seed": "war_eval_v3",
+   "total": 366,
+   "first_fire": null,
+   "n_attempts": 13
+  },
+  {
+   "game": "sp80",
+   "seed": "war_eval_v3",
+   "total": 184,
+   "first_fire": null,
+   "n_attempts": 6
+  },
+  {
+   "game": "tu93",
+   "seed": "war_eval_v3",
+   "total": 314,
+   "first_fire": null,
+   "n_attempts": 7
+  },
+  {
+   "game": "vc33",
+   "seed": "war_eval_v3",
+   "total": 165,
+   "first_fire": null,
+   "n_attempts": 5
+  }
+ ],
+ "deaths_detail": [
+  {
+   "action_num": 151,
+   "attempt_index": 0,
+   "consumed_in_attempt": 151,
+   "consumed_before_attempt": 0,
+   "n_attempts_at_death": 1,
+   "game": "m0r0",
+   "seed": "war_eval_v1",
+   "target": false
+  },
+  {
+   "action_num": 199,
+   "attempt_index": 0,
+   "consumed_in_attempt": 199,
+   "consumed_before_attempt": 0,
+   "n_attempts_at_death": 1,
+   "game": "sk48",
+   "seed": "war_eval_v1",
+   "target": false
+  },
+  {
+   "action_num": 151,
+   "attempt_index": 0,
+   "consumed_in_attempt": 151,
+   "consumed_before_attempt": 0,
+   "n_attempts_at_death": 1,
+   "game": "m0r0",
+   "seed": "war_eval_v2",
+   "target": false
+  },
+  {
+   "action_num": 151,
+   "attempt_index": 0,
+   "consumed_in_attempt": 151,
+   "consumed_before_attempt": 0,
+   "n_attempts_at_death": 1,
+   "game": "m0r0",
+   "seed": "war_eval_v3",
+   "target": false
+  },
+  {
+   "action_num": 303,
+   "attempt_index": 1,
+   "consumed_in_attempt": 152,
+   "consumed_before_attempt": 151,
+   "n_attempts_at_death": 2,
+   "game": "m0r0",
+   "seed": "war_eval_v3",
+   "target": false
+  },
+  {
+   "action_num": 200,
+   "attempt_index": 0,
+   "consumed_in_attempt": 200,
+   "consumed_before_attempt": 0,
+   "n_attempts_at_death": 1,
+   "game": "wa30",
+   "seed": "war_eval_v3",
+   "target": false
+  }
+ ]
+}

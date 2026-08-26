@@ -1,0 +1,28 @@
+{
+ "mechanism": "LOCAL_ANALYZER_YIELD_SECONDS (60s default on the Kaggle rail) was believed to DISCARD completed analyzer generations, so raising it to ~150s was sealed as a free conversion of dead invocations into acting turns. Direct source reading of the SHIPPED 08-07 anim bundle shows the yield is checked only (a) at the top of the tool-step while-loop BEFORE any request is issued and (b) after a response is fully received or a tool dispatch returns - never mid-generation - and that on yield preserve_history stays True so the completed assistant message and tool results are committed to self._history_messages and resumed by the next invocation. The yield is a cooperative, WORK-PRESERVING control return, not a discard and not a truncation.",
+ "summary": "C3 GATE: REFUTED ON MECHANISM. The analyzer yield discards nothing and truncates nothing; it is work-preserving. C3 was sealed on the claim that it stops discarding completed generations - that claim is false, so the sealed conditional (build only if discard is confirmed) does not fire and C3 takes no Kaggle slot. Artifacts show the yield fires ~4.05x per acting turn in 25/25 games (median 242.9s per acting turn vs a 60s yield) and that tail_tokens_no_action is 282209/2103403 = 13.4%, all 25 runs reconciled. The only surviving effect of 60->150s is fewer control-returns (4.05 -> 1.62), an INPUT-side saving already served by --enable-prefix-caching, and it carries an unpriced counter-effect: every game ends gave_up on the 7920s clock (7925s/game, 25/25) so a 150s window abandons up to 2.5x more in-flight work at that terminal boundary. Small, ambiguous in sign, far inside the comparator noise (field floor lc 28 + Arm A base lc 30 => mean 29.0, pooled seed sd 2.80). NOT WORTH A SLOT.",
+ "lesson": "Verify the mechanism in the SHIPPED artifact before sealing an arm on it. C3 was sealed on 08-22 on an inferred discard that a 20-minute read of the bundle source refutes; the gate that would have caught it was ordered the same day and then silently failed twice (08-24, 08-25) because KAOS run agents execute in an isolated virtual filesystem scoped to the kaos repo and cannot read the campaign repo at all. A verification assigned to an instrument that CANNOT perform it is indistinguishable from a verification that was never ordered - check that the agent can reach the evidence before delegating the check. Corollary for the family: a subtraction-of-waste arm must first prove the waste EXISTS and is RECOVERABLE; 13.4% of tokens buying no action is real, but none of it was recoverable by this lever.",
+ "code_cites": {
+  "bundle": "runs/harness_diff_0813/ds/jakobbrggen_taaf-kaggle-source-anim-20260807-anim/src/ARC3-Inference",
+  "yield_constant": "inference/agent/tool_agent.py:154,1085",
+  "yield_check_sites": "inference/agent/tool_agent.py:2153-2163 (predicate), 2168-2170 (pre-request, loop top), 2288 (post-response), 2353 (post-dispatch)",
+  "preserve_history": "inference/agent/tool_agent.py:2139 (True), 2350-2357 (False only mid-batch), 2365/2383 (False on exception), 2400-2403 (finally commits)",
+  "history_retention": "inference/agent/tool_agent.py:173 (_PERSISTENT_HISTORY_ASSISTANT_TURNS=30), 2037-2054",
+  "rail_defaults": "inference/framework/kaggle.py:114 (YIELD_SECONDS=60), TOOL_STEPS=0 => unlimited"
+ },
+ "artifacts": {
+  "total_generated_tokens": 2103403,
+  "tail_tokens_no_action": 282209,
+  "tail_pct": 13.4,
+  "unreconciled_runs": 0,
+  "median_seconds_per_acting_turn": 242.9,
+  "games_where_yield_fires": "25/25",
+  "implied_yield_cycles_per_acting_turn": 4.05,
+  "acting_turns": 424,
+  "actions": 1639,
+  "source_pull": "runs/kernel_pulls/q38_field_v1/benchmark.json",
+  "instrument_output": "runs/cad_field_0825.json"
+ },
+ "gpu_spend_usd": 0,
+ "kaggle_pushes_spent": 0
+}

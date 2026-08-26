@@ -1,0 +1,517 @@
+{
+  "_meta": {
+    "description": "ARC-AGI-3 offline scoring atlas: per-game per-level human baseline_actions.",
+    "source": "environment_files/*/*/metadata.json (local kernel lineage 2026-04-14 download); formula cross-checked vs Kaggle notebook busyaprime/arc-agi-3-offline-atlas-and-scoring (discussion 728299) and runs/kernel_pulls/sentinel_eval_v1 harness scores.",
+    "n_games": 25,
+    "note": "baseline_actions[i] is the competent-human action budget for level i (1-indexed level=i+1).",
+    "WARNING_baseline_drift": "Game bundles rotate by guid; baseline_actions are version-specific. The sentinel_eval_v1 run (2026-07-22) played DIFFERENT guids than these local dirs for 20/25 games, with different baselines. For scoring a SPECIFIC run, prefer that run benchmark.json base_actions_per_level (authoritative per-run) via load_baselines_from_benchmark(). This atlas is the best offline default when no run-specific baseline is available."
+  },
+  "games": {
+    "ar25-e3c63847": {
+      "game_id": "ar25-e3c63847",
+      "short_id": "ar25",
+      "title": "AR25",
+      "tags": [
+        "keyboard_click"
+      ],
+      "baseline_actions": [
+        17,
+        22,
+        103,
+        29,
+        29,
+        159,
+        152,
+        66
+      ],
+      "n_levels": 8,
+      "human_budget": 577,
+      "local_dir": "environment_files\\ar25\\e3c63847"
+    },
+    "bp35-0a0ad940": {
+      "game_id": "bp35-0a0ad940",
+      "short_id": "bp35",
+      "title": "BP35",
+      "tags": [
+        "keyboard_click"
+      ],
+      "baseline_actions": [
+        15,
+        72,
+        36,
+        31,
+        31,
+        48,
+        86,
+        155,
+        163
+      ],
+      "n_levels": 9,
+      "human_budget": 637,
+      "local_dir": "environment_files\\bp35\\0a0ad940"
+    },
+    "cd82-fb555c5d": {
+      "game_id": "cd82-fb555c5d",
+      "short_id": "cd82",
+      "title": "CD82",
+      "tags": [
+        "keyboard_click"
+      ],
+      "baseline_actions": [
+        41,
+        8,
+        30,
+        21,
+        19,
+        17
+      ],
+      "n_levels": 6,
+      "human_budget": 136,
+      "local_dir": "environment_files\\cd82\\fb555c5d"
+    },
+    "cn04-65d47d14": {
+      "game_id": "cn04-65d47d14",
+      "short_id": "cn04",
+      "title": "CN04",
+      "tags": [
+        "keyboard_click"
+      ],
+      "baseline_actions": [
+        16,
+        54,
+        69,
+        318,
+        208,
+        114
+      ],
+      "n_levels": 6,
+      "human_budget": 779,
+      "local_dir": "environment_files\\cn04\\65d47d14"
+    },
+    "dc22-4c9bff3e": {
+      "game_id": "dc22-4c9bff3e",
+      "short_id": "dc22",
+      "title": "DC22",
+      "tags": [
+        "keyboard_click"
+      ],
+      "baseline_actions": [
+        64,
+        117,
+        59,
+        78,
+        324,
+        550
+      ],
+      "n_levels": 6,
+      "human_budget": 1192,
+      "local_dir": "environment_files\\dc22\\4c9bff3e"
+    },
+    "ft09-0d8bbf25": {
+      "game_id": "ft09-0d8bbf25",
+      "short_id": "ft09",
+      "title": "FT09",
+      "tags": [],
+      "baseline_actions": [
+        43,
+        12,
+        23,
+        28,
+        65,
+        37
+      ],
+      "n_levels": 6,
+      "human_budget": 208,
+      "local_dir": "environment_files\\ft09\\0d8bbf25"
+    },
+    "g50t-5849a774": {
+      "game_id": "g50t-5849a774",
+      "short_id": "g50t",
+      "title": "G50T",
+      "tags": [
+        "keyboard"
+      ],
+      "baseline_actions": [
+        51,
+        175,
+        86,
+        52,
+        96,
+        48,
+        67
+      ],
+      "n_levels": 7,
+      "human_budget": 575,
+      "local_dir": "environment_files\\g50t\\5849a774"
+    },
+    "ka59-9f096b4a": {
+      "game_id": "ka59-9f096b4a",
+      "short_id": "ka59",
+      "title": "KA59",
+      "tags": [
+        "keyboard_click"
+      ],
+      "baseline_actions": [
+        39,
+        175,
+        86,
+        47,
+        21,
+        132,
+        326
+      ],
+      "n_levels": 7,
+      "human_budget": 826,
+      "local_dir": "environment_files\\ka59\\9f096b4a"
+    },
+    "lf52-271a04aa": {
+      "game_id": "lf52-271a04aa",
+      "short_id": "lf52",
+      "title": "LF52",
+      "tags": [
+        "click"
+      ],
+      "baseline_actions": [
+        24,
+        81,
+        74,
+        86,
+        118,
+        148,
+        189,
+        116,
+        150,
+        225
+      ],
+      "n_levels": 10,
+      "human_budget": 1211,
+      "local_dir": "environment_files\\lf52\\271a04aa"
+    },
+    "lp85-305b61c3": {
+      "game_id": "lp85-305b61c3",
+      "short_id": "lp85",
+      "title": "LP85",
+      "tags": [
+        "click"
+      ],
+      "baseline_actions": [
+        17,
+        38,
+        31,
+        16,
+        41,
+        60,
+        26,
+        159
+      ],
+      "n_levels": 8,
+      "human_budget": 388,
+      "local_dir": "environment_files\\lp85\\305b61c3"
+    },
+    "ls20-9607627b": {
+      "game_id": "ls20-9607627b",
+      "short_id": "ls20",
+      "title": "LS20",
+      "tags": [
+        "keyboard"
+      ],
+      "baseline_actions": [
+        21,
+        123,
+        39,
+        92,
+        54,
+        108,
+        109
+      ],
+      "n_levels": 7,
+      "human_budget": 546,
+      "local_dir": "environment_files\\ls20\\9607627b"
+    },
+    "m0r0-dadda488": {
+      "game_id": "m0r0-dadda488",
+      "short_id": "m0r0",
+      "title": "M0R0",
+      "tags": [
+        "keyboard_click"
+      ],
+      "baseline_actions": [
+        30,
+        209,
+        83,
+        86,
+        436,
+        126
+      ],
+      "n_levels": 6,
+      "human_budget": 970,
+      "local_dir": "environment_files\\m0r0\\dadda488"
+    },
+    "r11l-495a7899": {
+      "game_id": "r11l-495a7899",
+      "short_id": "r11l",
+      "title": "R11L",
+      "tags": [
+        "click"
+      ],
+      "baseline_actions": [
+        22,
+        33,
+        51,
+        26,
+        52,
+        49
+      ],
+      "n_levels": 6,
+      "human_budget": 233,
+      "local_dir": "environment_files\\r11l\\aa269680"
+    },
+    "re86-4e57566e": {
+      "game_id": "re86-4e57566e",
+      "short_id": "re86",
+      "title": "RE86",
+      "tags": [
+        "keyboard_click"
+      ],
+      "baseline_actions": [
+        28,
+        38,
+        198,
+        57,
+        84,
+        117,
+        328,
+        221
+      ],
+      "n_levels": 8,
+      "human_budget": 1071,
+      "local_dir": "environment_files\\re86\\4e57566e"
+    },
+    "s5i5-a48e4b1d": {
+      "game_id": "s5i5-a48e4b1d",
+      "short_id": "s5i5",
+      "title": "S5I5",
+      "tags": [
+        "click"
+      ],
+      "baseline_actions": [
+        19,
+        57,
+        85,
+        203,
+        82,
+        30,
+        76,
+        56
+      ],
+      "n_levels": 8,
+      "human_budget": 608,
+      "local_dir": "environment_files\\s5i5\\a48e4b1d"
+    },
+    "sb26-7fbdac44": {
+      "game_id": "sb26-7fbdac44",
+      "short_id": "sb26",
+      "title": "SB26",
+      "tags": [
+        "keyboard_click"
+      ],
+      "baseline_actions": [
+        18,
+        28,
+        18,
+        19,
+        31,
+        23,
+        58,
+        18
+      ],
+      "n_levels": 8,
+      "human_budget": 213,
+      "local_dir": "environment_files\\sb26\\7fbdac44"
+    },
+    "sc25-f9b21a2f": {
+      "game_id": "sc25-f9b21a2f",
+      "short_id": "sc25",
+      "title": "SC25",
+      "tags": [
+        "keyboard_click"
+      ],
+      "baseline_actions": [
+        39,
+        5,
+        32,
+        33,
+        66,
+        41
+      ],
+      "n_levels": 6,
+      "human_budget": 216,
+      "local_dir": "environment_files\\sc25\\f9b21a2f"
+    },
+    "sk48-41055498": {
+      "game_id": "sk48-41055498",
+      "short_id": "sk48",
+      "title": "SK48",
+      "tags": [
+        "keyboard_click"
+      ],
+      "baseline_actions": [
+        15,
+        32,
+        35,
+        113,
+        304,
+        42,
+        63,
+        92
+      ],
+      "n_levels": 8,
+      "human_budget": 696,
+      "local_dir": "environment_files\\sk48\\41055498"
+    },
+    "sp80-0ee2d095": {
+      "game_id": "sp80-0ee2d095",
+      "short_id": "sp80",
+      "title": "SP80",
+      "tags": [
+        "keyboard_click"
+      ],
+      "baseline_actions": [
+        11,
+        18,
+        17,
+        172,
+        102,
+        152
+      ],
+      "n_levels": 6,
+      "human_budget": 472,
+      "local_dir": "environment_files\\sp80\\0ee2d095"
+    },
+    "su15-4c352900": {
+      "game_id": "su15-4c352900",
+      "short_id": "su15",
+      "title": "SU15",
+      "tags": [
+        "click"
+      ],
+      "baseline_actions": [
+        18,
+        28,
+        50,
+        151,
+        18,
+        31,
+        50,
+        179,
+        41
+      ],
+      "n_levels": 9,
+      "human_budget": 566,
+      "local_dir": "environment_files\\su15\\4c352900"
+    },
+    "tn36-ab4f63cc": {
+      "game_id": "tn36-ab4f63cc",
+      "short_id": "tn36",
+      "title": "TN36",
+      "tags": [
+        "click"
+      ],
+      "baseline_actions": [
+        23,
+        22,
+        26,
+        37,
+        25,
+        56,
+        61
+      ],
+      "n_levels": 7,
+      "human_budget": 250,
+      "local_dir": "environment_files\\tn36\\ab4f63cc"
+    },
+    "tr87-cd924810": {
+      "game_id": "tr87-cd924810",
+      "short_id": "tr87",
+      "title": "TR87",
+      "tags": [
+        "keyboard"
+      ],
+      "baseline_actions": [
+        37,
+        30,
+        39,
+        29,
+        63,
+        119
+      ],
+      "n_levels": 6,
+      "human_budget": 317,
+      "local_dir": "environment_files\\tr87\\cd924810"
+    },
+    "tu93-2b534c15": {
+      "game_id": "tu93-2b534c15",
+      "short_id": "tu93",
+      "title": "TU93",
+      "tags": [
+        "keyboard_click"
+      ],
+      "baseline_actions": [
+        19,
+        15,
+        34,
+        42,
+        76,
+        91,
+        47,
+        23,
+        31
+      ],
+      "n_levels": 9,
+      "human_budget": 378,
+      "local_dir": "environment_files\\tu93\\2b534c15"
+    },
+    "vc33-5430563c": {
+      "game_id": "vc33-5430563c",
+      "short_id": "vc33",
+      "title": "VC33",
+      "tags": [
+        "click"
+      ],
+      "baseline_actions": [
+        7,
+        18,
+        44,
+        61,
+        131,
+        34,
+        152
+      ],
+      "n_levels": 7,
+      "human_budget": 447,
+      "local_dir": "environment_files\\vc33\\9851e02b"
+    },
+    "wa30-ee6fef47": {
+      "game_id": "wa30-ee6fef47",
+      "short_id": "wa30",
+      "title": "WA30",
+      "tags": [
+        "keyboard"
+      ],
+      "baseline_actions": [
+        125,
+        58,
+        259,
+        113,
+        499,
+        58,
+        186,
+        134,
+        132
+      ],
+      "n_levels": 9,
+      "human_budget": 1564,
+      "local_dir": "environment_files\\wa30\\ee6fef47"
+    }
+  }
+}

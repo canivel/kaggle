@@ -1,0 +1,51 @@
+[
+  {
+    "gate": "C1",
+    "name": "served model = Qwen/Qwen3.8-27B-FP8",
+    "passed": true,
+    "kill": true,
+    "detail": "vLLM banner in log"
+  },
+  {
+    "gate": "C2",
+    "name": "reasoning_effort ABSENT from log (xhigh default ran)",
+    "passed": true,
+    "kill": true,
+    "detail": "0 occurrences in full log"
+  },
+  {
+    "gate": "C3",
+    "name": "anim bundle setup lines present",
+    "passed": true,
+    "kill": true,
+    "detail": "MODEL_OWNER patch lines observed"
+  },
+  {
+    "gate": "C4",
+    "name": "no ModuleNotFoundError / stock fallback",
+    "passed": true,
+    "kill": true,
+    "detail": "clean"
+  },
+  {
+    "gate": "C5",
+    "name": "benchmark.json n_games == 25",
+    "passed": true,
+    "kill": true,
+    "detail": "25"
+  },
+  {
+    "gate": "C6",
+    "name": "model_sources attach survived push (silent-drop trap)",
+    "passed": true,
+    "kill": true,
+    "detail": "verified at pull-back pre-run"
+  },
+  {
+    "gate": "SIG",
+    "name": "SIGNAL lc_total >= 27",
+    "passed": true,
+    "kill": false,
+    "detail": "28"
+  }
+]

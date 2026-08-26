@@ -1,0 +1,7 @@
+[
+  {"gate": "artifact-verification", "name": "graft stack downloaded and read (not inferred from titles)", "passed": true, "kill": false, "detail": "thtennant/taaf-kaggle-source-share-fork downloaded; 16 modules, 5465 lines; banking/transfer/shortcircuit docstrings and code read verbatim"},
+  {"gate": "score-formula-verification", "name": "exploited formula located in vendored source", "passed": true, "kill": false, "detail": "min(115.0,(baseline/actions)**2*100) at tufa-arc-agi-framework/src/taaf/game.py:403; baseline_actions metadata via Tufalabs/re-arc-3"},
+  {"gate": "census-completeness", "name": "all 13 teams >=2.0 checked for kernels AND datasets per member", "passed": true, "kill": false, "detail": "19 usernames swept; zero new public datasets since 08-14; Lord Han Solo fully dark"},
+  {"gate": "attribution-honesty", "name": "per-team attribution NOT claimed as verified", "passed": true, "kill": false, "detail": "mechanism [V], distribution [V], per-team adoption [INF ~85%], cstl [INF ~65%], Franzen [UNK] - stated in deliverable section 7"},
+  {"gate": "refutation-consistency", "name": "finding reconciled with sealed Q38 REFUTE-2x without weakening it", "passed": true, "kill": false, "detail": "levels-metric vs score-mechanics distinction; public 1.71 xhigh attribution corroborates the REFUTE"}
+]

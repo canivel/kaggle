@@ -1,0 +1,20 @@
+# Baseline-preservation mode.
+# Keep the mounted dataset implementation as the only source of solver behavior.
+# Intentionally do not monkey-patch action mappings, RESET handling, solver methods,
+# tool-result schemas, animation metadata, or model-facing prompts.
+
+BASELINE_RUNTIME_STATUS = {
+    "mode": "dataset-baseline",
+    "runtime_monkey_patch": False,
+    "action_mapping_changed": False,
+    "reset_behavior_changed": False,
+    "solver_methods_changed": False,
+    "tool_result_schema_changed": False,
+    "prompt_changed": False,
+    "dataset_modified": False,
+}
+
+print(
+    "taaf.kaggle: runtime patches disabled: "
+    f"{BASELINE_RUNTIME_STATUS}"
+)

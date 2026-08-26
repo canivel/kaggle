@@ -82,8 +82,8 @@ BASELINE_SCORE_SPREAD = (1.427, 1.939, 3.420)
 FLAGS_ON = ("efficiency", "retry_guard", "shortcircuit", "goalkeep", "hudmask")
 ARMED_LINES_REQUIRED = ("[goalkeep] armed", "[hudmask] armed")
 # The arm is defined by their exclusion; a wrong-arm marker is fatal.
-FLAGS_FORBIDDEN = ("banking", "transfer")
-ARMED_LINES_FORBIDDEN = ("[banking] armed",)
+FLAGS_FORBIDDEN = ("banking", "transfer", "clickmap")  # clickmap: v21 flag, NOT part of this arm (2026-08-20)
+ARMED_LINES_FORBIDDEN = ("[banking] armed", "[clickmap] armed")
 BANNER_RE = re.compile(r"TAAF_GRAFTS FEATURES=(\{.*?\})\s+API_VERSION=(\d+)")
 GRAFTS_API_VERSION = 1
 SERVED_MODEL = "vrfai/Qwen3.6-27B-FP8"
@@ -107,13 +107,37 @@ INFRA_SIGNATURES = (
 )
 
 
+def _decode_cli_json_log(text: str) -> str:
+    """Normalise CLI 2.2.3 `kernels logs` output to the runtime's actual stdout.
+
+    INSTRUMENT FIX 2026-08-19 (world-normalisation only; no assertion or threshold touched):
+    that CLI writes a JSON array of {stream_name, time, data} entries, so every quote in the
+    runtime banner arrives backslash-escaped in the file's raw bytes and the textual flag
+    check ('"efficiency"' in banner) can never match -- the v4 run's PERFECT banner was read
+    as 'flags missing' and scored INFRA DEATH. The selftest had only ever seen plain-text
+    fixtures: internal consistency is not correctness (the q38-low lesson, second instance).
+    Decode JSON-array logs to their concatenated data payloads; pass all other formats
+    through unchanged, so plain-text logs (and the original selftest checks) behave
+    identically."""
+    s = text.lstrip()
+    if not s.startswith("["):
+        return text
+    try:
+        entries = json.loads(text)
+    except Exception:
+        return text
+    if not isinstance(entries, list):
+        return text
+    return "".join(e.get("data", "") for e in entries if isinstance(e, dict))
+
+
 def _read_log(run_dir: Path) -> str:
     """Concatenate every plausible log artifact in the pull directory."""
     parts = []
     for pattern in ("*.log", "*.txt", "log*", "*.out"):
         for p in sorted(run_dir.glob(pattern)):
             try:
-                parts.append(p.read_text(encoding="utf-8", errors="replace"))
+                parts.append(_decode_cli_json_log(p.read_text(encoding="utf-8", errors="replace")))
             except OSError:
                 continue
     return "\n".join(parts)
@@ -256,7 +280,10 @@ def _selftest() -> int:
 
     failures = []
 
+    checks_run = [0]
+
     def expect(name: str, got: str, want: str) -> None:
+        checks_run[0] += 1
         if got != want:
             failures.append(f"{name}: got {got!r}, want {want!r}")
 
@@ -290,6 +317,25 @@ def _selftest() -> int:
     expect("no benchmark.json -> INFRA", score(make([19], bench=False))["verdict"], "INFRA DEATH")
     expect("wrong game count -> INFRA", score(make([19], n=24))["verdict"], "INFRA DEATH")
     expect("no banner -> INFRA", score(make([19], log="nothing here\n"))["verdict"], "INFRA DEATH")
+
+    # --- REGRESSION 2026-08-19: the CLI 2.2.3 JSON log format must certify (v4's near-miss).
+    def cli_json(payload: str) -> str:
+        return json.dumps([{"stream_name": "stdout", "time": 1.0, "data": line + "\n"}
+                           for line in payload.splitlines()])
+    RUNTIME_BANNER = (
+        'TAAF_GRAFTS FEATURES={"efficiency":true,"goalkeep":true,"hudmask":true,'
+        '"retry_guard":true,"shortcircuit":true} API_VERSION=1\n'
+        "[goalkeep] armed\n[hudmask] armed\n"
+        f"vLLM server ready: {SERVED_MODEL}\n"
+    )
+    expect("CLI-JSON log, good banner -> NULL",
+           score(make([19], log=cli_json(RUNTIME_BANNER)))["verdict"], "NULL")
+    bad = RUNTIME_BANNER.replace('"goalkeep":true,', "")
+    expect("CLI-JSON log, goalkeep missing -> INFRA",
+           score(make([19], log=cli_json(bad)))["verdict"], "INFRA DEATH")
+    wrong = RUNTIME_BANNER.replace('"efficiency":true,', '"banking":true,"efficiency":true,')
+    expect("CLI-JSON log, banking armed -> INFRA",
+           score(make([19], log=cli_json(wrong + "[banking] armed\n")))["verdict"], "INFRA DEATH")
 
     # --- THE CENTRAL REGRESSION: a silent stock fallback must NEVER be scored as NULL.
     for sig in STOCK_FALLBACK_SIGNATURES:
@@ -337,7 +383,9 @@ def _selftest() -> int:
     assert abs(BASELINE_LC_PER_GAME - 58 / 75) < 1e-12
     assert sum(BASELINE_RUNS.values()) == 58 and len(BASELINE_RUNS) == BASELINE_M
 
-    n_checks = 22
+    # COUNTED, not transcribed (2026-08-19: the hardcoded '22' survived three new checks
+    # silently -- same class as the builder's stale banner print and the prereg's 0.286320).
+    n_checks = checks_run[0]
     if failures:
         print(f"SELFTEST FAILED ({len(failures)} of {n_checks}):")
         for f in failures:

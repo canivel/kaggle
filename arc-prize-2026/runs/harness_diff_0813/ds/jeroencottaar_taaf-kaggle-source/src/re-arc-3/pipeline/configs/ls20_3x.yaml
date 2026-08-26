@@ -1,0 +1,6 @@
+idea_json: pipeline/game_ideas/ls20_3x.json
+model: gpt-5.5
+reasoning_effort: medium
+implementation_prompt_path: pipeline/prompts_and_schemas/codex_check_visual_prompt.md
+implementation_backend: codex
+spec_instructions_path: /Users/stefano/Documents/tufa/re-arc-3/pipeline/prompts/spec_prompt.md

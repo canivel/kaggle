@@ -1,0 +1,113 @@
+{
+  "purpose": "prereg amendment A2 engineered banking-fire validation",
+  "cases": [
+    {
+      "game": "ar25",
+      "recorded_actions_fed": 55,
+      "lc_reached": 2,
+      "target_lc": 2,
+      "events": [
+        [
+          "bank",
+          47,
+          2
+        ]
+      ],
+      "replay_attempted": true,
+      "replay_succeeded": true,
+      "wallclock_s": 5.5,
+      "replay_verbatim": true,
+      "card_total_plays": 2,
+      "card_levels_per_play": [
+        2,
+        2
+      ],
+      "card_actions_per_play": [
+        55,
+        47
+      ],
+      "score_invariant": true
+    },
+    {
+      "game": "sc25",
+      "recorded_actions_fed": 114,
+      "lc_reached": 2,
+      "target_lc": 2,
+      "events": [
+        [
+          "bank_abort",
+          "frame_divergence",
+          0
+        ]
+      ],
+      "replay_attempted": true,
+      "replay_succeeded": false,
+      "wallclock_s": 22.6
+    },
+    {
+      "game": "m0r0",
+      "recorded_actions_fed": 268,
+      "lc_reached": 1,
+      "target_lc": 1,
+      "events": [
+        [
+          "bank_abort",
+          "frame_divergence",
+          0
+        ]
+      ],
+      "replay_attempted": true,
+      "replay_succeeded": false,
+      "wallclock_s": 121.4
+    },
+    {
+      "game": "s5i5",
+      "recorded_actions_fed": 64,
+      "lc_reached": 1,
+      "target_lc": 1,
+      "events": [
+        [
+          "bank",
+          13,
+          1
+        ]
+      ],
+      "replay_attempted": true,
+      "replay_succeeded": true,
+      "wallclock_s": 7.3,
+      "replay_verbatim": true,
+      "card_total_plays": 2,
+      "card_levels_per_play": [
+        1,
+        1
+      ],
+      "card_actions_per_play": [
+        65,
+        13
+      ],
+      "score_invariant": true
+    }
+  ],
+  "starved_case": {
+    "game": "ar25",
+    "recorded_actions_fed": 55,
+    "lc_reached": 2,
+    "target_lc": 2,
+    "events": [
+      [
+        "bank_skip",
+        "time",
+        30.0
+      ]
+    ],
+    "replay_attempted": false,
+    "replay_succeeded": false,
+    "wallclock_s": 5.4
+  },
+  "verdict": {
+    "replay_fired_on_named_games": "2/4",
+    "all_fired_verbatim_and_invariant": true,
+    "time_starvation_reproduces_eval_zero": true,
+    "PASS": true
+  }
+}

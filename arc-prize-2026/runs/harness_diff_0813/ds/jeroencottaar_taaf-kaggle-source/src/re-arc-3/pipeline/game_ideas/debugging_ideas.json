@@ -1,0 +1,7 @@
+[
+  {
+    "title": "Shape Matcher Survival",
+    "description": "The player moves through a puzzle grid containing a visible reference shape or target state, a mutable target object that can be transformed, and interactable switches or elements that change the target's orientation, shape, color, or combinations of those properties. The player must deliberately make the target match the visible reference and then physically reach the correctly matched target. A continuously decreasing time or life bar creates pressure, and refill objects restore time or life. Later levels must go beyond simple one-step matching puzzles by combining transformation planning with pathing and time management, so the player has to understand the transformation logic and decide how to survive long enough to complete the match. Open design choices include whether switches affect rotation, color, shape, or combinations of these; whether transformations apply immediately, cycle, or only trigger while standing on a switch; whether some switches are fixed, reusable, or one-time; whether refill objects are static pickups, timed spawns, or rewards for detours; and whether later levels emphasize tighter time pressure, more complex transformation dependencies, or harder navigation between switches and target. Implementation constraints: build 6 levels, use the action space up/down/left/right, and require a time bar.",
+    "num_levels": 6
+  }
+]

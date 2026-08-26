@@ -1,0 +1,74 @@
+{
+  "agent": "inference",
+  "analyzer_timeout_seconds": 600.0,
+  "competition_arcade": {
+    "clone_runs": null,
+    "simulated": true
+  },
+  "concurrent_jobs": 5,
+  "concurrent_jobs_scope": "total",
+  "dataset": "",
+  "deployment": {
+    "kaggle": {
+      "accelerator": "NvidiaRtxPro6000",
+      "additional_dataset_sources": [],
+      "cpu_only": false,
+      "dataset_ref": null,
+      "dry_run": false,
+      "duck_public_harness": false,
+      "enable_internet": false,
+      "kernel_slug": "gpt56-probe-full",
+      "kernel_title": "gpt56-probe-full",
+      "make_share_version": false,
+      "public": false,
+      "run_as_submission": false
+    },
+    "slurm": {
+      "extra_sbatch_flags": [],
+      "gpu": "B200",
+      "gpu_count": 1,
+      "image": null,
+      "local_server_api_key_file": null,
+      "local_server_base_port": null,
+      "local_server_config": null,
+      "local_server_count": 0,
+      "local_server_repo_dir": null,
+      "local_server_tensor_parallel_size": null,
+      "nodelist": null,
+      "partition": null,
+      "start_local_server": false,
+      "time": "06:00:00"
+    },
+    "source_repos": [],
+    "target": "inline",
+    "wait": false
+  },
+  "effective_concurrent_jobs": 5,
+  "exclude_tags": [],
+  "experiments_dir": null,
+  "game_count": 5,
+  "game_run_count": 5,
+  "games": [
+    "ft09-0d8bbf25",
+    "sb26-7fbdac44",
+    "su15-4c352900",
+    "lp85-305b61c3",
+    "vc33-9851e02b"
+  ],
+  "generated_at": "2026-07-16T17:13:07.666428Z",
+  "include_tags": [],
+  "max_actions": 100,
+  "max_experiment_runtime_hours": null,
+  "max_experiment_runtime_minutes": null,
+  "max_runtime_minutes_per_game": 60.0,
+  "max_runtime_minutes_per_game_source": "explicit",
+  "model": "gpt-5.6-sol",
+  "n_passes": 1,
+  "pass_schedule": [
+    0
+  ],
+  "re_arc_environments_dir": "F:\\kaggle\\arc-prize-2026\\kaggle-data\\environment_files",
+  "runner": "taaf",
+  "version": 2,
+  "wave_count": 1
+}

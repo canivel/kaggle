@@ -78,3 +78,24 @@ best_adapter/
 deer-flow/
 deep-past-challenge/autoresearch/
 nvidia-nemotron-reasoning/autoresearch-ref/
+
+# Heavy local artifacts — never commit (68GB of kernel pulls; venvs)
+arc-prize-2026/runs/kernel_pulls/
+arc-prize-2026/runs/tufa_example_run/
+**/movies/
+*.pkl
+aimo-progress-prize-3/.venv/
+**/.venv/
+# Model weights / offloads / large data — never commit
+**/_weights/
+**/offload_weights/
+nvidia-nemotron-reasoning/adapters/
+arc-prize-2026/data/
+arc-prize-2026/kaggle-data/
+arc-prize-2026/tipsv2-dataset/
+customer-churn/data/
+march-madness-2026/data/
+deep-past-challenge/data/
+# Embedded git repos that break add: ended-competition clone + April run dirs with nested ARC-AGI-3-Agents checkouts
+deep-past-challenge/
+arc-prize-2026/runs/runs-*/

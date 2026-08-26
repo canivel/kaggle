@@ -1,0 +1,1273 @@
+{
+ "provenance": {
+  "generated_utc": "2026-08-09T12:54:08.088575+00:00",
+  "script": "duck_eval/r24_prep/gate_recalibration.py",
+  "purpose": "Independent recalibration of the sealed K3 non-harm gate (mean_dlc >= -0.128 AND worst_game_dlc >= -1.0) against the on-disk true null in runs/null10; triggered by R24 methodology objection 1.",
+  "null_source": "runs/null10/vanilla_seed{101..110}.json (cross-checked against runs/null10/seedNNN/benchmark.json)",
+  "arm_sources": [
+   "runs/a22_compaction_v1/m1m2m3_screen.json",
+   "runs/a22_v2_seed1/m1m2m3_screen.json",
+   "runs/kernel_pulls/a22_v2_1/m1m2m3_screen.json",
+   "runs/kernel_pulls/war_eval_v1/benchmark.json (shared baseline for all three)",
+   "runs/sentinel_eval_v1/screen_report.md (provenance of -0.128)"
+  ],
+  "gate_under_test": {
+   "mean_leg": ">= -0.128",
+   "worst_leg": ">= -1.0",
+   "combination": "conjunction (PASS iff both)"
+  }
+ },
+ "null_corpus_audit": {
+  "n_runs": 10,
+  "n_games": 25,
+  "games": [
+   "ar25",
+   "bp35",
+   "cd82",
+   "cn04",
+   "dc22",
+   "ft09",
+   "g50t",
+   "ka59",
+   "lf52",
+   "lp85",
+   "ls20",
+   "m0r0",
+   "r11l",
+   "re86",
+   "s5i5",
+   "sb26",
+   "sc25",
+   "sk48",
+   "sp80",
+   "su15",
+   "tn36",
+   "tr87",
+   "tu93",
+   "vc33",
+   "wa30"
+  ],
+  "seeds": [
+   101,
+   102,
+   103,
+   104,
+   105,
+   106,
+   107,
+   108,
+   109,
+   110
+  ],
+  "all_configs_identical": true,
+  "phase1_env": {
+   "PHASE1_EXPLORE_AFTER_TURNS": "10",
+   "PHASE1_EXPLORE_BUDGET": "6",
+   "PHASE1_MAX_EXPLORES": "3",
+   "PHASE1_EXPLORE_MIN_LEVEL_ACTIONS": "90",
+   "PHASE1_EXPLORE_LEVELUP_COOLDOWN": "20",
+   "PHASE1_EVICT_LOW_FRAC": "0.5"
+  },
+  "n_passes_all_1": true,
+  "labels": [
+   "duck-null-seed101",
+   "duck-null-seed102",
+   "duck-null-seed103",
+   "duck-null-seed104",
+   "duck-null-seed105",
+   "duck-null-seed106",
+   "duck-null-seed107",
+   "duck-null-seed108",
+   "duck-null-seed109",
+   "duck-null-seed110"
+  ],
+  "elapsed_s": [
+   7973.8,
+   7982.4,
+   8001.1,
+   7978.1,
+   8003.1,
+   7980.3,
+   7980.7,
+   7982.0,
+   7978.5,
+   7976.5
+  ],
+  "summary_vs_benchmark_lc_mismatches": [],
+  "game_ids_identical_across_null_runs": true,
+  "war_eval_v1_game_id_matches_null10": {
+   "ar25": false,
+   "bp35": true,
+   "cd82": true,
+   "cn04": false,
+   "dc22": false,
+   "ft09": true,
+   "g50t": true,
+   "ka59": false,
+   "lf52": true,
+   "lp85": true,
+   "ls20": true,
+   "m0r0": false,
+   "r11l": false,
+   "re86": false,
+   "s5i5": false,
+   "sb26": true,
+   "sc25": false,
+   "sk48": false,
+   "sp80": false,
+   "su15": false,
+   "tn36": false,
+   "tr87": true,
+   "tu93": false,
+   "vc33": false,
+   "wa30": true
+  },
+  "n_games_with_differing_instance_hash_vs_war_v1": 15,
+  "note": "Seeds 101-110 differ only in RNG seed; every other env var, n_passes and game set is byte-identical -> these are a genuine same-config null.",
+  "per_run_lc_total": {
+   "101": 16,
+   "102": 11,
+   "103": 16,
+   "104": 15,
+   "105": 16,
+   "106": 15,
+   "107": 14,
+   "108": 18,
+   "109": 18,
+   "110": 13
+  },
+  "per_game_lc_across_runs": {
+   "ar25": [
+    0,
+    0,
+    2,
+    1,
+    0,
+    2,
+    1,
+    2,
+    1,
+    2
+   ],
+   "bp35": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1,
+    1,
+    1,
+    0
+   ],
+   "cd82": [
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "cn04": [
+    1,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   "dc22": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "ft09": [
+    2,
+    0,
+    2,
+    1,
+    2,
+    2,
+    0,
+    3,
+    2,
+    0
+   ],
+   "g50t": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "ka59": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    1
+   ],
+   "lf52": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1
+   ],
+   "lp85": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "ls20": [
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   "m0r0": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "r11l": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "re86": [
+    1,
+    1,
+    1,
+    2,
+    1,
+    2,
+    2,
+    0,
+    1,
+    2
+   ],
+   "s5i5": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   "sb26": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "sc25": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    0
+   ],
+   "sk48": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "sp80": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "su15": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "tn36": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    2,
+    0
+   ],
+   "tr87": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "tu93": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    1,
+    2,
+    2,
+    1,
+    0
+   ],
+   "vc33": [
+    1,
+    2,
+    1,
+    2,
+    2,
+    1,
+    0,
+    1,
+    3,
+    1
+   ],
+   "wa30": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  }
+ },
+ "regime_A_single_vs_single": {
+  "n_pairs": 90,
+  "pairing": "ordered pairs (arm run i, baseline run j), i != j; per-game Delta_lc",
+  "per_game_delta_sd": 0.6993613296809384,
+  "mean_leg": {
+   "statistic": "mean Delta_lc",
+   "dist": {
+    "n": 90,
+    "mean": 0.0,
+    "sd": 0.1223000546638738,
+    "min": -0.28,
+    "p1": -0.28,
+    "p5": -0.2,
+    "p10": -0.16000000000000003,
+    "p25": -0.08,
+    "median": 0.0,
+    "p75": 0.08,
+    "p90": 0.16,
+    "p95": 0.2,
+    "max": 0.28
+   },
+   "threshold_alpha_0_05": {
+    "t": -0.2,
+    "achieved_fpr": 0.022222222222222223
+   },
+   "threshold_alpha_0_10": {
+    "t": -0.16,
+    "achieved_fpr": 0.07777777777777778
+   },
+   "fpr_at_inherited_mean_gate": 0.12222222222222222
+  },
+  "mean_hist": {
+   "-0.28": 2,
+   "-0.2": 5,
+   "-0.16": 4,
+   "-0.12": 8,
+   "-0.08": 12,
+   "-0.04": 9,
+   "0.0": 10,
+   "0.04": 9,
+   "0.08": 12,
+   "0.12": 8,
+   "0.16": 4,
+   "0.2": 5,
+   "0.28": 2
+  },
+  "worst_leg": {
+   "statistic": "worst-game Delta_lc",
+   "hist": {
+    "-3": 4,
+    "-2": 41,
+    "-1": 44,
+    "0": 1
+   },
+   "dist": {
+    "n": 90,
+    "mean": -1.5333333333333334,
+    "sd": 0.6033613708385919,
+    "min": -3,
+    "p1": -3.0,
+    "p5": -2.0,
+    "p10": -2.0,
+    "p25": -2.0,
+    "median": -1.5,
+    "p75": -1.0,
+    "p90": -1.0,
+    "p95": -1.0,
+    "max": 0
+   },
+   "fpr_at_inherited_worst_gate": 0.5,
+   "note": "Delta is integer-valued in this regime, so 'worst >= -1.0' fails iff worst <= -2."
+  },
+  "count_leg_le_m2": {
+   "statistic": "# games with Delta_lc <= -2",
+   "hist": {
+    "0": 45,
+    "1": 31,
+    "2": 10,
+    "3": 4
+   },
+   "survival_P_ge_k": {
+    "0": 1.0,
+    "1": 0.5,
+    "2": 0.15555555555555556,
+    "3": 0.044444444444444446,
+    "4": 0.0
+   },
+   "cap_alpha_0_05": {
+    "K": 2,
+    "achieved_fpr": 0.044444444444444446
+   },
+   "cap_alpha_0_10": {
+    "K": 2,
+    "achieved_fpr": 0.044444444444444446
+   }
+  },
+  "count_leg_le_m1": {
+   "statistic": "# games with Delta_lc <= -1",
+   "hist": {
+    "0": 1,
+    "1": 5,
+    "2": 7,
+    "3": 23,
+    "4": 27,
+    "5": 19,
+    "6": 6,
+    "7": 2
+   },
+   "survival_P_ge_k": {
+    "0": 1.0,
+    "1": 0.9888888888888889,
+    "2": 0.9333333333333333,
+    "3": 0.8555555555555555,
+    "4": 0.6,
+    "5": 0.3,
+    "6": 0.08888888888888889,
+    "7": 0.022222222222222223,
+    "8": 0.0
+   },
+   "cap_alpha_0_05": {
+    "K": 6,
+    "achieved_fpr": 0.022222222222222223
+   },
+   "cap_alpha_0_10": {
+    "K": 5,
+    "achieved_fpr": 0.08888888888888889
+   }
+  },
+  "inherited_gate_type_I": {
+   "mean_leg": 0.12222222222222222,
+   "worst_leg": 0.5,
+   "conjunction": 0.5111111111111111
+  }
+ },
+ "regime_B_single_vs_mean_of_9": {
+  "n_draws": 10,
+  "pairing": "arm run i vs the per-game mean of the remaining 9 runs",
+  "per_game_delta_sd": 0.5222027586639406,
+  "mean_leg": {
+   "statistic": "mean Delta_lc",
+   "dist": {
+    "n": 10,
+    "mean": 7.806255641895632e-18,
+    "sd": 0.09555268442427911,
+    "min": -0.18666666666666665,
+    "p1": -0.17866666666666667,
+    "p5": -0.14666666666666667,
+    "p10": -0.10666666666666666,
+    "p25": -0.042222222222222223,
+    "median": 0.01333333333333334,
+    "p75": 0.03555555555555557,
+    "p90": 0.12444444444444444,
+    "p95": 0.12444444444444445,
+    "max": 0.12444444444444447
+   },
+   "threshold_alpha_0_05": {
+    "t": -0.18666666666666665,
+    "achieved_fpr": 0.0
+   },
+   "threshold_alpha_0_10": {
+    "t": -0.09777777777777777,
+    "achieved_fpr": 0.1
+   },
+   "fpr_at_inherited_mean_gate": 0.1
+  },
+  "mean_values": [
+   0.0356,
+   -0.1867,
+   0.0356,
+   -0.0089,
+   0.0356,
+   -0.0089,
+   -0.0533,
+   0.1244,
+   0.1244,
+   -0.0978
+  ],
+  "worst_leg": {
+   "statistic": "worst-game Delta_lc",
+   "values": [
+    -1.2222,
+    -1.5556,
+    -0.5556,
+    -0.7778,
+    -1.2222,
+    -0.8889,
+    -1.5556,
+    -1.4444,
+    -1.0,
+    -1.5556
+   ],
+   "dist": {
+    "n": 10,
+    "mean": -1.1777777777777778,
+    "sd": 0.3598506015256628,
+    "min": -1.5555555555555556,
+    "p1": -1.5555555555555556,
+    "p5": -1.5555555555555558,
+    "p10": -1.5555555555555556,
+    "p25": -1.527777777777778,
+    "median": -1.2222222222222223,
+    "p75": -0.9166666666666666,
+    "p90": -0.7555555555555556,
+    "p95": -0.6555555555555558,
+    "max": -0.5555555555555556
+   },
+   "fpr_at_inherited_worst_gate": 0.6
+  },
+  "count_leg_le_m2": {
+   "statistic": "# games with Delta_lc <= -2",
+   "hist": {
+    "0": 10
+   },
+   "survival_P_ge_k": {
+    "0": 1.0,
+    "1": 0.0
+   },
+   "cap_alpha_0_05": {
+    "K": 0,
+    "achieved_fpr": 0.0
+   },
+   "cap_alpha_0_10": {
+    "K": 0,
+    "achieved_fpr": 0.0
+   }
+  },
+  "inherited_gate_type_I": {
+   "mean_leg": 0.1,
+   "worst_leg": 0.6,
+   "conjunction": 0.6
+  },
+  "caveat": "only 10 non-independent draws exist for m=9; see baseline_size_sweep for the variance trend estimated on many more (also non-independent) draws."
+ },
+ "baseline_size_sweep": {
+  "description": "null spread of the mean-Delta_lc statistic when the baseline is the average of m identical-config runs (m = 1 reproduces regime A)",
+  "by_m": {
+   "1": {
+    "n_draws": 90,
+    "mean_stat_sd": 0.1223000546638738,
+    "per_game_delta_sd": 0.6993613296809384,
+    "p5_mean": -0.2,
+    "p10_mean": -0.16000000000000003,
+    "frac_worst_le_m2": 0.5,
+    "fpr_mean_leg_at_gate": 0.12222222222222222
+   },
+   "2": {
+    "n_draws": 360,
+    "mean_stat_sd": 0.10547148421865934,
+    "per_game_delta_sd": 0.6055637141826279,
+    "p5_mean": -0.18,
+    "p10_mean": -0.14200000000000004,
+    "frac_worst_le_m2": 0.21944444444444444,
+    "fpr_mean_leg_at_gate": 0.125
+   },
+   "3": {
+    "n_draws": 840,
+    "mean_stat_sd": 0.09936042325514953,
+    "per_game_delta_sd": 0.5709128190426356,
+    "p5_mean": -0.18666666666666665,
+    "p10_mean": -0.14666666666666667,
+    "frac_worst_le_m2": 0.12738095238095237,
+    "fpr_mean_leg_at_gate": 0.12976190476190477
+   },
+   "4": {
+    "n_draws": 1260,
+    "mean_stat_sd": 0.09618621071985815,
+    "per_game_delta_sd": 0.5527795727411373,
+    "p5_mean": -0.19,
+    "p10_mean": -0.15,
+    "frac_worst_le_m2": 0.07539682539682539,
+    "fpr_mean_leg_at_gate": 0.12301587301587301
+   },
+   "5": {
+    "n_draws": 1260,
+    "mean_stat_sd": 0.09424285462218958,
+    "per_game_delta_sd": 0.5416111573797934,
+    "p5_mean": -0.18400000000000002,
+    "p10_mean": -0.14400000000000002,
+    "frac_worst_le_m2": 0.04206349206349207,
+    "fpr_mean_leg_at_gate": 0.11031746031746031
+   },
+   "6": {
+    "n_draws": 840,
+    "mean_stat_sd": 0.09294316540640388,
+    "per_game_delta_sd": 0.534040041643703,
+    "p5_mean": -0.18666666666666668,
+    "p10_mean": -0.14133333333333326,
+    "frac_worst_le_m2": 0.02142857142857143,
+    "fpr_mean_leg_at_gate": 0.10714285714285714
+   },
+   "7": {
+    "n_draws": 360,
+    "mean_stat_sd": 0.09206305906501844,
+    "per_game_delta_sd": 0.5285793444496182,
+    "p5_mean": -0.18857142857142858,
+    "p10_mean": -0.1342857142857143,
+    "frac_worst_le_m2": 0.008333333333333333,
+    "fpr_mean_leg_at_gate": 0.10277777777777777
+   },
+   "8": {
+    "n_draws": 90,
+    "mean_stat_sd": 0.09172504099790535,
+    "per_game_delta_sd": 0.5245209972607038,
+    "p5_mean": -0.185,
+    "p10_mean": -0.12549999999999997,
+    "frac_worst_le_m2": 0.0,
+    "fpr_mean_leg_at_gate": 0.1
+   },
+   "9": {
+    "n_draws": 10,
+    "mean_stat_sd": 0.09555268442427911,
+    "per_game_delta_sd": 0.5222027586639406,
+    "p5_mean": -0.14666666666666667,
+    "p10_mean": -0.10666666666666666,
+    "frac_worst_le_m2": 0.0,
+    "fpr_mean_leg_at_gate": 0.1
+   }
+  },
+  "variance_inflation_m1_over_m9": {
+   "mean_stat_sd_ratio": 1.2799227504779385,
+   "per_game_sd_ratio": 1.339252460998596,
+   "theoretical_sd_ratio": 1.3416407864998738
+  }
+ },
+ "provenance_of_minus_0_128": {
+  "source": "runs/sentinel_eval_v1/screen_report.md L5 ('PRIMARY paired dlc: mean -0.128 (sd 0.392, 4W/12L, sign-flip p=0.9495)')",
+  "recomputed_war_v1_vs_null10_mean": {
+   "mean_dlc": 0.272,
+   "per_game_sd": 0.5264028875300742,
+   "worst": -0.5,
+   "wins": 12,
+   "losses": 5,
+   "ties": 8
+  },
+  "applied_against": "a SINGLE baseline run (runs/kernel_pulls/war_eval_v1) in every A22 screen and in the R24 P1 proposal",
+  "per_game_sd_estimation_regime": 0.5264028875300742,
+  "per_game_sd_application_regime": 0.6993613296809384,
+  "sd_inflation_factor": 1.3285666668023033,
+  "verdict": "threshold estimated in the averaged-baseline regime, applied in the single-baseline regime; the number transported, the operating characteristic did not."
+ },
+ "a22_reexamination": {
+  "arms": {
+   "a22_v1": {
+    "source": "runs/a22_compaction_v1/m1m2m3_screen.json",
+    "baseline": "runs/kernel_pulls/war_eval_v1 (arc3-duck-war-eval seed 1, ledger-OFF)",
+    "mean_dlc": -0.2,
+    "sd_games": 0.6454972243679028,
+    "worst_game": "sc25",
+    "worst_dlc": -2,
+    "signflip_p_exact": 0.234375,
+    "wins": 2,
+    "losses": 6,
+    "n_games_le_m2": 1,
+    "n_games_le_m1": 6,
+    "null_P_mean_le_observed_regimeA": 0.07777777777777778,
+    "null_P_mean_le_observed_regimeB": 0.0,
+    "null_P_worst_le_observed_regimeA": 0.5,
+    "null_P_count_le_m2_ge_observed_regimeA": 0.5,
+    "deltas": [
+     1,
+     0,
+     1,
+     0,
+     0,
+     -1,
+     0,
+     0,
+     0,
+     0,
+     -1,
+     -1,
+     0,
+     0,
+     -1,
+     0,
+     -2,
+     0,
+     0,
+     0,
+     -1,
+     0,
+     0,
+     0,
+     0
+    ],
+    "inherited_verdict": "FAIL",
+    "recalibrated_mean_leg_verdict_alpha05_regimeA": "PASS"
+   },
+   "a22_v2": {
+    "source": "runs/a22_v2_seed1/m1m2m3_screen.json",
+    "baseline": "runs/kernel_pulls/war_eval_v1 (arc3-duck-war-eval seed 1, ledger-OFF)",
+    "mean_dlc": -0.32,
+    "sd_games": 0.6904105059069326,
+    "worst_game": "sc25",
+    "worst_dlc": -2,
+    "signflip_p_exact": 0.0556640625,
+    "wins": 2,
+    "losses": 9,
+    "n_games_le_m2": 1,
+    "n_games_le_m1": 9,
+    "null_P_mean_le_observed_regimeA": 0.0,
+    "null_P_mean_le_observed_regimeB": 0.0,
+    "null_P_worst_le_observed_regimeA": 0.5,
+    "null_P_count_le_m2_ge_observed_regimeA": 0.5,
+    "deltas": [
+     -1,
+     -1,
+     0,
+     0,
+     0,
+     1,
+     1,
+     0,
+     -1,
+     0,
+     0,
+     -1,
+     0,
+     -1,
+     -1,
+     0,
+     -2,
+     0,
+     0,
+     0,
+     -1,
+     0,
+     0,
+     -1,
+     0
+    ],
+    "inherited_verdict": "FAIL",
+    "recalibrated_mean_leg_verdict_alpha05_regimeA": "FAIL"
+   },
+   "a22_v2_1": {
+    "source": "runs/kernel_pulls/a22_v2_1/m1m2m3_screen.json",
+    "baseline": "runs/kernel_pulls/war_eval_v1 (arc3-duck-war-eval seed 1, ledger-OFF)",
+    "mean_dlc": -0.36,
+    "sd_games": 0.8602325267042626,
+    "worst_game": "ar25",
+    "worst_dlc": -2,
+    "signflip_p_exact": 0.078125,
+    "wins": 2,
+    "losses": 10,
+    "n_games_le_m2": 2,
+    "n_games_le_m1": 10,
+    "null_P_mean_le_observed_regimeA": 0.0,
+    "null_P_mean_le_observed_regimeB": 0.0,
+    "null_P_worst_le_observed_regimeA": 0.5,
+    "null_P_count_le_m2_ge_observed_regimeA": 0.15555555555555556,
+    "deltas": [
+     -2,
+     0,
+     0,
+     0,
+     0,
+     2,
+     1,
+     0,
+     -1,
+     0,
+     -1,
+     -1,
+     0,
+     -1,
+     -1,
+     0,
+     -2,
+     0,
+     -1,
+     0,
+     -1,
+     0,
+     0,
+     -1,
+     0
+    ],
+    "inherited_verdict": "FAIL",
+    "recalibrated_mean_leg_verdict_alpha05_regimeA": "FAIL"
+   }
+  },
+  "null_reference": "regime A (single-vs-single) mean-Delta_lc null from null10, n=90 ordered pairs; NOTE the A22 screens pair against war_eval_v1 (warpack, single run), not against a null10 run.",
+  "mean_leg_verdict": "A22 death SURVIVES on the mean leg iff each arm's mean_dlc lies outside the null; see arms[*].null_P_mean_le_observed_regimeA",
+  "worst_leg_verdict": "worst_dlc = -2 for all three arms; regime-A null P(worst <= -2) = 0.500, so the worst-game leg carries no evidential weight",
+  "monotonicity": {
+   "means": [
+    -0.2,
+    -0.32,
+    -0.36
+   ],
+   "steps": {
+    "v1_to_v2": -0.12,
+    "v2_to_v2_1": -0.03999999999999998,
+    "v1_to_v2_1": -0.15999999999999998
+   },
+   "null_sd_of_mean_stat_regimeA": 0.1223000546638738,
+   "sd_of_single_run_mean_lc": 0.08599741598185119,
+   "se_of_between_arm_difference_shared_baseline": 0.12161871201057473,
+   "step_z_v1_to_v2": -0.9866902717204078,
+   "step_z_v2_to_v2_1": -0.3288967572401358,
+   "verdict": "steps are within noise; dose-response NOT resolved at n=25/1 seed"
+  },
+  "pearson_shift": {
+   "r_v2": -0.13142625741264627,
+   "r_v2_1": -0.40260886697725734,
+   "fisher_z_diff": -0.29456769718425646,
+   "se": 0.30151134457776363,
+   "p_two_sided": 0.3285837438191741,
+   "verdict": "not significant"
+  }
+ },
+ "comparator_own_null": {
+  "note": "war_eval_v1/v2/v3 share benchmark label 'duck-harness-kaggle-warpack-v1', are documented as ledger-OFF seeds 1/2/3 (learnings/daily_brief_2026-07-16.md), and run on identical game instance ids. They form a same-config null for the exact baseline the A22 screens used.",
+  "game_ids_identical_to_war_v1": {
+   "war_eval_v1": true,
+   "war_eval_v2": true,
+   "war_eval_v3": true,
+   "w0_eval_s1": true
+  },
+  "lc_totals": {
+   "war_eval_v1": 22,
+   "war_eval_v2": 15,
+   "war_eval_v3": 13,
+   "w0_eval_s1": 16
+  },
+  "pairwise": [
+   {
+    "arm": "war_eval_v1",
+    "base": "war_eval_v2",
+    "mean": 0.28,
+    "worst": -1,
+    "n_le_m2": 0,
+    "wins": 9,
+    "losses": 2,
+    "signflip_p_two": 0.0654296875
+   },
+   {
+    "arm": "war_eval_v1",
+    "base": "war_eval_v3",
+    "mean": 0.36,
+    "worst": -1,
+    "n_le_m2": 0,
+    "wins": 9,
+    "losses": 1,
+    "signflip_p_two": 0.01953125
+   },
+   {
+    "arm": "war_eval_v2",
+    "base": "war_eval_v1",
+    "mean": -0.28,
+    "worst": -1,
+    "n_le_m2": 0,
+    "wins": 2,
+    "losses": 9,
+    "signflip_p_two": 0.0654296875
+   },
+   {
+    "arm": "war_eval_v2",
+    "base": "war_eval_v3",
+    "mean": 0.08,
+    "worst": -1,
+    "n_le_m2": 0,
+    "wins": 6,
+    "losses": 6,
+    "signflip_p_two": 0.818359375
+   },
+   {
+    "arm": "war_eval_v3",
+    "base": "war_eval_v1",
+    "mean": -0.36,
+    "worst": -2,
+    "n_le_m2": 1,
+    "wins": 1,
+    "losses": 9,
+    "signflip_p_two": 0.01953125
+   },
+   {
+    "arm": "war_eval_v3",
+    "base": "war_eval_v2",
+    "mean": -0.08,
+    "worst": -2,
+    "n_le_m2": 2,
+    "wins": 6,
+    "losses": 6,
+    "signflip_p_two": 0.818359375
+   }
+  ],
+  "mean_stat_sd": 0.29284808348357005,
+  "per_game_delta_sd": 0.7508384575005098,
+  "mean_range": [
+   -0.36,
+   0.36
+  ],
+  "vanilla_null10_mean_stat_sd": 0.1223000546638738,
+  "variance_ratio_warpack_over_vanilla_runtotals": 4.83173076923077,
+  "warpack_run_lc_totals": [
+   22,
+   15,
+   13
+  ],
+  "vanilla_run_lc_totals": [
+   16,
+   11,
+   16,
+   15,
+   16,
+   15,
+   14,
+   18,
+   18,
+   13
+  ],
+  "a22_rebaselined": {
+   "war_v1_only(as-screened)": {
+    "a22_v1": {
+     "mean_dlc": -0.2,
+     "worst_dlc": -2.0,
+     "n_le_m2": 1,
+     "arm_lc_total": 17,
+     "base_lc_total": 22.0
+    },
+    "a22_v2": {
+     "mean_dlc": -0.32,
+     "worst_dlc": -2.0,
+     "n_le_m2": 1,
+     "arm_lc_total": 14,
+     "base_lc_total": 22.0
+    },
+    "a22_v2_1": {
+     "mean_dlc": -0.36,
+     "worst_dlc": -2.0,
+     "n_le_m2": 2,
+     "arm_lc_total": 13,
+     "base_lc_total": 22.0
+    }
+   },
+   "war_v1v2v3_mean(n=3)": {
+    "a22_v1": {
+     "mean_dlc": 0.013333333333333348,
+     "worst_dlc": -1.3333333333333333,
+     "n_le_m2": 0,
+     "arm_lc_total": 17,
+     "base_lc_total": 16.666666666666668
+    },
+    "a22_v2": {
+     "mean_dlc": -0.10666666666666665,
+     "worst_dlc": -1.3333333333333333,
+     "n_le_m2": 0,
+     "arm_lc_total": 14,
+     "base_lc_total": 16.666666666666668
+    },
+    "a22_v2_1": {
+     "mean_dlc": -0.14666666666666664,
+     "worst_dlc": -1.3333333333333333,
+     "n_le_m2": 0,
+     "arm_lc_total": 13,
+     "base_lc_total": 16.666666666666668
+    }
+   },
+   "R16_4run_band": {
+    "a22_v1": {
+     "mean_dlc": 0.02,
+     "worst_dlc": -1.25,
+     "n_le_m2": 0,
+     "arm_lc_total": 17,
+     "base_lc_total": 16.5
+    },
+    "a22_v2": {
+     "mean_dlc": -0.1,
+     "worst_dlc": -1.25,
+     "n_le_m2": 0,
+     "arm_lc_total": 14,
+     "base_lc_total": 16.5
+    },
+    "a22_v2_1": {
+     "mean_dlc": -0.14,
+     "worst_dlc": -1.25,
+     "n_le_m2": 0,
+     "arm_lc_total": 13,
+     "base_lc_total": 16.5
+    }
+   }
+  },
+  "verdict": "A22 v2.1's headline mean_dlc of -0.360 is EXACTLY reproduced by war_eval_v3 vs war_eval_v1 -- two runs of the identical warpack config with no compaction at all. All three A22 arms lie inside the comparator's own seed-to-seed range.",
+  "variance_F_test": {
+   "F": 4.83173076923077,
+   "df1": 2,
+   "df2": 9,
+   "p_one_sided": 0.03755142394780431,
+   "interpretation": "warpack run-to-run variance exceeds the vanilla null10 variance; the vanilla null therefore UNDERSTATES the null spread that the A22 arms should have been judged against"
+  },
+  "a22_vs_warpack_pairwise_null": {
+   "a22_v1": {
+    "mean_dlc_vs_war_v1": -0.2,
+    "P_warpack_pair_le_obs": 0.3333333333333333,
+    "inside_warpack_pairwise_range": true
+   },
+   "a22_v2": {
+    "mean_dlc_vs_war_v1": -0.32,
+    "P_warpack_pair_le_obs": 0.16666666666666666,
+    "inside_warpack_pairwise_range": true
+   },
+   "a22_v2_1": {
+    "mean_dlc_vs_war_v1": -0.36,
+    "P_warpack_pair_le_obs": 0.16666666666666666,
+    "inside_warpack_pairwise_range": true
+   }
+  }
+ },
+ "cross_checks": {
+  "actions_per_level_completed_null10": {
+   "values": [
+    207.8,
+    322.9,
+    195.5,
+    234.0,
+    206.2,
+    234.6,
+    245.4,
+    199.3,
+    213.4,
+    283.4
+   ],
+   "mean": 234.25444999445,
+   "sd": 40.88428844191522,
+   "min": 195.5,
+   "max": 322.90909090909093,
+   "cv_pct": 17.452939930440536,
+   "reviewer_claim": "195.5-322.9, mean 234.2, sd 40.9, CV 17.5%"
+  },
+  "signflip_p_null_distribution_regimeA": {
+   "dist": {
+    "n": 90,
+    "mean": 0.7010525173611111,
+    "sd": 0.27337838170805406,
+    "min": 0.12109375,
+    "p1": 0.12109375,
+    "p5": 0.1875,
+    "p10": 0.22265625,
+    "p25": 0.546875,
+    "median": 0.765625,
+    "p75": 1.0,
+    "p90": 1.0,
+    "p95": 1.0,
+    "max": 1.0
+   },
+   "frac_le_0_05": 0.0,
+   "frac_le_0_10": 0.0,
+   "note": "two-sided exact sign-flip p on the null pairs; a well-calibrated two-sided test should show ~5% <= 0.05 (conservative here due to discreteness)"
+  }
+ },
+ "recommendation": {
+  "primary": {
+   "regime": "pair the arm against the per-game MEAN of >= 3 (ideally all 10) identical-config baseline runs, not a single run",
+   "statistic": "mean Delta_lc over the 25 games",
+   "threshold_alpha_0_05_single_baseline": -0.2,
+   "threshold_alpha_0_10_single_baseline": -0.16,
+   "threshold_alpha_0_05_mean9_baseline": -0.18666666666666665,
+   "threshold_alpha_0_10_mean9_baseline": -0.09777777777777777,
+   "achieved_fpr": {
+    "A05": 0.022222222222222223,
+    "A10": 0.07777777777777778,
+    "B05": 0.0,
+    "B10": 0.1
+   }
+  },
+  "worst_game_leg": {
+   "keep": false,
+   "reason": "P_null(worst <= -2) = 0.500 at 25 games in regime A; the leg fires on half of all true nulls and no threshold above -3 attains alpha 0.05",
+   "replacement": "count leg: (# games with Delta_lc <= -2) <= 2  [measured FPR 0.044]"
+  }
+ },
+ "self_calibrating_gate": {
+  "form": "mean_dlc >= -t_{1-alpha, df=m-1} * s_base * sqrt(1 + 1/m); s_base = sd over the m same-config baseline runs of (run lc total / n_games)",
+  "vanilla_null10_m10_alpha05": {
+   "m": 10,
+   "df": 9,
+   "s_base": 0.08599741598185119,
+   "t_quantile": 1.833,
+   "threshold": -0.16532716151921317
+  },
+  "vanilla_null10_m10_alpha10": {
+   "m": 10,
+   "df": 9,
+   "s_base": 0.08599741598185119,
+   "t_quantile": 1.383,
+   "threshold": -0.12473947865852254
+  },
+  "empirical_check_vanilla": {
+   "empirical_p5_regimeB_mean9": -0.14666666666666667,
+   "empirical_p5_sweep_m3": -0.18666666666666665,
+   "empirical_p5_sweep_m4": -0.19,
+   "note": "the parametric line lands on the empirical 5th percentile of the vanilla null, so the formula is validated on the one config where a 10-run null exists"
+  },
+  "warpack_m3_alpha05": {
+   "m": 3,
+   "df": 2,
+   "s_base": 0.18903262505010435,
+   "t_quantile": 2.92,
+   "threshold": -0.6373661358364681
+  },
+  "warpack_m3_alpha10": {
+   "m": 3,
+   "df": 2,
+   "s_base": 0.18903262505010435,
+   "t_quantile": 1.886,
+   "threshold": -0.41166867540670504
+  },
+  "why": "a FIXED number cannot be right for both configs: the warpack comparator's run-to-run variance is 4.8x the vanilla null's on run lc totals"
+ },
+ "final_recommendation": {
+  "gate_name": "K3' (recalibrated non-harm)",
+  "leg_1_primary": {
+   "statistic": "mean Delta_lc over all 25 games, arm paired against the PER-GAME MEAN of m >= 3 same-config baseline runs",
+   "threshold": "mean_dlc >= -t_{0.95, df=m-1} * s_base * sqrt(1 + 1/m), s_base = sd over the m baseline runs of (run lc total / 25)",
+   "fixed_fallback_if_m_eq_1": "mean_dlc >= -0.200  [measured type-I 2.2% on null10; -0.16 gives 7.8%]",
+   "fixed_fallback_if_m_ge_3": "mean_dlc >= -0.190  [empirical 5th pct of the vanilla null at m=3/4; ONLY valid if the arm's config has vanilla-like run-to-run variance -- check it]",
+   "measured_type_I": {
+    "single_baseline_at_minus_0_200": 0.022222222222222223,
+    "single_baseline_at_minus_0_128": 0.12222222222222222
+   }
+  },
+  "leg_2_replacement_for_worst_game": {
+   "drop": "worst-game Delta_lc >= -1.0",
+   "reason": "measured type-I 50.0% (regime A) / 60.0% (regime B) on the campaign's own null; a -2 on some game is the MODAL null outcome",
+   "replacement": "(# games with Delta_lc <= -2) <= 2   [measured type-I 4.4% on the 90 null pairs; the cap is only meaningful against a SINGLE-run baseline, since a multi-run baseline is fractional]",
+   "status": "advisory / non-gating is also defensible -- the leg adds almost no power"
+  },
+  "mandatory_seal_language": "every leg must quote its measured type-I rate and the null corpus it was measured on; a threshold with no operating characteristic is not a gate",
+  "also_required": "the baseline must be >= 3 runs of the SAME config as the arm's comparator, and the seal must publish that config's own run-to-run sd. Three warpack seeds (war_eval_v1/v2/v3) already exist on disk and were not used."
+ }
+}

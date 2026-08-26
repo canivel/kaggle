@@ -318,3 +318,19 @@ None beat iter6's 0.918790. The difference is likely iter6's inner-fold TE stats
 Remaining configs: deeper, wider_col, narrower_col, more_reg, less_sub
 
 ---
+
+### Iteration 18 - CV King (Hyperparameter Sweep)
+**Date**: 2026-03-31T05:10:17.162617
+
+- narrower_col: 0.918554
+- deeper: 0.918549
+- lower_lr: 0.918543
+- blamerx_exact: 0.918525
+- higher_lr: 0.918524
+- more_reg: 0.918510
+- wider_col: 0.918500
+- less_sub: 0.918487
+- **Top-3 avg**: 0.918569
+- **Best**: narrower_col = 0.918554
+
+---

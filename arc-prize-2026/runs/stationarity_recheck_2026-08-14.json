@@ -1,0 +1,341 @@
+{
+  "meta": {
+    "generated": "2026-08-14T12:35:37.196218+00:00",
+    "seed": 20260814,
+    "trigger": "watch-rule FIRED (FRESH primary fire): two consecutive sub-0.80 filler draws (08-13: 0.78, 08-14: 0.70)",
+    "ledger": [
+      0.82,
+      0.89,
+      0.93,
+      1.02,
+      0.95,
+      1.33,
+      0.92,
+      0.93,
+      1.14,
+      0.82,
+      1.05,
+      0.84,
+      1.02,
+      0.9,
+      1.03,
+      0.85,
+      1.1,
+      0.65,
+      0.68,
+      0.99,
+      0.97,
+      1.21,
+      0.77,
+      0.78,
+      0.87,
+      0.89,
+      1.05,
+      1.09,
+      1.07,
+      0.78,
+      0.7
+    ],
+    "n": 31,
+    "predecessors_unmodified": [
+      "scripts/stationarity_repro.py (2026-08-02, sealed)",
+      "scripts/stationarity_recheck_20260807.py (2026-08-07)"
+    ],
+    "prefix_matches_0807_n24": true,
+    "prereg_constants": {
+      "CUSUM_H_STATE": 4,
+      "CUSUM_H_STRICT": 5,
+      "CUSUM_K": 0.5,
+      "MIN_SEGMENT": 3,
+      "PERM_B": 20000,
+      "CP_ALPHA": 0.01
+    },
+    "sealed_control": {
+      "mu": 0.9727,
+      "s": 0.1343,
+      "n": 15
+    }
+  },
+  "watch_rule": {
+    "threshold": 0.8,
+    "rule_primary": "two CONSECUTIVE sub-0.80 draws -> fire this battery",
+    "rule_escalation": "a THIRD CONSECUTIVE sub-0.80 -> promote NON-STATIONARY, re-baseline control on fresh in-regime window (n>=8)",
+    "sub80_count_total": 6,
+    "sub80_values": [
+      0.65,
+      0.68,
+      0.77,
+      0.78,
+      0.78,
+      0.7
+    ],
+    "all_sub80_runs": [
+      {
+        "end_index_0based": 18,
+        "length": 2
+      },
+      {
+        "end_index_0based": 23,
+        "length": 2
+      },
+      {
+        "end_index_0based": 30,
+        "length": 2
+      }
+    ],
+    "trailing_consecutive_sub80": 2,
+    "escalation_triggered": false,
+    "fire_type": "PRIMARY (fresh 2-consecutive pair)",
+    "latest_draw": 0.7,
+    "latest_is_record_min": false,
+    "record_min": 0.65,
+    "latest_rank_ascending_1based": 3,
+    "three_lowest": [
+      0.65,
+      0.68,
+      0.7
+    ]
+  },
+  "ledger_stats": {
+    "mean_n31": 0.9367741935483872,
+    "s_n31": 0.15563605188117982,
+    "mean_prior29": 0.950344827586207,
+    "s_prior29": 0.15126803926948182,
+    "trailing4_mean": 0.9100000000000001,
+    "trailing4_prev_mean": 0.9975,
+    "z_070_vs_sealed": -2.0305286671630682,
+    "z_078_vs_sealed": -1.4348473566641844,
+    "z_070_vs_prior30": -1.6111760183999337,
+    "z_078_vs_prior29": -1.1261124848900839,
+    "mean_last2": 0.74,
+    "z_last2_mean_vs_sealed": -2.4503908858095254,
+    "z_last2_mean_vs_record": -1.7880223115246507,
+    "max": 1.33,
+    "min": 0.65
+  },
+  "mann_kendall": {
+    "S": -29,
+    "varS": 3455.6666666666665,
+    "z": -0.47631264308596527,
+    "p": 0.6338516594431043,
+    "sen_slope": -0.0025000000000000022
+  },
+  "cusum": {
+    "path": [
+      -1.137,
+      -1.7528,
+      -2.0707,
+      -1.7185,
+      -1.8876,
+      0.7729,
+      0.3805,
+      0.0625,
+      1.3083,
+      0.1713,
+      0.7468,
+      -0.2413,
+      0.1109,
+      -0.4304,
+      -0.0037,
+      -0.9173,
+      0.0305,
+      -2.3723,
+      -4.5517,
+      -4.4229,
+      -4.443,
+      -2.6761,
+      -4.1854,
+      -5.6203,
+      -6.385,
+      -7.0007,
+      -6.4252,
+      -5.5517,
+      -4.8273,
+      -6.2621,
+      -8.2926
+    ],
+    "final": -8.292628443782576,
+    "maxabs": 8.292628443782576,
+    "tabular_lower_min": -3.582278481012658,
+    "tabular_lower_argmin": 18,
+    "crosses_h4": true,
+    "crosses_h5": true,
+    "tabular_crosses_h4": false,
+    "tabular_crosses_h5": false
+  },
+  "changepoint": {
+    "max_t_unconstrained": 4.303487701760474,
+    "split_unconstrained": 29,
+    "max_t_minseg3": 1.4154054829912224,
+    "split_minseg3": 3,
+    "t_prereg_last2": 4.303487701760474,
+    "perm_p_unconstrained": 0.08544572771361432,
+    "perm_p_minseg3": 0.8173591320433978,
+    "perm_B": 20000
+  },
+  "pair_prob_080": {
+    "gauss_sealed": {
+      "per_draw": 0.09923426479327835,
+      "specific_adjacent_pair": 0.009847439309062483,
+      "any_consecutive_pair_in_n": 0.23888092408741946,
+      "any_run_of_3_in_n": 0.025370956827851326,
+      "expected_count_in_n": 3.0762622085916287
+    },
+    "t_fit_sealed": {
+      "per_draw": 0.11676787997928155,
+      "specific_adjacent_pair": 0.0136347377948559,
+      "any_consecutive_pair_in_n": 0.31192254018624566,
+      "any_run_of_3_in_n": 0.04032131927063411,
+      "expected_count_in_n": 3.619804279357728
+    },
+    "gauss_record_fit": {
+      "per_draw": 0.18975271822692408,
+      "specific_adjacent_pair": 0.036006094074506445,
+      "any_consecutive_pair_in_n": 0.6138114893417762,
+      "any_run_of_3_in_n": 0.15200085016331333,
+      "expected_count_in_n": 5.882334265034647
+    }
+  },
+  "sigma_compat_yw024": {
+    "sealed_n15_s1343": {
+      "n": 15,
+      "s": 0.1343,
+      "sigma0": 0.24,
+      "df": 14,
+      "chi2_stat": 4.383869097222222,
+      "P(s<=obs | sigma0)": 0.007321593846214524,
+      "P(s>=obs | sigma0)": 0.9926784061537854,
+      "p_two_sided": 0.014643187692429048,
+      "sigma_95CI": [
+        0.0983246003277435,
+        0.21180439735597448
+      ],
+      "sigma0_inside_95CI": false
+    },
+    "record_n31": {
+      "n": 31,
+      "s": 0.15563605188117982,
+      "sigma0": 0.24,
+      "df": 30,
+      "chi2_stat": 12.615927419354843,
+      "P(s<=obs | sigma0)": 0.002243276493914725,
+      "P(s>=obs | sigma0)": 0.9977567235060852,
+      "p_two_sided": 0.00448655298782945,
+      "sigma_95CI": [
+        0.12437062845387051,
+        0.20803456397092157
+      ],
+      "sigma0_inside_95CI": false
+    }
+  },
+  "verdict": {
+    "verdict": "STATIONARY",
+    "criteria": {
+      "mk_p_gt_0.05": true,
+      "tabular_cusum_below_h4": true,
+      "changepoint_minseg3_p_ge_0.01": true
+    },
+    "headline": {
+      "mk_p": 0.6338516594431043,
+      "sen_slope": -0.0025000000000000022,
+      "cusum_maxabs_diagnostic": 8.292628443782576,
+      "cusum_tabular_lower_min": -3.582278481012658,
+      "cp_perm_p_minseg3": 0.8173591320433978,
+      "cp_max_t_minseg3": 1.4154054829912224,
+      "cp_split_minseg3": 3,
+      "cp_perm_p_unconstrained_diagnostic": 0.08544572771361432,
+      "cp_max_t_unconstrained_diagnostic": 4.303487701760474,
+      "cp_split_unconstrained_diagnostic": 29,
+      "pair_prob_any_in_n_sealed_gauss": 0.23888092408741946,
+      "pair_prob_any_in_n_sealed_t": 0.31192254018624566,
+      "pair_prob_any_in_n_record_fit": 0.6138114893417762
+    }
+  },
+  "order_statistics": {
+    "method": "Blom: E[max@k] = mu + sigma * Phi^-1((k-0.375)/(k+0.25))",
+    "gold_line": 1.58,
+    "prize_line": 1.64,
+    "observed_max_banked": 1.33,
+    "calibration_like_for_like": {
+      "prior_n29_params_at_k29": {
+        "mu": 0.9503,
+        "sigma": 0.1513,
+        "k": 29,
+        "E[max@k]": 1.2568777252757088,
+        "observed_max": 1.33,
+        "under_prediction": 0.0731
+      },
+      "current_n31_params_at_k31": {
+        "mu": 0.9367741935483872,
+        "sigma": 0.15563605188117982,
+        "k": 31,
+        "E[max@k]": 1.2564115655543981,
+        "observed_max": 1.33,
+        "under_prediction": 0.0736
+      }
+    },
+    "projections": {
+      "current_0.9368": {
+        "E[max@80]": 1.3132102264880965,
+        "clears_gold_1.58@80": false,
+        "clears_prize_1.64@80": false,
+        "P(max@80>=gold)": 0.0014319425162877542,
+        "P(max@80>=prize)": 0.00024920507342629517,
+        "E[max@110]": 1.330861667965771,
+        "clears_gold_1.58@110": false,
+        "clears_prize_1.64@110": false,
+        "P(max@110>=gold)": 0.0019683921680446748,
+        "P(max@110>=prize)": 0.0003426409641567041
+      },
+      "efficiency_low_1.26": {
+        "E[max@80]": 1.6364360329397094,
+        "clears_gold_1.58@80": true,
+        "clears_prize_1.64@80": false,
+        "P(max@80>=gold)": 0.799517816130556,
+        "P(max@80>=prize)": 0.44403639610454193,
+        "E[max@110]": 1.6540874744173837,
+        "clears_gold_1.58@110": true,
+        "clears_prize_1.64@110": true,
+        "P(max@110>=gold)": 0.8902627168925727,
+        "P(max@110>=prize)": 0.5538932988389618
+      },
+      "efficiency_mid_1.31": {
+        "E[max@80]": 1.6864360329397095,
+        "clears_gold_1.58@80": true,
+        "clears_prize_1.64@80": true,
+        "P(max@80>=gold)": 0.9660000884433783,
+        "P(max@80>=prize)": 0.7460967614879956,
+        "E[max@110]": 1.704087474417384,
+        "clears_gold_1.58@110": true,
+        "clears_prize_1.64@110": true,
+        "P(max@110>=gold)": 0.9904328637814631,
+        "P(max@110>=prize)": 0.848148589462594
+      },
+      "efficiency_high_1.36": {
+        "E[max@80]": 1.7364360329397095,
+        "clears_gold_1.58@80": true,
+        "clears_prize_1.64@80": true,
+        "P(max@80>=gold)": 0.9985863713854957,
+        "P(max@80>=prize)": 0.9467863777689226,
+        "E[max@110]": 1.7540874744173838,
+        "clears_gold_1.58@110": true,
+        "clears_prize_1.64@110": true,
+        "P(max@110>=gold)": 0.9998792989424325,
+        "P(max@110>=prize)": 0.9822874381192309
+      }
+    },
+    "effect_of_the_0.70_update": {
+      "k=80": {
+        "E[max]_at_n29_params": 1.316248448931743,
+        "E[max]_at_n31_params": 1.3132102264880965,
+        "delta": -0.003
+      },
+      "k=110": {
+        "E[max]_at_n29_params": 1.3334081176800292,
+        "E[max]_at_n31_params": 1.330861667965771,
+        "delta": -0.0025
+      }
+    },
+    "caveat": "Blom-normal UNDER-predicts under right skew; at k=n it already under-predicts our own observed max. Direction is conservative. Also: the banked 1.33 is already realised, so campaign max is max(1.33, max of remaining k) -- these E[max@k] figures are for the remaining draws only."
+  }
+}

@@ -1,0 +1,66 @@
+warpack patches already applied; skipping re-apply
+warpack smoke test | repo=F:\kaggle\arc-prize-2026
+W0: env-driven config + kill switches
+  PASS  VERSION marker == v1
+  PASS  env ints/floats honored
+  PASS  per-flag kill switch read
+  PASS  master kill switch: apply() returns config
+  PASS  master kill switch: _execute_action NOT patched
+  PASS  master kill switch: _finish_if_needed NOT patched
+  PASS  master kill switch: _APPLIED still False
+  PASS  apply installs patches
+  PASS  apply is idempotent
+  PASS  ToolAgent.analyze untouched
+  PASS  ToolAgent._build_user_prompt untouched
+W1: shortcircuit stops homogeneous no-op batches
+  PASS  homogeneous no-op batch stopped after 1 execution
+  PASS  shortcircuit event recorded
+  PASS  board-changing homogeneous batch NOT shortcircuited
+  PASS  heterogeneous no-op batch NOT shortcircuited
+W2: recovery refresh on lock-in and GAME_OVER loops
+  PASS  lock-in refresh fired
+  PASS  chat history cleared
+  PASS  hypothesis graveyard written
+  PASS  GAME_OVER-loop refresh fired after 3 gameovers
+  PASS  gameover-loop history cleared
+W3: prune_trace unit semantics
+  PASS  prune drops no-ops, reset-undone segments, trailing
+  PASS  empty and lc=0 traces prune to empty
+W-bank: sb26 winning-trace banking on the real local engine
+[finished] sb26-7fbdac44 state=cancelled level=2/8 score=8.33 actions=24 tokens=0 per-level=9/18,15/16,0/15,0/15,0/31,0/24,0/17,0/17 note="tokens=0"
+  PASS  (sb26) scripted policy cleared L1+L2 through the harness
+  PASS  (sb26) trace recorded
+  PASS  (sb26) banking fired and completed
+  PASS  (sb26) replay is VERBATIM the pruned winning trace
+  PASS  (sb26) engine card shows a NEW play (total_plays == 2)
+  PASS  (sb26) both plays completed 2 levels
+  PASS  (sb26) banked play used <= recorded actions (pruned replay, no extra RESET cost)
+    [sb26] 24 recorded / 24 replayed actions, plays=2 actions/play=[24, 24] (1.7s)
+W-bank: su15 winning-trace banking on the real local engine
+[finished] su15-4c352900 state=cancelled level=2/9 score=6.67 actions=24 tokens=0 per-level=8/18,16/28,0/50,0/151,0/18,0/31,0/50,0/179,0/41 note="tokens=0"
+  PASS  (su15) scripted policy cleared L1+L2 through the harness
+  PASS  (su15) trace recorded
+  PASS  (su15) banking fired and completed
+  PASS  (su15) replay is VERBATIM the pruned winning trace
+  PASS  (su15) engine card shows a NEW play (total_plays == 2)
+  PASS  (su15) both plays completed 2 levels
+  PASS  (su15) banked play used <= recorded actions (pruned replay, no extra RESET cost)
+    [su15] 24 recorded / 24 replayed actions, plays=2 actions/play=[24, 24] (1.8s)
+W-bank: lp85 winning-trace banking on the real local engine
+[finished] lp85-305b61c3 state=cancelled level=2/8 score=8.33 actions=13 tokens=0 per-level=5/33,8/22,0/31,0/23,0/33,0/34,0/73,0/173 note="tokens=0"
+  PASS  (lp85) scripted policy cleared L1+L2 through the harness
+  PASS  (lp85) trace recorded
+  PASS  (lp85) banking fired and completed
+  PASS  (lp85) replay is VERBATIM the pruned winning trace
+  PASS  (lp85) engine card shows a NEW play (total_plays == 2)
+  PASS  (lp85) both plays completed 2 levels
+  PASS  (lp85) banked play used <= recorded actions (pruned replay, no extra RESET cost)
+    [lp85] 13 recorded / 13 replayed actions, plays=2 actions/play=[13, 13] (0.6s)
+W7: fast-submit dry run (gate false -> dummy parquet)
+  PASS  submission.parquet written
+  PASS  fast path completes in seconds
+  PASS  parquet schema matches vanilla offline path
+  PASS  gate false during Save Version (no rerun env)
+  PASS  gate true inside a competition rerun
+
+RESULT: 48 passed, 0 failed

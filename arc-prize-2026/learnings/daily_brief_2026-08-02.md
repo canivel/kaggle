@@ -80,3 +80,8 @@ provenance:scratch-built n=5, slug:arc3-final n=4 — all pre-fork-discipline, a
 4. Preflight hardening from host error list (zero-cost, non-gating).
 5. Process-slip mitigation carried from 08-01 (2 sessions died on monitor waits):
    propose end-of-day log write BEFORE long monitor waits + 17:00 backstop task.
+
+## LATE ADD (external review, user-relayed, R23 MUST rule):
+1. ADOPT: paired harm-pause rule — pause a gated arm iff its draw < mean(trailing-4 filler draws) − 1.5σ̂ (controls for environmental nights; replaces the absolute 0.80 threshold; retroactively note sentinel 0.71 fell in the 0.65/0.68 control window — pause STANDS on the two negative eval seeds, but the frame improves).
+2. CORRECTION to the review: per-game internals of SCORED runs are unpullable (hidden reruns, sealed ME-NEW-12 disposition 07-14) — the implementable version of its environmental test is the LB-wide covariate: from daily lb_ground_truth snapshots, did OTHER teams' new submissions also sag on 07-31/08-01 nights? If yes → host-side degradation fingerprint family (tier-2); if no → ordinary left-tail, log and proceed.
+3. Reviewer verdict adopted: low draws = frozen-fork noise, adopt-set blameless (calendar coincidence), guard posture correct, do NOT over-correct (no filler-pulling / re-forking).

@@ -1,0 +1,859 @@
+commit: bfd7967ca6ee7ec4711fd5717455faf540b7a550
+
+diff --git a/.claude/settings.local.json b/.claude/settings.local.json
+index 0e70ce4..60761fc 100644
+--- a/.claude/settings.local.json
++++ b/.claude/settings.local.json
+@@ -37,7 +37,13 @@
+       "Bash(UV_CACHE_DIR=F:/uv-cache uv run python -c \":*)",
+       "Bash(UV_CACHE_DIR=F:/uv-cache HF_HOME=F:/hf-cache uv run python baseline.py --n-samples 50 --max-new-tokens 256)",
+       "Bash(UV_CACHE_DIR=F:/uv-cache HF_HOME=F:/hf-cache uv run python -c \":*)",
+-      "Bash(uv run python -c \":*)"
++      "Bash(uv run python -c \":*)",
++      "Bash(kaggle kernels:*)",
++      "mcp__kaos__mh_search",
++      "Bash(export PATH=\"$PATH:/c/Python313/Scripts\")",
++      "mcp__kaos__mh_start_search",
++      "Bash(uv run:*)",
++      "Bash(/c/Users/dcani/AppData/Roaming/Python/Python313/Scripts/kaggle competitions:*)"
+     ]
+   }
+ }
+diff --git a/arc-prize-2026/evolve_claude.py b/arc-prize-2026/evolve_claude.py
+index e93ea9d..47c6338 100644
+--- a/arc-prize-2026/evolve_claude.py
++++ b/arc-prize-2026/evolve_claude.py
+@@ -24,6 +24,7 @@ import json
+ import os
+ import subprocess
+ import sys
++import tempfile
+ import time
+ from pathlib import Path
+ 
+@@ -42,7 +43,7 @@ ARCHIVE_FILE = ARCHIVE_DIR / "archive.jsonl"
+ BEST_FILE = ARCHIVE_DIR / "best.py"
+ BEST_KAGGLE_FILE = ARCHIVE_DIR / "best_kaggle.py"
+ 
+-MODEL = "claude-sonnet-4-6"  # used when calling via claude CLI
++MODEL = "claude-sonnet-4-6"  # sonnet: best quality; use haiku-4-5-20251001 for daytime (rate limits)
+ 
+ 
+ # â”€â”€â”€ Archive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+@@ -51,7 +52,7 @@ def load_archive() -> list[dict]:
+     if not ARCHIVE_FILE.exists():
+         return []
+     entries = []
+-    for line in ARCHIVE_FILE.read_text().splitlines():
++    for line in ARCHIVE_FILE.read_text(encoding="utf-8").splitlines():
+         line = line.strip()
+         if line:
+             entries.append(json.loads(line))
+@@ -60,14 +61,14 @@ def load_archive() -> list[dict]:
+ 
+ def append_archive(entry: dict) -> None:
+     ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
+-    with ARCHIVE_FILE.open("a") as f:
+-        f.write(json.dumps(entry) + "\n")
++    with ARCHIVE_FILE.open("a", encoding="utf-8") as f:
++        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+ 
+ 
+ def save_best(choose_action_src: str, rhae: float) -> None:
+-    BEST_FILE.write_text(choose_action_src)
++    BEST_FILE.write_text(choose_action_src, encoding="utf-8")
+     kaggle = _build_kaggle_agent(choose_action_src, rhae)
+-    BEST_KAGGLE_FILE.write_text(kaggle)
++    BEST_KAGGLE_FILE.write_text(kaggle, encoding="utf-8")
+     print(f"  -> Best saved: RHAE={rhae:.4f}  {BEST_FILE}  {BEST_KAGGLE_FILE}")
+ 
+ 
+@@ -182,27 +183,48 @@ RULES:
+ """
+ 
+ 
+-def _call_claude(prompt: str, system: str) -> str:
++def _call_claude(prompt: str, system: str, timeout: int = 300) -> str:
+     """Call Claude via Claude Code CLI (uses CC subscription, no API key needed).
+ 
+     Uses `env -u CLAUDECODE claude` to bypass the nested-session guard.
++    Writes prompt to temp file to avoid stdin encoding issues.
++    Retries once with shorter prompt on timeout.
+     """
+     full_prompt = f"{system}\n\n---\n\n{prompt}"
+-    result = subprocess.run(
+-        ["env", "-u", "CLAUDECODE",
+-         "claude", "-p", full_prompt,
+-         "--model", MODEL,
+-         "--output-format", "text"],
+-        capture_output=True, text=True, timeout=120,
+-    )
+-    if result.returncode != 0:
+-        raise RuntimeError(f"claude CLI error: {result.stderr[:300]}")
+-    return result.stdout
++
++    def _run(content: str, t: int) -> str:
++        with tempfile.NamedTemporaryFile(
++            mode="w", suffix=".txt", encoding="utf-8", delete=False
++        ) as f:
++            f.write(content)
++            tmp = f.name
++        try:
++            result = subprocess.run(
++                f'cat "{tmp}" | env -u CLAUDECODE claude -p - --model {MODEL} --output-format text',
++                shell=True, capture_output=True, text=True, timeout=t,
++                encoding="utf-8",
++            )
++            if result.returncode != 0:
++                raise RuntimeError(f"claude CLI error: {result.stderr[:300]}")
++            return result.stdout
++        finally:
++            try:
++                os.unlink(tmp)
++            except OSError:
++                pass
++
++    try:
++        return _run(full_prompt, timeout)
++    except subprocess.TimeoutExpired:
++        print(f"  [claude] timeout after {timeout}s, retrying with shorter prompt...")
++        time.sleep(10)
++        # Shorten: drop system context, keep only user message
++        return _run(prompt, timeout)
+ 
+ 
+ def propose(archive: list[dict], iteration: int, n: int = 2) -> list[str]:
+     """Ask Claude to propose N new choose_action() strategies via CC CLI."""
+-    archive_summary = _format_archive_summary(archive, top_n=6)
++    archive_summary = _format_archive_summary(archive, top_n=3)
+     best_code = _format_best_code(archive)
+ 
+     user_msg = f"""## Iteration {iteration} â€” Propose {n} new choose_action() strategies
+@@ -370,9 +392,9 @@ def run_evolution(
+ 
+     # Evolution loop
+     for iteration in range(1, n_iterations + 1):
+-        print(f"\n{'â”€'*65}")
++        print(f"\n{'-'*65}")
+         print(f"Iteration {iteration}/{n_iterations}  |  best_RHAE={best_rhae:.5f}")
+-        print(f"{'â”€'*65}")
++        print(f"{'-'*65}")
+ 
+         # Propose new candidates via Claude Code CLI
+         print(f"  Proposing 2 candidates via Claude Code CLI ({MODEL})...")
+@@ -403,6 +425,7 @@ def run_evolution(
+                 print(f"  *** NEW BEST: RHAE={best_rhae:.5f} ***")
+ 
+         archive = load_archive()
++        time.sleep(15)  # brief pause between iterations to avoid rate limits
+ 
+     print(f"\n{'='*65}")
+     print(f"Evolution complete. Best RHAE: {best_rhae:.5f}")
+@@ -420,7 +443,11 @@ def main() -> None:
+     p.add_argument("--iters",  type=int, default=20, help="Evolution iterations")
+     p.add_argument("--resume", action="store_true", help="Resume from archive")
+     p.add_argument("--export", action="store_true", help="Just export best from archive")
++    p.add_argument("--model",  default=None, help="Override model (e.g. claude-haiku-4-5-20251001)")
+     args = p.parse_args()
++    if args.model:
++        global MODEL
++        MODEL = args.model
+ 
+     if args.export:
+         archive = load_archive()
+diff --git a/arc-prize-2026/notebooks/arc3-cnn-agent.ipynb b/arc-prize-2026/notebooks/arc3-cnn-agent.ipynb
+index 08425dd..8beb72b 100644
+--- a/arc-prize-2026/notebooks/arc3-cnn-agent.ipynb
++++ b/arc-prize-2026/notebooks/arc3-cnn-agent.ipynb
+@@ -1,527 +1 @@
+-{
+- "metadata": {
+-  "kernelspec": {
+-   "display_name": "Python 3",
+-   "language": "python",
+-   "name": "python3"
+-  },
+-  "language_info": {
+-   "name": "python",
+-   "version": "3.10.0"
+-  }
+- },
+- "nbformat": 4,
+- "nbformat_minor": 4,
+- "cells": [
+-  {
+-   "cell_type": "code",
+-   "execution_count": null,
+-   "metadata": {},
+-   "outputs": [],
+-   "source": [
+-    "!pip install --no-index --find-links \\\n",
+-    "    /kaggle/input/competitions/arc-prize-2026-arc-agi-3/arc_agi_3_wheels \\\n",
+-    "    arc-agi python-dotenv"
+-   ]
+-  },
+-  {
+-   "cell_type": "code",
+-   "execution_count": null,
+-   "metadata": {},
+-   "outputs": [],
+-   "source": [
+-    "%%writefile /kaggle/working/my_agent.py\n",
+-    "\"\"\"Kaggle agent v34: BFS via arc_env.local_dir + greedy_novelty fallback.\n",
+-    "Wraps solver_v2.BFSSolver into the ARC-AGI-3-Agents framework Agent class.\n",
+-    "\n",
+-    "Flow:\n",
+-    "1. On first call: load game via importlib, run BFS offline\n",
+-    "2. If BFS found solution: replay actions one per step\n",
+-    "3. If BFS failed: fall back to greedy novelty exploration\n",
+-    "4. On level change: run BFS for next level (replaying prev solutions first)\n",
+-    "\"\"\"\n",
+-    "\n",
+-    "import random\n",
+-    "import time\n",
+-    "import hashlib\n",
+-    "import traceback\n",
+-    "import os\n",
+-    "import copy\n",
+-    "import re\n",
+-    "import importlib.util\n",
+-    "from typing import Any\n",
+-    "from collections import defaultdict, deque\n",
+-    "\n",
+-    "import numpy as np\n",
+-    "\n",
+-    "from arcengine import FrameData, GameAction, GameState\n",
+-    "from agents.agent import Agent\n",
+-    "\n",
+-    "# Game action map\n",
+-    "GA_MAP = {a.value: a for a in GameAction}\n",
+-    "TOTAL_BUDGET = 5 * 3600  # 5 hours (safe for 6hr Kaggle limit)\n",
+-    "\n",
+-    "\n",
+-    "class BFSSolverLight:\n",
+-    "    \"\"\"Lightweight BFS solver for Kaggle (runs inside Agent thread).\"\"\"\n",
+-    "\n",
+-    "    def __init__(self, game_cls, source_path):\n",
+-    "        self.game_cls = game_cls\n",
+-    "        self.source_path = source_path\n",
+-    "        self.solutions = {}\n",
+-    "\n",
+-    "    def _scan_actions(self, game, f0, avail, bg, timeout=5):\n",
+-    "        actions = []\n",
+-    "        seen = set()\n",
+-    "        t0 = time.time()\n",
+-    "\n",
+-    "        # Keyboard (no dedup)\n",
+-    "        for a in avail:\n",
+-    "            if a in (0, 6) or a not in GA_MAP:\n",
+-    "                continue\n",
+-    "            g = copy.deepcopy(game)\n",
+-    "            try:\n",
+-    "                from arcengine.enums import ActionInput\n",
+-    "                r = g.perform_action(ActionInput(id=GA_MAP[a]), raw=True)\n",
+-    "                if r.frame and np.any(f0 != np.array(r.frame[-1])):\n",
+-    "                    actions.append((a, None))\n",
+-    "            except:\n",
+-    "                pass\n",
+-    "\n",
+-    "        # Click (with dedup)\n",
+-    "        if 6 in avail:\n",
+-    "            from arcengine.enums import ActionInput\n",
+-    "            for y in range(0, 64, 2):\n",
+-    "                if time.time() - t0 > timeout:\n",
+-    "                    break\n",
+-    "                for x in range(0, 64, 2):\n",
+-    "                    if f0[y, x] == bg:\n",
+-    "                        continue\n",
+-    "                    g = copy.deepcopy(game)\n",
+-    "                    try:\n",
+-    "                        r = g.perform_action(\n",
+-    "                            ActionInput(id=GameAction.ACTION6, data={'x': x, 'y': y, 'game_id': ''}),\n",
+-    "                            raw=True)\n",
+-    "                        if r.frame:\n",
+-    "                            f1 = np.array(r.frame[-1])\n",
+-    "                            if np.any(f0 != f1):\n",
+-    "                                eh = hashlib.md5((f0 ^ f1).tobytes()).hexdigest()[:16]\n",
+-    "                                if eh not in seen:\n",
+-    "                                    seen.add(eh)\n",
+-    "                                    actions.append((6, {'x': x, 'y': y, 'game_id': ''}))\n",
+-    "                    except:\n",
+-    "                        pass\n",
+-    "        return actions\n",
+-    "\n",
+-    "    def _probe_hidden(self, game, actions):\n",
+-    "        initial = {k: v for k, v in game.__dict__.items()\n",
+-    "                   if not k.startswith('_') and isinstance(v, (int, float, bool))}\n",
+-    "        changing = set()\n",
+-    "        for act_id, data in actions[:5]:\n",
+-    "            g = copy.deepcopy(game)\n",
+-    "            try:\n",
+-    "                from arcengine.enums import ActionInput\n",
+-    "                if data:\n",
+-    "                    g.perform_action(ActionInput(id=GameAction.ACTION6, data=data), raw=True)\n",
+-    "                else:\n",
+-    "                    g.perform_action(ActionInput(id=GA_MAP[act_id]), raw=True)\n",
+-    "                for k, v0 in initial.items():\n",
+-    "                    if getattr(g, k, None) != v0:\n",
+-    "                        changing.add(k)\n",
+-    "            except:\n",
+-    "                pass\n",
+-    "        return list(changing)\n",
+-    "\n",
+-    "    def solve_level(self, level_idx, timeout=120, max_states=200000):\n",
+-    "        from arcengine.enums import ActionInput\n",
+-    "\n",
+-    "        game = self.game_cls()\n",
+-    "        r0 = game.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n",
+-    "        if not r0.frame:\n",
+-    "            return None\n",
+-    "\n",
+-    "        # Replay previous solutions to reach this level\n",
+-    "        if level_idx > 0:\n",
+-    "            for prev_lvl in range(level_idx):\n",
+-    "                if prev_lvl not in self.solutions:\n",
+-    "                    return None\n",
+-    "                for act_id, data in self.solutions[prev_lvl]:\n",
+-    "                    try:\n",
+-    "                        if data:\n",
+-    "                            r0 = game.perform_action(ActionInput(id=GameAction.ACTION6, data=data), raw=True)\n",
+-    "                        else:\n",
+-    "                            r0 = game.perform_action(ActionInput(id=GA_MAP[act_id]), raw=True)\n",
+-    "                    except:\n",
+-    "                        pass\n",
+-    "\n",
+-    "        if not r0.frame:\n",
+-    "            return None\n",
+-    "        f0 = np.array(r0.frame[-1])\n",
+-    "        bg = int(np.bincount(f0.flatten(), minlength=16).argmax())\n",
+-    "\n",
+-    "        # Transfer from prev level\n",
+-    "        if level_idx > 0 and (level_idx - 1) in self.solutions:\n",
+-    "            prev_sol = self.solutions[level_idx - 1]\n",
+-    "            for dx, dy in [(0,0),(1,0),(-1,0),(0,1),(0,-1)]:\n",
+-    "                g = copy.deepcopy(game)\n",
+-    "                try:\n",
+-    "                    for act_id, data in prev_sol:\n",
+-    "                        if data:\n",
+-    "                            nd = dict(data)\n",
+-    "                            nd['x'] = max(0, min(63, data.get('x',32)+dx))\n",
+-    "                            nd['y'] = max(0, min(63, data.get('y',32)+dy))\n",
+-    "                            r = g.perform_action(ActionInput(id=GameAction.ACTION6, data=nd), raw=True)\n",
+-    "                        else:\n",
+-    "                            r = g.perform_action(ActionInput(id=GA_MAP[act_id]), raw=True)\n",
+-    "                        if r.levels_completed > level_idx:\n",
+-    "                            sol = [(a, dict(d) if d else d) for a, d in prev_sol]\n",
+-    "                            if dx or dy:\n",
+-    "                                sol = [(a, {**d, 'x':max(0,min(63,d['x']+dx)), 'y':max(0,min(63,d['y']+dy))} if d else d) for a, d in sol]\n",
+-    "                            self.solutions[level_idx] = sol\n",
+-    "                            return sol\n",
+-    "                except:\n",
+-    "                    break\n",
+-    "\n",
+-    "        actions = self._scan_actions(game, f0, r0.available_actions, bg, timeout=min(5, timeout*0.1))\n",
+-    "        if not actions:\n",
+-    "            return None\n",
+-    "\n",
+-    "        hidden = self._probe_hidden(game, actions)\n",
+-    "\n",
+-    "        def sh(g, f):\n",
+-    "            h = hashlib.md5(f.tobytes()).hexdigest()\n",
+-    "            for field in hidden:\n",
+-    "                try: h += f\"|{field}={getattr(g, field)}\"\n",
+-    "                except: pass\n",
+-    "            return h\n",
+-    "\n",
+-    "        t0 = time.time()\n",
+-    "        ih = sh(game, f0)\n",
+-    "        parent = {ih: None}\n",
+-    "        queue = deque([(copy.deepcopy(game), f0, ih)])\n",
+-    "        visited = {ih}\n",
+-    "\n",
+-    "        while queue and time.time()-t0 < timeout and len(visited) < max_states:\n",
+-    "            g, f, ch = queue.popleft()\n",
+-    "            for i, (act_id, data) in enumerate(actions):\n",
+-    "                g2 = copy.deepcopy(g)\n",
+-    "                try:\n",
+-    "                    from arcengine.enums import ActionInput as AI\n",
+-    "                    if data:\n",
+-    "                        r2 = g2.perform_action(AI(id=GameAction.ACTION6, data=data), raw=True)\n",
+-    "                    else:\n",
+-    "                        r2 = g2.perform_action(AI(id=GA_MAP[act_id]), raw=True)\n",
+-    "                except:\n",
+-    "                    continue\n",
+-    "                if not r2.frame:\n",
+-    "                    continue\n",
+-    "                f2 = np.array(r2.frame[-1])\n",
+-    "                if r2.levels_completed > level_idx:\n",
+-    "                    path = [(act_id, data)]\n",
+-    "                    h = ch\n",
+-    "                    while parent[h] is not None:\n",
+-    "                        ph, pi = parent[h]\n",
+-    "                        path.append(actions[pi])\n",
+-    "                        h = ph\n",
+-    "                    path.reverse()\n",
+-    "                    self.solutions[level_idx] = path\n",
+-    "                    return path\n",
+-    "                h2 = sh(g2, f2)\n",
+-    "                if h2 not in visited:\n",
+-    "                    visited.add(h2)\n",
+-    "                    parent[h2] = (ch, i)\n",
+-    "                    queue.append((g2, f2, h2))\n",
+-    "\n",
+-    "        return None\n",
+-    "\n",
+-    "\n",
+-    "def find_game_files(game_id):\n",
+-    "    \"\"\"Find game source file on Kaggle or locally.\"\"\"\n",
+-    "    gid = game_id.split('-')[0]\n",
+-    "    cls_name = gid[0].upper() + gid[1:]\n",
+-    "\n",
+-    "    search_paths = [\n",
+-    "        f'environment_files/{gid}',\n",
+-    "        f'/tmp/*/{gid}',\n",
+-    "        f'/kaggle/input/*/{gid}*',\n",
+-    "    ]\n",
+-    "\n",
+-    "    import glob\n",
+-    "    for pattern in search_paths:\n",
+-    "        for d in glob.glob(pattern):\n",
+-    "            for root, dirs, files in os.walk(d):\n",
+-    "                for f in files:\n",
+-    "                    if f.endswith('.py') and not f.startswith('__'):\n",
+-    "                        return os.path.join(root, f), cls_name\n",
+-    "    return None, None\n",
+-    "\n",
+-    "\n",
+-    "class MyAgent(Agent):\n",
+-    "    MAX_ACTIONS = 50000\n",
+-    "\n",
+-    "    def __init__(self, *args: Any, **kwargs: Any) -> None:\n",
+-    "        super().__init__(*args, **kwargs)\n",
+-    "        seed = int(time.time() * 1000000) + hash(self.game_id) % 1000000\n",
+-    "        random.seed(seed)\n",
+-    "        np.random.seed(seed % (2**32 - 1))\n",
+-    "        self.start_time = time.time()\n",
+-    "        print(f'SolverAgent: game={self.game_id}')\n",
+-    "\n",
+-    "        self._bfs = None\n",
+-    "        self._bfs_tried = False\n",
+-    "        self._bfs_solution = None\n",
+-    "        self._bfs_step = 0\n",
+-    "        self._current_level = -1\n",
+-    "        self._action_count = 0\n",
+-    "\n",
+-    "        # Fallback state\n",
+-    "        self._prev_hash = None\n",
+-    "        self._prev_action = None\n",
+-    "        self._visited = set()\n",
+-    "        self._tried = defaultdict(set)\n",
+-    "        self._productive = defaultdict(set)\n",
+-    "        self._globally_productive = defaultdict(int)\n",
+-    "\n",
+-    "    def _init_bfs(self):\n",
+-    "        \"\"\"Load game class and create BFS solver. Uses arc_env.local_dir first (Kaggle).\"\"\"\n",
+-    "        try:\n",
+-    "            gid = self.game_id.split('-')[0]\n",
+-    "            game_path = None\n",
+-    "            cls_name = gid[0].upper() + gid[1:]\n",
+-    "\n",
+-    "            def _extract_cls(path):\n",
+-    "                import re\n",
+-    "                with open(path) as fh:\n",
+-    "                    src = fh.read()[:2000]\n",
+-    "                m = re.search(r'class\\s+(\\w+)\\s*\\(', src)\n",
+-    "                return m.group(1) if m else cls_name\n",
+-    "\n",
+-    "            # Method 1: arc_env.environment_info.local_dir (Kaggle framework)\n",
+-    "            arc_env = getattr(self, 'arc_env', None)\n",
+-    "            if arc_env and hasattr(arc_env, 'environment_info'):\n",
+-    "                ei = arc_env.environment_info\n",
+-    "                local_dir = getattr(ei, 'local_dir', None)\n",
+-    "                if local_dir:\n",
+-    "                    from pathlib import Path\n",
+-    "                    ld = Path(local_dir)\n",
+-    "                    for cand in [ld / f'{gid}.py', ld / f'{gid.lower()}.py']:\n",
+-    "                        if cand.exists():\n",
+-    "                            game_path = str(cand)\n",
+-    "                            cls_name = _extract_cls(game_path)\n",
+-    "                            break\n",
+-    "\n",
+-    "            # Method 2: Glob search\n",
+-    "            if not game_path:\n",
+-    "                import glob\n",
+-    "                for pattern in [\n",
+-    "                    f'environment_files/{gid}/**/{gid}.py',\n",
+-    "                    f'/kaggle/input/**/{gid}*/**/{gid}.py',\n",
+-    "                    f'/tmp/**/{gid}/**/{gid}.py',\n",
+-    "                ]:\n",
+-    "                    matches = glob.glob(pattern, recursive=True)\n",
+-    "                    if matches:\n",
+-    "                        game_path = matches[0]\n",
+-    "                        cls_name = _extract_cls(game_path)\n",
+-    "                        break\n",
+-    "\n",
+-    "            if game_path:\n",
+-    "                mod_name = f'game_{gid}_{id(self)}'\n",
+-    "                spec = importlib.util.spec_from_file_location(mod_name, game_path)\n",
+-    "                mod = importlib.util.module_from_spec(spec)\n",
+-    "                spec.loader.exec_module(mod)\n",
+-    "                game_cls = getattr(mod, cls_name)\n",
+-    "                self._bfs = BFSSolverLight(game_cls, game_path)\n",
+-    "                print(f'  BFS: {cls_name} from {game_path}')\n",
+-    "            else:\n",
+-    "                print(f'  BFS: no source for {gid}')\n",
+-    "        except Exception as e:\n",
+-    "            print(f'  BFS init failed: {e}')\n",
+-    "            traceback.print_exc()\n",
+-    "\n",
+-    "    def _try_bfs(self, level_idx):\n",
+-    "        if self._bfs is None:\n",
+-    "            return None\n",
+-    "        elapsed = time.time() - self.start_time\n",
+-    "        remaining = max(60, TOTAL_BUDGET - elapsed)\n",
+-    "        budget = min(remaining * 0.4, 600)  # 40% of remaining, cap 10min\n",
+-    "        budget = max(30, budget)\n",
+-    "\n",
+-    "        print(f'  BFS L{level_idx}: budget={budget:.0f}s')\n",
+-    "        sol = self._bfs.solve_level(level_idx, timeout=budget)\n",
+-    "        if sol:\n",
+-    "            self._bfs_solution = sol\n",
+-    "            self._bfs_step = 0\n",
+-    "            print(f'  BFS SOLVED L{level_idx} in {len(sol)} actions!')\n",
+-    "        return sol\n",
+-    "\n",
+-    "    def _hash_frame(self, fd):\n",
+-    "        frame = np.array(fd.frame, dtype=np.int8)\n",
+-    "        if frame.ndim == 3: frame = frame[-1]\n",
+-    "        return hashlib.md5(frame.tobytes()).hexdigest()\n",
+-    "\n",
+-    "    def is_done(self, frames, latest_frame):\n",
+-    "        elapsed = time.time() - self.start_time\n",
+-    "        return latest_frame.state is GameState.WIN or elapsed >= TOTAL_BUDGET\n",
+-    "\n",
+-    "    def choose_action(self, frames, latest_frame):\n",
+-    "        try:\n",
+-    "            return self._choose_impl(frames, latest_frame)\n",
+-    "        except Exception as e:\n",
+-    "            print(f'  Error: {e}')\n",
+-    "            a = random.choice([GameAction.ACTION1, GameAction.ACTION2, GameAction.ACTION3, GameAction.ACTION4])\n",
+-    "            a.reasoning = f'err:{e}'\n",
+-    "            return a\n",
+-    "\n",
+-    "    def _choose_impl(self, frames, latest_frame):\n",
+-    "        self._action_count += 1\n",
+-    "        level = latest_frame.levels_completed\n",
+-    "\n",
+-    "        # Level change\n",
+-    "        if level != self._current_level:\n",
+-    "            if not self._bfs_tried:\n",
+-    "                self._bfs_tried = True\n",
+-    "                self._init_bfs()\n",
+-    "\n",
+-    "            self._bfs_solution = None\n",
+-    "            self._bfs_step = 0\n",
+-    "            self._try_bfs(level)\n",
+-    "\n",
+-    "            self._visited.clear()\n",
+-    "            self._tried.clear()\n",
+-    "            self._prev_hash = None\n",
+-    "            self._prev_action = None\n",
+-    "            self._current_level = level\n",
+-    "\n",
+-    "        # Reset\n",
+-    "        if latest_frame.state in [GameState.NOT_PLAYED, GameState.GAME_OVER]:\n",
+-    "            self._prev_hash = None\n",
+-    "            self._prev_action = None\n",
+-    "            a = GameAction.RESET\n",
+-    "            a.reasoning = 'reset'\n",
+-    "            return a\n",
+-    "\n",
+-    "        # BFS solution replay\n",
+-    "        if self._bfs_solution and self._bfs_step < len(self._bfs_solution):\n",
+-    "            act_id, data = self._bfs_solution[self._bfs_step]\n",
+-    "            self._bfs_step += 1\n",
+-    "            if act_id == 6 and data:\n",
+-    "                a = GameAction.ACTION6\n",
+-    "                a.set_data(data)\n",
+-    "            else:\n",
+-    "                a = GA_MAP.get(act_id, GameAction.ACTION1)\n",
+-    "            a.reasoning = f'bfs:{self._bfs_step}/{len(self._bfs_solution)}'\n",
+-    "            return a\n",
+-    "\n",
+-    "        # Fallback: greedy novelty exploration\n",
+-    "        fh = self._hash_frame(latest_frame)\n",
+-    "        self._visited.add(fh)\n",
+-    "\n",
+-    "        if self._prev_hash and self._prev_action is not None:\n",
+-    "            if fh != self._prev_hash:\n",
+-    "                self._productive[self._prev_hash].add(self._prev_action)\n",
+-    "                self._globally_productive[self._prev_action] += 1\n",
+-    "\n",
+-    "        # Use available_actions from the frame (avoids unsupported actions)\n",
+-    "        avail_vals = getattr(latest_frame, 'available_actions', None) or [1,2,3,4,5,6]\n",
+-    "        all_actions = [GA_MAP[v] for v in avail_vals if v in GA_MAP and v != 0]\n",
+-    "        if not all_actions: all_actions = [GameAction.ACTION1, GameAction.ACTION2, GameAction.ACTION3]\n",
+-    "        tried = self._tried[fh]\n",
+-    "        untried = [a for a in all_actions if a.value not in tried]\n",
+-    "\n",
+-    "        if untried:\n",
+-    "            scored = [(a, self._globally_productive.get(a.value, 0)) for a in untried]\n",
+-    "            scored.sort(key=lambda x: -x[1])\n",
+-    "            action = scored[0][0]\n",
+-    "        else:\n",
+-    "            prod_vals = self._productive.get(fh, set())\n",
+-    "            prod = [a for a in all_actions if a.value in prod_vals]\n",
+-    "            action = random.choice(prod) if prod else random.choice(all_actions)\n",
+-    "\n",
+-    "        if action.is_complex():\n",
+-    "            frame = np.array(latest_frame.frame, dtype=np.int8)\n",
+-    "            if frame.ndim == 3: frame = frame[-1]\n",
+-    "            nz = np.argwhere(frame != 0)\n",
+-    "            if len(nz) > 0:\n",
+-    "                idx = random.randint(0, len(nz)-1)\n",
+-    "                action.set_data({'x': int(nz[idx][1]), 'y': int(nz[idx][0])})\n",
+-    "            else:\n",
+-    "                action.set_data({'x': random.randint(0,63), 'y': random.randint(0,63)})\n",
+-    "            action.reasoning = f'explore:click'\n",
+-    "        else:\n",
+-    "            action.reasoning = f'explore:{action.value}'\n",
+-    "\n",
+-    "        self._tried[fh].add(action.value)\n",
+-    "        self._prev_hash = fh\n",
+-    "        self._prev_action = action.value\n",
+-    "        return action\n"
+-   ]
+-  },
+-  {
+-   "cell_type": "code",
+-   "execution_count": null,
+-   "metadata": {},
+-   "outputs": [],
+-   "source": [
+-    "import os\n",
+-    "\n",
+-    "if os.getenv('KAGGLE_IS_COMPETITION_RERUN'):\n",
+-    "    !curl --fail --retry 999 --retry-all-errors --retry-delay 5 \\\n",
+-    "          --retry-max-time 600 http://gateway:8001/api/games\n",
+-    "\n",
+-    "    !cp -r /kaggle/input/competitions/arc-prize-2026-arc-agi-3/ARC-AGI-3-Agents \\\n",
+-    "           /kaggle/working/ARC-AGI-3-Agents\n",
+-    "\n",
+-    "    !cp /kaggle/working/my_agent.py \\\n",
+-    "        /kaggle/working/ARC-AGI-3-Agents/agents/templates/my_agent.py\n",
+-    "\n",
+-    "    with open('/kaggle/working/ARC-AGI-3-Agents/agents/__init__.py', 'w') as f:\n",
+-    "        f.write(\"\"\"from typing import Type, cast\n",
+-    "from dotenv import load_dotenv\n",
+-    "from .agent import Agent, Playback\n",
+-    "from .swarm import Swarm\n",
+-    "from .templates.random_agent import Random\n",
+-    "from .templates.my_agent import MyAgent\n",
+-    "\n",
+-    "load_dotenv()\n",
+-    "\n",
+-    "AVAILABLE_AGENTS: dict[str, Type[Agent]] = {\n",
+-    "    \"random\": Random,\n",
+-    "    \"myagent\": MyAgent,\n",
+-    "}\n",
+-    "\"\"\")\n",
+-    "\n",
+-    "    with open('/kaggle/working/ARC-AGI-3-Agents/.env', 'w') as f:\n",
+-    "        f.write(\"\"\"SCHEME=http\n",
+-    "HOST=gateway\n",
+-    "PORT=8001\n",
+-    "ARC_API_KEY=test-key-123\n",
+-    "ARC_BASE_URL=http://gateway:8001/\n",
+-    "OPERATION_MODE=online\n",
+-    "ENVIRONMENTS_DIR=\n",
+-    "RECORDINGS_DIR=/kaggle/working/server_recording\n",
+-    "\"\"\")\n",
+-    "\n",
+-    "    !cd /kaggle/working/ARC-AGI-3-Agents && \\\n",
+-    "        MPLBACKEND=agg \\\n",
+-    "        python main.py --agent myagent\n",
+-    "else:\n",
+-    "    print('Not a competition rerun. Hit Submit after Save & Run.')"
+-   ]
+-  },
+-  {
+-   "cell_type": "code",
+-   "execution_count": null,
+-   "metadata": {},
+-   "outputs": [],
+-   "source": [
+-    "import os, pandas as pd\n",
+-    "if not os.getenv('KAGGLE_IS_COMPETITION_RERUN'):\n",
+-    "    submission = pd.DataFrame(\n",
+-    "        data=[['1_0', '1', True, 1]],\n",
+-    "        columns=['row_id', 'game_id', 'end_of_game', 'score'])\n",
+-    "    submission.to_parquet('/kaggle/working/submission.parquet', index=False)\n",
+-    "    print('Dummy submission created.')"
+-   ]
+-  }
+- ]
+-}
+\ No newline at end of file
++{"metadata": {"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}, "language_info": {"name": "python", "version": "3.12.0"}, "kaggle": {"accelerator": "nvidiaTeslaT4", "dataSources": [{"sourceType": "competition", "sourceId": 133468, "databundleVersionId": 16244308}], "dockerImageVersionId": 31329, "isInternetEnabled": false, "language": "python", "sourceType": "notebook", "isGpuEnabled": true}}, "nbformat_minor": 4, "nbformat": 4, "cells": [{"cell_type": "code", "source": "!pip install --no-index --find-links \\\n    /kaggle/input/competitions/arc-prize-2026-arc-agi-3/arc_agi_3_wheels \\\n    arc-agi python-dotenv", "metadata": {}, "outputs": [], "execution_count": null}, {"cell_type": "code", "source": ["%%writefile /kaggle/working/my_agent.py\n", "# =====================================================================\n", "# FORGE v31 \u00e2\u20ac\u201d Solution Shortening + WM Pre-warm\n", "#\n", "# KEEPS: v30 World Model + Curiosity MCTS + BFS fallback + full budget\n", "#\n", "# v31 NEW: Two targeted fixes for the 0.26 ceiling:\n", "#\n", "#   1. SOLUTION SHORTENING (direct score improvement):\n", "#      After BFS or MCTS finds ANY solution, greedily remove redundant\n", "#      actions. (baseline/14)^2 = 25% -> (baseline/9)^2 = 60%.\n", "#      Scoring formula (baseline/actions)^2 makes every step saved count.\n", "#\n", "#   2. WM PRE-WARM via random walk (better MCTS when BFS fails):\n", "#      When BFS finds nothing, WM has 0 training data -- MCTS curiosity\n", "#      is blind. Now: 60s random walk before MCTS gives WM ~100+\n", "#      transitions so curiosity UCB is grounded in actual game physics.\n", "#\n", "# CHECKPOINT: /tmp/forge_v31_ckpt.pt\n", "# WM CHECKPOINT: /tmp/forge_v31_wm.pt\n", "# =====================================================================\n", "import copy\n", "import glob\n", "import hashlib\n", "import heapq\n", "import importlib.util\n", "import logging\n", "import math\n", "import os\n", "import random\n", "import time\n", "import traceback\n", "from collections import defaultdict, deque\n", "from typing import Any, Dict, List, Optional, Tuple\n", "\n", "import numpy as np\n", "import torch\n", "import torch.nn as nn\n", "import torch.nn.functional as F\n", "import torch.optim as optim\n", "\n", "from agents.agent import Agent\n", "from arcengine import FrameData, GameAction, GameState, ActionInput\n", "\n", "logger = logging.getLogger(__name__)\n", "\n", "_CKPT_PATH = '/tmp/forge_v31_ckpt.pt'\n", "_WM_CKPT_PATH = '/tmp/forge_v31_wm.pt'\n", "\n", "# ==================== BFS SOLVER (v22, unchanged) ====================\n", "\n", "class BFSSolver:\n", "    \"\"\"Offline BFS solver using direct game class instantiation.\"\"\"\n", "\n", "    def __init__(self, game_path, game_class_name, scan_timeout=5, bfs_timeout=180):\n", "        self.game_path = game_path\n", "        self.class_name = game_class_name\n", "        self.scan_timeout = scan_timeout\n", "        self.bfs_timeout = bfs_timeout\n", "        self.game_cls = None\n", "        self.solutions = {}  # level_idx -> action list\n", "        self._warmup_prefix = []\n", "\n", "    def load(self):\n", "        try:\n", "            spec = importlib.util.spec_from_file_location('game_mod', self.game_path)\n", "            mod = importlib.util.module_from_spec(spec)\n", "            spec.loader.exec_module(mod)\n", "            self.game_cls = getattr(mod, self.class_name)\n", "            return True\n", "        except Exception as e:\n", "            logger.warning(f\"BFS: Failed to load game class: {e}\")\n", "            return False\n", "\n", "    def _state_hash(self, g, frame, hidden_fields=None):\n", "        fh = hashlib.md5(frame.tobytes()).hexdigest()[:16]\n", "        if hidden_fields:\n", "            extras = []\n", "            for field_name in hidden_fields:\n", "                try:\n", "                    v = getattr(g, field_name, None)\n", "                    if v is not None:\n", "                        extras.append(f\"{field_name}={v}\")\n", "                except:\n", "                    pass\n", "            if extras:\n", "                return fh + \"|\" + \"|\".join(extras)\n", "        return fh\n", "\n", "    def _extract_win_field(self):\n", "        try:\n", "            source = open(self.game_path).read()\n", "            lines = source.split('\\n')\n", "            for i, line in enumerate(lines):\n", "                if 'self.next_level()' in line:\n", "                    for j in range(i-1, max(0, i-8), -1):\n", "                        s = lines[j].strip()\n", "                        if s.startswith('if ') or s.startswith('elif '):\n", "                            import re\n", "                            m = re.search(r'self\\.(\\w+)', s)\n", "                            if m:\n", "                                return m.group(1)\n", "                    break\n", "        except:\n", "            pass\n", "        return None\n", "\n", "    def _probe_hidden_fields(self, game, actions):\n", "        if not actions:\n", "            return []\n", "        win_field = self._extract_win_field()\n", "        initial = {}\n", "        for k, v in game.__dict__.items():\n", "            if isinstance(v, (int, float, bool)) and not k.startswith('__'):\n", "                initial[k] = v\n", "        changing_fields = set()\n", "        if win_field and win_field in initial:\n", "            changing_fields.add(win_field)\n", "        frame0 = game.get_pixels(0, 0, 64, 64)\n", "        for act_id, data in actions[:10]:\n", "            g = copy.deepcopy(game)\n", "            try:\n", "                ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))\n", "                g.perform_action(ai, raw=True)\n", "            except:\n", "                continue\n", "            f = g.get_pixels(0, 0, 64, 64)\n", "            for k, v in g.__dict__.items():\n", "                if isinstance(v, (int, float, bool)) and not k.startswith('__'):\n", "                    if k in initial and v != initial[k]:\n", "                        if k not in ('_action_count', '_full_reset', '_action_complete'):\n", "                            changing_fields.add(k)\n", "        hidden = []\n", "        for f in changing_fields:\n", "            if f.startswith('_') and f not in ('_current_level_index', '_score'):\n", "                continue\n", "            hidden.append(f)\n", "        return sorted(hidden)\n", "\n", "    def _scan_actions(self, game, f0, bg):\n", "        \"\"\"Scan effective actions WITHOUT dedup (v15: critical for cd82/sp80 L1).\"\"\"\n", "        avail = game._available_actions\n", "        actions = []\n", "        for a in [a for a in avail if a <= 5]:\n", "            g = copy.deepcopy(game)\n", "            try:\n", "                r = g.perform_action(ActionInput(id=GameAction.from_id(a)), raw=True)\n", "                if r.frame and np.sum(f0 != np.array(r.frame[-1])) > 0:\n", "                    actions.append((a, None))\n", "            except:\n", "                pass\n", "        if 6 in avail:\n", "            t0 = time.time()\n", "            hit_positions = []\n", "            for y in range(0, 64, 2):\n", "                if time.time() - t0 > self.scan_timeout:\n", "                    break\n", "                for x in range(0, 64, 2):\n", "                    if f0[y, x] == bg:\n", "                        continue\n", "                    g = copy.deepcopy(game)\n", "                    try:\n", "                        r = g.perform_action(\n", "                            ActionInput(id=GameAction.ACTION6, data={'x': x, 'y': y, 'game_id': 'bfs'}),\n", "                            raw=True)\n", "                        if not r.frame:\n", "                            continue\n", "                        f = np.array(r.frame[-1])\n", "                        if np.sum(f0 != f) > 0:\n", "                            actions.append((6, {'x': x, 'y': y, 'game_id': 'bfs'}))\n", "                            hit_positions.append((x, y))\n", "                    except:\n", "                        pass\n", "            # Neighbor probe for odd-coord sprites\n", "            for hx, hy in hit_positions:\n", "                if time.time() - t0 > self.scan_timeout + 2:\n", "                    break\n", "                for dx, dy in [(-1,0),(1,0),(0,-1),(0,1)]:\n", "                    nx, ny = hx+dx, hy+dy\n", "                    if 0 <= nx < 64 and 0 <= ny < 64 and f0[ny, nx] != bg:\n", "                        g = copy.deepcopy(game)\n", "                        try:\n", "                            r = g.perform_action(\n", "                                ActionInput(id=GameAction.ACTION6, data={'x': nx, 'y': ny, 'game_id': 'bfs'}),\n", "                                raw=True)\n", "                            if r.frame and np.sum(f0 != np.array(r.frame[-1])) > 0:\n", "                                actions.append((6, {'x': nx, 'y': ny, 'game_id': 'bfs'}))\n", "                        except: pass\n", "        return actions\n", "\n", "    def solve_level(self, level_idx, max_states=200000, prev_solution=None):\n", "        if not self.game_cls:\n", "            return None\n", "        self._warmup_prefix = []\n", "\n", "        game = self.game_cls()\n", "        game.set_level(level_idx)\n", "        game.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "        r0 = game.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "        if not r0.frame:\n", "            return None\n", "        f0 = np.array(r0.frame[-1])\n", "        bg = int(np.bincount(f0.flatten(), minlength=16).argmax())\n", "\n", "        if prev_solution and level_idx > 0:\n", "            transfer_result = self._try_transfer(game, level_idx, prev_solution, f0)\n", "            if transfer_result:\n", "                return transfer_result\n", "\n", "        actions = self._scan_actions(game, f0, bg)\n", "\n", "        # Warm-up unlock\n", "        if not actions:\n", "            logger.info(f\"BFS L{level_idx}: 0 actions found, trying warm-up unlock\")\n", "            avail = game._available_actions\n", "            for warmup_id in [a for a in avail if a <= 4]:\n", "                g_warmup = copy.deepcopy(game)\n", "                try:\n", "                    g_warmup.perform_action(ActionInput(id=GameAction.from_id(warmup_id)), raw=True)\n", "                    f_after = np.array(g_warmup.get_pixels(0, 0, 64, 64))\n", "                    warmup_actions = self._scan_actions(g_warmup, f_after, bg)\n", "                    if warmup_actions:\n", "                        logger.info(f\"BFS L{level_idx}: UNLOCKED with ACTION{warmup_id}!\")\n", "                        game = g_warmup\n", "                        f0 = f_after\n", "                        actions = warmup_actions\n", "                        self._warmup_prefix = [(warmup_id, None)]\n", "                        break\n", "                except:\n", "                    pass\n", "\n", "        logger.info(f\"BFS L{level_idx}: {len(actions)} effective actions\")\n", "        if not actions:\n", "            return None\n", "\n", "        # Adaptive depth\n", "        bfs_max_depth = 30\n", "        if len(actions) <= 4:\n", "            bfs_max_depth = 50\n", "        elif len(actions) <= 8:\n", "            bfs_max_depth = 40\n", "\n", "        visited = set()\n", "        h0 = self._state_hash(game, f0, None)\n", "        visited.add(h0)\n", "        t0 = time.time()\n", "        explored = 0\n", "\n", "        # Standard BFS (proven for 12/25 games)\n", "        queue = deque()\n", "        queue.append((copy.deepcopy(game), [], 0))\n", "        while queue and explored < max_states and (time.time() - t0) < self.bfs_timeout:\n", "            g, hist, depth = queue.popleft()\n", "            for act_id, data in actions:\n", "                g2 = copy.deepcopy(g)\n", "                try:\n", "                    ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))\n", "                    r = g2.perform_action(ai, raw=True)\n", "                except: continue\n", "                explored += 1\n", "                if not r.frame: continue\n", "                f = np.array(r.frame[-1])\n", "                h = self._state_hash(g2, f, None)\n", "                if h in visited: continue\n", "                visited.add(h)\n", "                new_hist = hist + [(act_id, data)]\n", "                if r.levels_completed > level_idx or g2._current_level_index > level_idx:\n", "                    logger.info(f\"BFS L{level_idx}: SOLVED in {len(new_hist)} actions ({explored} explored, {time.time()-t0:.1f}s)\")\n", "                    sol = self._warmup_prefix + new_hist\n", "                    self.solutions[level_idx] = sol\n", "                    return sol\n", "                if depth < bfs_max_depth:\n", "                    queue.append((g2, new_hist, depth + 1))\n", "\n", "        elapsed_first = time.time() - t0\n", "        logger.info(f\"BFS L{level_idx}: first pass timeout ({explored} explored, {elapsed_first:.1f}s)\")\n", "\n", "        # ACMD trigger finder\n", "        if len(visited) < 100 and elapsed_first < self.bfs_timeout * 0.8:\n", "            hidden_fields = self._probe_hidden_fields(game, actions)\n", "            if hidden_fields:\n", "                logger.info(f\"BFS L{level_idx}: ACMD with fields: {hidden_fields}\")\n", "                game2 = self.game_cls()\n", "                game2.set_level(level_idx)\n", "                game2.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "                game2.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "                r2 = game2.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "                f0_2 = np.array(r2.frame[-1])\n", "                init_state = {f: getattr(game2, f, None) for f in hidden_fields}\n", "                visited2 = set()\n", "                h0_2 = self._state_hash(game2, f0_2, hidden_fields)\n", "                visited2.add(h0_2)\n", "                heap2 = [(0, 0, 0, copy.deepcopy(game2), [])]\n", "                fifo2 = 1\n", "                t0_2 = time.time()\n", "                remaining = max(60, self.bfs_timeout - elapsed_first)\n", "                explored2 = 0\n", "                while heap2 and explored2 < max_states and (time.time() - t0_2) < remaining:\n", "                    neg_delta, depth, _, g, hist = heapq.heappop(heap2)\n", "                    for act_id, data in actions:\n", "                        g2 = copy.deepcopy(g)\n", "                        try:\n", "                            ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))\n", "                            r = g2.perform_action(ai, raw=True)\n", "                        except: continue\n", "                        explored2 += 1\n", "                        if not r.frame: continue\n", "                        f = np.array(r.frame[-1])\n", "                        h = self._state_hash(g2, f, hidden_fields)\n", "                        if h in visited2: continue\n", "                        visited2.add(h)\n", "                        new_hist = hist + [(act_id, data)]\n", "                        if r.levels_completed > level_idx or g2._current_level_index > level_idx:\n", "                            logger.info(f\"BFS L{level_idx}: SOLVED (ACMD) in {len(new_hist)} actions\")\n", "                            sol = self._warmup_prefix + new_hist\n", "                            self.solutions[level_idx] = sol\n", "                            return sol\n", "                        trigger_delta = sum(abs(getattr(g2, tf, 0) - init_state.get(tf, 0))\n", "                                           if isinstance(getattr(g2, tf, 0), (int, float)) else\n", "                                           int(getattr(g2, tf, None) != init_state.get(tf))\n", "                                           for tf in hidden_fields)\n", "                        pixels_changed = np.sum(f0_2 != f) > 0\n", "                        if not pixels_changed and trigger_delta == 0:\n", "                            continue\n", "                        fifo2 += 1\n", "                        if depth < 40:\n", "                            heapq.heappush(heap2, (-trigger_delta, depth+1, fifo2, g2, new_hist))\n", "                logger.info(f\"BFS L{level_idx}: ACMD finished ({explored2} explored, {time.time()-t0_2:.1f}s)\")\n", "\n", "        # IDDFS for low-branching games\n", "        elapsed_total = time.time() - t0\n", "        remaining_time = max(30, self.bfs_timeout - elapsed_total)\n", "        if len(actions) <= 6 and remaining_time > 30:\n", "            logger.info(f\"BFS L{level_idx}: IDDFS (branching={len(actions)}, {remaining_time:.0f}s)\")\n", "            game3 = self.game_cls()\n", "            game3.set_level(level_idx)\n", "            game3.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "            game3.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "            t0_3 = time.time()\n", "            iddfs_solved = False\n", "            for max_depth in range(10, 60):\n", "                if time.time() - t0_3 > remaining_time * 0.6:\n", "                    break\n", "                stack = [(copy.deepcopy(game3), [], set())]\n", "                while stack and (time.time() - t0_3) < remaining_time * 0.6:\n", "                    g, hist, path_hashes = stack.pop()\n", "                    if len(hist) >= max_depth:\n", "                        continue\n", "                    for act_id, data in actions:\n", "                        g2 = copy.deepcopy(g)\n", "                        try:\n", "                            ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))\n", "                            r = g2.perform_action(ai, raw=True)\n", "                        except: continue\n", "                        if not r.frame: continue\n", "                        f = np.array(r.frame[-1])\n", "                        h = hashlib.md5(f.tobytes()).hexdigest()[:16]\n", "                        if h in path_hashes: continue\n", "                        new_hist = hist + [(act_id, data)]\n", "                        if r.levels_completed > level_idx or g2._current_level_index > level_idx:\n", "                            logger.info(f\"BFS L{level_idx}: SOLVED (IDDFS depth={max_depth}) in {len(new_hist)} actions\")\n", "                            sol = self._warmup_prefix + new_hist\n", "                            self.solutions[level_idx] = sol\n", "                            return sol\n", "                        stack.append((g2, new_hist, path_hashes | {h}))\n", "            if iddfs_solved:\n", "                return None  # handled above\n", "\n", "            # NEW v24: Beam search after IDDFS for medium-branching games\n", "            beam_remaining = max(15, remaining_time - (time.time() - t0_3))\n", "            if beam_remaining > 15 and len(actions) <= 12:\n", "                logger.info(f\"BFS L{level_idx}: Beam search (width=20, {beam_remaining:.0f}s)\")\n", "                game4 = self.game_cls()\n", "                game4.set_level(level_idx)\n", "                game4.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "                r4 = game4.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "                f4 = np.array(r4.frame[-1])\n", "                beam = [(copy.deepcopy(game4), [], 0)]  # (game, hist, score)\n", "                beam_visited = {hashlib.md5(f4.tobytes()).hexdigest()[:16]}\n", "                t0_b = time.time()\n", "                for bdepth in range(60):\n", "                    if time.time() - t0_b > beam_remaining or not beam:\n", "                        break\n", "                    next_beam = []\n", "                    for bg_game, bg_hist, _ in beam:\n", "                        for act_id, data in actions:\n", "                            g2 = copy.deepcopy(bg_game)\n", "                            try:\n", "                                ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))\n", "                                r = g2.perform_action(ai, raw=True)\n", "                            except: continue\n", "                            if not r.frame: continue\n", "                            f = np.array(r.frame[-1])\n", "                            fh = hashlib.md5(f.tobytes()).hexdigest()[:16]\n", "                            if fh in beam_visited: continue\n", "                            beam_visited.add(fh)\n", "                            new_hist = bg_hist + [(act_id, data)]\n", "                            if r.levels_completed > level_idx or g2._current_level_index > level_idx:\n", "                                logger.info(f\"BFS L{level_idx}: SOLVED (Beam depth={bdepth}) in {len(new_hist)} actions\")\n", "                                sol = self._warmup_prefix + new_hist\n", "                                self.solutions[level_idx] = sol\n", "                                return sol\n", "                            score = int(np.sum(f4 != f))  # change from start = progress\n", "                            next_beam.append((g2, new_hist, score))\n", "                    next_beam.sort(key=lambda x: -x[2])\n", "                    beam = next_beam[:20]\n", "                logger.info(f\"BFS L{level_idx}: Beam search exhausted\")\n", "\n", "        return None\n", "\n", "    def _try_transfer(self, game, level_idx, prev_solution, f1):\n", "        try:\n", "            g = copy.deepcopy(game)\n", "            for i, (act_id, data) in enumerate(prev_solution):\n", "                try:\n", "                    ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))\n", "                    r = g.perform_action(ai, raw=True)\n", "                    if r.levels_completed > level_idx or g._current_level_index > level_idx:\n", "                        logger.info(f\"BFS L{level_idx}: TRANSFER SUCCESS (direct, {i+1} actions)\")\n", "                        sol = prev_solution[:i+1]\n", "                        self.solutions[level_idx] = sol\n", "                        return sol\n", "                except:\n", "                    break\n", "\n", "            prev_game = self.game_cls()\n", "            prev_game.set_level(level_idx - 1)\n", "            prev_game.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "            r_prev = prev_game.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "            if not r_prev.frame:\n", "                return None\n", "            f0 = np.array(r_prev.frame[-1])\n", "            bg = int(np.bincount(f0.flatten(), minlength=16).argmax())\n", "\n", "            def get_objects(frame, bg_c):\n", "                objs = []\n", "                for c in range(16):\n", "                    if c == bg_c: continue\n", "                    mask = (frame == c); npix = int(np.sum(mask))\n", "                    if npix < 2: continue\n", "                    ys, xs = np.where(mask)\n", "                    objs.append({'color': c, 'cx': float(np.mean(xs)), 'cy': float(np.mean(ys)), 'n': npix})\n", "                return sorted(objs, key=lambda o: (o['color'], -o['n']))\n", "\n", "            objs_prev = get_objects(f0, bg)\n", "            objs_curr = get_objects(f1, bg)\n", "            if not objs_prev or not objs_curr:\n", "                return None\n", "\n", "            matched = []\n", "            for op in objs_prev:\n", "                best = None; best_dist = float('inf')\n", "                for oc in objs_curr:\n", "                    if oc['color'] == op['color'] and abs(oc['n'] - op['n']) < max(op['n'], oc['n']) * 0.5:\n", "                        d = abs(oc['cx'] - op['cx']) + abs(oc['cy'] - op['cy'])\n", "                        if d < best_dist: best_dist = d; best = oc\n", "                if best: matched.append((op, best))\n", "            if not matched: return None\n", "\n", "            dx = np.mean([m[1]['cx'] - m[0]['cx'] for m in matched])\n", "            dy = np.mean([m[1]['cy'] - m[0]['cy'] for m in matched])\n", "\n", "            transferred = []\n", "            for act_id, data in prev_solution:\n", "                if data and 'x' in data:\n", "                    new_data = dict(data)\n", "                    new_data['x'] = max(0, min(63, int(data['x'] + dx)))\n", "                    new_data['y'] = max(0, min(63, int(data['y'] + dy)))\n", "                    transferred.append((act_id, new_data))\n", "                else:\n", "                    transferred.append((act_id, data))\n", "\n", "            g = copy.deepcopy(game)\n", "            for i, (act_id, data) in enumerate(transferred):\n", "                try:\n", "                    ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))\n", "                    r = g.perform_action(ai, raw=True)\n", "                    if r.levels_completed > level_idx or g._current_level_index > level_idx:\n", "                        logger.info(f\"BFS L{level_idx}: TRANSFER SUCCESS (offset dx={dx:.0f},dy={dy:.0f}, {i+1} actions)\")\n", "                        sol = transferred[:i+1]\n", "                        self.solutions[level_idx] = sol\n", "                        return sol\n", "                except: break\n", "\n", "            for multiplier in [2, 3, 4]:\n", "                expanded = []\n", "                for act_id, data in prev_solution:\n", "                    for _ in range(multiplier):\n", "                        if data:\n", "                            new_data = dict(data)\n", "                            new_data['x'] = max(0, min(63, int(data.get('x', 32) + dx)))\n", "                            new_data['y'] = max(0, min(63, int(data.get('y', 32) + dy)))\n", "                            expanded.append((act_id, new_data))\n", "                        else:\n", "                            expanded.append((act_id, data))\n", "                g = copy.deepcopy(game)\n", "                for i, (act_id, data) in enumerate(expanded):\n", "                    try:\n", "                        ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))\n", "                        r = g.perform_action(ai, raw=True)\n", "                        if r.levels_completed > level_idx or g._current_level_index > level_idx:\n", "                            logger.info(f\"BFS L{level_idx}: TRANSFER SUCCESS (multiplier={multiplier}, {i+1} actions)\")\n", "                            sol = expanded[:i+1]\n", "                            self.solutions[level_idx] = sol\n", "                            return sol\n", "                    except: break\n", "        except Exception as e:\n", "            logger.warning(f\"BFS transfer failed: {e}\")\n", "        return None\n", "\n", "\n", "# ==================== ACTION SCANNER (for MCTS \u00e2\u20ac\u201d unique-effect dedup) ====================\n", "\n", "class ActionScanner:\n", "    \"\"\"Scan unique-effect actions with frame-hash dedup for MCTS.\n", "\n", "    Unlike BFS scan (no dedup), MCTS needs a small action set to be tractable.\n", "    Dedup reduces 5000 click positions -> 5-20 unique frame effects.\n", "    \"\"\"\n", "\n", "    def __init__(self, timeout=4.0):\n", "        self.timeout = timeout\n", "\n", "    def _hidden_state(self, g) -> str:\n", "        \"\"\"Compact hash of game's internal numeric fields for change detection.\"\"\"\n", "        try:\n", "            parts = []\n", "            for k, v in sorted(g.__dict__.items()):\n", "                if isinstance(v, (int, float, bool)) and not k.startswith('__'):\n", "                    parts.append(f\"{k}={v}\")\n", "            return \"|\".join(parts[:20])\n", "        except:\n", "            return \"\"\n", "\n", "    def scan(self, game, f0, bg):\n", "        \"\"\"Return (act_id, data) list with unique effects.\n", "\n", "        v30: Also keep clicks that change INTERNAL state (hidden fields),\n", "        not just visible frame. Fixes selection-based games like tn36 where\n", "        clicking selects a piece (invisible) then clicking destination moves it.\n", "        Uses a grid of positions to ensure broad coverage.\n", "        \"\"\"\n", "        avail = game._available_actions\n", "        actions = []\n", "        seen_effects: Dict[str, Tuple] = {}\n", "        initial_hidden = self._hidden_state(game)\n", "\n", "        # Non-click actions\n", "        for a in avail:\n", "            if a > 5:\n", "                continue\n", "            g = copy.deepcopy(game)\n", "            try:\n", "                r = g.perform_action(ActionInput(id=GameAction.from_id(a)), raw=True)\n", "                if r.frame:\n", "                    f = np.array(r.frame[-1])\n", "                    hidden_changed = self._hidden_state(g) != initial_hidden\n", "                    if np.sum(f0 != f) > 0 or hidden_changed:\n", "                        ek = hashlib.md5(f.tobytes()).hexdigest()[:16]\n", "                        if ek not in seen_effects:\n", "                            seen_effects[ek] = (a, None)\n", "                            actions.append((a, None))\n", "            except:\n", "                pass\n", "\n", "        if 6 not in avail:\n", "            return actions\n", "\n", "        t0 = time.time()\n", "\n", "        # Foreground pixels \u00e2\u20ac\u201d likely interactive objects\n", "        ys, xs = np.where(f0 != bg)\n", "        fg_candidates = list(zip(ys.tolist(), xs.tolist()))\n", "        if len(fg_candidates) > 300:\n", "            step = max(1, len(fg_candidates) // 300)\n", "            fg_candidates = fg_candidates[::step]\n", "\n", "        # Background sample\n", "        by, bx = np.where(f0 == bg)\n", "        bg_candidates = []\n", "        if len(by) > 0:\n", "            bidx = np.linspace(0, len(by)-1, min(30, len(by)), dtype=int)\n", "            bg_candidates = [(int(by[i]), int(bx[i])) for i in bidx]\n", "\n", "        # Grid sample \u00e2\u20ac\u201d covers the whole screen evenly (catches selection games)\n", "        # 8x8 = 64 evenly-spaced points regardless of pixel content\n", "        grid_candidates = [\n", "            (int(y), int(x))\n", "            for y in np.linspace(0, 63, 8, dtype=int)\n", "            for x in np.linspace(0, 63, 8, dtype=int)\n", "        ]\n", "\n", "        seen_pos: set = set()\n", "        all_candidates = fg_candidates + bg_candidates + grid_candidates\n", "\n", "        for y, x in all_candidates:\n", "            pos_key = (y // 2, x // 2)  # coarse dedup of near-identical positions\n", "            if pos_key in seen_pos:\n", "                continue\n", "            if time.time() - t0 > self.timeout:\n", "                break\n", "            g = copy.deepcopy(game)\n", "            try:\n", "                r = g.perform_action(\n", "                    ActionInput(id=GameAction.ACTION6, data={'x': x, 'y': y, 'game_id': 'mcts'}),\n", "                    raw=True)\n", "                if not r.frame:\n", "                    continue\n", "                f = np.array(r.frame[-1])\n", "                hidden_changed = self._hidden_state(g) != initial_hidden\n", "                if np.sum(f0 != f) > 0 or hidden_changed:\n", "                    ek = hashlib.md5(f.tobytes()).hexdigest()[:16]\n", "                    hk = f\"{ek}|{self._hidden_state(g)[:32]}\"\n", "                    if hk not in seen_effects:\n", "                        seen_effects[hk] = (6, {'x': x, 'y': y, 'game_id': 'mcts'})\n", "                        actions.append((6, {'x': x, 'y': y, 'game_id': 'mcts'}))\n", "                    seen_pos.add(pos_key)\n", "            except:\n", "                pass\n", "\n", "        return actions\n", "\n", "\n", "# ==================== WORLD MODEL ====================\n", "\n", "class WorldModel(nn.Module):\n", "    \"\"\"Online-learned transition model: f(frame, action) -> next_frame.\n", "\n", "    Trained from every real interaction. Generalizes to any game by learning\n", "    the game's pixel-level physics. Used for:\n", "      1. Curiosity UCB bonus (prediction error = novel state = explore more)\n", "      2. Fast WM rollouts (no deepcopy, 10x faster than real game simulation)\n", "    \"\"\"\n", "    G = 64\n", "    N_COLORS = 16\n", "    N_ACTIONS = 7  # actions 1-6 + reset\n", "    HIDDEN = 256\n", "\n", "    def __init__(self):\n", "        super().__init__()\n", "        # Compact encoder: frame -> latent\n", "        self.encoder = nn.Sequential(\n", "            nn.Conv2d(self.N_COLORS, 32, 4, stride=2, padding=1),  # 32x32\n", "            nn.ReLU(),\n", "            nn.Conv2d(32, 64, 4, stride=2, padding=1),             # 16x16\n", "            nn.ReLU(),\n", "            nn.Conv2d(64, 64, 4, stride=2, padding=1),             # 8x8\n", "            nn.ReLU(),\n", "            nn.Flatten(),\n", "            nn.Linear(64 * 8 * 8, self.HIDDEN),\n", "            nn.ReLU(),\n", "        )\n", "        # Action embedding\n", "        self.action_embed = nn.Embedding(self.N_ACTIONS + 1, 32)\n", "        # Decoder: latent + action -> next frame logits\n", "        self.decoder = nn.Sequential(\n", "            nn.Linear(self.HIDDEN + 32, self.HIDDEN),\n", "            nn.ReLU(),\n", "            nn.Linear(self.HIDDEN, self.HIDDEN),\n", "            nn.ReLU(),\n", "            nn.Linear(self.HIDDEN, self.N_COLORS * self.G * self.G),\n", "        )\n", "\n", "    def forward(self, frame_oh: torch.Tensor, action_idx: torch.Tensor) -> torch.Tensor:\n", "        \"\"\"frame_oh: (B, N_COLORS, G, G), action_idx: (B,) -> (B, N_COLORS, G, G)\"\"\"\n", "        z = self.encoder(frame_oh)\n", "        a = self.action_embed(action_idx.clamp(0, self.N_ACTIONS))\n", "        pred = self.decoder(torch.cat([z, a], dim=1))\n", "        return pred.view(-1, self.N_COLORS, self.G, self.G)\n", "\n", "    @staticmethod\n", "    def frame_to_oh(frame_np: np.ndarray, device) -> torch.Tensor:\n", "        oh = torch.zeros(16, 64, 64, dtype=torch.float32)\n", "        oh.scatter_(0, torch.from_numpy(frame_np.astype(np.int64)).unsqueeze(0), 1)\n", "        return oh.to(device)\n", "\n", "    def predict(self, frame_np: np.ndarray, action_idx: int, device) -> np.ndarray:\n", "        \"\"\"Predict next frame (numpy int64 array).\"\"\"\n", "        with torch.no_grad():\n", "            oh = self.frame_to_oh(frame_np, device).unsqueeze(0)\n", "            act = torch.tensor([action_idx], device=device)\n", "            pred = self.forward(oh, act).squeeze(0)  # (N_COLORS, G, G)\n", "        return pred.argmax(0).cpu().numpy().astype(np.int64)\n", "\n", "    def curiosity(self, frame_np: np.ndarray, action_idx: int,\n", "                  next_frame_np: np.ndarray, device) -> float:\n", "        \"\"\"WM prediction error = curiosity signal. High error = novel transition.\"\"\"\n", "        with torch.no_grad():\n", "            oh = self.frame_to_oh(frame_np, device).unsqueeze(0)\n", "            act = torch.tensor([action_idx], device=device)\n", "            pred = self.forward(oh, act).squeeze(0)          # (N_COLORS, G, G)\n", "            target = torch.from_numpy(next_frame_np.astype(np.int64)).to(device)  # (G,G)\n", "            loss = F.cross_entropy(\n", "                pred.view(self.N_COLORS, -1).t(),\n", "                target.view(-1)\n", "            )\n", "        return float(loss)\n", "\n", "\n", "class WorldModelTrainer:\n", "    \"\"\"Online trainer for WorldModel. Maintains a replay buffer of transitions.\"\"\"\n", "\n", "    BUFFER_SIZE = 5000\n", "    BATCH_SIZE = 32\n", "    LR = 5e-4\n", "    TRAIN_EVERY = 10   # real interactions between gradient steps\n", "    WARMUP = 30        # min transitions before switching to WM rollouts\n", "\n", "    def __init__(self, device):\n", "        self.wm = WorldModel().to(device)\n", "        self.opt = optim.Adam(self.wm.parameters(), lr=self.LR)\n", "        self.device = device\n", "        self.buffer: deque = deque(maxlen=self.BUFFER_SIZE)\n", "        self.trained_steps = 0\n", "        self.interaction_count = 0\n", "\n", "    def add(self, frame: np.ndarray, action_idx: int, next_frame: np.ndarray):\n", "        \"\"\"Record a real transition for WM training.\"\"\"\n", "        self.buffer.append((frame.copy(), action_idx, next_frame.copy()))\n", "        self.interaction_count += 1\n", "        if self.interaction_count % self.TRAIN_EVERY == 0 and len(self.buffer) >= self.BATCH_SIZE:\n", "            self._train_step()\n", "\n", "    def _train_step(self):\n", "        indices = np.random.choice(len(self.buffer), self.BATCH_SIZE, replace=False)\n", "        batch = [self.buffer[i] for i in indices]\n", "        frames = torch.stack([WorldModel.frame_to_oh(b[0], self.device) for b in batch])\n", "        acts = torch.tensor([b[1] for b in batch], device=self.device)\n", "        targets = torch.stack([\n", "            torch.from_numpy(b[2].astype(np.int64)).to(self.device) for b in batch\n", "        ])  # (B, G, G)\n", "        pred = self.wm(frames, acts)  # (B, N_COLORS, G, G)\n", "        # Reshape for cross-entropy: (B*G*G, N_COLORS) vs (B*G*G,)\n", "        B, C, G, _ = pred.shape\n", "        loss = F.cross_entropy(\n", "            pred.permute(0, 2, 3, 1).reshape(-1, C),\n", "            targets.reshape(-1)\n", "        )\n", "        self.opt.zero_grad()\n", "        loss.backward()\n", "        nn.utils.clip_grad_norm_(self.wm.parameters(), 1.0)\n", "        self.opt.step()\n", "        self.trained_steps += 1\n", "\n", "    @property\n", "    def ready_for_rollout(self) -> bool:\n", "        return len(self.buffer) >= self.WARMUP\n", "\n", "    def wm_rollout(self, frame_np: np.ndarray, actions: List[Tuple],\n", "                   max_depth: int = 20, win_threshold: float = 0.4) -> float:\n", "        \"\"\"Simulate a rollout using the world model. No game deepcopy needed.\n", "\n", "        Returns: estimated value (0-1). High predicted frame change = potential win.\n", "        \"\"\"\n", "        current = frame_np.copy()\n", "        prev = frame_np.copy()\n", "        total_change = 0.0\n", "        for step in range(max_depth):\n", "            act_id, _ = random.choice(actions)\n", "            act_idx = min(act_id - 1, WorldModel.N_ACTIONS - 1)\n", "            next_frame = self.wm.predict(current, act_idx, self.device)\n", "            change = float(np.sum(current != next_frame)) / (64 * 64)\n", "            total_change += change\n", "            # Dramatic change at end of rollout = potential win signal\n", "            if change > win_threshold and step > 2:\n", "                return min(1.0, change * 2)\n", "            current = next_frame\n", "        # Return normalized total change as progress signal\n", "        return min(0.5, total_change / max_depth)\n", "\n", "    def curiosity_for(self, frame_np: np.ndarray, action_idx: int,\n", "                      next_frame_np: np.ndarray) -> float:\n", "        if self.trained_steps < 5:\n", "            return 0.5  # uniform curiosity before WM is trained\n", "        return self.wm.curiosity(frame_np, action_idx, next_frame_np, self.device)\n", "\n", "    def save(self, path: str):\n", "        try:\n", "            torch.save({'wm': self.wm.state_dict(), 'steps': self.trained_steps}, path)\n", "        except: pass\n", "\n", "    def load(self, path: str):\n", "        try:\n", "            if os.path.exists(path):\n", "                ck = torch.load(path, map_location=self.device, weights_only=True)\n", "                self.wm.load_state_dict(ck['wm'])\n", "                self.trained_steps = ck.get('steps', 0)\n", "                logger.info(f\"WM: loaded from {path} ({self.trained_steps} steps)\")\n", "        except: pass\n", "\n", "\n", "# ==================== MCTS SOLVER ====================\n", "\n", "_UCB_C = 1.8\n", "_MAX_MCTS_ITER = 100_000  # effectively time-limited; removed 3000 cap that choked MCTS\n", "_MAX_MCTS_DEPTH = 50  # slightly deeper \u00e2\u20ac\u201d L1/L2 solutions may need longer paths\n", "_TOTAL_GAMES = 25\n", "_TOTAL_BUDGET = 8 * 3600 - 300  # 8h minus 5min safety margin\n", "\n", "\n", "class MCTSNode:\n", "    __slots__ = ['parent', 'action', 'children', 'visits', 'value',\n", "                 'untried', 'depth', 'terminal', 'novel_bonus', 'game_state']\n", "\n", "    def __init__(self, parent, action, untried, depth=0, novel_bonus=0.0):\n", "        self.parent = parent\n", "        self.action = action\n", "        self.children: List['MCTSNode'] = []\n", "        self.visits = 0\n", "        self.value = 0.0\n", "        self.untried = list(untried)\n", "        self.depth = depth\n", "        self.terminal = False\n", "        self.novel_bonus = novel_bonus\n", "        self.game_state = None  # deepcopy of game at this node\n", "\n", "    def ucb(self) -> float:\n", "        if self.visits == 0:\n", "            return float('inf')\n", "        exploit = self.value / self.visits\n", "        explore = _UCB_C * math.sqrt(math.log(self.parent.visits) / self.visits)\n", "        return exploit + explore + self.novel_bonus / (1 + self.visits)\n", "\n", "    def best_child(self) -> 'MCTSNode':\n", "        return max(self.children, key=lambda n: n.ucb())\n", "\n", "    def is_fully_expanded(self) -> bool:\n", "        return len(self.untried) == 0\n", "\n", "\n", "class MCTSSolver:\n", "    \"\"\"MCTS with World Model curiosity UCB + WM-guided rollouts.\"\"\"\n", "\n", "    def __init__(self, game_cls, level_idx: int, actions: List[Tuple],\n", "                 hidden_fields: Optional[List[str]] = None,\n", "                 timeout: float = 90.0,\n", "                 prev_solution: Optional[List] = None,\n", "                 productive_actions: Optional[List[Tuple]] = None,\n", "                 target_length: Optional[int] = None,\n", "                 world_model: Optional['WorldModelTrainer'] = None):\n", "        self.game_cls = game_cls\n", "        self.level_idx = level_idx\n", "        self.actions = actions\n", "        self.hidden_fields = hidden_fields or []\n", "        self.timeout = timeout\n", "        self.prev_solution = prev_solution or []\n", "        self.rollout_actions = productive_actions if productive_actions else actions\n", "        self.target_length = target_length\n", "        self.world_model: Optional[WorldModelTrainer] = world_model  # v30: WM for curiosity+rollout\n", "        self.visit_counts: Dict[str, int] = {}\n", "        self.solution: Optional[List] = None\n", "        self.explored_transitions: List[Tuple] = []\n", "        self._action_change_stats: Dict[int, List[float]] = {\n", "            i: [1.0, 1.0] for i in range(len(self.actions))\n", "        }\n", "        # Map action tuple -> index for fast lookup\n", "        self._act_to_idx = {a: i for i, a in enumerate(self.actions)}\n", "\n", "    def _beats_target(self, solution) -> bool:\n", "        \"\"\"v29: check if solution beats BFS fallback target or is \u00e2\u2030\u00a42x baseline.\"\"\"\n", "        if self.target_length is not None and len(solution) <= self.target_length:\n", "            return True\n", "        baseline = getattr(self, '_baseline_actions', None)\n", "        if baseline and len(solution) <= 2 * baseline:\n", "            return True\n", "        return False\n", "\n", "    def _make_game(self):\n", "        g = self.game_cls()\n", "        g.set_level(self.level_idx)\n", "        g.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "        g.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "        return g\n", "\n", "    def _hidden_str(self, g) -> str:\n", "        if not self.hidden_fields:\n", "            return \"\"\n", "        parts = []\n", "        for f in self.hidden_fields:\n", "            v = getattr(g, f, None)\n", "            if v is not None:\n", "                parts.append(f\"{f}={v}\")\n", "        return \"|\".join(parts)\n", "\n", "    def _state_key(self, g, frame: np.ndarray) -> str:\n", "        fh = hashlib.md5(frame.tobytes()).hexdigest()[:16]\n", "        hs = self._hidden_str(g)\n", "        return fh + hs if hs else fh\n", "\n", "    def _is_win(self, g, r) -> bool:\n", "        return (r.levels_completed > self.level_idx or\n", "                g._current_level_index > self.level_idx)\n", "\n", "    def _novelty(self, key: str) -> float:\n", "        cnt = self.visit_counts.get(key, 0)\n", "        return 1.0 / math.sqrt(cnt + 1)\n", "\n", "    def _weighted_rollout_action(self) -> Tuple:\n", "        \"\"\"Pick action weighted by historical frame-change productivity.\"\"\"\n", "        pool = self.rollout_actions if self.rollout_actions else self.actions\n", "        # Map pool indices back to self.actions for stats lookup\n", "        try:\n", "            weights = []\n", "            for act in pool:\n", "                try:\n", "                    idx = self.actions.index(act)\n", "                    s = self._action_change_stats[idx]\n", "                    weights.append(s[0] / max(s[1], 1))\n", "                except (ValueError, KeyError):\n", "                    weights.append(1.0)\n", "            total = sum(weights)\n", "            if total <= 0:\n", "                return random.choice(pool)\n", "            r = random.random() * total\n", "            cumsum = 0.0\n", "            for act, w in zip(pool, weights):\n", "                cumsum += w\n", "                if cumsum >= r:\n", "                    return act\n", "            return pool[-1]\n", "        except Exception:\n", "            return random.choice(pool)\n", "\n", "    def _update_rollout_stats(self, act: Tuple, frame_change: float):\n", "        \"\"\"Update frame-change stats for an action after observing its effect.\"\"\"\n", "        try:\n", "            idx = self.actions.index(act)\n", "            self._action_change_stats[idx][0] += frame_change\n", "            self._action_change_stats[idx][1] += 1.0\n", "        except (ValueError, KeyError):\n", "            pass\n", "\n", "    def _rollout(self, g, max_depth: int = 10) -> float:\n", "        \"\"\"v30: Use WM rollout when ready (faster, deeper), otherwise real-game rollout.\"\"\"\n", "        # Try WM rollout first \u00e2\u20ac\u201d no deepcopy, 20-step lookahead, feeds curiosity\n", "        if self.world_model and self.world_model.ready_for_rollout:\n", "            try:\n", "                frame_np = np.array(g.get_pixels(0, 0, 64, 64))\n", "                return self.world_model.wm_rollout(frame_np, self.actions, max_depth=20)\n", "            except:\n", "                pass  # fall through to real rollout\n", "\n", "        # Real-game rollout with frame-change weighted sampling\n", "        prev_frame = None\n", "        try:\n", "            f = g.get_pixels(0, 0, 64, 64)\n", "            prev_frame = np.array(f)\n", "        except:\n", "            pass\n", "        for _ in range(max_depth):\n", "            act = self._weighted_rollout_action()\n", "            act_id, data = act\n", "            try:\n", "                ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))\n", "                r = g.perform_action(ai, raw=True)\n", "                if not r.frame:\n", "                    return 0.0\n", "                if self._is_win(g, r):\n", "                    return 1.0\n", "                if prev_frame is not None:\n", "                    try:\n", "                        new_frame = np.array(r.frame[-1])\n", "                        change = float(np.sum(prev_frame != new_frame)) / (64 * 64)\n", "                        self._update_rollout_stats(act, change)\n", "                        # Feed real transition to WM for training\n", "                        if self.world_model:\n", "                            act_idx = min(act_id - 1, WorldModel.N_ACTIONS - 1)\n", "                            self.world_model.add(prev_frame, act_idx, new_frame)\n", "                        prev_frame = new_frame\n", "                    except:\n", "                        pass\n", "            except:\n", "                return 0.0\n", "        return 0.0\n", "\n", "    def _try_transfer(self) -> Optional[List]:\n", "        if not self.prev_solution:\n", "            return None\n", "        g = self._make_game()\n", "        for i, (act_id, data) in enumerate(self.prev_solution):\n", "            try:\n", "                ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))\n", "                r = g.perform_action(ai, raw=True)\n", "                if r.frame and self._is_win(g, r):\n", "                    logger.info(f\"MCTS L{self.level_idx}: transfer win in {i+1} steps\")\n", "                    return self.prev_solution[:i+1]\n", "            except:\n", "                break\n", "        return None\n", "\n", "    def solve(self) -> Optional[List]:\n", "        if not self.actions:\n", "            return None\n", "        t0 = time.time()\n", "\n", "        # Try cross-level solution transfer first (fast)\n", "        xfer = self._try_transfer()\n", "        if xfer:\n", "            self.solution = xfer\n", "            return xfer\n", "\n", "        # Initialize root\n", "        g0 = self._make_game()\n", "        try:\n", "            r0 = g0.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "            if not r0.frame:\n", "                return None\n", "            f0 = np.array(r0.frame[-1])\n", "        except:\n", "            return None\n", "\n", "        root_key = self._state_key(g0, f0)\n", "        self._root_frame = f0  # for transition reward computation\n", "        self.visit_counts[root_key] = 1\n", "        root = MCTSNode(parent=None, action=None, untried=self.actions,\n", "                        depth=0, novel_bonus=self._novelty(root_key))\n", "        root.game_state = copy.deepcopy(g0)\n", "\n", "        # path_store: node_id -> action sequence to reach node\n", "        path_store: Dict[int, List] = {id(root): []}\n", "\n", "        n_iter = 0\n", "        while time.time() - t0 < self.timeout and n_iter < _MAX_MCTS_ITER:\n", "            n_iter += 1\n", "\n", "            # SELECTION: traverse tree to leaf\n", "            node = root\n", "            g = copy.deepcopy(root.game_state)\n", "\n", "            while node.is_fully_expanded() and node.children and not node.terminal:\n", "                node = node.best_child()\n", "                act_id, data = node.action\n", "                try:\n", "                    ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))\n", "                    r = g.perform_action(ai, raw=True)\n", "                    if r.frame:\n", "                        f = np.array(r.frame[-1])\n", "                        if self._is_win(g, r):\n", "                            full_path = path_store.get(id(node.parent), []) + [(act_id, data)]\n", "                            logger.info(f\"MCTS L{self.level_idx}: WIN (selection) {len(full_path)} steps, {n_iter} iters, {time.time()-t0:.1f}s\")\n", "                            self.solution = full_path\n", "                            if self._beats_target(full_path):\n", "                                logger.info(f\"MCTS L{self.level_idx}: target met (selection), stopping early\")\n", "                            return full_path\n", "                    else:\n", "                        node.terminal = True\n", "                        break\n", "                except:\n", "                    node.terminal = True\n", "                    break\n", "\n", "            if node.terminal or not node.untried:\n", "                # Backprop zero reward for terminal/stuck nodes\n", "                n = node\n", "                while n is not None:\n", "                    n.visits += 1\n", "                    n = n.parent\n", "                continue\n", "\n", "            # EXPANSION: try one untried action\n", "            act = node.untried.pop(random.randrange(len(node.untried)))\n", "            act_id, data = act\n", "            g_exp = copy.deepcopy(g)\n", "            reward = 0.0\n", "            child = None\n", "            try:\n", "                ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))\n", "                r = g_exp.perform_action(ai, raw=True)\n", "                if r.frame:\n", "                    f = np.array(r.frame[-1])\n", "                    new_path = path_store.get(id(node), []) + [(act_id, data)]\n", "\n", "                    if self._is_win(g_exp, r):\n", "                        logger.info(f\"MCTS L{self.level_idx}: WIN (expand) {len(new_path)} steps, {n_iter} iters, {time.time()-t0:.1f}s\")\n", "                        self.solution = new_path\n", "                        if self._beats_target(new_path):\n", "                            logger.info(f\"MCTS L{self.level_idx}: target met (expand), stopping early\")\n", "                        return new_path\n", "\n", "                    sk = self._state_key(g_exp, f)\n", "                    self.visit_counts[sk] = self.visit_counts.get(sk, 0) + 1\n", "                    novel = self._novelty(sk)\n", "\n", "                    # v30: curiosity bonus from WM prediction error\n", "                    # High WM error = model hasn't seen this transition = novel = explore more\n", "                    curiosity_bonus = 0.0\n", "                    if self.world_model and self.world_model.trained_steps >= 5:\n", "                        try:\n", "                            parent_frame = np.array(node.game_state.get_pixels(0, 0, 64, 64))\n", "                            act_idx = min(act_id - 1, WorldModel.N_ACTIONS - 1)\n", "                            curiosity_bonus = self.world_model.curiosity_for(parent_frame, act_idx, f)\n", "                            # Also train WM on this real transition\n", "                            self.world_model.add(parent_frame, act_idx, f)\n", "                        except:\n", "                            pass\n", "                    novel = novel + 0.3 * curiosity_bonus  # blend novelty + curiosity\n", "\n", "                    # Record transition for CNN buffer seeding\n", "                    rf = getattr(self, '_root_frame', None)\n", "                    frame_reward = 0.5 if (rf is not None and np.sum(rf != f) > 0) else -0.05\n", "                    self.explored_transitions.append((act_id, data, f, frame_reward))\n", "                    if len(self.explored_transitions) > 2000:\n", "                        self.explored_transitions = self.explored_transitions[-1000:]\n", "\n", "                    if node.depth < _MAX_MCTS_DEPTH:\n", "                        child = MCTSNode(parent=node, action=(act_id, data),\n", "                                        untried=list(self.actions),\n", "                                        depth=node.depth + 1, novel_bonus=novel)\n", "                        child.game_state = copy.deepcopy(g_exp)\n", "                        node.children.append(child)\n", "                        path_store[id(child)] = new_path\n", "\n", "                        # ROLLOUT from child\n", "                        reward = self._rollout(copy.deepcopy(g_exp))\n", "            except:\n", "                reward = 0.0\n", "\n", "            # BACKPROPAGATION\n", "            n = child if child else node\n", "            while n is not None:\n", "                n.visits += 1\n", "                n.value += reward\n", "                n = n.parent\n", "\n", "        logger.info(f\"MCTS L{self.level_idx}: no solution in {n_iter} iters, {time.time()-t0:.1f}s\")\n", "        return None\n", "\n", "\n", "# ==================== GAME SOURCE FINDER ====================\n", "\n", "def find_game_source_and_class(game_id, arc_env=None):\n", "    gid = game_id.split('-')[0]\n", "    cls_name = gid.capitalize()\n", "    if len(gid) == 4 and gid[0].isalpha():\n", "        cls_name = gid[0].upper() + gid[1:]\n", "\n", "    src = None\n", "    import re\n", "\n", "    if arc_env and hasattr(arc_env, 'environment_info'):\n", "        ei = arc_env.environment_info\n", "        if hasattr(ei, 'local_dir') and ei.local_dir:\n", "            from pathlib import Path\n", "            ld = Path(ei.local_dir)\n", "            for candidate in [ld / f\"{gid}.py\", ld / f\"{cls_name.lower()}.py\"]:\n", "                if candidate.exists():\n", "                    src = str(candidate)\n", "                    content = candidate.read_text()[:2000]\n", "                    m = re.search(r'class\\s+(\\w+)\\s*\\(\\s*ARCBaseGame', content)\n", "                    if m: cls_name = m.group(1)\n", "                    break\n", "\n", "    if not src:\n", "        for pattern in [\n", "            f\"environment_files/{gid}/**/{gid}.py\",\n", "            f\"/kaggle/working/environment_files/{gid}/**/{gid}.py\",\n", "        ]:\n", "            matches = glob.glob(pattern, recursive=True)\n", "            if matches:\n", "                src = matches[0]\n", "                content = open(src).read()[:2000]\n", "                m = re.search(r'class\\s+(\\w+)\\s*\\(\\s*ARCBaseGame', content)\n", "                if m: cls_name = m.group(1)\n", "                break\n", "\n", "    if not src:\n", "        for pattern in [\n", "            f\"/tmp/*/{gid}/*/{gid}.py\",\n", "            f\"/kaggle/*/{gid}*/{gid}.py\",\n", "            f\"/kaggle/input/**/{gid}*/**/{gid}.py\",\n", "        ]:\n", "            matches = glob.glob(pattern, recursive=True)\n", "            if matches:\n", "                src = matches[0]\n", "                content = open(src).read()[:2000]\n", "                m = re.search(r'class\\s+(\\w+)\\s*\\(\\s*ARCBaseGame', content)\n", "                if m: cls_name = m.group(1)\n", "                break\n", "\n", "    return src, cls_name\n", "\n", "\n", "# ==================== CNN (v22 unchanged) ====================\n", "\n", "class CBAM(nn.Module):\n", "    def __init__(s, ch, r=16):\n", "        super().__init__()\n", "        s.fc1=nn.Linear(ch,max(ch//r,4)); s.fc2=nn.Linear(max(ch//r,4),ch)\n", "        s.sp=nn.Conv2d(2,1,7,padding=3)\n", "    def forward(s, x):\n", "        B,C,H,W=x.shape\n", "        w=torch.sigmoid(s.fc2(F.relu(s.fc1(x.mean(dim=[2,3]))))); x=x*w.view(B,C,1,1)\n", "        a=torch.sigmoid(s.sp(torch.cat([x.max(1,keepdim=True)[0],x.mean(1,keepdim=True)],1)))\n", "        return x*a\n", "\n", "class ActionEffectAttention(nn.Module):\n", "    def __init__(s, feat_dim=64, mem_dim=32, n_actions=5):\n", "        super().__init__()\n", "        s.mem_dim=mem_dim\n", "        s.diff_enc=nn.Sequential(nn.Conv2d(1,8,8,stride=8),nn.ReLU(),nn.Conv2d(8,16,4,stride=4),nn.ReLU(),nn.Flatten(),nn.Linear(16*2*2,mem_dim))\n", "        s.q_proj=nn.Linear(feat_dim,mem_dim)\n", "        s.v_proj=nn.Linear(mem_dim+1+n_actions,n_actions)\n", "        s.scale=mem_dim**0.5\n", "    def forward(s, cnn_feat, mem_diffs, mem_actions, mem_rewards):\n", "        B,M=mem_actions.shape\n", "        if M==0:return torch.zeros(B,5,device=cnn_feat.device)\n", "        keys=s.diff_enc(mem_diffs.reshape(B*M,1,64,64)).reshape(B,M,s.mem_dim)\n", "        q=s.q_proj(cnn_feat).unsqueeze(1)\n", "        attn=F.softmax(torch.bmm(q,keys.transpose(1,2))/s.scale,dim=-1)\n", "        act_oh=F.one_hot(mem_actions.clamp(0,4),5).float()\n", "        vals=torch.cat([keys,mem_rewards.unsqueeze(-1),act_oh],dim=-1)\n", "        ctx=torch.bmm(attn,vals).squeeze(1)\n", "        return s.v_proj(ctx)\n", "\n", "class ForgeNet(nn.Module):\n", "    def __init__(s, in_ch=26, g=64):\n", "        super().__init__()\n", "        s.g=g\n", "        s.c1=nn.Conv2d(in_ch,32,3,padding=1);s.c2=nn.Conv2d(32,64,3,padding=1)\n", "        s.c3=nn.Conv2d(64,128,3,padding=1);s.c4=nn.Conv2d(128,256,3,padding=1)\n", "        s.attn=CBAM(256);s.ar=nn.Conv2d(256,64,1);s.ap=nn.MaxPool2d(4,4)\n", "        s.af=nn.Linear(64*16*16,256);s.ah=nn.Linear(256,5);s.dr=nn.Dropout(0.15)\n", "        s.cc1=nn.Conv2d(256,128,3,padding=1);s.cc2=nn.Conv2d(128,64,3,padding=1)\n", "        s.cc3=nn.Conv2d(64,32,1);s.cc4=nn.Conv2d(32,1,1)\n", "        s.gp=nn.AdaptiveAvgPool2d(1);s.gf=nn.Linear(256,64)\n", "        s.aea=ActionEffectAttention(feat_dim=64,mem_dim=32,n_actions=5)\n", "    def forward(s, x, mem_diffs=None, mem_actions=None, mem_rewards=None):\n", "        x=F.relu(s.c1(x));x=F.relu(s.c2(x));x=F.relu(s.c3(x));f=F.relu(s.c4(x))\n", "        f=s.attn(f);af=F.relu(s.ar(f));af=s.ap(af).reshape(f.size(0),-1)\n", "        al=s.ah(s.dr(F.relu(s.af(af))))\n", "        cf=F.relu(s.cc1(f));cf=F.relu(s.cc2(cf));cf=F.relu(s.cc3(cf))\n", "        cl=s.cc4(cf).reshape(f.size(0),-1)\n", "        if mem_diffs is not None and mem_actions is not None:\n", "            gf=s.gf(s.gp(f).reshape(f.size(0),-1))\n", "            al=al+s.aea(gf,mem_diffs,mem_actions,mem_rewards)\n", "        return torch.cat([al,cl],1)\n", "\n", "\n", "def fast_objects(frame, bg):\n", "    objs=[]\n", "    for c in range(16):\n", "        if c==bg:continue\n", "        mask=(frame==c);npix=int(np.sum(mask))\n", "        if npix<4 or npix>3000:continue\n", "        ys,xs=np.where(mask)\n", "        objs.append((c,float(np.mean(xs)),float(np.mean(ys)),npix))\n", "    return objs\n", "\n", "\n", "# ==================== AGENT ====================\n", "\n", "class MyAgent(Agent):\n", "    MAX_ACTIONS = float('inf')\n", "    _MAX_FRAMES = 10\n", "\n", "    def __init__(s, *a, **kw):\n", "        super().__init__(*a, **kw)\n", "        seed = int(time.time()*1e6) + hash(s.game_id) % 1000000\n", "        random.seed(seed); np.random.seed(seed%(2**32-1)); torch.manual_seed(seed%(2**32-1))\n", "        s.start_time = time.time()\n", "        s.device = torch.device('cuda' if torch.cuda.is_available() else ('mps' if torch.backends.mps.is_available() else 'cpu'))\n", "        s.G=64; s.IN=26\n", "        s.net=None; s.opt=None\n", "        s.buf=deque(maxlen=50000); s.buf_h=set()\n", "        s.bsz=64; s.tfreq=10\n", "        s.pt=None; s.pai=None; s.pr=None; s.ph=None\n", "        s.cl=-1; s.fhist=deque(maxlen=6); s.la=0\n", "        s.al=[GameAction.ACTION1,GameAction.ACTION2,GameAction.ACTION3,GameAction.ACTION4,GameAction.ACTION5]\n", "        s._wd=False; s._bg=0; s._wm=None\n", "        s._aem_diffs=deque(maxlen=256); s._aem_actions=deque(maxlen=256); s._aem_rewards=deque(maxlen=256)\n", "        s._ckpt_hash=None; s._unproductive=0; s._undo_avail=False\n", "        s._eps=0.15; s._eps_min=0.03; s._eps_decay=0.9997\n", "        s._prev_objs=None; s._obj_moved=0\n", "        # BFS\n", "        s._bfs = None\n", "        s._bfs_solution = None\n", "        s._bfs_step = 0\n", "        s._bfs_tried = False\n", "        s._bfs_fallback = None  # v29: BFS path stored pending MCTS comparison\n", "        # MCTS\n", "        s._mcts_solution = None\n", "        s._mcts_step = 0\n", "        s._mcts_solutions: Dict[int, List] = {}  # level -> solution\n", "        s._mcts_seed_transitions: List = []       # transitions for CNN seeding\n", "        s._scanner = ActionScanner(timeout=4.0)\n", "        # v28: game budget tracking\n", "        s._games_completed = 0       # games finished so far (for per-game budget calc)\n", "        s._game_start_time = time.time()  # reset at each new game\n", "        # baseline awareness\n", "        s._game_baseline: Optional[List[int]] = None\n", "        # v30: World Model \u00e2\u20ac\u201d learns game physics online, shared across games\n", "        s._wm_trainer: Optional[WorldModelTrainer] = None\n", "        try:\n", "            s._wm_trainer = WorldModelTrainer(s.device)\n", "            s._wm_trainer.load(_WM_CKPT_PATH)\n", "        except Exception as e:\n", "            logger.warning(f\"WM: init failed: {e}\")\n", "        try:\n", "            if hasattr(s, 'arc_env') and s.arc_env and hasattr(s.arc_env, 'environment_info'):\n", "                ei = s.arc_env.environment_info\n", "                if hasattr(ei, 'baseline_actions'):\n", "                    s._game_baseline = list(ei.baseline_actions)\n", "        except:\n", "            pass\n", "\n", "    def append_frame(s, f):\n", "        s.frames.append(f)\n", "        if len(s.frames) > s._MAX_FRAMES: s.frames = s.frames[-s._MAX_FRAMES:]\n", "        if f.guid: s.guid = f.guid\n", "        if hasattr(s, \"recorder\") and not s.is_playback:\n", "            import json; s.recorder.record(json.loads(f.model_dump_json()))\n", "\n", "    def _lvl(s, f): return getattr(f, 'score', None) or f.levels_completed\n", "    def _raw(s, fd): return np.array(fd.frame, dtype=np.int64)[-1]\n", "\n", "    def _init_bfs(s):\n", "        src, cls = find_game_source_and_class(s.game_id, s.arc_env)\n", "        if src:\n", "            s._bfs = BFSSolver(src, cls, scan_timeout=5, bfs_timeout=180)\n", "            if s._bfs.load():\n", "                logger.info(f\"BFS: loaded {cls} from {src}\")\n", "            else:\n", "                s._bfs = None\n", "                logger.warning(f\"BFS: failed to load {cls}\")\n", "        else:\n", "            logger.warning(f\"BFS: source not found for {s.game_id}\")\n", "\n", "    def _try_bfs_solve(s, level_idx):\n", "        \"\"\"v29: BFS finds path and stores as fallback. Does NOT set _bfs_solution.\n", "        Caller decides whether to use BFS or wait for MCTS comparison.\"\"\"\n", "        if s._bfs is None:\n", "            return None\n", "\n", "        # BFS budget: up to 40% of per-game budget, max 150s L0 / 90s L1+.\n", "        # This ensures MCTS always gets at least 50% of the game budget.\n", "        game_budget = s._per_game_budget()\n", "        max_bfs = 150 if level_idx == 0 else 90\n", "        time_for_bfs = min(max_bfs, game_budget * 0.40)\n", "        time_for_bfs = max(30.0, time_for_bfs)\n", "        s._bfs.bfs_timeout = time_for_bfs\n", "        logger.info(f\"BFS L{level_idx}: budget={time_for_bfs:.0f}s (game_budget={game_budget:.0f}s)\")\n", "\n", "        prev_sol = s._bfs.solutions.get(level_idx - 1) if level_idx > 0 else None\n", "        sol = s._bfs.solve_level(level_idx, prev_solution=prev_sol)\n", "\n", "        if sol:\n", "            # v29: store as fallback, don't commit to _bfs_solution yet \u00e2\u20ac\u201d MCTS may beat it\n", "            s._bfs_fallback = sol\n", "            human_baseline = (s._game_baseline[level_idx]\n", "                              if s._game_baseline and level_idx < len(s._game_baseline)\n", "                              else \"unknown\")\n", "            logger.info(f\"BFS L{level_idx}: found path len={len(sol)} \"\n", "                        f\"(baseline={human_baseline}). Running MCTS to find shorter.\")\n", "\n", "            # v30: pre-train WM by replaying BFS solution through fresh game instance.\n", "            # This gives WM basic game physics understanding before MCTS starts.\n", "            if s._wm_trainer is not None and s._bfs.game_cls is not None:\n", "                try:\n", "                    g_replay = s._bfs.game_cls()\n", "                    g_replay.set_level(level_idx)\n", "                    g_replay.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "                    g_replay.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "                    prev_frame = np.array(g_replay.get_pixels(0, 0, 64, 64))\n", "                    for act_id, data in sol:\n", "                        try:\n", "                            if data:\n", "                                ai = ActionInput(id=GameAction.from_id(act_id), data=data)\n", "                            else:\n", "                                ai = ActionInput(id=GameAction.from_id(act_id))\n", "                            r = g_replay.perform_action(ai, raw=True)\n", "                            if r and r.frame:\n", "                                next_frame = np.array(r.frame[-1])\n", "                                wm_idx = min(act_id - 1, WorldModel.N_ACTIONS - 1)\n", "                                s._wm_trainer.add(prev_frame, wm_idx, next_frame)\n", "                                prev_frame = next_frame\n", "                        except Exception:\n", "                            pass\n", "                    logger.info(f\"WM: pre-trained from BFS path \"\n", "                                f\"({len(sol)} transitions, trained_steps={s._wm_trainer.trained_steps})\")\n", "                except Exception as e:\n", "                    logger.warning(f\"WM pre-train failed: {e}\")\n", "\n", "            # v31: shorten BFS solution to improve efficiency score\n", "            game_budget = s._per_game_budget()\n", "            shorten_budget = min(20.0, game_budget * 0.05)\n", "            sol = s._shorten_solution(s._bfs.game_cls, level_idx, sol, time_limit=shorten_budget)\n", "            s._bfs_fallback = sol  # update fallback with shortened version\n", "\n", "            return sol\n", "        return None\n", "\n", "    def _per_game_budget(s) -> float:\n", "        \"\"\"Estimate how much time we can spend on this game.\"\"\"\n", "        elapsed_total = time.time() - s.start_time\n", "        remaining_total = _TOTAL_BUDGET - elapsed_total\n", "        games_left = max(1, _TOTAL_GAMES - s._games_completed)\n", "        per_game = remaining_total / games_left\n", "        return max(120.0, per_game)  # at least 2 min per game\n", "\n", "    def _shorten_solution(s, game_cls, level_idx, solution, time_limit: float = 20.0) -> list:\n", "        \"\"\"v31: greedily remove redundant actions from any found solution.\n", "        Scoring is (baseline/actions)^2 \u00e2\u20ac\u201d every step removed is a significant gain.\n", "        E.g. shortening from 14 to 9 steps doubles the score (25% -> 60%).\"\"\"\n", "        if game_cls is None or len(solution) <= 1:\n", "            return solution\n", "        t0 = time.time()\n", "\n", "        def verify(sol):\n", "            try:\n", "                g = game_cls()\n", "                g.set_level(level_idx)\n", "                g.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "                g.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "                for act_id, data in sol:\n", "                    ai = (ActionInput(id=GameAction.from_id(act_id), data=data) if data\n", "                          else ActionInput(id=GameAction.from_id(act_id)))\n", "                    r = g.perform_action(ai, raw=True)\n", "                    if r and (r.levels_completed > level_idx or\n", "                              getattr(g, '_current_level_index', level_idx) > level_idx):\n", "                        return True\n", "                    if r and r.state == GameState.GAME_OVER:\n", "                        return False\n", "                return False\n", "            except Exception:\n", "                return False\n", "\n", "        shortened = list(solution)\n", "        improved = True\n", "        while improved and time.time() - t0 < time_limit:\n", "            improved = False\n", "            for i in range(len(shortened)):\n", "                if time.time() - t0 >= time_limit:\n", "                    break\n", "                candidate = shortened[:i] + shortened[i + 1:]\n", "                if verify(candidate):\n", "                    shortened = candidate\n", "                    improved = True\n", "                    break  # restart sweep from beginning\n", "        if len(shortened) < len(solution):\n", "            logger.info(f\"Solution shortened L{level_idx}: {len(solution)} -> {len(shortened)} steps\")\n", "        return shortened\n", "\n", "    def _prewarm_wm(s, game_cls, level_idx, time_budget: float = 60.0):\n", "        \"\"\"v31: random walk to collect WM transitions before MCTS starts.\n", "        When BFS fails, WM has zero training data \u00e2\u20ac\u201d this ensures curiosity\n", "        UCB is grounded in real game physics before MCTS begins.\"\"\"\n", "        if s._wm_trainer is None or game_cls is None:\n", "            return\n", "        if s._wm_trainer.trained_steps >= WorldModelTrainer.WARMUP:\n", "            return  # already warm (e.g. from BFS pre-training)\n", "        t0 = time.time()\n", "        try:\n", "            g = game_cls()\n", "            g.set_level(level_idx)\n", "            g.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "            g.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "            prev_frame = np.array(g.get_pixels(0, 0, 64, 64))\n", "            n_collected = 0\n", "            while time.time() - t0 < time_budget:\n", "                # Cycle through movement + click actions\n", "                act_id = random.choice([1, 2, 3, 4, 5])\n", "                try:\n", "                    ai = ActionInput(id=GameAction.from_id(act_id))\n", "                    r = g.perform_action(ai, raw=True)\n", "                    if r and r.state in (GameState.WIN, GameState.GAME_OVER):\n", "                        g = game_cls()\n", "                        g.set_level(level_idx)\n", "                        g.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "                        g.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "                        prev_frame = np.array(g.get_pixels(0, 0, 64, 64))\n", "                        continue\n", "                    if r and r.frame:\n", "                        next_frame = np.array(r.frame[-1])\n", "                        wm_idx = min(act_id - 1, WorldModel.N_ACTIONS - 1)\n", "                        s._wm_trainer.add(prev_frame, wm_idx, next_frame)\n", "                        prev_frame = next_frame\n", "                        n_collected += 1\n", "                except Exception:\n", "                    pass\n", "            logger.info(f\"WM prewarm L{level_idx}: {n_collected} transitions in \"\n", "                        f\"{time.time()-t0:.1f}s, trained_steps={s._wm_trainer.trained_steps}\")\n", "        except Exception as e:\n", "            logger.warning(f\"WM prewarm failed: {e}\")\n", "\n", "    def _try_mcts_solve(s, level_idx, game_cls, f0, bg, bfs_fallback=None):\n", "        \"\"\"v29: MCTS always runs \u00e2\u20ac\u201d either to find first path or shorter than BFS fallback.\n", "        Uses full remaining game budget. Sets _bfs_solution or _mcts_solution based on winner.\"\"\"\n", "        if game_cls is None:\n", "            return None\n", "\n", "        # Full budget utilization: use nearly all remaining game time for MCTS.\n", "        # Higher levels worth more RHAE so they get proportionally more time.\n", "        game_budget = s._per_game_budget()\n", "        elapsed_game = time.time() - s._game_start_time\n", "        remaining_game = max(60.0, game_budget - elapsed_game - 30)  # 30s safety for CNN\n", "\n", "        # Level weight: L0=1.0, L1=1.5, L2+=2.0 (matches RHAE reward structure)\n", "        level_weight = 1.0 + 0.5 * min(level_idx, 2)\n", "        # For L1+, we can use more since L0 already resolved (either BFS or failed)\n", "        mcts_budget = min(remaining_game, remaining_game * level_weight / 3.0 + 60)\n", "        mcts_budget = min(mcts_budget, game_budget * 0.85)  # cap at 85% of game budget\n", "        mcts_budget = max(60.0, mcts_budget)\n", "\n", "        logger.info(f\"v29 MCTS L{level_idx}: game_budget={game_budget:.0f}s, \"\n", "                    f\"elapsed_game={elapsed_game:.0f}s, mcts_budget={mcts_budget:.0f}s\"\n", "                    + (f\", bfs_fallback={len(bfs_fallback)}\" if bfs_fallback else \", no_bfs_fallback\"))\n", "\n", "        # Build initial game to scan actions\n", "        try:\n", "            g_scan = game_cls()\n", "            g_scan.set_level(level_idx)\n", "            g_scan.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "            g_scan.perform_action(ActionInput(id=GameAction.RESET), raw=True)\n", "        except Exception as e:\n", "            logger.warning(f\"MCTS L{level_idx}: failed to make game for scan: {e}\")\n", "            return None\n", "\n", "        # Scan unique-effect actions\n", "        actions = s._scanner.scan(g_scan, f0, bg)\n", "        if not actions:\n", "            logger.info(f\"MCTS L{level_idx}: no unique-effect actions found\")\n", "            return None\n", "\n", "        logger.info(f\"MCTS L{level_idx}: {len(actions)} unique-effect actions, budget={mcts_budget:.0f}s\")\n", "\n", "        # Get hidden fields from BFS if available\n", "        hidden_fields = None\n", "        if s._bfs and s._bfs.game_cls:\n", "            try:\n", "                hidden_fields = s._bfs._probe_hidden_fields(g_scan, actions)\n", "            except:\n", "                pass\n", "\n", "        prev_sol = s._mcts_solutions.get(level_idx - 1) if level_idx > 0 else None\n", "\n", "        # FIX 2: pass productive actions for informed rollout\n", "        productive = [a for a in actions if a[0] != 6]  # non-click first pass\n", "        if not productive:\n", "            productive = actions\n", "\n", "        # v31: prewarm WM with random walk when BFS found nothing\n", "        if bfs_fallback is None and s._wm_trainer is not None:\n", "            prewarm_budget = min(60.0, game_budget * 0.08)\n", "            s._prewarm_wm(game_cls, level_idx, time_budget=prewarm_budget)\n", "            # Recalculate remaining budget after prewarm\n", "            elapsed_game = time.time() - s._game_start_time\n", "            mcts_budget = max(60.0, game_budget - elapsed_game - 30)\n", "\n", "        # v29: target_length tells MCTS to stop as soon as it beats BFS path\n", "        bfs_target = len(bfs_fallback) - 1 if bfs_fallback else None\n", "\n", "        solver = MCTSSolver(\n", "            game_cls=game_cls,\n", "            level_idx=level_idx,\n", "            actions=actions,\n", "            hidden_fields=hidden_fields,\n", "            timeout=mcts_budget,\n", "            prev_solution=prev_sol,\n", "            productive_actions=productive,\n", "            target_length=bfs_target,\n", "            world_model=getattr(s, '_wm_trainer', None),  # v30: pass WM for curiosity+rollout\n", "        )\n", "        mcts_sol = solver.solve()\n", "\n", "        # FIX 3: seed CNN buffer with MCTS-explored transitions\n", "        if solver.explored_transitions and len(solver.explored_transitions) > 10:\n", "            s._mcts_seed_transitions = getattr(s, '_mcts_seed_transitions', [])\n", "            s._mcts_seed_transitions.extend(solver.explored_transitions[-500:])\n", "            logger.info(f\"MCTS L{level_idx}: seeding CNN buffer with {len(solver.explored_transitions)} transitions\")\n", "\n", "        # v31: shorten MCTS solution before comparing\n", "        if mcts_sol:\n", "            shorten_budget = min(20.0, (game_budget - (time.time() - s._game_start_time)) * 0.05)\n", "            mcts_sol = s._shorten_solution(game_cls, level_idx, mcts_sol,\n", "                                            time_limit=max(5.0, shorten_budget))\n", "\n", "        # v29: compare MCTS solution vs BFS fallback, use the shorter one\n", "        if mcts_sol and (bfs_fallback is None or len(mcts_sol) < len(bfs_fallback)):\n", "            logger.info(f\"L{level_idx}: MCTS={len(mcts_sol)}\"\n", "                        + (f\" vs BFS={len(bfs_fallback)} -> using MCTS\" if bfs_fallback else \" -> using MCTS (no BFS)\"))\n", "            s._mcts_solutions[level_idx] = mcts_sol\n", "            s._mcts_solution = mcts_sol\n", "            s._mcts_step = 0\n", "            return mcts_sol\n", "        elif bfs_fallback:\n", "            logger.info(f\"L{level_idx}: MCTS={len(mcts_sol) if mcts_sol else 'None'}\"\n", "                        f\" vs BFS={len(bfs_fallback)} -> using BFS\")\n", "            s._bfs_solution = bfs_fallback\n", "            s._bfs_step = 0\n", "            return bfs_fallback\n", "        return None\n", "\n", "    def _tensor(s, fd):\n", "        frame = s._raw(fd)\n", "        oh=torch.zeros(16,64,64,dtype=torch.float32)\n", "        oh.scatter_(0,torch.from_numpy(frame).unsqueeze(0),1)\n", "        cnt=np.bincount(frame.flatten(),minlength=16)\n", "        s._bg=int(cnt.argmax());mx=max(cnt.max(),1)\n", "        bg_m=(frame==s._bg).astype(np.float32)\n", "        rar=np.zeros((64,64),np.float32)\n", "        for c in range(16):\n", "            if cnt[c]>0:rar[frame==c]=1.0-cnt[c]/mx\n", "        pad=np.pad(frame,1,mode='edge')\n", "        edge=((frame!=pad[:-2,1:-1])|(frame!=pad[2:,1:-1])|(frame!=pad[1:-1,:-2])|(frame!=pad[1:-1,2:])).astype(np.float32)\n", "        rp=np.linspace(0,1,64,dtype=np.float32).reshape(64,1).repeat(64,1)\n", "        cp=np.linspace(0,1,64,dtype=np.float32).reshape(1,64).repeat(64,0)\n", "        aug=torch.from_numpy(np.stack([bg_m,rar,edge,rp,cp]))\n", "        d1=torch.zeros(3,64,64,dtype=torch.float32)\n", "        for i,prev in enumerate(reversed(list(s.fhist))):\n", "            if i>=3:break\n", "            d1[i]=torch.from_numpy((frame!=prev).astype(np.float32))\n", "        d2=torch.zeros(2,64,64,dtype=torch.float32)\n", "        h=list(s.fhist)\n", "        if len(h)>=2:d2[0]=torch.from_numpy((h[-1]!=h[-2]).astype(np.float32))\n", "        if len(h)>=4:d2[1]=torch.from_numpy((h[-2]!=h[-4]).astype(np.float32))\n", "        s.fhist.append(frame.copy())\n", "        return torch.cat([oh,aug,d1,d2],0).to(s.device)\n", "\n", "    def _detect_template(s, frame):\n", "        mask=torch.ones(4096,dtype=torch.float32)\n", "        col_act=np.sum(frame!=s._bg,axis=0)\n", "        for c in range(20,44):\n", "            if col_act[c]<=2 and np.sum(col_act[:c]>0)>=5 and np.sum(col_act[c+1:]>0)>=5:\n", "                for y in range(64):\n", "                    for x in range(c+1):mask[y*64+x]=0.05\n", "                return mask\n", "        row_act=np.sum(frame!=s._bg,axis=1)\n", "        for r in range(20,44):\n", "            if row_act[r]<=2 and np.sum(row_act[:r]>0)>=5 and np.sum(row_act[r+1:]>0)>=5:\n", "                for y in range(r+1):\n", "                    for x in range(64):mask[y*64+x]=0.05\n", "                return mask\n", "        return mask\n", "\n", "    def _reward(s, prev_raw, curr_raw, prev_h, curr_h):\n", "        mask=np.ones((64,64),dtype=bool);mask[:2]=False;mask[62:]=False\n", "        diff=(prev_raw!=curr_raw)&mask;changed=np.any(diff)\n", "        r=0.0\n", "        if curr_h!=prev_h:r+=1.5 if not hasattr(s,'_visited_hashes') else (1.5 if curr_h not in s._visited_hashes else 0.0)\n", "        elif curr_h==prev_h:r-=0.1\n", "        if changed:r+=0.5\n", "        curr_objs=fast_objects(curr_raw,s._bg)\n", "        if s._prev_objs and curr_objs:\n", "            moved=0\n", "            for co in curr_objs:\n", "                for po in s._prev_objs:\n", "                    if co[0]==po[0]:\n", "                        dist=abs(co[1]-po[1])+abs(co[2]-po[2])\n", "                        if 2<dist<20:moved+=1;break\n", "            if moved>0:r+=0.3*min(moved,3);s._obj_moved=moved\n", "        s._prev_objs=curr_objs\n", "        return r\n", "\n", "    def _sample(s, logits, avail=None, temp=1.0):\n", "        al=logits[:5].clone();cl=logits[5:5+4096].clone()\n", "        if avail is not None and len(avail)>0:\n", "            mask=torch.full_like(al,float('-inf'));a6=False\n", "            for a in avail:\n", "                aid=a.value if hasattr(a,'value') else int(a)\n", "                if 1<=aid<=5:mask[aid-1]=0.0\n", "                elif aid==6:a6=True\n", "            al=al+mask\n", "            if not a6:cl=cl+torch.full_like(cl,float('-inf'))\n", "        if s._wm is not None:cl=cl+torch.log(s._wm.to(s.device).clamp(min=0.01))\n", "        ap=torch.sigmoid(al/temp);cp=torch.sigmoid(cl/temp)/(s.G*s.G)\n", "        allp=torch.cat([ap,cp]);sm=allp.sum()\n", "        if sm<1e-8:allp=torch.ones_like(allp)/len(allp)\n", "        else:allp=allp/sm\n", "        idx=np.random.choice(len(allp),p=allp.cpu().numpy())\n", "        if idx<5:return idx,None\n", "        ci=idx-5;return 5,(ci//s.G,ci%s.G)\n", "\n", "    def _heuristic(s, frame, avail, step):\n", "        av=set(int(a.value) if hasattr(a,'value') else int(a) for a in avail)\n", "        for d in[1,2,3,4]:\n", "            if d in av and step<4:return d-1,None\n", "        if 6 in av:\n", "            cnt=np.bincount(frame.flatten(),minlength=16);targets=[]\n", "            for c in range(16):\n", "                if c==s._bg or cnt[c]==0 or cnt[c]>2000:continue\n", "                ys,xs=np.where(frame==c)\n", "                if len(ys)>=2:targets.append((int(np.median(xs)),int(np.median(ys)),len(ys)))\n", "            targets.sort(key=lambda t:t[2]);pidx=step-4\n", "            if 0<=pidx<len(targets):return 5,(targets[pidx][1],targets[pidx][0])\n", "        if 5 in av:return 4,None\n", "        choices=[a for a in av if 1<=a<=5]\n", "        if choices:return random.choice(choices)-1,None\n", "        return 0,None\n", "\n", "    def _frame_to_tensor(s, frame):\n", "        oh=torch.zeros(16,64,64,dtype=torch.float32)\n", "        oh.scatter_(0,torch.from_numpy(frame).unsqueeze(0),1)\n", "        cnt=np.bincount(frame.flatten(),minlength=16)\n", "        bg=int(cnt.argmax());mx=max(cnt.max(),1)\n", "        bg_m=(frame==bg).astype(np.float32)\n", "        rar=np.zeros((64,64),np.float32)\n", "        for c in range(16):\n", "            if cnt[c]>0:rar[frame==c]=1.0-cnt[c]/mx\n", "        pad=np.pad(frame,1,mode='edge')\n", "        edge=((frame!=pad[:-2,1:-1])|(frame!=pad[2:,1:-1])|(frame!=pad[1:-1,:-2])|(frame!=pad[1:-1,2:])).astype(np.float32)\n", "        rp=np.linspace(0,1,64,dtype=np.float32).reshape(64,1).repeat(64,1)\n", "        cp=np.linspace(0,1,64,dtype=np.float32).reshape(1,64).repeat(64,0)\n", "        aug=torch.from_numpy(np.stack([bg_m,rar,edge,rp,cp]))\n", "        zeros=torch.zeros(5,64,64,dtype=torch.float32)\n", "        return torch.cat([oh,aug,zeros],0)\n", "\n", "    def _train(s):\n", "        if len(s.buf)<s.bsz:return\n", "        indices=np.random.choice(len(s.buf),s.bsz,replace=False)\n", "        batch=[s.buf[i] for i in indices]\n", "        states=torch.stack([s._frame_to_tensor(e['s']).to(s.device) for e in batch])\n", "        acts=torch.tensor([e['a'] for e in batch],dtype=torch.long,device=s.device)\n", "        rews=torch.tensor([e['r'] for e in batch],dtype=torch.float32,device=s.device)\n", "        rews=torch.sigmoid(rews);s.opt.zero_grad()\n", "        logits=s.net(states)\n", "        acts_c=acts.clamp(0,logits.size(1)-1)\n", "        sel=logits.gather(1,acts_c.unsqueeze(1)).squeeze(1)\n", "        loss=F.binary_cross_entropy_with_logits(sel,rews)\n", "        p=torch.sigmoid(logits);loss=loss-0.0001*p[:,:5].mean()-0.00001*p[:,5:].mean()\n", "        loss.backward();s.opt.step()\n", "        # Persistent weights: save after training\n", "        if s.la % 200 == 0:\n", "            try:\n", "                torch.save(s.net.state_dict(), _CKPT_PATH)\n", "            except:\n", "                pass\n", "\n", "    def _get_aem_tensors(s):\n", "        if len(s._aem_diffs)<2:return None,None,None\n", "        M=len(s._aem_diffs)\n", "        diffs=torch.zeros(1,M,1,64,64,device=s.device)\n", "        acts=torch.zeros(1,M,dtype=torch.long,device=s.device)\n", "        rews=torch.zeros(1,M,device=s.device)\n", "        for i,(d,a,r) in enumerate(zip(s._aem_diffs,s._aem_actions,s._aem_rewards)):\n", "            diffs[0,i,0]=torch.from_numpy(d.astype(np.float32));acts[0,i]=min(a,4);rews[0,i]=r\n", "        return diffs,acts,rews\n", "\n", "    def _load_net(s):\n", "        \"\"\"Init ForgeNet. Load persistent weights if available (PMLL).\"\"\"\n", "        s.net = ForgeNet(s.IN, s.G).to(s.device)\n", "        # Try persistent checkpoint first (trained on prior levels)\n", "        for wp in [_CKPT_PATH,\n", "                   '/kaggle/input/forge-pretrained-weights/pretrained_weights.pt',\n", "                   'pretrained_weights.pt']:\n", "            if os.path.exists(wp):\n", "                try:\n", "                    state = torch.load(wp, map_location=s.device, weights_only=True)\n", "                    ms = s.net.state_dict()\n", "                    loaded = {k: v for k, v in state.items()\n", "                              if k in ms and v.shape == ms[k].shape}\n", "                    ms.update(loaded)\n", "                    s.net.load_state_dict(ms)\n", "                    logger.info(f\"CNN: loaded weights from {wp}\")\n", "                    break\n", "                except:\n", "                    pass\n", "        s.opt = optim.Adam(s.net.parameters(), lr=0.0003)\n", "\n", "    def is_done(s, frames, lf):\n", "        try:\n", "            done = lf.state is GameState.WIN or (time.time()-s.start_time) >= 8*3600-300\n", "            if done and lf.state is GameState.WIN:\n", "                s._games_completed += 1\n", "                s._game_start_time = time.time()\n", "                s._bfs_tried = False\n", "                s._bfs = None\n", "                s._mcts_solutions = {}\n", "                # v30: save WM so next game starts warm\n", "                if s._wm_trainer:\n", "                    s._wm_trainer.save(_WM_CKPT_PATH)\n", "                    logger.info(f\"WM: saved ({s._wm_trainer.trained_steps} steps, \"\n", "                                f\"{len(s._wm_trainer.buffer)} transitions)\")\n", "                logger.info(f\"v30: game complete ({s._games_completed}/{_TOTAL_GAMES}), \"\n", "                            f\"elapsed={time.time()-s.start_time:.0f}s total\")\n", "            return done\n", "        except: return True\n", "\n", "    def choose_action(s, frames, lf):\n", "        try:\n", "            lvl = s._lvl(lf)\n", "\n", "            # ===== LEVEL CHANGE =====\n", "            if lvl != s.cl:\n", "                # Init BFS (once per game) and reset game timer\n", "                if not s._bfs_tried:\n", "                    s._bfs_tried = True\n", "                    s._game_start_time = time.time()  # reset game clock for budget tracking\n", "                    s._init_bfs()\n", "\n", "                # Reset solutions for this level\n", "                s._mcts_solution = None\n", "                s._mcts_step = 0\n", "                s._bfs_solution = None\n", "                s._bfs_step = 0\n", "                s._bfs_fallback = None\n", "\n", "                # v29: Try BFS first \u00e2\u20ac\u201d stores as fallback, always tries MCTS after\n", "                bfs_fallback = None\n", "                if s._bfs:\n", "                    bfs_fallback = s._try_bfs_solve(lvl)\n", "\n", "                # v29: Always run MCTS: either to find first path (BFS failed) or shorter path (BFS found one)\n", "                try:\n", "                    raw_init = s._raw(lf)\n", "                    bg_init = int(np.bincount(raw_init.flatten(), minlength=16).argmax())\n", "                    game_cls = s._bfs.game_cls if s._bfs else None\n", "                    if game_cls:\n", "                        s._try_mcts_solve(lvl, game_cls, raw_init, bg_init, bfs_fallback=bfs_fallback)\n", "                except Exception as e:\n", "                    logger.warning(f\"MCTS init failed: {e}\")\n", "                    # If MCTS failed and BFS had a path, use BFS as fallback\n", "                    if bfs_fallback and not s._bfs_solution:\n", "                        s._bfs_solution = bfs_fallback\n", "                        s._bfs_step = 0\n", "                        logger.info(f\"L{lvl}: MCTS failed, falling back to BFS ({len(bfs_fallback)} steps)\")\n", "\n", "                # Init CNN with persistent weights\n", "                s.buf.clear(); s.buf_h.clear()\n", "                s._load_net()\n", "\n", "                # FIX 3: seed CNN buffer from MCTS-explored transitions\n", "                seed_trans = getattr(s, '_mcts_seed_transitions', [])\n", "                if seed_trans:\n", "                    import hashlib as _hlib\n", "                    for act_id, data, frame_arr, reward in seed_trans[-200:]:\n", "                        act_idx = (act_id - 1) if act_id <= 5 else 5\n", "                        eh = _hlib.md5(frame_arr.tobytes()[:500] + str(act_idx).encode()).hexdigest()[:16]\n", "                        if eh not in s.buf_h:\n", "                            s.buf.append({'s': frame_arr.copy(), 'a': act_idx, 'r': reward})\n", "                            s.buf_h.add(eh)\n", "                    logger.info(f\"CNN: pre-seeded buffer with {len(s.buf)} MCTS transitions\")\n", "                    s._mcts_seed_transitions = []\n", "                s.pt=None;s.pai=None;s.pr=None;s.ph=None\n", "                s.cl=lvl;s.fhist.clear();s.la=0\n", "                s._wd=False;s._wm=None;s._eps=0.15\n", "                s._aem_diffs.clear();s._aem_actions.clear();s._aem_rewards.clear()\n", "                s._prev_objs=None;s._obj_moved=0;s._ckpt_hash=None;s._unproductive=0\n", "\n", "            # ===== RESET =====\n", "            if lf.state in [GameState.NOT_PLAYED, GameState.GAME_OVER]:\n", "                s.pt=None;s.pai=None;s.pr=None;s.ph=None\n", "                a=GameAction.RESET;a.reasoning=\"reset\";return a\n", "\n", "            # ===== BFS SOLUTION EXECUTION =====\n", "            if s._bfs_solution and s._bfs_step < len(s._bfs_solution):\n", "                act_id, data = s._bfs_solution[s._bfs_step]\n", "                s._bfs_step += 1\n", "                sel = GameAction.from_id(act_id)\n", "                if data: sel.set_data(data)\n", "                sel.reasoning = f\"bfs:{s._bfs_step}/{len(s._bfs_solution)}\"\n", "                raw = s._raw(lf); s.fhist.append(raw.copy()); s.pr = raw.copy(); s.la += 1\n", "                return sel\n", "\n", "            # ===== MCTS SOLUTION EXECUTION =====\n", "            if s._mcts_solution and s._mcts_step < len(s._mcts_solution):\n", "                act_id, data = s._mcts_solution[s._mcts_step]\n", "                s._mcts_step += 1\n", "                sel = GameAction.from_id(act_id)\n", "                if data: sel.set_data(data)\n", "                sel.reasoning = f\"mcts:{s._mcts_step}/{len(s._mcts_solution)}\"\n", "                raw = s._raw(lf); s.fhist.append(raw.copy()); s.pr = raw.copy(); s.la += 1\n", "                return sel\n", "\n", "            # ===== CNN FALLBACK (v22 core) =====\n", "            tensor = s._tensor(lf)\n", "            raw = s._raw(lf)\n", "            ch = hashlib.md5(raw.tobytes()).hexdigest()[:16]\n", "            avail = getattr(lf, 'available_actions', None) or []\n", "            s._undo_avail = any((a.value if hasattr(a,'value') else int(a))==7 for a in avail)\n", "\n", "            if s.pt is not None and s.pai is not None:\n", "                mask=np.ones((64,64),dtype=bool);mask[:2]=False;mask[62:]=False\n", "                diff_map=(s.pr!=raw)&mask;changed=np.any(diff_map)\n", "                eh=hashlib.md5(s.pr.tobytes()[:1000]+str(s.pai).encode()).hexdigest()[:16]\n", "                if eh not in s.buf_h:\n", "                    r=s._reward(s.pr,raw,'',ch)\n", "                    s.buf.append({'s':s.pr.copy(),'a':s.pai,'r':r})\n", "                    s.buf_h.add(eh)\n", "                    if changed:\n", "                        s._aem_diffs.append(diff_map)\n", "                        s._aem_actions.append(min(s.pai,4))\n", "                        s._aem_rewards.append(r)\n", "                if changed:s._ckpt_hash=ch;s._unproductive=0\n", "                else:s._unproductive+=1\n", "\n", "            avail_idx=[]\n", "            for a in avail:\n", "                aid=a.value if hasattr(a,'value') else int(a)\n", "                if 1<=aid<=5:avail_idx.append(aid-1)\n", "                elif aid==6:avail_idx.extend([5+i for i in range(0,4096,128)])\n", "\n", "            if s._wm is None:s._wm=s._detect_template(raw)\n", "\n", "            if s._undo_avail and s._unproductive>=30 and s._ckpt_hash:\n", "                s._unproductive=0;a=GameAction.ACTION7;a.reasoning=\"undo\"\n", "                s.pt=tensor;s.pai=6;s.pr=raw.copy();s.ph=ch;s.la+=1;return a\n", "\n", "            if not s._wd:\n", "                if s.la<10:aidx,coords=s._heuristic(raw,avail,s.la)\n", "                else:\n", "                    s._wd=True\n", "                    for _ in range(min(5,len(s.buf)//s.bsz)):s._train()\n", "\n", "            if s._wd:\n", "                if random.random()<s._eps:\n", "                    aidx,coords=s._sample(torch.zeros(4101,device=s.device),avail,temp=2.0)\n", "                else:\n", "                    with torch.no_grad():\n", "                        mem=s._get_aem_tensors()\n", "                        if mem[0] is not None:logits=s.net(tensor.unsqueeze(0),*mem).squeeze(0)\n", "                        else:logits=s.net(tensor.unsqueeze(0)).squeeze(0)\n", "                    aidx,coords=s._sample(logits,avail,temp=0.5)\n", "                s._eps=max(s._eps_min,s._eps*s._eps_decay)\n", "            elif s.la>=10:s._wd=True;aidx,coords=0,None\n", "\n", "            if aidx<5:\n", "                sel=s.al[aidx];sel.reasoning=f\"cnn:a{aidx+1}\"\n", "            else:\n", "                sel=GameAction.ACTION6;y,x=coords\n", "                sel.set_data({\"x\":int(x),\"y\":int(y),\"game_id\":s.game_id})\n", "                sel.reasoning=f\"cnn:c({x},{y})\"\n", "\n", "            s.pt=tensor;s.pai=aidx if aidx<5 else(5+coords[0]*s.G+coords[1])\n", "            s.pr=raw.copy();s.ph=ch;s.la+=1\n", "            if s.action_counter%s.tfreq==0 and s._wd:s._train()\n", "            # v30: feed CNN action into WM for online training\n", "            if s._wm_trainer and s.pr is not None:\n", "                try:\n", "                    wm_act_idx = min(aidx, WorldModel.N_ACTIONS - 1)\n", "                    s._wm_trainer.add(s.pr, wm_act_idx, raw)\n", "                except: pass\n", "            return sel\n", "\n", "        except Exception as e:\n", "            traceback.print_exc()\n", "            a=random.choice(s.al);a.reasoning=f\"err:{str(e)[:40]}\";return a\n"], "metadata": {}, "outputs": [], "execution_count": null}, {"cell_type": "code", "source": "import os\nif os.getenv('KAGGLE_IS_COMPETITION_RERUN'):\n    !curl --fail --retry 999 --retry-all-errors --retry-delay 5 --retry-max-time 600 http://gateway:8001/api/games\n    !cp -r /kaggle/input/competitions/arc-prize-2026-arc-agi-3/ARC-AGI-3-Agents /kaggle/working/ARC-AGI-3-Agents\n    !cp /kaggle/working/my_agent.py /kaggle/working/ARC-AGI-3-Agents/agents/templates/my_agent.py\n    with open('/kaggle/working/ARC-AGI-3-Agents/agents/__init__.py','w') as f:\n        f.write(\"\"\"from typing import Type\nfrom dotenv import load_dotenv\nfrom .agent import Agent, Playback\nfrom .swarm import Swarm\nfrom .templates.random_agent import Random\nfrom .templates.my_agent import MyAgent\nload_dotenv()\nAVAILABLE_AGENTS: dict[str, Type[Agent]] = {\"random\": Random, \"myagent\": MyAgent}\n\"\"\")\n    with open('/kaggle/working/ARC-AGI-3-Agents/.env','w') as f:\n        f.write(\"\"\"SCHEME=http\nHOST=gateway\nPORT=8001\nARC_API_KEY=test-key-123\nARC_BASE_URL=http://gateway:8001/\nOPERATION_MODE=online\nRECORDINGS_DIR=/kaggle/working/server_recording\n\"\"\")\n    !cd /kaggle/working/ARC-AGI-3-Agents && MPLBACKEND=agg python main.py --agent myagent", "metadata": {}, "outputs": [], "execution_count": null}, {"cell_type": "code", "source": "import os\nif not os.getenv('KAGGLE_IS_COMPETITION_RERUN'):\n    import pandas as pd\n    submission = pd.DataFrame(data=[['1_0','1',True,1]],columns=['row_id','game_id','end_of_game','score'])\n    submission.to_parquet('/kaggle/working/submission.parquet',index=False)", "metadata": {}, "outputs": [], "execution_count": null}]}
+\ No newline at end of file
+diff --git a/arc-prize-2026/notebooks/forge_agent/forge_v35_tips.py b/arc-prize-2026/notebooks/forge_agent/forge_v35_tips.py
+index 82525e5..2948d28 100644
+--- a/arc-prize-2026/notebooks/forge_agent/forge_v35_tips.py
++++ b/arc-prize-2026/notebooks/forge_agent/forge_v35_tips.py
+@@ -101,10 +101,14 @@ def _compute_counter_mask(frames, change_threshold=0.8):
+ def _masked_hash(frame, counter_mask=None):
+     """Hash a frame, optionally masking counter pixels to zero.
+ 
+-    Returns a stable 16-char hex hash. Falls back to plain hash if mask is None.
++    Returns a stable 16-char hex hash. Falls back to plain hash if mask is None
++    or if its shape doesn't match the frame (e.g. level uses different resolution).
+     """
+     if counter_mask is None:
+         return hashlib.md5(frame.tobytes()).hexdigest()[:16]
++    # Shape guard: mask computed on one level may not match other levels' resolution
++    if counter_mask.shape != frame.shape[:2]:
++        return hashlib.md5(frame.tobytes()).hexdigest()[:16]
+     f = frame.copy()
+     if f.ndim == 3 and counter_mask.ndim == 2:
+         f[counter_mask] = 0
+@@ -347,10 +351,50 @@ class BFSSolver:
+                         except: pass
+         return actions
+ 
++    def back_label_solution(self, level_idx, solution, warmup_prefix=None):
++        """v36: Replay a winning solution and emit (action, data, frame_before, reward) tuples
++        with reward = 1/(1+steps_remaining). States near the win get reward â†’ 1.0, states
++        far from the win get lower reward. This lets the CNN buffer learn directional policy
++        (Blind Squirrel-style Dijkstra back-labeling, research findings).
++        """
++        if not self.game_cls or not solution:
++            return []
++        try:
++            g = self.game_cls()
++            g.set_level(level_idx)
++            g.perform_action(ActionInput(id=GameAction.RESET), raw=True)
++            # Replay warmup prefix (BFS may have needed setup actions)
++            if warmup_prefix:
++                for act_id, data in warmup_prefix:
++                    try:
++                        ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))
++                        g.perform_action(ai, raw=True)
++                    except:
++                        pass
++            transitions = []
++            n = len(solution)
++            for i, (act_id, data) in enumerate(solution):
++                try:
++                    frame_before = np.array(g.get_pixels(0, 0, 64, 64))
++                    ai = ActionInput(id=GameAction.from_id(act_id), data=data) if data else ActionInput(id=GameAction.from_id(act_id))
++                    g.perform_action(ai, raw=True)
++                    dist_remaining = n - i - 1  # 0 at winning action, n-1 at first
++                    reward = 1.0 / (1.0 + dist_remaining)  # 1.0 at win, 0.5 one before, 0.33, ...
++                    transitions.append((act_id, data, frame_before, reward))
++                except Exception:
++                    break
++            return transitions
++        except Exception as e:
++            logger.warning(f"back_label L{level_idx}: {e}")
++            return []
++
+     def solve_level(self, level_idx, max_states=200000, prev_solution=None):
+         if not self.game_cls:
+             return None
+         self._warmup_prefix = []
++        # v36: reset counter_mask â€” levels can differ in resolution AND counter position.
++        # Mask will be recomputed during _probe_hidden_fields on this level's actions.
++        self._counter_mask = None
+ 
+         game = self.game_cls()
+         game.set_level(level_idx)
+@@ -1756,19 +1800,14 @@ class MyAgent(Agent):
+         mcts_budget = min(mcts_budget, game_budget * 0.85)  # cap at 85% of game budget
+         mcts_budget = max(60.0, mcts_budget)
+ 
+-        # v8 tiered cap: different budgets based on BFS solution length.
+-        # Rationale: RHAE = (human/agent)^2, so the shorter the BFS solution,
+-        # the less MCTS can improve (diminishing returns). Long solutions still
+-        # get substantial budget but not unbounded â€” MCTS converges in ~2-3 min,
+-        # the rest is waste that blocks later levels from being played.
+-        if bfs_fallback is not None:
+-            n = len(bfs_fallback)
+-            if n <= 20:
+-                mcts_budget = min(mcts_budget, 90.0)  # v7 validated
+-                logger.info(f"Smart cap: BFS short ({n} steps â‰¤ 20), capping MCTS at 90s")
+-            else:
+-                mcts_budget = min(mcts_budget, 240.0)  # v8 new: long cap
+-                logger.info(f"Smart cap: BFS long ({n} steps > 20), capping MCTS at 240s")
++        # v7 validated smart cap: ONLY cap short BFS solutions. Long BFS (>20)
++        # must get full MCTS budget â€” v6 (cap=60s) and v8 (cap=240s) both regressed
++        # to 0.18, v7 (uncapped long) hit 0.27. RHAE = (human/agent)^2 means MCTS
++        # finding dramatic shortening (100â†’5 steps) on long paths dominates any
++        # savings from freeing budget for later levels.
++        if bfs_fallback is not None and len(bfs_fallback) <= 20:
++            mcts_budget = min(mcts_budget, 90.0)
++            logger.info(f"Smart cap: BFS short ({len(bfs_fallback)} steps â‰¤ 20), capping MCTS at 90s")
+ 
+         logger.info(f"v29 MCTS L{level_idx}: game_budget={game_budget:.0f}s, "
+                     f"elapsed_game={elapsed_game:.0f}s, mcts_budget={mcts_budget:.0f}s"
+@@ -1845,19 +1884,35 @@ class MyAgent(Agent):
+                                             time_limit=max(5.0, shorten_budget))
+ 
+         # v29: compare MCTS solution vs BFS fallback, use the shorter one
++        winning_sol = None
+         if mcts_sol and (bfs_fallback is None or len(mcts_sol) < len(bfs_fallback)):
+             logger.info(f"L{level_idx}: MCTS={len(mcts_sol)}"
+                         + (f" vs BFS={len(bfs_fallback)} -> using MCTS" if bfs_fallback else " -> using MCTS (no BFS)"))
+             s._mcts_solutions[level_idx] = mcts_sol
+             s._mcts_solution = mcts_sol
+             s._mcts_step = 0
+-            return mcts_sol
++            winning_sol = mcts_sol
+         elif bfs_fallback:
+             logger.info(f"L{level_idx}: MCTS={len(mcts_sol) if mcts_sol else 'None'}"
+                         f" vs BFS={len(bfs_fallback)} -> using BFS")
+             s._bfs_solution = bfs_fallback
+             s._bfs_step = 0
+-            return bfs_fallback
++            winning_sol = bfs_fallback
++
++        # v36: back-label winning path into CNN buffer (Blind Squirrel-style)
++        if winning_sol and s._bfs is not None:
++            try:
++                bl_trans = s._bfs.back_label_solution(level_idx, winning_sol,
++                                                      warmup_prefix=s._bfs._warmup_prefix)
++                if bl_trans:
++                    s._mcts_seed_transitions = getattr(s, '_mcts_seed_transitions', [])
++                    s._mcts_seed_transitions.extend(bl_trans)
++                    logger.info(f"L{level_idx}: back-labeled {len(bl_trans)} winning transitions")
++            except Exception as e:
++                logger.warning(f"L{level_idx}: back-label failed: {e}")
++
++        if winning_sol is not None:
++            return winning_sol
+         return None
+ 
+     def _tensor(s, fd):
+diff --git a/customer-churn/docs/competition_log.md b/customer-churn/docs/competition_log.md
+index bc1f3da..24b1072 100644
+--- a/customer-churn/docs/competition_log.md
++++ b/customer-churn/docs/competition_log.md
+@@ -318,3 +318,19 @@ None beat iter6's 0.918790. The difference is likely iter6's inner-fold TE stats
+ Remaining configs: deeper, wider_col, narrower_col, more_reg, less_sub
+ 
+ ---
++
++### Iteration 18 - CV King (Hyperparameter Sweep)
++**Date**: 2026-03-31T05:10:17.162617
++
++- narrower_col: 0.918554
++- deeper: 0.918549
++- lower_lr: 0.918543
++- blamerx_exact: 0.918525
++- higher_lr: 0.918524
++- more_reg: 0.918510
++- wider_col: 0.918500
++- less_sub: 0.918487
++- **Top-3 avg**: 0.918569
++- **Best**: narrower_col = 0.918554
++
++---

@@ -1,0 +1,479 @@
+{
+  "agent": "notebooks/forge_agent/v39_agent.py",
+  "budget": 200,
+  "results_a": {
+    "ar25-e3c63847": {
+      "game_id": "ar25-e3c63847",
+      "gid": "ar25",
+      "guid": "e3c63847",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          34
+        ],
+        [
+          1,
+          166
+        ]
+      ],
+      "wall_s": 120.7
+    },
+    "bp35-0a0ad940": {
+      "game_id": "bp35-0a0ad940",
+      "gid": "bp35",
+      "guid": "0a0ad940",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 15.7
+    },
+    "cd82-fb555c5d": {
+      "game_id": "cd82-fb555c5d",
+      "gid": "cd82",
+      "guid": "fb555c5d",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 33.9
+    },
+    "cn04-65d47d14": {
+      "game_id": "cn04-65d47d14",
+      "gid": "cn04",
+      "guid": "65d47d14",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          43
+        ],
+        [
+          1,
+          157
+        ]
+      ],
+      "wall_s": 106.9
+    },
+    "dc22-4c9bff3e": {
+      "game_id": "dc22-4c9bff3e",
+      "gid": "dc22",
+      "guid": "4c9bff3e",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 1,
+      "terminal_state": "BUDGET",
+      "level_actions": [
+        [
+          0,
+          19
+        ],
+        [
+          1,
+          181
+        ]
+      ],
+      "wall_s": 36.4
+    },
+    "ft09-0d8bbf25": {
+      "game_id": "ft09-0d8bbf25",
+      "gid": "ft09",
+      "guid": "0d8bbf25",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 1,
+      "terminal_state": "BUDGET",
+      "level_actions": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          197
+        ]
+      ],
+      "wall_s": 42.7
+    },
+    "g50t-5849a774": {
+      "game_id": "g50t-5849a774",
+      "gid": "g50t",
+      "guid": "5849a774",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 62.9
+    },
+    "ka59-9f096b4a": {
+      "game_id": "ka59-9f096b4a",
+      "gid": "ka59",
+      "guid": "9f096b4a",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 31.6
+    },
+    "lf52-271a04aa": {
+      "game_id": "lf52-271a04aa",
+      "gid": "lf52",
+      "guid": "271a04aa",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 16.0
+    },
+    "lp85-305b61c3": {
+      "game_id": "lp85-305b61c3",
+      "gid": "lp85",
+      "guid": "305b61c3",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 1,
+      "terminal_state": "BUDGET",
+      "level_actions": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          196
+        ]
+      ],
+      "wall_s": 36.8
+    },
+    "ls20-9607627b": {
+      "game_id": "ls20-9607627b",
+      "gid": "ls20",
+      "guid": "9607627b",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          36
+        ],
+        [
+          1,
+          164
+        ]
+      ],
+      "wall_s": 102.5
+    },
+    "m0r0-dadda488": {
+      "game_id": "m0r0-dadda488",
+      "gid": "m0r0",
+      "guid": "dadda488",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          48
+        ],
+        [
+          1,
+          152
+        ]
+      ],
+      "wall_s": 89.7
+    },
+    "r11l-aa269680": {
+      "game_id": "r11l-aa269680",
+      "gid": "r11l",
+      "guid": "aa269680",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 27.5
+    },
+    "re86-4e57566e": {
+      "game_id": "re86-4e57566e",
+      "gid": "re86",
+      "guid": "4e57566e",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 32.0
+    },
+    "s5i5-a48e4b1d": {
+      "game_id": "s5i5-a48e4b1d",
+      "gid": "s5i5",
+      "guid": "a48e4b1d",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          24
+        ],
+        [
+          1,
+          176
+        ]
+      ],
+      "wall_s": 80.7
+    },
+    "sb26-7fbdac44": {
+      "game_id": "sb26-7fbdac44",
+      "gid": "sb26",
+      "guid": "7fbdac44",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 33.1
+    },
+    "sc25-f9b21a2f": {
+      "game_id": "sc25-f9b21a2f",
+      "gid": "sc25",
+      "guid": "f9b21a2f",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 39.8
+    },
+    "sk48-41055498": {
+      "game_id": "sk48-41055498",
+      "gid": "sk48",
+      "guid": "41055498",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 46.5
+    },
+    "sp80-0ee2d095": {
+      "game_id": "sp80-0ee2d095",
+      "gid": "sp80",
+      "guid": "0ee2d095",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          18
+        ],
+        [
+          1,
+          182
+        ]
+      ],
+      "wall_s": 688.7
+    },
+    "su15-4c352900": {
+      "game_id": "su15-4c352900",
+      "gid": "su15",
+      "guid": "4c352900",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 59.1
+    },
+    "tn36-ab4f63cc": {
+      "game_id": "tn36-ab4f63cc",
+      "gid": "tn36",
+      "guid": "ab4f63cc",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 41.5
+    },
+    "tr87-cd924810": {
+      "game_id": "tr87-cd924810",
+      "gid": "tr87",
+      "guid": "cd924810",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 32.3
+    },
+    "tu93-2b534c15": {
+      "game_id": "tu93-2b534c15",
+      "gid": "tu93",
+      "guid": "2b534c15",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 1,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          90
+        ],
+        [
+          1,
+          110
+        ]
+      ],
+      "wall_s": 21.7
+    },
+    "vc33-9851e02b": {
+      "game_id": "vc33-9851e02b",
+      "gid": "vc33",
+      "guid": "9851e02b",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 2,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          42
+        ],
+        [
+          2,
+          152
+        ]
+      ],
+      "wall_s": 15.9
+    },
+    "wa30-ee6fef47": {
+      "game_id": "wa30-ee6fef47",
+      "gid": "wa30",
+      "guid": "ee6fef47",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 32.1
+    }
+  }
+}

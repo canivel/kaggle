@@ -1,0 +1,607 @@
+{
+  "budget": 150,
+  "thresholds": [
+    0.5,
+    0.75,
+    0.9
+  ],
+  "per_run": {
+    "war_eval_v1": {
+      "n_games": 25,
+      "n_fired_games": 10,
+      "fired_games": [
+        "ar25",
+        "cd82",
+        "cn04",
+        "ka59",
+        "m0r0",
+        "re86",
+        "sb26",
+        "sk48",
+        "tr87",
+        "wa30"
+      ],
+      "canary_pass": true,
+      "deaths": 2,
+      "violations": 0,
+      "games": {
+        "ar25": {
+          "firings": 3,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "bp35": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "cd82": {
+          "firings": 1,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "cn04": {
+          "firings": 4,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "dc22": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "ft09": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "g50t": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "ka59": {
+          "firings": 1,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "lf52": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "lp85": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "ls20": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "m0r0": {
+          "firings": 5,
+          "fired": true,
+          "deaths": 1,
+          "violations": 0,
+          "target": false
+        },
+        "r11l": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "re86": {
+          "firings": 2,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "s5i5": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "sb26": {
+          "firings": 1,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "sc25": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "sk48": {
+          "firings": 3,
+          "fired": true,
+          "deaths": 1,
+          "violations": 0,
+          "target": false
+        },
+        "sp80": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "su15": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "tn36": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "tr87": {
+          "firings": 2,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "tu93": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "vc33": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "wa30": {
+          "firings": 1,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        }
+      }
+    },
+    "war_eval_v2": {
+      "n_games": 25,
+      "n_fired_games": 11,
+      "fired_games": [
+        "cd82",
+        "cn04",
+        "ka59",
+        "lf52",
+        "ls20",
+        "m0r0",
+        "re86",
+        "sb26",
+        "sk48",
+        "tr87",
+        "wa30"
+      ],
+      "canary_pass": true,
+      "deaths": 1,
+      "violations": 0,
+      "games": {
+        "ar25": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "bp35": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "cd82": {
+          "firings": 1,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "cn04": {
+          "firings": 2,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "dc22": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "ft09": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "g50t": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "ka59": {
+          "firings": 1,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "lf52": {
+          "firings": 1,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "lp85": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "ls20": {
+          "firings": 1,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "m0r0": {
+          "firings": 3,
+          "fired": true,
+          "deaths": 1,
+          "violations": 0,
+          "target": false
+        },
+        "r11l": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "re86": {
+          "firings": 1,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "s5i5": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "sb26": {
+          "firings": 4,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "sc25": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "sk48": {
+          "firings": 1,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "sp80": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "su15": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "tn36": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "tr87": {
+          "firings": 4,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "tu93": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "vc33": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "wa30": {
+          "firings": 3,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        }
+      }
+    },
+    "war_eval_v3": {
+      "n_games": 25,
+      "n_fired_games": 12,
+      "fired_games": [
+        "cd82",
+        "cn04",
+        "dc22",
+        "g50t",
+        "ka59",
+        "lf52",
+        "m0r0",
+        "re86",
+        "sb26",
+        "sk48",
+        "tr87",
+        "wa30"
+      ],
+      "canary_pass": true,
+      "deaths": 3,
+      "violations": 0,
+      "games": {
+        "ar25": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "bp35": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "cd82": {
+          "firings": 2,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "cn04": {
+          "firings": 2,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "dc22": {
+          "firings": 1,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "ft09": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "g50t": {
+          "firings": 1,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "ka59": {
+          "firings": 2,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "lf52": {
+          "firings": 1,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "lp85": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "ls20": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "m0r0": {
+          "firings": 6,
+          "fired": true,
+          "deaths": 2,
+          "violations": 0,
+          "target": false
+        },
+        "r11l": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "re86": {
+          "firings": 2,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "s5i5": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "sb26": {
+          "firings": 2,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "sc25": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "sk48": {
+          "firings": 3,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "sp80": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "su15": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "tn36": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "tr87": {
+          "firings": 2,
+          "fired": true,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "tu93": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": true
+        },
+        "vc33": {
+          "firings": 0,
+          "fired": false,
+          "deaths": 0,
+          "violations": 0,
+          "target": false
+        },
+        "wa30": {
+          "firings": 6,
+          "fired": true,
+          "deaths": 1,
+          "violations": 0,
+          "target": false
+        }
+      }
+    }
+  },
+  "pool_firing_units": 33,
+  "pool_total_units": 75,
+  "total_budget_deaths": 6,
+  "total_predicate_violations": 0,
+  "canary_pass_all_runs": true,
+  "predicate_pass": true
+}

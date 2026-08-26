@@ -1,0 +1,3399 @@
+{
+  "methodology": {
+    "component": "R14 (d) PREDICT->RESULT no-effect FACT rule",
+    "rule": "IF a (key) was previously observed board_changed=False, predict board_changed=False on its next occurrence.",
+    "ground_truth": "recorded board_changed flag on each action event",
+    "key_modes": {
+      "state_action": "(digest(board acted on), action_display)",
+      "action_only": "action_display only"
+    },
+    "trigger_definition": "an action whose key was previously seen no-effect; = an A10 (d) firing opportunity",
+    "baseline": "majority-class over all actions; here no-effect is rare so majority='always effect', acc = 1 - noeff_rate",
+    "source_runs": [
+      "runs/kernel_pulls/war_eval_v1",
+      "runs/kernel_pulls/war_eval_v2",
+      "runs/kernel_pulls/war_eval_v3",
+      "runs/kernel_pulls/war_v2_eval_s1",
+      "runs/kernel_pulls/sched_v1",
+      "runs/kernel_pulls/phase1_v5",
+      "runs/phase1_ab/seed1"
+    ]
+  },
+  "coverage": {
+    "runs/kernel_pulls/war_eval_v1": {
+      "n_games": 25,
+      "total_actions": 3638,
+      "frame_digest_disagreements": 0
+    },
+    "runs/kernel_pulls/war_eval_v2": {
+      "n_games": 25,
+      "total_actions": 4026,
+      "frame_digest_disagreements": 0
+    },
+    "runs/kernel_pulls/war_eval_v3": {
+      "n_games": 25,
+      "total_actions": 3985,
+      "frame_digest_disagreements": 0
+    },
+    "runs/kernel_pulls/war_v2_eval_s1": {
+      "n_games": 25,
+      "total_actions": 4335,
+      "frame_digest_disagreements": 0
+    },
+    "runs/kernel_pulls/sched_v1": {
+      "n_games": 25,
+      "total_actions": 4532,
+      "frame_digest_disagreements": 0
+    },
+    "runs/kernel_pulls/phase1_v5": {
+      "n_games": 25,
+      "total_actions": 4418,
+      "frame_digest_disagreements": 0
+    },
+    "runs/phase1_ab/seed1": {
+      "n_games": 25,
+      "total_actions": 4553,
+      "frame_digest_disagreements": 0
+    }
+  },
+  "by_key_mode": {
+    "state_action": {
+      "pooled": {
+        "total_actions": 29487,
+        "noeff": 2874,
+        "repeat_pairs": 2642,
+        "triggers": 1147,
+        "correct": 533,
+        "recurrence_acc": 0.46469049694856146,
+        "recurrence_acc_wilson95": [
+          0.43599219001071676,
+          0.4936245356968002
+        ],
+        "majority_baseline_acc": 0.9025333197680334,
+        "noeff_base_rate": 0.09746668023196663,
+        "n_runs": 175,
+        "games_with_ge1_trigger": 68,
+        "mean_triggers_per_run": 6.554285714285714,
+        "median_triggers_per_run": 0
+      },
+      "per_run": {
+        "runs/kernel_pulls/war_eval_v1": {
+          "total_actions": 3638,
+          "noeff": 329,
+          "repeat_pairs": 215,
+          "triggers": 117,
+          "correct": 33,
+          "recurrence_acc": 0.28205128205128205,
+          "majority_baseline_acc": 0.9095656954370533,
+          "triggers_per_game": 4.68
+        },
+        "runs/kernel_pulls/war_eval_v2": {
+          "total_actions": 4026,
+          "noeff": 179,
+          "repeat_pairs": 275,
+          "triggers": 47,
+          "correct": 13,
+          "recurrence_acc": 0.2765957446808511,
+          "majority_baseline_acc": 0.9555389965226031,
+          "triggers_per_game": 1.88
+        },
+        "runs/kernel_pulls/war_eval_v3": {
+          "total_actions": 3985,
+          "noeff": 354,
+          "repeat_pairs": 198,
+          "triggers": 89,
+          "correct": 31,
+          "recurrence_acc": 0.34831460674157305,
+          "majority_baseline_acc": 0.9111668757841908,
+          "triggers_per_game": 3.56
+        },
+        "runs/kernel_pulls/war_v2_eval_s1": {
+          "total_actions": 4335,
+          "noeff": 417,
+          "repeat_pairs": 480,
+          "triggers": 102,
+          "correct": 29,
+          "recurrence_acc": 0.28431372549019607,
+          "majority_baseline_acc": 0.9038062283737024,
+          "triggers_per_game": 4.08
+        },
+        "runs/kernel_pulls/sched_v1": {
+          "total_actions": 4532,
+          "noeff": 454,
+          "repeat_pairs": 545,
+          "triggers": 281,
+          "correct": 120,
+          "recurrence_acc": 0.42704626334519574,
+          "majority_baseline_acc": 0.8998234774933804,
+          "triggers_per_game": 11.24
+        },
+        "runs/kernel_pulls/phase1_v5": {
+          "total_actions": 4418,
+          "noeff": 427,
+          "repeat_pairs": 361,
+          "triggers": 185,
+          "correct": 94,
+          "recurrence_acc": 0.5081081081081081,
+          "majority_baseline_acc": 0.903349932095971,
+          "triggers_per_game": 7.4
+        },
+        "runs/phase1_ab/seed1": {
+          "total_actions": 4553,
+          "noeff": 714,
+          "repeat_pairs": 568,
+          "triggers": 326,
+          "correct": 213,
+          "recurrence_acc": 0.6533742331288344,
+          "majority_baseline_acc": 0.8431803206676917,
+          "triggers_per_game": 13.04
+        }
+      },
+      "per_game": [
+        {
+          "run": "war_eval_v1",
+          "game": "ar25-0c556536",
+          "actions": 201,
+          "noeff": 23,
+          "triggers": 2,
+          "correct": 2,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "bp35-0a0ad940",
+          "actions": 123,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "cd82-fb555c5d",
+          "actions": 141,
+          "noeff": 28,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "cn04-2fe56bfb",
+          "actions": 304,
+          "noeff": 9,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "dc22-fdcac232",
+          "actions": 61,
+          "noeff": 7,
+          "triggers": 2,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "ft09-0d8bbf25",
+          "actions": 135,
+          "noeff": 11,
+          "triggers": 1,
+          "correct": 1,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "g50t-5849a774",
+          "actions": 62,
+          "noeff": 7,
+          "triggers": 1,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "ka59-38d34dbb",
+          "actions": 117,
+          "noeff": 16,
+          "triggers": 6,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "lf52-271a04aa",
+          "actions": 73,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "lp85-305b61c3",
+          "actions": 72,
+          "noeff": 2,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "ls20-9607627b",
+          "actions": 91,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "m0r0-492f87ba",
+          "actions": 323,
+          "noeff": 128,
+          "triggers": 100,
+          "correct": 26,
+          "recurrence_acc": 0.26
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "r11l-495a7899",
+          "actions": 81,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "re86-8af5384d",
+          "actions": 296,
+          "noeff": 6,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "s5i5-18d95033",
+          "actions": 69,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "sb26-7fbdac44",
+          "actions": 111,
+          "noeff": 7,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "sc25-635fd71a",
+          "actions": 184,
+          "noeff": 20,
+          "triggers": 1,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "sk48-d8078629",
+          "actions": 266,
+          "noeff": 33,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "sp80-589a99af",
+          "actions": 240,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "su15-1944f8ab",
+          "actions": 96,
+          "noeff": 8,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "tn36-ef4dde99",
+          "actions": 116,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "tr87-cd924810",
+          "actions": 127,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "tu93-0768757b",
+          "actions": 154,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "vc33-5430563c",
+          "actions": 88,
+          "noeff": 2,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "wa30-ee6fef47",
+          "actions": 107,
+          "noeff": 22,
+          "triggers": 4,
+          "correct": 4,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "ar25-0c556536",
+          "actions": 120,
+          "noeff": 4,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "bp35-0a0ad940",
+          "actions": 474,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "cd82-fb555c5d",
+          "actions": 82,
+          "noeff": 13,
+          "triggers": 2,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "cn04-2fe56bfb",
+          "actions": 186,
+          "noeff": 7,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "dc22-fdcac232",
+          "actions": 46,
+          "noeff": 12,
+          "triggers": 4,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "ft09-0d8bbf25",
+          "actions": 45,
+          "noeff": 6,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "g50t-5849a774",
+          "actions": 65,
+          "noeff": 12,
+          "triggers": 5,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "ka59-38d34dbb",
+          "actions": 122,
+          "noeff": 6,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "lf52-271a04aa",
+          "actions": 131,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "lp85-305b61c3",
+          "actions": 24,
+          "noeff": 5,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "ls20-9607627b",
+          "actions": 78,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "m0r0-492f87ba",
+          "actions": 153,
+          "noeff": 54,
+          "triggers": 23,
+          "correct": 6,
+          "recurrence_acc": 0.2608695652173913
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "r11l-495a7899",
+          "actions": 443,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "re86-8af5384d",
+          "actions": 163,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "s5i5-18d95033",
+          "actions": 51,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "sb26-7fbdac44",
+          "actions": 256,
+          "noeff": 2,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "sc25-635fd71a",
+          "actions": 235,
+          "noeff": 16,
+          "triggers": 2,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "sk48-d8078629",
+          "actions": 75,
+          "noeff": 15,
+          "triggers": 3,
+          "correct": 3,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "sp80-589a99af",
+          "actions": 223,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "su15-1944f8ab",
+          "actions": 178,
+          "noeff": 3,
+          "triggers": 1,
+          "correct": 1,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "tn36-ef4dde99",
+          "actions": 144,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "tr87-cd924810",
+          "actions": 254,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "tu93-0768757b",
+          "actions": 128,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "vc33-5430563c",
+          "actions": 152,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "wa30-ee6fef47",
+          "actions": 198,
+          "noeff": 24,
+          "triggers": 7,
+          "correct": 3,
+          "recurrence_acc": 0.42857142857142855
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "ar25-0c556536",
+          "actions": 85,
+          "noeff": 7,
+          "triggers": 2,
+          "correct": 2,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "bp35-0a0ad940",
+          "actions": 366,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "cd82-fb555c5d",
+          "actions": 209,
+          "noeff": 22,
+          "triggers": 5,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "cn04-2fe56bfb",
+          "actions": 183,
+          "noeff": 6,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "dc22-fdcac232",
+          "actions": 89,
+          "noeff": 15,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "ft09-0d8bbf25",
+          "actions": 40,
+          "noeff": 20,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "g50t-5849a774",
+          "actions": 89,
+          "noeff": 14,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "ka59-38d34dbb",
+          "actions": 189,
+          "noeff": 8,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "lf52-271a04aa",
+          "actions": 101,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "lp85-305b61c3",
+          "actions": 140,
+          "noeff": 8,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "ls20-9607627b",
+          "actions": 66,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "m0r0-492f87ba",
+          "actions": 305,
+          "noeff": 105,
+          "triggers": 64,
+          "correct": 18,
+          "recurrence_acc": 0.28125
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "r11l-495a7899",
+          "actions": 50,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "re86-8af5384d",
+          "actions": 237,
+          "noeff": 11,
+          "triggers": 3,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "s5i5-18d95033",
+          "actions": 62,
+          "noeff": 17,
+          "triggers": 2,
+          "correct": 1,
+          "recurrence_acc": 0.5
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "sb26-7fbdac44",
+          "actions": 174,
+          "noeff": 15,
+          "triggers": 1,
+          "correct": 1,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "sc25-635fd71a",
+          "actions": 102,
+          "noeff": 7,
+          "triggers": 1,
+          "correct": 1,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "sk48-d8078629",
+          "actions": 167,
+          "noeff": 42,
+          "triggers": 7,
+          "correct": 4,
+          "recurrence_acc": 0.5714285714285714
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "sp80-589a99af",
+          "actions": 184,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "su15-1944f8ab",
+          "actions": 26,
+          "noeff": 8,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "tn36-ef4dde99",
+          "actions": 124,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "tr87-cd924810",
+          "actions": 183,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "tu93-0768757b",
+          "actions": 314,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "vc33-5430563c",
+          "actions": 165,
+          "noeff": 1,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "wa30-ee6fef47",
+          "actions": 335,
+          "noeff": 48,
+          "triggers": 4,
+          "correct": 4,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "ar25-0c556536",
+          "actions": 92,
+          "noeff": 1,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "bp35-0a0ad940",
+          "actions": 448,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "cd82-fb555c5d",
+          "actions": 145,
+          "noeff": 16,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "cn04-2fe56bfb",
+          "actions": 304,
+          "noeff": 11,
+          "triggers": 1,
+          "correct": 1,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "dc22-fdcac232",
+          "actions": 83,
+          "noeff": 12,
+          "triggers": 6,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "ft09-0d8bbf25",
+          "actions": 205,
+          "noeff": 146,
+          "triggers": 1,
+          "correct": 1,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "g50t-5849a774",
+          "actions": 76,
+          "noeff": 13,
+          "triggers": 1,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "ka59-38d34dbb",
+          "actions": 150,
+          "noeff": 12,
+          "triggers": 2,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "lf52-271a04aa",
+          "actions": 95,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "lp85-305b61c3",
+          "actions": 71,
+          "noeff": 3,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "ls20-9607627b",
+          "actions": 43,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "m0r0-492f87ba",
+          "actions": 233,
+          "noeff": 102,
+          "triggers": 84,
+          "correct": 21,
+          "recurrence_acc": 0.25
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "r11l-495a7899",
+          "actions": 56,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "re86-8af5384d",
+          "actions": 140,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "s5i5-18d95033",
+          "actions": 52,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "sb26-7fbdac44",
+          "actions": 567,
+          "noeff": 1,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "sc25-635fd71a",
+          "actions": 241,
+          "noeff": 34,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "sk48-d8078629",
+          "actions": 94,
+          "noeff": 20,
+          "triggers": 2,
+          "correct": 2,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "sp80-589a99af",
+          "actions": 217,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "su15-1944f8ab",
+          "actions": 191,
+          "noeff": 7,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "tn36-ef4dde99",
+          "actions": 171,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "tr87-cd924810",
+          "actions": 69,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "tu93-0768757b",
+          "actions": 148,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "vc33-5430563c",
+          "actions": 55,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "wa30-ee6fef47",
+          "actions": 389,
+          "noeff": 39,
+          "triggers": 5,
+          "correct": 4,
+          "recurrence_acc": 0.8
+        },
+        {
+          "run": "sched_v1",
+          "game": "ar25-0c556536",
+          "actions": 158,
+          "noeff": 8,
+          "triggers": 3,
+          "correct": 3,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "sched_v1",
+          "game": "bp35-0a0ad940",
+          "actions": 459,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "cd82-fb555c5d",
+          "actions": 226,
+          "noeff": 41,
+          "triggers": 6,
+          "correct": 1,
+          "recurrence_acc": 0.16666666666666666
+        },
+        {
+          "run": "sched_v1",
+          "game": "cn04-2fe56bfb",
+          "actions": 76,
+          "noeff": 2,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "dc22-fdcac232",
+          "actions": 172,
+          "noeff": 30,
+          "triggers": 5,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "sched_v1",
+          "game": "ft09-0d8bbf25",
+          "actions": 129,
+          "noeff": 1,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "g50t-5849a774",
+          "actions": 91,
+          "noeff": 18,
+          "triggers": 10,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "sched_v1",
+          "game": "ka59-38d34dbb",
+          "actions": 137,
+          "noeff": 15,
+          "triggers": 9,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "sched_v1",
+          "game": "lf52-271a04aa",
+          "actions": 95,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "lp85-305b61c3",
+          "actions": 219,
+          "noeff": 2,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "ls20-9607627b",
+          "actions": 188,
+          "noeff": 35,
+          "triggers": 31,
+          "correct": 31,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "sched_v1",
+          "game": "m0r0-492f87ba",
+          "actions": 272,
+          "noeff": 102,
+          "triggers": 77,
+          "correct": 19,
+          "recurrence_acc": 0.24675324675324675
+        },
+        {
+          "run": "sched_v1",
+          "game": "r11l-495a7899",
+          "actions": 47,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "re86-8af5384d",
+          "actions": 85,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "s5i5-18d95033",
+          "actions": 74,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "sb26-7fbdac44",
+          "actions": 183,
+          "noeff": 11,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "sc25-635fd71a",
+          "actions": 251,
+          "noeff": 59,
+          "triggers": 39,
+          "correct": 5,
+          "recurrence_acc": 0.1282051282051282
+        },
+        {
+          "run": "sched_v1",
+          "game": "sk48-d8078629",
+          "actions": 272,
+          "noeff": 78,
+          "triggers": 70,
+          "correct": 42,
+          "recurrence_acc": 0.6
+        },
+        {
+          "run": "sched_v1",
+          "game": "sp80-589a99af",
+          "actions": 249,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "su15-1944f8ab",
+          "actions": 227,
+          "noeff": 8,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "tn36-ef4dde99",
+          "actions": 124,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "tr87-cd924810",
+          "actions": 272,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "tu93-0768757b",
+          "actions": 144,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "vc33-5430563c",
+          "actions": 110,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "wa30-ee6fef47",
+          "actions": 272,
+          "noeff": 44,
+          "triggers": 31,
+          "correct": 19,
+          "recurrence_acc": 0.6129032258064516
+        },
+        {
+          "run": "phase1_v5",
+          "game": "ar25-0c556536",
+          "actions": 242,
+          "noeff": 54,
+          "triggers": 41,
+          "correct": 41,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "phase1_v5",
+          "game": "bp35-0a0ad940",
+          "actions": 337,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "cd82-fb555c5d",
+          "actions": 269,
+          "noeff": 54,
+          "triggers": 10,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "phase1_v5",
+          "game": "cn04-2fe56bfb",
+          "actions": 292,
+          "noeff": 11,
+          "triggers": 5,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "phase1_v5",
+          "game": "dc22-fdcac232",
+          "actions": 52,
+          "noeff": 16,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "ft09-0d8bbf25",
+          "actions": 39,
+          "noeff": 3,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "g50t-5849a774",
+          "actions": 125,
+          "noeff": 28,
+          "triggers": 4,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "phase1_v5",
+          "game": "ka59-38d34dbb",
+          "actions": 165,
+          "noeff": 15,
+          "triggers": 7,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "phase1_v5",
+          "game": "lf52-271a04aa",
+          "actions": 211,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "lp85-305b61c3",
+          "actions": 11,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "ls20-9607627b",
+          "actions": 104,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "m0r0-492f87ba",
+          "actions": 222,
+          "noeff": 59,
+          "triggers": 22,
+          "correct": 5,
+          "recurrence_acc": 0.22727272727272727
+        },
+        {
+          "run": "phase1_v5",
+          "game": "r11l-495a7899",
+          "actions": 74,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "re86-8af5384d",
+          "actions": 185,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "s5i5-18d95033",
+          "actions": 69,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "sb26-7fbdac44",
+          "actions": 102,
+          "noeff": 27,
+          "triggers": 5,
+          "correct": 5,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "phase1_v5",
+          "game": "sc25-635fd71a",
+          "actions": 185,
+          "noeff": 9,
+          "triggers": 5,
+          "correct": 1,
+          "recurrence_acc": 0.2
+        },
+        {
+          "run": "phase1_v5",
+          "game": "sk48-d8078629",
+          "actions": 201,
+          "noeff": 46,
+          "triggers": 11,
+          "correct": 4,
+          "recurrence_acc": 0.36363636363636365
+        },
+        {
+          "run": "phase1_v5",
+          "game": "sp80-589a99af",
+          "actions": 389,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "su15-1944f8ab",
+          "actions": 145,
+          "noeff": 10,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "tn36-ef4dde99",
+          "actions": 111,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "tr87-cd924810",
+          "actions": 259,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "tu93-0768757b",
+          "actions": 69,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "vc33-5430563c",
+          "actions": 58,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "wa30-ee6fef47",
+          "actions": 502,
+          "noeff": 95,
+          "triggers": 75,
+          "correct": 38,
+          "recurrence_acc": 0.5066666666666667
+        },
+        {
+          "run": "seed1",
+          "game": "ar25-e3c63847",
+          "actions": 273,
+          "noeff": 67,
+          "triggers": 49,
+          "correct": 49,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "seed1",
+          "game": "bp35-0a0ad940",
+          "actions": 221,
+          "noeff": 2,
+          "triggers": 1,
+          "correct": 1,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "seed1",
+          "game": "cd82-fb555c5d",
+          "actions": 146,
+          "noeff": 29,
+          "triggers": 5,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "seed1",
+          "game": "cn04-65d47d14",
+          "actions": 381,
+          "noeff": 66,
+          "triggers": 50,
+          "correct": 38,
+          "recurrence_acc": 0.76
+        },
+        {
+          "run": "seed1",
+          "game": "dc22-4c9bff3e",
+          "actions": 142,
+          "noeff": 17,
+          "triggers": 2,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "seed1",
+          "game": "ft09-0d8bbf25",
+          "actions": 169,
+          "noeff": 169,
+          "triggers": 56,
+          "correct": 56,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "seed1",
+          "game": "g50t-5849a774",
+          "actions": 159,
+          "noeff": 39,
+          "triggers": 13,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "seed1",
+          "game": "ka59-9f096b4a",
+          "actions": 212,
+          "noeff": 33,
+          "triggers": 26,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "seed1",
+          "game": "lf52-271a04aa",
+          "actions": 122,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "lp85-305b61c3",
+          "actions": 40,
+          "noeff": 4,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "ls20-9607627b",
+          "actions": 150,
+          "noeff": 3,
+          "triggers": 2,
+          "correct": 2,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "seed1",
+          "game": "m0r0-dadda488",
+          "actions": 198,
+          "noeff": 53,
+          "triggers": 4,
+          "correct": 1,
+          "recurrence_acc": 0.25
+        },
+        {
+          "run": "seed1",
+          "game": "r11l-aa269680",
+          "actions": 61,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "re86-4e57566e",
+          "actions": 147,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "s5i5-a48e4b1d",
+          "actions": 142,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "sb26-7fbdac44",
+          "actions": 173,
+          "noeff": 33,
+          "triggers": 8,
+          "correct": 5,
+          "recurrence_acc": 0.625
+        },
+        {
+          "run": "seed1",
+          "game": "sc25-f9b21a2f",
+          "actions": 217,
+          "noeff": 35,
+          "triggers": 1,
+          "correct": 1,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "seed1",
+          "game": "sk48-41055498",
+          "actions": 114,
+          "noeff": 46,
+          "triggers": 16,
+          "correct": 9,
+          "recurrence_acc": 0.5625
+        },
+        {
+          "run": "seed1",
+          "game": "sp80-0ee2d095",
+          "actions": 323,
+          "noeff": 7,
+          "triggers": 6,
+          "correct": 6,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "seed1",
+          "game": "su15-4c352900",
+          "actions": 146,
+          "noeff": 11,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "tn36-ab4f63cc",
+          "actions": 77,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "tr87-cd924810",
+          "actions": 261,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "tu93-2b534c15",
+          "actions": 149,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "vc33-9851e02b",
+          "actions": 139,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "wa30-ee6fef47",
+          "actions": 391,
+          "noeff": 100,
+          "triggers": 87,
+          "correct": 45,
+          "recurrence_acc": 0.5172413793103449
+        }
+      ]
+    },
+    "action_only": {
+      "pooled": {
+        "total_actions": 29487,
+        "noeff": 2874,
+        "repeat_pairs": 25578,
+        "triggers": 8278,
+        "correct": 1932,
+        "recurrence_acc": 0.2333897076588548,
+        "recurrence_acc_wilson95": [
+          0.22440248715736164,
+          0.2426242668921242
+        ],
+        "majority_baseline_acc": 0.9025333197680334,
+        "noeff_base_rate": 0.09746668023196663,
+        "n_runs": 175,
+        "games_with_ge1_trigger": 94,
+        "mean_triggers_per_run": 47.30285714285714,
+        "median_triggers_per_run": 2
+      },
+      "per_run": {
+        "runs/kernel_pulls/war_eval_v1": {
+          "total_actions": 3638,
+          "noeff": 329,
+          "repeat_pairs": 3160,
+          "triggers": 1133,
+          "correct": 222,
+          "recurrence_acc": 0.19593998234774934,
+          "majority_baseline_acc": 0.9095656954370533,
+          "triggers_per_game": 45.32
+        },
+        "runs/kernel_pulls/war_eval_v2": {
+          "total_actions": 4026,
+          "noeff": 179,
+          "repeat_pairs": 3417,
+          "triggers": 536,
+          "correct": 103,
+          "recurrence_acc": 0.1921641791044776,
+          "majority_baseline_acc": 0.9555389965226031,
+          "triggers_per_game": 21.44
+        },
+        "runs/kernel_pulls/war_eval_v3": {
+          "total_actions": 3985,
+          "noeff": 354,
+          "repeat_pairs": 3540,
+          "triggers": 1164,
+          "correct": 239,
+          "recurrence_acc": 0.20532646048109965,
+          "majority_baseline_acc": 0.9111668757841908,
+          "triggers_per_game": 46.56
+        },
+        "runs/kernel_pulls/war_v2_eval_s1": {
+          "total_actions": 4335,
+          "noeff": 417,
+          "repeat_pairs": 3725,
+          "triggers": 1002,
+          "correct": 206,
+          "recurrence_acc": 0.2055888223552894,
+          "majority_baseline_acc": 0.9038062283737024,
+          "triggers_per_game": 40.08
+        },
+        "runs/kernel_pulls/sched_v1": {
+          "total_actions": 4532,
+          "noeff": 454,
+          "repeat_pairs": 4017,
+          "triggers": 1409,
+          "correct": 369,
+          "recurrence_acc": 0.2618878637331441,
+          "majority_baseline_acc": 0.8998234774933804,
+          "triggers_per_game": 56.36
+        },
+        "runs/kernel_pulls/phase1_v5": {
+          "total_actions": 4418,
+          "noeff": 427,
+          "repeat_pairs": 3908,
+          "triggers": 1544,
+          "correct": 337,
+          "recurrence_acc": 0.2182642487046632,
+          "majority_baseline_acc": 0.903349932095971,
+          "triggers_per_game": 61.76
+        },
+        "runs/phase1_ab/seed1": {
+          "total_actions": 4553,
+          "noeff": 714,
+          "repeat_pairs": 3811,
+          "triggers": 1490,
+          "correct": 456,
+          "recurrence_acc": 0.30604026845637583,
+          "majority_baseline_acc": 0.8431803206676917,
+          "triggers_per_game": 59.6
+        }
+      },
+      "per_game": [
+        {
+          "run": "war_eval_v1",
+          "game": "ar25-0c556536",
+          "actions": 201,
+          "noeff": 23,
+          "triggers": 135,
+          "correct": 13,
+          "recurrence_acc": 0.0962962962962963
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "bp35-0a0ad940",
+          "actions": 123,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "cd82-fb555c5d",
+          "actions": 141,
+          "noeff": 28,
+          "triggers": 53,
+          "correct": 15,
+          "recurrence_acc": 0.2830188679245283
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "cn04-2fe56bfb",
+          "actions": 304,
+          "noeff": 9,
+          "triggers": 113,
+          "correct": 4,
+          "recurrence_acc": 0.035398230088495575
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "dc22-fdcac232",
+          "actions": 61,
+          "noeff": 7,
+          "triggers": 16,
+          "correct": 2,
+          "recurrence_acc": 0.125
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "ft09-0d8bbf25",
+          "actions": 135,
+          "noeff": 11,
+          "triggers": 2,
+          "correct": 2,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "g50t-5849a774",
+          "actions": 62,
+          "noeff": 7,
+          "triggers": 41,
+          "correct": 4,
+          "recurrence_acc": 0.0975609756097561
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "ka59-38d34dbb",
+          "actions": 117,
+          "noeff": 16,
+          "triggers": 67,
+          "correct": 10,
+          "recurrence_acc": 0.14925373134328357
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "lf52-271a04aa",
+          "actions": 73,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "lp85-305b61c3",
+          "actions": 72,
+          "noeff": 2,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "ls20-9607627b",
+          "actions": 91,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "m0r0-492f87ba",
+          "actions": 323,
+          "noeff": 128,
+          "triggers": 268,
+          "correct": 113,
+          "recurrence_acc": 0.4216417910447761
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "r11l-495a7899",
+          "actions": 81,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "re86-8af5384d",
+          "actions": 296,
+          "noeff": 6,
+          "triggers": 93,
+          "correct": 3,
+          "recurrence_acc": 0.03225806451612903
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "s5i5-18d95033",
+          "actions": 69,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "sb26-7fbdac44",
+          "actions": 111,
+          "noeff": 7,
+          "triggers": 2,
+          "correct": 2,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "sc25-635fd71a",
+          "actions": 184,
+          "noeff": 20,
+          "triggers": 52,
+          "correct": 9,
+          "recurrence_acc": 0.17307692307692307
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "sk48-d8078629",
+          "actions": 266,
+          "noeff": 33,
+          "triggers": 202,
+          "correct": 26,
+          "recurrence_acc": 0.12871287128712872
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "sp80-589a99af",
+          "actions": 240,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "su15-1944f8ab",
+          "actions": 96,
+          "noeff": 8,
+          "triggers": 2,
+          "correct": 2,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "tn36-ef4dde99",
+          "actions": 116,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "tr87-cd924810",
+          "actions": 127,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "tu93-0768757b",
+          "actions": 154,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "vc33-5430563c",
+          "actions": 88,
+          "noeff": 2,
+          "triggers": 8,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_eval_v1",
+          "game": "wa30-ee6fef47",
+          "actions": 107,
+          "noeff": 22,
+          "triggers": 79,
+          "correct": 17,
+          "recurrence_acc": 0.21518987341772153
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "ar25-0c556536",
+          "actions": 120,
+          "noeff": 4,
+          "triggers": 2,
+          "correct": 0,
+          "recurrence_acc": 0.0
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "bp35-0a0ad940",
+          "actions": 474,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "cd82-fb555c5d",
+          "actions": 82,
+          "noeff": 13,
+          "triggers": 44,
+          "correct": 8,
+          "recurrence_acc": 0.18181818181818182
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "cn04-2fe56bfb",
+          "actions": 186,
+          "noeff": 7,
+          "triggers": 81,
+          "correct": 3,
+          "recurrence_acc": 0.037037037037037035
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "dc22-fdcac232",
+          "actions": 46,
+          "noeff": 12,
+          "triggers": 15,
+          "correct": 4,
+          "recurrence_acc": 0.26666666666666666
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "ft09-0d8bbf25",
+          "actions": 45,
+          "noeff": 6,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "g50t-5849a774",
+          "actions": 65,
+          "noeff": 12,
+          "triggers": 43,
+          "correct": 9,
+          "recurrence_acc": 0.20930232558139536
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "ka59-38d34dbb",
+          "actions": 122,
+          "noeff": 6,
+          "triggers": 35,
+          "correct": 2,
+          "recurrence_acc": 0.05714285714285714
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "lf52-271a04aa",
+          "actions": 131,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "lp85-305b61c3",
+          "actions": 24,
+          "noeff": 5,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "ls20-9607627b",
+          "actions": 78,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "m0r0-492f87ba",
+          "actions": 153,
+          "noeff": 54,
+          "triggers": 75,
+          "correct": 37,
+          "recurrence_acc": 0.49333333333333335
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "r11l-495a7899",
+          "actions": 443,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "re86-8af5384d",
+          "actions": 163,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "s5i5-18d95033",
+          "actions": 51,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "sb26-7fbdac44",
+          "actions": 256,
+          "noeff": 2,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "sc25-635fd71a",
+          "actions": 235,
+          "noeff": 16,
+          "triggers": 74,
+          "correct": 10,
+          "recurrence_acc": 0.13513513513513514
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "sk48-d8078629",
+          "actions": 75,
+          "noeff": 15,
+          "triggers": 22,
+          "correct": 8,
+          "recurrence_acc": 0.36363636363636365
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "sp80-589a99af",
+          "actions": 223,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "su15-1944f8ab",
+          "actions": 178,
+          "noeff": 3,
+          "triggers": 2,
+          "correct": 2,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "tn36-ef4dde99",
+          "actions": 144,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "tr87-cd924810",
+          "actions": 254,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "tu93-0768757b",
+          "actions": 128,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "vc33-5430563c",
+          "actions": 152,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v2",
+          "game": "wa30-ee6fef47",
+          "actions": 198,
+          "noeff": 24,
+          "triggers": 143,
+          "correct": 20,
+          "recurrence_acc": 0.13986013986013987
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "ar25-0c556536",
+          "actions": 85,
+          "noeff": 7,
+          "triggers": 21,
+          "correct": 3,
+          "recurrence_acc": 0.14285714285714285
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "bp35-0a0ad940",
+          "actions": 366,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "cd82-fb555c5d",
+          "actions": 209,
+          "noeff": 22,
+          "triggers": 119,
+          "correct": 14,
+          "recurrence_acc": 0.11764705882352941
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "cn04-2fe56bfb",
+          "actions": 183,
+          "noeff": 6,
+          "triggers": 53,
+          "correct": 3,
+          "recurrence_acc": 0.05660377358490566
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "dc22-fdcac232",
+          "actions": 89,
+          "noeff": 15,
+          "triggers": 21,
+          "correct": 2,
+          "recurrence_acc": 0.09523809523809523
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "ft09-0d8bbf25",
+          "actions": 40,
+          "noeff": 20,
+          "triggers": 3,
+          "correct": 3,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "g50t-5849a774",
+          "actions": 89,
+          "noeff": 14,
+          "triggers": 57,
+          "correct": 11,
+          "recurrence_acc": 0.19298245614035087
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "ka59-38d34dbb",
+          "actions": 189,
+          "noeff": 8,
+          "triggers": 79,
+          "correct": 5,
+          "recurrence_acc": 0.06329113924050633
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "lf52-271a04aa",
+          "actions": 101,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "lp85-305b61c3",
+          "actions": 140,
+          "noeff": 8,
+          "triggers": 1,
+          "correct": 1,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "ls20-9607627b",
+          "actions": 66,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "m0r0-492f87ba",
+          "actions": 305,
+          "noeff": 105,
+          "triggers": 278,
+          "correct": 98,
+          "recurrence_acc": 0.35251798561151076
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "r11l-495a7899",
+          "actions": 50,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "re86-8af5384d",
+          "actions": 237,
+          "noeff": 11,
+          "triggers": 64,
+          "correct": 8,
+          "recurrence_acc": 0.125
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "s5i5-18d95033",
+          "actions": 62,
+          "noeff": 17,
+          "triggers": 14,
+          "correct": 3,
+          "recurrence_acc": 0.21428571428571427
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "sb26-7fbdac44",
+          "actions": 174,
+          "noeff": 15,
+          "triggers": 12,
+          "correct": 7,
+          "recurrence_acc": 0.5833333333333334
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "sc25-635fd71a",
+          "actions": 102,
+          "noeff": 7,
+          "triggers": 24,
+          "correct": 4,
+          "recurrence_acc": 0.16666666666666666
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "sk48-d8078629",
+          "actions": 167,
+          "noeff": 42,
+          "triggers": 134,
+          "correct": 30,
+          "recurrence_acc": 0.22388059701492538
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "sp80-589a99af",
+          "actions": 184,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "su15-1944f8ab",
+          "actions": 26,
+          "noeff": 8,
+          "triggers": 4,
+          "correct": 4,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "tn36-ef4dde99",
+          "actions": 124,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "tr87-cd924810",
+          "actions": 183,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "tu93-0768757b",
+          "actions": 314,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "vc33-5430563c",
+          "actions": 165,
+          "noeff": 1,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_eval_v3",
+          "game": "wa30-ee6fef47",
+          "actions": 335,
+          "noeff": 48,
+          "triggers": 280,
+          "correct": 43,
+          "recurrence_acc": 0.15357142857142858
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "ar25-0c556536",
+          "actions": 92,
+          "noeff": 1,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "bp35-0a0ad940",
+          "actions": 448,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "cd82-fb555c5d",
+          "actions": 145,
+          "noeff": 16,
+          "triggers": 90,
+          "correct": 9,
+          "recurrence_acc": 0.1
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "cn04-2fe56bfb",
+          "actions": 304,
+          "noeff": 11,
+          "triggers": 165,
+          "correct": 7,
+          "recurrence_acc": 0.04242424242424243
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "dc22-fdcac232",
+          "actions": 83,
+          "noeff": 12,
+          "triggers": 49,
+          "correct": 6,
+          "recurrence_acc": 0.12244897959183673
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "ft09-0d8bbf25",
+          "actions": 205,
+          "noeff": 146,
+          "triggers": 8,
+          "correct": 8,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "g50t-5849a774",
+          "actions": 76,
+          "noeff": 13,
+          "triggers": 36,
+          "correct": 10,
+          "recurrence_acc": 0.2777777777777778
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "ka59-38d34dbb",
+          "actions": 150,
+          "noeff": 12,
+          "triggers": 85,
+          "correct": 8,
+          "recurrence_acc": 0.09411764705882353
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "lf52-271a04aa",
+          "actions": 95,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "lp85-305b61c3",
+          "actions": 71,
+          "noeff": 3,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "ls20-9607627b",
+          "actions": 43,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "m0r0-492f87ba",
+          "actions": 233,
+          "noeff": 102,
+          "triggers": 202,
+          "correct": 92,
+          "recurrence_acc": 0.45544554455445546
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "r11l-495a7899",
+          "actions": 56,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "re86-8af5384d",
+          "actions": 140,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "s5i5-18d95033",
+          "actions": 52,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "sb26-7fbdac44",
+          "actions": 567,
+          "noeff": 1,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "sc25-635fd71a",
+          "actions": 241,
+          "noeff": 34,
+          "triggers": 37,
+          "correct": 17,
+          "recurrence_acc": 0.4594594594594595
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "sk48-d8078629",
+          "actions": 94,
+          "noeff": 20,
+          "triggers": 51,
+          "correct": 14,
+          "recurrence_acc": 0.27450980392156865
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "sp80-589a99af",
+          "actions": 217,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "su15-1944f8ab",
+          "actions": 191,
+          "noeff": 7,
+          "triggers": 1,
+          "correct": 1,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "tn36-ef4dde99",
+          "actions": 171,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "tr87-cd924810",
+          "actions": 69,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "tu93-0768757b",
+          "actions": 148,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "vc33-5430563c",
+          "actions": 55,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "war_v2_eval_s1",
+          "game": "wa30-ee6fef47",
+          "actions": 389,
+          "noeff": 39,
+          "triggers": 278,
+          "correct": 34,
+          "recurrence_acc": 0.1223021582733813
+        },
+        {
+          "run": "sched_v1",
+          "game": "ar25-0c556536",
+          "actions": 158,
+          "noeff": 8,
+          "triggers": 97,
+          "correct": 4,
+          "recurrence_acc": 0.041237113402061855
+        },
+        {
+          "run": "sched_v1",
+          "game": "bp35-0a0ad940",
+          "actions": 459,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "cd82-fb555c5d",
+          "actions": 226,
+          "noeff": 41,
+          "triggers": 150,
+          "correct": 34,
+          "recurrence_acc": 0.22666666666666666
+        },
+        {
+          "run": "sched_v1",
+          "game": "cn04-2fe56bfb",
+          "actions": 76,
+          "noeff": 2,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "dc22-fdcac232",
+          "actions": 172,
+          "noeff": 30,
+          "triggers": 104,
+          "correct": 17,
+          "recurrence_acc": 0.16346153846153846
+        },
+        {
+          "run": "sched_v1",
+          "game": "ft09-0d8bbf25",
+          "actions": 129,
+          "noeff": 1,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "g50t-5849a774",
+          "actions": 91,
+          "noeff": 18,
+          "triggers": 55,
+          "correct": 13,
+          "recurrence_acc": 0.23636363636363636
+        },
+        {
+          "run": "sched_v1",
+          "game": "ka59-38d34dbb",
+          "actions": 137,
+          "noeff": 15,
+          "triggers": 38,
+          "correct": 8,
+          "recurrence_acc": 0.21052631578947367
+        },
+        {
+          "run": "sched_v1",
+          "game": "lf52-271a04aa",
+          "actions": 95,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "lp85-305b61c3",
+          "actions": 219,
+          "noeff": 2,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "ls20-9607627b",
+          "actions": 188,
+          "noeff": 35,
+          "triggers": 77,
+          "correct": 34,
+          "recurrence_acc": 0.44155844155844154
+        },
+        {
+          "run": "sched_v1",
+          "game": "m0r0-492f87ba",
+          "actions": 272,
+          "noeff": 102,
+          "triggers": 241,
+          "correct": 95,
+          "recurrence_acc": 0.3941908713692946
+        },
+        {
+          "run": "sched_v1",
+          "game": "r11l-495a7899",
+          "actions": 47,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "re86-8af5384d",
+          "actions": 85,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "s5i5-18d95033",
+          "actions": 74,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "sb26-7fbdac44",
+          "actions": 183,
+          "noeff": 11,
+          "triggers": 29,
+          "correct": 5,
+          "recurrence_acc": 0.1724137931034483
+        },
+        {
+          "run": "sched_v1",
+          "game": "sc25-635fd71a",
+          "actions": 251,
+          "noeff": 59,
+          "triggers": 159,
+          "correct": 46,
+          "recurrence_acc": 0.2893081761006289
+        },
+        {
+          "run": "sched_v1",
+          "game": "sk48-d8078629",
+          "actions": 272,
+          "noeff": 78,
+          "triggers": 233,
+          "correct": 72,
+          "recurrence_acc": 0.3090128755364807
+        },
+        {
+          "run": "sched_v1",
+          "game": "sp80-589a99af",
+          "actions": 249,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "su15-1944f8ab",
+          "actions": 227,
+          "noeff": 8,
+          "triggers": 2,
+          "correct": 2,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "sched_v1",
+          "game": "tn36-ef4dde99",
+          "actions": 124,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "tr87-cd924810",
+          "actions": 272,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "tu93-0768757b",
+          "actions": 144,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "vc33-5430563c",
+          "actions": 110,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "sched_v1",
+          "game": "wa30-ee6fef47",
+          "actions": 272,
+          "noeff": 44,
+          "triggers": 224,
+          "correct": 39,
+          "recurrence_acc": 0.17410714285714285
+        },
+        {
+          "run": "phase1_v5",
+          "game": "ar25-0c556536",
+          "actions": 242,
+          "noeff": 54,
+          "triggers": 160,
+          "correct": 48,
+          "recurrence_acc": 0.3
+        },
+        {
+          "run": "phase1_v5",
+          "game": "bp35-0a0ad940",
+          "actions": 337,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "cd82-fb555c5d",
+          "actions": 269,
+          "noeff": 54,
+          "triggers": 154,
+          "correct": 36,
+          "recurrence_acc": 0.23376623376623376
+        },
+        {
+          "run": "phase1_v5",
+          "game": "cn04-2fe56bfb",
+          "actions": 292,
+          "noeff": 11,
+          "triggers": 192,
+          "correct": 7,
+          "recurrence_acc": 0.036458333333333336
+        },
+        {
+          "run": "phase1_v5",
+          "game": "dc22-fdcac232",
+          "actions": 52,
+          "noeff": 16,
+          "triggers": 14,
+          "correct": 8,
+          "recurrence_acc": 0.5714285714285714
+        },
+        {
+          "run": "phase1_v5",
+          "game": "ft09-0d8bbf25",
+          "actions": 39,
+          "noeff": 3,
+          "triggers": 1,
+          "correct": 1,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "phase1_v5",
+          "game": "g50t-5849a774",
+          "actions": 125,
+          "noeff": 28,
+          "triggers": 107,
+          "correct": 24,
+          "recurrence_acc": 0.22429906542056074
+        },
+        {
+          "run": "phase1_v5",
+          "game": "ka59-38d34dbb",
+          "actions": 165,
+          "noeff": 15,
+          "triggers": 98,
+          "correct": 9,
+          "recurrence_acc": 0.09183673469387756
+        },
+        {
+          "run": "phase1_v5",
+          "game": "lf52-271a04aa",
+          "actions": 211,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "lp85-305b61c3",
+          "actions": 11,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "ls20-9607627b",
+          "actions": 104,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "m0r0-492f87ba",
+          "actions": 222,
+          "noeff": 59,
+          "triggers": 188,
+          "correct": 51,
+          "recurrence_acc": 0.2712765957446808
+        },
+        {
+          "run": "phase1_v5",
+          "game": "r11l-495a7899",
+          "actions": 74,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "re86-8af5384d",
+          "actions": 185,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "s5i5-18d95033",
+          "actions": 69,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "sb26-7fbdac44",
+          "actions": 102,
+          "noeff": 27,
+          "triggers": 19,
+          "correct": 17,
+          "recurrence_acc": 0.8947368421052632
+        },
+        {
+          "run": "phase1_v5",
+          "game": "sc25-635fd71a",
+          "actions": 185,
+          "noeff": 9,
+          "triggers": 28,
+          "correct": 4,
+          "recurrence_acc": 0.14285714285714285
+        },
+        {
+          "run": "phase1_v5",
+          "game": "sk48-d8078629",
+          "actions": 201,
+          "noeff": 46,
+          "triggers": 170,
+          "correct": 38,
+          "recurrence_acc": 0.2235294117647059
+        },
+        {
+          "run": "phase1_v5",
+          "game": "sp80-589a99af",
+          "actions": 389,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "su15-1944f8ab",
+          "actions": 145,
+          "noeff": 10,
+          "triggers": 4,
+          "correct": 4,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "phase1_v5",
+          "game": "tn36-ef4dde99",
+          "actions": 111,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "tr87-cd924810",
+          "actions": 259,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "tu93-0768757b",
+          "actions": 69,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "vc33-5430563c",
+          "actions": 58,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "phase1_v5",
+          "game": "wa30-ee6fef47",
+          "actions": 502,
+          "noeff": 95,
+          "triggers": 409,
+          "correct": 90,
+          "recurrence_acc": 0.2200488997555012
+        },
+        {
+          "run": "seed1",
+          "game": "ar25-e3c63847",
+          "actions": 273,
+          "noeff": 67,
+          "triggers": 137,
+          "correct": 61,
+          "recurrence_acc": 0.44525547445255476
+        },
+        {
+          "run": "seed1",
+          "game": "bp35-0a0ad940",
+          "actions": 221,
+          "noeff": 2,
+          "triggers": 1,
+          "correct": 1,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "seed1",
+          "game": "cd82-fb555c5d",
+          "actions": 146,
+          "noeff": 29,
+          "triggers": 53,
+          "correct": 10,
+          "recurrence_acc": 0.18867924528301888
+        },
+        {
+          "run": "seed1",
+          "game": "cn04-65d47d14",
+          "actions": 381,
+          "noeff": 66,
+          "triggers": 246,
+          "correct": 57,
+          "recurrence_acc": 0.23170731707317074
+        },
+        {
+          "run": "seed1",
+          "game": "dc22-4c9bff3e",
+          "actions": 142,
+          "noeff": 17,
+          "triggers": 60,
+          "correct": 6,
+          "recurrence_acc": 0.1
+        },
+        {
+          "run": "seed1",
+          "game": "ft09-0d8bbf25",
+          "actions": 169,
+          "noeff": 169,
+          "triggers": 56,
+          "correct": 56,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "seed1",
+          "game": "g50t-5849a774",
+          "actions": 159,
+          "noeff": 39,
+          "triggers": 133,
+          "correct": 35,
+          "recurrence_acc": 0.2631578947368421
+        },
+        {
+          "run": "seed1",
+          "game": "ka59-9f096b4a",
+          "actions": 212,
+          "noeff": 33,
+          "triggers": 161,
+          "correct": 27,
+          "recurrence_acc": 0.16770186335403728
+        },
+        {
+          "run": "seed1",
+          "game": "lf52-271a04aa",
+          "actions": 122,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "lp85-305b61c3",
+          "actions": 40,
+          "noeff": 4,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "ls20-9607627b",
+          "actions": 150,
+          "noeff": 3,
+          "triggers": 2,
+          "correct": 2,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "seed1",
+          "game": "m0r0-dadda488",
+          "actions": 198,
+          "noeff": 53,
+          "triggers": 157,
+          "correct": 35,
+          "recurrence_acc": 0.2229299363057325
+        },
+        {
+          "run": "seed1",
+          "game": "r11l-aa269680",
+          "actions": 61,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "re86-4e57566e",
+          "actions": 147,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "s5i5-a48e4b1d",
+          "actions": 142,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "sb26-7fbdac44",
+          "actions": 173,
+          "noeff": 33,
+          "triggers": 32,
+          "correct": 19,
+          "recurrence_acc": 0.59375
+        },
+        {
+          "run": "seed1",
+          "game": "sc25-f9b21a2f",
+          "actions": 217,
+          "noeff": 35,
+          "triggers": 34,
+          "correct": 9,
+          "recurrence_acc": 0.2647058823529412
+        },
+        {
+          "run": "seed1",
+          "game": "sk48-41055498",
+          "actions": 114,
+          "noeff": 46,
+          "triggers": 76,
+          "correct": 31,
+          "recurrence_acc": 0.40789473684210525
+        },
+        {
+          "run": "seed1",
+          "game": "sp80-0ee2d095",
+          "actions": 323,
+          "noeff": 7,
+          "triggers": 15,
+          "correct": 6,
+          "recurrence_acc": 0.4
+        },
+        {
+          "run": "seed1",
+          "game": "su15-4c352900",
+          "actions": 146,
+          "noeff": 11,
+          "triggers": 6,
+          "correct": 6,
+          "recurrence_acc": 1.0
+        },
+        {
+          "run": "seed1",
+          "game": "tn36-ab4f63cc",
+          "actions": 77,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "tr87-cd924810",
+          "actions": 261,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "tu93-2b534c15",
+          "actions": 149,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "vc33-9851e02b",
+          "actions": 139,
+          "noeff": 0,
+          "triggers": 0,
+          "correct": 0,
+          "recurrence_acc": null
+        },
+        {
+          "run": "seed1",
+          "game": "wa30-ee6fef47",
+          "actions": 391,
+          "noeff": 100,
+          "triggers": 321,
+          "correct": 95,
+          "recurrence_acc": 0.29595015576323985
+        }
+      ]
+    }
+  }
+}

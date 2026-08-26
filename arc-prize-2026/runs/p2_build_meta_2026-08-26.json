@@ -1,0 +1,42 @@
+{
+ "arm": "P2 reset-anchored episodic retry",
+ "kernel": "canivel/arc3-p2-retry-eval v1",
+ "patch_module_sha": "1c862d05ed462b17",
+ "notebook_code_sha": "ea36ecca3efba73e",
+ "vehicle": "certified field floor (anim-20260807), bytes untouched, ONE inserted cell at index 6, 12 cells",
+ "gate_discharged": {
+  "question": "can the H=4 stuck trigger fire at all? (hard_noop_guard armed and fired 0 times in 5255 actions)",
+  "answer": "YES - 19/25 games on THIS vehicle vs sealed D1 bar >=15/25",
+  "corpora": {
+   "q38_field_v1": "19/25",
+   "budget_t3_v1": "23/25",
+   "p1_notes_v1": "19/25",
+   "execwm_v1": "19/25"
+  },
+  "margin": "15/25 field-floor games have max_stuck_run>=7; H would need to exceed 7 before delivery reaches the bar",
+  "negative_control": "6/25 correctly REFUSE and they are exactly the prompt clearers (sb26 clears 7 levels, never arms)",
+  "proxy_validation": "turn reconstruction reproduces the independent perturn instrument EXACTLY (424/424 acting turns, 17.0/game)",
+  "caveat": "sb26 is a refuser and carries 50.4% of the field floor's mean_score -- P2 cannot lift our best game by construction"
+ },
+ "built": {
+  "a": "trigger leg + retry_mode/episodes_available on the tool result",
+  "b": "attempt() announced in _PYTHON_TOOL_DESCRIPTION via the VEHICLE-verified anchor",
+  "c": "[p2] reset semantics OK boot check asserting RESET-always-legal in the MOUNTED bundle",
+  "d": "notebook cell at index 6; 12 cells",
+  "e": "D2 USE instrument: AST-counted attempt() CALLS split armed/unarmed, flushed per game to a job-dir report"
+ },
+ "bugs_found_and_fixed_pre_push": [
+  "cross-game state leakage: _ensure_session keys on state_path.parent, but the shipped layout can put every game's runtime_state in ONE artifacts dir, so `cleared` would have accumulated across the benchmark and PERMANENTLY disabled retry after the 4th clear anywhere. Now keyed on the resolved (run_root, game_stem). Covered by T12.",
+  "D2 report written only to stdout would have been unevaluable under the P1 0-byte-log class; now flushed to <run_root>/p2/<game>.json. Covered by T13."
+ ],
+ "gates": {
+  "local_gate --arm p2 --full": "PASS 57/0 (warn 2, skip 3)",
+  "p2_smoke (episode leg)": "18/18",
+  "p2_trigger_smoke": "50/50",
+  "p2_score selftest": "33/33 incl. healthy positive control, 5 certification refusals, 9 cross-arm refusals, D1/D2 independent refusals, 6 REAL foreign artifacts refused",
+  "p2_cell_smoke": "20/20 EXECUTING THE REAL NOTEBOOK CELL off-Kaggle with 4 loud-death negative controls (late import, missing bundle, broken RESET invariant, tampered sha)"
+ },
+ "pullback": "metadata EXACT (model_sources survived); patch cell byte-identical remote; p2 remote MINUS the patch cell is byte-identical to the certified floor's own remote copy (0 differing cells)",
+ "head_rule": "SEALED PRE-DATA in learnings/war_room/p2_head_rule_2026-08-26.md: heads tonight iff COMPLETE by 18:00 EDT and p2_score verdict is exactly CERTIFIED; a DELIVERED-NOT-USED arm is the floor MINUS ~10% tokens and does not earn the draw",
+ "read_tomorrow": "comparator lc mean 29.0 pooled sd 2.80 (re-derive); D2 is the risk, not D1"
+}

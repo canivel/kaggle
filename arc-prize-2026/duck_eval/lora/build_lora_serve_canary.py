@@ -181,14 +181,23 @@ def _lora_install_guard() -> None:
     the patch until `vllm.lora.worker_manager` is actually imported. Best-effort and REPORTED:
     the primary evidence is the noop/probe differential, which detects a silent ignore
     behaviourally. A guard that fails to install must not cost a GPU-hour."""
+    # v1 DIED HERE. This body runs in the setup command's own `python -` process, which does
+    # NOT share the notebook's namespace -- `_source_path_entries` and `BUNDLE_DIR` are cell-8
+    # names and referencing them raised NameError before the server log was even opened.
+    # Resolve the guard from the mounted input tree instead, and never let this function be
+    # able to fail the run: it is belt-and-braces, the differential is the real evidence.
     guard_src = None
-    for base in _source_path_entries(BUNDLE_DIR):
-        candidate = Path(base) / 'inference' / 'tools' / 'vllm_runtime_lora_guard.py'
-        if candidate.is_file():
+    for root in (Path('/kaggle/input'), Path('/kaggle/input/datasets')):
+        if not root.exists():
+            continue
+        for candidate in root.rglob('inference/tools/vllm_runtime_lora_guard.py'):
             guard_src = candidate
             break
+        if guard_src is not None:
+            break
     if guard_src is None:
-        print('LORA-CANARY guard=NOT-FOUND (vllm_runtime_lora_guard.py absent from the bundle)', flush=True)
+        print('LORA-CANARY guard=NOT-FOUND (vllm_runtime_lora_guard.py not under /kaggle/input)',
+              flush=True)
         return
     SITE_PACKAGES.mkdir(parents=True, exist_ok=True)
     (SITE_PACKAGES / '_arc3_lora_guard.py').write_text(guard_src.read_text(), encoding='utf-8')
@@ -436,8 +445,11 @@ def _setup_rewrites(shas: dict[str, str]) -> list[tuple[str, str]]:
         ),
         (
             "def start_vllm_server() -> None:\n    install_vllm_wheelhouse()",
+            # v1 lesson: the guard is belt-and-braces and must never be able to fail the run.
             "def start_vllm_server() -> None:\n    install_vllm_wheelhouse()\n"
-            "    _lora_install_guard()",
+            "    try:\n        _lora_install_guard()\n"
+            "    except Exception as _guard_exc:\n"
+            "        print('LORA-CANARY guard=SKIPPED ' + repr(_guard_exc)[:200], flush=True)",
         ),
         # run the canary after the stock smoke test
         (
@@ -509,6 +521,48 @@ def _build_cell8_block(rewrites: list[tuple[str, str]]) -> str:
     )
 
 
+def _assert_names_resolve(body: str) -> None:
+    """Static scope gate. `compile()` catches syntax errors, NOT unresolved names.
+
+    v1 of this canary ERRORed on the real rail because the injected guard called
+    `_source_path_entries(BUNDLE_DIR)` -- both are NOTEBOOK cell-8 names, while the setup
+    command runs in its own `python -` process with a separate namespace. It compiled
+    perfectly, installed the wheelhouse, and died at runtime ~1 GPU-h in, before the vLLM
+    server log was even opened. This gate turns that class of bug into a build failure.
+    """
+    import ast as _ast
+    import builtins
+
+    tree = _ast.parse(body)
+    defined: set[str] = set()
+    for node in _ast.walk(tree):
+        if isinstance(node, (_ast.FunctionDef, _ast.AsyncFunctionDef, _ast.ClassDef)):
+            defined.add(node.name)
+        elif isinstance(node, _ast.Name) and isinstance(node.ctx, _ast.Store):
+            defined.add(node.id)
+        elif isinstance(node, _ast.alias):
+            defined.add((node.asname or node.name).split(".")[0])
+        elif isinstance(node, _ast.arg):
+            defined.add(node.arg)
+        elif isinstance(node, _ast.ExceptHandler) and node.name:
+            defined.add(node.name)          # `except X as e` binds e inside the handler
+        elif isinstance(node, _ast.comprehension):
+            for sub in _ast.walk(node.target):
+                if isinstance(sub, _ast.Name):
+                    defined.add(sub.id)
+    used = {n.id for n in _ast.walk(tree)
+            if isinstance(n, _ast.Name) and isinstance(n.ctx, _ast.Load)}
+    missing = sorted(used - defined - set(dir(builtins)))
+    if missing:
+        raise SystemExit(
+            "FATAL: the rewritten setup command references names it does not define: "
+            + ", ".join(missing)
+            + "\n  These are almost certainly NOTEBOOK-scope names. The setup command is a"
+            "\n  SEPARATE process (`python - <<PYSETUP`) and cannot see cell 8's namespace."
+        )
+    print(f"setup-command name resolution: OK ({len(used)} loaded names, 0 unresolved)")
+
+
 def _replace_once(text: str, old: str, new: str, label: str) -> str:
     count = text.count(old)
     if count != 1:
@@ -572,7 +626,9 @@ def main() -> int:
         raise SystemExit("FATAL: rewritten setup command is no longer a quoted PYSETUP heredoc")
     if "PYSETUP" in "\n".join(lines[1:-1]):
         raise SystemExit("FATAL: injected code contains the PYSETUP heredoc sentinel")
-    compile("\n".join(lines[1:-1]), "setup_command", "exec")
+    body = "\n".join(lines[1:-1])
+    compile(body, "setup_command", "exec")
+    _assert_names_resolve(body)
     print(f"setup-command rewrite validated locally: {len(rewrites)} anchors, "
           f"{len(text):,} B, compiles clean")
 

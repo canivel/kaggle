@@ -1,0 +1,32 @@
+{
+  "timestamp": 1775217382,
+  "n_games": 10,
+  "time_per_game": 60,
+  "best": "productive_first",
+  "results": {
+    "random": {
+      "avg_rhae": 2.8010781564262905e-05,
+      "avg_levels": 0.2,
+      "avg_actions": 5000.0,
+      "elapsed": 40.44792556762695
+    },
+    "systematic": {
+      "avg_rhae": 4.062523803020526e-06,
+      "avg_levels": 0.2,
+      "avg_actions": 5000.0,
+      "elapsed": 36.47187280654907
+    },
+    "productive_first": {
+      "avg_rhae": 0.0021059732455865872,
+      "avg_levels": 0.2,
+      "avg_actions": 5000.0,
+      "elapsed": 46.147639989852905
+    },
+    "click_objects": {
+      "avg_rhae": 0.00047277649708370764,
+      "avg_levels": 0.2,
+      "avg_actions": 5000.0,
+      "elapsed": 42.42584419250488
+    }
+  }
+}

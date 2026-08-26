@@ -1,0 +1,4 @@
+## 4. Import the bundled source and run solver setup
+
+Put the snapshotted repositories on the path (this process and any child processes), then run
+the solver's setup commands — installing wheels, fetching model weights, and so on.

@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Identify the Agent",
+    "description": "This is a visual identification puzzle played on a 64x64 board where the player moves a colored square token with WASD. The goal in each level is to guide the controllable token onto a separate target token, but the presentation changes enough that the player has to correctly track which object is the real agent. Level 1 should be a very open board with one agent token and one target token in different colors so the control relation is obvious. Level 2 should keep the board open but use a smaller token size and more visual ambiguity, so recognizing the controllable object matters more than raw movement. Level 3 should add one collectible cross that must be picked up before standing on the target counts as success, so the player has to combine identification with a short route-planning task. Keep the board otherwise uncluttered, make the target stationary, and ensure the critical challenge is reading which object is yours rather than fighting obstacles.",
+    "num_levels": 3
+  },
+  {
+    "title": "Rotate Pattern",
+    "description": "This is a pattern-matching puzzle on a fixed 64x64 display where the player uses left and right rotation inputs to align a movable shape with a reference shape shown beside it. Pressing the left key rotates the active pattern counterclockwise, pressing the right key rotates it clockwise, and pressing SPACE confirms only when the current orientation matches. Each level presents the target pattern on one side and the player's rotated copy on the other, with a small indicator button showing whether the shapes currently agree. Level 1 should teach the basic 90-degree rotation rule with a small asymmetric 3x3 pattern. Later levels should vary the presentation with changed colors, larger patterns, a star-like pattern that rotates in 45-degree steps instead of 90-degree steps, and one level where the target and active pattern are drawn at different scales. Keep the comparison clean and side-by-side so the puzzle is about visual rotation and confirmation timing rather than navigation.",
+    "num_levels": 5
+  },
+  {
+    "title": "Path Finder",
+    "description": "This is a maze-navigation game where the player moves with WASD from a marked start cell to a goal cell through fixed wall layouts. The challenge is purely about finding a valid route through increasingly large labyrinths, with no pushing, enemies, or hidden mechanics. Level 1 should be extremely small so the player immediately understands that walls are solid and the goal ends the level. Later levels should scale up from compact mazes to much larger layouts that still remain fully visible, so the main skill becomes tracing corridors and committing to the correct branch sequence. Because the game is deterministic and movement-only, the presentation should emphasize readability: strong wall contrast, a clear start marker, and a goal tile that is easy to spot even when the route is long. The core loop is simple path planning under clean geometric constraints.",
+    "num_levels": 5
+  },
+  {
+    "title": "Stack Equalizer",
+    "description": "This is a click-based balancing puzzle where two vertical block stacks sit on platforms and the player equalizes them by clicking transfer buttons. Clicking the left button moves one top block from the right stack onto the left stack, and clicking the right button moves one top block from the left stack onto the right stack. The level is solved as soon as both stack heights match exactly. Level 1 should start with a modest imbalance so the transfer rule is obvious after one or two clicks. Level 2 should use a much larger difference, teaching that repeated transfers are needed and that the player can overshoot if they stop counting. Level 3 should use even thinner blocks and a more extreme imbalance so the final equal target is less visually immediate and the player has to reason about the counts. Keep the layout symmetric and the buttons directly under the corresponding platforms so the one-step transfer logic is instantly legible.",
+    "num_levels": 3
+  },
+  {
+    "title": "Memory",
+    "description": "This is a sequence-memory puzzle on a walled grid where the player moves with WASD, must visit colored pads in the correct order, and then explicitly finalize the level with a click followed by SPACE. The player starts in the center of the board and each level contains an ordered set of pads that must be touched from first to last without stepping on a later pad too early. The number of required pads increases by one each level, so the game steadily shifts from simple recall to route planning around several remembered targets. After the sequence is completed, the player must click their current cell and then press SPACE to confirm completion, making the end condition deliberate rather than automatic. Level 1 should contain only one target pad so the full interaction loop is learned quickly. By later levels, the board should contain many distinct pads with a stable layout for the episode, so the challenge becomes remembering the revealed order and navigating it cleanly without accidental mistakes.",
+    "num_levels": 9
+  },
+  {
+    "title": "Taps",
+    "description": "This is a click-order puzzle where several target cells appear on a grid and the player must click them in the exact required sequence. Only the next valid target is highlighted as active; all other targets remain inactive until it is their turn. Clicking the correct active target removes it and advances the sequence, while clicking any wrong target immediately resets the whole level back to the first target. The levels should scale by increasing board size and by increasing the total number of targets that must be clicked in order, so later rounds become tests of visual scanning and sustained precision rather than discovery of new mechanics. Level 1 should use a very small grid with just a few targets. By the final levels, the target count should be high enough that one mistake near the end feels costly, making accurate sequence tracking the central challenge.",
+    "num_levels": 8
+  },
+  {
+    "title": "Easy Taps",
+    "description": "This is a minimal click-accuracy game where each level contains exactly one target on a blank 64x64 field and the player advances by clicking it. A successful click changes the target to a success color and then moves to the next level on the following step, so the interaction is immediate and unambiguous. The challenge comes only from locating and clicking a single small colored cell at a new position each round. Level progression should therefore be simple and consistent: one target per level, no decoys, no penalties other than missing the click, and a fresh target location each time. Because the mechanic is intentionally stripped down, the design should rely on strong color contrast and fully empty backgrounds so every round reads as a pure perception-and-precision task.",
+    "num_levels": 10
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "prereg": "learnings/war_room/armA_prereg_2026-08-21.md (sealed pre-push; verdict same day ~14:55 EDT)",
+  "kernel": "canivel/arc3-q38-private-eval",
+  "version": 1,
+  "date": "2026-08-21",
+  "mechanism": "ARM A: harness-generation isolation - the field-floor composition (Q38 repacked model, xhigh default, yield 60) with ONE variable changed: Jakob's 08-15 bundle (jakobbrggen/taaf-kaggle-source, vendor-pinned source-identical) replaces the 08-07 anim bundle. Vehicle = private-arm lane's staged base-pure build, adopted after a full untrusted-artifact audit (their selftest 32/32 re-run; smoke 37/37 under real wheels; base = FOYSAL bytes; edges OFF as literals).",
+  "sealed_reading_rule": "PRIMARY lc_total vs n=1 comparator 28 (q38_field_v1): HARM <= 23, NULL 24-32, SIGNAL >= 33 (1-sigma screens, diff-SD 5.011, type-I ~16%/side declared). Head gate separate: certified AND lc >= 28 AND terminal by 18:00. sb26 8/8 watch item sealed in.",
+  "measured": {
+    "certification": "PASSED (base row: bundle generation model-20260815-q38-p1; served Qwen/Qwen3.8-27B-FP8; no effort pin; banner ctx 32768/31744/65536; contract inactive; n=25)",
+    "lc_total": 30,
+    "mean_score": 5.686,
+    "total_actions": 1463,
+    "games_won": 0,
+    "per_game_lc_max": 4,
+    "comparator": {
+      "lc": 28,
+      "mean_score": 6.173,
+      "actions": 1639
+    },
+    "sb26_watch": "did not reach 8/8; banking remains unreachable (0 wins, n=545 runs)"
+  },
+  "instrument_note": "The incoming scorer's benchmark reader used its OWN fixture key 'games' while the real taaf artifact writes 'game_runs' - the first certify returned a FALSE INFRA DEATH (n_games 0). Fixed at both call sites, fixtures made real-shaped, selftest re-run 32/32, all BEFORE any effect size was seen (the certify stage precedes the number read by design). Fourth instance of the campaign's 'internal consistency is not correctness' class; first in an incoming artifact. The actions/score reader shared the defect; secondaries were direct-computed from benchmark.json.",
+  "why_informative": "The decisive isolation the 08-21 morning HARM demanded, and it answers cleanly: lc 30 on the 08-15 harness vs 28 on the 08-07 harness is noise-level equivalence - the harness-generation capability jump is June-30 -> 08-07+ (18 -> 28/30), and the 08-15 refresh adds NOTHING on levels. This kills 'newer bundle' as the explanation for Tufa's 2.07->2.97 on our evidence and narrows the 2.5+ tier's residual to unknown private machinery. It also completes the three-point attribution: engine alone (medium/June-30) REFUTED; grafts-on-June-30 flat; harness 08-07+ carries the floor; beyond-floor remains dark. Head consequence: gate technically passed but the SIGNAL premise did not materialize AND the artifact class has no daemon-preflight path - recommendation logged to keep the rail-proven field-eval redraw; escalated with an 18:15 deadline."
+}

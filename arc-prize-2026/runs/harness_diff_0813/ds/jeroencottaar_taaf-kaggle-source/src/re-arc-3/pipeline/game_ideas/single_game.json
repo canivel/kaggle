@@ -1,0 +1,7 @@
+[
+  {
+    "title": "Shrink to Fit",
+    "description": "A block on a grid is too large to fit through a narrow gap. Use resizing (shrink) to make it small enough to pass through and reach the goal tile.",
+    "num_levels": 2
+  }
+]

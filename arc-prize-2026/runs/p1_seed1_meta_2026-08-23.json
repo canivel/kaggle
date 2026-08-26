@@ -1,0 +1,39 @@
+{
+ "mechanism": "A persistent 'notes' dict injected into the python-tool sandbox globals, surviving across tool calls within one game, advertised to the model via ONE clause in the python tool's JSON schema description ('notes is a dict that persists across tool calls within this game; everything else is ephemeral'). Intended to give the agent a working memory channel it currently lacks.",
+ "summary": "P1 seed 1 (canivel/arc3-p1-notes-eval v1) COMPLETED 2026-08-22 and was never pulled; pulled and read 2026-08-23 at zero GPU. The patch APPLIED -- the kernel wrote out its patched source tree (p1_patched/ARC3-Inference/) containing all three [notes] prints and the swapped tool description verbatim -- and the run was healthy (25 games, 1502 actions, all state=gave_up on the 7920s clock). But the model referenced the injected namespace only 5 times across all 25 per-game transcripts, against ~400 acting turns measured by the validated cadence instrument (16.0 acting turns/game median x 25) = ~1.3% write-rate, or 3.4% against the most conservative denominator (148 <tool_call> markers). The sealed bar is 30%. Descriptive outcome, explicitly NOT read as a verdict (seed 1 alone never produces an lc verdict, n=1 MDE 11.1): lc_total 27, mean_score 4.762, trim1 4.057, vs comparator mean 29.0 / pooled sd 2.80. Certification could not be completed as sealed because the Kaggle API returned a 0-byte kernel log on two independent pulls while every other retained pull carries 250KB+, so the log-marker certification is unevaluable and strictly reads INFRA DEATH (death #1; two parks the arm).",
+ "lesson": "DELIVERY-WITHOUT-USE, 5th instance: the channel was armed, reachable and present in the running code, and the model essentially never touched it. An affordance advertised ONLY inside a tool-call JSON schema description is not advertised -- the transcripts show the model reading the stock guidance block ('Cross-level notes:' 159 hits, stock text, not ours) while ignoring our clause. This is direct evidence that the campaign's open question 'forgetting REFUTED or DELIVERY-WITHOUT-USE?' lands on DELIVERY-WITHOUT-USE. Two operational lessons ride along: (1) a COMPLETED kernel that is never pulled is indistinguishable from one that never ran -- P1 sat unread while the weekend lanes planned to spend Monday slot 2 on its seed 2; (2) benchmark.json 'label' does NOT identify an arm -- P1's artifact and the certified field floor's carry the byte-identical 'anim-20260807-anim-25g-p1', where the trailing -p1 is PASS 1, not the P1 arm.",
+ "delivery": {
+  "write_rate_proxy_pct": 1.3,
+  "conservative_denominator_pct": 3.4,
+  "sealed_threshold_pct": 30,
+  "numerator_notes_writes": 5,
+  "acting_turns_est": 400
+ },
+ "cadence_instrument": {
+  "tokens_per_acting_turn": 4805,
+  "acting_turns_per_game_median": 16.0,
+  "actions_per_game_median": 54.0,
+  "actions_per_turn_pooled": 3.41,
+  "field_floor_comparator": {
+   "tokens_per_acting_turn": 4961,
+   "acting_turns_per_game_median": 18.0,
+   "actions_per_game_median": 60.0,
+   "actions_per_turn_pooled": 3.87
+  }
+ },
+ "descriptive_outcome": {
+  "lc_total": 27,
+  "mean_score": 4.762,
+  "trim1": 4.057,
+  "actions": 1502,
+  "n_games": 25,
+  "comparator_mean": 29.0,
+  "pooled_sd": 2.8
+ },
+ "consequence": "Monday slot 2 must NOT be P1 seed 2. A DELIVERY FAILURE seals to re-scope-never-re-read; the INFRA reading seals to re-run-not-advance. Both refuse seed 2. Recommended: Mon slot 1 = C1 cadence-effort seed 1 (unchanged, anchor verified present exactly once offline); Mon slot 2 = C1 seed 2 or P2 seed 1, coordinator's call.",
+ "artifacts": [
+  "runs/kernel_pulls/p1_notes_v1/",
+  "learnings/war_room/p1_seed1_read_2026-08-23.md",
+  "learnings/daily_brief_2026-08-23.md"
+ ]
+}

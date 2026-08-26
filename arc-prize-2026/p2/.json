@@ -1,0 +1,16 @@
+{
+ "run": 4,
+ "level": 1,
+ "cleared": 0,
+ "armed_turns": 1,
+ "acting_turns": 4,
+ "attempt_calls_armed": 1,
+ "attempt_calls_unarmed": 0,
+ "turns_calling_attempt_armed": 1,
+ "ever_armed": true,
+ "max_run": 4,
+ "d2_use_rate": 1.0,
+ "H": 4,
+ "K": 5,
+ "cap": 40
+}

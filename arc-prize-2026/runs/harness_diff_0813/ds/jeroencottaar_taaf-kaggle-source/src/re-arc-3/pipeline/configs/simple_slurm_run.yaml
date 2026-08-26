@@ -1,0 +1,7 @@
+idea_json: pipeline/game_ideas/new_simple_games.json
+executor: slurm
+model: gpt-5.5
+reasoning_effort: medium
+implementation_backend: codex
+implementation_prompt_path: pipeline/prompts_and_schemas/codex_check_visual_prompt.md
+spec_instructions_path: pipeline/prompts_and_schemas/spec_prompt.md

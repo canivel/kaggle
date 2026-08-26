@@ -1,0 +1,22 @@
+{
+  "id": "canivel/aimo3-v38-nodiversity",
+  "title": "AIMO3 v38 no diversity",
+  "code_file": "submission_v38.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": false,
+  "competition_sources": [
+    "ai-mathematical-olympiad-progress-prize-3"
+  ],
+  "model_sources": [
+    "danielhanchen/gpt-oss-120b/Transformers/default/1"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": [
+    "andreasbis/aimo-3-utils"
+  ],
+  "keywords": [],
+  "machine_shape": "NvidiaH100"
+}

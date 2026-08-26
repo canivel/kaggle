@@ -1,0 +1,27 @@
+{
+  "id": "nihilisticneuralnet/44-50-let-me-over-cook",
+  "id_no": 106812578,
+  "title": "[44/50] LET ME (over)COOK!!!",
+  "code_file": "44-50-let-me-over-cook.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "gpu"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": [
+    "andreasbis/aimo-3-utils"
+  ],
+  "competition_sources": [
+    "ai-mathematical-olympiad-progress-prize-3"
+  ],
+  "model_sources": [
+    "danielhanchen/gpt-oss-120b/Transformers/default/1"
+  ],
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:536e3d9752ddf933ae83b0a0c3ea67d38e6236db11a1cd47d84927a0b8d2c440",
+  "machine_shape": "NvidiaH100"
+}

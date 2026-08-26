@@ -1,0 +1,30 @@
+{
+ "mechanism": "Executable world model: mine per-action object-delta rules from recorded history, verify them prequentially against held-out transitions, BFS-plan inside the verified program, and fall back PER LEVEL to the stock LLM agent. On the scored rail it cleared ls20 level 1 BY PLAN with llm_calls=0 and llm_tokens=0 (4 move rules at precision 1.0, n=33/21/23/19) -- the CPU proof transferred to Kaggle exactly. But the arm fell back on 31 of 32 in-scope levels: 14 levels produced ZERO candidate rules after the FULL 16-20 probe budget, and on 9 more the verifier refused every candidate (24 verified / 29 rejected overall). The binding constraint is therefore UPSTREAM of the planner and upstream of the verifier -- it is object identification and rule-class coverage. lc_total 25 vs a sealed NULL band of 24-34 and a comparator of 29.0 (pooled sd 2.80); board draw 1.05.",
+ "summary": "exec-WM v1 read NULL (lc 25) with the pre-stated decisive kill NOT triggered. It banked the campaign's first level cleared by deterministic search with no LLM in the loop, and it located its own defect precisely: the rule class is NARROW, not under-budgeted.",
+ "lesson": "TWO transferable lessons. (1) A DELIVERY GATE MUST COUNT ARM-REACHABILITY, NOT REPORT-PRESENCE, whenever the arm has a legitimate self-disable path. D1 failed 18/25 here purely because 7 click-only games were CORRECTLY refused by an arm that only models keyboard movement -- and emitted no report when disabled. The gate counted a correct refusal as a delivery failure. The gate is recorded FAILED as sealed rather than rewritten post-hoc; what changes is the next prereg. Same family as the 2026-08-20 arm-mismatch lesson, where two sealed scorers both returned INFRA DEATH on a healthy arm because one arm is defined by a marker being PRESENT and the other by its ABSENCE. (2) WHEN AN ARM FALLS BACK, READ *WHY* PER LEVEL BEFORE PROPOSING A V2. The probe histogram {4:2, 8:2, 16:11, 18:1, 20:16} shows the failing levels spent their FULL budget and still mined nothing, which arithmetically CLOSES 'raise the probe budget' as a v2 -- the obvious tweak, and the wrong one.",
+ "arm": "exec-WM v1",
+ "exp_supersedes": 50,
+ "kernel": "canivel/arc3-execwm-eval v1",
+ "board_draw": 1.05,
+ "lc_total": 25,
+ "trim1": 2.33,
+ "mean_score": 3.006,
+ "band": "NULL (24-34)",
+ "comparator": {
+  "mean": 29.0,
+  "pooled_sd": 2.8,
+  "z": -1.43
+ },
+ "delivery": {
+  "D1": "FAIL-as-written 18/25 (spec defect; 25/25 ARMED, 7 self-disabled)",
+  "D2": "PASS 5 games reached PHASE P (bar 3)",
+  "D3": "not triggered",
+  "D4": "PASS"
+ },
+ "instrument_defects": [
+  "D1 counts report-presence, not arm-reachability",
+  "execwm_score.py reports disabled_games=0 because it counts disabled_reason only over PRESENT reports; the true count is 7 and is recoverable only from the log"
+ ],
+ "prestated_v2_constraint": "a v2 may NOT be a probe-budget tweak; it must widen the rule class / object model (click-addressable objects, non-constant deltas, multi-object dynamics)",
+ "open_bug": "sb26 received 4 probes and bp35 8, against a 16-20 budget everywhere else; sb26 carries 50.4% of the certified field floor's mean_score"
+}

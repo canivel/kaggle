@@ -1,0 +1,13 @@
+official_description_paths:
+  - docs/arc_official_description/ft09_flip_tiles.md
+  - docs/arc_official_description/ls20_locksmith.md
+  - docs/arc_official_description/vc33_valvecheck.md
+
+official_description_num_levels: 8
+
+model: gpt-5.5
+reasoning_effort: medium
+implementation_backend: codex
+
+implementation_prompt_path: pipeline/prompts/codex_check_visual_prompt.md
+spec_instructions_path: pipeline/prompts/game_generation_from_official.md

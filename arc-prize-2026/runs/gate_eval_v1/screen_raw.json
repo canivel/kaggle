@@ -1,0 +1,288 @@
+{
+  "arm": "boristown readiness-gate (kernel pull gate_eval_v1, offline eval build)",
+  "seeds": 1,
+  "n_games": 25,
+  "scorer_validation_max_err": 0.0,
+  "mechanism": {
+    "log": "arc3-duck-gate-eval.log",
+    "armed": true,
+    "fired": true,
+    "boris_ready": true,
+    "latency_s": 0.0,
+    "latency_ok": true
+  },
+  "primary_dlc": {
+    "mean": 0.112,
+    "sd_games": 0.3527510926040249,
+    "signflip_p_pos": 0.07037353515625,
+    "signflip_p_neg": 0.9439849853515625,
+    "wins": 9,
+    "losses": 7
+  },
+  "secondary_dlog1p": {
+    "mean": -0.09783302795379525,
+    "signflip_p_pos": 0.8643131256103516
+  },
+  "worst_game": {
+    "game": "cn04",
+    "dlc": -0.5
+  },
+  "nonharm_verdict": {
+    "mechanism_fired": true,
+    "dlc_not_materially_negative": true,
+    "PASS": true,
+    "criterion": "mechanism fires (armed+fired+boris-ready, latency<=180s) AND \u0394lc not significantly<0 (one-sided sign-flip p_neg>=0.05) AND no game collapses >1 lvl vs null"
+  },
+  "per_game": [
+    {
+      "game": "ar25",
+      "gate_lc": 1,
+      "null_lc": 1.1,
+      "dlc": -0.10000000000000009,
+      "gate_rhae": 0.15155013290236263,
+      "null_rhae": 3.26110278254817,
+      "dlog1p": -1.3084190195516163,
+      "flags": "-"
+    },
+    {
+      "game": "bp35",
+      "gate_lc": 1,
+      "null_lc": 0.8,
+      "dlc": 0.19999999999999996,
+      "gate_rhae": 0.34887860448558206,
+      "null_rhae": 0.2518355919135747,
+      "dlog1p": 0.07466263622215835,
+      "flags": "-"
+    },
+    {
+      "game": "cd82",
+      "gate_lc": 0,
+      "null_lc": 0.2,
+      "dlc": -0.2,
+      "gate_rhae": 0.0,
+      "null_rhae": 0.17875235290919445,
+      "dlog1p": -0.16445655106889914,
+      "flags": "-"
+    },
+    {
+      "game": "cn04",
+      "gate_lc": 0,
+      "null_lc": 0.5,
+      "dlc": -0.5,
+      "gate_rhae": 0.0,
+      "null_rhae": 1.6231695513299746,
+      "dlog1p": -0.9643833390281953,
+      "flags": "-"
+    },
+    {
+      "game": "dc22",
+      "gate_lc": 0,
+      "null_lc": 0,
+      "dlc": 0,
+      "gate_rhae": 0.0,
+      "null_rhae": 0.0,
+      "dlog1p": 0.0,
+      "flags": "-"
+    },
+    {
+      "game": "ft09",
+      "gate_lc": 2,
+      "null_lc": 1.4,
+      "dlc": 0.6000000000000001,
+      "gate_rhae": 8.904761904761905,
+      "null_rhae": 10.20201302773192,
+      "dlog1p": -0.12307785479174393,
+      "flags": "-"
+    },
+    {
+      "game": "g50t",
+      "gate_lc": 0,
+      "null_lc": 0,
+      "dlc": 0,
+      "gate_rhae": 0.0,
+      "null_rhae": 0.0,
+      "dlog1p": 0.0,
+      "flags": "-"
+    },
+    {
+      "game": "ka59",
+      "gate_lc": 1,
+      "null_lc": 0.4,
+      "dlc": 0.6,
+      "gate_rhae": 0.9602194787379972,
+      "null_rhae": 0.49059362466560835,
+      "dlog1p": 0.27388199949052094,
+      "flags": "-"
+    },
+    {
+      "game": "lf52",
+      "gate_lc": 1,
+      "null_lc": 0.9,
+      "dlc": 0.09999999999999998,
+      "gate_rhae": 1.8181818181818181,
+      "null_rhae": 1.390724906595323,
+      "dlog1p": 0.16449530353310937,
+      "flags": "-"
+    },
+    {
+      "game": "lp85",
+      "gate_lc": 1,
+      "null_lc": 1,
+      "dlc": 0,
+      "gate_rhae": 2.7777777777777777,
+      "null_rhae": 2.476865243342516,
+      "dlog1p": 0.08300485159356352,
+      "flags": "-"
+    },
+    {
+      "game": "ls20",
+      "gate_lc": 0,
+      "null_lc": 0.3,
+      "dlc": -0.3,
+      "gate_rhae": 0.0,
+      "null_rhae": 0.6152750510109906,
+      "dlog1p": -0.47950525239700376,
+      "flags": "-"
+    },
+    {
+      "game": "m0r0",
+      "gate_lc": 0,
+      "null_lc": 0,
+      "dlc": 0,
+      "gate_rhae": 0.0,
+      "null_rhae": 0.0,
+      "dlog1p": 0.0,
+      "flags": "-"
+    },
+    {
+      "game": "r11l",
+      "gate_lc": 1,
+      "null_lc": 1,
+      "dlc": 0,
+      "gate_rhae": 4.761904761904762,
+      "null_rhae": 3.520479251675833,
+      "dlog1p": 0.24265009051804798,
+      "flags": "-"
+    },
+    {
+      "game": "re86",
+      "gate_lc": 1,
+      "null_lc": 1.3,
+      "dlc": -0.30000000000000004,
+      "gate_rhae": 2.7777777777777777,
+      "null_rhae": 2.566766897081379,
+      "dlog1p": 0.05747639288961137,
+      "flags": "-"
+    },
+    {
+      "game": "s5i5",
+      "gate_lc": 1,
+      "null_lc": 0.1,
+      "dlc": 0.9,
+      "gate_rhae": 0.7305135510263714,
+      "null_rhae": 0.021433470507544586,
+      "dlog1p": 0.5272112108224211,
+      "flags": "-"
+    },
+    {
+      "game": "sb26",
+      "gate_lc": 1,
+      "null_lc": 1,
+      "dlc": 0,
+      "gate_rhae": 2.7777777777777777,
+      "null_rhae": 2.7777777777777777,
+      "dlog1p": 0.0,
+      "flags": "-"
+    },
+    {
+      "game": "sc25",
+      "gate_lc": 0,
+      "null_lc": 0.2,
+      "dlc": -0.2,
+      "gate_rhae": 0.0,
+      "null_rhae": 0.15572137295092378,
+      "dlog1p": -0.1447247143394816,
+      "flags": "-"
+    },
+    {
+      "game": "sk48",
+      "gate_lc": 0,
+      "null_lc": 0.1,
+      "dlc": -0.1,
+      "gate_rhae": 0.0,
+      "null_rhae": 0.2777777777777778,
+      "dlog1p": -0.245122458032985,
+      "flags": "-"
+    },
+    {
+      "game": "sp80",
+      "gate_lc": 1,
+      "null_lc": 0.7,
+      "dlc": 0.30000000000000004,
+      "gate_rhae": 1.662731208185754,
+      "null_rhae": 1.087265309090561,
+      "dlog1p": 0.24349762138094555,
+      "flags": "-"
+    },
+    {
+      "game": "su15",
+      "gate_lc": 1,
+      "null_lc": 1,
+      "dlc": 0,
+      "gate_rhae": 2.2222222222222223,
+      "null_rhae": 2.2033186305398025,
+      "dlog1p": 0.005883908188589526,
+      "flags": "-"
+    },
+    {
+      "game": "tn36",
+      "gate_lc": 1,
+      "null_lc": 0.5,
+      "dlc": 0.5,
+      "gate_rhae": 3.571428571428571,
+      "null_rhae": 2.0528540123134715,
+      "dlog1p": 0.4037488589163507,
+      "flags": "-"
+    },
+    {
+      "game": "tr87",
+      "gate_lc": 0,
+      "null_lc": 0,
+      "dlc": 0,
+      "gate_rhae": 0.0,
+      "null_rhae": 0.0,
+      "dlog1p": 0.0,
+      "flags": "-"
+    },
+    {
+      "game": "tu93",
+      "gate_lc": 2,
+      "null_lc": 1.3,
+      "dlc": 0.7,
+      "gate_rhae": 1.2132900292377866,
+      "null_rhae": 1.5381774290298982,
+      "dlog1p": -0.13696616631848368,
+      "flags": "-"
+    },
+    {
+      "game": "vc33",
+      "gate_lc": 2,
+      "null_lc": 1.4,
+      "dlc": 0.6000000000000001,
+      "gate_rhae": 1.0029301851537284,
+      "null_rhae": 4.208513080462206,
+      "dlog1p": -0.9556832168717911,
+      "flags": "-"
+    },
+    {
+      "game": "wa30",
+      "gate_lc": 0,
+      "null_lc": 0,
+      "dlc": 0,
+      "gate_rhae": 0.0,
+      "null_rhae": 0.0,
+      "dlog1p": 0.0,
+      "flags": "-"
+    }
+  ]
+}

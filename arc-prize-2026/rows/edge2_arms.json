@@ -1,0 +1,12 @@
+{
+  "edge2-capture-contract": {
+    "lc_total": 20,
+    "mean_score": 3.14,
+    "actions": 1555
+  },
+  "base-0815": {
+    "lc_total": 30,
+    "mean_score": 5.686,
+    "actions": 1463
+  }
+}

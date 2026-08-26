@@ -1,0 +1,20 @@
+services:
+  arc-agent:
+    build:
+      context: ..
+      dockerfile: arc-prize-2026/Dockerfile
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    volumes:
+      - ./checkpoints:/app/checkpoints
+      - ./experiments:/app/experiments
+      - ./models:/app/models
+      - ./data:/app/data
+      - ./learnings:/app/learnings
+    environment:
+      - CUDA_VISIBLE_DEVICES=0

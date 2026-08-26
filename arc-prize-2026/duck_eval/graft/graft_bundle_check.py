@@ -26,10 +26,10 @@ import tempfile
 from pathlib import Path
 
 FORK_DS = "thtennant/taaf-kaggle-source-share-fork"
-AUDITED_BUNDLE_SHA = "df447f61caa181cca68049e28b139e02"
-AUDITED_GRAFTS_SHA = "7705481551494b141d6a33ffec1d7a20"
-AUDITED_N_FILES = 89
-AUDITED_N_GRAFTS = 16
+AUDITED_BUNDLE_SHA = "dde323ab4f8663c1523135301c596894"  # re-audited 2026-08-21 (checker-canonical): searchmap addition, flag-gated, inert for v19 AND v21 sets
+AUDITED_GRAFTS_SHA = "8a80c180ee6dc2f74a5070e3f5878746"  # re-audited 2026-08-21 (checker-canonical)
+AUDITED_N_FILES = 91
+AUDITED_N_GRAFTS = 18
 AUDITED_VERSION_DATE = "2026-08-17 00:26:06"
 
 # Flags whose modules must exist for the sealed arm to be installable at all.

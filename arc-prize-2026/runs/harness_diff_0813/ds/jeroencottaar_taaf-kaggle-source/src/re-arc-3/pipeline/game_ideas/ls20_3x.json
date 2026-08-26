@@ -1,0 +1,17 @@
+[
+  {
+    "title": "LS20 Locksmith 01",
+    "description": "A deterministic grid puzzle where the player controls a small connected body rather than a single cell. The puzzle should come from the body’s footprint: where it fits, what it covers, and how its shape changes the meaning of movement.",
+    "num_levels": 3
+  },
+  {
+    "title": "LS20 Locksmith 02",
+    "description": "A deterministic grid puzzle where the player controls a small connected body rather than a single cell. The puzzle should come from the body’s footprint: where it fits, what it covers, and how its shape changes the meaning of movement.",
+    "num_levels": 3
+  },
+  {
+    "title": "LS20 Locksmith 03",
+    "description": "A deterministic grid puzzle where the player controls a small connected body rather than a single cell. The puzzle should come from the body’s footprint: where it fits, what it covers, and how its shape changes the meaning of movement..",
+    "num_levels": 3
+  }
+]

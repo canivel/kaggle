@@ -1,0 +1,149 @@
+{
+  "analysis_date": "2026-07-23",
+  "kernel": "canivel/arc3-duck-sentinel-eval",
+  "pull_dir": "runs/kernel_pulls/sentinel_eval_v1/",
+  "benchmark_label": "duck-harness-kaggle-sentinel-v2",
+  "ran_utc": "2026-07-22 12:47-14:59",
+  "metric_note": "local duck-harness weighted mean score (summary.txt 'mean score'); same family across sentinel/war/w0/ledger pulls; NOT the Kaggle LB metric",
+  "prong1_score": {
+    "verdict": "NULL (negative nominal, inside baseline seed-variance, underpowered n=1)",
+    "sentinel_mean": 0.855,
+    "baseline_war_3seed_mean": 1.454,
+    "war_eval_v1": 1.579,
+    "war_eval_v2": 1.621,
+    "war_eval_v3": 1.162,
+    "w0_eval_s1": 1.731,
+    "war_v2_eval_s1": 0.893,
+    "mean_delta_vs_war3seed": -0.599,
+    "mean_delta_vs_war_eval_v1": -0.724,
+    "per_game_vs_war3mean": {
+      "wins": 6,
+      "losses": 12,
+      "ties": 7
+    },
+    "games_won": 0,
+    "pre_registration": {
+      "task_framing": "+0.06 to +0.12 (optimistic)",
+      "build_doc_honest": "+0.01 to +0.03 per draw",
+      "expected_sign": "positive"
+    },
+    "noise_drivers": {
+      "ar25_delta": -3.417,
+      "ft09_delta": -4.927,
+      "sp80_delta": -3.173,
+      "note": "three unlucky high-variance NON-TARGET draws ~= entire -15 raw-score gap; not sentinel-attributable"
+    },
+    "lb_band_note": "frozen-fork n=9 mean 0.992 sigma 0.155 is a DIFFERENT metric scale (LB draws); 0.85-vs-0.99 is a scale coincidence, not evidence"
+  },
+  "prong2_mechanism": {
+    "verdict": "PASS (clean)",
+    "sidecar_files": 22,
+    "total_events_sidecar": 56,
+    "total_events_stdout": 56,
+    "channels_agree": true,
+    "threshold_at_most_once_per_game": true,
+    "hard_cap_3_per_game_honored": true,
+    "any_duplicate_threshold": false,
+    "all_budget_150": true,
+    "cumulative_game_envelope_keying": true,
+    "fire_action_nums": {
+      "50pct": 75,
+      "75pct": 113,
+      "90pct": 135
+    },
+    "cross_attempt_cumulative_demonstrated": [
+      "ar25 (attempt 1->2)",
+      "bp35 (3->6->8)",
+      "sp80 (2->3->4)",
+      "sc25 (1->2->2)"
+    ],
+    "event_version": "v2",
+    "v1_lines_present": 0,
+    "banner_unit_game_envelope": true,
+    "sentinel_budget_set": 150,
+    "open_risk_1_uncapped_inert": "CLEARED",
+    "carrier_check": {
+      "ka59": {
+        "actions": 149,
+        "fired": 3,
+        "v1_would_miss": true
+      },
+      "re86": {
+        "actions": 251,
+        "fired": 3
+      },
+      "tu93": {
+        "actions": 50,
+        "fired": 0,
+        "reason": "under 75-action first threshold; correct non-fire"
+      }
+    }
+  },
+  "prong3_missing_sidecars": {
+    "verdict": "EXPECTED (lazy write), NOT a bug",
+    "games": {
+      "s5i5": 51,
+      "tu93": 50,
+      "vc33": 68
+    },
+    "first_threshold_action": 75,
+    "cause": "_emit_event() writes sidecar via open('a') only on a threshold crossing (budget_sentinel_patch.py L211-239); no file created at game start; file-exists iff >=1 fire",
+    "all_under_75_actions": true,
+    "stdout_events_for_these": 0,
+    "recommendation": "document invariant (file-exists <=> >=1 fire) in sealing text; optionally write empty sidecar at game-open if strict one-file-per-game invariant wanted"
+  },
+  "prong4_behavioral": {
+    "verdict": "STRONG NEGATIVE - sentinel did not change behavior",
+    "fired_games_advancing_after_first_warning": 1,
+    "fired_games_total": 22,
+    "only_advancer": "tn36",
+    "over_grinders_despite_3_warnings": {
+      "wa30": 560,
+      "sk48": 402,
+      "cn04": 380,
+      "re86": 251,
+      "sp80": 196,
+      "tr87": 189
+    },
+    "total_actions_sentinel": 4501,
+    "total_actions_war_3seed_mean": 3883,
+    "action_delta": 618,
+    "grinding_reduced": false,
+    "tu93_case": {
+      "score": 3.97,
+      "actions": 50,
+      "levels_cleared": 2,
+      "reached_level": 3,
+      "sentinel_fired": 0,
+      "ended_status": "playing (no GAME_OVER, harness stopped pass at 50)",
+      "attributable_to_sentinel": false,
+      "note": "improvement is a lucky stochastic draw; sentinel was silent throughout"
+    },
+    "label": "mechanism fires, doesn't pay (build-doc Open Risk #2)"
+  },
+  "prong5_condition4_envelope": {
+    "verdict": "PASS on this pull",
+    "tokens_per_game_mean": 64323,
+    "tokens_per_game_median": 66137,
+    "band_63k_pm15pct": [
+      53550,
+      72450
+    ],
+    "in_band": 23,
+    "n_games": 25,
+    "below_band": {
+      "s5i5": 48663,
+      "sc25": 52440
+    },
+    "above_band": {},
+    "b150_needs_rederivation": false,
+    "note": "below-band games are low-action early-ending games (fewer turns -> fewer tokens), not envelope drift; tu93 (56504) in-band"
+  },
+  "overall_verdict": {
+    "score_prong": "NULL / underpowered at n=1; refutes optimistic +0.06-0.12 framing; not a credible regression",
+    "mechanism_prong": "clean PASS; v1->v2 re-key verified live on carriers ka59/re86; provenance complete",
+    "behavior": "strong negative; fires-doesn't-pay confirmed",
+    "condition4_sealing": "envelope PASS (B=150 no re-derivation); seal mechanism half; seal score prong as NULL with fires-doesn't-pay label; (a) NOT a lift contributor on this evidence",
+    "queue_w2": "YES as $0 free-build, pre-registered as confirmatory null (expected: mean inside 1.16-1.73 baseline band, mechanism clean, behavior unchanged); do not spend W3 unless W2 surprisingly positive"
+  }
+}

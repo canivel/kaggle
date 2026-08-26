@@ -1,0 +1,66 @@
+# ARC Prize 2026 - ARC-AGI-3 Competition Configuration
+# Interactive reasoning benchmark: game-like environments, no instructions
+# Metric: RHAE (Relative Human Action Efficiency) | Milestone 1: 2026-06-30
+
+name: "ARC Prize 2026 - ARC-AGI-3"
+slug: "arc-prize-2026-arc-agi-3"
+description: "Interactive reasoning: explore game environments, discover rules, solve levels efficiently"
+
+# ARC-AGI-3 environment spec
+environment:
+  grid_size: 64          # 64x64 cells
+  color_palette: 16      # 16 possible colors per cell
+  action_space: 7        # ACTION 1-5 (simple), ACTION 6 (coordinate x,y), ACTION 7 (undo)
+  max_actions_per_level: "5x_human_baseline"
+  min_levels_per_game: 6
+  observation: "64x64 RGB frame with 16-color discrete palette"
+
+# Dataset split
+data:
+  public_envs: 25        # for development
+  semi_private_envs: 55  # for leaderboard
+  private_envs: 55       # for final evaluation
+
+evaluation:
+  metric: "rhae"         # Relative Human Action Efficiency
+  metric_direction: "maximize"
+  # S(l,e) = min(1.0, h(l,e) / a(l,e))^2
+  # h = second-best human action count, a = agent action count
+  # Environment score: weighted sum (w_l = l, later levels count more)
+  session_time_limit_min: 90
+  per_env_soft_limit_min: 20
+  per_env_hard_limit_min: 30
+
+submission:
+  competition_slug: "arc-prize-2026-arc-agi-3"
+  format: "kaggle_notebook"  # one-click runnable
+  runtime_limit_hours: 12
+  internet_access: false     # NO external API calls during eval
+  cost_limit_usd: 10000
+
+hardware:
+  gpu_device: "cuda:0"
+  gpu_memory_gb: 10.0
+  use_gpu: true
+
+experiment:
+  max_experiments: 200
+  results_file: "experiments/results.tsv"
+  checkpoint_dir: "checkpoints"
+  model_dir: "models"
+
+# Timeline
+timeline:
+  milestone_1: "2026-06-30"
+  milestone_2: "2026-09-30"
+  submissions_close: "2026-11-02"
+  results_announced: "2026-12-04"
+
+# Prize structure (ARC-AGI-3 track: $850K)
+prizes:
+  grand_prize: 700000    # first 100% score
+  top_1: 40000
+  top_2: 15000
+  top_3: 10000
+  milestone_1_prizes: [25000, 10000, 2500]
+  milestone_2_prizes: [25000, 10000, 2500]

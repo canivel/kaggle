@@ -1,0 +1,201 @@
+{
+  "config": "baseline_5step",
+  "backend": "claude_opus_agent",
+  "attempts": 1,
+  "score": "12/24",
+  "accuracy": 0.5,
+  "results": [
+    {
+      "id": "aime_i_2024_01",
+      "predicted": 36,
+      "expected": 204,
+      "correct": false,
+      "domain": "algebra",
+      "difficulty": 4
+    },
+    {
+      "id": "aime_i_2024_03",
+      "predicted": 809,
+      "expected": 809,
+      "correct": true,
+      "domain": "combinatorics",
+      "difficulty": 5
+    },
+    {
+      "id": "aime_i_2024_04",
+      "predicted": 65,
+      "expected": 116,
+      "correct": false,
+      "domain": "combinatorics",
+      "difficulty": 5
+    },
+    {
+      "id": "aime_i_2024_07",
+      "predicted": 540,
+      "expected": 540,
+      "correct": true,
+      "domain": "algebra",
+      "difficulty": 7
+    },
+    {
+      "id": "aime_i_2024_11",
+      "predicted": 371,
+      "expected": 371,
+      "correct": true,
+      "domain": "combinatorics",
+      "difficulty": 8
+    },
+    {
+      "id": "aime_ii_2024_01",
+      "predicted": 73,
+      "expected": 73,
+      "correct": true,
+      "domain": "combinatorics",
+      "difficulty": 4
+    },
+    {
+      "id": "aime_ii_2024_04",
+      "predicted": 33,
+      "expected": 33,
+      "correct": true,
+      "domain": "algebra",
+      "difficulty": 6
+    },
+    {
+      "id": "aime_ii_2024_05",
+      "predicted": 80,
+      "expected": 80,
+      "correct": true,
+      "domain": "geometry",
+      "difficulty": 6
+    },
+    {
+      "id": "aime_ii_2024_08",
+      "predicted": 127,
+      "expected": 127,
+      "correct": true,
+      "domain": "geometry",
+      "difficulty": 9
+    },
+    {
+      "id": "aime_ii_2024_13",
+      "predicted": 321,
+      "expected": 321,
+      "correct": true,
+      "domain": "algebra",
+      "difficulty": 9
+    },
+    {
+      "id": "aime_i_2025_01",
+      "predicted": 70,
+      "expected": 70,
+      "correct": true,
+      "domain": "number_theory",
+      "difficulty": 4
+    },
+    {
+      "id": "aime_i_2025_02",
+      "predicted": 1,
+      "expected": 588,
+      "correct": false,
+      "domain": "algebra",
+      "difficulty": 5
+    },
+    {
+      "id": "aime_i_2025_05",
+      "predicted": 1369,
+      "expected": 279,
+      "correct": false,
+      "domain": "geometry",
+      "difficulty": 7
+    },
+    {
+      "id": "aime_i_2025_09",
+      "predicted": 128,
+      "expected": 62,
+      "correct": false,
+      "domain": "combinatorics",
+      "difficulty": 9
+    },
+    {
+      "id": "aime_i_2025_12",
+      "predicted": 40,
+      "expected": 510,
+      "correct": false,
+      "domain": "algebra",
+      "difficulty": 8
+    },
+    {
+      "id": "aime_i_2025_03",
+      "predicted": 7087,
+      "expected": 16,
+      "correct": false,
+      "domain": "algebra",
+      "difficulty": 6
+    },
+    {
+      "id": "aime_i_2025_10",
+      "predicted": 482,
+      "expected": 81,
+      "correct": false,
+      "domain": "number_theory",
+      "difficulty": 8
+    },
+    {
+      "id": "aime_i_2025_11",
+      "predicted": 59,
+      "expected": 259,
+      "correct": false,
+      "domain": "geometry",
+      "difficulty": 8
+    },
+    {
+      "id": "aime_i_2025_13",
+      "predicted": 236,
+      "expected": 204,
+      "correct": false,
+      "domain": "number_theory",
+      "difficulty": 6
+    },
+    {
+      "id": "corpus_hard_01",
+      "predicted": 116,
+      "expected": 116,
+      "correct": true,
+      "domain": "algebra",
+      "difficulty": 7
+    },
+    {
+      "id": "corpus_hard_02",
+      "predicted": 1716,
+      "expected": 756,
+      "correct": false,
+      "domain": "geometry",
+      "difficulty": 7
+    },
+    {
+      "id": "corpus_hard_03",
+      "predicted": 150,
+      "expected": 150,
+      "correct": true,
+      "domain": "geometry",
+      "difficulty": 8
+    },
+    {
+      "id": "corpus_hard_04",
+      "predicted": 10223231,
+      "expected": 245,
+      "correct": false,
+      "domain": "number_theory",
+      "difficulty": 7
+    },
+    {
+      "id": "corpus_hard_05",
+      "predicted": 392,
+      "expected": 392,
+      "correct": true,
+      "domain": "algebra",
+      "difficulty": 7
+    }
+  ]
+}

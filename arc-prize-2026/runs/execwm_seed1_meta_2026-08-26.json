@@ -1,0 +1,50 @@
+{
+ "arm": "exec-wm v1 (executable world model)",
+ "exp_ref": 48,
+ "kernel": "canivel/arc3-execwm-eval v1",
+ "board_draw": 1.05,
+ "pull": "runs/kernel_pulls/execwm_v1",
+ "primary": {
+  "lc_total": 25,
+  "band": "NULL(24-34)",
+  "comparator_mean": 29.0,
+  "pooled_sd": 2.8,
+  "z": -1.43
+ },
+ "coprimary": {
+  "trim1": 2.33,
+  "mean_score": 3.006,
+  "total_actions": 2972,
+  "won": 0
+ },
+ "delivery": {
+  "D1": "FAIL-as-written 18/25 reports (spec defect: 7 games self-disabled no-keyboard-actions; 25/25 ARMED)",
+  "D2": "PASS 5 games reached PHASE P (bar 3)",
+  "D3": "not triggered (6 planned, 1 plan-clear)",
+  "D4": "PASS"
+ },
+ "positive_result": "ls20 L1 CLEARED BY PLAN on the scored rail with llm_calls=0, llm_tokens=0; 4 move rules precision 1.0 (n=33/21/23/19) - CPU proof transferred exactly",
+ "mechanism": {
+  "fallback_rate": 0.96875,
+  "levels_zero_candidate_rules": 14,
+  "levels_candidates_all_refused": 9,
+  "levels_verified_planned_unclear": 5,
+  "levels_cleared_by_plan": 1,
+  "rules_verified": 24,
+  "rules_rejected": 29,
+  "probe_histogram": {
+   "4": 2,
+   "8": 2,
+   "16": 11,
+   "18": 1,
+   "20": 16
+  },
+  "binding_defect": "rule-class narrowness / object identification UPSTREAM of planner; probe budget fully spent on failures so a budget tweak is CLOSED",
+  "bug": "sb26 got 4 probes and bp35 got 8 vs a 16-20 budget; sb26 carries 50.4% of the certified field floor mean_score"
+ },
+ "instrument_defects": [
+  "D1 counts report-presence not arm-reachability; a legitimate self-disable reads as delivery failure",
+  "execwm_score.py reports disabled_games=0 because it counts disabled_reason only over PRESENT reports; true count 7, recoverable only from the log"
+ ],
+ "prestated_v2_constraint": "a v2 may NOT be a probe-budget tweak; it must widen the rule class/object model (click-addressable objects, non-constant deltas, multi-object dynamics) or it is non-responsive"
+}

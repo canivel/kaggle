@@ -1,0 +1,39 @@
+{
+ "mechanism": "Leaderboard field-drift accounting: re-rank a FIXED score against our own daily full-board snapshots (runs/lb_daily/lb_full_2026-08-*.csv) instead of comparing it to our own score history. The comparison that matters is score-vs-moving-cutoff, not score-vs-personal-best.",
+ "summary": "On 2026-08-21 our ARC-AGI-3 public draw hit 1.59, the campaign's best ever (prior max 1.33, stale 33 days), and our RANK still fell relative to six days earlier: #119 at 1.33 on 08-15 vs #211 at 1.59 today. Holding 1.59 fixed, it would have ranked #21 on 08-15, #64 on 08-17, #130 on 08-19, #209 today - the same score loses about 30 places per day. Top-13 (gold) cutoff moved 1.62 -> 2.47 in six days (+0.14/day); our own best moved +0.043/day. The field is improving roughly 3x faster than we are.",
+ "lesson": "A personal-best is not progress if the cutoff you are chasing moves faster than you do. Price any leaderboard strategy against measured field drift, and price draw-exploitation as max-of-n BEFORE adopting it as a plan: our 'redraw the best config nightly' order assumed N(1.6,0.2), which caps at E[max]~1.91 at n=10 and ~2.01 at n=30 - below TODAY's 2.47 gold line, and the gold line is still climbing. Redrawing is a treadmill: a one-time ~+0.3-0.4 that the field erases in about three days. Keep it as a free floor; do not mistake it for a path to a prize.",
+ "why_informative": "This rules out an entire class of plan without any new experiment: it is arithmetic on already-collected public data, not a model of anyone's method. It says the remaining headroom in draw-exploitation of our current best config is bounded near 2.0 regardless of how many nights we spend, so the only route to a prize position is a capability step-change. It also demonstrates the measurement that produced it - keeping daily full-board snapshots so a fixed score can be re-ranked historically - which most teams do not keep and cannot reconstruct after the fact.",
+ "measured": {
+  "our_draw": 1.59,
+  "our_rank": 211,
+  "teams": 2453,
+  "prior_best": 1.33,
+  "prior_rank_at_08_15": 119,
+  "rank_of_fixed_1.59_by_day": {
+   "08-15": 21,
+   "08-16": 26,
+   "08-17": 64,
+   "08-18": 88,
+   "08-19": 130,
+   "08-20": 169,
+   "08-21": 209
+  },
+  "gold_top13_cutoff_by_day": {
+   "08-15": 1.62,
+   "08-17": 2.0,
+   "08-19": 2.24,
+   "08-21": 2.47
+  },
+  "gold_drift_per_day": 0.14,
+  "our_improvement_per_day": 0.043,
+  "redraw_ceiling_maxofn": {
+   "n10": 1.91,
+   "n30": 2.01,
+   "assumed_dist": "N(1.6,0.2)"
+  },
+  "deadline": "2026-11-02",
+  "days_left": 73
+ },
+ "robustness": "Does not depend on extrapolating the cutoff: even a FROZEN 2.47 gold line exceeds the ~2.0 redraw ceiling. Limits stated: n=1 for this config so 1.59 may itself be a high or low draw; the assumed N(1.6,0.2) draw distribution is an assumption, not a measurement; public LB only.",
+ "instrument": "runs/lb_daily/*.csv daily full-board snapshots; re-ranked by counting scores strictly above a fixed value."
+}

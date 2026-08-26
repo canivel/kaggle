@@ -37,7 +37,13 @@
       "Bash(UV_CACHE_DIR=F:/uv-cache uv run python -c \":*)",
       "Bash(UV_CACHE_DIR=F:/uv-cache HF_HOME=F:/hf-cache uv run python baseline.py --n-samples 50 --max-new-tokens 256)",
       "Bash(UV_CACHE_DIR=F:/uv-cache HF_HOME=F:/hf-cache uv run python -c \":*)",
-      "Bash(uv run python -c \":*)"
+      "Bash(uv run python -c \":*)",
+      "Bash(kaggle kernels:*)",
+      "mcp__kaos__mh_search",
+      "Bash(export PATH=\"$PATH:/c/Python313/Scripts\")",
+      "mcp__kaos__mh_start_search",
+      "Bash(uv run:*)",
+      "Bash(/c/Users/dcani/AppData/Roaming/Python/Python313/Scripts/kaggle competitions:*)"
     ]
   }
 }

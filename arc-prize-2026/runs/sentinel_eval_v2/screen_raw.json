@@ -1,0 +1,274 @@
+{
+  "arm": "war-v1 (kernel pull sentinel_eval_v2, WARPACK_FORCE_OFFLINE_BENCH=1)",
+  "seeds": 1,
+  "n_games": 25,
+  "scorer_validation_max_err": 0.0,
+  "primary_dlc": {
+    "mean": 0.032,
+    "sd_games": 0.5193906686364963,
+    "signflip_p_exact": 0.39916229248046875,
+    "wins": 7,
+    "losses": 10
+  },
+  "secondary_dlog1p": {
+    "mean": -0.16592548042654515,
+    "sd_games": 0.6156967728992436,
+    "signflip_p_exact": 0.9042825698852539
+  },
+  "war_lc_total": 16,
+  "null_lc_total_mean": 15.2,
+  "war_rhae_mean": 2.042188675609845,
+  "null_rhae_mean": 1.6360166856501779,
+  "per_game": [
+    {
+      "game": "ar25",
+      "war_lc": 0,
+      "null_lc": 1.1,
+      "dlc": -1.1,
+      "war_rhae": 0.0,
+      "null_rhae": 3.26110278254817,
+      "dlog1p": -1.4495279959232068,
+      "flags": "-"
+    },
+    {
+      "game": "bp35",
+      "war_lc": 1,
+      "null_lc": 0.8,
+      "dlc": 0.19999999999999996,
+      "war_rhae": 0.36242603550295865,
+      "null_rhae": 0.2518355919135747,
+      "dlog1p": 0.08465601252014399,
+      "flags": "-"
+    },
+    {
+      "game": "cd82",
+      "war_lc": 0,
+      "null_lc": 0.2,
+      "dlc": -0.2,
+      "war_rhae": 0.0,
+      "null_rhae": 0.17875235290919445,
+      "dlog1p": -0.16445655106889914,
+      "flags": "-"
+    },
+    {
+      "game": "cn04",
+      "war_lc": 0,
+      "null_lc": 0.5,
+      "dlc": -0.5,
+      "war_rhae": 0.0,
+      "null_rhae": 1.6231695513299746,
+      "dlog1p": -0.9643833390281953,
+      "flags": "-"
+    },
+    {
+      "game": "dc22",
+      "war_lc": 0,
+      "null_lc": 0,
+      "dlc": 0,
+      "war_rhae": 0.0,
+      "null_rhae": 0.0,
+      "dlog1p": 0.0,
+      "flags": "-"
+    },
+    {
+      "game": "ft09",
+      "war_lc": 3,
+      "null_lc": 1.4,
+      "dlc": 1.6,
+      "war_rhae": 28.57142857142857,
+      "null_rhae": 10.20201302773192,
+      "dlog1p": 0.970715147440417,
+      "flags": "-"
+    },
+    {
+      "game": "g50t",
+      "war_lc": 0,
+      "null_lc": 0,
+      "dlc": 0,
+      "war_rhae": 0.0,
+      "null_rhae": 0.0,
+      "dlog1p": 0.0,
+      "flags": "-"
+    },
+    {
+      "game": "ka59",
+      "war_lc": 1,
+      "null_lc": 0.4,
+      "dlc": 0.6,
+      "war_rhae": 3.571428571428571,
+      "null_rhae": 0.49059362466560835,
+      "dlog1p": 1.1206513073137248,
+      "flags": "-"
+    },
+    {
+      "game": "lf52",
+      "war_lc": 1,
+      "null_lc": 0.9,
+      "dlc": 0.09999999999999998,
+      "war_rhae": 1.289347771342231,
+      "null_rhae": 1.390724906595323,
+      "dlog1p": -0.04332966716305975,
+      "flags": "-"
+    },
+    {
+      "game": "lp85",
+      "war_lc": 1,
+      "null_lc": 1,
+      "dlc": 0,
+      "war_rhae": 2.7777777777777777,
+      "null_rhae": 2.476865243342516,
+      "dlog1p": 0.08300485159356352,
+      "flags": "-"
+    },
+    {
+      "game": "ls20",
+      "war_lc": 0,
+      "null_lc": 0.3,
+      "dlc": -0.3,
+      "war_rhae": 0.0,
+      "null_rhae": 0.6152750510109906,
+      "dlog1p": -0.47950525239700376,
+      "flags": "-"
+    },
+    {
+      "game": "m0r0",
+      "war_lc": 1,
+      "null_lc": 0,
+      "dlc": 1,
+      "war_rhae": 1.1517641187084886,
+      "null_rhae": 0.0,
+      "dlog1p": 0.7662880260263216,
+      "flags": "-"
+    },
+    {
+      "game": "r11l",
+      "war_lc": 1,
+      "null_lc": 1,
+      "dlc": 0,
+      "war_rhae": 4.761904761904762,
+      "null_rhae": 3.520479251675833,
+      "dlog1p": 0.24265009051804798,
+      "flags": "-"
+    },
+    {
+      "game": "re86",
+      "war_lc": 1,
+      "null_lc": 1.3,
+      "dlc": -0.30000000000000004,
+      "war_rhae": 0.03742382369614513,
+      "null_rhae": 2.566766897081379,
+      "dlog1p": -1.234919006906685,
+      "flags": "-"
+    },
+    {
+      "game": "s5i5",
+      "war_lc": 0,
+      "null_lc": 0.1,
+      "dlc": -0.1,
+      "war_rhae": 0.0,
+      "null_rhae": 0.021433470507544586,
+      "dlog1p": -0.02120700394019337,
+      "flags": "-"
+    },
+    {
+      "game": "sb26",
+      "war_lc": 1,
+      "null_lc": 1,
+      "dlc": 0,
+      "war_rhae": 2.7777777777777777,
+      "null_rhae": 2.7777777777777777,
+      "dlog1p": 0.0,
+      "flags": "-"
+    },
+    {
+      "game": "sc25",
+      "war_lc": 0,
+      "null_lc": 0.2,
+      "dlc": -0.2,
+      "war_rhae": 0.0,
+      "null_rhae": 0.15572137295092378,
+      "dlog1p": -0.1447247143394816,
+      "flags": "-"
+    },
+    {
+      "game": "sk48",
+      "war_lc": 0,
+      "null_lc": 0.1,
+      "dlc": -0.1,
+      "war_rhae": 0.0,
+      "null_rhae": 0.2777777777777778,
+      "dlog1p": -0.245122458032985,
+      "flags": "-"
+    },
+    {
+      "game": "sp80",
+      "war_lc": 1,
+      "null_lc": 0.7,
+      "dlc": 0.30000000000000004,
+      "war_rhae": 0.09935332157554377,
+      "null_rhae": 1.087265309090561,
+      "dlog1p": -0.6411326271867738,
+      "flags": "-"
+    },
+    {
+      "game": "su15",
+      "war_lc": 1,
+      "null_lc": 1,
+      "dlc": 0,
+      "war_rhae": 0.9876543209876543,
+      "null_rhae": 2.2033186305398025,
+      "dlog1p": -0.47723213414964083,
+      "flags": "-"
+    },
+    {
+      "game": "tn36",
+      "war_lc": 0,
+      "null_lc": 0.5,
+      "dlc": -0.5,
+      "war_rhae": 0.0,
+      "null_rhae": 2.0528540123134715,
+      "dlog1p": -1.1160768948280624,
+      "flags": "-"
+    },
+    {
+      "game": "tr87",
+      "war_lc": 0,
+      "null_lc": 0,
+      "dlc": 0,
+      "war_rhae": 0.0,
+      "null_rhae": 0.0,
+      "dlog1p": 0.0,
+      "flags": "-"
+    },
+    {
+      "game": "tu93",
+      "war_lc": 1,
+      "null_lc": 1.3,
+      "dlc": -0.30000000000000004,
+      "war_rhae": 0.7366595245383125,
+      "null_rhae": 1.5381774290298982,
+      "dlog1p": -0.37948282130511446,
+      "flags": "-"
+    },
+    {
+      "game": "vc33",
+      "war_lc": 2,
+      "null_lc": 1.4,
+      "dlc": 0.6000000000000001,
+      "war_rhae": 3.9297705135773318,
+      "null_rhae": 4.208513080462206,
+      "dlog1p": -0.0550019798065462,
+      "flags": "-"
+    },
+    {
+      "game": "wa30",
+      "war_lc": 0,
+      "null_lc": 0,
+      "dlc": 0,
+      "war_rhae": 0.0,
+      "null_rhae": 0.0,
+      "dlog1p": 0.0,
+      "flags": "-"
+    }
+  ]
+}

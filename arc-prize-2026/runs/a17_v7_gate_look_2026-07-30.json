@@ -1,0 +1,57 @@
+{
+  "look": "A17 v7 seed-2 confirmation bench — sealed branch read (B2 confirmation seed)",
+  "date": "2026-07-30",
+  "governing_instruments": [
+    "learnings/a17_gates_numeric_2026-07-27.md (kill line sealed 07-27)",
+    "learnings/a17_threshold_commit_2026-07-28.md (branches B2a/B2b sealed pre-observation, commit 4ecf49a @ 2026-07-28T08:29:22-04:00)",
+    "runs/a17_v6_gate_look_2026-07-29.json (v6 seed-1 read: SigmaN=5, branch B2 fires exactly one confirmation seed)",
+    "learnings/a17_v6_diagnosis_2026-07-29.md (v6 mechanism: deterministic format-non-compliance livelock)"
+  ],
+  "kernel": "canivel/arc3-a17-72b-canary",
+  "version": 7,
+  "seed": 2,
+  "read_validity": {
+    "games_present": "4/4 (ft09-0d8bbf25, lp85-305b61c3, sb26-7fbdac44, vc33-5430563c)",
+    "window_s": [7920.069, 7922.840, 7921.544, 7920.019],
+    "window_s_by_game": {"lp85-305b61c3": 7920.069, "vc33-5430563c": 7922.840, "sb26-7fbdac44": 7921.544, "ft09-0d8bbf25": 7920.019},
+    "window_drift_pct_max": 0.036,
+    "window_drift_warn": false,
+    "seed_served_confirmed": "A17_CANARY_SEED=2 in a17_vllm_cmd.json env; kernel log line 'A17-CANARY seed=2 mode=throughput-canary-v6-dataset-weights'; taaf_setup_env.json unchanged from v6 (temp 0.6 top_p 0.95 top_k 20 thinking=false); vLLM cmd byte-identical to v6 (hermes tool-parser, awq_marlin, max-model-len 32768, --enable-auto-tool-choice)",
+    "verdict": "VALID READ (no void condition under amendment sec7.2; all 4 games ran full ~7920 s windows, no HTTP errors, drift 0.036% << 1%)"
+  },
+  "measurement": {
+    "sigma_n_72b": 5,
+    "per_game_n": {"vc33-5430563c": 4, "sb26-7fbdac44": 1, "ft09-0d8bbf25": 0, "lp85-305b61c3": 0},
+    "per_game_lc": {"ft09-0d8bbf25": 0, "sb26-7fbdac44": 0, "lp85-305b61c3": 0, "vc33-5430563c": 0},
+    "rho_action_frozen_form": "480/5 = 96.0 (kill line: >3.5)",
+    "llm_calls_total": {"vllm_post_chat_completions": 1011, "model_response_meta_blocks": 1008, "by_game": {"vc33-5430563c": 332, "lp85-305b61c3": 242, "sb26-7fbdac44": 233, "ft09-0d8bbf25": 201}},
+    "http_errors": "0 non-200 responses across 1011 POST /v1/chat/completions",
+    "finish_reason_distribution": {"stop": 1004, "length": 4, "note": "4 length terminations all in ft09; v6 had 0 length. Not a truncation loop (0.40% of calls, ft09 still executed 0 actions)"},
+    "native_tool_call_parses": 0,
+    "fenced_recovery_parses": 7,
+    "fenced_recovery_by_game": {"vc33-5430563c": 4, "ft09-0d8bbf25": 1, "lp85-305b61c3": 1, "sb26-7fbdac44": 1},
+    "markup_present_not_recovered": 0,
+    "step_executed_true": 5,
+    "step_executed_by_game": {"vc33-5430563c": 4, "sb26-7fbdac44": 1, "ft09-0d8bbf25": 0, "lp85-305b61c3": 0},
+    "reconciliation_note": "7 fenced-recovery tool-call parses vs 5 executed env actions (benchmark.json history + step_executed=True). The 2 extra recoveries (ft09 1, lp85 1) parsed a tool call but did not register a distinct scored env step (same step_executed=False follow-through pattern as v6's 8-vs-5 gap). Executed-action denominator = 5; recovered-tool-call count = 7.",
+    "g1_parse_recovery": "7/1008 successful action parses over all LLM calls (native 0/1008, fenced-recovery 7/1008=0.0069, hard fails 1001/1008=0.993) — FAIL vs >=0.95; native emission rate 0.000",
+    "g2_executed_actions": "5 — FAIL vs >=100",
+    "g3_cadence": "all 5 executed actions land in first ~96 s (vc33 +15.70/+42.08/+60.76/+96.36 s, sb26 +20.68 s from level start ~12:40:42Z); actions_total frozen at 5 from heartbeat t=720 s through t=7920 s (window end); 400 turn_time_budget yields (vc33 107 lp85 103 sb26 101 ft09 89)",
+    "mechanism_evidence": "same signature as v6: vLLM served 1011 requests all HTTP 200, gen_tps 14-98 tok/s and running_reqs 4 and stall_s=0 continuously to window end; 1004/1008 finish_reason=stop; 0/1008 native hermes tool calls; 1001/1008 responses carried neither native call nor recoverable markup; degenerate byte-identical repetition confirmed (late vc33 responses content_chars=988 constant); only actions executed came via fenced-recovery fallback (7 recovered, ids fenced-call-N), all within first ~96 s"
+  },
+  "branch_decision": {
+    "rule": "B2 arithmetic: seed-2 SigmaN < 138 -> B2a (concordant, 72B route DEAD); seed-2 SigmaN >= 138 -> B2b (discordant, Sunday panel 2026-08-02, no verdict)",
+    "measured_sigma_n": 5,
+    "branch": "B2a",
+    "arithmetic": "SigmaN = 5 < 138 -> B2a fires. Also SigmaN=5 < kill-line implied by rho_action 96.0 > 3.5. k=2 seeds concordant (seed-1=5, seed-2=5; both format-livelock).",
+    "formal_closure": "B2a closes the 72B route: DEAD. No third seed. No fix lane (tool-call format contract sealed / not permitted to change between seeds). Build priority reverts to boristown readiness-gate A/B per governing instruments.",
+    "next_read": "none for 72B route; boristown readiness-gate A/B prereg (commit 382b52e) is next build lane"
+  },
+  "prior_vs_outcome": "v6 diagnosis predicted seed-2 would reproduce near-zero native-parse rate and the same early-freeze-then-livelock signature barring a tool-call-contract change (none permitted). Observed: SigmaN=5 identical total, native-parse rate 0.000 identical, freeze-at-t=720-then-livelock identical, byte-identical repetition identical. Per-game distribution shifted (v6 ft09 2 / sb26 1 / vc33 2; v7 vc33 4 / sb26 1 / ft09 0) — expected under a seed change; trajectory divergence is consistent with sampling (temp 0.6) while the livelock MECHANISM is concordant. The prediction held.",
+  "nc_status": {
+    "NC-4": "DISCHARGED (already discharged by v6; v7 adds a second 1008-call parse study, 0/1008 native, corroborating raw counts)",
+    "NC-9": "SATISFIED (branches sealed at commit 4ecf49a before both v6 and v7 outcomes)",
+    "NC-10": "DISCHARGED (k=2 concordant: seed-1 and seed-2 both SigmaN=5 via identical format-livelock mechanism, zero parameter/prompt/harness change between seeds; vLLM cmd + taaf_setup_env byte-identical, only A17_CANARY_SEED differs 1->2)",
+    "NC-12": "OPEN (GPU parity metadata-level only, unchanged from v6; noted for record, does not gate B2a)"
+  }
+}

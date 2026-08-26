@@ -1,0 +1,38 @@
+{
+ "mechanism": "A single local seed was judged against a DIFFERENT config's null distribution instead of its own config's replicates. war_eval_v1 read 22 lc = +3.16 sigma vs the vanilla-duck null (n=10, mean 15.20, sd 2.15) and was treated as a large local effect; it bought x1.00 on the public LB across 5 draws. Verified from the artifacts, war_eval v1/v2/v3 carry the IDENTICAL config label duck-harness-kaggle-warpack-v1 (same n_passes, same solver_label, three consecutive days) and are three SEEDS of one config: 22/15/13. Against its own replicates the headline seed is +1.13 sigma. The leaderboard was right; the single-seed read was wrong.",
+ "summary": "Triggered by forum topic 736578 (local 5.0-5.4 -> LB 1.4, a 2.5x local gain buying zero), we tested local->LB transfer against our own record. Transfer is NOT the defect: large local effects have transferred (field-floor local x1.84 -> LB x1.70, ratios agree to 8%, baseline [INF]). The defect is single-seed reads. Within-config seed noise measured for the first time: vanilla sd 2.15 (n=10), warpack sd 4.73 (n=3), POOLED 2.80 lc. Our sealed +-5 lc single-seed bands are therefore 1.06-2.33 sigma (pooled 1.79 sigma, one-tail FP 3.7%), not the diff-SD 5.011 the preregs cite. Re-read against pooled sd: edge-1 -4.3 sigma (HARM stands), Arm 3 -3.6 sigma (stands), Arm A +0.7 sigma (NULL stands), edge-2's pending +-5 gate = 1.79 sigma, the weakest call we will have made.",
+ "lesson": "Judge a seed against its own config's replicates, never against a different config's null. A single-seed SIGNAL of +5..+8 lc (<=~3 sigma pooled) is a DRAW, not a finding: it may head the queue (heading is nearly free under MAX scoring) but may not be recorded as a mechanism, entered in the registry as confirmed, or used to justify a follow-on build until a second seed reproduces it. Corollary: at 1.8 sigma per single seed, the marginal SEED buys more information than the marginal ARM.",
+ "trigger": "Kaggle discussion topic 736578 'Public vs. Private Discrepancy' (Nick Pellegrin, 2026-08-21)",
+ "filed": "PRE-OBSERVATION - written and sealed before the edge-2 (private-eval v3) number was seen; the edge-2 gate was deliberately NOT moved",
+ "evidence_class": {
+  "V": "war_eval config identity, lc 22/15/13, within-config sds, canonical reader agreement with 5 sealed values, all LB scores from the 50-row submission history",
+  "INF": "that runs/null10 (duck-null-seed*) is byte-identical to the submitted frozen fork; the x-null transfer ratios are therefore directional only"
+ },
+ "untested_cell": "Every config in our anchor table is duck-lineage. A from-scratch harness has far more freedom to overfit the 25 public games - the poster's own case remains unrefuted for himself.",
+ "numbers": {
+  "vanilla_null_seeds": [
+   16,
+   11,
+   16,
+   15,
+   16,
+   15,
+   14,
+   18,
+   18,
+   13
+  ],
+  "warpack_v1_seeds": [
+   22,
+   15,
+   13
+  ],
+  "pooled_within_config_sd": 2.8,
+  "band_sigma_pooled": 1.79,
+  "field_floor_local_lc": 28,
+  "field_floor_lb": [
+   1.59,
+   1.58
+  ]
+ }
+}

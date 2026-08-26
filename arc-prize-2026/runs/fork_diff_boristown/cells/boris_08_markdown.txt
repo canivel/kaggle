@@ -1,0 +1,8 @@
+## 4.1 Conservative runtime monkey patch
+
+This cell leaves the read-only source dataset untouched and patches the imported modules in memory before the benchmark pickle is restored. It fixes only two code-verified issues:
+
+- `ACTION7` is exposed by the official engine and by several official environments, but the bundled model-to-engine mapping cannot convert it back into an executable action. The patch adds a neutral `ACTION7` round trip without guessing its game-specific meaning.
+- The framework exposes intermediate animation frames, while the baseline passes only the final frame to the agent. The patch adds compact animation metadata to `last_action_result`; it does not add images or raw frames to the context.
+
+RESET behavior, mouse-coordinate clipping, model settings, randomness, concurrency, budgets, source datasets, and benchmark objects are otherwise unchanged.

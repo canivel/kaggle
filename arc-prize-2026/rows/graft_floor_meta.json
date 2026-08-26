@@ -1,0 +1,46 @@
+{
+  "prereg": "learnings/war_room/graft_floor_prereg_2026-08-17.md (sealed 2026-08-17 pre-push; verdict 2026-08-19)",
+  "kernel": "canivel/arc3-graft-floor-eval",
+  "version": 4,
+  "date": "2026-08-19",
+  "mechanism": "Adopt the field-standard public CC0 graft floor as-is: thtennant v19 flag set {efficiency, retry_guard, shortcircuit, goalkeep, hudmask} installed into the stock duck/TAAF harness via one cell-12 install() call, banking/transfer OFF and asserted-absent (their triggers are unreachable on this rail: 0 wins in 495 recorded campaign game-runs; 0 clone siblings on 25 unique game_ids). goalkeep+hudmask target LEVELS (stop the carried world model being wiped); shortcircuit targets SCORE (trim no-op actions from the quadratic denominator min(115,(baseline/actions)^2*100)). Engine unchanged (Qwen3.6). One variable.",
+  "design": "Frozen-fork eval, 25 bundled games offline, n_passes=1, LEVELS-primary per SCREEN_PROTOCOL; install certified from the RUNTIME banner (install() never raises and degrades silently to stock, so an uncertifiable install is INFRA DEATH, never NULL).",
+  "sealed_reading_rule": "PRIMARY mean dlc over 25 games vs baseline m=3 (lc 18/19/21, per-game 0.773333): HARM <= -0.286315 (lc_total <= 12), NULL interior (13..26), SIGNAL >= +0.286315 (lc_total >= 27). C(3)*sigma-hat = 2.02*0.141740 DERIVED in the scorer, not transcribed. SECONDARY mean_score explicitly NON-INFERENTIAL (baseline sd 1.033 on n=3, ~60% power) - may not be converted into a verdict after the fact.",
+  "measured": {
+    "lc_total": 18,
+    "mean_dlc_per_game": -0.053333,
+    "per_game_lc_max": 3,
+    "games_won": 0,
+    "campaign_runs_with_won_state": "0 of 495",
+    "mean_score": 2.303,
+    "baseline_mean_scores": [
+      1.427,
+      1.939,
+      3.42
+    ],
+    "total_actions": 3257,
+    "baseline_total_actions_available": {
+      "gate_eval_v1": 4757,
+      "gate_eval_v2": 4033
+    },
+    "lc_matched_comparison": "gate_eval_v1 also lc=18: score 1.427 vs arm 2.303 (+0.876) on ~1500 fewer actions",
+    "install_certified": true,
+    "features_banner": [
+      "efficiency",
+      "goalkeep",
+      "hudmask",
+      "retry_guard",
+      "shortcircuit"
+    ],
+    "banking_transfer_absent": true
+  },
+  "robustness": "Verdict is interior (-0.053 vs bands +/-0.286), not boundary-sensitive; the sealed sigma-hat 0.141740 was independently validated 08-18 by the first same-config replicate pair (gap 0.80 sigma, consistent). Install certification passed all 7 prereg assertions incl. fresh-download bundle byte-identity (df447f61caa181cca68049e28b139e02 / 7705481551494b141d6a33ffec1d7a20).",
+  "instrument_note": "The sealed scorer initially returned INFRA DEATH on a PERFECT banner: _read_log never decoded the CLI-2.2.3 JSON log container, so quotes arrived backslash-escaped and the textual flag match could not fire; the 22-check selftest had only plain-text fixtures (internal consistency is not correctness - second instance of the q38-low class). Fix was world-normalisation only (decode JSON-array logs to data payloads), assertions and thresholds byte-untouched, applied BLIND (the scorer died before reading benchmark.json, so the repair could not be steered by an outcome), +3 CLI-JSON regression fixtures negative-controlled; the selftest's hardcoded n_checks=22 was also silently absorbing new checks and is now counted (25).",
+  "why_informative": "This null retires 'adopt the public conservative graft floor' as a capability route on our rail: with the install runtime-certified and every reachable flag armed, goalkeep - the community's fix for the world-model WIPE defect, and the only flag with a plausible route to SIGNAL - produced zero detectable levels movement against a bar the prereg honestly stated a modest real effect would fail to clear. It also re-confirms, now at n=495 runs, that banking's win-gated exploit is monetizable only after a capability we do not have. What the null does NOT touch: the SCORE endpoint. Descriptively (sealed non-inferential) the arm cut total actions 19-32% at flat levels and outscored its lc-matched baseline by +0.88 - the exact quadratic-denominator signature the 08-17 conversion trace predicted for shortcircuit. The next falsifiable question this row licenses is a SCORE-primary prereg on that denominator, and separately the capture-side memory fix (exp 17: 97.64% of content routes to the hidden channel goalkeep never reads), which this LEVELS-null does not adjudicate because the wipe-fix alone demonstrably was not enough.",
+  "runs_prior": {
+    "v1": "INFRA DEATH 2026-08-18 10:47Z (platform mount layout change)",
+    "v2": "INFRA DEATH 2026-08-18 12:28Z (identical; iterate session)",
+    "v3": "INFRA DEATH 2026-08-19 ~12:05Z labelled by MOUNTCHECK at t=5s (diagnosis: competitions/ intermediate dir removed in batch env)",
+    "v4": "COMPLETE - this row"
+  }
+}

@@ -1,0 +1,482 @@
+[
+  {
+    "idea": "A lane-switching survival game where a glider weaves through towers, birds, and wind currents while grabbing shields and lasting until the timer runs out."
+  },
+  {
+    "idea": "A two-helper coordination puzzle where only one colored helper is active at a time, so the player alternates control to use arrows, switches, and positioning rules until both helpers can reach the final beacon setup."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A crate-routing puzzle where clickable directional arrows shove a cargo block across a compact board, and the player has to line that block up with the correct dock while ignoring misleading lanes and decoy targets."
+  },
+  {
+    "idea": "A timed maze game where the player crosses a compact map while lava vents and other hazards cycle on and off around the route to the exit."
+  },
+  {
+    "idea": "A button-sequencing puzzle framed like a rhythm toy, where large directional beat pads move a token around the board and the player must press them in the right order to steer it into the dock."
+  },
+  {
+    "idea": "A maze puzzle built around paired blink anchors, where movement is mixed with short teleports between marked positions and the player has to chain those jumps to cross walls and reach the goal."
+  },
+  {
+    "idea": "A bomber-style tactics game where bombs clear blocks, threaten enemies, and open the exit, but mistimed blasts or routes get the player trapped."
+  },
+  {
+    "idea": "A multi-mechanic puzzle about pushing a large boulder, rotating mirrors, and routing a dangerous beam so the receiver unlocks the path forward."
+  },
+  {
+    "idea": "A sokoban-like puzzle where pushing a boulder makes it roll onto plates, open doors, and help the player cross hazards to the goal."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A compact single-player Breakout variant with a paddle, bouncing ball, brick durability, and time pressure on a readable grid board."
+  },
+  {
+    "idea": "A click-only network puzzle where the player swaps and rotates path regions to weave one continuous bridge across the board."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A routing puzzle where the player navigates corridors whose channels and gates change state, forcing careful sequencing to reach the exit."
+  },
+  {
+    "idea": "A pursuit puzzle where the player must reach the goal while staying ahead of a chaser and manipulating gates, keys, and movable objects."
+  },
+  {
+    "idea": "A route-planning game about touching checkpoints in order while avoiding decoys, sliding across ice, and threading through hazards under time pressure."
+  },
+  {
+    "idea": "A click-based path-drawing puzzle where a circuit must be completed from source to target while respecting directional flow, relays, and hazards."
+  },
+  {
+    "idea": "A timing-heavy movement puzzle where the player walks to a dock while obstacles and opportunities cycle on a clocklike schedule."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A timed collection maze where the player directly navigates a small avatar through wall layouts and must sweep up every coin on the board before the shrinking time bar runs out."
+  },
+  {
+    "idea": "A maze puzzle where stepping on switches cycles which colored gates are open, so path planning depends on the current color state."
+  },
+  {
+    "idea": "A dual-agent command puzzle where the player switches between two characters sharing one level and must issue movement instructions that leave both twins in the right places to finish the room."
+  },
+  {
+    "idea": "A factory-routing puzzle where conveyor choices and junctions must be configured so moving items end up in the correct destinations."
+  },
+  {
+    "idea": "A spatial layout puzzle where corner pieces and hallway segments have to be matched so the resulting corridor geometry forms the intended traversable route across the board."
+  },
+  {
+    "idea": "A mobility puzzle where the player uses dash moves, crumbling tiles, moving platforms, and hazard timing to reach the exit."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A carry-and-deliver puzzle where the player picks up a package, walks it through walls, doors, hazards, and moving threats, and must place it into the correct delivery bay without getting trapped or using the wrong dock."
+  },
+  {
+    "idea": "A survival game where the player dodges falling blocks, shifting danger zones, and wind drift long enough to outlast the timer."
+  },
+  {
+    "idea": "A timing maze where doors repeatedly open, warn, and close, so the player must move and wait on the right beats to slip through."
+  },
+  {
+    "idea": "A minimal click-precision game where each level presents a single valid target cell, and success depends on accurately tapping that exact spot to advance."
+  },
+  {
+    "idea": "A hidden-maze exploration game where local visual feedback acts like an echo, helping the player discover walls and find the route out."
+  },
+  {
+    "idea": "A region-coloring puzzle where clicks spread fill through connected cells, and the challenge is to choose the right starting regions and order so the board ends in the intended color pattern."
+  },
+  {
+    "idea": "A flooding escape puzzle where water spreads through the map while the player pushes blocks and toggles gates to stay ahead of it."
+  },
+  {
+    "idea": "A phase-switching maze where the player changes between two movement states to cross matching tiles, bridges, and relays on the way to the goal."
+  },
+  {
+    "idea": "A path-shape puzzle where a footprint-shaped walker occupies several cells at once, so the player has to route that bulky footprint through narrow corridors without clipping walls or blocking the exit path."
+  },
+  {
+    "idea": "A timing puzzle where the player synchronizes movement with a repeating frequency pattern to open locks and safely advance."
+  },
+  {
+    "idea": "A Frogger-style crossing game where the player advances lane by lane through traffic and water, using logs and turtles as temporary footing while racing the timer to fill the required home slots."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A route puzzle where touching glyphs flips the player's mode and unlocks the final path only after the right relay pattern has been traversed."
+  },
+  {
+    "idea": "A click-to-aim mini golf puzzle where the player putts a ball around hazards, portals, gates, and bumpers into the hole."
+  },
+  {
+    "idea": "A tiny platformer with jumps, keys, crumbling ledges, moving hazards, and switches packed into short deterministic challenge rooms."
+  },
+  {
+    "idea": "A coordination puzzle where a greedy companion follows its own pickup-seeking logic, so the player must route both characters around the board until their positions finally allow them to meet."
+  },
+  {
+    "idea": "A tactical archery puzzle where movement sets aim, arrows ricochet off mirrors or break obstacles, and every target must be hit to open the exit."
+  },
+  {
+    "idea": "A multi-agent hazard puzzle where the player clicks which pawn is active and passes progress between them to get through dangerous terrain."
+  },
+  {
+    "idea": "A movement puzzle where the player jumps through portals and around hazards, using careful skip lengths to reach the dock safely."
+  },
+  {
+    "idea": "A shepherding game where the player corrals sheep into a pen using walls, one-way gates, and occasional switches before time runs out."
+  },
+  {
+    "idea": "A search puzzle where the player explores the map for a hidden object using hot-cold proximity feedback, while patrols, doors, and a timer make blind wandering too expensive."
+  },
+  {
+    "idea": "A weight-and-state puzzle where heavy and light interactions latch doors and switches differently, so the route depends on controlled toggling."
+  },
+  {
+    "idea": "A traversal puzzle centered on a hookshot that pulls the player across gaps or around obstacles to reach otherwise inaccessible areas."
+  },
+  {
+    "idea": "An ice-sliding puzzle where movement continues until something stops the player, so level design is built around ricochet-like positioning."
+  },
+  {
+    "idea": "A perception-and-control puzzle where several similar tokens are shown at once, the player must infer which one is actually controllable, and only then guide that real agent to the target."
+  },
+  {
+    "idea": "A teleportation puzzle across separated islands where portals are the only way to cross water and the final objective is to reach the dock."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A click-routed maze where the player does not walk tile by tile, but instead commits to turns at junctions, so solving the level means choosing the correct branch points in sequence."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A classic key-and-door maze expanded with lasers, patrols, hazards, and waiting windows that make the collection order matter."
+  },
+  {
+    "idea": "A corridor maze where colored keys have to be collected in a strict order, because touching the wrong key resets progress and the final lock only opens after the full sequence is gathered correctly."
+  },
+  {
+    "idea": "A lane-based memory puzzle where the player follows a displayed rune order through side corridors to unlock gates and finish the route."
+  },
+  {
+    "idea": "A lane-manipulation puzzle where entire strips of the board rotate or cycle together, and the player must realign those lanes so openings, hazards, and the walkable corridor line up into a solvable route."
+  },
+  {
+    "idea": "A laser-routing puzzle where emitters, mirrors, prisms, switches, and shutters must be configured so beams charge the required targets."
+  },
+  {
+    "idea": "A two-pawn click puzzle where one pawn must hold a latch or gate state open while the other uses that temporary opening to advance."
+  },
+  {
+    "idea": "A miniature metroidvania where the player gradually combines jumps, dashes, hazards, and key doors to reach the exit of each room."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A Lights Out style puzzle where clicks toggle plus-shaped neighborhoods and the player aims to switch the whole lit pattern off."
+  },
+  {
+    "idea": "A puzzle about moving through illuminated and shadowed spaces where safety and accessibility depend on the current light state."
+  },
+  {
+    "idea": "A route-planning challenge where the player has plenty of movement but only a strict number of turns, so facing changes become the scarce resource."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A positioning puzzle where a magnetic pull attracts objects or the player, making distance and line alignment the core challenge."
+  },
+  {
+    "idea": "A compact match-3 puzzle where clearing groups removes blockers, races bomb timers, and prevents goo from spreading out of control."
+  },
+  {
+    "idea": "A slider puzzle where pieces must be shifted until the visible arrangement matches the target pattern."
+  },
+  {
+    "idea": "A maze game with click-opened doors placed along a single winding corridor, where progress depends on navigating the path and opening the right door tiles at the right moments to reach the goal."
+  },
+  {
+    "idea": "A stripped-down maze race where the player simply pilots a token from start to finish through wall layouts before the available time budget is exhausted."
+  },
+  {
+    "idea": "A sequence-memory puzzle where colored pads must be visited in the generated order, after which the player still has to explicitly confirm the completed sequence with the finalize actions to clear the level."
+  },
+  {
+    "idea": "A coordination puzzle where a helper mirrors or reacts to the player's moves, and both positions have to be managed to solve the room."
+  },
+  {
+    "idea": "A symmetry puzzle where edits on one side of the board have mirrored consequences, and the player must end with a reflected arrangement that matches the target half exactly."
+  },
+  {
+    "idea": "A dual-control puzzle where mirrored movement means every step affects two positions at once, so the player solves levels by exploiting symmetry."
+  },
+  {
+    "idea": "A click-based laser puzzle where shots bounce off mirrors and must be aimed through the board to strike the correct targets."
+  },
+  {
+    "idea": "A platforming room series where the player times movement around moving platforms, buttons, gates, and hazards to reach the goal."
+  },
+  {
+    "idea": "A stripped-down picross puzzle where visual row and column clues guide the player to fill the correct cells."
+  },
+  {
+    "idea": "A compact combat puzzle where one enemy reacts to the player inside a tiny arena, so every move is really a prediction about the opponent's response and the opening it creates."
+  },
+  {
+    "idea": "A one-screen platforming challenge built around tight jumps, careful timing, and a short but unforgiving route to the exit."
+  },
+  {
+    "idea": "A maze puzzle built around one-way teleports, so routing depends on committing to warps that can only be traversed in one direction."
+  },
+  {
+    "idea": "A symmetry puzzle where movement traces mirrored orbital paths, forcing the player to think about paired positions instead of a single token."
+  },
+  {
+    "idea": "A click-only painting puzzle where directional pads move a roller around a shape and the player must trace just the intended outline."
+  },
+  {
+    "idea": "A coverage puzzle where the player paints every target floor tile while avoiding forbidden areas, cleaners, and gates that can undo progress."
+  },
+  {
+    "idea": "A cargo-routing puzzle where clicking control panels opens or closes doors so a block can be moved into its dock."
+  },
+  {
+    "idea": "A click puzzle where path segments are connected step by step in a required order, so the player has to satisfy both the network topology and the sequence constraint of which link comes next."
+  },
+  {
+    "idea": "A pure shortest-path maze series where each room has one start, one goal, and fixed walls, asking the player to reason cleanly about the navigable route rather than about extra mechanics."
+  },
+  {
+    "idea": "A path-building puzzle where each click changes how the route is drawn, and the player must shape the resulting path so its structure matches a displayed target sequence exactly."
+  },
+  {
+    "idea": "A second sequence-matching path puzzle where the board is manipulated until the built route reproduces the required pattern, with the challenge coming from the order and structure of the constructed path."
+  },
+  {
+    "idea": "A digital peg solitaire game where legal jump captures remove pegs until the desired final arrangement is reached."
+  },
+  {
+    "idea": "A pipe puzzle where tiles are rotated until a continuous connection carries flow from the source to the endpoint."
+  },
+  {
+    "idea": "A planning puzzle where a single placeable block acts as a scarce resource for bridging gaps, triggering plates, and opening the route forward."
+  },
+  {
+    "idea": "A solo Pong challenge where the player serves and controls one paddle while walls, mirrors, bumpers, and gates reshape the ball's path."
+  },
+  {
+    "idea": "A wiring-and-delivery puzzle where batteries must be carried to sockets to energize a machine, open doors, and make the exit usable."
+  },
+  {
+    "idea": "An ice-and-pushing puzzle where sliding movement and crate interactions have to be combined to reach the goal without getting stuck."
+  },
+  {
+    "idea": "A combat puzzle where the player cannot simply dodge foes and instead has to shove different enemy types into spikes and other hazards."
+  },
+  {
+    "idea": "A compact crate puzzle where pushing the crate onto switches and pickups changes a narrow lane enough to open the goal path."
+  },
+  {
+    "idea": "A bridge-building puzzle where pushable pieces can only move forward and must be arranged to span gaps without wasting moves."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A teleport puzzle where progress depends on chaining portal uses in the right order so each relay opens access to the next area."
+  },
+  {
+    "idea": "A gated collection puzzle where gems, switches, and doors form a relay chain, so early pickups and toggles determine whether the later parts of the route can be opened in time."
+  },
+  {
+    "idea": "A chess-inspired movement puzzle where the player slides like a rook in straight lines and must use that constraint to reach the target."
+  },
+  {
+    "idea": "A multi-room adventure puzzle where progress depends on moving between connected rooms, collecting the right pickups, and unlocking the correct transition so the final room becomes reachable."
+  },
+  {
+    "idea": "A visual pattern puzzle where left and right inputs rotate a shape until it matches the displayed target orientation."
+  },
+  {
+    "idea": "A board-manipulation puzzle where whole rows and columns are the pieces being moved or aligned, so the player solves patterns by thinking in strips instead of individual cells."
+  },
+  {
+    "idea": "A ruleset puzzle where stepping on special tiles turns abilities on or off, changing which obstacles, crates, and hazards can be handled next."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A click-memory puzzle where only a subset of tiles is safe, so the player has to identify and tap the valid pattern without triggering failures."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A multi-pawn puzzle where the player clicks to choose which pawn is active, moves it into place, and alternates until the board settles into the solved arrangement."
+  },
+  {
+    "idea": "A trail-avoidance puzzle where each move changes the shadowed cells, so the player must reach the exit without stepping into danger or blocking the path."
+  },
+  {
+    "idea": "A movement puzzle where the player's current shape matters, so progress comes from remolding the avatar to fit gates and corridors."
+  },
+  {
+    "idea": "A route-optimization puzzle packed with doors, hazards, and small interactions, where the board can often be completed in several ways but the real challenge is finding the shortest valid solution."
+  },
+  {
+    "idea": "A click-based sequencing puzzle where nodes must be activated in the proper order while walls block line of sight and the action budget stays tight."
+  },
+  {
+    "idea": "A Simon-style memory game where the board shows a sequence on tiles and the player must repeat it correctly."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A row-shifting puzzle where each click slides an entire strip of the board, and the target arrangement only appears after the right sequence of whole-row moves."
+  },
+  {
+    "idea": "A grid-based Snake variant where the player grows while collecting food and must avoid collisions with walls and the body's trail."
+  },
+  {
+    "idea": "A Sokoban-style box-pushing puzzle with an added time bar, so efficient crate routing matters as much as correctness."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A two-pawn maze game where the player switches between separated wings of the map and coordinates both sides to complete the route."
+  },
+  {
+    "idea": "A connection puzzle where the board contains split routes and paired endpoints, and the player has to join the correct pairs without letting the branches interfere with each other."
+  },
+  {
+    "idea": "A click-based routing puzzle where a branching path is assembled one commitment at a time, so each chosen segment constrains which later branches can still produce a complete route."
+  },
+  {
+    "idea": "A balancing puzzle where clicks transfer blocks between two stacks until both sides have exactly the same height."
+  },
+  {
+    "idea": "A stealth puzzle where the player sneaks past guard vision, uses hiding or distractions, and reaches the exit before being detected."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A gate-toggle maze where stepping on or activating switches flips doors and walls elsewhere in the level, making the route depend on the current global switch state."
+  },
+  {
+    "idea": "A switch puzzle where each activation changes the wall or door layout, so progress depends on choosing the right toggle order."
+  },
+  {
+    "idea": "A navigation puzzle where remote switches open gates elsewhere in the level and must be sequenced correctly to reach the goal."
+  },
+  {
+    "idea": "A coordination puzzle where multiple agents move in lockstep, so one input always has to be evaluated from more than one position at once."
+  },
+  {
+    "idea": "A shape-and-size puzzle where the player toggles body size to pass different gates, press plates, and solve rooms that care about footprint."
+  },
+  {
+    "idea": "A pursuit puzzle about forcing contact with another actor, where movement timing and board position determine whether the player can safely close in and complete the tag."
+  },
+  {
+    "idea": "A click-order game where targets must be tapped in the exact prescribed sequence and mistakes reset progress."
+  },
+  {
+    "idea": "A teleport-routing puzzle where moving onto an entry pad is only half the action, because the player must also click the correct destination pad in that network to collect keys, bypass gates, and reach the exit."
+  },
+  {
+    "idea": "An area-control puzzle where the player claims territory by tracing safe loops while avoiding enemies and surviving barrier pulses."
+  },
+  {
+    "idea": "A stealth-routing game where guard patrol timings determine when crossings are safe and whether the remote gate can be reached in time."
+  },
+  {
+    "idea": "A gate-timing puzzle where movement windows are short and the route only works when the player syncs actions with the gate cycle."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A tiny tower-defense game where a compact layout and short waves make placement and timing decisions immediately visible."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A Rush Hour style sliding-block puzzle where each vehicle can move only along its own orientation, and the player wins by clearing a lane so the goal car can finally drive out."
+  },
+  {
+    "idea": "A coverage puzzle where the player leaves a trail and must touch all required floor cells while handling switches, teleports, and enemies."
+  },
+  {
+    "idea": "A Tron-inspired survival duel where each rider leaves an impassable trail and wins by outlasting or trapping the opponent."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A turn-budget maze where the board advances its own gate and phase clock after every action, so even waiting or detouring changes the future layout of the route."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "An imported ARC benchmark reference game kept in its original form for comparison, tooling, and evaluation coverage."
+  },
+  {
+    "idea": "A warehouse logistics puzzle where the player navigates tight aisles to collect or deliver marked items, while conveyors, hazards, and one-way routing rules make the pickup order matter."
+  },
+  {
+    "idea": "A maze built from linked warp corridors, where stepping into one hallway can reappear elsewhere, so the player has to understand the hidden hallway graph rather than trust the visible geometry."
+  },
+  {
+    "idea": "A lane puzzle where alternating phases and interwoven corridors force the player to thread a path through the board in the correct rhythm."
+  },
+  {
+    "idea": "A navigation puzzle where a bulky 2x2 body must be driven through ember-lined corridors and parked fully on the dock without clipping danger."
+  },
+  {
+    "idea": "A click-based circuit puzzle where missing wire pieces must be placed in the right orientations to carry power from the source to the load."
+  },
+  {
+    "idea": "A click-order puzzle on a zigzag track where nodes have to be activated in the proper progression before time expires, so both ordering and pace matter."
+  }
+]

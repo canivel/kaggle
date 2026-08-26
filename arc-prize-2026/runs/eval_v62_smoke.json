@@ -1,0 +1,122 @@
+{
+  "agent": "notebooks/forge_agent/v62_agent.py",
+  "budget": 400,
+  "results_a": {
+    "bp35-0a0ad940": {
+      "game_id": "bp35-0a0ad940",
+      "gid": "bp35",
+      "guid": "0a0ad940",
+      "ok": true,
+      "err": null,
+      "actions": 400,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          400
+        ]
+      ],
+      "wall_s": 58.4,
+      "baseline_actions": [
+        15,
+        72,
+        36,
+        31,
+        31,
+        48,
+        86,
+        155,
+        163
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 400,
+          "human_actions": 15,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "ka59-9f096b4a": {
+      "game_id": "ka59-9f096b4a",
+      "gid": "ka59",
+      "guid": "9f096b4a",
+      "ok": true,
+      "err": null,
+      "actions": 382,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          382
+        ]
+      ],
+      "wall_s": 60.1,
+      "baseline_actions": [
+        39,
+        175,
+        86,
+        47,
+        21,
+        132,
+        326
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 382,
+          "human_actions": 39,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    },
+    "lf52-271a04aa": {
+      "game_id": "lf52-271a04aa",
+      "gid": "lf52",
+      "guid": "271a04aa",
+      "ok": true,
+      "err": null,
+      "actions": 400,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          400
+        ]
+      ],
+      "wall_s": 49.5,
+      "baseline_actions": [
+        24,
+        81,
+        74,
+        86,
+        118,
+        148,
+        189,
+        116,
+        150,
+        225
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 400,
+          "human_actions": 24,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    }
+  }
+}

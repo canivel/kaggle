@@ -1,0 +1,23 @@
+[
+  {
+    "gate": "CERT",
+    "name": "edge1 per-arm certification",
+    "passed": true,
+    "kill": true,
+    "detail": "ctx/mml raised values confirmed in banner + serve echo"
+  },
+  {
+    "gate": "PAIRED",
+    "name": "paired bands +-5 vs base",
+    "passed": false,
+    "kill": false,
+    "detail": "delta -12 -> HARM"
+  },
+  {
+    "gate": "KILL",
+    "name": "sealed wallclock KILL (lc<=base AND actions<0.6x)",
+    "passed": true,
+    "kill": false,
+    "detail": "does NOT fire on corrected actions (0.761); harm is capability, not slowdown"
+  }
+]

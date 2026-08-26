@@ -1,0 +1,29 @@
+{
+  "graft-floor-seed2": {
+    "n_games": 25,
+    "lc_total": 14,
+    "mean_score": 1.202,
+    "total_actions": 3734,
+    "games_won": 0
+  },
+  "graft-floor-seed1": {
+    "n_games": 25,
+    "lc_total": 18,
+    "mean_score": 2.303,
+    "total_actions": 3257,
+    "games_won": 0
+  },
+  "baseline-duck-harness-kaggle": {
+    "m": 3,
+    "lc": [
+      18,
+      19,
+      21
+    ],
+    "mean_scores": [
+      1.427,
+      1.939,
+      3.42
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+# ===== CELL 0 [markdown] =====
+Please refer to this more readable version of this same notebook: https://www.kaggle.com/code/jeroencottaar/taaf-duck-harness-kaggle-share
+
+The present notebook is shared only for the purpose of having our top submission open source (see version 21); we just didn't get as lucky in the one linked above.

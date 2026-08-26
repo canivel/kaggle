@@ -1,0 +1,742 @@
+{
+  "summary": {
+    "purpose": "panel R12 N5 \u2014 per-play frame determinism across all 25 official games",
+    "method": "same env, consecutive plays (new play opened exactly as _bank does), identical action sequences (probe A: real war-eval history; probe B: seeded 48-action script), strict per-step comparison of final-frame grid hash + levels_completed + state incl. initial frame",
+    "n_games": 25,
+    "deterministic": [
+      "ar25",
+      "bp35",
+      "cd82",
+      "cn04",
+      "dc22",
+      "ft09",
+      "g50t",
+      "ka59",
+      "lf52",
+      "lp85",
+      "ls20",
+      "m0r0",
+      "r11l",
+      "re86",
+      "s5i5",
+      "sb26",
+      "sc25",
+      "sk48",
+      "sp80",
+      "su15",
+      "tn36",
+      "tr87",
+      "tu93",
+      "vc33",
+      "wa30"
+    ],
+    "divergent": [],
+    "untestable": [],
+    "divergent_fraction": 0.0,
+    "r2_reach_rebase": {
+      "dlc_positive_games": [
+        "ft09",
+        "ka59",
+        "re86",
+        "sc25",
+        "tu93",
+        "sb26",
+        "su15",
+        "lp85"
+      ],
+      "bankable_subset": [
+        "ft09",
+        "ka59",
+        "re86",
+        "sc25",
+        "tu93",
+        "sb26",
+        "su15",
+        "lp85"
+      ],
+      "banking_inert_subset": []
+    },
+    "reconciliation_with_bank_fire_validation": "bank_fire_validation.json's sc25/m0r0 frame_divergence-at-step-0 aborts are NOT per-play randomization: prune_replay_diag.py reproduces them on these same deterministic engines and shows prune_trace drops 1-2 leading visible-no-op actions that mutate hidden state, so the PRUNED replay's first action lands on a different frame. See runs/war_eval_v1/prune_replay_diag.json.",
+    "caveats": [
+      "local env versions differ from the war-eval Kaggle build for some games (version_mismatch_vs_kaggle per game, e.g. sc25 local f9b21a2f vs kaggle 635fd71a); determinism verified on the local engines \u2014 the same engines bank_fire_validation ran on",
+      "determinism is verified over two consecutive plays per probe; probe A exercises real board-changing, level-completing dynamics, probe B a seeded random script"
+    ]
+  },
+  "games": [
+    {
+      "game": "ar25",
+      "game_id": "ar25-e3c63847",
+      "driver": "gameapi",
+      "benchmark_game_id": "ar25-0c556536",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 201,
+          "play1_final_lc": 2,
+          "play2_final_lc": 2,
+          "wallclock_s": 0.4,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 2
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.5
+    },
+    {
+      "game": "bp35",
+      "game_id": "bp35-0a0ad940",
+      "driver": "gameapi",
+      "benchmark_game_id": "bp35-0a0ad940",
+      "version_mismatch_vs_kaggle": false,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 123,
+          "play1_final_lc": 1,
+          "play2_final_lc": 1,
+          "wallclock_s": 0.8,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 1
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.2,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 1.1
+    },
+    {
+      "game": "cd82",
+      "game_id": "cd82-fb555c5d",
+      "driver": "gameapi",
+      "benchmark_game_id": "cd82-fb555c5d",
+      "version_mismatch_vs_kaggle": false,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 141,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.3,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 0
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.4
+    },
+    {
+      "game": "cn04",
+      "game_id": "cn04-65d47d14",
+      "driver": "raw_env (gameapi failed: AssertionError:base_actions_per_level has 6 entries; number_of_levels is 5)",
+      "benchmark_game_id": "cn04-2fe56bfb",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 304,
+          "play1_final_lc": 1,
+          "play2_final_lc": 1,
+          "wallclock_s": 0.4,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 0
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.5
+    },
+    {
+      "game": "dc22",
+      "game_id": "dc22-4c9bff3e",
+      "driver": "gameapi",
+      "benchmark_game_id": "dc22-fdcac232",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 61,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 0
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.3
+    },
+    {
+      "game": "ft09",
+      "game_id": "ft09-0d8bbf25",
+      "driver": "gameapi",
+      "benchmark_game_id": "ft09-0d8bbf25",
+      "version_mismatch_vs_kaggle": false,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 45,
+          "play1_final_lc": 2,
+          "play2_final_lc": 2,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed2",
+          "recorded_lc": 2
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.3
+    },
+    {
+      "game": "g50t",
+      "game_id": "g50t-5849a774",
+      "driver": "gameapi",
+      "benchmark_game_id": "g50t-5849a774",
+      "version_mismatch_vs_kaggle": false,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 65,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.2,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed2",
+          "recorded_lc": 0
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.4
+    },
+    {
+      "game": "ka59",
+      "game_id": "ka59-9f096b4a",
+      "driver": "gameapi",
+      "benchmark_game_id": "ka59-38d34dbb",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 122,
+          "play1_final_lc": 1,
+          "play2_final_lc": 1,
+          "wallclock_s": 0.2,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed2",
+          "recorded_lc": 1
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.4
+    },
+    {
+      "game": "lf52",
+      "game_id": "lf52-271a04aa",
+      "driver": "gameapi",
+      "benchmark_game_id": "lf52-271a04aa",
+      "version_mismatch_vs_kaggle": false,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 131,
+          "play1_final_lc": 1,
+          "play2_final_lc": 1,
+          "wallclock_s": 0.4,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed2",
+          "recorded_lc": 1
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.7
+    },
+    {
+      "game": "lp85",
+      "game_id": "lp85-305b61c3",
+      "driver": "gameapi",
+      "benchmark_game_id": "lp85-305b61c3",
+      "version_mismatch_vs_kaggle": false,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 72,
+          "play1_final_lc": 1,
+          "play2_final_lc": 1,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 1
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.3
+    },
+    {
+      "game": "ls20",
+      "game_id": "ls20-9607627b",
+      "driver": "gameapi",
+      "benchmark_game_id": "ls20-9607627b",
+      "version_mismatch_vs_kaggle": false,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 91,
+          "play1_final_lc": 1,
+          "play2_final_lc": 1,
+          "wallclock_s": 0.2,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 1
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.5
+    },
+    {
+      "game": "m0r0",
+      "game_id": "m0r0-dadda488",
+      "driver": "gameapi",
+      "benchmark_game_id": "m0r0-492f87ba",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 323,
+          "play1_final_lc": 1,
+          "play2_final_lc": 1,
+          "wallclock_s": 0.5,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 1
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.7
+    },
+    {
+      "game": "r11l",
+      "game_id": "r11l-aa269680",
+      "driver": "gameapi",
+      "benchmark_game_id": "r11l-495a7899",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 81,
+          "play1_final_lc": 1,
+          "play2_final_lc": 1,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 1
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.3
+    },
+    {
+      "game": "re86",
+      "game_id": "re86-4e57566e",
+      "driver": "gameapi",
+      "benchmark_game_id": "re86-8af5384d",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 163,
+          "play1_final_lc": 2,
+          "play2_final_lc": 2,
+          "wallclock_s": 0.2,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed2",
+          "recorded_lc": 2
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.5
+    },
+    {
+      "game": "s5i5",
+      "game_id": "s5i5-a48e4b1d",
+      "driver": "gameapi",
+      "benchmark_game_id": "s5i5-18d95033",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 69,
+          "play1_final_lc": 1,
+          "play2_final_lc": 1,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 1
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.2
+    },
+    {
+      "game": "sb26",
+      "game_id": "sb26-7fbdac44",
+      "driver": "gameapi",
+      "benchmark_game_id": "sb26-7fbdac44",
+      "version_mismatch_vs_kaggle": false,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 256,
+          "play1_final_lc": 1,
+          "play2_final_lc": 1,
+          "wallclock_s": 0.9,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed2",
+          "recorded_lc": 1
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.2,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 1.2
+    },
+    {
+      "game": "sc25",
+      "game_id": "sc25-f9b21a2f",
+      "driver": "gameapi",
+      "benchmark_game_id": "sc25-635fd71a",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 235,
+          "play1_final_lc": 2,
+          "play2_final_lc": 2,
+          "wallclock_s": 0.5,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed2",
+          "recorded_lc": 2
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.8
+    },
+    {
+      "game": "sk48",
+      "game_id": "sk48-41055498",
+      "driver": "gameapi",
+      "benchmark_game_id": "sk48-d8078629",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 266,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.5,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 0
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.6
+    },
+    {
+      "game": "sp80",
+      "game_id": "sp80-0ee2d095",
+      "driver": "gameapi",
+      "benchmark_game_id": "sp80-589a99af",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 240,
+          "play1_final_lc": 1,
+          "play2_final_lc": 1,
+          "wallclock_s": 0.8,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 1
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.9
+    },
+    {
+      "game": "su15",
+      "game_id": "su15-4c352900",
+      "driver": "gameapi",
+      "benchmark_game_id": "su15-1944f8ab",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 178,
+          "play1_final_lc": 1,
+          "play2_final_lc": 1,
+          "wallclock_s": 0.4,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed2",
+          "recorded_lc": 1
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.5
+    },
+    {
+      "game": "tn36",
+      "game_id": "tn36-ab4f63cc",
+      "driver": "gameapi",
+      "benchmark_game_id": "tn36-ef4dde99",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 116,
+          "play1_final_lc": 1,
+          "play2_final_lc": 1,
+          "wallclock_s": 0.3,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 1
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.6
+    },
+    {
+      "game": "tr87",
+      "game_id": "tr87-cd924810",
+      "driver": "gameapi",
+      "benchmark_game_id": "tr87-cd924810",
+      "version_mismatch_vs_kaggle": false,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 254,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.5,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed2",
+          "recorded_lc": 0
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.7
+    },
+    {
+      "game": "tu93",
+      "game_id": "tu93-2b534c15",
+      "driver": "gameapi",
+      "benchmark_game_id": "tu93-0768757b",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 154,
+          "play1_final_lc": 2,
+          "play2_final_lc": 2,
+          "wallclock_s": 0.3,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 2
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.4
+    },
+    {
+      "game": "vc33",
+      "game_id": "vc33-9851e02b",
+      "driver": "gameapi",
+      "benchmark_game_id": "vc33-5430563c",
+      "version_mismatch_vs_kaggle": true,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 88,
+          "play1_final_lc": 2,
+          "play2_final_lc": 2,
+          "wallclock_s": 0.2,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed1",
+          "recorded_lc": 2
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.3
+    },
+    {
+      "game": "wa30",
+      "game_id": "wa30-ee6fef47",
+      "driver": "gameapi",
+      "benchmark_game_id": "wa30-ee6fef47",
+      "version_mismatch_vs_kaggle": false,
+      "probes": {
+        "war_eval_history": {
+          "n_actions": 198,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.2,
+          "verdict": "DETERMINISTIC",
+          "source": "war_eval_seed2",
+          "recorded_lc": 0
+        },
+        "seeded_random": {
+          "n_actions": 48,
+          "play1_final_lc": 0,
+          "play2_final_lc": 0,
+          "wallclock_s": 0.1,
+          "verdict": "DETERMINISTIC"
+        }
+      },
+      "verdict": "DETERMINISTIC",
+      "wallclock_s": 0.4
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "gate": "A1",
+    "name": "TAAF_GRAFTS banner present, API_VERSION=1",
+    "passed": true,
+    "kill": true,
+    "detail": "banner exact; api_version 1"
+  },
+  {
+    "gate": "A2",
+    "name": "[goalkeep] armed AND [hudmask] armed",
+    "passed": true,
+    "kill": true,
+    "detail": "both lines present in decoded log"
+  },
+  {
+    "gate": "A3",
+    "name": "efficiency/retry_guard/shortcircuit in FEATURES",
+    "passed": true,
+    "kill": true,
+    "detail": "all five flags certified from runtime banner"
+  },
+  {
+    "gate": "A4",
+    "name": "banking/transfer ABSENT (arm defined by exclusion)",
+    "passed": true,
+    "kill": true,
+    "detail": "no [banking] armed, no forbidden flag in FEATURES"
+  },
+  {
+    "gate": "A5",
+    "name": "no silent stock fallback",
+    "passed": true,
+    "kill": true,
+    "detail": "no install-failed/stock signatures in log"
+  },
+  {
+    "gate": "A6",
+    "name": "bundle byte-identity to audited manifest",
+    "passed": true,
+    "kill": true,
+    "detail": "df447f61caa181cca68049e28b139e02 / grafts 7705481551494b141d6a33ffec1d7a20, fresh download at push"
+  },
+  {
+    "gate": "A7",
+    "name": "served engine = vrfai/Qwen3.6-27B-FP8",
+    "passed": true,
+    "kill": true,
+    "detail": "vLLM server banner confirms incumbent engine"
+  },
+  {
+    "gate": "K3pp",
+    "name": "HARM line mean dlc <= -0.286315",
+    "passed": true,
+    "kill": true,
+    "detail": "measured -0.053333, interior"
+  },
+  {
+    "gate": "SIG",
+    "name": "SIGNAL line mean dlc >= +0.286315",
+    "passed": false,
+    "kill": false,
+    "detail": "not reached; NULL by seal"
+  }
+]

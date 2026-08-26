@@ -1,0 +1,23 @@
+[
+  {
+    "gate": "CERT",
+    "name": "edge2 per-arm certification (contract-ACTIVE required)",
+    "passed": true,
+    "kill": true,
+    "detail": "verified route, liability-free"
+  },
+  {
+    "gate": "PAIRED",
+    "name": "paired bands +-5 vs base 30",
+    "passed": false,
+    "kill": false,
+    "detail": "delta -10 -> HARM"
+  },
+  {
+    "gate": "HEAD",
+    "name": "mechanical head rule",
+    "passed": true,
+    "kill": false,
+    "detail": "HARM => Arm 0 redraw stands; queue untouched"
+  }
+]

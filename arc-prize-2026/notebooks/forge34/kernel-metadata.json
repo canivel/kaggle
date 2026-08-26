@@ -1,0 +1,17 @@
+{
+  "id": "canivel/arc3-forge34",
+  "title": "arc3-forge34",
+  "code_file": "arc3-forge34.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": false,
+  "dataset_sources": [],
+  "competition_sources": [
+    "arc-prize-2026-arc-agi-3"
+  ],
+  "kernel_sources": [],
+  "model_sources": [],
+  "keywords": []
+}

@@ -1,14 +1,20 @@
 {
-  "n": 31,
-  "mean": 0.9368,
-  "s": 0.1556,
-  "latest_date": "2026-08-14",
-  "latest": 0.7,
+  "n": 37,
+  "mean": 0.9316,
+  "s": 0.1771,
+  "latest_date": "2026-08-20",
+  "latest": 0.41,
   "max": 1.33,
-  "min": 0.65,
-  "trailing4": 0.91,
-  "trailing4_prev": 0.9975,
+  "min": 0.41,
+  "trailing4": 0.8425,
+  "trailing4_prev": 1.0325,
   "draws_newest_first": [
+    0.41,
+    1.15,
+    1.01,
+    0.8,
+    1.17,
+    0.89,
     0.7,
     0.78,
     1.07,
@@ -41,9 +47,9 @@
     0.89,
     0.82
   ],
-  "prior_n": 30,
-  "prior_mean": 0.9447,
-  "prior_s": 0.1519,
-  "z_latest": -1.61,
-  "promotion_bar_mean_of_4": 1.0771
+  "prior_n": 36,
+  "prior_mean": 0.9461,
+  "prior_s": 0.1558,
+  "z_latest": -3.44,
+  "promotion_bar_mean_of_4": 1.089
 }

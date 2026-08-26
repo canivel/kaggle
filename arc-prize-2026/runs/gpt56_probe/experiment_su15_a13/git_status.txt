@@ -1,0 +1,2 @@
+git status:
+  ARC3-Inference                   bfd7967     DIRTY  main                      evolve_claude.py: Claude-Code-driven ARC strategy evolution

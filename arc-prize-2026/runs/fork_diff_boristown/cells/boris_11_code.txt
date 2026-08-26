@@ -1,0 +1,12 @@
+# No rollback is required because the preceding runtime-patch cell is intentionally inert.
+# Leave all imported modules exactly as provided by the mounted source dataset.
+
+BASELINE_ROLLBACK_STATUS = {
+    "rollback_required": False,
+    "dataset_baseline_preserved": True,
+}
+
+print(
+    "taaf.kaggle: baseline modules preserved: "
+    f"{BASELINE_ROLLBACK_STATUS}"
+)

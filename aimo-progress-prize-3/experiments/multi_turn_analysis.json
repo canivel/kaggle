@@ -1,0 +1,130 @@
+{
+  "analysis_date": "2026-04-03",
+  "context": {
+    "model": "GPT-OSS-120B via Harmony completions API",
+    "current_best": "39/50 (our runs), 44/50 (public top with same base model)",
+    "per_attempt_accuracy": 0.69,
+    "attempts": 12,
+    "budget_per_problem_seconds": 300,
+    "total_budget_hours": 5,
+    "critical_constraint": "Self-refinement is PROVEN HARMFUL (-4 pts, Pawan Mali V134). All strategies must provide NEW INFORMATION, not 'are you sure?'",
+    "existing_verification": "Pawan Mali V133 binary CORRECT/WRONG at T=0.0 scored +0 improvement"
+  },
+
+  "baseline_expected_score": {
+    "value": 43.69,
+    "breakdown": {
+      "easy_35_problems_p095": 35.00,
+      "medium_10_problems_p060": 8.42,
+      "hard_5_problems_p025": 0.27
+    },
+    "note": "Theoretical with perfect entropy-weighted voting at N=12. Actual scores vary due to voting imperfections and score variance (sigma=1.7)"
+  },
+
+  "strategies": [
+    {
+      "name": "CODE-BASED VERIFICATION TURN (post-vote)",
+      "description": "After majority vote produces answer X, ask the model to WRITE PYTHON CODE that tests whether X satisfies ALL stated problem constraints. Code actually RUNS in Jupyter sandbox. If verification code outputs FAILED, try next-voted candidate.",
+      "key_distinction": "This is NOT Pawan Mali's V133 (bare CORRECT/WRONG judgment, 0 improvement). V133 asked the model to JUDGE without computation — same reasoning errors produce same wrong judgment. Our approach asks the model to write VERIFIER CODE that executes — the code execution is independent of model reasoning quality. For computational errors (20% of failures) and answer extraction errors (10%), code-based verification can objectively catch mistakes that bare judgment cannot.",
+      "expected_improvement": "+0.5 to +1.0 pts",
+      "quantitative_analysis": {
+        "conservative_net_gain": 0.05,
+        "optimistic_net_gain": 0.89,
+        "midpoint_estimate": 0.47,
+        "failures_catchable_by_code": "30% of all failures (execution errors 20% + extraction errors 10%)",
+        "failures_NOT_catchable": "70% (formalization errors 35% + approach errors 25% + timeouts 10%)",
+        "false_rejection_rate": "8-15% (code incorrectly rejects correct answer)",
+        "recovery_rate_when_caught": "25-45% (next candidate is actually correct)"
+      },
+      "risk": "Low",
+      "risk_analysis": "Safe fallback: if verification is uncertain, keep original majority-vote answer. False rejections are the main risk, but capped by fallback. Cannot be worse than current approach if implemented with fallback. The only scenario where it regresses is if false rejection rate exceeds recovery rate, which is unlikely with the fallback mechanism.",
+      "implementation_complexity": "Medium (1-2 days)",
+      "implementation_notes": [
+        "Fires ONCE per problem (on the final voted answer), not per attempt",
+        "Requires a spare Jupyter kernel for the verification code execution",
+        "Prompt must be carefully designed: 'Write Python code that tests whether answer X satisfies ALL of the following constraints from the problem: [list constraints]. Print VERIFIED or FAILED.'",
+        "Time cost: 20-30s per problem (one API call + one code execution)",
+        "Must handle: verification code timeout, code that crashes, ambiguous output",
+        "Fallback: if verification is inconclusive, return original majority vote answer"
+      ],
+      "time_cost_seconds": "20-30 per problem, ~1250s total (7% of budget)",
+      "net_benefit": 0.5,
+      "verdict": "IMPLEMENT — low risk, cheap, addresses a real failure mode (computational errors). Even the conservative estimate is non-negative, and the optimistic estimate (+0.89) is meaningful. The key innovation over V133 is using TIR (code execution) for objective verification rather than model judgment."
+    },
+    {
+      "name": "CROSS-ATTEMPT SYNTHESIS",
+      "description": "When 12 attempts produce split votes (no 4+ consensus), take the two most-voted conflicting answers with their solution TRACES, and ask the model: 'Approach A got 42 by [summary]. Approach B got 57 by [summary]. Write Python code to check which approach has an error.' This provides SPECIFIC NEW INFORMATION (the conflicting approaches) that no individual attempt had access to.",
+      "key_distinction": "Not self-refinement — each attempt ran independently. The synthesis turn sees BOTH solution paths for the first time, which is genuinely new information. The model can compare two concrete approaches rather than solving from scratch.",
+      "expected_improvement": "+0.3 to +0.8 pts",
+      "quantitative_analysis": {
+        "problems_with_split_votes": 3.4,
+        "split_on_easy_problems": "~0 (easy problems reach 4+ consensus trivially)",
+        "split_on_medium_problems": "~0.15 problems",
+        "split_on_hard_problems": "~3.24 problems",
+        "current_accuracy_on_splits": "50% (entropy vote is roughly coin-flip when split)",
+        "synthesis_accuracy": "65% (with code execution to check approaches)",
+        "net_gain": 0.51,
+        "risk_of_hurting_correct_splits": 0.59
+      },
+      "risk": "Medium",
+      "risk_analysis": "The synthesis can flip a correct answer to wrong (0.59 expected problems hurt). Net is positive but within noise. The synthesis prompt quality is critical — badly designed prompts could make this negative. Also, summarizing solution traces for the synthesis prompt is non-trivial (need to extract key reasoning steps, not dump 10K tokens).",
+      "implementation_complexity": "High (2-3 days)",
+      "implementation_notes": [
+        "Only fires when vote is split (3.4 problems expected per run)",
+        "Requires extracting solution SUMMARIES from attempt traces (hard: traces are 5-20K tokens each)",
+        "Must design a synthesis prompt that presents both approaches concisely",
+        "The synthesis turn should use TIR (write code to check both approaches)",
+        "Time cost: 30-60s per split-vote problem",
+        "Architectural complexity: requires storing attempt traces and post-processing after all 12 complete",
+        "Risk: solution summary extraction is error-prone, bad summaries lead to bad synthesis"
+      ],
+      "time_cost_seconds": "30-60 per split problem, ~153s total (0.9% of budget)",
+      "net_benefit": 0.3,
+      "verdict": "MAYBE IMPLEMENT — positive expected value but within noise (0.51 pts with 0.59 risk). High implementation complexity for uncertain gain. The main value is on hard problems where the vote is genuinely split, which is exactly where the model struggles most. Consider implementing AFTER Strategy 1 if time allows."
+    },
+    {
+      "name": "DECOMPOSITION (2-turn: plan then solve)",
+      "description": "Turn 1: 'List the 3-4 key sub-problems needed to solve this.' Turn 2: 'Now solve each sub-problem with Python and combine for the final answer.' This provides a problem-solving SCAFFOLD that may help on complex problems where the model gets lost in one long chain.",
+      "key_distinction": "Not self-refinement — Turn 1 generates a PLAN (new information for Turn 2). The model in Turn 2 has a structured roadmap it did not have before.",
+      "expected_improvement": "+0.5 to +1.5 pts on hard problems (5 of 50)",
+      "quantitative_analysis": {
+        "per_attempt_accuracy_boost": "+0.05 to +0.10 (realistic for untrained model)",
+        "boost_requires_N_reduction": "from N=12 to N=6-8 (2x time per decomposed attempt)",
+        "net_gain_at_boost_005_N6": 1.01,
+        "net_gain_at_boost_010_N8": 1.20,
+        "gain_only_on_hard_5_problems": true,
+        "p_bad_decomposition": 0.20,
+        "expected_problems_hurt": 0.05,
+        "note": "Math looks fantastic because ANY improvement in p is transformative when p=0.25 (hard problems). But the +0.05 to +0.10 boost estimate is HIGHLY SPECULATIVE for an untrained model."
+      },
+      "risk": "High",
+      "risk_analysis": "Three major risks: (1) GPT-OSS-120B is NOT trained for hierarchical decomposition — Intern-S1-MO's results used an RL-trained model; (2) Decomposition DOUBLES the serial time per attempt, forcing N reduction from 12 to 6-8, which hurts voting robustness; (3) Math sub-problems are often NOT independent — decomposition can create false separation that leads to wrong integration. Additionally, the architecture requires sequential API calls within each attempt, which conflicts with the current parallel streaming design.",
+      "implementation_complexity": "Very High (3-5 days)",
+      "implementation_notes": [
+        "ONLY for hard problems (5 of 50) — must classify difficulty first",
+        "Requires sequential turns within each attempt (breaks parallel architecture)",
+        "Must detect when decomposition gives bad sub-problems and bail out",
+        "Sub-problem independence is not guaranteed in math",
+        "The 'combine' step is itself a hard reasoning task",
+        "Must parse Turn 1 output to extract sub-problems (fragile parsing)",
+        "Time cost: 2-3x per attempt, reducing N from 12 to 6-8 for decomposed problems",
+        "Alternative: use decomposition as FALLBACK only after standard attempts all fail"
+      ],
+      "time_cost_seconds": "doubles per-attempt time for hard problems",
+      "net_benefit": 0.7,
+      "verdict": "DO NOT IMPLEMENT as primary strategy — high risk, high complexity, speculative boost. The math shows huge potential IF the boost is real, but the boost estimate (+0.05 to +0.10) is the weakest assumption in the entire analysis. Consider as a Phase 3 FALLBACK: if Phase 1+2 both fail on a hard problem, try decomposition with remaining time budget. This preserves the standard pipeline for the majority of problems."
+    }
+  ],
+
+  "recommended": "Strategy 1 (Code-Based Verification Turn) as the PRIMARY addition. It has the best risk/reward ratio: low risk (fallback to original answer), low implementation complexity (1-2 days), low time cost (7% of budget), and addresses a real failure mode (computational errors, 30% of failures). Strategy 2 (Cross-Attempt Synthesis) as a SECONDARY addition if time allows — it targets the split-vote scenario which is exactly the hardest cases. Strategy 3 (Decomposition) should NOT be implemented as a primary strategy but could be explored as a last-resort fallback for the very hardest problems.",
+
+  "recommended_implementation_order": [
+    "1. Code-Based Verification Turn (post-vote, 1-2 days, net +0.5)",
+    "2. Cross-Attempt Synthesis (for split votes only, 2-3 days, net +0.3)",
+    "3. Decomposition as Phase 3 fallback ONLY (3-5 days, net uncertain)"
+  ],
+
+  "combined_expected_improvement": "+0.5 to +1.8 pts (S1+S2 together)",
+
+  "code_snippet": "# === Code-Based Verification Turn ===\n# Insert into AIMO3Solver class (submission notebook)\n# Add AFTER the _select_answer() method\n\nVERIFY_CODE_PROMPT = (\n    'A student solved the following problem and claims the answer is {answer}.\\n\\n'\n    'Problem:\\n{problem}\\n\\n'\n    'Write Python code that tests whether {answer} satisfies ALL the constraints '\n    'stated in the problem. Your code should:\\n'\n    '1. Encode each constraint from the problem as a Python check\\n'\n    '2. Print VERIFIED if the answer passes ALL checks\\n'\n    '3. Print FAILED: <reason> if any check fails\\n\\n'\n    'Use sympy, numpy, or math as needed. Be thorough.'\n)\n\ndef _verify_with_code(self, problem, answer, deadline):\n    \"\"\"Code-based verification. Returns VERIFIED/FAILED/INCONCLUSIVE.\"\"\"\n    import re, time, queue\n    if time.time() > deadline - 20:\n        return 'INCONCLUSIVE'\n    try:\n        prompt_ids = self.encoding.encode(\n            VERIFY_CODE_PROMPT.format(problem=problem, answer=answer)\n        )\n        resp = self.client.completions.create(\n            model=self.cfg.served_model_name,\n            prompt=prompt_ids,\n            temperature=0.0,\n            max_tokens=2048,\n        )\n        text = resp.choices[0].text.strip()\n        code_match = re.search(r'```python\\s*(.*?)\\s*```', text, re.DOTALL)\n        if not code_match:\n            return 'INCONCLUSIVE'\n        code = code_match.group(1).strip()\n        sandbox = self.sandbox_pool.get(timeout=self.cfg.sandbox_timeout)\n        try:\n            output = sandbox.execute(code, timeout=10)\n            up = output.upper()\n            if 'VERIFIED' in up and 'FAILED' not in up:\n                return 'VERIFIED'\n            elif 'FAILED' in up or 'ERROR' in up:\n                return 'FAILED'\n            return 'INCONCLUSIVE'\n        finally:\n            sandbox.reset()\n            self.sandbox_pool.put(sandbox)\n    except Exception as e:\n        print(f'[VerifyCode] {e}')\n        return 'INCONCLUSIVE'\n\n# In solve_problem(), AFTER standard voting, BEFORE return:\n#   answer = self._select_answer(detailed)\n#   # === Code-based verification ===\n#   counter = Counter(valid)\n#   if counter.most_common(1)[0][1] < self.cfg.early_stop:\n#       for cand_ans, _ in counter.most_common(3):\n#           if time.time() > deadline - 15: break\n#           v = self._verify_with_code(problem, cand_ans, deadline)\n#           print(f'  CodeVerify {cand_ans}: {v}')\n#           if v == 'VERIFIED':\n#               answer = cand_ans; break\n#           elif v == 'FAILED':\n#               continue\n#   return answer\n"
+}

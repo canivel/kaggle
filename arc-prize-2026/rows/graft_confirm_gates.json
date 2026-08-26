@@ -1,0 +1,23 @@
+[
+  {
+    "gate": "A1-A7",
+    "name": "install certification (banner, armed lines, forbidden flags incl. clickmap, bundle, engine)",
+    "passed": true,
+    "kill": true,
+    "detail": "all passed; clickmap correctly absent"
+  },
+  {
+    "gate": "HARM",
+    "name": "lc_total <= 12 guard",
+    "passed": true,
+    "kill": true,
+    "detail": "lc 14, guard not tripped"
+  },
+  {
+    "gate": "CONFIRM",
+    "name": "mean_score >= 1.927 (lc-matched bar)",
+    "passed": false,
+    "kill": false,
+    "detail": "1.202 - miss by 0.725"
+  }
+]

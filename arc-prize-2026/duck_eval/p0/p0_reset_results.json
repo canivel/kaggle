@@ -1,0 +1,51 @@
+{
+ "reached_level": {
+  "score": 1,
+  "level_index": 1,
+  "steps": 21
+ },
+ "case_A": {
+  "label": "A: flag=true, RESET after 2 actions on level 1",
+  "engine_level_index": 1,
+  "engine_score": 1,
+  "engine_action_count": 0,
+  "state": "GameState.NOT_FINISHED",
+  "full_reset_flag": false,
+  "level_preserved": true,
+  "score_preserved": true,
+  "frame_equals_level1_start": true,
+  "board_had_changed_before_reset": true
+ },
+ "case_D": {
+  "label": "D: flag=true, RESET with action_count==0 on level 1",
+  "engine_level_index": 1,
+  "engine_score": 1,
+  "engine_action_count": 0,
+  "state": "GameState.NOT_FINISHED",
+  "full_reset_flag": false,
+  "stayed_on_level_1": true,
+  "frame_equals_level1_start": true
+ },
+ "case_B": {
+  "label": "B: flag unset, RESET with action_count==0 while on level 1",
+  "engine_level_index": 0,
+  "engine_score": 0,
+  "engine_action_count": 0,
+  "state": "GameState.NOT_FINISHED",
+  "full_reset_flag": true,
+  "was_on_level": 1,
+  "snapped_to_game_start": true,
+  "frame_equals_level0_start": true
+ },
+ "case_C": {
+  "label": "C: flag unset, RESET after 1 action on level 1",
+  "engine_level_index": 1,
+  "engine_score": 1,
+  "engine_action_count": 0,
+  "state": "GameState.NOT_FINISHED",
+  "full_reset_flag": false,
+  "stayed_on_level_1": true,
+  "frame_equals_level1_start": true,
+  "level1_start_deterministic_across_visits": true
+ }
+}

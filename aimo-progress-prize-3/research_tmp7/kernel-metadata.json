@@ -1,0 +1,27 @@
+{
+  "id": "huikang/finetuned-model-on-fork",
+  "id_no": 110941101,
+  "title": "Finetuned model on fork",
+  "code_file": "finetuned-model-on-fork.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "gpu"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": [
+    "andreasbis/aimo-3-utils"
+  ],
+  "competition_sources": [
+    "ai-mathematical-olympiad-progress-prize-3"
+  ],
+  "model_sources": [
+    "huikang/gpt-oss-120b-aimo3/Transformers/160a/20"
+  ],
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:536e3d9752ddf933ae83b0a0c3ea67d38e6236db11a1cd47d84927a0b8d2c440",
+  "machine_shape": "NvidiaH100"
+}

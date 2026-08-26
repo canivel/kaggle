@@ -1,0 +1,7 @@
+[
+  {
+    "title": "Arrow Pad Outline",
+    "description": "A click-based, position-matching game in a discrete-position grid. The board is mostly open, with a chunky movable token and one glowing outline showing where it should end up. You click one of four oversized arrow pads around the board to nudge the token by one grid step. The puzzle is intentionally minimal and tutorial-like: level 1 places the token a few moves away, level 2 makes the route longer and adds a decoy outline, and level 3 uses a larger token shape that must be aligned exactly before a generous visible move counter runs out.",
+    "num_levels": 3
+  }
+]

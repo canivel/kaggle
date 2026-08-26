@@ -1,0 +1,24 @@
+{
+  "prereg": "learnings/war_room/q38_field_prereg_2026-08-20.md (sealed pre-push same morning; verdict same day 09:15 EDT)",
+  "kernel": "canivel/arc3-q38-field-eval",
+  "version": 1,
+  "date": "2026-08-20",
+  "mechanism": "ADOPTION of the field's best-evidenced public configuration, byte-faithful: foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b (139 votes; author team 2.23 board-verified #23; near-byte fork 1.91 on 10 lifetime subs). Compound BY DESIGN and declared: Qwen3.8-27B-FP8 (repacked Kaggle Model) x reasoning-effort UNPINNED (template default xhigh) x Jakob Bruggen 08-07 harness generation (tool_agent 108,927 B; animation NOT enabled, MULTIMODAL_CONTEXT=current_grid) x layout-tolerant mount resolvers. Answers 'does the field floor reproduce on our rail?', not 'which component carries'. Context: our sealed Q38 REFUTE-2x stands, re-scoped to effort=medium on the June-30 harness (rethink_2026-08-20.md sec 6.1).",
+  "design": "Byte-faithful rebase (notebook content byte-identical, code sha 7227f3286cf60b25; metadata-only retarget). Build-time certification at seal: no reasoning_effort/grafts in artifact; anim bundle fresh-downloaded (75 files, manifest cbf26b9b913cc040..., setup sha 650c2cfe94b972c3: yield 60, mml 65536, ctx 32768, temp 0.6, NO effort pin). Runtime certification from the log BEFORE any number: 6/6.",
+  "sealed_reading_rule": "PRIMARY lc_total over 25 games vs baseline family duck-harness-kaggle m=3 (18/19/21): HARM <= 12, NULL 13-26, SIGNAL >= 27 (standing K3''-mirror lines). SECONDARY mean_score recorded NON-INFERENTIAL, expectation >= 3.4 if the field class reproduces. QUEUE-HEAD GATE (separate, coordinator-ruled): COMPLETE + runtime certification by 18:00 => A21 exploration draw; score bands do NOT gate the head.",
+  "measured": {
+    "certification": "6/6 (served Qwen/Qwen3.8-27B-FP8; reasoning_effort ABSENT from entire log; anim setup present; no module/stock failures; n=25)",
+    "lc_total": 28,
+    "verdict_band": "SIGNAL (bar 27, set at +28% over the 22 all-time high)",
+    "per_game_lc_max": 7,
+    "prior_campaign_per_game_max": 4,
+    "mean_score": 6.173,
+    "score_context": "expectation was >=3.4; best baseline 3.420; Q38-medium seeds 2.795",
+    "total_actions": 1639,
+    "actions_context": "every prior recorded run: 3257-4757 - fewer actions AND more levels",
+    "games_won": 0,
+    "campaign_won_total": "0 of 520 recorded game-runs"
+  },
+  "robustness": "SIGNAL margin is 1 level over the bar (28 vs 27) - thin on the primary; but the secondary landed at 1.8x its own stated expectation and 2x the historical best, and the per-game max (7) is off the campaign's distribution entirely. Certification was evaluated before any outcome was read.",
+  "why_informative": "First SIGNAL in campaign history on this rail, against a bar the 08-17 prereg honestly stated a modest real effect would fail. It vindicates the 08-20 rethink's re-scoping: the sealed Q38 REFUTE-2x was about effort=medium on the June-30 harness, and the field default (xhigh, 08-07 harness) is a different configuration that reproduces the field's 2.2-class behavior on our own rail in one draw. It also retires 'the engine cannot be the step' as a general claim while preserving the original refutation's scope. Compound by design: component attribution (xhigh vs harness generation vs packaging) is explicitly NOT settled and is the follow-up factorial if needed. Consequence executed same morning: queue head swapped to this kernel as the coordinator-ruled A21 exploration draw (first non-filler head in six days), with the sealed gate (certification, not score) as the entry criterion."
+}

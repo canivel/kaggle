@@ -1,0 +1,33 @@
+{
+  "key": "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\w0_eval_s1:117556457|F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\w0_cont_eval:126381637",
+  "value": {
+    "runs": {
+      "w0_eval_s1": {
+        "label": "duck-harness-kaggle-continuation-v1",
+        "label_matches_family": true,
+        "actions": 4290,
+        "dup": 414,
+        "dup_rate": 0.0965034965034965,
+        "actions_cleared": 636,
+        "dup_cleared": 28,
+        "dup_rate_cleared": 0.0440251572327044
+      },
+      "w0_cont_eval": {
+        "label": "duck-harness-kaggle-continuation-v1",
+        "label_matches_family": true,
+        "actions": 5162,
+        "dup": 782,
+        "dup_rate": 0.1514916698953894,
+        "actions_cleared": 439,
+        "dup_cleared": 1,
+        "dup_rate_cleared": 0.002277904328018223
+      }
+    },
+    "m": 2,
+    "missing": [],
+    "pooled_dup_rate_all_actions": 0.12653406686415575,
+    "pooled_dup_rate_cleared_levels": 0.026976744186046512,
+    "error": null,
+    "all_labels_match_family": true
+  }
+}

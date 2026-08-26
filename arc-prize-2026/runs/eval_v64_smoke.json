@@ -1,0 +1,45 @@
+{
+  "agent": "notebooks/forge_agent/v64_agent.py",
+  "budget": 200,
+  "results_a": {
+    "bp35-0a0ad940": {
+      "game_id": "bp35-0a0ad940",
+      "gid": "bp35",
+      "guid": "0a0ad940",
+      "ok": true,
+      "err": null,
+      "actions": 200,
+      "levels_completed": 0,
+      "terminal_state": "GAME_OVER",
+      "level_actions": [
+        [
+          0,
+          200
+        ]
+      ],
+      "wall_s": 15.3,
+      "baseline_actions": [
+        15,
+        72,
+        36,
+        31,
+        31,
+        48,
+        86,
+        155,
+        163
+      ],
+      "rhae": 0.0,
+      "rhae_details": [
+        {
+          "level": 0,
+          "agent_actions": 200,
+          "human_actions": 15,
+          "solved": false,
+          "rhae": 0.0
+        }
+      ],
+      "first_clear_acts": []
+    }
+  }
+}

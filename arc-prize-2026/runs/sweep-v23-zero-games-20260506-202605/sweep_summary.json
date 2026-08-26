@@ -1,0 +1,87 @@
+{
+  "agent_src": "notebooks/forge_agent/v23_agent.py",
+  "agent_class": "MyAgent",
+  "n_games": 6,
+  "total_elapsed_s": 1443.7,
+  "overall_score_avg": null,
+  "results": [
+    {
+      "game": "bp35",
+      "elapsed_s": 240.4,
+      "subprocess_exit": 0,
+      "score": null,
+      "levels_completed": null,
+      "n_levels": null,
+      "actions": null,
+      "completed": null,
+      "bfs_solved_levels": 0,
+      "bfs_timeouts": 2,
+      "run_dir": "F:\\kaggle\\arc-prize-2026\\runs\\runs-20260506-202605-v23-zero-games-bp35"
+    },
+    {
+      "game": "g50t",
+      "elapsed_s": 240.7,
+      "subprocess_exit": 0,
+      "score": null,
+      "levels_completed": null,
+      "n_levels": null,
+      "actions": null,
+      "completed": null,
+      "bfs_solved_levels": 0,
+      "bfs_timeouts": 2,
+      "run_dir": "F:\\kaggle\\arc-prize-2026\\runs\\runs-20260506-203005-v23-zero-games-g50t"
+    },
+    {
+      "game": "sc25",
+      "elapsed_s": 240.8,
+      "subprocess_exit": 0,
+      "score": null,
+      "levels_completed": null,
+      "n_levels": null,
+      "actions": null,
+      "completed": null,
+      "bfs_solved_levels": 0,
+      "bfs_timeouts": 2,
+      "run_dir": "F:\\kaggle\\arc-prize-2026\\runs\\runs-20260506-203406-v23-zero-games-sc25"
+    },
+    {
+      "game": "sb26",
+      "elapsed_s": 240.8,
+      "subprocess_exit": 0,
+      "score": null,
+      "levels_completed": null,
+      "n_levels": null,
+      "actions": null,
+      "completed": null,
+      "bfs_solved_levels": 0,
+      "bfs_timeouts": 1,
+      "run_dir": "F:\\kaggle\\arc-prize-2026\\runs\\runs-20260506-203807-v23-zero-games-sb26"
+    },
+    {
+      "game": "tn36",
+      "elapsed_s": 240.6,
+      "subprocess_exit": 0,
+      "score": null,
+      "levels_completed": null,
+      "n_levels": null,
+      "actions": null,
+      "completed": null,
+      "bfs_solved_levels": 0,
+      "bfs_timeouts": 1,
+      "run_dir": "F:\\kaggle\\arc-prize-2026\\runs\\runs-20260506-204208-v23-zero-games-tn36"
+    },
+    {
+      "game": "tr87",
+      "elapsed_s": 240.4,
+      "subprocess_exit": 0,
+      "score": null,
+      "levels_completed": null,
+      "n_levels": null,
+      "actions": null,
+      "completed": null,
+      "bfs_solved_levels": 0,
+      "bfs_timeouts": 1,
+      "run_dir": "F:\\kaggle\\arc-prize-2026\\runs\\runs-20260506-204608-v23-zero-games-tr87"
+    }
+  ]
+}

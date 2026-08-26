@@ -1,0 +1,46 @@
+import json
+import os
+import pickle
+import subprocess
+import sys
+import sysconfig
+import time
+from datetime import datetime, timedelta
+from pathlib import Path
+from urllib.request import urlopen
+
+# True only inside a real competition rerun; switches diagnostics + soft deadline.
+TRUE_SUBMISSION = os.environ.get("KAGGLE_IS_COMPETITION_RERUN", "").strip().lower() in {"1", "true"}
+NOTEBOOK_START_EPOCH = time.time()
+
+# Non-interactive matplotlib backend: diagnostics render plots with no display attached.
+os.environ["MPLBACKEND"] = "Agg"
+# Marks the run as a (real or emulated) submission so the framework + solver can adjust.
+os.environ["TAAF_RUN_AS_SUBMISSION"] = "1" if TRUE_SUBMISSION else "0"
+# In submission, disable the periodic JSON/HTML diagnostics writes and per-frame logging.
+os.environ["TAAF_MINIMAL_DIAGNOSTICS"] = "1" if TRUE_SUBMISSION else "0"
+# Pin arc_agi's cached level_reset_only before its client is built (RESET keeps the level).
+os.environ["ONLY_RESET_LEVELS"] = "true"
+
+# Prepend the CUDA toolkit to the linker path (it is off it on Kaggle GPU images) so the
+# solver's GPU libraries (e.g. vllm / torch) can link against libcuda.
+cuda_library_path = "/usr/local/nvidia/lib64"
+os.environ["LIBRARY_PATH"] = os.pathsep.join(
+    entry for entry in [cuda_library_path, *os.environ.get("LIBRARY_PATH", "").split(os.pathsep)] if entry
+)
+
+# Everything the run produces is written here.
+WORKING_DIR = Path("/kaggle/working")
+WORKING_DIR.mkdir(parents=True, exist_ok=True)
+print(f"taaf.kaggle: TRUE_SUBMISSION={TRUE_SUBMISSION}")
+
+# --- Warpack fast-submit gate (fork-band adoption R1a) -----------------------
+# Heavy setup (wheel install, source import, vLLM boot, benchmark run) only
+# happens in a real competition rerun, or when explicitly forced for a
+# build-time offline eval (WARPACK_FORCE_OFFLINE_BENCH=1). An interactive
+# Save Version therefore finishes in seconds with a dummy submission.parquet
+# (see the run cell) -> daily resubmission costs ~no GPU quota; the official
+# score is the max over stochastic reruns.
+FORCE_OFFLINE_BENCH = os.environ.get("WARPACK_FORCE_OFFLINE_BENCH", "").strip().lower() in {"1", "true"}
+RUN_HEAVY = TRUE_SUBMISSION or FORCE_OFFLINE_BENCH
+print(f"taaf.kaggle: RUN_HEAVY={RUN_HEAVY} (fast-submit gate {'off' if RUN_HEAVY else 'ON'})")

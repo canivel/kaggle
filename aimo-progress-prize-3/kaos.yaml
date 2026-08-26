@@ -1,0 +1,33 @@
+database:
+  path: ./aimo3-search.db
+  wal_mode: true
+  busy_timeout_ms: 5000
+  compression: zstd
+
+isolation:
+  mode: logical
+
+# Models — Claude Code Opus for all tasks
+models:
+  claude-opus:
+    provider: claude_code
+    model_id: claude-opus-4-6
+    max_context: 200000
+    use_for: [trivial, moderate, complex, critical]
+
+router:
+  type: gepa
+  classifier_model: claude-opus
+  fallback_model: claude-opus
+  context_compression: true
+  max_retries: 1
+
+ccr:
+  max_iterations: 100
+  checkpoint_interval: 5
+  timeout_seconds: 3600
+  max_parallel_agents: 4
+
+mcp:
+  port: 3100
+  host: 127.0.0.1

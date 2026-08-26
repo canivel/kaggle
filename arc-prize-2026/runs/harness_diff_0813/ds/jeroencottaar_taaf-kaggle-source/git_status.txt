@@ -1,0 +1,4 @@
+git status:
+  ARC3-Inference                   e442e01     DIRTY  add-kaggle-share-flag     Add flag to use shareable notebook
+  tufa-arc-agi-framework           030ac6f     DIRTY  submission-share-mode     Address PR #29 review: clarify R2.61 offline behavior, thre…
+  re-arc-3                         0056955095  pinned  master                    (non-editable)

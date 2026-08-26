@@ -1,0 +1,27 @@
+{
+  "graft-floor-v19": {
+    "n_games": 25,
+    "lc_total": 18,
+    "mean_dlc": -0.053333,
+    "mean_score": 2.303,
+    "total_actions": 3257,
+    "games_won": 0
+  },
+  "baseline-duck-harness-kaggle": {
+    "m": 3,
+    "lc": [
+      18,
+      19,
+      21
+    ],
+    "mean_scores": [
+      1.427,
+      1.939,
+      3.42
+    ],
+    "total_actions_available": {
+      "gate_eval_v1": 4757,
+      "gate_eval_v2": 4033
+    }
+  }
+}

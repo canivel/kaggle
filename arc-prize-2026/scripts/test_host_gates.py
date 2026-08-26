@@ -107,6 +107,20 @@ def test_H2_negative_forbidden_endpoint_strict_fails():
     assert _status(checks, "H2") == "FAIL"
 
 
+def test_H2_negative_bare_domain_warns():
+    # Upstream PR #74 (2026-08-03) made bare arcprize.org canonical; the gate
+    # must catch it without the legacy `three.` subdomain.
+    bad = _nb("r = requests.get('https://arcprize.org/api/games')\n")
+    checks = host_gates("canivel/arc3-duck-repro", bad, GOOD_META)
+    assert _status(checks, "H2") == "WARN"
+
+
+def test_H2_negative_other_subdomain_warns():
+    bad = _nb("r = requests.get('https://api.arcprize.org/games')\n")
+    checks = host_gates("canivel/arc3-duck-repro", bad, GOOD_META)
+    assert _status(checks, "H2") == "WARN"
+
+
 # --- H3: no writes to /kaggle/input ---------------------------------------
 
 def test_H3_positive_read_only_ok():

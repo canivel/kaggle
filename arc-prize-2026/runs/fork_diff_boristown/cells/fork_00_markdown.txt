@@ -1,0 +1,20 @@
+# Tufa Labs ARC3 submission
+
+![Tufa Labs](attachment:tufa_labs.png)
+
+**Note**: this notebook is a more readable version of the notebook that scored our milestone-winning 1.21; unfortunately, we haven't had the same lucky result with this one. The original one is also shared here, but using it is not recommended: https://www.kaggle.com/code/jeroencottaar/taaf-duck-harness-kaggle
+
+**Note**: if you make a copy of this notebook, you will have to manually select the proper GPU (RTX Pro 6000).
+
+Link to writeup explaining what's going on here: https://www.kaggle.com/competitions/arc-prize-2026-arc-agi-3/discussion/717133
+
+Link to Machine Learning Street Talk interview by Tim Scarfe about this duck harness: https://x.com/MLStreetTalk/status/2072326433922297975?s=20
+
+This notebook executes the ARC-AGI-3 solver written by the Tufa Labs team; in alphabetical order: Harold Bessis, Jeroen Cottaar, Isaiah Pressman, Andries Smit, Michal Tesnar, and Stefano Viel.
+
+You will only find infrastructure and diagnostics in this notebook; the actual solver code is in an attached dataset. See our writeup on the competition forum to learn more about that the solver actually does.
+
+It installs the ARC runtime from the competition wheelhouse, makes the bundled source
+snapshot importable, runs any solver setup commands, loads the pickled benchmark, plays the
+competition games, and writes results to `/kaggle/working`. Diagnostics are minimised during
+a real competition rerun (`KAGGLE_IS_COMPETITION_RERUN`) and kept full otherwise.

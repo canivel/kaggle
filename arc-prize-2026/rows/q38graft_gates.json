@@ -1,0 +1,23 @@
+[
+  {
+    "gate": "C",
+    "name": "runtime certification (6 flags, clickmap armed, Q38 served, xhigh)",
+    "passed": true,
+    "kill": true,
+    "detail": "all passed"
+  },
+  {
+    "gate": "HEAD",
+    "name": "head gate lc_total >= 28",
+    "passed": false,
+    "kill": false,
+    "detail": "18"
+  },
+  {
+    "gate": "BAND",
+    "name": "HARM band lc <= 23",
+    "passed": true,
+    "kill": false,
+    "detail": "18 <= 23; caveats bound"
+  }
+]

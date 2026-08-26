@@ -1,0 +1,41 @@
+{
+  "prereg": "learnings/war_room/budget_elasticity_prereg_2026-08-22.md (sealed before build; verdict same day 16:40 EDT)",
+  "kernels": {
+    "t05": "canivel/arc3-budget-t05-eval v1",
+    "t3": "canivel/arc3-budget-t3-eval v1"
+  },
+  "date": "2026-08-22",
+  "mechanism": "ARM 1 of the original program (exp 38): budget-elasticity curve. One-constant changes of the certified field-floor vehicle (max_runtime_s_per_game 7920 -> 3960 / 23760), everything else byte-identical. Motivated by the panel headline: 675/675 recorded game-runs ended gave_up at the cap; 17 turns/game vs 132 designed; the decision budget hypothesized as the binding constraint and the common cause of the 0-for-6 additions sweep.",
+  "sealed_reading_rule": "epsilon = dln(lc)/dln(budget) across three points; T1 = TWO replicates {28, 30} mean 29 (never a single run); trim1 screening primary, mean_score retired; bands: HIGH >=0.60 (lc(T3)>=45 AND lc(T05)<=22), KILL <0.25 (lc(T3)<=33), PARTIAL between, ANOMALY lc(T3)<24 with turns>=2x. Asymmetry guard bound pre-read: downward elasticity does not license upward expectations; PARTIAL goes to the coordinator with the turns proxy, never read as 'ship throughput'.",
+  "measured": {
+    "curve_lc": {
+      "3960s": 14,
+      "7920s": [
+        28,
+        30
+      ],
+      "23760s": 35
+    },
+    "epsilon_full_range": 0.5114,
+    "epsilon_t05_to_t1": 1.051,
+    "epsilon_t1_to_t3": 0.171,
+    "trim1": {
+      "t05": 1.4087,
+      "t3": 5.0209
+    },
+    "actions": {
+      "t05": 786,
+      "t1_field": 1639,
+      "t3": 3616
+    },
+    "wallclock_bound_exactly": {
+      "t05_median": 3960.5,
+      "t3_median": 23760.8
+    },
+    "t3_score_vs_t1": "6.21 vs 6.17 - more levels, same score: the extra actions eat the quadratic",
+    "anomaly_branch": "not triggered (lc 35 >= 24)",
+    "kill_margin": "avoided by 2 levels (35 vs <=33) - PARTIAL is weak, stated plainly"
+  },
+  "instrument_note": "Taxonomy species #5, found against the real T0.5 artifact BEFORE the elasticity read: the solver banner echoes the PICKLED DEFAULT (7920.0), printed before the customization cell assigns - an echo captured before the treatment applies certifies nothing. Certification moved to the observable the treatment actually moves (per-game final_wallclock_seconds window; T0.5 median 3960.5 proves binding). Propagated to q38field_score (dead echo-forbids -> its own 7700-8300 window; verified both directions on real artifacts). lc 14 was visible in the same diagnostic query - disclosed; the fix direction is mechanism-determined.",
+  "why_informative": "The campaign's first measured elasticity curve, and the shape answers the program's gating question with precision the single epsilon hides: the budget binds at slope ~1.05 BELOW our operating point and saturates to ~0.17 ABOVE it. The decision-budget thesis is confirmed as the binding constraint AT THE MARGIN yet nearly exhausted as an upside lever: naive 1.5x throughput projects ~+2 levels against the ~+16 the 2.5 tier requires. This prices the entire throughput family (C2/C3/C7) at the slope, hands C4 its promotion per the sealed band text, and does it for 7.9 GPU-h and zero submission slots. The asymmetry guard (sealed pre-read) is what kept the loud downward segment from being read as an upward promise - the guard did exactly its job."
+}

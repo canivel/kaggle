@@ -1,0 +1,13 @@
+uid=3_0 RootWebArea "Kaggle: Your Home for Data Science" url="https://www.kaggle.com/code/canivel/arc3-a17-72b-canary"
+  uid=3_1 main
+    uid=3_2 StaticText "Kaggle uses cookies from Google to deliver and enhance the quality of its services and to analyze traffic."
+    uid=3_3 link "Learn more" url="https://www.kaggle.com/cookies"
+      uid=3_4 StaticText "Learn more"
+    uid=3_5 StaticText "OK, Got it."
+    uid=3_6 heading "We can't find that page." level="6"
+    uid=3_7 StaticText "You can search Kaggle above or"
+    uid=3_8 StaticText " "
+    uid=3_9 link "visit our homepage" url="https://www.kaggle.com/"
+      uid=3_10 StaticText "visit our homepage"
+    uid=3_11 StaticText "."
+  uid=3_12 alert atomic live="polite" relevant="additions text"

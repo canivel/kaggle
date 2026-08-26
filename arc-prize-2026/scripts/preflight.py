@@ -13,6 +13,36 @@ Root cause (found 2026-06-28): the rerun cell's `agents/__init__.py` and
   - Wrong ARC_API_KEY value (`arc-agi-3` instead of `test-key-123`)
 Any of these crashes the swarm runner that orchestrates 25 concurrent games.
 
+FAMILY PROFILES (added 2026-08-12):
+
+K2/K4/K5/K6/K8 encode the SHAPE of the `arc3-baseline` agent-swarm notebook
+(`agents/__init__.py`, `.env`, `main.py --agent myagent`, `%%writefile
+my_agent.py`). The duck-harness eval family (taaf + vLLM: arc3-duck-war-eval
+and its arm grafts — compaction / animation / p1 / w0 / sentinel) is a
+completely different artifact, so those five checks are STRUCTURALLY
+INAPPLICABLE to it, not failing. Before this change preflight returned the
+identical 5 FAILs — hence BLOCK — on EVERY member of that family, including
+`canivel/arc3-duck-animation-eval`, which built COMPLETE and produced the
+08-11 primary trace. A gate that blocks a whole healthy family is worse than
+no gate: it trains everyone to ignore it.
+
+  * `--family arc3-baseline` (or auto-detect): behaviour EXACTLY as before.
+  * `--family duck-harness` (or auto-detect): K1 and K3 still apply and still
+    gate. K2/K4/K5(+K5b)/K6/K8 are reported with status "N/A" and an explicit
+    reason — they are NEVER silently dropped and NEVER count toward the
+    verdict. In their place run D1-D4, the gate that actually applies to this
+    family (`duck_eval/warpack/p1_push_report_2026-08-12.md` §0): a structural
+    diff against the war-eval baseline `canivel/arc3-duck-war-eval`, whose
+    `metadata.kaggle` must be BYTE-IDENTICAL (a difference there is a hard
+    BLOCK — that is precisely the drift class that ERRORed 5 kernels) and
+    whose cell shape must match, with the set of differing code cells reported
+    (for P1 and animation: exactly notebook cells 2/12/14).
+
+Auto-detection is content-based and CONSERVATIVE — it can only ever fall back
+to the stricter agent-swarm profile, never away from it (see `detect_family`).
+The chosen family and the reason are printed in the verdict and carried in the
+JSON report as `family` / `family_detection`.
+
 CHECKS (all deterministic — no LLM round-trip needed):
 
   K1. Kernel pulls cleanly from Kaggle
@@ -32,8 +62,22 @@ CHECKS (all deterministic — no LLM round-trip needed):
       notebook metadata.kaggle.dataSources (Kaggle should auto-sync; verify)
   K8. The %%writefile of /kaggle/working/my_agent.py is present
 
+DUCK-HARNESS FAMILY CHECKS (replace K2/K4/K5/K6/K8 for that family only):
+
+  D1. The war-eval baseline resolves (pulled from Kaggle, or staged from a
+      local .ipynb path given to --baseline)
+  D2. Candidate `metadata.kaggle` is BYTE-IDENTICAL to the baseline's
+      (HARD BLOCK if it differs — structural drift)
+  D3. Cell shape matches the baseline: same number of cells in the same
+      cell_type sequence (HARD BLOCK if it differs)
+  D4. The set of differing code cells is REPORTED (absolute notebook cell
+      indices). With --expect-diff-cells the set is also ENFORCED, which is how
+      a prereg's "exactly cells 2/12/14 differ" becomes mechanical.
+
 USAGE:
   uv run python scripts/preflight.py --kernel canivel/arc3-execwm-v2 --version 1
+  uv run python scripts/preflight.py --kernel canivel/arc3-duck-p1-eval \
+      --family duck-harness --expect-diff-cells 2,12,14
   # exit code 0 = OK, 1 = BLOCK; prints findings as JSON
 """
 from __future__ import annotations
@@ -83,6 +127,93 @@ REQUIRED_RUN_FRAGMENTS = [f for f in REQUIRED_RUN_FRAGMENTS if f]
 
 
 # ---------------------------------------------------------------------------
+# Family profiles (2026-08-12).
+# ---------------------------------------------------------------------------
+
+FAMILY_BASELINE = "arc3-baseline"      # the agent-swarm notebook (K2/K4-K8 apply)
+FAMILY_DUCK = "duck-harness"           # taaf + vLLM eval family (D1-D4 apply)
+FAMILIES = (FAMILY_BASELINE, FAMILY_DUCK)
+
+# The war-eval baseline every duck-harness arm kernel is a surgical graft of
+# (duck_eval/warpack/build_eval_notebook.py: cell 2 flag stamp, cell 12 patch
+# graft, cell 14 canary — everything else byte-identical).
+DUCK_BASELINE_KERNEL = "canivel/arc3-duck-war-eval"
+
+# Positive content markers of the duck-harness eval notebook. Auto-detection
+# requires at least DUCK_MIN_MARKERS of them, so a single incidental string
+# cannot reclassify a notebook.
+DUCK_HARNESS_MARKERS = (
+    "WARPACK_FORCE_OFFLINE_BENCH",
+    "taaf-kaggle-source-share",
+    "deploy_target.pkl",
+    "bm.solver",
+)
+DUCK_MIN_MARKERS = 2
+
+# Markers of the arc3-baseline agent-swarm shape. If ANY of these is present
+# the notebook is treated as the agent-swarm family no matter what else it
+# contains — auto-detection is one-way: it can fall back to the STRICTER
+# profile but can never move a swarm notebook off it. This is the safety
+# property that preserves feedback_arc_kernel_structural_drift protection.
+AGENT_SWARM_MARKERS = (
+    "main.py --agent myagent",
+    "%%writefile /kaggle/working/my_agent.py",
+    "from .swarm import Swarm",
+)
+
+
+def na(checks, code, msg):
+    """Record a check that is INAPPLICABLE to the selected family.
+
+    Deliberately NOT an OK and deliberately not omitted: a skip must be
+    visible in the output with its reason so nobody can mistake it for a pass.
+    Status "N/A" is ignored by summarize(), so it can never move a verdict."""
+    checks.append({"check": code, "status": "N/A",
+                   "message": f"inapplicable to family '{FAMILY_DUCK}' — {msg}"})
+
+
+def detect_family(kernel: str, nb: dict) -> dict:
+    """Classify a notebook into a preflight family profile.
+
+    Explicit, pure, and testable. Returns
+      {"family": ..., "reason": ..., "duck_markers": [...], "swarm_markers": [...]}
+
+    Rule (in order):
+      1. If ANY AGENT_SWARM_MARKERS is present -> FAMILY_BASELINE. The strict
+         agent-swarm profile always wins; detection never relaxes a notebook
+         that has the swarm shape.
+      2. Else if >= DUCK_MIN_MARKERS of DUCK_HARNESS_MARKERS are present ->
+         FAMILY_DUCK.
+      3. Else -> FAMILY_BASELINE (the default; unknown shapes get the strict
+         profile).
+
+    The kernel slug is recorded for provenance but is NOT load-bearing: a slug
+    can be renamed, a notebook body cannot be faked into the wrong shape."""
+    srcs = _all_code_sources(nb or {})
+    blob = "\n".join(srcs)
+    swarm_hits = [m for m in AGENT_SWARM_MARKERS if m in blob]
+    duck_hits = [m for m in DUCK_HARNESS_MARKERS if m in blob]
+    slug = (kernel or "").split("/")[-1].lower()
+    if swarm_hits:
+        reason = (f"agent-swarm marker(s) present {swarm_hits} -> strict "
+                  f"'{FAMILY_BASELINE}' profile (detection never relaxes a "
+                  f"swarm notebook)")
+        fam = FAMILY_BASELINE
+    elif len(duck_hits) >= DUCK_MIN_MARKERS:
+        reason = (f"{len(duck_hits)}/{len(DUCK_HARNESS_MARKERS)} duck-harness "
+                  f"marker(s) {duck_hits} and 0 agent-swarm markers "
+                  f"(slug={slug!r})")
+        fam = FAMILY_DUCK
+    else:
+        reason = (f"no agent-swarm markers and only {len(duck_hits)} "
+                  f"duck-harness marker(s) {duck_hits} (< {DUCK_MIN_MARKERS}) "
+                  f"-> defaulting to strict '{FAMILY_BASELINE}' profile")
+        fam = FAMILY_BASELINE
+    return {"family": fam, "reason": reason,
+            "duck_markers": duck_hits, "swarm_markers": swarm_hits}
+
+
+# ---------------------------------------------------------------------------
 # Host common-error gates (H1-H4).
 #
 # Derived from the Kaggle host's "500 Submissions Analyzed - Common Errors"
@@ -110,9 +241,22 @@ REQUIRED_RUN_FRAGMENTS = [f for f in REQUIRED_RUN_FRAGMENTS if f]
 GPU_REQUIRED_FAMILIES = ("duck",)
 DATASET_REQUIRED_FAMILIES = ("duck",)
 
+# Duck-lineage kernels whose SLUG does not contain "duck" (2026-08-14). Without
+# this, `_family_of()` tags them by their own slug, H1/H4 report "not GPU-required
+# / not dataset-required; n/a" — an OK that means NOT CHECKED — and a duck kernel
+# pushed with the accelerator off or the weights dataset dropped sails straight
+# through the host gates. Additive allowlist: it can only ever turn a vacuous OK
+# into a real check, never the reverse, and it changes nothing for any slug not
+# listed here.
+DUCK_LINEAGE_SLUGS = ("arc3-lora-serve-canary",)
+
 # Endpoint that must NOT be called from inside a competition rerun (H2). The
 # graded run must talk to the in-notebook / local gateway, not the public API.
-FORBIDDEN_ENDPOINT = "three.arcprize.org"
+# Any-subdomain regex, not a substring: upstream PR arcprize/ARC-AGI-3-Agents#74
+# (merged 2026-08-03) made bare `arcprize.org` canonical over the old
+# `three.arcprize.org`, so the gate must cover both plus future subdomains.
+FORBIDDEN_ENDPOINT = "arcprize.org (any subdomain)"
+FORBIDDEN_ENDPOINT_RE = re.compile(r"(?:[a-z0-9-]+\.)*arcprize\.org", re.IGNORECASE)
 
 
 def fail(checks, code, msg):
@@ -139,9 +283,15 @@ def find_cell_containing(cells, needle):
 
 def _family_of(kernel: str) -> str:
     """Coarse family tag from the kernel slug (e.g. 'canivel/arc3-duck-repro'
-    -> 'duck'). Used to decide which host gates apply to which kernel."""
+    -> 'duck'). Used to decide which host gates apply to which kernel.
+
+    NOTE: this is the H1-H4 SLUG tag and is deliberately separate from
+    `detect_family()`, which picks the K/D structural PROFILE from notebook
+    content. Do not conflate them: the host gates are slug-scoped by design
+    (they ask "does this lineage need a GPU?"), the profile is content-scoped
+    (it asks "what shape is this artifact?")."""
     slug = (kernel or "").split("/")[-1].lower()
-    if "duck" in slug:
+    if "duck" in slug or slug in DUCK_LINEAGE_SLUGS:
         return "duck"
     return slug
 
@@ -217,8 +367,8 @@ def host_gates(kernel: str, nb: dict, kmeta: dict | None,
     else:
         ok(checks, "H1", f"family '{fam}' not GPU-required; H1 n/a")
 
-    # H2: no calls to the public three.arcprize.org endpoint.
-    hits = [i for i, s in enumerate(code_srcs) if FORBIDDEN_ENDPOINT in s]
+    # H2: no calls to the public arcprize.org endpoint (any subdomain).
+    hits = [i for i, s in enumerate(code_srcs) if FORBIDDEN_ENDPOINT_RE.search(s)]
     if hits:
         _hostwarn(strict, checks, "H2",
                   f"forbidden endpoint '{FORBIDDEN_ENDPOINT}' referenced in "
@@ -263,28 +413,25 @@ def host_gates(kernel: str, nb: dict, kmeta: dict | None,
     return checks
 
 
-def run_preflight(kernel: str, version: int | None,
-                  host_gates_mode: str = "off") -> dict:
-    checks: list[dict] = []
-    tmp = Path(tempfile.mkdtemp(prefix="preflight-"))
-    try:
-        # K1: pull kernel
-        r = subprocess.run(
-            ["kaggle", "kernels", "pull", kernel, "-p", str(tmp)],
-            capture_output=True, text=True, timeout=120,
-        )
-        if r.returncode != 0:
-            fail(checks, "K1", f"kaggle pull failed: {r.stderr.strip()[-300:]}")
-            return summarize(kernel, version, checks)
-        # find the .ipynb
-        ipynbs = list(tmp.glob("*.ipynb"))
-        if not ipynbs:
-            fail(checks, "K1", f"no .ipynb found in {tmp}")
-            return summarize(kernel, version, checks)
-        nb = json.loads(ipynbs[0].read_text(encoding="utf-8"))
-        ok(checks, "K1", f"pulled {ipynbs[0].name}")
+def structural_checks(nb: dict, family: str = FAMILY_BASELINE) -> list[dict]:
+    """K2-K8 over an already-parsed notebook (K1 is the pull itself).
 
-        # K2: metadata.kaggle block with dataSources
+    For FAMILY_BASELINE this is byte-for-byte the original inline logic —
+    same checks, same order, same messages. For FAMILY_DUCK the five
+    agent-swarm-shape checks (K2/K4/K5+K5b/K6/K8) are emitted as explicit N/A
+    entries with a reason; K3 (nbformat) applies to both families and still
+    gates."""
+    checks: list[dict] = []
+    duck = (family == FAMILY_DUCK)
+
+    # K2: metadata.kaggle block with dataSources
+    if duck:
+        na(checks, "K2",
+           "metadata.kaggle/dataSources is an arc3-baseline agent-swarm "
+           "requirement (competition gateway spin-up); the duck-harness eval "
+           "notebooks carry no metadata.kaggle block at all. Gated instead by "
+           "D2 (byte-identity against the war-eval baseline)")
+    else:
         meta = nb.get("metadata", {})
         kg = meta.get("kaggle")
         if not kg:
@@ -304,57 +451,284 @@ def run_preflight(kernel: str, version: int | None,
                 else:
                     ok(checks, "K2", f"dataSources OK ({len(ds)} entries)")
 
-        # K3: nbformat
-        nbf = f"{nb.get('nbformat')}.{nb.get('nbformat_minor')}"
-        if nbf != "4.4":
-            warn(checks, "K3", f"nbformat {nbf} != baseline 4.4 (often harmless)")
+    # K3: nbformat — applies to EVERY family (the war-eval family is 4.4 too).
+    nbf = f"{nb.get('nbformat')}.{nb.get('nbformat_minor')}"
+    if nbf != "4.4":
+        warn(checks, "K3", f"nbformat {nbf} != baseline 4.4 (often harmless)")
+    else:
+        ok(checks, "K3", f"nbformat {nbf}")
+
+    cells = nb.get("cells", [])
+
+    if duck:
+        na(checks, "K4",
+           "the duck-harness eval family has no agents/__init__.py write "
+           "block — it is a taaf + vLLM solver bundle, not the 25-game agent "
+           "swarm. Arm-defining cells are gated by D3/D4")
+        na(checks, "K5",
+           "the duck-harness eval family writes no .env (SCHEME/HOST/PORT/"
+           "ARC_API_KEY/...) — no swarm gateway client to configure; K5b "
+           "(ARC_API_KEY value) is inapplicable for the same reason")
+        na(checks, "K6",
+           "the duck-harness eval family never invokes "
+           "`main.py --agent myagent`; it runs the taaf benchmark via bm/"
+           "deploy_target.pkl")
+        na(checks, "K8",
+           "the duck-harness eval family writes no "
+           "/kaggle/working/my_agent.py; the arm patch is imported from the "
+           "attached arc-war-kit dataset in cell 12")
+        return checks
+
+    # K4: rerun cell __init__.py imports
+    idx, run_src = find_cell_containing(cells, "KAGGLE_IS_COMPETITION_RERUN")
+    if idx < 0:
+        fail(checks, "K4", "no rerun cell (KAGGLE_IS_COMPETITION_RERUN) found")
+    else:
+        missing = [f for f in REQUIRED_INIT_FRAGMENTS if f not in run_src]
+        if missing:
+            fail(checks, "K4",
+                 f"agents/__init__.py write block is MISSING required imports: {missing}")
         else:
-            ok(checks, "K3", f"nbformat {nbf}")
+            ok(checks, "K4", "agents/__init__.py imports OK")
 
-        # K4: rerun cell __init__.py imports
-        cells = nb.get("cells", [])
-        idx, run_src = find_cell_containing(cells, "KAGGLE_IS_COMPETITION_RERUN")
-        if idx < 0:
-            fail(checks, "K4", "no rerun cell (KAGGLE_IS_COMPETITION_RERUN) found")
+        # K5: .env keys
+        env_missing = [k for k in REQUIRED_ENV_KEYS if k not in run_src]
+        if env_missing:
+            fail(checks, "K5",
+                 f".env write block is MISSING required keys: {env_missing}")
         else:
-            missing = [f for f in REQUIRED_INIT_FRAGMENTS if f not in run_src]
-            if missing:
-                fail(checks, "K4",
-                     f"agents/__init__.py write block is MISSING required imports: {missing}")
+            ok(checks, "K5", ".env keys OK")
+        # Also check ARC_API_KEY value matches baseline
+        m = re.search(r"ARC_API_KEY=([^\n]+)", run_src)
+        if m:
+            val = m.group(1).strip()
+            if val != "test-key-123":
+                warn(checks, "K5b",
+                     f"ARC_API_KEY={val!r} differs from baseline 'test-key-123' "
+                     f"(may not matter, but baseline is the working reference)")
             else:
-                ok(checks, "K4", "agents/__init__.py imports OK")
+                ok(checks, "K5b", "ARC_API_KEY value matches baseline")
 
-            # K5: .env keys
-            env_missing = [k for k in REQUIRED_ENV_KEYS if k not in run_src]
-            if env_missing:
-                fail(checks, "K5",
-                     f".env write block is MISSING required keys: {env_missing}")
-            else:
-                ok(checks, "K5", ".env keys OK")
-            # Also check ARC_API_KEY value matches baseline
-            m = re.search(r"ARC_API_KEY=([^\n]+)", run_src)
-            if m:
-                val = m.group(1).strip()
-                if val != "test-key-123":
-                    warn(checks, "K5b",
-                         f"ARC_API_KEY={val!r} differs from baseline 'test-key-123' "
-                         f"(may not matter, but baseline is the working reference)")
-                else:
-                    ok(checks, "K5b", "ARC_API_KEY value matches baseline")
-
-            # K6: main.py invocation
-            run_missing = [f for f in REQUIRED_RUN_FRAGMENTS if f not in run_src]
-            if run_missing:
-                fail(checks, "K6", f"rerun cell missing fragments: {run_missing}")
-            else:
-                ok(checks, "K6", "rerun cell fragments OK")
-
-        # K7: %%writefile of my_agent.py
-        idx2, _ = find_cell_containing(cells, "%%writefile /kaggle/working/my_agent.py")
-        if idx2 < 0:
-            fail(checks, "K8", "no %%writefile /kaggle/working/my_agent.py cell")
+        # K6: main.py invocation
+        run_missing = [f for f in REQUIRED_RUN_FRAGMENTS if f not in run_src]
+        if run_missing:
+            fail(checks, "K6", f"rerun cell missing fragments: {run_missing}")
         else:
-            ok(checks, "K8", "my_agent.py writefile cell present")
+            ok(checks, "K6", "rerun cell fragments OK")
+
+    # K7: %%writefile of my_agent.py
+    idx2, _ = find_cell_containing(cells, "%%writefile /kaggle/working/my_agent.py")
+    if idx2 < 0:
+        fail(checks, "K8", "no %%writefile /kaggle/working/my_agent.py cell")
+    else:
+        ok(checks, "K8", "my_agent.py writefile cell present")
+
+    return checks
+
+
+# ---------------------------------------------------------------------------
+# D1-D4: the structural gate that actually applies to the duck-harness family.
+# ---------------------------------------------------------------------------
+
+def _kaggle_meta_block(nb: dict):
+    return (nb or {}).get("metadata", {}).get("kaggle", None)
+
+
+def _canon_json(obj) -> str:
+    """Stable, order-insensitive serialisation used for the metadata.kaggle
+    byte-identity comparison (dict key order in the pulled JSON is not
+    semantically meaningful, but every value is)."""
+    return json.dumps(obj, sort_keys=True, separators=(",", ":"),
+                      ensure_ascii=False)
+
+
+def _code_cell_index_map(nb: dict) -> list[int]:
+    """code-cell ordinal -> absolute notebook cell index."""
+    return [i for i, c in enumerate(nb.get("cells", []))
+            if c.get("cell_type") == "code"]
+
+
+def duck_diff_checks(kernel: str, nb: dict, baseline_ref: str,
+                     baseline_nb: dict | None,
+                     expect_diff_cells: list[int] | None = None) -> list[dict]:
+    """Structural diff of a duck-harness arm kernel vs the war-eval baseline.
+
+    This is the gate the family actually runs pre-push
+    (`duck_eval/warpack/p1_push_report_2026-08-12.md` §0: "differs from
+    duckwar-eval in exactly cells 2, 12, 14; metadata.kaggle byte-identical").
+    Pure over parsed notebooks so it is testable without a Kaggle round-trip.
+
+      D1  baseline resolved
+      D2  metadata.kaggle byte-identical               -> HARD BLOCK if not
+      D3  same cell count and cell_type sequence       -> HARD BLOCK if not
+      D4  differing code cells reported (and enforced against
+          --expect-diff-cells when that is supplied)
+
+    Cell-body comparison uses the same `_tf_norm` ASCII skeleton as
+    trusted-fork T3, because a Kaggle pull/push round-trip mangles non-ASCII;
+    cells that differ ONLY by that mangling are counted as equal and called
+    out in the D4 message. `metadata.kaggle` is compared on exact values (that
+    block is machine-generated ASCII and must not drift at all)."""
+    checks: list[dict] = []
+    if baseline_nb is None:
+        fail(checks, "D1",
+             f"war-eval baseline {baseline_ref!r} could not be resolved "
+             f"(pull failed / file not found) — the duck-harness family "
+             f"CANNOT be certified without its baseline")
+        return checks
+    ok(checks, "D1", f"war-eval baseline resolved: {baseline_ref}")
+
+    # D2: metadata.kaggle byte-identity. This is the drift class that ERRORed
+    # v45/v62/v63/v64/v65 (feedback_arc_kernel_structural_drift) — hard BLOCK.
+    cand_kg = _kaggle_meta_block(nb)
+    base_kg = _kaggle_meta_block(baseline_nb)
+    if _canon_json(cand_kg) == _canon_json(base_kg):
+        shape = ("both ABSENT (the war-eval family carries no metadata.kaggle "
+                 "block; identity verified as 'absent on both sides')"
+                 if cand_kg is None
+                 else f"{len(cand_kg)} key(s) identical")
+        ok(checks, "D2", f"metadata.kaggle byte-identical to baseline — {shape}")
+    else:
+        fail(checks, "D2",
+             f"metadata.kaggle DIFFERS from the war-eval baseline "
+             f"{baseline_ref!r}: candidate={_canon_json(cand_kg)[:200]!r} vs "
+             f"baseline={_canon_json(base_kg)[:200]!r} — this is exactly the "
+             f"structural drift that ERRORed v45/v62/v63/v64/v65")
+
+    # D3: cell shape (count + cell_type sequence).
+    cand_types = [c.get("cell_type") for c in nb.get("cells", [])]
+    base_types = [c.get("cell_type") for c in baseline_nb.get("cells", [])]
+    shape_ok = cand_types == base_types
+    if shape_ok:
+        ok(checks, "D3",
+           f"cell shape matches baseline ({len(cand_types)} cells, "
+           f"{cand_types.count('code')} code)")
+    else:
+        fail(checks, "D3",
+             f"cell shape DRIFTED from baseline: candidate has "
+             f"{len(cand_types)} cells ({cand_types.count('code')} code) vs "
+             f"baseline {len(base_types)} ({base_types.count('code')} code); "
+             f"arm kernels must be surgical grafts of the war-eval baseline, "
+             f"never re-authored notebooks")
+
+    # D4: which code cells differ.
+    if not shape_ok:
+        warn(checks, "D4", "differing-cell set NOT computable — cell shape "
+                           "drifted (see D3)")
+        return checks
+
+    c_raw = [s for s in _all_code_sources(nb)]
+    b_raw = [s for s in _all_code_sources(baseline_nb)]
+    idx_map = _code_cell_index_map(nb)
+    diff_code_idx, mangled_only = [], []
+    for i, (a, b) in enumerate(zip(c_raw, b_raw)):
+        if a == b:
+            continue
+        if _tf_norm(a) == _tf_norm(b):
+            mangled_only.append(idx_map[i])
+        else:
+            diff_code_idx.append(i)
+    diff_abs = [idx_map[i] for i in diff_code_idx]
+    note = (f"; {len(mangled_only)} cell(s) at {mangled_only} differ ONLY by "
+            f"non-ASCII pull round-trip mangling (treated as equal)"
+            if mangled_only else "")
+
+    if expect_diff_cells is not None:
+        if diff_abs == sorted(expect_diff_cells):
+            ok(checks, "D4",
+               f"differing code cells = notebook cell(s) {diff_abs} "
+               f"(code-cell ordinal(s) {diff_code_idx}) — MATCHES "
+               f"--expect-diff-cells{note}")
+        else:
+            fail(checks, "D4",
+                 f"differing code cells = notebook cell(s) {diff_abs} but "
+                 f"--expect-diff-cells declared {sorted(expect_diff_cells)}; "
+                 f"the pushed artifact does not match the pre-registered "
+                 f"diff{note}")
+    elif not diff_abs:
+        base_slug = (baseline_ref or "").split("/")[-1].lower()
+        cand_slug = (kernel or "").split("/")[-1].lower()
+        if base_slug and base_slug == cand_slug:
+            ok(checks, "D4", "candidate IS the war-eval baseline (0 differing "
+                             "code cells, as expected)" + note)
+        else:
+            warn(checks, "D4",
+                 f"0 differing code cells vs baseline {baseline_ref} — this "
+                 f"arm kernel carries NO arm-defining cells; did the push "
+                 f"ship the baseline by mistake?{note}")
+    else:
+        ok(checks, "D4",
+           f"differing code cells = notebook cell(s) {diff_abs} (code-cell "
+           f"ordinal(s) {diff_code_idx}); pass --expect-diff-cells to enforce "
+           f"the pre-registered set{note}")
+    return checks
+
+
+def load_baseline_notebook(baseline_ref: str, workdir: Path) -> dict | None:
+    """Resolve the war-eval baseline: a local .ipynb path is read from disk,
+    anything else is pulled from Kaggle. Returns None on failure (D1 FAILs)."""
+    try:
+        p = Path(baseline_ref)
+        if p.is_file():
+            return json.loads(p.read_text(encoding="utf-8"))
+    except Exception:  # pragma: no cover - defensive
+        return None
+    d = workdir / "baseline"
+    try:
+        d.mkdir(parents=True, exist_ok=True)
+        r = subprocess.run(["kaggle", "kernels", "pull", baseline_ref,
+                            "-p", str(d)],
+                           capture_output=True, text=True, timeout=120)
+        files = list(d.glob("*.ipynb"))
+        if r.returncode != 0 or not files:
+            return None
+        return json.loads(files[0].read_text(encoding="utf-8"))
+    except Exception:  # pragma: no cover - defensive
+        return None
+
+
+def run_preflight(kernel: str, version: int | None,
+                  host_gates_mode: str = "off",
+                  family: str = "auto",
+                  baseline_ref: str | None = None,
+                  expect_diff_cells: list[int] | None = None) -> dict:
+    checks: list[dict] = []
+    tmp = Path(tempfile.mkdtemp(prefix="preflight-"))
+    try:
+        # K1: pull kernel
+        r = subprocess.run(
+            ["kaggle", "kernels", "pull", kernel, "-p", str(tmp)],
+            capture_output=True, text=True, timeout=120,
+        )
+        if r.returncode != 0:
+            fail(checks, "K1", f"kaggle pull failed: {r.stderr.strip()[-300:]}")
+            return summarize(kernel, version, checks)
+        # find the .ipynb
+        ipynbs = list(tmp.glob("*.ipynb"))
+        if not ipynbs:
+            fail(checks, "K1", f"no .ipynb found in {tmp}")
+            return summarize(kernel, version, checks)
+        nb = json.loads(ipynbs[0].read_text(encoding="utf-8"))
+        ok(checks, "K1", f"pulled {ipynbs[0].name}")
+
+        # Family profile: explicit flag wins; otherwise content-based detection.
+        if family and family != "auto":
+            det = {"family": family, "reason": f"--family {family} (explicit)",
+                   "duck_markers": [], "swarm_markers": [], "mode": "explicit"}
+        else:
+            det = detect_family(kernel, nb)
+            det["mode"] = "auto"
+        fam = det["family"]
+
+        # K2-K8 (family-aware; arc3-baseline behaviour is unchanged).
+        checks.extend(structural_checks(nb, fam))
+
+        # D1-D4: duck-harness structural diff vs the war-eval baseline.
+        if fam == FAMILY_DUCK:
+            ref = baseline_ref or DUCK_BASELINE_KERNEL
+            base_nb = load_baseline_notebook(ref, tmp)
+            checks.extend(duck_diff_checks(kernel, nb, ref, base_nb,
+                                           expect_diff_cells))
 
         # H1-H4: additive host common-error gates (opt-in).
         if host_gates_mode != "off":
@@ -365,13 +739,21 @@ def run_preflight(kernel: str, version: int | None,
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
-    return summarize(kernel, version, checks)
+    return summarize(kernel, version, checks,
+                     extra={"family": fam, "family_detection": det})
 
 
-def summarize(kernel, version, checks):
+def summarize(kernel, version, checks, extra: dict | None = None):
+    """Compose the verdict. Only FAIL and WARN move it; "N/A" (a check that is
+    structurally inapplicable to the selected family) never does — but it IS
+    carried in `checks` and counted in n_na so a skip can never pass for an OK.
+    `extra` merges additive top-level keys (family, family_detection); the
+    kernel/version/checks/n_fail/n_warn/verdict contract that daily_submit.py
+    parses is untouched."""
     fails = [c for c in checks if c["status"] == "FAIL"]
     warns = [c for c in checks if c["status"] == "WARN"]
-    return {
+    nas = [c for c in checks if c["status"] == "N/A"]
+    rep = {
         "kernel": kernel,
         "version": version,
         "checks": checks,
@@ -379,6 +761,11 @@ def summarize(kernel, version, checks):
         "n_warn": len(warns),
         "verdict": "BLOCK" if fails else ("WARN" if warns else "ALLOW"),
     }
+    if nas:
+        rep["n_na"] = len(nas)
+    if extra:
+        rep.update(extra)
+    return rep
 
 
 def _tf_norm(s: str) -> str:
@@ -696,6 +1083,23 @@ def main():
     ap.add_argument("--kernel", required=True, help="canivel/slug")
     ap.add_argument("--version", type=int, default=None)
     ap.add_argument("--mode", default="structural", choices=["structural", "trusted-fork"])
+    ap.add_argument("--family", default="auto",
+                    choices=["auto", *FAMILIES],
+                    help="structural-mode family profile. 'auto' (default) detects it "
+                         "from notebook content and can only ever fall back to the "
+                         "stricter arc3-baseline profile. 'duck-harness' marks the "
+                         "agent-swarm checks K2/K4/K5/K6/K8 N/A (explicitly skipped, "
+                         "never counted) and runs D1-D4 instead: the structural diff "
+                         "against the war-eval baseline.")
+    ap.add_argument("--baseline", default=None,
+                    help=f"duck-harness family: the war-eval baseline to diff against "
+                         f"(default {DUCK_BASELINE_KERNEL}); may be a local .ipynb path, "
+                         f"which is read from disk instead of pulled")
+    ap.add_argument("--expect-diff-cells", default=None,
+                    help="duck-harness family: comma-separated ABSOLUTE notebook cell "
+                         "indices that are allowed to differ from the baseline (e.g. "
+                         "'2,12,14'). When given, D4 FAILs if the real diff set differs "
+                         "— this is how a prereg's declared diff becomes mechanical.")
     ap.add_argument("--upstream", default=None,
                     help="upstream kernel ref (required for trusted-fork mode); "
                          "may be a local .ipynb path, which is read from disk instead of pulled")
@@ -741,16 +1145,34 @@ def main():
             host_gates_mode=host_gates_mode,
         )
     else:
+        expect = None
+        if args.expect_diff_cells:
+            try:
+                expect = [int(x) for x in args.expect_diff_cells.split(",") if x.strip()]
+            except ValueError:
+                print(json.dumps({"verdict": "BLOCK",
+                                  "reason": "--expect-diff-cells must be a comma-"
+                                            "separated list of integers"}))
+                sys.exit(1)
         rep = run_preflight(args.kernel, args.version,
-                            host_gates_mode=host_gates_mode)
+                            host_gates_mode=host_gates_mode,
+                            family=args.family,
+                            baseline_ref=args.baseline,
+                            expect_diff_cells=expect)
     rec = recurrence_field(args.kernel, args.mode, rep)
     if rec is not None:
         rep["recurrence"] = rec  # warn-only; never affects verdict/exit code
     if not args.json_only:
         print(f"Preflight for {args.kernel} v{args.version or 'latest'}: {rep['verdict']}")
-        print(f"  fails: {rep['n_fail']}, warns: {rep['n_warn']}")
+        if rep.get("family"):
+            det = rep.get("family_detection", {})
+            print(f"  family: {rep['family']} [{det.get('mode', '?')}] "
+                  f"-- {det.get('reason', '')}")
+        na_note = f", n/a: {rep['n_na']}" if rep.get("n_na") else ""
+        print(f"  fails: {rep['n_fail']}, warns: {rep['n_warn']}{na_note}")
         for c in rep["checks"]:
-            marker = {"OK": "OK", "WARN": "!!", "FAIL": "XX"}[c["status"]]
+            marker = {"OK": "OK", "WARN": "!!", "FAIL": "XX",
+                      "N/A": "--"}.get(c["status"], "??")
             print(f"  [{marker}] {c['check']}: {c['message']}")
         if rep.get("recurrence", {}).get("warn"):
             print("  [!!] RECURRENCE (warn-only): candidate matches failure "

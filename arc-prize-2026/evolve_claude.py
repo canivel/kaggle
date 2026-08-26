@@ -24,6 +24,7 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 
@@ -42,7 +43,7 @@ ARCHIVE_FILE = ARCHIVE_DIR / "archive.jsonl"
 BEST_FILE = ARCHIVE_DIR / "best.py"
 BEST_KAGGLE_FILE = ARCHIVE_DIR / "best_kaggle.py"
 
-MODEL = "claude-sonnet-4-6"  # used when calling via claude CLI
+MODEL = "claude-sonnet-4-6"  # sonnet: best quality; use haiku-4-5-20251001 for daytime (rate limits)
 
 
 # ─── Archive ─────────────────────────────────────────────────────────
@@ -51,7 +52,7 @@ def load_archive() -> list[dict]:
     if not ARCHIVE_FILE.exists():
         return []
     entries = []
-    for line in ARCHIVE_FILE.read_text().splitlines():
+    for line in ARCHIVE_FILE.read_text(encoding="utf-8").splitlines():
         line = line.strip()
         if line:
             entries.append(json.loads(line))
@@ -60,14 +61,14 @@ def load_archive() -> list[dict]:
 
 def append_archive(entry: dict) -> None:
     ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
-    with ARCHIVE_FILE.open("a") as f:
-        f.write(json.dumps(entry) + "\n")
+    with ARCHIVE_FILE.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 
 def save_best(choose_action_src: str, rhae: float) -> None:
-    BEST_FILE.write_text(choose_action_src)
+    BEST_FILE.write_text(choose_action_src, encoding="utf-8")
     kaggle = _build_kaggle_agent(choose_action_src, rhae)
-    BEST_KAGGLE_FILE.write_text(kaggle)
+    BEST_KAGGLE_FILE.write_text(kaggle, encoding="utf-8")
     print(f"  -> Best saved: RHAE={rhae:.4f}  {BEST_FILE}  {BEST_KAGGLE_FILE}")
 
 
@@ -182,27 +183,48 @@ RULES:
 """
 
 
-def _call_claude(prompt: str, system: str) -> str:
+def _call_claude(prompt: str, system: str, timeout: int = 300) -> str:
     """Call Claude via Claude Code CLI (uses CC subscription, no API key needed).
 
     Uses `env -u CLAUDECODE claude` to bypass the nested-session guard.
+    Writes prompt to temp file to avoid stdin encoding issues.
+    Retries once with shorter prompt on timeout.
     """
     full_prompt = f"{system}\n\n---\n\n{prompt}"
-    result = subprocess.run(
-        ["env", "-u", "CLAUDECODE",
-         "claude", "-p", full_prompt,
-         "--model", MODEL,
-         "--output-format", "text"],
-        capture_output=True, text=True, timeout=120,
-    )
-    if result.returncode != 0:
-        raise RuntimeError(f"claude CLI error: {result.stderr[:300]}")
-    return result.stdout
+
+    def _run(content: str, t: int) -> str:
+        with tempfile.NamedTemporaryFile(
+            mode="w", suffix=".txt", encoding="utf-8", delete=False
+        ) as f:
+            f.write(content)
+            tmp = f.name
+        try:
+            result = subprocess.run(
+                f'cat "{tmp}" | env -u CLAUDECODE claude -p - --model {MODEL} --output-format text',
+                shell=True, capture_output=True, text=True, timeout=t,
+                encoding="utf-8",
+            )
+            if result.returncode != 0:
+                raise RuntimeError(f"claude CLI error: {result.stderr[:300]}")
+            return result.stdout
+        finally:
+            try:
+                os.unlink(tmp)
+            except OSError:
+                pass
+
+    try:
+        return _run(full_prompt, timeout)
+    except subprocess.TimeoutExpired:
+        print(f"  [claude] timeout after {timeout}s, retrying with shorter prompt...")
+        time.sleep(10)
+        # Shorten: drop system context, keep only user message
+        return _run(prompt, timeout)
 
 
 def propose(archive: list[dict], iteration: int, n: int = 2) -> list[str]:
     """Ask Claude to propose N new choose_action() strategies via CC CLI."""
-    archive_summary = _format_archive_summary(archive, top_n=6)
+    archive_summary = _format_archive_summary(archive, top_n=3)
     best_code = _format_best_code(archive)
 
     user_msg = f"""## Iteration {iteration} — Propose {n} new choose_action() strategies
@@ -370,9 +392,9 @@ def run_evolution(
 
     # Evolution loop
     for iteration in range(1, n_iterations + 1):
-        print(f"\n{'─'*65}")
+        print(f"\n{'-'*65}")
         print(f"Iteration {iteration}/{n_iterations}  |  best_RHAE={best_rhae:.5f}")
-        print(f"{'─'*65}")
+        print(f"{'-'*65}")
 
         # Propose new candidates via Claude Code CLI
         print(f"  Proposing 2 candidates via Claude Code CLI ({MODEL})...")
@@ -403,6 +425,7 @@ def run_evolution(
                 print(f"  *** NEW BEST: RHAE={best_rhae:.5f} ***")
 
         archive = load_archive()
+        time.sleep(15)  # brief pause between iterations to avoid rate limits
 
     print(f"\n{'='*65}")
     print(f"Evolution complete. Best RHAE: {best_rhae:.5f}")
@@ -420,7 +443,11 @@ def main() -> None:
     p.add_argument("--iters",  type=int, default=20, help="Evolution iterations")
     p.add_argument("--resume", action="store_true", help="Resume from archive")
     p.add_argument("--export", action="store_true", help="Just export best from archive")
+    p.add_argument("--model",  default=None, help="Override model (e.g. claude-haiku-4-5-20251001)")
     args = p.parse_args()
+    if args.model:
+        global MODEL
+        MODEL = args.model
 
     if args.export:
         archive = load_archive()

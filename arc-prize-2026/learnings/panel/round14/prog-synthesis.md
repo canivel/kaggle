@@ -1,0 +1,52 @@
+## Summary (2 sentences)
+
+The revision genuinely discharges last round's FATAL: it states the mechanism class honestly ("cracking doesn't exist at Qwen tier — this is conversion scaffolding"), supplies counting-bound Δ estimates per component using the exact scorer (I checked the arithmetic; it is correct), and pre-registers a gate with prongs, α, canaries, and trigger-firing requirements — this is what a reviewable plan looks like. But the wall-closing burden has now migrated to war-v4 (72B model swap), whose expected-Δ basis is a cross-model extrapolation with zero direct 72B evidence, the §3 gate contains an internal power contradiction that will mechanically flag-OFF the very components §2 argues are individually sub-MDE, and I received only Part 1 of 2 with the final statement cut mid-sentence.
+
+## Objections
+
+**Prior-round resolution audit (required first):**
+
+1. **[FATAL] Wall-closer unspecified/ungated — RESOLVED (as asked), with residual transferred to new objection N2.** The three demanded items — mechanism class, pre-registered gate with prongs and α, expected per-draw Δ with basis — are all delivered, and the honest answer ("full frontier-style cracking is NOT available at Qwen tier") is exactly the falsifiable answer the question was designed to force. The strategic consequence (the only wall-closer is now v4, itself thin) is a new, distinct objection below, not a carry-forward.
+
+2. **[MAJOR] Banking falsification regime-invalid — RESOLVED (in visible text).** Banking is reclassified UNTESTED-IN-REGIME per A9 (my fix option b), enters last, requires full-panel sign-off, and must pass an A10 trigger-firing bench with the exact counters I asked for (replay_attempted > 0, replay_succeeded = replay_attempted, ≥5 games). Cannot verify the Q1(e) line's disposition in Part 2 (see N1).
+
+3. **[MAJOR] Process grades, not falsifiable predictions — RESOLVED.** §2 is precisely the events-per-run × max-value-per-event exercise I demanded, done with the real scorer (I verified the marginal-value table, the ft09 L1 arithmetic, and the E[max-of-2] banking table independently; all reproduce). The MDE/2 rule is applied as stated: (c) at +0.014 correctly forfeits its standalone window.
+
+4. **[MAJOR] Q1(d) deferred without the free offline metric — PARTIALLY-RESOLVED.** (d) is promoted to the first flagged window with a counting bound — good. But the specific zero-cost measurement I asked for — prediction accuracy (fraction of PREDICT lines contradicted by RESULT) computed offline on the existing N5 deterministic replay traces, with a pre-registered threshold — is still not reported. The gate counts re-probes and PREDICT-scored events; it never measures whether the predictions are better than chance, which is the synthesis-quality signal that would (i) kill (d) cheaply if predictions are noise and (ii) supply the per-game trigger signal the allocation question still needs. Run it before W1 seals; it costs nothing.
+
+5. **[MAJOR] su15 info-theoretic wall claim — RESOLVED.** Verdict downgraded to "suspended (A13)," su15 excluded from component evaluations, re-probe scheduled after (f) ships — exactly the demanded downgrade-and-re-evaluate path.
+
+6. **[MINOR] Ledger −0.128 single-seed — RESOLVED (in visible text).** war-v2-eval is now cited only for trigger-rate = 0 (1552 digests, 0 escalations); the −0.128 figure does not reappear in Part 1.
+
+7. **[MINOR] Q1(g) frozen-list classifier — UNVERIFIABLE.** (g) does not appear anywhere in Part 1. If it was dropped, say so explicitly in Part 2; if it survives, my prior objection stands in full. Note the same frozen-list pathology reappears in banking's retry-target selection (see N4).
+
+**New objections:**
+
+**[MAJOR] N1: I was given Part 1 of 2, and even Part 1 is cut mid-sentence.** The document self-describes as "Part 1 of 2"; the visible text ends "above the build-rail's detection floor only cumulatively, below [TRUNCATED]" — the final verdict sentence and all of Part 2 (which presumably carries the Q1(e)/(g) dispositions, instrument updates, and whatever the sha-covered 30,355 chars contain beyond this) are unreviewable. Per panel rules I file this formally: my RESOLVED grades on objections 2 and 6 are provisional on Part 2 containing no contradicting material, and objection 7 cannot be graded at all. Fix: circulate the complete document before the Jul 21–22 W1 sealed look.
+
+**[MAJOR] N2: war-v4, now the sole registered wall-closer, rests on an unvalidated cross-model extrapolation and an underspecified gate.** The +150-pts / ~+6-per-draw figure is a GPT-5.6 demonstration; "capturing even 10%" of it via Qwen3.6-72B-4bit is asserted with no evidence that any of the NOT-distillable capabilities (recursive abstraction, representation invention, model-fitting over transitions) exist at 72B — the same probe decomposition that killed prompt-tier fixes could equally kill the 72B tier, and 4-bit quantization degrades exactly the long-horizon reasoning at issue. The throughput guard is also internally implausible: with 2.5–3× slower decode, "total actions within 10% of 27B baseline" will essentially never hold under a wall-clock budget, and the else-branch ("Δlc must beat the throughput-adjusted null") is undefined — no formula for the adjusted null is given. Fix, cheap and decisive: before the Aug 1 registration, run 72B-4bit offline on the four probe games (ft09/sb26/lp85/vc33) under the identical harness within the 30 GPU-h/wk allowance, and pre-register a capture-rate go/no-go (e.g., ≥2 levels beyond the 27B baseline across the four games at full budget); simultaneously publish the throughput-adjusted-null formula. If 72B replicates 27B's ~1-level-each profile, the campaign has no wall-closer and the panel needs to know that in July, not September.
+
+**[MAJOR] N3: §3's per-window gate contradicts §2's own power analysis and is structurally biased toward killing true-but-small components.** §2 states single components (+0.01–0.05 rail) sit "far below the ~0.2 Δ-run-mean 3-seed MDE — hence the cumulative-stack gate design in §3," but §3's design is still a per-window, component-ON vs prior-stack contrast with PASS requiring the score prongs at α = 0.0125 — each look is exactly the underpowered single-component test §2 says cannot succeed. Under the stated rule ("FAIL on score prongs with mechanism firing → flag OFF"), a component that fires its trigger and delivers its true +0.02 will be parked as "mechanism fires, doesn't pay" with near-certainty, and the stack whose value was argued to be cumulative gets dismantled window by window. Fix: pre-register the binding decision as the cumulative contrast (final stack, all components ON, vs the W0 baseline — 3 seeds, same prongs), and demote per-window looks to (i) mechanism-prong verification and (ii) the −0.10 non-inferiority guard only; a below-MDE component with a firing trigger and non-inferior score should stay ON pending the cumulative look, not be turned OFF.
+
+**[MINOR] N4: banking's "feasible ≤ +0.15" ceiling embeds a post-hoc frozen retry list.** The 2–3-game retry set (ft09 + sc25 + re86, "the top variance carriers") is selected from the same 3 seeds whose per-game deltas the earlier gate showed to be LOO-fragile — the identical pathology I flagged for Q1(g). Since a live agent cannot know which games are high-variance for this attempt, the retry-selection rule must be pre-registered as an online, game-agnostic policy (e.g., retry the cleared-something games with lowest first-attempt completion fraction per action spent), and the feasible ceiling recomputed under that rule rather than under oracle selection.
+
+**[MINOR] N5: the rail→LB conversion factor (0.56×) is a ratio of null means asserted as a multiplicative transfer law.** Nothing shown establishes that a rail effect scales by the population ratio rather than, e.g., transferring additively or vanishing on the LB game mix; every headline LB number in §2's "Honest sum" inherits this assumption. Label it as an assumption with a one-line sensitivity range (0.4×–0.8×) rather than a derived constant.
+
+## Questions for the authors (numbered)
+
+1. What is in Part 2? Specifically: the dispositions of former Q1(e) and Q1(g), and the completion of the final-statement sentence cut at "below…".
+2. Will you run and report the offline PREDICT-accuracy measurement on the N5 replay traces before the W1 sealed look, and what contradiction-rate threshold pre-registers (d) as "predictions are noise → dead"?
+3. For war-v4: what is the exact formula of the "throughput-adjusted null," and do you commit to the 4-game 72B probe replication before the Aug 1 registration?
+4. Under §3's rules as written, what happens to a component whose mechanism prong fires and whose pooled Δlc is +0.02 (true effect, undetectable at α = 0.0125 with 3 seeds)? If the answer is "flag OFF," reconcile that with §2's cumulative-stack rationale.
+5. The compressed-budget bench caps actions at ~40% of Qwen median to force triggers — does this compression itself distort the score prongs (e.g., levels that clear at full budget failing at 40%), and if so, how is a component-ON vs component-OFF Δlc at 40% budget assumed to transfer to full budget?
+6. Banking: what pre-registered online rule selects retry targets within a scored run, and what does the feasible ceiling become under that rule instead of oracle selection?
+
+## What I cannot judge
+
+Part 2 of the document (not provided). The Kaggle-legality of the 72B deployment and the accuracy of the GPU memory/throughput figures (hardware/infra, not my field). Whether the 8h LB budget mechanics and push-quota arithmetic in the timeline are feasible (competition-ops). The statistical fine points of the sign-flip test's tie convention beyond noting it is now specified (defer to the panel's statistician). The RL/exploration framing of the allocation question, which sits with reviewer #2.
+
+## Verdict: MAJOR-REVISION
+
+## Score: 6/10
+
+The revision is a large, honest step: the FATAL is discharged in the letter and largely in spirit, the counting-bound arithmetic is correct and reproducible, and the mechanism-class answer is the falsifiable statement I demanded. It cannot pass yet because the plan's single remaining wall-closer (v4) is supported only by cross-model extrapolation with a cheap decisive experiment left unrun, the gate design would mechanically destroy the cumulative stack it exists to evaluate, and half the document was not delivered for review.

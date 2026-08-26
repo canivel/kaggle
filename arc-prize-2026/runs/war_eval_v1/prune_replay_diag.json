@@ -1,0 +1,88 @@
+{
+  "verdict": "bank_fire_validation's sc25/m0r0 step-0 aborts reproduce on fully deterministic engines: prune_trace drops leading visible-no-op actions that mutate hidden state, so the pruned replay's first action lands on a different frame. Pruning artifact, NOT per-play randomization.",
+  "cases": [
+    {
+      "game": "sc25",
+      "local_game_id": "sc25-f9b21a2f",
+      "benchmark_game_id": "sc25-635fd71a",
+      "version_mismatch": true,
+      "actions_fed": 114,
+      "lc_reached": 2,
+      "pruned_len": 53,
+      "pruned0": {
+        "name": "ACTION4",
+        "data": {},
+        "recorded_index": 2
+      },
+      "dropped_before_pruned0": {
+        "noops": 2,
+        "board_changing": 0,
+        "resets": 0
+      },
+      "pruned_replay": "frame_divergence at step 0 (ACTION4)"
+    },
+    {
+      "game": "m0r0",
+      "local_game_id": "m0r0-dadda488",
+      "benchmark_game_id": "m0r0-492f87ba",
+      "version_mismatch": true,
+      "actions_fed": 268,
+      "lc_reached": 1,
+      "pruned_len": 83,
+      "pruned0": {
+        "name": "ACTION4",
+        "data": {},
+        "recorded_index": 1
+      },
+      "dropped_before_pruned0": {
+        "noops": 1,
+        "board_changing": 0,
+        "resets": 0
+      },
+      "pruned_replay": "frame_divergence at step 0 (ACTION4)"
+    },
+    {
+      "game": "ar25",
+      "local_game_id": "ar25-e3c63847",
+      "benchmark_game_id": "ar25-0c556536",
+      "version_mismatch": true,
+      "actions_fed": 55,
+      "lc_reached": 2,
+      "pruned_len": 47,
+      "pruned0": {
+        "name": "ACTION5",
+        "data": {},
+        "recorded_index": 0
+      },
+      "dropped_before_pruned0": {
+        "noops": 0,
+        "board_changing": 0,
+        "resets": 0
+      },
+      "pruned_replay": "survived"
+    },
+    {
+      "game": "s5i5",
+      "local_game_id": "s5i5-a48e4b1d",
+      "benchmark_game_id": "s5i5-18d95033",
+      "version_mismatch": true,
+      "actions_fed": 64,
+      "lc_reached": 1,
+      "pruned_len": 13,
+      "pruned0": {
+        "name": "ACTION6",
+        "data": {
+          "x": 45,
+          "y": 21
+        },
+        "recorded_index": 51
+      },
+      "dropped_before_pruned0": {
+        "noops": 0,
+        "board_changing": 50,
+        "resets": 1
+      },
+      "pruned_replay": "survived"
+    }
+  ]
+}

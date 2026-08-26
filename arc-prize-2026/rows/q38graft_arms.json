@@ -1,0 +1,19 @@
+{
+  "q38-graft-compound": {
+    "lc_total": 18,
+    "mean_score": 3.217,
+    "actions": 1251
+  },
+  "comparator-field-floor": {
+    "lc_total": 28,
+    "mean_score": 6.173,
+    "actions": 1639
+  },
+  "context-q36-graft-floor": {
+    "lc": [
+      18,
+      14
+    ],
+    "note": "same harness generation, older engine"
+  }
+}

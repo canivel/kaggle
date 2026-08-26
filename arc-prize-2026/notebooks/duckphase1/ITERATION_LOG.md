@@ -1,0 +1,7 @@
+
+### 2026-07-10 — Phase 0 (day 4): σ-draw #2 = 0.93 → **Phase-0a exit gate MET** (≥0.9); phase1 seed 2 null-consistent
+- **Score:** frozen duck fork σ-draw #2 (reserved retry) = **0.93** — first draw ≥0.9. Draw ledger 0.82→0.89→0.93; exit gate (line 53: "Kaggle ≥0.9 within 2 scored attempts" + line 44 reserved retry) **PASSED** on the reserved attempt. P0 kill line (duck <0.8) never triggered; all 3 draws ≥0.8. Duck fork confirmed in Tufa 0.77–1.30 band.
+- **Running σ̂ (3 draws):** mean 0.880, sample-sd σ̂=0.0557, χ²-CI ~[0.033, 0.162]. Need 4–6 draws for the banked σ̂; σ-draw #3 already pending in queue (aligned with Class-B ledger "sigma ×5").
+- **Builds:** `arc3-duck-phase1` v2 (**seed 2**) COMPLETE — mean **1.92**, median 0.37, 25 games×1 pass, RTX PRO 6000. Evidence saved `runs/duck_eval/phase1_seed2.json`.
+- **Gate eval (seed 2 vs Tufa null):** run-mean 1.92 vs null 1.60, Δ=+0.32; game-level sign 11+/12−/2 ties → sign-test p=1.00; run z=+0.77. **Non-decisive.** Combined with seed 1 (Δ=−0.38, z=−0.83) the two seeds **straddle the null** (2-seed mean ≈ null) → no substrate effect visible yet; band was +0.10–0.25 RHAE. Need seed 3 for the 3-seed artifact before any Phase-1 gate call.
+- **Iterate:** pushed `arc3-duck-phase1` v3 = **seed 3** (1 of 2 daily pushes; quota healthy ~4.8 GPU-h used this wk). Queue left as-is (σ-draw #3 pending — never leave empty). Next: seed 3 COMPLETE → 3-seed evidence artifact → Phase-1 substrate gate decision (currently trending toward null/no-lift).

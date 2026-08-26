@@ -1,0 +1,875 @@
+{
+  "schema_version": 1,
+  "updated": "2026-08-23T12:24:13Z",
+  "incidents": [
+    {
+      "id": "inc-t2-001",
+      "tier": 2,
+      "date": "2026-03-29",
+      "kernel": "canivel/arc3-cnn-frame-change-agent",
+      "version": 6,
+      "status_class": "COMPLETE",
+      "score_class": "0.00",
+      "score": 0.0,
+      "provenance": "original",
+      "prior_success": false,
+      "fingerprint": "5a2f649465c44d0a",
+      "material": "{\"docker\": \"\", \"gpu\": null, \"kernel\": \"canivel/arc3-cnn-frame-change-agent\", \"machine\": null, \"score\": \"0.00\", \"status\": \"COMPLETE\", \"version\": 6}",
+      "families": [
+        "slug:canivel/arc3-cnn-frame-change-agent",
+        "class:COMPLETE:0.00"
+      ],
+      "confidence": "high",
+      "source": "docs/competition_plan.md:8",
+      "note": "Pilot-era v6 scored 0.00 - GPU OOM + missing FrameData fields."
+    },
+    {
+      "id": "inc-t2-002",
+      "tier": 2,
+      "date": "2026-04-24",
+      "kernel": "canivel/arc3-forge35",
+      "version": null,
+      "status_class": "COMPLETE",
+      "score_class": "0.00",
+      "score": 0.0,
+      "provenance": "baseline-derived",
+      "prior_success": false,
+      "fingerprint": "d74bf4b027fa26e8",
+      "material": "{\"docker\": \"gcr.io/kaggle-images/python@sha256:c370a5ff133d162d17c2dca332b50\", \"gpu\": false, \"kernel\": \"canivel/arc3-forge35\", \"machine\": null, \"score\": \"0.00\", \"status\": \"COMPLETE\", \"version\": null}",
+      "families": [
+        "slug:canivel/arc3-forge35",
+        "class:COMPLETE:0.00"
+      ],
+      "confidence": "low",
+      "source": "memory/feedback_lock_deadlock.md",
+      "note": "forge_v35 TIPS _TIPS_LOCK deadlock - all 110 game threads froze at startup -> 0.00. Date/slug reconstructed (last forge35 run 2026-04-24); excluded from WARN counterfactual."
+    },
+    {
+      "id": "inc-t2-003",
+      "tier": 2,
+      "date": "2026-05-26",
+      "kernel": "canivel/arc3-final",
+      "version": 26,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "score": null,
+      "provenance": "scratch-built",
+      "prior_success": false,
+      "fingerprint": "55dfdd5a95645722",
+      "material": "{\"docker\": \"gcr.io/kaggle-private-byod/python@sha256:00377cd1b3d470a605bc5b0\", \"gpu\": true, \"kernel\": \"canivel/arc3-final\", \"machine\": null, \"score\": \"none\", \"status\": \"ERROR\", \"version\": 26}",
+      "families": [
+        "slug:canivel/arc3-final",
+        "provenance:scratch-built",
+        "class:ERROR:none"
+      ],
+      "confidence": "high",
+      "source": "ITERATION_LOG.md sec.3 (v45)",
+      "note": "v45 = v39 + 25M JEPA. ERROR on rerun. Structural-drift death #1 (root cause found 2026-06-28: build_notebook.py drifted agents/__init__.py + .env from baseline)."
+    },
+    {
+      "id": "inc-t2-004",
+      "tier": 2,
+      "date": "2026-06-01",
+      "kernel": "canivel/arc3-final",
+      "version": 30,
+      "status_class": "COMPLETE",
+      "score_class": "null-band",
+      "score": 0.04,
+      "provenance": "baseline-derived",
+      "prior_success": false,
+      "fingerprint": "b4a09546d4d6b52c",
+      "material": "{\"docker\": \"gcr.io/kaggle-private-byod/python@sha256:00377cd1b3d470a605bc5b0\", \"gpu\": true, \"kernel\": \"canivel/arc3-final\", \"machine\": null, \"score\": \"null-band\", \"status\": \"COMPLETE\", \"version\": 30}",
+      "families": [
+        "slug:canivel/arc3-final",
+        "class:COMPLETE:null-band"
+      ],
+      "confidence": "high",
+      "source": "ITERATION_LOG.md sec.6 + sec.2b",
+      "note": "v30 = 0.04 - poisoned pretrained ForgeNet weights (pre-set_data click coords). Zero-band death."
+    },
+    {
+      "id": "inc-t2-005",
+      "tier": 2,
+      "date": "2026-06-08",
+      "kernel": "canivel/arc3-final",
+      "version": 36,
+      "status_class": "COMPLETE",
+      "score_class": "null-band",
+      "score": 0.01,
+      "provenance": "baseline-derived",
+      "prior_success": false,
+      "fingerprint": "a84cac8feb056fc8",
+      "material": "{\"docker\": \"gcr.io/kaggle-private-byod/python@sha256:00377cd1b3d470a605bc5b0\", \"gpu\": true, \"kernel\": \"canivel/arc3-final\", \"machine\": null, \"score\": \"null-band\", \"status\": \"COMPLETE\", \"version\": 36}",
+      "families": [
+        "slug:canivel/arc3-final",
+        "class:COMPLETE:null-band"
+      ],
+      "confidence": "high",
+      "source": "ITERATION_LOG.md sec.5c",
+      "note": "v36 = 0.01 - SG + unbalanced pretrain (78.8% positive labels)."
+    },
+    {
+      "id": "inc-t2-006",
+      "tier": 2,
+      "date": "2026-06-10",
+      "kernel": "canivel/arc3-final",
+      "version": 38,
+      "status_class": "COMPLETE",
+      "score_class": "0.00",
+      "score": 0.0,
+      "provenance": "baseline-derived",
+      "prior_success": false,
+      "fingerprint": "bb2ea91b6f17537e",
+      "material": "{\"docker\": \"gcr.io/kaggle-private-byod/python@sha256:00377cd1b3d470a605bc5b0\", \"gpu\": true, \"kernel\": \"canivel/arc3-final\", \"machine\": null, \"score\": \"0.00\", \"status\": \"COMPLETE\", \"version\": 38}",
+      "families": [
+        "slug:canivel/arc3-final",
+        "class:COMPLETE:0.00"
+      ],
+      "confidence": "high",
+      "source": "memory/feedback_test_before_submit.md + ITERATION_LOG.md sec.5e",
+      "note": "v38 = 0.00 - `defaultdict` used but never imported; ast.parse passed, 30s runtime test would have caught it."
+    },
+    {
+      "id": "inc-t2-007",
+      "tier": 2,
+      "date": "2026-06-20",
+      "kernel": "canivel/arc3-forge62",
+      "version": 4,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "score": null,
+      "provenance": "scratch-built",
+      "prior_success": false,
+      "fingerprint": "2a965c7a5e896833",
+      "material": "{\"docker\": \"gcr.io/kaggle-images/python@sha256:c370a5ff133d162d17c2dca332b50\", \"gpu\": false, \"kernel\": \"canivel/arc3-forge62\", \"machine\": null, \"score\": \"none\", \"status\": \"ERROR\", \"version\": 4}",
+      "families": [
+        "slug:canivel/arc3-forge62",
+        "provenance:scratch-built",
+        "class:ERROR:none"
+      ],
+      "confidence": "high",
+      "source": "runs/submission_log.jsonl 2026-06-20 + feedback_arc_jepa_dead",
+      "note": "v62 = v35 + JEPA-XXS MCTS. ERROR on rerun, fresh slug. Structural-drift death #2."
+    },
+    {
+      "id": "inc-t2-008",
+      "tier": 2,
+      "date": "2026-06-21",
+      "kernel": "canivel/arc3-forge35",
+      "version": 1,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "score": null,
+      "provenance": "baseline-derived",
+      "prior_success": true,
+      "fingerprint": "892bce56f212dfdb",
+      "material": "{\"docker\": \"gcr.io/kaggle-images/python@sha256:c370a5ff133d162d17c2dca332b50\", \"gpu\": false, \"kernel\": \"canivel/arc3-forge35\", \"machine\": null, \"score\": \"none\", \"status\": \"ERROR\", \"version\": 1}",
+      "families": [
+        "slug:canivel/arc3-forge35",
+        "class:ERROR:none"
+      ],
+      "confidence": "high",
+      "source": "runs/submission_log.jsonl 2026-06-21/22 messages",
+      "note": "v35 sample 12 ERROR - same kernel+version that scored 0.10-0.43 ten times before (error-after-success)."
+    },
+    {
+      "id": "inc-t2-009",
+      "tier": 2,
+      "date": "2026-06-22",
+      "kernel": "canivel/arc3-forge35",
+      "version": 1,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "score": null,
+      "provenance": "baseline-derived",
+      "prior_success": true,
+      "fingerprint": "892bce56f212dfdb",
+      "material": "{\"docker\": \"gcr.io/kaggle-images/python@sha256:c370a5ff133d162d17c2dca332b50\", \"gpu\": false, \"kernel\": \"canivel/arc3-forge35\", \"machine\": null, \"score\": \"none\", \"status\": \"ERROR\", \"version\": 1}",
+      "families": [
+        "slug:canivel/arc3-forge35",
+        "class:ERROR:none"
+      ],
+      "confidence": "high",
+      "source": "runs/submission_log.jsonl 2026-06-22 message",
+      "note": "v35 sample 13 ERROR - deliberate rerun-infra diagnostic after two consecutive ERRORs; third consecutive ERROR overall."
+    },
+    {
+      "id": "inc-t2-010",
+      "tier": 2,
+      "date": "2026-06-26",
+      "kernel": "canivel/arc3-jepa-v2",
+      "version": 1,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "score": null,
+      "provenance": "scratch-built",
+      "prior_success": false,
+      "fingerprint": "b25263aca4783cca",
+      "material": "{\"docker\": \"gcr.io/kaggle-images/python@sha256:c370a5ff133d162d17c2dca332b50\", \"gpu\": false, \"kernel\": \"canivel/arc3-jepa-v2\", \"machine\": null, \"score\": \"none\", \"status\": \"ERROR\", \"version\": 1}",
+      "families": [
+        "slug:canivel/arc3-jepa-v2",
+        "provenance:scratch-built",
+        "class:ERROR:none"
+      ],
+      "confidence": "high",
+      "source": "runs/submission_log.jsonl 2026-06-26 + feedback_arc_jepa_dead",
+      "note": "v63 = throttled JEPA on fresh slug. ERROR. Structural-drift death #3 (family WARN would already have been active)."
+    },
+    {
+      "id": "inc-t2-011",
+      "tier": 2,
+      "date": "2026-06-27",
+      "kernel": "canivel/arc3-execwm",
+      "version": 1,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "score": null,
+      "provenance": "scratch-built",
+      "prior_success": false,
+      "fingerprint": "61e5e32471003756",
+      "material": "{\"docker\": \"gcr.io/kaggle-images/python@sha256:c370a5ff133d162d17c2dca332b50\", \"gpu\": false, \"kernel\": \"canivel/arc3-execwm\", \"machine\": null, \"score\": \"none\", \"status\": \"ERROR\", \"version\": 1}",
+      "families": [
+        "slug:canivel/arc3-execwm",
+        "provenance:scratch-built",
+        "class:ERROR:none"
+      ],
+      "confidence": "high",
+      "source": "runs/submission_log.jsonl 2026-06-27",
+      "note": "v64 = v35 + ExecWMHook. ERROR. Structural-drift death #4."
+    },
+    {
+      "id": "inc-t2-012",
+      "tier": 2,
+      "date": "2026-06-28",
+      "kernel": "canivel/arc3-execwm-v2",
+      "version": 1,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "score": null,
+      "provenance": "scratch-built",
+      "prior_success": false,
+      "fingerprint": "ddba324f535c18bf",
+      "material": "{\"docker\": \"gcr.io/kaggle-images/python@sha256:c370a5ff133d162d17c2dca332b50\", \"gpu\": false, \"kernel\": \"canivel/arc3-execwm-v2\", \"machine\": null, \"score\": \"none\", \"status\": \"ERROR\", \"version\": 1}",
+      "families": [
+        "slug:canivel/arc3-execwm-v2",
+        "provenance:scratch-built",
+        "class:ERROR:none"
+      ],
+      "confidence": "high",
+      "source": "runs/submission_log.jsonl 2026-06-28",
+      "note": "v65 = v64 inlined, fresh slug. ERROR. Structural-drift death #5 - root cause found the same day; v66 rebuilt on baseline structure + preflight.py born."
+    },
+    {
+      "id": "inc-t1-001",
+      "tier": 1,
+      "date": "2026-07-07",
+      "kernel": "canivel/arc3-pilot-eval",
+      "version": 1,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "mode": "error",
+      "reconstructed": true,
+      "fingerprint": "07d0f5248c48401d",
+      "material": "t1|pilot eval: scoring pass|IndexError: list index out of range",
+      "families": [
+        "t1:07d0f5248c48401d",
+        "slug:canivel/arc3-pilot-eval"
+      ],
+      "confidence": "low",
+      "source": "campaign record (Kimi-3 review cycle 2026-07-18); duck_eval/pilot/scoring.py crash-class",
+      "note": "Pilot eval kernel v1 build died with IndexError. Log not retained; material reconstructed from record."
+    },
+    {
+      "id": "inc-t1-002",
+      "tier": 1,
+      "date": "2026-07-07",
+      "kernel": "canivel/arc3-pilot-eval",
+      "version": 2,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "mode": "error",
+      "reconstructed": true,
+      "fingerprint": "07d0f5248c48401d",
+      "material": "t1|pilot eval: scoring pass|IndexError: list index out of range",
+      "families": [
+        "t1:07d0f5248c48401d",
+        "slug:canivel/arc3-pilot-eval"
+      ],
+      "confidence": "low",
+      "source": "campaign record (Kimi-3 review cycle 2026-07-18)",
+      "note": "Pilot eval kernel v2 - same IndexError family, death #2 (recurrence WARN condition met here)."
+    },
+    {
+      "id": "inc-t1-003",
+      "tier": 1,
+      "date": "2026-07-08",
+      "kernel": "canivel/arc3-pilot-eval",
+      "version": 3,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "mode": "error",
+      "reconstructed": true,
+      "fingerprint": "07d0f5248c48401d",
+      "material": "t1|pilot eval: scoring pass|IndexError: list index out of range",
+      "families": [
+        "t1:07d0f5248c48401d",
+        "slug:canivel/arc3-pilot-eval"
+      ],
+      "confidence": "low",
+      "source": "campaign record (Kimi-3 review cycle 2026-07-18)",
+      "note": "Pilot eval kernel v3 - death #3, would have carried the WARN."
+    },
+    {
+      "id": "inc-t1-004",
+      "tier": 1,
+      "date": "2026-07-07",
+      "kernel": "canivel/arc3-duck-repro",
+      "version": 1,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "mode": "error",
+      "reconstructed": true,
+      "fingerprint": "fbfaf1cf21edfd8a",
+      "material": "t1|duck harness: GPU check|AssertionError: CUDA GPU check failed: expected RTX PRO <n>, got Tesla P100",
+      "families": [
+        "t1:fbfaf1cf21edfd8a",
+        "slug:canivel/arc3-duck-repro"
+      ],
+      "confidence": "medium",
+      "source": "runs/submission_log.jsonl 2026-07-08 message ('v1 failed GPU-type assert on P100')",
+      "note": "duck-repro v1 build died on GPU-type assert (machine_shape missing from kernel-metadata). Fixed in v3."
+    },
+    {
+      "id": "inc-t1-005",
+      "tier": 1,
+      "date": "2026-07-25",
+      "kernel": "canivel/arc3-a17-72b-canary",
+      "version": 1,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "mode": "error",
+      "reconstructed": false,
+      "fingerprint": "fb1e96c3815797ad",
+      "material": "t1|PYSETUP|CalledProcessError: Command '\"$PYTHON\" - <<'PYSETUP'",
+      "root_fingerprint": "4f70850343550dae",
+      "root_error": "RuntimeError: A17-CANARY FATAL: Qwen2.<n>-VL-72B-Instruct-AWQ not found under <path> - attach Kaggle Model qwen-lm<path> REFUSING 27B fallback.",
+      "elapsed": 11.944304225,
+      "families": [
+        "t1:fb1e96c3815797ad",
+        "t1root:4f70850343550dae",
+        "slug:canivel/arc3-a17-72b-canary"
+      ],
+      "confidence": "high",
+      "source": "runs/kernel_pulls/a17_canary_v1/arc3-a17-72b-canary.log",
+      "date_source": "hint",
+      "note": "scanned from retained build log -- runs/kernel_pulls/a17_canary_v1 (pull mtime 2026-07-25)"
+    },
+    {
+      "id": "inc-t1-006",
+      "tier": 1,
+      "date": "2026-07-25",
+      "kernel": "canivel/arc3-a17-72b-canary",
+      "version": 2,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "mode": "error",
+      "reconstructed": false,
+      "fingerprint": "fb1e96c3815797ad",
+      "material": "t1|PYSETUP|CalledProcessError: Command '\"$PYTHON\" - <<'PYSETUP'",
+      "root_fingerprint": "4f70850343550dae",
+      "root_error": "RuntimeError: A17-CANARY FATAL: Qwen2.<n>-VL-72B-Instruct-AWQ not found under <path> - attach Kaggle Model qwen-lm<path> REFUSING 27B fallback.",
+      "elapsed": 11.943270109,
+      "families": [
+        "t1:fb1e96c3815797ad",
+        "t1root:4f70850343550dae",
+        "slug:canivel/arc3-a17-72b-canary"
+      ],
+      "confidence": "high",
+      "source": "runs/kernel_pulls/a17_canary_v2/arc3-a17-72b-canary.log",
+      "date_source": "hint",
+      "note": "scanned from retained build log -- runs/kernel_pulls/a17_canary_v2 (pull mtime 2026-07-25)"
+    },
+    {
+      "id": "inc-t1-007",
+      "tier": 1,
+      "date": "2026-08-14",
+      "kernel": "canivel/arc3-b122-boot-canary",
+      "version": 1,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "mode": "error",
+      "reconstructed": false,
+      "fingerprint": "b1cb06f2668b9b67",
+      "material": "t1|Starting vLLM OpenAI server: <path> -m vllm.entrypoints.openai.api_server --model <path> --served-model-name Qwen/Qwen3.<n>-122B-A10B --host <n>.<n> --port <n> --tensor-parallel-size <n> --enable-auto-tool-choice --tool-call-parser qwen3_coder --generation-config vllm --enable-prefix-caching --default-chat-template-kwargs {\"preserve_thinking\": true} --reasoning-parser qwen3 --max-model-len <n> --quantization modelopt_fp4 --gpu-memory-utilization <n>|CalledProcessError: Command '\"$PYTHON\" - <<'PYSETUP'",
+      "root_fingerprint": "3c9cffe6723129b8",
+      "root_error": "TimeoutError: Timed out waiting for vLLM server at http://<n>.<n>:1234<path>",
+      "elapsed": 2830.737537266,
+      "families": [
+        "t1:b1cb06f2668b9b67",
+        "t1root:3c9cffe6723129b8",
+        "slug:canivel/arc3-b122-boot-canary"
+      ],
+      "confidence": "high",
+      "source": "runs/kernel_pulls/b122_v1/arc3-b122-boot-canary.log",
+      "date_source": "hint",
+      "note": "scanned from retained build log -- ITERATION_LOG.md 2026-08-14 (b122 FlashInfer SM120 MoE JIT infra death #2)"
+    },
+    {
+      "id": "inc-t1-008",
+      "tier": 1,
+      "date": "2026-08-14",
+      "kernel": "canivel/arc3-lora-serve-canary",
+      "version": 1,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "mode": "error",
+      "reconstructed": false,
+      "fingerprint": "d666b385aca6f787",
+      "material": "t1|Successfully installed aiohappyeyeballs-<n>.<n> aiohttp-<n>.<n> aiosignal-<n>.<n> annotated-doc-<n>.<n> annotated-types-<n>.<n> anthropic-<n>.<n> anyio-<n>.<n> apache-tvm-ffi-<n>.<n> astor-<n>.<n> attrs-<n>.<n> blake3-<n>.<n> cachetools-<n>.<n> cbor2-<n>.<n> certifi-<n>.<n> cffi-<n>.<n> charset-normalizer-<n>.<n> click-<n>.<n> cloudpickle-<n>.<n> compressed-tensors-<n>.<n> cryptography-<n>.<n> cuda-bindings-<n>.<n> cuda-pathfinder-<n>.<n> cuda-python-<n>.<n> depyf-<n>.<n> dill-<n>.<n> diskcache-<n>.<n> distro-<n>.<n> dnspython-<n>.<n> docstring-parser-<n>.<n> einops-<n>.<n> email-validator-<n>.<n> fastapi-<n>.<n> fastapi-cli-<n>.<n> fastapi-cloud-cli-<n>.<n> fastar-<n>.<n> filelock-<n>.<n> flashinfer-cubin-<n>.<n> flashinfer-python-<n>.<n> frozenlist-<n>.<n> fsspec-<n>.<n> gguf-<n>.<n> googleapis-common-protos-<n>.<n> grpcio-<n>.<n> h11-<n>.<n> hf-xet-<n>.<n> httpcore-<n>.<n> httptools-<n>.<n> httpx-<n>.<n> httpx-sse-<n>.<n> huggingface-hub-<n>.<n> idna-<n> ijson-<n>.<n> importlib-metadata-<n>.<n> interegular-<n>.<n> jinja2-<n>.<n> jiter-<n>.<n> jmespath-<n>.<n> jsonschema-<n>.<n> jsonschema-specifications-<n>.<n> lark-<n>.<n> llguidance-<n>.<n> llvmlite-<n>.<n> lm-format-enforcer-<n>.<n> loguru-<n>.<n> markdown-it-py-<n>.<n> markupsafe-<n>.<n> mcp-<n>.<n> mdurl-<n>.<n> mistral-common-<n>.<n> model-hosting-container-standards-<n>.<n> mpmath-<n>.<n> msgspec-<n>.<n> multidict-<n>.<n> networkx-<n>.<n> ninja-<n>.<n> numba-<n>.<n> numpy-<n>.<n> nvidia-cublas-cu12-<n>.<n> nvidia-cuda-cupti-cu12-<n>.<n> nvidia-cuda-nvrtc-cu12-<n>.<n> nvidia-cuda-runtime-cu12-<n>.<n> nvidia-cudnn-cu12-<n>.<n> nvidia-cudnn-frontend-<n>.<n> nvidia-cufft-cu12-<n>.<n> nvidia-cufile-cu12-<n>.<n> nvidia-curand-cu12-<n>.<n> nvidia-cusolver-cu12-<n>.<n> nvidia-cusparse-cu12-<n>.<n> nvidia-cusparselt-cu12-<n>.<n> nvidia-cutlass-dsl-<n>.<n>.dev0 nvidia-cutlass-dsl-libs-base-<n>.<n>.dev0 nvidia-ml-py-<n>.<n> nvidia-nccl-cu12-<n>.<n> nvidia-nvjitlink-cu12-<n>.<n> nvidia-nvshmem-cu12-<n>.<n> nvidia-nvtx-cu12-<n>.<n> openai-<n>.<n> openai-harmony-<n>.<n> opencv-python-headless-<n>.<n> opentelemetry-api-<n>.<n> opentelemetry-exporter-otlp-<n>.<n> opentelemetry-exporter-otlp-proto-common-<n>.<n> opentelemetry-exporter-otlp-proto-grpc-<n>.<n> opentelemetry-exporter-otlp-proto-http-<n>.<n> opentelemetry-proto-<n>.<n> opentelemetry-sdk-<n>.<n> opentelemetry-semantic-conventions-<n>.62b1 opentelemetry-semantic-conventions-ai-<n>.<n> outlines-core-<n>.<n> packaging-<n> partial-json-parser-<n>.<n>.post7 pillow-<n>.<n> prometheus-client-<n>.<n> prometheus-fastapi-instrumentator-<n>.<n> propcache-<n>.<n> protobuf-<n>.<n> psutil-<n>.<n> py-cpuinfo-<n>.<n> pybase64-<n>.<n> pycountry-<n>.<n> pycparser-<n> pydantic-<n>.<n> pydantic-core-<n>.<n> pydantic-extra-types-<n>.<n> pydantic-settings-<n>.<n> pygments-<n>.<n> pyjwt-<n>.<n> python-dotenv-<n>.<n> python-json-logger-<n>.<n> python-multipart-<n>.<n> pyyaml-<n>.<n> pyzmq-<n>.<n> quack-kernels-<n>.<n> referencing-<n>.<n> regex-<n>.<n> requests-<n>.<n> rich-<n>.<n> rich-toolkit-<n>.<n> rignore-<n>.<n> rpds-py-<n>.<n> safetensors-<n>.<n> sentencepiece-<n>.<n> sentry-sdk-<n>.<n> setproctitle-<n>.<n> setuptools-<n>.<n> shellingham-<n>.<n> six-<n>.<n> sniffio-<n>.<n> sse-starlette-<n>.<n> starlette-<n>.<n> supervisor-<n>.<n> sympy-<n>.<n> tabulate-<n>.<n> tiktoken-<n>.<n> tokenizers-<n>.<n> torch-<n>.<n> torch-c-dlpack-ext-<n>.<n> torchaudio-<n>.<n> torchvision-<n>.<n> tqdm-<n>.<n> transformers-<n>.<n> triton-<n>.<n> typer-<n>.<n> typing-extensions-<n>.<n> typing-inspection-<n>.<n> urllib3-<n>.<n> uvicorn-<n>.<n> uvloop-<n>.<n> vllm-<n>.<n> watchfiles-<n>.<n> websockets-<n> xgrammar-<n>.<n> yarl-<n>.<n> zipp-<n>.<n>|CalledProcessError: Command '\"$PYTHON\" - <<'PYSETUP'",
+      "root_fingerprint": "5c05453e9de08087",
+      "root_error": "NameError: name '_source_path_entries' is not defined",
+      "elapsed": 102.501097971,
+      "families": [
+        "t1:d666b385aca6f787",
+        "t1root:5c05453e9de08087",
+        "slug:canivel/arc3-lora-serve-canary"
+      ],
+      "confidence": "high",
+      "source": "runs/kernel_logs/lora_serve_canary_v1.log.json",
+      "date_source": "hint",
+      "note": "scanned from retained build log -- learnings/war_room/lora_serve_canary_postmortem_2026-08-16.md (pushed+run 2026-08-14 13:40:18Z; log pulled 08-16, so mtime would misdate it)"
+    },
+    {
+      "id": "inc-t1-009",
+      "tier": 1,
+      "date": "2026-08-15",
+      "kernel": "canivel/arc3-q38-engine-eval",
+      "version": 1,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "mode": "error",
+      "reconstructed": false,
+      "fingerprint": "d4c8e135c7104f91",
+      "material": "t1|Q38-EVAL tool-call-roundtrip=OK mode=auto parser=qwen3_coder name=submit_action|CalledProcessError: Command '\"$PYTHON\" - <<'PYSETUP'",
+      "root_fingerprint": "46b9c105acd985ec",
+      "root_error": "RuntimeError: Q38-EVAL FATAL: MM boot probe returned empty content - the vision path is broken and MULTIMODAL_CONTEXT=current_grid would be dead",
+      "elapsed": 425.536720184,
+      "families": [
+        "t1:d4c8e135c7104f91",
+        "t1root:46b9c105acd985ec",
+        "slug:canivel/arc3-q38-engine-eval"
+      ],
+      "confidence": "high",
+      "source": "runs/kernel_pulls/q38_v1/q38.log",
+      "date_source": "hint",
+      "note": "scanned from retained build log -- ITERATION_LOG.md 2026-08-15 (Q38 engine-swap eval, slot 2); learnings/war_room/q38_engine_swap_prereg_2026-08-15.md"
+    },
+    {
+      "id": "inc-t1-010",
+      "tier": 1,
+      "date": "2026-08-17",
+      "kernel": null,
+      "version": null,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "mode": "error",
+      "reconstructed": false,
+      "fingerprint": "4adc306b8ab3107d",
+      "material": "t1|Q38-EVAL OBSERVE tokenize served_chars=<n> control_chars=<n> served_head='<|im_start|>system\\nReasoning effort is set to low. Keep your thinking brief and focused, moving dire'|CalledProcessError: Command '\"$PYTHON\" - <<'PYSETUP'",
+      "root_fingerprint": "66b5ffe354c47bae",
+      "root_error": "RuntimeError: Q38-EVAL FATAL: the SERVED prompt contains a reasoning-effort instruction - --default-chat-template-kwargs did not bind and the arm carries two variables",
+      "elapsed": 415.698521918,
+      "families": [
+        "t1:4adc306b8ab3107d",
+        "t1root:66b5ffe354c47bae"
+      ],
+      "confidence": "high",
+      "source": "runs/kernel_pulls/q38low_v1/q38low.log",
+      "date_source": "log mtime",
+      "note": "scanned from retained build log"
+    },
+    {
+      "id": "inc-t1-011",
+      "tier": 1,
+      "date": "2026-08-18",
+      "kernel": "canivel/arc3-graft-floor-eval",
+      "version": null,
+      "status_class": "ERROR",
+      "score_class": "none",
+      "mode": "error",
+      "reconstructed": false,
+      "fingerprint": "474fe5420b4aa57e",
+      "material": "t1|GRAFT-EVAL seed=<n> mode=graft-floor-local25 grafts=thtennant/taaf-kaggle-source-share-fork REPLACES jeroencottaar/taaf-kaggle-source-share (verified stock + <n> additive files, <n> stock bytes changed) flags=efficiency+retry_guard+shortcircuit+goalkeep+hudmask FORBIDDEN=banking+transfer engine=driessmit1/vrfai-qwen3-<n>-27b-fp8-hf-snapshot (UNCHANGED, vrfai/Qwen3.<n>-27B-FP8) wheels=driessmit1/arc3-vllm-h100-wheelhouse-v3 (UNCHANGED, vLLM <n>.<n>) audited_bundle_sha=<hex> baseline=duck-harness-kaggle m=<n> lc 18<path> primary=mean_dlc HARM<=-<n> SIGNAL>=+<n> secondary=mean_score NON-INFERENTIAL|CalledProcessError: Command '['<path>', '-m', 'pip', 'install', '--quiet', '--no-index', '--no-warn-conflicts', '--disable-pip-version-check', '--find-links', '<path>', 'arc-agi']' returned non-zero exit status <n>.",
+      "root_fingerprint": null,
+      "root_error": null,
+      "elapsed": 9.582584543,
+      "families": [
+        "t1:474fe5420b4aa57e",
+        "slug:canivel/arc3-graft-floor-eval"
+      ],
+      "confidence": "high",
+      "source": "runs/kernel_pulls/graft_floor_v2/arc3-graft-floor-eval.log",
+      "date_source": "log mtime",
+      "note": "scanned from retained build log"
+    }
+  ],
+  "scan_log": [
+    {
+      "log": "notebooks/output/arc3-cnn-frame-change-agent.log",
+      "run_key": "notebooks/output",
+      "has_error": false,
+      "fingerprint": "dac636de34b474af",
+      "stage": "Dummy submission created. Click Submit to run against competition games."
+    },
+    {
+      "log": "notebooks/output_v12/arc3-cnn-frame-change-agent.log",
+      "run_key": "notebooks/output_v12",
+      "has_error": false,
+      "fingerprint": "7952663ad130d636",
+      "stage": "Dummy submission created."
+    },
+    {
+      "log": "notebooks/output_v29/arc3-cnn-frame-change-agent.log",
+      "run_key": "notebooks/output_v29",
+      "has_error": false,
+      "fingerprint": "7952663ad130d636",
+      "stage": "Dummy submission created."
+    },
+    {
+      "log": "runs/a22_compaction_v1/arc3-duck-compaction-eval.log",
+      "run_key": "runs/a22_compaction_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/a22_v2_seed1/arc3-duck-compaction-eval.log",
+      "run_key": "runs/a22_v2_seed1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_logs/lora_serve_canary_v1.log.json",
+      "run_key": "runs/kernel_logs/lora_serve_canary_v1",
+      "has_error": true,
+      "fingerprint": "d666b385aca6f787",
+      "stage": "Successfully installed aiohappyeyeballs-<n>.<n> aiohttp-<n>.<n> aiosignal-<n>.<n> annotated-doc-<n>.<n> annotated-types-<n>.<n> anthropic-<n>.<n> anyio-<n>.<n> apache-tvm-ffi-<n>.<n> astor-<n>.<n> attrs-<n>.<n> blake3-<n>.<n> cachetools-<n>.<n> cbor2-<n>.<n> certifi-<n>.<n> cffi-<n>.<n> charset-normalizer-<n>.<n> click-<n>.<n> cloudpickle-<n>.<n> compressed-tensors-<n>.<n> cryptography-<n>.<n> cuda-bindings-<n>.<n> cuda-pathfinder-<n>.<n> cuda-python-<n>.<n> depyf-<n>.<n> dill-<n>.<n> diskcache-<n>.<n> distro-<n>.<n> dnspython-<n>.<n> docstring-parser-<n>.<n> einops-<n>.<n> email-validator-<n>.<n> fastapi-<n>.<n> fastapi-cli-<n>.<n> fastapi-cloud-cli-<n>.<n> fastar-<n>.<n> filelock-<n>.<n> flashinfer-cubin-<n>.<n> flashinfer-python-<n>.<n> frozenlist-<n>.<n> fsspec-<n>.<n> gguf-<n>.<n> googleapis-common-protos-<n>.<n> grpcio-<n>.<n> h11-<n>.<n> hf-xet-<n>.<n> httpcore-<n>.<n> httptools-<n>.<n> httpx-<n>.<n> httpx-sse-<n>.<n> huggingface-hub-<n>.<n> idna-<n> ijson-<n>.<n> importlib-metadata-<n>.<n> interegular-<n>.<n> jinja2-<n>.<n> jiter-<n>.<n> jmespath-<n>.<n> jsonschema-<n>.<n> jsonschema-specifications-<n>.<n> lark-<n>.<n> llguidance-<n>.<n> llvmlite-<n>.<n> lm-format-enforcer-<n>.<n> loguru-<n>.<n> markdown-it-py-<n>.<n> markupsafe-<n>.<n> mcp-<n>.<n> mdurl-<n>.<n> mistral-common-<n>.<n> model-hosting-container-standards-<n>.<n> mpmath-<n>.<n> msgspec-<n>.<n> multidict-<n>.<n> networkx-<n>.<n> ninja-<n>.<n> numba-<n>.<n> numpy-<n>.<n> nvidia-cublas-cu12-<n>.<n> nvidia-cuda-cupti-cu12-<n>.<n> nvidia-cuda-nvrtc-cu12-<n>.<n> nvidia-cuda-runtime-cu12-<n>.<n> nvidia-cudnn-cu12-<n>.<n> nvidia-cudnn-frontend-<n>.<n> nvidia-cufft-cu12-<n>.<n> nvidia-cufile-cu12-<n>.<n> nvidia-curand-cu12-<n>.<n> nvidia-cusolver-cu12-<n>.<n> nvidia-cusparse-cu12-<n>.<n> nvidia-cusparselt-cu12-<n>.<n> nvidia-cutlass-dsl-<n>.<n>.dev0 nvidia-cutlass-dsl-libs-base-<n>.<n>.dev0 nvidia-ml-py-<n>.<n> nvidia-nccl-cu12-<n>.<n> nvidia-nvjitlink-cu12-<n>.<n> nvidia-nvshmem-cu12-<n>.<n> nvidia-nvtx-cu12-<n>.<n> openai-<n>.<n> openai-harmony-<n>.<n> opencv-python-headless-<n>.<n> opentelemetry-api-<n>.<n> opentelemetry-exporter-otlp-<n>.<n> opentelemetry-exporter-otlp-proto-common-<n>.<n> opentelemetry-exporter-otlp-proto-grpc-<n>.<n> opentelemetry-exporter-otlp-proto-http-<n>.<n> opentelemetry-proto-<n>.<n> opentelemetry-sdk-<n>.<n> opentelemetry-semantic-conventions-<n>.62b1 opentelemetry-semantic-conventions-ai-<n>.<n> outlines-core-<n>.<n> packaging-<n> partial-json-parser-<n>.<n>.post7 pillow-<n>.<n> prometheus-client-<n>.<n> prometheus-fastapi-instrumentator-<n>.<n> propcache-<n>.<n> protobuf-<n>.<n> psutil-<n>.<n> py-cpuinfo-<n>.<n> pybase64-<n>.<n> pycountry-<n>.<n> pycparser-<n> pydantic-<n>.<n> pydantic-core-<n>.<n> pydantic-extra-types-<n>.<n> pydantic-settings-<n>.<n> pygments-<n>.<n> pyjwt-<n>.<n> python-dotenv-<n>.<n> python-json-logger-<n>.<n> python-multipart-<n>.<n> pyyaml-<n>.<n> pyzmq-<n>.<n> quack-kernels-<n>.<n> referencing-<n>.<n> regex-<n>.<n> requests-<n>.<n> rich-<n>.<n> rich-toolkit-<n>.<n> rignore-<n>.<n> rpds-py-<n>.<n> safetensors-<n>.<n> sentencepiece-<n>.<n> sentry-sdk-<n>.<n> setproctitle-<n>.<n> setuptools-<n>.<n> shellingham-<n>.<n> six-<n>.<n> sniffio-<n>.<n> sse-starlette-<n>.<n> starlette-<n>.<n> supervisor-<n>.<n> sympy-<n>.<n> tabulate-<n>.<n> tiktoken-<n>.<n> tokenizers-<n>.<n> torch-<n>.<n> torch-c-dlpack-ext-<n>.<n> torchaudio-<n>.<n> torchvision-<n>.<n> tqdm-<n>.<n> transformers-<n>.<n> triton-<n>.<n> typer-<n>.<n> typing-extensions-<n>.<n> typing-inspection-<n>.<n> urllib3-<n>.<n> uvicorn-<n>.<n> uvloop-<n>.<n> vllm-<n>.<n> watchfiles-<n>.<n> websockets-<n> xgrammar-<n>.<n> yarl-<n>.<n> zipp-<n>.<n>"
+    },
+    {
+      "log": "runs/kernel_pulls/a17_canary_v1/arc3-a17-72b-canary.log",
+      "run_key": "runs/kernel_pulls/a17_canary_v1",
+      "has_error": true,
+      "fingerprint": "fb1e96c3815797ad",
+      "stage": "PYSETUP"
+    },
+    {
+      "log": "runs/kernel_pulls/a17_canary_v2/arc3-a17-72b-canary.log",
+      "run_key": "runs/kernel_pulls/a17_canary_v2",
+      "has_error": true,
+      "fingerprint": "fb1e96c3815797ad",
+      "stage": "PYSETUP"
+    },
+    {
+      "log": "runs/kernel_pulls/a17_canary_v3/arc3-a17-72b-canary.log",
+      "run_key": "runs/kernel_pulls/a17_canary_v3",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/a17_v5/arc3-a17-72b-canary.log",
+      "run_key": "runs/kernel_pulls/a17_v5",
+      "has_error": false,
+      "fingerprint": "d63186b4fd7fa750",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/a17_v6/arc3-a17-72b-canary.log",
+      "run_key": "runs/kernel_pulls/a17_v6",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/a17_v6_full/arc3-a17-72b-canary.log",
+      "run_key": "runs/kernel_pulls/a17_v6_full",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/a17_v7/arc3-a17-72b-canary.log",
+      "run_key": "runs/kernel_pulls/a17_v7",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/a22_v2_1/arc3-duck-compaction-eval.log",
+      "run_key": "runs/kernel_pulls/a22_v2_1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/animation_v1/arc3-duck-animation-eval.log",
+      "run_key": "runs/kernel_pulls/animation_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/b122_v1/arc3-b122-boot-canary.log",
+      "run_key": "runs/kernel_pulls/b122_v1",
+      "has_error": true,
+      "fingerprint": "b1cb06f2668b9b67",
+      "stage": "Starting vLLM OpenAI server: <path> -m vllm.entrypoints.openai.api_server --model <path> --served-model-name Qwen/Qwen3.<n>-122B-A10B --host <n>.<n> --port <n> --tensor-parallel-size <n> --enable-auto-tool-choice --tool-call-parser qwen3_coder --generation-config vllm --enable-prefix-caching --default-chat-template-kwargs {\"preserve_thinking\": true} --reasoning-parser qwen3 --max-model-len <n> --quantization modelopt_fp4 --gpu-memory-utilization <n>"
+    },
+    {
+      "log": "runs/kernel_pulls/budget_t05_v1/kernel.log",
+      "run_key": "runs/kernel_pulls/budget_t05_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/budget_t3_v1/kernel.log",
+      "run_key": "runs/kernel_pulls/budget_t3_v1",
+      "has_error": false,
+      "fingerprint": "8a1be7c474f3b6f7",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/compaction_v2/arc3-duck-compaction-eval.log",
+      "run_key": "runs/kernel_pulls/compaction_v2",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/effnote_v1/arc3-duck-effnote-eval.log",
+      "run_key": "runs/kernel_pulls/effnote_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/engine_misfire_0817/arc3-q38-engine-eval.log",
+      "run_key": "runs/kernel_pulls/engine_misfire_0817",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/gate_eval_v1/arc3-duck-gate-eval.log",
+      "run_key": "runs/kernel_pulls/gate_eval_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/gate_eval_v2/arc3-duck-gate-eval.log",
+      "run_key": "runs/kernel_pulls/gate_eval_v2",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/graft_confirm_v1/graft.log",
+      "run_key": "runs/kernel_pulls/graft_confirm_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/graft_floor_v1/graft.log",
+      "run_key": "runs/kernel_pulls/graft_floor_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/graft_floor_v2/arc3-graft-floor-eval.log",
+      "run_key": "runs/kernel_pulls/graft_floor_v2",
+      "has_error": true,
+      "fingerprint": "474fe5420b4aa57e",
+      "stage": "GRAFT-EVAL seed=<n> mode=graft-floor-local25 grafts=thtennant/taaf-kaggle-source-share-fork REPLACES jeroencottaar/taaf-kaggle-source-share (verified stock + <n> additive files, <n> stock bytes changed) flags=efficiency+retry_guard+shortcircuit+goalkeep+hudmask FORBIDDEN=banking+transfer engine=driessmit1/vrfai-qwen3-<n>-27b-fp8-hf-snapshot (UNCHANGED, vrfai/Qwen3.<n>-27B-FP8) wheels=driessmit1/arc3-vllm-h100-wheelhouse-v3 (UNCHANGED, vLLM <n>.<n>) audited_bundle_sha=<hex> baseline=duck-harness-kaggle m=<n> lc 18<path> primary=mean_dlc HARM<=-<n> SIGNAL>=+<n> secondary=mean_score NON-INFERENTIAL"
+    },
+    {
+      "log": "runs/kernel_pulls/p1_v1/arc3-duck-p1-eval.log",
+      "run_key": "runs/kernel_pulls/p1_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/pathsafe_v1/kernel.log",
+      "run_key": "runs/kernel_pulls/pathsafe_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/phase1_v5/arc3-duck-phase1.log",
+      "run_key": "runs/kernel_pulls/phase1_v5",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/private_base_v1/kernel.log",
+      "run_key": "runs/kernel_pulls/private_base_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/private_edge1_v2/kernel.log",
+      "run_key": "runs/kernel_pulls/private_edge1_v2",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/private_edge2_v3/kernel.log",
+      "run_key": "runs/kernel_pulls/private_edge2_v3",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/q38_engine_v3/arc3-q38-engine-eval.log",
+      "run_key": "runs/kernel_pulls/q38_engine_v3",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/q38_field_v1/field.log",
+      "run_key": "runs/kernel_pulls/q38_field_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/q38_v1/q38.log",
+      "run_key": "runs/kernel_pulls/q38_v1",
+      "has_error": true,
+      "fingerprint": "d4c8e135c7104f91",
+      "stage": "Q38-EVAL tool-call-roundtrip=OK mode=auto parser=qwen3_coder name=submit_action"
+    },
+    {
+      "log": "runs/kernel_pulls/q38_v2/arc3-q38-engine-eval.log",
+      "run_key": "runs/kernel_pulls/q38_v2",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/q38graft_v1/kernel.log",
+      "run_key": "runs/kernel_pulls/q38graft_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/q38low_v1/q38low.log",
+      "run_key": "runs/kernel_pulls/q38low_v1",
+      "has_error": true,
+      "fingerprint": "4adc306b8ab3107d",
+      "stage": "Q38-EVAL OBSERVE tokenize served_chars=<n> control_chars=<n> served_head='<|im_start|>system\\nReasoning effort is set to low. Keep your thinking brief and focused, moving dire'"
+    },
+    {
+      "log": "runs/kernel_pulls/sched_v1/arc3-duck-sched.log",
+      "run_key": "runs/kernel_pulls/sched_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/sentinel_eval_v1/arc3-duck-sentinel-eval.log",
+      "run_key": "runs/kernel_pulls/sentinel_eval_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/sentinel_eval_v2/arc3-duck-sentinel-eval.log",
+      "run_key": "runs/kernel_pulls/sentinel_eval_v2",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/sentinel_live_v1/arc3-duck-sentinel.log",
+      "run_key": "runs/kernel_pulls/sentinel_live_v1",
+      "has_error": false,
+      "fingerprint": "d8a0f839bc1f0aa1",
+      "stage": "No diagnostics.html \ufffd minimal diagnostics (real submission) suppresses it."
+    },
+    {
+      "log": "runs/kernel_pulls/w0_cont_eval/arc3-duck-w0-continuation-eval.log",
+      "run_key": "runs/kernel_pulls/w0_cont_eval",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/w0_eval_s1/arc3-duck-w0-continuation-eval.log",
+      "run_key": "runs/kernel_pulls/w0_eval_s1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/war_eval_v1/arc3-duck-war-eval.log",
+      "run_key": "runs/kernel_pulls/war_eval_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/war_eval_v2/arc3-duck-war-eval.log",
+      "run_key": "runs/kernel_pulls/war_eval_v2",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/war_eval_v3/arc3-duck-war-eval.log",
+      "run_key": "runs/kernel_pulls/war_eval_v3",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/war_v1/arc3-duck-war.log",
+      "run_key": "runs/kernel_pulls/war_v1",
+      "has_error": false,
+      "fingerprint": "d8a0f839bc1f0aa1",
+      "stage": "No diagnostics.html \ufffd minimal diagnostics (real submission) suppresses it."
+    },
+    {
+      "log": "runs/kernel_pulls/war_v2_eval_s1/arc3-duck-war-v2-eval.log",
+      "run_key": "runs/kernel_pulls/war_v2_eval_s1",
+      "has_error": false,
+      "fingerprint": "8086a710b10781d2",
+      "stage": "LEDGER CANARY TOTAL games=<n> stores=<n> escalations_total=<n> attempts=<n> digests=<n> skips=<n> aborts=<n>"
+    },
+    {
+      "log": "runs/tmp_pullback_duckgate_v1post/arc3-duck-gate.log",
+      "run_key": "runs/tmp_pullback_duckgate_v1post",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/tmp_pullback_gate_eval_s2v3/arc3-duck-gate-eval.log",
+      "run_key": "runs/tmp_pullback_gate_eval_s2v3",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    }
+  ]
+}

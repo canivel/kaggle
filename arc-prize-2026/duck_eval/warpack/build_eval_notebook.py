@@ -99,6 +99,43 @@ event lines + the "animation v1: ACTIVE" banner + one "ANIMATION CANARY" line.
     python duck_eval/warpack/build_eval_notebook.py --animation
     -> notebooks/duckanimation-eval/{arc3-duck-animation-eval.ipynb, kernel-metadata.json}
 
+--p1 (P1 zero-information action suppressor; diagnosis
+learnings/war_room/efficiency_diagnosis_2026-08-12.md sec5 P1, prereg
+learnings/war_room/p1_prereg_2026-08-12.md): source = the SAME raw duckwar
+baseline as war-v1 eval. Cell 2 gets the eval-force line PLUS a P1 seed/banner
+stamp PLUS P1_SUPPRESS=1 (the arm flag). Cell 12 is REPLACED with a P1 graft
+that imports p1_suppressor_patch (from the attached arc-war-kit dataset,
+marker-based mount-agnostic find), applies it, prints the runtime banner, and
+NEVER touches warpack/ledger-graft/sentinel/compaction/animation (the (f)
+continuation default block still rides per the 07-23 amendment). Cell 14 gains
+the post-run canary call. Shipped defaults: memo_mode=noop, confirm=2,
+abort_revisit=OFF -- the aggressive settings delete the level-completing batch
+on tu93/sp80/ar25 in the recorded traces (see the prereg sec4). Any patch
+failure -> VANILLA duck (never 0). Canary: grep the build log for "P1 " event
+lines + the "p1 v1: ACTIVE" banner + one "P1 CANARY" line.
+
+    python duck_eval/warpack/build_eval_notebook.py --p1
+    -> notebooks/duckp1-eval/{arc3-duck-p1-eval.ipynb, kernel-metadata.json}
+
+--effnote (EFFNOTE quantified per-turn efficiency note; spec
+learnings/war_room/harness_diff_2026-08-13.md sec4 item #1, prereg
+learnings/war_room/effnote_prereg_2026-08-13.md): source = the SAME raw duckwar
+baseline as war-v1 eval. Cell 2 gets the eval-force line PLUS an EFFNOTE
+seed/banner stamp PLUS EFFNOTE=1 (the arm flag). Cell 12 is REPLACED with an
+EFFNOTE graft that imports effnote_patch (from the attached arc-war-kit
+dataset, marker-based mount-agnostic find), applies it, prints the runtime
+banner, and NEVER touches warpack/ledger-graft/sentinel/compaction/animation/p1
+(the (f) continuation default block still rides per the 07-23 amendment). Cell
+14 gains the post-run canary call. REPORT-ONLY: the arm never blocks, declines
+or injects an action -- it only appends a bounded note (<=700 CHARACTERS, never
+a token fraction) to the user turn. Target is the CLAMPED GAME-AGNOSTIC PROXY
+only: no baseline table, no metadata read, no game id. Any patch failure ->
+VANILLA duck (never 0). Canary: grep the build log for "EFFNOTE " event lines +
+the "effnote v1: ACTIVE" banner + one "EFFNOTE CANARY" line.
+
+    python duck_eval/warpack/build_eval_notebook.py --effnote
+    -> notebooks/duckeffnote-eval/{arc3-duck-effnote-eval.ipynb, kernel-metadata.json}
+
 POLICY INVERSION (a17 only): every other mode falls back to VANILLA duck on
 graft failure (never 0). Here a vanilla run would SILENTLY SERVE THE 27B and
 poison the rho_action denominator, so any rewrite/serve failure RAISES ->
@@ -155,6 +192,17 @@ KERNEL_ID_COMPACTION = "canivel/arc3-duck-compaction-eval"
 # warpack/ledger-graft/sentinel/compaction; (f) default rides)
 OUT_DIR_ANIMATION = REPO / "notebooks" / "duckanimation-eval"
 KERNEL_ID_ANIMATION = "canivel/arc3-duck-animation-eval"
+
+# P1 zero-information action suppressor eval (single flag on the duck baseline;
+# NO warpack/ledger-graft/sentinel/compaction/animation; (f) default rides)
+OUT_DIR_P1 = REPO / "notebooks" / "duckp1-eval"
+KERNEL_ID_P1 = "canivel/arc3-duck-p1-eval"
+
+# EFFNOTE quantified per-turn efficiency note eval (single flag on the duck
+# baseline; NO warpack/ledger-graft/sentinel/compaction/animation/p1; (f)
+# default rides)
+OUT_DIR_EFFNOTE = REPO / "notebooks" / "duckeffnote-eval"
+KERNEL_ID_EFFNOTE = "canivel/arc3-duck-effnote-eval"
 
 # A17 72B-VL canary (W0 composition + 72B serve rewrite; free-build rail, never submitted)
 OUT_DIR_A17 = REPO / "notebooks" / "a17-canary"
@@ -553,6 +601,221 @@ CELL14_ANIMATION_CANARY = (
 
 
 # ---------------------------------------------------------------------------
+# P1 zero-information action suppressor blocks (diagnosis
+# learnings/war_room/efficiency_diagnosis_2026-08-12.md sec5 P1; prereg
+# learnings/war_room/p1_prereg_2026-08-12.md)
+# ---------------------------------------------------------------------------
+
+EVAL_SEED_LINES_P1 = (
+    'os.environ["P1_EVAL_SEED"] = "1"'
+    "  # P1 suppressor seed 1 (prereg p1_prereg_2026-08-12.md)\n"
+    'os.environ["P1_SUPPRESS"] = "1"'
+    "  # THE arm flag (p1_suppressor_patch.apply() is a no-op without it)\n"
+    'print("p1-eval: SEED=1 zero-information action suppressor ON, NO '
+    "warpack/ledger-graft/sentinel/compaction/animation (pairs with the "
+    'duck-harness-kaggle-continuation-v1 family); P1_SUPPRESS=1; '
+    'shipped defaults memo_mode=noop confirm=2 abort_revisit=OFF")\n'
+)
+
+# P1 cell-12 REPLACEMENT: the P1 graft. Byte-identical in STRUCTURE to the
+# animation/compaction/sentinel grafts (RUN_HEAVY gate, marker-based
+# mount-agnostic find under /kaggle/input, sys.path insert, apply, VANILLA
+# fallback on any failure) -- only the module name, marker, env-var names and
+# banner strings differ. Imports ONLY p1_suppressor_patch; the warpack/ledger
+# GRAFTS, the sentinel, compaction and animation are never touched.
+CELL12_P1 = (
+    "# ============================================================================\n"
+    "# Cell 12 - Customization hook: P1 zero-information action suppressor ONLY.\n"
+    "# efficiency_diagnosis_2026-08-12.md sec5 P1 / p1_prereg_2026-08-12.md.\n"
+    "# 10.5% of the actions on our cleared levels re-execute a (board, action)\n"
+    "# pair already executed on that level and 17.6% are fired inside a batch\n"
+    "# that had already gone dead; the root cause is context truncation\n"
+    "# (31744 tok / 33 history messages on a 225-action level), not a missing\n"
+    "# loop detector. Single flag on the duck baseline: duck + P1_SUPPRESS=1 --\n"
+    "# NO warpack, NO ledger graft, NO sentinel, NO compaction, NO animation.\n"
+    "# Runs AFTER `bm` is unpickled (cell 10) and the bundled sources are\n"
+    "# importable (cell 8), BEFORE bm.run() drives any session (cell 14), so the\n"
+    "# solver/ToolAgent monkeypatches land before play starts.\n"
+    "#\n"
+    "# Sourcing: p1_suppressor_patch.py ships in the attached arc-war-kit dataset\n"
+    "# (marker-based find, mount-path agnostic), or a local dir for interactive\n"
+    "# runs. Failure policy: unless P1_STRICT=1, any failure prints a traceback\n"
+    "# and the run continues as VANILLA duck (never 0).\n"
+    "# Kill switch: P1_DISABLE=1 -> p1_suppressor_patch.apply() no-ops.\n"
+    "# ============================================================================\n"
+    "import os\n"
+    "import sys\n"
+    "import traceback\n"
+    "from pathlib import Path\n"
+    "\n"
+    'P1_MARKER = "p1_suppressor_patch.py"\n'
+    'P1_STRICT = os.environ.get("P1_STRICT", "").strip() in {"1", "true"}\n'
+    "\n"
+    "\n"
+    "def _find_p1_dir() -> Path | None:\n"
+    "    candidates: list[Path] = []\n"
+    '    kaggle_input = Path("/kaggle/input")\n'
+    "    if kaggle_input.is_dir():\n"
+    "        candidates.extend(marker.parent for marker in kaggle_input.rglob(P1_MARKER))\n"
+    "    here = Path.cwd()\n"
+    '    for probe in (here / "p1", here, here.parent / "p1"):\n'
+    "        if (probe / P1_MARKER).is_file():\n"
+    "            candidates.append(probe)\n"
+    "    return candidates[0] if candidates else None\n"
+    "\n"
+    "\n"
+    "if not RUN_HEAVY:  # noqa: F821 - defined in cell 2 (fast-submit gate)\n"
+    '    print("p1: fast-submit save (RUN_HEAVY=False) - customization skipped")\n'
+    "else:\n"
+    "    try:\n"
+    "        p1_dir = _find_p1_dir()\n"
+    "        if p1_dir is None:\n"
+    "            raise FileNotFoundError(\n"
+    '                f"{P1_MARKER} not found under /kaggle/input or ./p1 - "\n'
+    '                "attach the arc-war-kit dataset (it carries p1_suppressor_patch.py)."\n'
+    "            )\n"
+    "        if str(p1_dir) not in sys.path:\n"
+    "            sys.path.insert(0, str(p1_dir))\n"
+    "        import p1_suppressor_patch\n"
+    "\n"
+    "        applied = p1_suppressor_patch.apply(bm)  # patches solver + ToolAgent  # noqa: F821 - bm from cell 10\n"
+    '        version = getattr(p1_suppressor_patch, "VERSION", "v1")\n'
+    "        if not applied and os.environ.get(\"P1_DISABLE\") != \"1\":\n"
+    '            raise RuntimeError("p1_suppressor_patch.apply() returned False "\n'
+    '                               "(flag missing / source drift) - vanilla fallback")\n'
+    '        print(f"p1 {version}: graft applied "\n'
+    '              f"from {p1_dir} (applied={applied}); '
+    'NO warpack/ledger-graft/sentinel/compaction/animation")\n'
+    "    except Exception:\n"
+    "        if P1_STRICT:\n"
+    "            raise\n"
+    '        print("p1: PATCH FAILED - continuing with VANILLA duck harness")\n'
+    "        traceback.print_exc()\n"
+)
+
+# Appended to cell 14 (after the run) so the prereg canaries are in the build
+# log even when zero suppressions fire. Blanket-guarded.
+CELL14_P1_CANARY = (
+    "\n"
+    "        try:\n"
+    "            import p1_suppressor_patch as _p1\n"
+    "            _p1.canary_report()\n"
+    "        except Exception as _p1_exc:  # noqa: BLE001 - canary must never break the run\n"
+    '            print(f"P1 CANARY unavailable: {_p1_exc!r}")\n'
+)
+
+
+# ---------------------------------------------------------------------------
+# EFFNOTE quantified per-turn efficiency note blocks (spec
+# learnings/war_room/harness_diff_2026-08-13.md sec4 item #1; prereg
+# learnings/war_room/effnote_prereg_2026-08-13.md)
+# ---------------------------------------------------------------------------
+
+EVAL_SEED_LINES_EFFNOTE = (
+    'os.environ["EFFNOTE_EVAL_SEED"] = "1"'
+    "  # EFFNOTE seed 1 (prereg effnote_prereg_2026-08-13.md)\n"
+    'os.environ["EFFNOTE"] = "1"'
+    "  # THE arm flag (effnote_patch.apply() is a no-op without it)\n"
+    'print("effnote-eval: SEED=1 quantified per-turn efficiency note ON, NO '
+    "warpack/ledger-graft/sentinel/compaction/animation/p1 (pairs with the "
+    'duck-harness-kaggle-continuation-v1 family); EFFNOTE=1; '
+    'REPORT-ONLY; target=clamped game-agnostic proxy (NO baseline table); '
+    'cost bound=700 CHARACTERS")\n'
+)
+
+# EFFNOTE cell-12 REPLACEMENT: the EFFNOTE graft. Byte-identical in STRUCTURE
+# to the p1/animation/compaction/sentinel grafts (RUN_HEAVY gate, marker-based
+# mount-agnostic find under /kaggle/input, sys.path insert, apply, VANILLA
+# fallback on any failure) -- only the module name, marker, env-var names and
+# banner strings differ. Imports ONLY effnote_patch.
+CELL12_EFFNOTE = (
+    "# ============================================================================\n"
+    "# Cell 12 - Customization hook: EFFNOTE per-turn efficiency note ONLY.\n"
+    "# harness_diff_2026-08-13.md sec4 #1 / effnote_prereg_2026-08-13.md.\n"
+    "# The stock prompt's ENTIRE efficiency treatment is one unquantified\n"
+    "# sentence (prompts.py:17): the model is never shown the scoring rule and\n"
+    "# never sees its own action count, while the per-level score is\n"
+    "# (baseline/actions)^2 -- quadratic in waste. This arm appends a bounded,\n"
+    "# game-agnostic note to the USER turn: the scoring rule stated\n"
+    "# quantitatively, the live action count vs a CLAMPED PROXY target, the\n"
+    "# over-target ratio, three pure stall detectors, and a commit-don't-scan\n"
+    "# reminder. REPORT-ONLY -- no action is ever blocked, declined or injected\n"
+    "# and the hot step_env path is never touched. Single flag on the duck\n"
+    "# baseline: duck + EFFNOTE=1 -- NO warpack, NO ledger graft, NO sentinel,\n"
+    "# NO compaction, NO animation, NO p1.\n"
+    "# Runs AFTER `bm` is unpickled (cell 10) and the bundled sources are\n"
+    "# importable (cell 8), BEFORE bm.run() drives any session (cell 14), so the\n"
+    "# solver/ToolAgent monkeypatches land before play starts.\n"
+    "#\n"
+    "# Sourcing: effnote_patch.py ships in the attached arc-war-kit dataset\n"
+    "# (marker-based find, mount-path agnostic), or a local dir for interactive\n"
+    "# runs. Failure policy: unless EFFNOTE_STRICT=1, any failure prints a\n"
+    "# traceback and the run continues as VANILLA duck (never 0).\n"
+    "# Kill switch: EFFNOTE_DISABLE=1 -> effnote_patch.apply() no-ops.\n"
+    "# ============================================================================\n"
+    "import os\n"
+    "import sys\n"
+    "import traceback\n"
+    "from pathlib import Path\n"
+    "\n"
+    'EFFNOTE_MARKER = "effnote_patch.py"\n'
+    'EFFNOTE_STRICT = os.environ.get("EFFNOTE_STRICT", "").strip() in {"1", "true"}\n'
+    "\n"
+    "\n"
+    "def _find_effnote_dir() -> Path | None:\n"
+    "    candidates: list[Path] = []\n"
+    '    kaggle_input = Path("/kaggle/input")\n'
+    "    if kaggle_input.is_dir():\n"
+    "        candidates.extend(marker.parent for marker in kaggle_input.rglob(EFFNOTE_MARKER))\n"
+    "    here = Path.cwd()\n"
+    '    for probe in (here / "effnote", here, here.parent / "effnote"):\n'
+    "        if (probe / EFFNOTE_MARKER).is_file():\n"
+    "            candidates.append(probe)\n"
+    "    return candidates[0] if candidates else None\n"
+    "\n"
+    "\n"
+    "if not RUN_HEAVY:  # noqa: F821 - defined in cell 2 (fast-submit gate)\n"
+    '    print("effnote: fast-submit save (RUN_HEAVY=False) - customization skipped")\n'
+    "else:\n"
+    "    try:\n"
+    "        effnote_dir = _find_effnote_dir()\n"
+    "        if effnote_dir is None:\n"
+    "            raise FileNotFoundError(\n"
+    '                f"{EFFNOTE_MARKER} not found under /kaggle/input or ./effnote - "\n'
+    '                "attach the arc-war-kit dataset (it carries effnote_patch.py)."\n'
+    "            )\n"
+    "        if str(effnote_dir) not in sys.path:\n"
+    "            sys.path.insert(0, str(effnote_dir))\n"
+    "        import effnote_patch\n"
+    "\n"
+    "        applied = effnote_patch.apply(bm)  # patches solver + ToolAgent  # noqa: F821 - bm from cell 10\n"
+    '        version = getattr(effnote_patch, "VERSION", "v1")\n'
+    "        if not applied and os.environ.get(\"EFFNOTE_DISABLE\") != \"1\":\n"
+    '            raise RuntimeError("effnote_patch.apply() returned False "\n'
+    '                               "(flag missing / source drift) - vanilla fallback")\n'
+    '        print(f"effnote {version}: graft applied "\n'
+    '              f"from {effnote_dir} (applied={applied}); '
+    'NO warpack/ledger-graft/sentinel/compaction/animation/p1")\n'
+    "    except Exception:\n"
+    "        if EFFNOTE_STRICT:\n"
+    "            raise\n"
+    '        print("effnote: PATCH FAILED - continuing with VANILLA duck harness")\n'
+    "        traceback.print_exc()\n"
+)
+
+# Appended to cell 14 (after the run) so the prereg canaries are in the build
+# log even when zero notes fire. Blanket-guarded.
+CELL14_EFFNOTE_CANARY = (
+    "\n"
+    "        try:\n"
+    "            import effnote_patch as _effnote\n"
+    "            _effnote.canary_report()\n"
+    "        except Exception as _effnote_exc:  # noqa: BLE001 - canary must never break the run\n"
+    '            print(f"EFFNOTE CANARY unavailable: {_effnote_exc!r}")\n'
+)
+
+
+# ---------------------------------------------------------------------------
 # A17 canary blocks
 # ---------------------------------------------------------------------------
 
@@ -930,9 +1193,14 @@ CELL14_A17_FILTER_BLOCK = r'''        # --- A17-CANARY BEGIN 4-game screen filte
 def main(v2: bool = False, w0: bool = False, sentinel: bool = False,
          sentinel_budget: int | None = None, continuation: bool = True,
          a17: bool = False, compaction: bool = False,
-         animation: bool = False) -> None:
+         animation: bool = False, p1: bool = False,
+         effnote: bool = False) -> None:
     if a17:
         src_nb, out_dir, kernel_id = SRC_NB, OUT_DIR_A17, KERNEL_ID_A17
+    elif effnote:
+        src_nb, out_dir, kernel_id = SRC_NB, OUT_DIR_EFFNOTE, KERNEL_ID_EFFNOTE
+    elif p1:
+        src_nb, out_dir, kernel_id = SRC_NB, OUT_DIR_P1, KERNEL_ID_P1
     elif animation:
         src_nb, out_dir, kernel_id = SRC_NB, OUT_DIR_ANIMATION, KERNEL_ID_ANIMATION
     elif compaction:
@@ -954,6 +1222,8 @@ def main(v2: bool = False, w0: bool = False, sentinel: bool = False,
     assert not src.startswith(EVAL_LINE), "already an eval notebook?"
     seed_lines = (
         EVAL_SEED_LINES_A17 if a17
+        else EVAL_SEED_LINES_EFFNOTE if effnote
+        else EVAL_SEED_LINES_P1 if p1
         else EVAL_SEED_LINES_ANIMATION if animation
         else EVAL_SEED_LINES_COMPACTION if compaction
         else EVAL_SEED_LINES_SENTINEL if sentinel
@@ -1010,6 +1280,52 @@ def main(v2: bool = False, w0: bool = False, sentinel: bool = False,
         c14["source"] = src14.replace(
             CELL14_POSTRUN_ANCHOR,
             CELL14_POSTRUN_ANCHOR + CELL14_ANIMATION_CANARY,
+        ).splitlines(keepends=True)
+        c14["outputs"] = []
+        c14["execution_count"] = None
+
+    if p1:
+        # P1-defining diff: REPLACE the warpack graft (cell 12) with the
+        # P1-only graft. Sanity: the raw source's cell 12 IS the warpack graft
+        # we are removing (so we never silently ship warpack).
+        cell12_old = "".join(nb["cells"][12]["source"])
+        assert "import warpack_patch" in cell12_old, \
+            "p1 source cell 12 is not the warpack graft (structural drift)"
+        c12 = nb["cells"][12]
+        c12["source"] = CELL12_P1.splitlines(keepends=True)
+        c12["outputs"] = []
+        c12["execution_count"] = None
+
+        # Post-run canary into cell 14 (prereg sec3).
+        c14 = nb["cells"][14]
+        src14 = "".join(c14["source"])
+        assert src14.count(CELL14_POSTRUN_ANCHOR) == 1, \
+            "p1: cell 14 post-run anchor missing/ambiguous (structural drift)"
+        c14["source"] = src14.replace(
+            CELL14_POSTRUN_ANCHOR,
+            CELL14_POSTRUN_ANCHOR + CELL14_P1_CANARY,
+        ).splitlines(keepends=True)
+        c14["outputs"] = []
+        c14["execution_count"] = None
+
+    if effnote:
+        # EFFNOTE-defining diff: REPLACE the warpack graft (cell 12) with the
+        # EFFNOTE-only graft. Sanity: the raw source's cell 12 IS the warpack
+        # graft we are removing (so we never silently ship warpack).
+        cell12_old = "".join(nb["cells"][12]["source"])
+        assert "import warpack_patch" in cell12_old,             "effnote source cell 12 is not the warpack graft (structural drift)"
+        c12 = nb["cells"][12]
+        c12["source"] = CELL12_EFFNOTE.splitlines(keepends=True)
+        c12["outputs"] = []
+        c12["execution_count"] = None
+
+        # Post-run canary into cell 14 (prereg sec3 K-E0/K-E1/K-E3).
+        c14 = nb["cells"][14]
+        src14 = "".join(c14["source"])
+        assert src14.count(CELL14_POSTRUN_ANCHOR) == 1,             "effnote: cell 14 post-run anchor missing/ambiguous (structural drift)"
+        c14["source"] = src14.replace(
+            CELL14_POSTRUN_ANCHOR,
+            CELL14_POSTRUN_ANCHOR + CELL14_EFFNOTE_CANARY,
         ).splitlines(keepends=True)
         c14["outputs"] = []
         c14["execution_count"] = None
@@ -1123,4 +1439,5 @@ if __name__ == "__main__":
     main(v2="--v2" in args, w0="--w0" in args, sentinel="--sentinel" in args,
          sentinel_budget=budget, continuation="--no-continuation" not in args,
          a17="--a17-canary" in args, compaction="--compaction" in args,
-         animation="--animation" in args)
+         animation="--animation" in args, p1="--p1" in args,
+         effnote="--effnote" in args)

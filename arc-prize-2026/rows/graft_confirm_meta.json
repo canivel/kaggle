@@ -1,0 +1,20 @@
+{
+  "prereg": "learnings/war_room/graft_confirm_prereg_2026-08-19.md (sealed 08-19 evening pre-push, incl. 08-20 dated addendum for the v21 bundle republish; verdict 2026-08-20)",
+  "kernel": "canivel/arc3-graft-floor-eval",
+  "version": 5,
+  "date": "2026-08-20",
+  "mechanism": "Replication screen for the graft-floor score effect: seed 1 (v4, exp 19) measured mean_score 2.303 at lc 18 vs lc-matched baseline 1.427 (+0.876 at matched capability, -32% actions) - the shortcircuit quadratic-denominator signature. POST-HOC MOTIVATED AND DECLARED: the motivating result was SEEN; the CONFIRM bar was set so seed 1 would pass; the test was whether it replicates. Treatment artifact byte-identical (sha b0316275f53c6c85); bundle republished overnight (v21 clickmap wave) - per-file re-audit found the delta inert for this flag set, sealed as a dated addendum.",
+  "design": "Second seed of a byte-identical artifact under a corrected instrument (same-seed reruns proven effectively independent by the 08-18 replicate pair, 21 vs 17). SCORE-primary with lc as guard/matching variable.",
+  "sealed_reading_rule": "INFRA DEATH on any certification failure; HARM lc_total <= 12 (guard beats any score); CONFIRM lc_total >= 13 AND mean_score >= lc-matched baseline + 0.5 (bars 1.927 / 2.439 / 3.920, ties to higher-score baseline); NULL otherwise. Type-I a judgment (~15-25%); a CONFIRM would license an A21 draw only, never a promotion.",
+  "measured": {
+    "certification": "install certified (all 5 v19 flags; banking/transfer/clickmap all correctly absent)",
+    "lc_total": 14,
+    "mean_score": 1.202,
+    "confirm_bar": 1.927,
+    "total_actions": 3734,
+    "seed_pair": "seed1: lc 18 / score 2.303 / actions 3257; seed2: lc 14 / score 1.202 / actions 3734",
+    "games_won": 0
+  },
+  "robustness": "Not boundary-sensitive: 1.202 misses the bar by 0.725 and misses even the raw lc-matched baseline (1.427). The v21 bundle delta was audited line-by-line as inert for this flag set (clickmap-gated additions only) and clickmap's absence was runtime-certified, so the changed bundle is an unlikely explanation for the miss; cited here per the addendum's requirement anyway.",
+  "why_informative": "This null closes the Q3.6 graft lane completely: levels-NULL (exp 19) + score-NULL (this row). The +0.88 score-at-matched-capability effect that motivated the arm was draw variance - the pre-committed replication bar caught exactly the artifact it was designed to catch, and the post-hoc honesty clause prevented the unreplicated number from ever being promoted or queued. Standing lesson reinforced: a descriptive secondary from a single seed, however loud (+0.88, -32% actions), is a hypothesis and nothing more. The remaining graft question (v21 compound incl. clickmap on the Q38-xhigh baseline that SIGNALed today) is a different arm on a different baseline - this row does not touch it."
+}

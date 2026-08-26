@@ -1,0 +1,45 @@
+## Summary (2 sentences)
+
+The brief documents commendable pre-registration discipline in closing the warpack line and refuting the always-on ledger, but its own instruments (order-stats ceiling 1.11 vs. a wall at 1.44+ and a leader at 1.86) show that every candidate in the Q1 backlog is a floor-raiser, not a wall-closer. The one mechanism the document itself calls "the ONLY live budgeted wall-closer" — grinder cracking, with a build deadline in 2 days — has zero design content in the document this panel is asked to approve, and there are internal contradictions (su15) and statistical gaps (A5 arithmetic, attribution bundling) that must be fixed before any window is spent.
+
+## Objections
+
+**[FATAL] The mandated A6 deliverable — grinder-cracking scoping — cannot be discharged from this document, and everything else on offer is below the wall by the plan's own math.** The disposition table says "THIS panel ranks the backlog; build NLT Jul 20," yet the only backlog presented (Q1 a–g) consists of war-v3 micro-mechanisms whose combined theory of change is per-draw mean improvement measured in hundredths, against a gap of ~0.5 to the wall and ~0.9 to the leader. Worse, the instruments section states grinders = *model gap* per the GPT-5.6 probe decomposition — so what does "cracking" consist of without a model change? There is no design, no hypothesized Δ per cracked grinder, no gate, and no cost estimate for the single line claimed capable of winning. Supply: a one-page grinder-cracking design doc (per-game failure taxonomy from the probes, proposed mechanism, expected level-clear delta, offline gate rule) before Jul 20, or the panel is rubber-stamping a strategy that its own order-statistics curve says converges to ~1.11.
+
+**[MAJOR] Internal contradiction: su15 is simultaneously an "info-theoretic wall (accept)" and a game with a known mechanical deadlock — Q1(f) says the correct restart is "computed every turn, never executed."** An information-theoretic wall is a claim about *any* policy under the budget; an unexecuted-restart bug is a harness defect. If the deadlock is masking post-restart progress, the wall verdict is an artifact of the bug, and the Q4 lean ("spend nothing on a closed question") is exactly backwards in ordering. Actionable: ship fix (f), re-run the su15 probe *after* the fix (the $10 top-up covers it), and only then re-affirm or retract the wall verdict. Until then, "accept" is not an evidence-grounded label.
+
+**[MAJOR] The author lean (a)+(f) as a single war-v3.0 window violates the stated "one flag per window" rule and creates a specific attribution confound.** If the window is positive, you cannot tell whether the budget sentinel worked or whether (f) unlocked su15 — and per the previous objection, (f) plausibly produces a discrete per-game jump, which would be falsely credited to the sentinel and could relaunch a mechanism line on contaminated evidence (the exact failure mode your gates exist to prevent). Actionable: either (f) ships as an unflagged hygiene patch *with a pre-registered per-game exclusion of su15 from the (a) evaluation*, or the two run in separate windows. "Both are cheap" is not an attribution argument.
+
+**[MAJOR] The A5 variance gate is near-certain to fail on current numbers and the brief spends tonight's draw without saying so or pre-registering the consequence.** At σ̂ = 0.0997 and df = 4, the χ² 95% CI upper bound is ≈ σ̂·√(4/0.484) ≈ 0.286 > 0.25; passing A5 requires the n=5 σ̂ to drop below ≈ 0.087, which happens only if draw #5 lands very close to the mean. Separately, the A3 check "σ̂ < 0.15 → LB windows live" is made on a df=3 point estimate whose own CI upper bound is 0.372 — a gate decision on a point estimate that its interval flatly contradicts. Actionable: state now, before draw #5, what an A5 FAIL implies operationally (do LB windows close? does the §3 record freeze?), and restate A3/A5 in terms of interval bounds, not point estimates.
+
+**[MAJOR] The warpack line-close rests on a regime-confounded gate, and the proposal notes the confound only to wave it off.** The mechanisms killed (banking, recovery) are explicitly budget-conditional; the build rail "forces offline-bench regime" while LB runs the full 8h budget, and the LB ledger shows +0.058 in the deployed regime. Pre-registration disciplines *when* you look, but it does not repair external validity if the test regime cannot express the mechanism's theory of change — this is off-policy evaluation under distribution shift. Actionable before permanently parking Q1(e): one budget-matched offline replicate (LB budget schedule, the 3 certified seeds, sealed look). If that also fails, the close is clean; if it passes, A1's rail is testing the wrong regime and needs amending.
+
+**[MAJOR] Q1(g) per-game budget re-allocation is being ranked on n=3 per-game classifications with no allocation policy and no counterfactual accounting.** "Convertible" (ka59) and "stable negative" (cn04, cd82, sk48) labels from 3 seeds are noise-fitted — per-game means at n=3 on a noisy panel have exactly the seed-1 problem the gate look just punished. Nothing specifies whether allocation is static or adaptive (this is a budgeted bandit problem; a static starve list is the weakest possible policy), and starving a game has asymmetric downside if its baseline clears are nonzero. Supply before ranking: per-game marginal-return curves (levels cleared vs. budget fraction) from existing deterministic replays, a held-out seed for label validation, and the expected per-draw Δ under the proposed transfer.
+
+**[MINOR] The LB war ledger should be declared informationally dead, not "unpowered."** With σ̂ ≈ 0.1 and a candidate effect of 0.06, a two-arm test needs on the order of 40+ draws per arm — infeasible before Nov 2. Continuing to n=5 for the record is fine and cheap, but the brief should say explicitly that no future LB draw count under this design will ever confirm or refute the +0.06, so no decision may ever cite it.
+
+**[MINOR] Sign-flip test bookkeeping: 25 pooled deltas but 10W/10L implies 5 exact zeros.** State the tie-handling convention (dropped? split?) and confirm the p = 0.225 is computed on the same convention as the 07-16 monitor, since the primary prong's threshold (0.0125) is tight enough that tie conventions can move borderline results in future gates.
+
+## Questions for the authors
+
+1. What, concretely, is the grinder-cracking mechanism given that your own probe decomposition attributes grinder failure to *model gap* — a different model tier, a scaffold change, or something else? What per-draw Δ do you project per cracked grinder?
+2. If su15's deadlock (f) is fixed and su15 then clears levels, does the "info-theoretic wall" verdict get formally retracted, and under what pre-registered rule?
+3. What is the pre-registered consequence of an A5 FAIL tomorrow at n=5? (If none exists, why is the draw being spent before one is written?)
+4. For the gate look: what fraction of the LB 8h budget regime does the build rail reproduce (wall-clock, action budget, soft-time thresholds)? Quantify the regime gap you assert explains the build-rail/LB tension.
+5. "Every Qwen grinder death was an unseen budget death" — how many deaths is "every" (n=?), across how many games/seeds, and are the transcripts published in the runs directory?
+6. Under the (a)+(f) bundled window, what result pattern would let you attribute a positive outcome to (a) alone? If the answer is "none," why is the bundle proposed?
+7. For (g): is the proposed allocator static (fixed starve list) or adaptive during the run? If static, what protects you against the n=3 per-game labels being noise?
+
+## What I cannot judge
+
+- The legality/ToS details of harness modification (swarm.py budget overrides) on Kaggle — I take the discussions-thread claim at face value.
+- The veracity and applicability of the cited arXiv papers (2607.08716, 2607.13591, etc.) — I have not read them; my objections do not depend on them.
+- Prompt-engineering specifics of the distill-derived upgrades (b)/(c)/(d) — outside my expertise beyond the attribution/evaluation design.
+- Operational mechanics (push quotas, daemon timing, GPU reserve accounting).
+- Prior panel rounds R1–R12 and amendments A1–A7: I review the gate rules only as quoted here; if the verbatim A1 text differs, my regime-confound objection may need restating.
+
+## Verdict: MAJOR-REVISION
+
+## Score: 4/10
+
+The negative-results discipline is genuinely strong — two clean line-closes on pre-registered gates is better methodology than most published RL work. But discipline in killing floor-raisers does not substitute for a specified wall-closer, and the document asks the panel to bless a ranking exercise whose best-case outcome, by the authors' own order-statistics instrument, loses the competition. Fix the FATAL (grinder design doc) and the su15/attribution/A5 MAJORs before any window head is set.

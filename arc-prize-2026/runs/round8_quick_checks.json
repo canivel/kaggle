@@ -1,0 +1,6 @@
+{
+ "crush_check": "see stdout",
+ "screen_sd": 0.5181530785110791,
+ "park_fp_rate": 0.10144927536231885,
+ "park_fp_mean_loss_per_draw": 0.06779814232903955
+}

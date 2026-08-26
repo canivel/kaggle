@@ -1,0 +1,156 @@
+"""Canonical modified-cell sources for the warpack duckfork notebook.
+
+Pattern adopted from the fork-band audit: junjin2/tufa-duck-original-fastsubmit
+and maxingkong733/arc3-duck-dead-signature gate ALL heavy setup on
+``KAGGLE_IS_COMPETITION_RERUN`` so an interactive Save Version writes a dummy
+``submission.parquet`` in seconds; thtennant's "safety pack" adds
+``soft_end = start + 11h20m`` on the real rerun (vanilla had ``None``).
+
+``build_notebook.py`` applies these to the vanilla milestone notebook and
+prints per-cell diffs. ``smoke_test.py`` execs ``FAST_PATH_SNIPPET`` with the
+gate false to dry-run the Save-Version code path locally (zero GPU).
+"""
+
+# Appended to cell 2 (environment / submission mode).
+CELL2_GATE_ADDENDUM = '''
+
+# --- Warpack fast-submit gate (fork-band adoption R1a) -----------------------
+# Heavy setup (wheel install, source import, vLLM boot, benchmark run) only
+# happens in a real competition rerun, or when explicitly forced for a
+# build-time offline eval (WARPACK_FORCE_OFFLINE_BENCH=1). An interactive
+# Save Version therefore finishes in seconds with a dummy submission.parquet
+# (see the run cell) -> daily resubmission costs ~no GPU quota; the official
+# score is the max over stochastic reruns.
+FORCE_OFFLINE_BENCH = os.environ.get("WARPACK_FORCE_OFFLINE_BENCH", "").strip().lower() in {"1", "true"}
+RUN_HEAVY = TRUE_SUBMISSION or FORCE_OFFLINE_BENCH
+print(f"taaf.kaggle: RUN_HEAVY={RUN_HEAVY} (fast-submit gate {'off' if RUN_HEAVY else 'ON'})")
+'''
+
+# Header + indent applied to the heavy setup cells (4: wheel install,
+# 6: bundle location, 8: source import + vLLM setup commands, 10: benchmark
+# unpickle).
+HEAVY_GATE_HEADER = (
+    "# Warpack fast-submit gate: heavy setup only in a real rerun (or forced\n"
+    "# offline bench). Interactive Save Version skips this cell in ~0s.\n"
+    "if RUN_HEAVY:\n"
+)
+
+# The dummy-submission fast path. Kept as a standalone snippet so the local
+# smoke test can exec exactly the code the notebook runs during Save Version.
+FAST_PATH_SNIPPET = '''\
+def _write_dummy_submission(working_dir):
+    # Same schema as the vanilla offline path: Kaggle only requires that a
+    # submission.parquet exists after Save Version; the rerun rewrites it.
+    import pandas as pd
+
+    pd.DataFrame(
+        [["1_0", "1", True, 1]],
+        columns=["row_id", "game_id", "end_of_game", "score"],
+    ).to_parquet(working_dir / "submission.parquet", index=False)
+'''
+
+# Full replacement for cell 14 (run the benchmark).
+CELL14_SOURCE = '''\
+# Fast-submit path: during an interactive Save Version (gate false) write a
+# dummy submission.parquet in seconds and skip the benchmark entirely.
+''' + FAST_PATH_SNIPPET + '''
+
+if not RUN_HEAVY:
+    _write_dummy_submission(WORKING_DIR)
+    print(
+        "taaf.kaggle: FAST-SUBMIT - dummy submission.parquet written "
+        f"{time.time() - NOTEBOOK_START_EPOCH:.1f}s after start; benchmark skipped"
+    )
+else:
+    # Build the live competition game list from the gateway's available environments.
+    def _competition_games():
+        import arc_agi
+
+        import taaf.game_api
+
+        spec = taaf.game_api.ArcadeSpec(
+            operation_mode=arc_agi.OperationMode.COMPETITION,
+            arc_base_url=os.environ["ARC_BASE_URL"],
+            environments_dir="",
+        )
+        arcade = arc_agi.Arcade(
+            operation_mode=arc_agi.OperationMode.COMPETITION,
+            arc_base_url=spec.arc_base_url,
+            environments_dir="",
+        )
+        game_ids = [env_info.game_id for env_info in arcade.available_environments]
+        if not game_ids:
+            raise RuntimeError("Competition Arcade exposed zero environments.")
+        return [taaf.game_api.GameAPI(env_name=game_id, arcade_spec=spec) for game_id in game_ids]
+
+    # Build the offline game list from the competition's bundled environment files.
+    def _offline_games(env_dir: str):
+        import arc_agi
+
+        import taaf.game_api
+
+        spec = taaf.game_api.ArcadeSpec(operation_mode=arc_agi.OperationMode.OFFLINE, environments_dir=env_dir)
+        arcade = arc_agi.Arcade(operation_mode=arc_agi.OperationMode.OFFLINE, environments_dir=env_dir)
+        game_ids = [env_info.game_id for env_info in arcade.available_environments]
+        if not game_ids:
+            raise RuntimeError(f"No offline environments found under {env_dir}.")
+        return [taaf.game_api.GameAPI(env_name=game_id, arcade_spec=spec) for game_id in game_ids]
+
+    # The gateway can take a while to come up; poll until it answers.
+    def _wait_for_gateway(base_url: str, timeout_s: float = 600.0) -> None:
+        deadline = time.monotonic() + timeout_s
+        last_error = ""
+        while time.monotonic() < deadline:
+            try:
+                with urlopen(f"{base_url}api/games", timeout=10) as response:
+                    if response.status < 500:
+                        return
+            except Exception as exc:
+                last_error = repr(exc)
+            time.sleep(5)
+        raise RuntimeError(f"Kaggle gateway did not become ready: {last_error}")
+
+    # Print the run preamble and persist the launcher's git status for diagnostics.
+    print((BUNDLE_DIR / "preamble.txt").read_text())
+    (WORKING_DIR / "git_status.txt").write_text((BUNDLE_DIR / "git_status.txt").read_text())
+
+    # arc_agi reads RECORDINGS_DIR and ARC_API_KEY from env (ArcadeSpec carries neither); operation
+    # mode, environments dir, and base url are all passed explicitly via the spec, so no env is needed.
+    os.environ.setdefault("RECORDINGS_DIR", str(WORKING_DIR / "server_recording"))
+
+    if TRUE_SUBMISSION:
+        # Real submission: play the live competition Arcade served by the Kaggle gateway.
+        os.environ.setdefault("ARC_API_KEY", "test-key-123")
+        os.environ.setdefault("ARC_BASE_URL", "http://gateway:8001/")
+        # The gateway boots asynchronously; wait before swapping in its game list.
+        _wait_for_gateway(os.environ["ARC_BASE_URL"])
+        bm.games = _competition_games()
+    else:
+        # Forced offline bench: play the bundled competition environments (no gateway).
+        competition_env_files = str(Path("/kaggle/input/competitions/arc-prize-2026-arc-agi-3/arc_agi_3_wheels").parent / "environment_files")
+        bm.games = _offline_games(competition_env_files)
+
+    bm.n_passes = 1
+    bm.game_weights = None
+
+    # Warpack safety pack (fork-band adoption R1b): a real rerun gets
+    # soft_end = start + 11h20m (vanilla had None) so the solver drains and
+    # the shared scorecard closes before Kaggle's 12h hard kill; a hard kill
+    # would zero the whole run. Offline bench keeps the vanilla budget rule.
+    soft_end = datetime.fromtimestamp(NOTEBOOK_START_EPOCH) + timedelta(hours=11, minutes=20)
+    if not TRUE_SUBMISSION:
+        budget = float(getattr(target, "max_runtime_s", 0.0) or 0.0)
+        if budget > 0:
+            soft_end = min(soft_end, datetime.fromtimestamp(NOTEBOOK_START_EPOCH) + timedelta(seconds=budget - min(600.0, budget / 2)))
+
+    # Play the benchmark; teardown commands run even if the run raises.
+    try:
+        await bm.run(soft_end_time=soft_end, runtime_environment=target, minimal_diagnostics=TRUE_SUBMISSION)
+        if not TRUE_SUBMISSION:
+            # An offline run isn't scored, but Kaggle still expects a submission.parquet output.
+            _write_dummy_submission(WORKING_DIR)
+    finally:
+        for command in json.loads((BUNDLE_DIR / "teardown_commands.json").read_text()):
+            print(f"taaf.kaggle: teardown command: {command}", flush=True)
+            subprocess.run(command, shell=True, check=False, cwd=WORKING_DIR, env=_command_env())
+'''

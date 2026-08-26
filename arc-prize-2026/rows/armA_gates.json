@@ -1,0 +1,30 @@
+[
+  {
+    "gate": "AUDIT",
+    "name": "untrusted-artifact audit of the staged vehicle",
+    "passed": true,
+    "kill": true,
+    "detail": "selftest 32/32 re-run; smoke 37/37 real wheels; base bytes verified; vendor pin source-identical"
+  },
+  {
+    "gate": "CERT",
+    "name": "per-arm base certification",
+    "passed": true,
+    "kill": true,
+    "detail": "passed after the game_runs key fix; certify precedes number read"
+  },
+  {
+    "gate": "BAND",
+    "name": "NULL 24-32",
+    "passed": true,
+    "kill": false,
+    "detail": "lc 30"
+  },
+  {
+    "gate": "HEAD",
+    "name": "head gate certified+lc>=28+<18:00",
+    "passed": true,
+    "kill": false,
+    "detail": "technical pass; substantive escalation logged"
+  }
+]

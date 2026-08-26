@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Stealth",
+    "description": "Move through a graph-like stealth maze where every valid step also advances enemy logic. The player travels between chunky stopping nodes joined by visible connectors, reaches a green goal, and fails if the step meter empties or an enemy destroys them. Build the level arc as a curriculum: first teach graph movement and facing, then frontal ambush danger, then groups of ambushers, then red patrol timing, then chasers that follow delayed player history. Late levels should require looping, waiting, safe enemy removal, patrol phase control, chaser baiting, and route memory before the goal path becomes safe.",
+    "num_levels": 9
+  },
+  {
+    "title": "Bottomless Pit",
+    "description": "Guide a side-view player through a tall falling maze where each horizontal move commits to automatic gravity until support, goal, switch, or trap. The player moves only left or right while clicks edit visible terrain. Build the levels as a route-planning curriculum: first isolate falling to support and opening safe vertical drops, then add traps, two-state supports, and one-use gravity reversers one at a time. Late levels should require preparing future landings before stepping off, preserving supports for return paths, and combining builders, toggles, reversers, and breakable supports across long vertical routes.",
+    "num_levels": 9
+  }
+]

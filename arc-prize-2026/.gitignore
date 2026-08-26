@@ -26,3 +26,4 @@ _pretrained_ds/
 __pycache__/
 *.pyc
 .venv/
+scripts/bench_token.cmd

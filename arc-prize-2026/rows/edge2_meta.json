@@ -1,0 +1,22 @@
+{
+  "prereg": "learnings/war_room/edge2_prereg_2026-08-22.md (sealed pre-push; verdict same day ~08:40 EDT)",
+  "kernel": "canivel/arc3-q38-private-eval",
+  "version": 3,
+  "date": "2026-08-22",
+  "mechanism": "EDGE-2: exp-17's capture-side fix as a ToolAgent system-prompt contract (Q38-strengthened per 734843), one flag on the certified 08-15 base. The gate's H3 check had just measured the premise REAL on the actual ToolAgent: a visible 'World model:' line carries into later requests; the identical line on reasoning_content carries 0.",
+  "sealed_reading_rule": "Paired vs base (lc 30 / actions 1463): HARM <= -5, NULL -4..+4, SIGNAL >= +5. P(SIGNAL)~25% sealed BEFORE H3 arrived (H3 did not move the bar).",
+  "measured": {
+    "certification": "PASSED (edge2 row: contract-ACTIVE present, base ctx values, bundle 20260815, Q38 served, no effort pin, n=25)",
+    "lc_total": 20,
+    "paired_delta": -10,
+    "mean_score": 3.14,
+    "total_actions": 1555,
+    "games_won": 0,
+    "base": {
+      "lc": 30,
+      "actions": 1463,
+      "score": 5.686
+    }
+  },
+  "why_informative": "The last untested public differentiator, and it reads decisively negative WITH the mechanism PROVEN: H3 shows the visible channel carries and the hidden channel does not, yet forcing the dump costs 10 levels - DELIVERY-WITH-DAMAGE, a third species alongside exp 9's delivery-without-use and edge-1's capability harm. The 734843 'yell at Q38' advice cuts the wrong way on this rail: the contract works as plumbing and fails as policy. Campaign synthesis now closes: grafts-on-June-30 flat, 08-15=08-07, ctx-2x harmful, capture contract harmful - the certified field floor is the local optimum of everything reachable from public artifacts; the 2.5+ residual is dark private machinery. Strategy consequence: nightly Arm-0 redraws bank the N(~1.6) distribution while any new differentiator must now come from original work, not adoption."
+}

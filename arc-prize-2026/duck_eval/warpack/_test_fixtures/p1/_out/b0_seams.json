@@ -1,0 +1,775 @@
+{
+  "run": "F:\\kaggle\\arc-prize-2026\\duck_eval\\warpack\\_test_fixtures\\p1\\b0_seams",
+  "log": {
+    "path": "F:\\kaggle\\arc-prize-2026\\duck_eval\\warpack\\_test_fixtures\\p1\\b0_seams\\arc3-duck-p1-eval.log",
+    "source": "json-array",
+    "chars": 11603
+  },
+  "canary": {
+    "v": "1",
+    "version": "v1",
+    "games": 25,
+    "executed": 4845,
+    "declined": 200,
+    "aborted": 106,
+    "dup_exec": 150,
+    "dup_rate": 0.031,
+    "errors": 0,
+    "ambiguous_games": [
+      "dc22-fdcac232",
+      "m0r0-492f87ba"
+    ],
+    "ambiguous_games_raw": "dc22-fdcac232,m0r0-492f87ba",
+    "mode": "noop",
+    "confirm": 2,
+    "abort_revisit": 0,
+    "raw": "P1 CANARY v=1 version=v1 games=25 executed=4845 declined=200 aborted=106 dup_exec=150 dup_rate=0.0310 errors=0 ambiguous_games=dc22-fdcac232,m0r0-492f87ba mode=noop confirm=2 abort_revisit=0"
+  },
+  "canary_error": null,
+  "benchmark_error": null,
+  "n_event_lines": 80,
+  "games_with_events": [
+    "ar25-0c556536",
+    "bp35-0a0ad940",
+    "cd82-fb555c5d",
+    "cn04-2fe56bfb",
+    "dc22-fdcac232",
+    "ft09-0d8bbf25",
+    "g50t-5849a774",
+    "ka59-38d34dbb",
+    "lf52-271a04aa",
+    "lp85-305b61c3",
+    "ls20-9607627b",
+    "m0r0-492f87ba",
+    "r11l-495a7899",
+    "re86-8af5384d",
+    "s5i5-18d95033",
+    "sb26-7fbdac44",
+    "sc25-635fd71a",
+    "sk48-d8078629",
+    "sp80-589a99af",
+    "su15-1944f8ab",
+    "tn36-ef4dde99",
+    "tr87-cd924810",
+    "tu93-0768757b",
+    "vc33-5430563c",
+    "wa30-ee6fef47"
+  ],
+  "evidence_errors": [],
+  "family_dup": {
+    "runs": {
+      "family_s1": {
+        "label": "duck-harness-kaggle-continuation-v1",
+        "label_matches_family": true,
+        "actions": 500,
+        "dup": 225,
+        "dup_rate": 0.45,
+        "actions_cleared": 250,
+        "dup_cleared": 25,
+        "dup_rate_cleared": 0.1
+      },
+      "family_s2": {
+        "label": "duck-harness-kaggle-continuation-v1",
+        "label_matches_family": true,
+        "actions": 500,
+        "dup": 225,
+        "dup_rate": 0.45,
+        "actions_cleared": 250,
+        "dup_cleared": 25,
+        "dup_rate_cleared": 0.1
+      }
+    },
+    "m": 2,
+    "missing": [],
+    "pooled_dup_rate_all_actions": 0.45,
+    "pooled_dup_rate_cleared_levels": 0.1,
+    "error": null,
+    "all_labels_match_family": true
+  },
+  "family_lc": {
+    "runs": {
+      "family_s1": {
+        "label": "duck-harness-kaggle-continuation-v1",
+        "lc_total": 25
+      },
+      "family_s2": {
+        "label": "duck-harness-kaggle-continuation-v1",
+        "lc_total": 25
+      }
+    },
+    "m": 2,
+    "missing": [],
+    "per_game_mean": {
+      "sk48": 1.0,
+      "tn36": 1.0,
+      "m0r0": 1.0,
+      "bp35": 1.0,
+      "cn04": 1.0,
+      "dc22": 1.0,
+      "tu93": 1.0,
+      "lp85": 1.0,
+      "ka59": 1.0,
+      "wa30": 1.0,
+      "vc33": 1.0,
+      "lf52": 1.0,
+      "r11l": 1.0,
+      "sc25": 1.0,
+      "sp80": 1.0,
+      "ar25": 1.0,
+      "sb26": 1.0,
+      "cd82": 1.0,
+      "re86": 1.0,
+      "s5i5": 1.0,
+      "ls20": 1.0,
+      "ft09": 1.0,
+      "su15": 1.0,
+      "tr87": 1.0,
+      "g50t": 1.0
+    },
+    "per_game_values": {
+      "sk48": [
+        1,
+        1
+      ],
+      "tn36": [
+        1,
+        1
+      ],
+      "m0r0": [
+        1,
+        1
+      ],
+      "bp35": [
+        1,
+        1
+      ],
+      "cn04": [
+        1,
+        1
+      ],
+      "dc22": [
+        1,
+        1
+      ],
+      "tu93": [
+        1,
+        1
+      ],
+      "lp85": [
+        1,
+        1
+      ],
+      "ka59": [
+        1,
+        1
+      ],
+      "wa30": [
+        1,
+        1
+      ],
+      "vc33": [
+        1,
+        1
+      ],
+      "lf52": [
+        1,
+        1
+      ],
+      "r11l": [
+        1,
+        1
+      ],
+      "sc25": [
+        1,
+        1
+      ],
+      "sp80": [
+        1,
+        1
+      ],
+      "ar25": [
+        1,
+        1
+      ],
+      "sb26": [
+        1,
+        1
+      ],
+      "cd82": [
+        1,
+        1
+      ],
+      "re86": [
+        1,
+        1
+      ],
+      "s5i5": [
+        1,
+        1
+      ],
+      "ls20": [
+        1,
+        1
+      ],
+      "ft09": [
+        1,
+        1
+      ],
+      "su15": [
+        1,
+        1
+      ],
+      "tr87": [
+        1,
+        1
+      ],
+      "g50t": [
+        1,
+        1
+      ]
+    },
+    "error": null
+  },
+  "canaries": {
+    "K-P0": {
+      "name": "`p1 v1: ACTIVE (4 seams patched)` + applied=True + no PATCH FAILED",
+      "hard": true,
+      "status": "FAIL",
+      "banner_present": true,
+      "four_seams": false,
+      "applied_true": true,
+      "patch_failed_line": false,
+      "error": null,
+      "evidence": [
+        "p1 v1: ACTIVE (3 seams patched) - zero-information action suppressor. A: memo decline mode=noop confirm=2 max_declines=1 (online latent-state detector disables A per game on first contradictory outcome; NO game-id list). B: batch abort on no-op + intra-batch cycle (revisit is DEFAULT OFF: it cuts the level-completing batch on tu93/sp80/ar25 in the recorded traces). C: non-truncatable memory block ",
+        "p1 v1: graft applied from /kaggle/input/arc-war-kit (applied=True); NO warpack/ledger-graft/sentinel/compaction/animation",
+        null
+      ]
+    },
+    "K-P1": {
+      "name": ">=1 `P1 v=1 kind=...` event line on >=5 distinct games",
+      "hard": true,
+      "status": "PASS",
+      "event_lines": 80,
+      "distinct_games": 25,
+      "games": [
+        "ar25-0c556536",
+        "bp35-0a0ad940",
+        "cd82-fb555c5d",
+        "cn04-2fe56bfb",
+        "dc22-fdcac232",
+        "ft09-0d8bbf25",
+        "g50t-5849a774",
+        "ka59-38d34dbb",
+        "lf52-271a04aa",
+        "lp85-305b61c3",
+        "ls20-9607627b",
+        "m0r0-492f87ba",
+        "r11l-495a7899",
+        "re86-8af5384d",
+        "s5i5-18d95033",
+        "sb26-7fbdac44",
+        "sc25-635fd71a",
+        "sk48-d8078629",
+        "sp80-589a99af",
+        "su15-1944f8ab",
+        "tn36-ef4dde99",
+        "tr87-cd924810",
+        "tu93-0768757b",
+        "vc33-5430563c",
+        "wa30-ee6fef47"
+      ],
+      "kinds": {
+        "decline": 25,
+        "batch_abort": 25,
+        "latent_state": 5,
+        "game_end": 25
+      },
+      "error": null,
+      "note": "`kind=game_end` is emitted once per game by seam 1 regardless of whether any suppression happened, so K-P1 as sealed tests that the seams ran, NOT that the mechanism engaged (that is K-P4). Reported, not reinterpreted.",
+      "evidence": [
+        "P1 v=1 kind=decline game=sk48-d8078629 level=0 declined=4 aborted=2 dup_req=9 dup_exec=5 amb=1 amb_pairs=2 action=MOUSE(row=12, col=34) n=2"
+      ]
+    },
+    "K-P2": {
+      "name": "banner states mode=noop, confirm=2, revisit is DEFAULT OFF",
+      "hard": true,
+      "status": "PASS",
+      "tokens": {
+        "mode=noop": true,
+        "confirm=2": true,
+        "revisit is DEFAULT OFF": true
+      },
+      "error": null,
+      "evidence": [
+        "p1 v1: ACTIVE (3 seams patched) - zero-information action suppressor. A: memo decline mode=noop confirm=2 max_declines=1 (online latent-state detector disables A per game on first contradictory outcome; NO game-id list). B: batch abort on no-op + intra-batch cycle (revisit is DEFAULT OFF: it cuts the level-completing batch on tu93/sp80/ar25 in the recorded traces). C: non-truncatable memory block "
+      ]
+    },
+    "K-P3": {
+      "name": "errors=0 on the `P1 CANARY` line",
+      "hard": true,
+      "status": "PASS",
+      "errors": 0,
+      "error": null,
+      "evidence": [
+        "P1 CANARY v=1 version=v1 games=25 executed=4845 declined=200 aborted=106 dup_exec=150 dup_rate=0.0310 errors=0 ambiguous_games=dc22-fdcac232,m0r0-492f87ba mode=noop confirm=2 abort_revisit=0"
+      ]
+    },
+    "K-P4": {
+      "name": "M0 saved/requested in [3%, 30%] (both ends INCLUSIVE)",
+      "hard": false,
+      "status": "PASS",
+      "error": null,
+      "saved": 306,
+      "requested": 5151,
+      "rate": 0.0594059405940594,
+      "band": [
+        0.03,
+        0.3
+      ],
+      "in_band": true,
+      "below_band": false,
+      "above_band": false,
+      "above_band_consequence": "prereg sec3: above 30% the arm 'must be inspected before any reading' -- not a kill rule",
+      "evidence": [
+        "P1 CANARY v=1 version=v1 games=25 executed=4845 declined=200 aborted=106 dup_exec=150 dup_rate=0.0310 errors=0 ambiguous_games=dc22-fdcac232,m0r0-492f87ba mode=noop confirm=2 abort_revisit=0"
+      ]
+    },
+    "K-P5": {
+      "name": "online latent-state detector flagged >=1 game (ambiguous_games non-empty)",
+      "hard": false,
+      "status": "PASS",
+      "ambiguous_games": [
+        "dc22-fdcac232",
+        "m0r0-492f87ba"
+      ],
+      "n_ambiguous": 2,
+      "error": null,
+      "note": "the shipped detector is LEVEL-scoped (P1State.sync_level clears the memo), while the replay certification that produced the published 8-game set was GAME-scoped. A level-scoped detector sees strictly fewer contradictions, so K-P5 can fail while the safety rule is intact. FLAGGED, not reinterpreted.",
+      "evidence": [
+        "P1 CANARY v=1 version=v1 games=25 executed=4845 declined=200 aborted=106 dup_exec=150 dup_rate=0.0310 errors=0 ambiguous_games=dc22-fdcac232,m0r0-492f87ba mode=noop confirm=2 abort_revisit=0"
+      ]
+    },
+    "K-P6": {
+      "name": "M3 dup_rate below the family's as-run duplicate rate",
+      "hard": false,
+      "status": "PASS",
+      "arm_dup_rate": 0.031,
+      "family_dup_rate_all_actions": 0.45,
+      "family_dup_rate_cleared_levels": 0.1,
+      "family": {
+        "family_s1": {
+          "label": "duck-harness-kaggle-continuation-v1",
+          "label_matches_family": true,
+          "actions": 500,
+          "dup": 225,
+          "dup_rate": 0.45,
+          "actions_cleared": 250,
+          "dup_cleared": 25,
+          "dup_rate_cleared": 0.1
+        },
+        "family_s2": {
+          "label": "duck-harness-kaggle-continuation-v1",
+          "label_matches_family": true,
+          "actions": 500,
+          "dup": 225,
+          "dup_rate": 0.45,
+          "actions_cleared": 250,
+          "dup_cleared": 25,
+          "dup_rate_cleared": 0.1
+        }
+      },
+      "family_m": 2,
+      "error": null,
+      "comparator_note": "PRIMARY comparator is the family's whole-run rate, which is the like-for-like partner of the canary's dup_exec/executed (also whole-run). The cleared-levels-only rate (the diagnosis's 10.5% column) is carried as the second reading; the prereg does not say which it means, so if the two straddle the arm's value the gate is DISPUTED and must be escalated, not executed.",
+      "evidence": [
+        "P1 CANARY v=1 version=v1 games=25 executed=4845 declined=200 aborted=106 dup_exec=150 dup_rate=0.0310 errors=0 ambiguous_games=dc22-fdcac232,m0r0-492f87ba mode=noop confirm=2 abort_revisit=0"
+      ]
+    }
+  },
+  "M0": {
+    "primary": true,
+    "definition": "saved/requested, saved=declined+aborted, requested=saved+executed (prereg sec3 M0)",
+    "band_inclusive": true,
+    "sealed_replay": {
+      "animation_v1": "306/5151 = 5.9%",
+      "a22_v2_seed1": "697/3492 = 20.0%",
+      "a22_compaction_v1": "841/4777 = 17.6%"
+    },
+    "saved": 306,
+    "requested": 5151,
+    "rate": 0.0594059405940594,
+    "band": [
+      0.03,
+      0.3
+    ],
+    "in_band": true,
+    "below_band": false,
+    "above_band": false
+  },
+  "mechanism_c": {
+    "source": "transcripts",
+    "games": 2,
+    "turns_seen": 4,
+    "turns_with_block": 4,
+    "blocks_with_untried": 4,
+    "blocks_with_dead": 4,
+    "blocks_flagging_latent": 4,
+    "games_with_block": [
+      "sk48",
+      "tn36"
+    ],
+    "dead_listed_turns": 4,
+    "dead_reissued": 0,
+    "actions_after_dead_turns": 4,
+    "first_half_reissue": 0,
+    "second_half_reissue": 0,
+    "block_chars_mean": 553.0,
+    "block_chars_max": 553,
+    "block_coverage": 1.0,
+    "dead_reissue_rate": 0.0
+  },
+  "behaviour": {
+    "totals": {
+      "actions": 325,
+      "dup": 116,
+      "blind": 0,
+      "steps": 325,
+      "actions_cleared": 136,
+      "dup_cleared": 17
+    },
+    "per_game": {
+      "ar25": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "bp35": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "cd82": {
+        "actions": 13,
+        "dup": 6,
+        "blind": 0,
+        "dup_rate": 0.46153846153846156,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 0
+      },
+      "cn04": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "dc22": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "ft09": {
+        "actions": 13,
+        "dup": 6,
+        "blind": 0,
+        "dup_rate": 0.46153846153846156,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 0
+      },
+      "g50t": {
+        "actions": 13,
+        "dup": 6,
+        "blind": 0,
+        "dup_rate": 0.46153846153846156,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 0
+      },
+      "ka59": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "lf52": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "lp85": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "ls20": {
+        "actions": 13,
+        "dup": 6,
+        "blind": 0,
+        "dup_rate": 0.46153846153846156,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 0
+      },
+      "m0r0": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "r11l": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "re86": {
+        "actions": 13,
+        "dup": 6,
+        "blind": 0,
+        "dup_rate": 0.46153846153846156,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 0
+      },
+      "s5i5": {
+        "actions": 13,
+        "dup": 6,
+        "blind": 0,
+        "dup_rate": 0.46153846153846156,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 0
+      },
+      "sb26": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "sc25": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "sk48": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "sp80": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "su15": {
+        "actions": 13,
+        "dup": 6,
+        "blind": 0,
+        "dup_rate": 0.46153846153846156,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 0
+      },
+      "tn36": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "tr87": {
+        "actions": 13,
+        "dup": 6,
+        "blind": 0,
+        "dup_rate": 0.46153846153846156,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 0
+      },
+      "tu93": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "vc33": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      },
+      "wa30": {
+        "actions": 13,
+        "dup": 4,
+        "blind": 0,
+        "dup_rate": 0.3076923076923077,
+        "blind_rate": 0.0,
+        "actions_per_step": 1.0,
+        "levels_completed": 1
+      }
+    },
+    "dup_rate": 0.3569230769230769,
+    "dup_rate_cleared": 0.125,
+    "blind_rate": 0.0,
+    "actions_per_step": 1.0
+  },
+  "M3": {
+    "arm_dup_rate_canary": 0.031,
+    "arm_dup_rate_traces": 0.3569230769230769,
+    "arm_dup_rate_traces_cleared": 0.125,
+    "family_dup_rate_all_actions": 0.45,
+    "family_dup_rate_cleared_levels": 0.1,
+    "sealed_replay_expectation": "6.9% / 3.4% / 4.1% (as-run 10.5% / 4.9% / 5.0%)"
+  },
+  "M1": {
+    "arm_lc_total": 17,
+    "n_games": 25,
+    "screenable": false,
+    "error": null,
+    "family_lc_totals": [
+      25,
+      25
+    ],
+    "note": "family duck-harness-kaggle-continuation-v1 has m=2; SCREEN_PROTOCOL sec1 P2 -> NOT SCREENABLE. This may NOT be reported as non-harm."
+  },
+  "M2": {
+    "arm_score": 0.488094135802469,
+    "sealed_multiplier_expectation": 1.019,
+    "error": null,
+    "not_a_kill_rule": "M2 below x1.019 is explicitly NOT a kill rule (prereg sec6)"
+  },
+  "kill_rules": [
+    {
+      "rule": 1,
+      "name": "K-P0 or K-P3 fails (patch did not install, or the action path raised)",
+      "fired": true,
+      "evaluable": true,
+      "detail": "K-P0=FAIL K-P3=PASS",
+      "note": "INFRA DEATH when K-P0 fails: not a mechanism result."
+    },
+    {
+      "rule": 2,
+      "name": "levels_completed <= 15 on the local 25",
+      "fired": false,
+      "evaluable": true,
+      "detail": "levels_completed=17 over 25 games",
+      "levels_completed": 17,
+      "n_games": 25
+    },
+    {
+      "rule": 3,
+      "name": "any game whose ambiguity flag fired loses a level vs the family per-game mean",
+      "fired": false,
+      "evaluable": true,
+      "detail": "2 flagged game(s); 0 below the family mean",
+      "flagged_games": [
+        "dc22-fdcac232",
+        "m0r0-492f87ba"
+      ],
+      "losers": [],
+      "interpretation": "'loses a level' is read as arm_lc < family per-game mean (any loss). `full_level_loss` reports the stricter arm_lc <= mean - 1 reading alongside it; the prereg does not disambiguate and the safety-first reading is used for the gate."
+    },
+    {
+      "rule": 4,
+      "name": "any level-completing action is declined or aborted",
+      "fired": false,
+      "evaluable": true,
+      "detail": "sealed settings in force (mode=noop, abort_revisit=0, confirm>=2); replay verified 0/0/0 on all three recorded runs",
+      "sealed_settings_in_force": true,
+      "observed_settings": {
+        "mode": "noop",
+        "confirm": 2,
+        "abort_revisit": 0
+      },
+      "directly_observable": false,
+      "observability_note": "FLAGGED TENSION (prereg sec6.4): a violation cannot be observed post hoc -- a declined/aborted action leaves no record and the level simply does not complete. What is checked here is that the settings under which the 0/0/0 replay guarantee holds were actually in force, plus artifact consistency.",
+      "viewer_vs_benchmark_lc_games_checked": 25,
+      "viewer_vs_benchmark_lc_mismatches": []
+    },
+    {
+      "rule": 5,
+      "name": "M0 < 3% (mechanism did not engage -- null by delivery)",
+      "fired": false,
+      "evaluable": true,
+      "detail": "M0=5.94%",
+      "note": "M0 ABOVE 30% is NOT this kill rule (prereg sec3: inspect first)."
+    }
+  ],
+  "verdict": {
+    "verdict": "KILL",
+    "why": "kill rule 1: K-P0 or K-P3 fails (patch did not install, or the action path raised) -- K-P0=FAIL K-P3=PASS",
+    "kill_reasons": [
+      "kill rule 1: K-P0 or K-P3 fails (patch did not install, or the action path raised) -- K-P0=FAIL K-P3=PASS"
+    ],
+    "discard_reasons": [
+      "hard canary K-P0 FAIL (prereg sec5: discard-grade, nothing may be read)"
+    ],
+    "reading_gate_failures": [],
+    "hard_canary_failures": [
+      "K-P0 FAIL"
+    ],
+    "discard_grade": true,
+    "readable": false,
+    "m2_note": "M2 below x1.019 is NOT a kill rule (prereg sec6)."
+  },
+  "kills": [
+    "kill rule 1: K-P0 or K-P3 fails (patch did not install, or the action path raised) -- K-P0=FAIL K-P3=PASS"
+  ]
+}

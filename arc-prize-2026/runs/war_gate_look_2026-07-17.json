@@ -1,0 +1,47 @@
+{
+ "rule": "A1 compound (amendment 2026-07-15)",
+ "seeds": [
+  "war_eval_v1",
+  "war_eval_v2",
+  "war_eval_v3"
+ ],
+ "prong_i": {
+  "pooled_dlc_mean": 0.058666666666666666,
+  "wins": 10,
+  "losses": 10,
+  "signflip_p": 0.22483348846435547,
+  "alpha": 0.0125,
+  "pass": false
+ },
+ "prong_ii": {
+  "mean_dlog1p_across_seeds": -0.13228929765520162,
+  "pooled_per_game_mean": -0.13228929765520162,
+  "pass": false
+ },
+ "verdict": "FAIL",
+ "fail_mode": "both",
+ "loo_p_range": [
+  0.1414318084716797,
+  0.41723060607910156
+ ],
+ "stable_positive_games": [
+  [
+   "ka59",
+   0.6
+  ]
+ ],
+ "stable_negative_games": [
+  [
+   "cd82",
+   -0.2
+  ],
+  [
+   "cn04",
+   -0.5
+  ],
+  [
+   "sk48",
+   -0.1
+  ]
+ ]
+}

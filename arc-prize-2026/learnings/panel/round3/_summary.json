@@ -1,0 +1,48 @@
+{
+  "round": 3,
+  "reviews": {
+    "rl-planning": {
+      "agent_id": "01KWW62HP6T3CRG3HY4QVHFP28",
+      "verdict": "ACCEPT",
+      "score": 8.0,
+      "n_fatal": 0,
+      "n_major": 0,
+      "chars": 8329
+    },
+    "llm-agents": {
+      "agent_id": "01KWW62KRWZ49684XN2JRE3FD1",
+      "verdict": "MAJOR-REVISION",
+      "score": 7.0,
+      "n_fatal": 0,
+      "n_major": 2,
+      "chars": 8888
+    },
+    "prog-synthesis": {
+      "agent_id": "01KWW62NQ69GK7STPJ7MK7FZCS",
+      "verdict": "ACCEPT",
+      "score": 9.0,
+      "n_fatal": 0,
+      "n_major": 0,
+      "chars": 6739
+    },
+    "methodology": {
+      "agent_id": "01KWW62QPTD8DX97XX743RRWP4",
+      "verdict": "MAJOR-REVISION",
+      "score": 8.0,
+      "n_fatal": 0,
+      "n_major": 1,
+      "chars": 9942
+    },
+    "systems": {
+      "agent_id": "01KWW62SNTEVV0E90Q6H443614",
+      "verdict": "ACCEPT",
+      "score": 8.0,
+      "n_fatal": 0,
+      "n_major": 1,
+      "chars": 7880
+    }
+  },
+  "n_accept": 3,
+  "n_fatal_total": 0,
+  "pass": false
+}

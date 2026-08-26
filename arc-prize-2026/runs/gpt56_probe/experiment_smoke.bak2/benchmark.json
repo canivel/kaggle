@@ -1,0 +1,43 @@
+{
+  "label": "gpt56_probe_smoke",
+  "n_passes": 1,
+  "solver_label": "inference",
+  "start_time": "2026-07-16T12:55:17.075968",
+  "end_time": null,
+  "game_weights": null,
+  "periodic_save_interval_s": 600.0,
+  "game_runs": [
+    {
+      "game_id": "ft09-0d8bbf25",
+      "number_of_levels": 6,
+      "base_actions_per_level": [
+        17,
+        19,
+        15,
+        21,
+        65,
+        26
+      ],
+      "hint": null,
+      "state": "playing",
+      "history": [],
+      "record_intermediate_states": true,
+      "actions_per_level": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels_completed": 0,
+      "final_score": null,
+      "solver_note": null,
+      "solver_analysis_html": "solver_analysis/ft09-0d8bbf25_p0.html",
+      "final_generated_tokens": 0,
+      "final_uncached_input_tokens": 0,
+      "final_wallclock_seconds": 0.0,
+      "started_at": "2026-07-16T12:55:17.153479"
+    }
+  ]
+}

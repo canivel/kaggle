@@ -1,0 +1,549 @@
+{
+  "scorer": "effnote_score.py",
+  "scored_at": "2026-08-13",
+  "prereg": "learnings/war_room/effnote_prereg_2026-08-13.md (SEALED 2026-08-13, before the eval kernel was pushed)",
+  "run": "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\effnote_v1",
+  "effnote_module_version": "v1",
+  "module_char_bound": 700,
+  "log": {
+    "path": "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\effnote_v1\\arc3-duck-effnote-eval.log",
+    "source": "json-array",
+    "chars": 221415
+  },
+  "canary": {
+    "v": "1",
+    "version": "v1",
+    "target": "proxy-only",
+    "games": 25,
+    "turns": 1444,
+    "noted": 1355,
+    "chars_max": 603,
+    "bound": 700,
+    "over_target": 332,
+    "stall_turns": 126,
+    "nz": 112,
+    "nz_games": 17,
+    "stag": 5,
+    "stag_games": 1,
+    "rev": 40,
+    "rev_games": 6,
+    "errors": 0,
+    "note_rate": 0.9384,
+    "chars_mean": 284.0,
+    "over_rate": 0.2299,
+    "stall_rate": 0.0873,
+    "raw": "EFFNOTE CANARY v=1 version=v1 games=25 turns=1444 noted=1355 note_rate=0.9384 chars_mean=284.0 chars_max=603 bound=700 over_target=332 over_rate=0.2299 stall_turns=126 stall_rate=0.0873 nz=112/17g stag=5/1g rev=40/6g errors=0 target=proxy-only",
+    "raw_tail": "EFFNOTE CANARY v=1 version=v1 games=25 turns=1444 noted=1355 note_rate=0.9384 chars_mean=284.0 chars_max=603 bound=700 over_target=332 over_rate=0.2299 stall_turns=126 stall_rate=0.0873 nz=112/17g stag=5/1g rev=40/6g errors=0 target=proxy-only"
+  },
+  "canary_error": null,
+  "n_event_lines": 405,
+  "event_kinds": {
+    "game_end": 25,
+    "note": 380
+  },
+  "benchmark_error": null,
+  "benchmark_label": "duck-harness-kaggle-effnote-v1-continuation-v1",
+  "seal_error": null,
+  "control_spread_source": "F:\\kaggle\\arc-prize-2026\\runs\\effnote_replay\\control_spread.json",
+  "replay": {
+    "run": "runs\\kernel_pulls\\effnote_v1",
+    "games": 25,
+    "targets": [
+      85,
+      90,
+      95,
+      100
+    ],
+    "valid_action_counts": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "D1_note_rate": 0.9619312906220984,
+    "D2_stall_rate": 0.08542246982358404,
+    "D3_over_rate": 0.2488393686165274,
+    "D4_chars_mean": 286.7557915057915,
+    "D4_chars_max": 603,
+    "detector_games": {
+      "net_zero": 17,
+      "stagnation": 1,
+      "revisit": 6
+    },
+    "detector_turn_rate": {
+      "net_zero": 0.07428040854224698,
+      "stagnation": 0.004642525533890436,
+      "revisit": 0.029712163416898793
+    },
+    "B1_post_stall_revisit_rate": 0.49706457925636005,
+    "B1c_nonstall_revisit_rate": 0.20300751879699247,
+    "B2_post_stall_noop_rate": 0.26320939334637966,
+    "B2c_nonstall_noop_rate": 0.18356235416126523,
+    "B3_over_target_burn_total": 2470,
+    "B3_over_target_burn_cleared": 195,
+    "B3_levels_over_target": 14,
+    "B4_stall_turn_size": 11.108695652173912,
+    "B4_nonstall_turn_size": 3.9157360406091373,
+    "M0_median_actions_per_cleared_level": 23.5,
+    "M0_median_of_per_game_medians": 23.0,
+    "levels_cleared": 16,
+    "turns": 1077,
+    "actions": 4879,
+    "stall_actions": 1022
+  },
+  "replay_error": null,
+  "instrument_agreement": {
+    "checks": [
+      {
+        "check": "replay reproduces the benchmark action total exactly (smoke R2)",
+        "ok": true,
+        "detail": "replay=4879 benchmark=4879",
+        "hard": true
+      },
+      {
+        "check": "replay covers every benchmark game",
+        "ok": true,
+        "detail": "replayed=25 benchmark_games=25",
+        "hard": true
+      },
+      {
+        "check": "per-detector DISTINCT-GAME counts, live module vs offline replay (corroboration)",
+        "ok": true,
+        "detail": "replay nz/stag/rev games = 17/1/6; live canary = 17/1/6",
+        "hard": false
+      },
+      {
+        "check": "chars_max, live module vs offline replay (corroboration)",
+        "ok": true,
+        "detail": "replay=603 live=603",
+        "hard": false
+      },
+      {
+        "check": "turn denominators (REPORTED, not asserted -- see docstring)",
+        "ok": true,
+        "detail": "live turns=1444 (every _build_user_prompt call) vs replay turns=1077 (analysis steps carrying >=1 action)",
+        "hard": false
+      },
+      {
+        "check": "canary game count equals the benchmark game count",
+        "ok": true,
+        "detail": "canary=25 benchmark=25",
+        "hard": true
+      }
+    ],
+    "ok": true,
+    "errors": []
+  },
+  "canaries": {
+    "K-E0": {
+      "name": "graft installed: `effnote v1: ACTIVE (2 seams patched)`, REPORT-ONLY banner, `graft applied ... (applied=True)`",
+      "status": "PASS",
+      "on_fail": "VOID",
+      "banner_present": true,
+      "two_seams": true,
+      "report_only": true,
+      "graft_applied_true": true,
+      "consequence": "the arm never installed -> the run is not a mechanism result in either direction (VOID, rebuild)",
+      "error": null,
+      "evidence": [
+        "effnote v1: ACTIVE (2 seams patched) - quantified per-turn efficiency note, REPORT-ONLY (no action is ever blocked, declined or injected). Note = scoring rule (verbatim, quantitative) + live action count vs a CLAMPED GAME-AGNOSTIC target proxy + over-target ratio + 3 pure stall detectors (net-zero>=6, stagnation>=8, revisit>=4) + commit-don't-scan reminder. target=proxy-only (NO baseline table, NO metadata read, NO game id - proxy on this rail = 100). cost bound = 700 CHARACTERS (never a token fraction). Zero LLM calls, hot action path untouched, vanilla fallback.",
+        "effnote v1: graft applied from /kaggle/input/datasets/canivel/arc-war-kit (applied=True); NO warpack/ledger-graft/sentinel/compaction/animation/p1"
+      ]
+    },
+    "K-E0b": {
+      "name": "note delivered: note_rate >= 0.8 and >=1 `EFFNOTE v=1 kind=note` line on >= 20 of 25 games",
+      "status": "FAIL",
+      "on_fail": "NO-PROMOTE",
+      "leg1_note_rate": 0.9384,
+      "leg1_floor": 0.8,
+      "leg1_pass": true,
+      "leg2_games_with_note_event": 18,
+      "leg2_floor": 20,
+      "leg2_pass": false,
+      "games_with_note_delivered": 25,
+      "degeneracy_disclosure": "the prereg's literal leg-1 denominator (stall-or-over-target turns) is 1.0 BY CONSTRUCTION and CANNOT FAIL; the OVERALL note_rate is read instead, which is strictly the harsher reading",
+      "leg2_note": "`kind=note` is emitted only on a stall-or-over-target turn, so leg 2 counts games that produced an EVENT LINE, not games that received the note. Games where the note was actually delivered (noted > 0 on the kind=game_end line) is reported alongside and is the reason a leg-2 miss is NOT read as 'the arm never ran'.",
+      "consequence": "delivery is NECESSARY AND NOT SUFFICIENT (prereg sec3: P1 mechanism C delivered on 96.3% of turns and was dead). A leg-1 failure is INFRA DEATH (VOID) via kill rule 4; a leg-2-only failure blocks PROMOTE (resolved AGAINST the arm) but is not VOID while the log shows the note reaching the model on the games it ran",
+      "error": null,
+      "evidence": [
+        "EFFNOTE CANARY v=1 version=v1 games=25 turns=1444 noted=1355 note_rate=0.9384 chars_mean=284.0 chars_max=603 bound=700 over_target=332 over_rate=0.2299 stall_turns=126 stall_rate=0.0873 nz=112/17g stag=5/1g rev=40/6g errors=0 target=proxy-only"
+      ]
+    },
+    "K-E1": {
+      "name": "detector sanity: net-zero >= 3 games, revisit >= 3 games, stagnation >= 1 game (RE-PRE-REGISTERED pre-data, sec1.1 item 1)",
+      "status": "PASS",
+      "on_fail": "NO-PROMOTE",
+      "floors": {
+        "net_zero": 3,
+        "revisit": 3,
+        "stagnation": 1
+      },
+      "detector_games": {
+        "net_zero": 17,
+        "stagnation": 1,
+        "revisit": 6
+      },
+      "would_fail_at_original_floor": true,
+      "disclosure": "the original harness_diff draft asked for stagnation on >= 3 games; it was relaxed to >= 1 BEFORE the data, with the incentive on the record, because the three block-free controls fire stagnation on 1-2 games each -- a property of the rail, not of the arm",
+      "consequence": "DETECTOR-SANITY ONLY. It cannot rescue a dead arm and never contributes to a PASS (prereg sec1.1 item 1).",
+      "error": null,
+      "evidence": [
+        "EFFNOTE CANARY v=1 version=v1 games=25 turns=1444 noted=1355 note_rate=0.9384 chars_mean=284.0 chars_max=603 bound=700 over_target=332 over_rate=0.2299 stall_turns=126 stall_rate=0.0873 nz=112/17g stag=5/1g rev=40/6g errors=0 target=proxy-only"
+      ]
+    },
+    "K-E1'": {
+      "name": "no detector fires on > 40% of turns (nagging => ignored)",
+      "status": "PASS",
+      "on_fail": "KILL",
+      "worst_detector_rate": 0.0873,
+      "threshold": 0.4,
+      "rates": {
+        "live_canary": {
+          "net_zero": 0.07756232686980609,
+          "stagnation": 0.0034626038781163434,
+          "revisit": 0.027700831024930747,
+          "any": 0.0873
+        },
+        "offline_replay": {
+          "net_zero": 0.07428040854224698,
+          "stagnation": 0.004642525533890436,
+          "revisit": 0.029712163416898793,
+          "any": 0.08542246982358404
+        },
+        "max_by_detector": {
+          "any": 0.0873,
+          "net_zero": 0.07756232686980609,
+          "revisit": 0.029712163416898793,
+          "stagnation": 0.004642525533890436
+        }
+      },
+      "consequence": "prereg kill rule 3: the note is noise and the agent will learn to skip it => KILL",
+      "error": null,
+      "evidence": [
+        "EFFNOTE CANARY v=1 version=v1 games=25 turns=1444 noted=1355 note_rate=0.9384 chars_mean=284.0 chars_max=603 bound=700 over_target=332 over_rate=0.2299 stall_turns=126 stall_rate=0.0873 nz=112/17g stag=5/1g rev=40/6g errors=0 target=proxy-only"
+      ]
+    },
+    "K-E2": {
+      "name": "levels_completed >= 14 (the minimum of the three block-free controls)",
+      "status": "PASS",
+      "on_fail": "KILL",
+      "levels_completed": 16,
+      "n_games": 25,
+      "control_range": [
+        14,
+        17
+      ],
+      "consequence": "prereg kill rule 1: any trade of levels for efficiency kills this arm outright",
+      "barred": "lc is read ONLY in this non-harm direction. Delta-lc is NOT SCREENABLE (family m = 2) and may NEVER be cited as a win.",
+      "error": null,
+      "evidence": [
+        "benchmark.json: sum(levels_completed) = 16 over 25 games"
+      ]
+    },
+    "K-E3": {
+      "name": "chars_max <= 700 (a CHARACTER bound) and NO token metric anywhere in the EFFNOTE surface",
+      "status": "PASS",
+      "on_fail": "KILL",
+      "chars_max": 603,
+      "bound_reported": 700,
+      "bound_sealed": 700,
+      "token_metric_hits": [],
+      "token_fields_in_module": [],
+      "token_fields_in_canary": [],
+      "token_fields_in_events": [],
+      "token_check_note": "scoped to the SHIPPED MODULE SOURCE and the EFFNOTE CANARY/event lines (prereg sec2.1: 'no token metric of any kind exists in the module or the canary'), and matching a token-VALUED FIELD, not the word 'token' in prose. A whole-log line-scoped grep produced a FALSE KILL here (Kaggle log records do not all end in a newline, so an unrelated `[finished] ... tokens=68697` merged into an EFFNOTE line); the self-test carries that exact regression.",
+      "consequence": "prereg kill rule 5: the static bound leaked => KILL and fix the clamp. A TOKEN-FRACTION reading is FORBIDDEN (the rail's denominator is generated tokens; the note is an input cost).",
+      "error": null,
+      "evidence": [
+        "EFFNOTE CANARY v=1 version=v1 games=25 turns=1444 noted=1355 note_rate=0.9384 chars_mean=284.0 chars_max=603 bound=700 over_target=332 over_rate=0.2299 stall_turns=126 stall_rate=0.0873 nz=112/17g stag=5/1g rev=40/6g errors=0 target=proxy-only"
+      ]
+    },
+    "K-E4": {
+      "name": "errors = 0, no `effnote: PATCH FAILED`, no traceback",
+      "status": "PASS",
+      "on_fail": "VOID",
+      "errors": 0,
+      "patch_failed_line": false,
+      "traceback_present": false,
+      "consequence": "prereg kill rule 4: INFRA DEATH -- re-run or abandon; the behavioural numbers may not be read at all",
+      "error": null,
+      "evidence": [
+        "EFFNOTE CANARY v=1 version=v1 games=25 turns=1444 noted=1355 note_rate=0.9384 chars_mean=284.0 chars_max=603 bound=700 over_target=332 over_rate=0.2299 stall_turns=126 stall_rate=0.0873 nz=112/17g stag=5/1g rev=40/6g errors=0 target=proxy-only"
+      ]
+    },
+    "K-E5": {
+      "name": "the graft is ALONE: no warpack / ledger / sentinel / compaction / animation / p1 banner in the log",
+      "status": "PASS",
+      "on_fail": "VOID",
+      "foreign_banners": {},
+      "checked": [
+        "animation",
+        "compaction",
+        "ledger",
+        "p1",
+        "sentinel",
+        "warpack"
+      ],
+      "benchmark_label": "duck-harness-kaggle-effnote-v1-continuation-v1",
+      "consequence": "another graft in the log means this is not the sealed arm; no verdict may be recorded in either direction",
+      "error": null,
+      "evidence": [
+        "effnote v1: graft applied from /kaggle/input/datasets/canivel/arc-war-kit (applied=True); NO warpack/ledger-graft/sentinel/compaction/animation/p1"
+      ]
+    }
+  },
+  "PRIMARY": {
+    "part1_delivery": {
+      "status": "FAIL",
+      "note_rate": 0.9384,
+      "floor": 0.8,
+      "chars_max": 603,
+      "errors": 0,
+      "sufficiency": "NECESSARY AND NOT SUFFICIENT -- P1 mechanism C delivered on 96.3% of turns and was dead (prereg sec3)"
+    },
+    "part2_B1": {
+      "status": "FAIL",
+      "value": 0.49706457925636005,
+      "pass_line": 0.39862542955326463,
+      "rule": "PASS requires B1 STRICTLY BELOW the MINIMUM of the control spread (0.39862542955326463). Not the mean. Not any single control. Not the arm's own first half.",
+      "control_spread": [
+        0.39862542955326463,
+        0.5487465181058496
+      ],
+      "control_values": [
+        0.39862542955326463,
+        0.5487465181058496,
+        0.4750542299349241
+      ],
+      "control_mean": 0.4741420591980128,
+      "inside_control_spread": true,
+      "margin_vs_line": 0.09843914970309542,
+      "nonstall_counterpart": 0.20300751879699247,
+      "error": null
+    },
+    "status": "FAIL"
+  },
+  "kill_rules": [
+    {
+      "rule": 1,
+      "name": "non-harm: levels_completed < 14",
+      "consequence": "KILL",
+      "fired": false,
+      "evaluable": true,
+      "detail": "levels_completed = 16 over 25 games (control range 14-17)"
+    },
+    {
+      "rule": 2,
+      "name": "the behavioural test: B1 >= 0.39862542955326463",
+      "consequence": "NO-PROMOTE",
+      "fired": true,
+      "evaluable": true,
+      "detail": "B1 = 0.497065 vs the sealed line 0.398625 (control spread minimum)",
+      "note": "No re-reading against the control mean, against the arm's own first half, or against a subset chosen after seeing the data."
+    },
+    {
+      "rule": 3,
+      "name": "nagging: any detector fires on > 40% of turns",
+      "consequence": "KILL",
+      "fired": false,
+      "evaluable": true,
+      "detail": "worst per-detector turn rate = 0.0873 ({'any': 0.0873, 'net_zero': 0.0776, 'revisit': 0.0297, 'stagnation': 0.0046})"
+    },
+    {
+      "rule": 4,
+      "name": "delivery: note_rate < 0.8, or errors > 0, or any PATCH FAILED",
+      "consequence": "VOID (INFRA DEATH -- re-run or abandon; the behavioural numbers may not be read at all)",
+      "fired": false,
+      "evaluable": true,
+      "detail": "note_rate = 0.9384, errors = 0, PATCH FAILED = False"
+    },
+    {
+      "rule": 5,
+      "name": "cost: chars_max > 700 CHARACTERS",
+      "consequence": "KILL",
+      "fired": false,
+      "evaluable": true,
+      "detail": "chars_max = 603 vs bound 700 characters (a TOKEN-FRACTION reading is forbidden)"
+    }
+  ],
+  "descriptive": {
+    "note": "DESCRIPTIVE ONLY. None of this may be cited as evidence of gain (prereg sec3 M1/M2, family m = 2).",
+    "vs_control_spread": {
+      "D1_note_rate": {
+        "arm": 0.9619312906220984,
+        "control_min": 0.9608826479438315,
+        "control_max": 0.9672,
+        "inside_spread": true,
+        "position": "inside"
+      },
+      "D2_stall_rate": {
+        "arm": 0.08542246982358404,
+        "control_min": 0.0712,
+        "control_max": 0.0995850622406639,
+        "inside_spread": true,
+        "position": "inside"
+      },
+      "D3_over_rate": {
+        "arm": 0.2488393686165274,
+        "control_min": 0.1968,
+        "control_max": 0.2921161825726141,
+        "inside_spread": true,
+        "position": "inside"
+      },
+      "D4_chars_mean": {
+        "arm": 286.7557915057915,
+        "control_min": 273.0,
+        "control_max": 297.5399828030954,
+        "inside_spread": true,
+        "position": "inside"
+      },
+      "D4_chars_max": {
+        "arm": 603,
+        "control_min": 602,
+        "control_max": 603,
+        "inside_spread": true,
+        "position": "inside"
+      },
+      "B1_post_stall_revisit_rate": {
+        "arm": 0.49706457925636005,
+        "control_min": 0.39862542955326463,
+        "control_max": 0.5487465181058496,
+        "inside_spread": true,
+        "position": "inside"
+      },
+      "B1c_nonstall_revisit_rate": {
+        "arm": 0.20300751879699247,
+        "control_min": 0.11056568489948575,
+        "control_max": 0.1991701244813278,
+        "inside_spread": false,
+        "position": "above"
+      },
+      "B2_post_stall_noop_rate": {
+        "arm": 0.26320939334637966,
+        "control_min": 0.07789232531500573,
+        "control_max": 0.34540389972144847,
+        "inside_spread": true,
+        "position": "inside"
+      },
+      "B3_over_target_burn_total": {
+        "arm": 2470,
+        "control_min": 1267,
+        "control_max": 2301,
+        "inside_spread": false,
+        "position": "above"
+      },
+      "B3_over_target_burn_cleared": {
+        "arm": 195,
+        "control_min": 32,
+        "control_max": 307,
+        "inside_spread": true,
+        "position": "inside"
+      },
+      "B4_stall_turn_size": {
+        "arm": 11.108695652173912,
+        "control_min": 3.9450549450549453,
+        "control_max": 7.275,
+        "inside_spread": false,
+        "position": "above"
+      },
+      "M0_median_actions_per_cleared_level": {
+        "arm": 23.5,
+        "control_min": 24,
+        "control_max": 49,
+        "inside_spread": false,
+        "position": "below"
+      },
+      "levels_cleared": {
+        "arm": 16,
+        "control_min": 14,
+        "control_max": 17,
+        "inside_spread": true,
+        "position": "inside"
+      }
+    },
+    "B4_stall_turn_size": 11.108695652173912,
+    "B4_nonstall_turn_size": 3.9157360406091373,
+    "M0_median_actions_per_cleared_level": 23.5,
+    "RHAE_local25": 2.8779250341423075,
+    "levels_completed": 16,
+    "actions_total": 4879,
+    "per_game_levels": {
+      "sk48": 0,
+      "tn36": 1,
+      "m0r0": 0,
+      "bp35": 1,
+      "cn04": 0,
+      "dc22": 0,
+      "tu93": 2,
+      "lp85": 1,
+      "ka59": 0,
+      "wa30": 0,
+      "vc33": 2,
+      "lf52": 0,
+      "r11l": 1,
+      "sc25": 0,
+      "sp80": 1,
+      "ar25": 0,
+      "sb26": 1,
+      "cd82": 0,
+      "re86": 0,
+      "s5i5": 0,
+      "ls20": 1,
+      "ft09": 4,
+      "su15": 1,
+      "tr87": 0,
+      "g50t": 0
+    }
+  },
+  "barred_statistics": [
+    {
+      "statistic": "the arm's own first-half -> second-half contrast on B1 (or on any behavioural metric)",
+      "why": "prereg sec3 M0 part 2: 'The arm's within-run first-half->second-half contrast MAY NOT BE CITED.' It is the statistic that made P1 mechanism C look like a 4.4x win when it was regression to the mean.",
+      "status": "NOT COMPUTED BY THIS SCORER AT ALL"
+    },
+    {
+      "statistic": "Delta levels_completed vs the family, in the GAIN direction",
+      "why": "prereg sec3 power statement: family duck-harness-kaggle-continuation-v1 is m = 2; SCREEN_PROTOCOL sec1 P2 => NOT SCREENABLE. lc is read ONLY in the non-harm direction of kill rule 1 (lc < 14 => KILL).",
+      "status": "computed for kill rule 1 ONLY; may never be cited as a win"
+    },
+    {
+      "statistic": "B1 against the control MEAN (0.4741) or against any SINGLE control run",
+      "why": "prereg sec3/sec5.2: the line is the MINIMUM of the spread, 0.3986. Reading against the mean is a post-hoc threshold move.",
+      "status": "the mean is reported for context; the GATE uses the minimum only"
+    },
+    {
+      "statistic": "any token-fraction / token-cost reading of the note",
+      "why": "prereg sec2.1 divergence 2 + sec5.5: the note is an INPUT cost and the rail reports GENERATED tokens. That denominator mismatch fired K-A3 and killed the animation arm. The bound is 700 CHARACTERS.",
+      "status": "NOT COMPUTED; K-E3 asserts no token metric exists"
+    },
+    {
+      "statistic": "a B3 (over-target burn) win carrying the verdict",
+      "why": "prereg sec3 M0 part 2: B3 is 'supporting only'; its spread is 9.6x wide on three draws. 'a B3 win with B1 inside the spread is NOT a pass.'",
+      "status": "reported as supporting evidence only"
+    },
+    {
+      "statistic": "RHAE / local-25 score and the M0 median-actions-per-cleared-level",
+      "why": "prereg sec3 M2: DESCRIPTIVE ONLY, one draw against an m = 2 family. 'Attributing either to EFFNOTE would be exactly the error this prereg exists to prevent.'",
+      "status": "reported, never gating"
+    },
+    {
+      "statistic": "K-E1 (detector sanity) as evidence of efficacy",
+      "why": "prereg sec1.1 item 1: K-E1 was re-pre-registered pre-data at stagnation >= 1 game (from >= 3), with the incentive on the record. It is a DETECTOR-SANITY canary and CANNOT RESCUE A DEAD ARM.",
+      "status": "reported as a canary; never contributes to a PASS"
+    }
+  ],
+  "verdict": {
+    "verdict": "NO-PROMOTE",
+    "why": "K-E0b FAIL: note delivered: note_rate >= 0.8 and >=1 `EFFNOTE v=1 kind=note` line on >= 20 of 25 games; kill rule 2 (the behavioural test: B1 >= 0.39862542955326463) -- B1 = 0.497065 vs the sealed line 0.398625 (control spread minimum)",
+    "void_reasons": [],
+    "kill_reasons": [],
+    "no_promote_reasons": [
+      "K-E0b FAIL: note delivered: note_rate >= 0.8 and >=1 `EFFNOTE v=1 kind=note` line on >= 20 of 25 games",
+      "kill rule 2 (the behavioural test: B1 >= 0.39862542955326463) -- B1 = 0.497065 vs the sealed line 0.398625 (control spread minimum)"
+    ],
+    "readable": true,
+    "licenses": "nothing. A delivered mechanism is not an efficacy claim."
+  }
+}

@@ -1,0 +1,31 @@
+## Summary (2 sentences)
+This is a well-instrumented status brief with clean ledger hygiene, but as a *strategy* document it is load-bearingly hollow: the frozen arm (mean 0.974, s 0.143) is statistically incapable of reaching the 1.49 gold cutoff, and the only capability bet (A17 72B) has no performance evidence yet — only a boot canary. Worse, the team's own fork-diff analysis identifies a one-line harness fix (boristown's vLLM readiness gate, 1.47) that the brief neither adopts nor rejects with reasons, while proposing to reduce panel oversight to Sundays-only.
+
+## Objections
+
+**[MAJOR] The frozen arm cannot reach gold, and the brief has no stated path that can.** With n=13, mean 0.974, s 0.143, a 1.49 draw is a ≈3.6σ event; even the documented artifact tail (1.47, boristown) sits *at* the cutoff under a different harness. Daily frozen filler therefore preserves 1.33 at best while rank bleeds (~#50+ and sliding). The brief tracks the gap (1.33 vs 1.49) but never states which initiative closes it, with what expected Δscore, by when — A17 has zero throughput or score data, and war-v4 is deferred to an open question. A strategy proposal must contain a quantified gap-closing plan; this one contains a monitoring loop.
+
+**[MAJOR] The cheapest evidence-backed lift is sitting unclaimed in your own war room.** Per your ledger, boristown's 1.47 fork is byte-identical to your artifact except a vLLM readiness gate (`fork_diff_boristown_2026-07-24.md`). Mechanistically this is exactly the class of harness defect that produces your 0.82–1.05 mass: episodes burned while the model server is still loading yield wasted early actions and depress score. If your frozen fork lacks this gate, adopting it is a minimal, auditable, fork-not-build change with a plausible +0.1–0.5 expected lift and a controlled A/B design ready-made (5 gated vs. 5 frozen draws). The brief must either schedule this experiment or state explicitly why it was rejected — silence on the single highest-value known diff is the biggest hole in the document.
+
+**[MAJOR] "Push fires only on v5 PASS" gates a performance-critical deployment on a *boot* canary, under newly reduced oversight.** A boot canary proves the dataset-weights route loads; it says nothing about 72B-AWQ action throughput, tool-call validity rate, or score under the Kaggle time limit — the ρ_action denominator you admit only arrives *with* v6. Combined with open question #2 (Sundays-only panels, weekday promotion via "sealed arithmetic gates"), the highest-risk push of the week auto-fires with no adversarial review between canary PASS and deployment. Condition the panel's acknowledgment of the restructure on: any push that changes the model class (7B-family → 72B) requires either Sunday review or a pre-registered performance gate, not a boot gate.
+
+**[MAJOR] The Qwen2.5-VL tool-call format defect is handled by an unmeasured "fenced-recovery adapter" — this is prompt-it-better hand-waving.** The brief notes the defect is "still ours to solve" and that the staged adapter is "unaffected," but reports no offline numbers: what fraction of tool calls are malformed at your quantization/sampling settings, what fraction does the adapter recover, and what is the residual dead-action rate per episode? A 72B model that fumbles 15% of tool calls under time pressure can easily score *below* the frozen 7B-class fork. Supply an offline harness replay (≥200 tool-call attempts on recorded game states) with parse-failure and recovery rates before v6 is allowed to consume a scored draw.
+
+**[MINOR] Ledger provenance gap for the 0.84 draw.** The canonical `runs/lb_ground_truth.md` (refreshed 07-25) ends at n=11; the brief's n=13 arithmetic checks out (10.80 + 0.84 + 1.02 = 12.66, mean 0.9738 ✓) but the 0.84 (07-26) exists only in a brief, not the API-verified ledger, which the team "deliberately" hasn't edited. Fine as discipline, but then the brief should not describe its n=13 stats as "validated vs runs/lb_ground_truth.md" — it is validated against a brief. Run the refresh path before Sunday consolidation stats are quoted.
+
+**[MINOR] Filler draws carry zero information; justify the slot economics.** With the band tight at n=13 and MK/CUSUM showing no trend, each additional frozen draw buys essentially nothing (marginal update to s is negligible; best-score improvement requires a >2.5σ draw). If daily slots are use-it-or-lose-it, say so explicitly; if they bank, the exploration cadence (open question #4) should default to spending them on gated-fork A/B or A21 draw #2, not filler.
+
+## Questions for the authors (numbered)
+1. Why has the boristown vLLM readiness gate — your own documented sole functional diff on a 1.47-scoring byte-identical artifact — not been ported into the frozen fork, and what is the objection to a pre-registered 5v5 A/B on it?
+2. What are the measured tool-call parse-failure and adapter-recovery rates for Qwen2.5-VL-72B-AWQ at your target quantization, on replayed episodes? If unmeasured, what blocks measuring offline before v6 pushes?
+3. What is v6's PASS criterion beyond boot — is there any action-throughput or score floor a 72B run must clear before it displaces frozen filler in scored slots?
+4. State the explicit theory of reaching ≥1.49 by Nov 2: which initiative(s), expected Δscore each, and the decision date at which A17 is declared dead and war-v4 becomes the sole bet.
+5. Under the Sundays-only restructure, what specific event classes force weekday panel escalation? "Sealed arithmetic gates" is not an answer unless the gate inequalities are enumerated.
+6. Are daily submission slots use-it-or-lose-it? If yes, cite the competition rule; if no, why is filler the default spend?
+
+## What I cannot judge
+GPU-hour budgeting and Kaggle infra specifics (dataset-weights vs model-mount route mechanics, whether ~2.5 GPU-h for v6 is realistic); the statistical validity of the MK/CUSUM drift methodology beyond sanity-checking the summary stats; competition-legal questions around forking public artifacts; and the internal KAOS memory/"dream" consolidation machinery, which I can only evaluate at the interface level.
+
+## Verdict: MAJOR-REVISION
+
+## Score: 4/10

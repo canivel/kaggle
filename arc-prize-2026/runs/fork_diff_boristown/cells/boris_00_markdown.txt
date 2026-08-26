@@ -1,0 +1,13 @@
+## inputs
+https://www.kaggle.com/competitions/arc-prize-2026-arc-agi-3
+
+https://www.kaggle.com/datasets/driessmit1/arc3-vllm-h100-wheelhouse-v3
+
+https://www.kaggle.com/datasets/jeroencottaar/taaf-kaggle-source-share
+
+https://www.kaggle.com/datasets/driessmit1/vrfai-qwen3-6-27b-fp8-hf-snapshot
+
+## 1. Environment and submission mode
+
+Detect whether this is a real competition rerun (which minimises diagnostics), set the
+framework's environment flags, and put the CUDA libraries on the linker path.

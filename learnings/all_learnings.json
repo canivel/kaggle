@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp": "2026-03-27T01:19:07.337598",
+    "source_agent": "kaggle-researcher",
+    "phase": "submit_and_learn",
+    "iteration": 19,
+    "category": "strategy",
+    "insight": "FEATURE LEAKAGE: groupby stats and frequency encoding computed on full train BEFORE CV splits inflates CV. Must compute ALL aggregations inside each CV fold.",
+    "impact": "high",
+    "evidence": "CV=0.91647 but LB=0.91380 (gap 0.00267). Top notebooks compute all FE inside folds.",
+    "action": "Move ALL groupby/frequency/target encoding INSIDE CV loop. CV will drop but LB will improve.",
+    "applied_to": [
+      "kaggle-feature-engineer",
+      "kaggle-model-trainer",
+      "kaggle-orchestrator"
+    ]
+  }
+]

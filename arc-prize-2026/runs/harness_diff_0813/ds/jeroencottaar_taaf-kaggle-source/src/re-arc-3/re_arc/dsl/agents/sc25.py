@@ -1,0 +1,3 @@
+from ._official_human_replay import OfficialHumanReplayAgent
+
+AGENT_CLASS = OfficialHumanReplayAgent

@@ -1,0 +1,31 @@
+{
+  "q38-field-floor": {
+    "n_games": 25,
+    "lc_total": 28,
+    "mean_score": 6.173,
+    "total_actions": 1639,
+    "games_won": 0,
+    "per_game_lc_max": 7
+  },
+  "baseline-duck-harness-kaggle": {
+    "m": 3,
+    "lc": [
+      18,
+      19,
+      21
+    ],
+    "mean_scores": [
+      1.427,
+      1.939,
+      3.42
+    ]
+  },
+  "q38-medium-context": {
+    "lc": [
+      21,
+      17
+    ],
+    "mean_score": 2.795,
+    "note": "sealed REFUTE-2x arm, re-scoped not vacated"
+  }
+}

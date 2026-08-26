@@ -1,0 +1,2300 @@
+{
+ "protocol": "learnings/war_room/latent_state_audit_protocol.md",
+ "mandate": "R16 C6 (rl-planning MAJOR#2, prog-synthesis N2); R17 checklist item 2",
+ "selftest": "PASS (base) / PASS (holdout)",
+ "split": "sorted stream ids, alternating; even index -> TRAIN (4/4 on 8 streams); engine versions never pooled",
+ "thresholds": {
+  "holdout_det": 0.99,
+  "holdout_wilson_lb": 0.95,
+  "fit_det": 0.99,
+  "support_floor": 10,
+  "support_frac": 0.2
+ },
+ "rows": [
+  {
+   "game": "ar25",
+   "engine_version": "ar25-0c556536",
+   "excluded_versions": [
+    "ar25-e3c63847"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "CLEAN",
+   "insample_resolver": null,
+   "mode": "clean-certificate",
+   "clean_cert": {
+    "determinism": 1.0,
+    "repeat_visits": 184,
+    "wilson_lb": 0.9795494623774134,
+    "confirmed": true,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/ar25-0c556536",
+      "split": "HOLDOUT",
+      "actions": 242,
+      "repeat_visits": 51,
+      "determinism": 1.0,
+      "wilson_lb": 0.9299533801014686
+     },
+     {
+      "stream": "sched_v1/ar25-0c556536",
+      "split": "HOLDOUT",
+      "actions": 158,
+      "repeat_visits": 5,
+      "determinism": 1.0,
+      "wilson_lb": 0.5655175352168252
+     },
+     {
+      "stream": "w0_eval_s1/ar25-0c556536",
+      "split": "HOLDOUT",
+      "actions": 122,
+      "repeat_visits": 16,
+      "determinism": 1.0,
+      "wilson_lb": 0.8063923194655636
+     },
+     {
+      "stream": "war_eval_v1/ar25-0c556536",
+      "split": "HOLDOUT",
+      "actions": 201,
+      "repeat_visits": 6,
+      "determinism": 1.0,
+      "wilson_lb": 0.6096657120978346
+     },
+     {
+      "stream": "war_eval_v2/ar25-0c556536",
+      "split": "HOLDOUT",
+      "actions": 120,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v3/ar25-0c556536",
+      "split": "HOLDOUT",
+      "actions": 85,
+      "repeat_visits": 4,
+      "determinism": 1.0,
+      "wilson_lb": 0.5101091635454027
+     },
+     {
+      "stream": "war_v2_eval_s1/ar25-0c556536",
+      "split": "HOLDOUT",
+      "actions": 92,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     }
+    ]
+   },
+   "validated_verdict": "CLEAN",
+   "changed": false,
+   "ewm_carrier": "SAFE",
+   "resync_viable": "NOT-NEEDED",
+   "banking": "PREFIX-SAFE"
+  },
+  {
+   "game": "bp35",
+   "engine_version": "bp35-0a0ad940",
+   "excluded_versions": [],
+   "n_streams": 8,
+   "insample_verdict": "CLEAN",
+   "insample_resolver": null,
+   "mode": "clean-certificate",
+   "clean_cert": {
+    "determinism": 0.9960886571056062,
+    "repeat_visits": 1534,
+    "wilson_lb": 0.9914926988587581,
+    "confirmed": true,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/bp35-0a0ad940",
+      "split": "HOLDOUT",
+      "actions": 337,
+      "repeat_visits": 106,
+      "determinism": 1.0,
+      "wilson_lb": 0.9650272414265277
+     },
+     {
+      "stream": "sched_v1/bp35-0a0ad940",
+      "split": "HOLDOUT",
+      "actions": 459,
+      "repeat_visits": 118,
+      "determinism": 1.0,
+      "wilson_lb": 0.9684716609775057
+     },
+     {
+      "stream": "seed1/bp35-0a0ad940",
+      "split": "HOLDOUT",
+      "actions": 221,
+      "repeat_visits": 112,
+      "determinism": 1.0,
+      "wilson_lb": 0.9668386529330562
+     },
+     {
+      "stream": "w0_eval_s1/bp35-0a0ad940",
+      "split": "HOLDOUT",
+      "actions": 486,
+      "repeat_visits": 238,
+      "determinism": 1.0,
+      "wilson_lb": 0.9841157970207982
+     },
+     {
+      "stream": "war_eval_v1/bp35-0a0ad940",
+      "split": "HOLDOUT",
+      "actions": 123,
+      "repeat_visits": 23,
+      "determinism": 1.0,
+      "wilson_lb": 0.8568833815495732
+     },
+     {
+      "stream": "war_eval_v2/bp35-0a0ad940",
+      "split": "HOLDOUT",
+      "actions": 474,
+      "repeat_visits": 230,
+      "determinism": 0.991304347826087,
+      "wilson_lb": 0.9688546821425004
+     },
+     {
+      "stream": "war_eval_v3/bp35-0a0ad940",
+      "split": "HOLDOUT",
+      "actions": 366,
+      "repeat_visits": 54,
+      "determinism": 1.0,
+      "wilson_lb": 0.9335864119091036
+     },
+     {
+      "stream": "war_v2_eval_s1/bp35-0a0ad940",
+      "split": "HOLDOUT",
+      "actions": 448,
+      "repeat_visits": 223,
+      "determinism": 0.9955156950672646,
+      "wilson_lb": 0.9750407450452326
+     }
+    ]
+   },
+   "validated_verdict": "CLEAN",
+   "changed": false,
+   "ewm_carrier": "SAFE",
+   "resync_viable": "NOT-NEEDED",
+   "banking": "PREFIX-SAFE"
+  },
+  {
+   "game": "cd82",
+   "engine_version": "cd82-fb555c5d",
+   "excluded_versions": [],
+   "n_streams": 8,
+   "insample_verdict": "ALIASED-RESOLVABLE(parity)",
+   "insample_resolver": "parity",
+   "mode": "resolver",
+   "holdout": {
+    "streams": [
+     "phase1_v5/cd82-fb555c5d",
+     "sched_v1/cd82-fb555c5d",
+     "seed1/cd82-fb555c5d",
+     "w0_eval_s1/cd82-fb555c5d",
+     "war_eval_v1/cd82-fb555c5d",
+     "war_eval_v2/cd82-fb555c5d",
+     "war_eval_v3/cd82-fb555c5d",
+     "war_v2_eval_s1/cd82-fb555c5d"
+    ],
+    "train_streams": [
+     "phase1_v5/cd82-fb555c5d",
+     "seed1/cd82-fb555c5d",
+     "war_eval_v1/cd82-fb555c5d",
+     "war_eval_v3/cd82-fb555c5d"
+    ],
+    "holdout_streams": [
+     "sched_v1/cd82-fb555c5d",
+     "w0_eval_s1/cd82-fb555c5d",
+     "war_eval_v2/cd82-fb555c5d",
+     "war_v2_eval_s1/cd82-fb555c5d"
+    ],
+    "thresholds": {
+     "det": 0.99,
+     "wilson_lb": 0.95
+    },
+    "train_verdict": "ALIASED-RESOLVABLE(parity)",
+    "resolver": "parity",
+    "resolver_class": "hidden-phase",
+    "train_det_resolved": 1.0,
+    "holdout": {
+     "base_determinism": 0.803030303030303,
+     "base_repeat_visits": 66,
+     "determinism": 1.0,
+     "repeat_visits": 43,
+     "modal_hits": 43,
+     "wilson_lb": 0.9179901967742088
+    },
+    "status": "DROP-HOLDOUT",
+    "validated": false,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/cd82-fb555c5d",
+      "split": "TRAIN",
+      "actions": 269,
+      "repeat_visits": 4,
+      "determinism": 1.0,
+      "wilson_lb": 0.5101091635454027
+     },
+     {
+      "stream": "sched_v1/cd82-fb555c5d",
+      "split": "HOLDOUT",
+      "actions": 226,
+      "repeat_visits": 4,
+      "determinism": 1.0,
+      "wilson_lb": 0.5101091635454027
+     },
+     {
+      "stream": "seed1/cd82-fb555c5d",
+      "split": "TRAIN",
+      "actions": 146,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "w0_eval_s1/cd82-fb555c5d",
+      "split": "HOLDOUT",
+      "actions": 144,
+      "repeat_visits": 2,
+      "determinism": 1.0,
+      "wilson_lb": 0.3423802275066531
+     },
+     {
+      "stream": "war_eval_v1/cd82-fb555c5d",
+      "split": "TRAIN",
+      "actions": 141,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v2/cd82-fb555c5d",
+      "split": "HOLDOUT",
+      "actions": 82,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v3/cd82-fb555c5d",
+      "split": "TRAIN",
+      "actions": 209,
+      "repeat_visits": 6,
+      "determinism": 1.0,
+      "wilson_lb": 0.6096657120978346
+     },
+     {
+      "stream": "war_v2_eval_s1/cd82-fb555c5d",
+      "split": "HOLDOUT",
+      "actions": 145,
+      "repeat_visits": 2,
+      "determinism": 1.0,
+      "wilson_lb": 0.3423802275066531
+     }
+    ]
+   },
+   "sensitivity_35": {
+    "status": "DROP-HOLDOUT",
+    "resolver": "parity",
+    "holdout": {
+     "base_determinism": 0.7264150943396226,
+     "base_repeat_visits": 106,
+     "determinism": 1.0,
+     "repeat_visits": 53,
+     "modal_hits": 53,
+     "wilson_lb": 0.932418011423458
+    }
+   },
+   "validated_verdict": "ALIASED-UNRESOLVED",
+   "changed": true,
+   "ewm_carrier": "NO",
+   "resync_viable": "NO",
+   "banking": "FULL-REPLAY-ONLY"
+  },
+  {
+   "game": "cn04",
+   "engine_version": "cn04-2fe56bfb",
+   "excluded_versions": [
+    "cn04-65d47d14"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "ALIASED-RESOLVABLE(mod3)",
+   "insample_resolver": "mod3",
+   "mode": "resolver",
+   "holdout": {
+    "streams": [
+     "phase1_v5/cn04-2fe56bfb",
+     "sched_v1/cn04-2fe56bfb",
+     "w0_eval_s1/cn04-2fe56bfb",
+     "war_eval_v1/cn04-2fe56bfb",
+     "war_eval_v2/cn04-2fe56bfb",
+     "war_eval_v3/cn04-2fe56bfb",
+     "war_v2_eval_s1/cn04-2fe56bfb"
+    ],
+    "train_streams": [
+     "phase1_v5/cn04-2fe56bfb",
+     "w0_eval_s1/cn04-2fe56bfb",
+     "war_eval_v2/cn04-2fe56bfb",
+     "war_v2_eval_s1/cn04-2fe56bfb"
+    ],
+    "holdout_streams": [
+     "sched_v1/cn04-2fe56bfb",
+     "war_eval_v1/cn04-2fe56bfb",
+     "war_eval_v3/cn04-2fe56bfb"
+    ],
+    "thresholds": {
+     "det": 0.99,
+     "wilson_lb": 0.95
+    },
+    "train_verdict": "ALIASED-RESOLVABLE(mod3)",
+    "resolver": "mod3",
+    "resolver_class": "hidden-phase",
+    "train_det_resolved": 1.0,
+    "holdout": {
+     "base_determinism": 1.0,
+     "base_repeat_visits": 23,
+     "determinism": 1.0,
+     "repeat_visits": 23,
+     "modal_hits": 23,
+     "wilson_lb": 0.8568833815495732
+    },
+    "status": "DROP-HOLDOUT",
+    "validated": false,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/cn04-2fe56bfb",
+      "split": "TRAIN",
+      "actions": 292,
+      "repeat_visits": 6,
+      "determinism": 1.0,
+      "wilson_lb": 0.6096657120978346
+     },
+     {
+      "stream": "sched_v1/cn04-2fe56bfb",
+      "split": "HOLDOUT",
+      "actions": 76,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "w0_eval_s1/cn04-2fe56bfb",
+      "split": "TRAIN",
+      "actions": 340,
+      "repeat_visits": 26,
+      "determinism": 1.0,
+      "wilson_lb": 0.8712710781407846
+     },
+     {
+      "stream": "war_eval_v1/cn04-2fe56bfb",
+      "split": "HOLDOUT",
+      "actions": 304,
+      "repeat_visits": 2,
+      "determinism": 1.0,
+      "wilson_lb": 0.3423802275066531
+     },
+     {
+      "stream": "war_eval_v2/cn04-2fe56bfb",
+      "split": "TRAIN",
+      "actions": 186,
+      "repeat_visits": 7,
+      "determinism": 1.0,
+      "wilson_lb": 0.6456695649333126
+     },
+     {
+      "stream": "war_eval_v3/cn04-2fe56bfb",
+      "split": "HOLDOUT",
+      "actions": 183,
+      "repeat_visits": 12,
+      "determinism": 1.0,
+      "wilson_lb": 0.7575059933447591
+     },
+     {
+      "stream": "war_v2_eval_s1/cn04-2fe56bfb",
+      "split": "TRAIN",
+      "actions": 304,
+      "repeat_visits": 89,
+      "determinism": 1.0,
+      "wilson_lb": 0.9586234547637476
+     }
+    ]
+   },
+   "sensitivity_35": {
+    "status": "DROP-HOLDOUT",
+    "resolver": "parity",
+    "holdout": {
+     "base_determinism": 0.9523809523809523,
+     "base_repeat_visits": 63,
+     "determinism": 0.9649122807017544,
+     "repeat_visits": 57,
+     "modal_hits": 55,
+     "wilson_lb": 0.8807921863237419
+    }
+   },
+   "validated_verdict": "ALIASED-UNRESOLVED",
+   "changed": true,
+   "ewm_carrier": "NO",
+   "resync_viable": "NO",
+   "banking": "FULL-REPLAY-ONLY"
+  },
+  {
+   "game": "dc22",
+   "engine_version": "dc22-fdcac232",
+   "excluded_versions": [
+    "dc22-4c9bff3e"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "ALIASED-RESOLVABLE(parity)",
+   "insample_resolver": "parity",
+   "mode": "resolver",
+   "holdout": {
+    "streams": [
+     "phase1_v5/dc22-fdcac232",
+     "sched_v1/dc22-fdcac232",
+     "w0_eval_s1/dc22-fdcac232",
+     "war_eval_v1/dc22-fdcac232",
+     "war_eval_v2/dc22-fdcac232",
+     "war_eval_v3/dc22-fdcac232",
+     "war_v2_eval_s1/dc22-fdcac232"
+    ],
+    "train_streams": [
+     "phase1_v5/dc22-fdcac232",
+     "w0_eval_s1/dc22-fdcac232",
+     "war_eval_v2/dc22-fdcac232",
+     "war_v2_eval_s1/dc22-fdcac232"
+    ],
+    "holdout_streams": [
+     "sched_v1/dc22-fdcac232",
+     "war_eval_v1/dc22-fdcac232",
+     "war_eval_v3/dc22-fdcac232"
+    ],
+    "thresholds": {
+     "det": 0.99,
+     "wilson_lb": 0.95
+    },
+    "train_verdict": "ALIASED-UNRESOLVED",
+    "resolver": null,
+    "resolver_class": null,
+    "train_det_resolved": null,
+    "status": "DROP-FIT-FAILED",
+    "validated": false,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/dc22-fdcac232",
+      "split": "TRAIN",
+      "actions": 52,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "sched_v1/dc22-fdcac232",
+      "split": "HOLDOUT",
+      "actions": 172,
+      "repeat_visits": 12,
+      "determinism": 0.5833333333333334,
+      "wilson_lb": 0.3195113125495498
+     },
+     {
+      "stream": "w0_eval_s1/dc22-fdcac232",
+      "split": "TRAIN",
+      "actions": 284,
+      "repeat_visits": 6,
+      "determinism": 0.6666666666666666,
+      "wilson_lb": 0.299993315138392
+     },
+     {
+      "stream": "war_eval_v1/dc22-fdcac232",
+      "split": "HOLDOUT",
+      "actions": 61,
+      "repeat_visits": 4,
+      "determinism": 0.5,
+      "wilson_lb": 0.15003898915214947
+     },
+     {
+      "stream": "war_eval_v2/dc22-fdcac232",
+      "split": "TRAIN",
+      "actions": 46,
+      "repeat_visits": 8,
+      "determinism": 0.5,
+      "wilson_lb": 0.2152160622138776
+     },
+     {
+      "stream": "war_eval_v3/dc22-fdcac232",
+      "split": "HOLDOUT",
+      "actions": 89,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_v2_eval_s1/dc22-fdcac232",
+      "split": "TRAIN",
+      "actions": 83,
+      "repeat_visits": 12,
+      "determinism": 0.5,
+      "wilson_lb": 0.2537815976337061
+     }
+    ]
+   },
+   "sensitivity_35": {
+    "status": "DROP-FIT-FAILED",
+    "resolver": null,
+    "holdout": null
+   },
+   "validated_verdict": "ALIASED-UNRESOLVED",
+   "changed": true,
+   "ewm_carrier": "NO",
+   "resync_viable": "NO",
+   "banking": "FULL-REPLAY-ONLY"
+  },
+  {
+   "game": "ft09",
+   "engine_version": "ft09-0d8bbf25",
+   "excluded_versions": [],
+   "n_streams": 8,
+   "insample_verdict": "CLEAN",
+   "insample_resolver": null,
+   "mode": "clean-certificate",
+   "clean_cert": {
+    "determinism": 1.0,
+    "repeat_visits": 232,
+    "wilson_lb": 0.9837116898788575,
+    "confirmed": true,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/ft09-0d8bbf25",
+      "split": "HOLDOUT",
+      "actions": 39,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "sched_v1/ft09-0d8bbf25",
+      "split": "HOLDOUT",
+      "actions": 129,
+      "repeat_visits": 5,
+      "determinism": 1.0,
+      "wilson_lb": 0.5655175352168252
+     },
+     {
+      "stream": "seed1/ft09-0d8bbf25",
+      "split": "HOLDOUT",
+      "actions": 169,
+      "repeat_visits": 80,
+      "determinism": 1.0,
+      "wilson_lb": 0.9541818704644727
+     },
+     {
+      "stream": "w0_eval_s1/ft09-0d8bbf25",
+      "split": "HOLDOUT",
+      "actions": 39,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v1/ft09-0d8bbf25",
+      "split": "HOLDOUT",
+      "actions": 135,
+      "repeat_visits": 7,
+      "determinism": 1.0,
+      "wilson_lb": 0.6456695649333126
+     },
+     {
+      "stream": "war_eval_v2/ft09-0d8bbf25",
+      "split": "HOLDOUT",
+      "actions": 45,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v3/ft09-0d8bbf25",
+      "split": "HOLDOUT",
+      "actions": 40,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_v2_eval_s1/ft09-0d8bbf25",
+      "split": "HOLDOUT",
+      "actions": 205,
+      "repeat_visits": 2,
+      "determinism": 1.0,
+      "wilson_lb": 0.3423802275066531
+     }
+    ]
+   },
+   "validated_verdict": "CLEAN",
+   "changed": false,
+   "ewm_carrier": "SAFE",
+   "resync_viable": "NOT-NEEDED",
+   "banking": "PREFIX-SAFE"
+  },
+  {
+   "game": "g50t",
+   "engine_version": "g50t-5849a774",
+   "excluded_versions": [],
+   "n_streams": 8,
+   "insample_verdict": "ALIASED-UNRESOLVED",
+   "insample_resolver": null,
+   "mode": "unchanged",
+   "validated_verdict": "ALIASED-UNRESOLVED",
+   "changed": false,
+   "ewm_carrier": "NO",
+   "resync_viable": "NO",
+   "banking": "FULL-REPLAY-ONLY"
+  },
+  {
+   "game": "ka59",
+   "engine_version": "ka59-38d34dbb",
+   "excluded_versions": [
+    "ka59-9f096b4a"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "ALIASED-RESOLVABLE(parity)",
+   "insample_resolver": "parity",
+   "mode": "resolver",
+   "holdout": {
+    "streams": [
+     "phase1_v5/ka59-38d34dbb",
+     "sched_v1/ka59-38d34dbb",
+     "w0_eval_s1/ka59-38d34dbb",
+     "war_eval_v1/ka59-38d34dbb",
+     "war_eval_v2/ka59-38d34dbb",
+     "war_eval_v3/ka59-38d34dbb",
+     "war_v2_eval_s1/ka59-38d34dbb"
+    ],
+    "train_streams": [
+     "phase1_v5/ka59-38d34dbb",
+     "w0_eval_s1/ka59-38d34dbb",
+     "war_eval_v2/ka59-38d34dbb",
+     "war_v2_eval_s1/ka59-38d34dbb"
+    ],
+    "holdout_streams": [
+     "sched_v1/ka59-38d34dbb",
+     "war_eval_v1/ka59-38d34dbb",
+     "war_eval_v3/ka59-38d34dbb"
+    ],
+    "thresholds": {
+     "det": 0.99,
+     "wilson_lb": 0.95
+    },
+    "train_verdict": "ALIASED-RESOLVABLE(parity)",
+    "resolver": "parity",
+    "resolver_class": "hidden-phase",
+    "train_det_resolved": 1.0,
+    "holdout": {
+     "base_determinism": 0.6,
+     "base_repeat_visits": 40,
+     "determinism": 1.0,
+     "repeat_visits": 6,
+     "modal_hits": 6,
+     "wilson_lb": 0.6096657120978346
+    },
+    "status": "DROP-HOLDOUT",
+    "validated": false,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/ka59-38d34dbb",
+      "split": "TRAIN",
+      "actions": 165,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "sched_v1/ka59-38d34dbb",
+      "split": "HOLDOUT",
+      "actions": 137,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "w0_eval_s1/ka59-38d34dbb",
+      "split": "TRAIN",
+      "actions": 77,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v1/ka59-38d34dbb",
+      "split": "HOLDOUT",
+      "actions": 117,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v2/ka59-38d34dbb",
+      "split": "TRAIN",
+      "actions": 122,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v3/ka59-38d34dbb",
+      "split": "HOLDOUT",
+      "actions": 189,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_v2_eval_s1/ka59-38d34dbb",
+      "split": "TRAIN",
+      "actions": 150,
+      "repeat_visits": 2,
+      "determinism": 1.0,
+      "wilson_lb": 0.3423802275066531
+     }
+    ]
+   },
+   "sensitivity_35": {
+    "status": "DROP-HOLDOUT",
+    "resolver": "parity",
+    "holdout": {
+     "base_determinism": 0.7297297297297297,
+     "base_repeat_visits": 37,
+     "determinism": 1.0,
+     "repeat_visits": 11,
+     "modal_hits": 11,
+     "wilson_lb": 0.7411670330319683
+    }
+   },
+   "validated_verdict": "ALIASED-UNRESOLVED",
+   "changed": true,
+   "ewm_carrier": "NO",
+   "resync_viable": "NO",
+   "banking": "FULL-REPLAY-ONLY"
+  },
+  {
+   "game": "lf52",
+   "engine_version": "lf52-271a04aa",
+   "excluded_versions": [],
+   "n_streams": 8,
+   "insample_verdict": "CLEAN",
+   "insample_resolver": null,
+   "mode": "clean-certificate",
+   "clean_cert": {
+    "determinism": 1.0,
+    "repeat_visits": 97,
+    "wilson_lb": 0.9619059574740523,
+    "confirmed": true,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/lf52-271a04aa",
+      "split": "HOLDOUT",
+      "actions": 211,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "sched_v1/lf52-271a04aa",
+      "split": "HOLDOUT",
+      "actions": 95,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "seed1/lf52-271a04aa",
+      "split": "HOLDOUT",
+      "actions": 122,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "w0_eval_s1/lf52-271a04aa",
+      "split": "HOLDOUT",
+      "actions": 279,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v1/lf52-271a04aa",
+      "split": "HOLDOUT",
+      "actions": 73,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v2/lf52-271a04aa",
+      "split": "HOLDOUT",
+      "actions": 131,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v3/lf52-271a04aa",
+      "split": "HOLDOUT",
+      "actions": 101,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_v2_eval_s1/lf52-271a04aa",
+      "split": "HOLDOUT",
+      "actions": 95,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     }
+    ]
+   },
+   "validated_verdict": "CLEAN",
+   "changed": false,
+   "ewm_carrier": "SAFE",
+   "resync_viable": "NOT-NEEDED",
+   "banking": "PREFIX-SAFE"
+  },
+  {
+   "game": "lp85",
+   "engine_version": "lp85-305b61c3",
+   "excluded_versions": [],
+   "n_streams": 8,
+   "insample_verdict": "CLEAN",
+   "insample_resolver": null,
+   "mode": "clean-certificate",
+   "clean_cert": {
+    "determinism": 1.0,
+    "repeat_visits": 142,
+    "wilson_lb": 0.9736600356869919,
+    "confirmed": true,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/lp85-305b61c3",
+      "split": "HOLDOUT",
+      "actions": 11,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "sched_v1/lp85-305b61c3",
+      "split": "HOLDOUT",
+      "actions": 219,
+      "repeat_visits": 57,
+      "determinism": 1.0,
+      "wilson_lb": 0.9368611651470209
+     },
+     {
+      "stream": "seed1/lp85-305b61c3",
+      "split": "HOLDOUT",
+      "actions": 40,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "w0_eval_s1/lp85-305b61c3",
+      "split": "HOLDOUT",
+      "actions": 147,
+      "repeat_visits": 14,
+      "determinism": 1.0,
+      "wilson_lb": 0.7846891972623642
+     },
+     {
+      "stream": "war_eval_v1/lp85-305b61c3",
+      "split": "HOLDOUT",
+      "actions": 72,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v2/lp85-305b61c3",
+      "split": "HOLDOUT",
+      "actions": 24,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v3/lp85-305b61c3",
+      "split": "HOLDOUT",
+      "actions": 140,
+      "repeat_visits": 2,
+      "determinism": 1.0,
+      "wilson_lb": 0.3423802275066531
+     },
+     {
+      "stream": "war_v2_eval_s1/lp85-305b61c3",
+      "split": "HOLDOUT",
+      "actions": 71,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     }
+    ]
+   },
+   "validated_verdict": "CLEAN",
+   "changed": false,
+   "ewm_carrier": "SAFE",
+   "resync_viable": "NOT-NEEDED",
+   "banking": "PREFIX-SAFE"
+  },
+  {
+   "game": "ls20",
+   "engine_version": "ls20-9607627b",
+   "excluded_versions": [],
+   "n_streams": 8,
+   "insample_verdict": "CLEAN",
+   "insample_resolver": null,
+   "mode": "clean-certificate",
+   "clean_cert": {
+    "determinism": 1.0,
+    "repeat_visits": 126,
+    "wilson_lb": 0.9704142355178014,
+    "confirmed": true,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/ls20-9607627b",
+      "split": "HOLDOUT",
+      "actions": 104,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "sched_v1/ls20-9607627b",
+      "split": "HOLDOUT",
+      "actions": 188,
+      "repeat_visits": 35,
+      "determinism": 1.0,
+      "wilson_lb": 0.9010990076755959
+     },
+     {
+      "stream": "seed1/ls20-9607627b",
+      "split": "HOLDOUT",
+      "actions": 150,
+      "repeat_visits": 5,
+      "determinism": 1.0,
+      "wilson_lb": 0.5655175352168252
+     },
+     {
+      "stream": "w0_eval_s1/ls20-9607627b",
+      "split": "HOLDOUT",
+      "actions": 19,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v1/ls20-9607627b",
+      "split": "HOLDOUT",
+      "actions": 91,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v2/ls20-9607627b",
+      "split": "HOLDOUT",
+      "actions": 78,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v3/ls20-9607627b",
+      "split": "HOLDOUT",
+      "actions": 66,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_v2_eval_s1/ls20-9607627b",
+      "split": "HOLDOUT",
+      "actions": 43,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     }
+    ]
+   },
+   "validated_verdict": "CLEAN",
+   "changed": false,
+   "ewm_carrier": "SAFE",
+   "resync_viable": "NOT-NEEDED",
+   "banking": "PREFIX-SAFE"
+  },
+  {
+   "game": "m0r0",
+   "engine_version": "m0r0-492f87ba",
+   "excluded_versions": [
+    "m0r0-dadda488"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "ALIASED-UNRESOLVED",
+   "insample_resolver": null,
+   "mode": "unchanged",
+   "validated_verdict": "ALIASED-UNRESOLVED",
+   "changed": false,
+   "ewm_carrier": "NO",
+   "resync_viable": "NO",
+   "banking": "FULL-REPLAY-ONLY"
+  },
+  {
+   "game": "r11l",
+   "engine_version": "r11l-495a7899",
+   "excluded_versions": [
+    "r11l-aa269680"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "CLEAN",
+   "insample_resolver": null,
+   "mode": "clean-certificate",
+   "clean_cert": {
+    "determinism": 1.0,
+    "repeat_visits": 99,
+    "wilson_lb": 0.9626467879321727,
+    "confirmed": true,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/r11l-495a7899",
+      "split": "HOLDOUT",
+      "actions": 74,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "sched_v1/r11l-495a7899",
+      "split": "HOLDOUT",
+      "actions": 47,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "w0_eval_s1/r11l-495a7899",
+      "split": "HOLDOUT",
+      "actions": 57,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v1/r11l-495a7899",
+      "split": "HOLDOUT",
+      "actions": 81,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v2/r11l-495a7899",
+      "split": "HOLDOUT",
+      "actions": 443,
+      "repeat_visits": 57,
+      "determinism": 1.0,
+      "wilson_lb": 0.9368611651470209
+     },
+     {
+      "stream": "war_eval_v3/r11l-495a7899",
+      "split": "HOLDOUT",
+      "actions": 50,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_v2_eval_s1/r11l-495a7899",
+      "split": "HOLDOUT",
+      "actions": 56,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     }
+    ]
+   },
+   "validated_verdict": "CLEAN",
+   "changed": false,
+   "ewm_carrier": "SAFE",
+   "resync_viable": "NOT-NEEDED",
+   "banking": "PREFIX-SAFE"
+  },
+  {
+   "game": "re86",
+   "engine_version": "re86-8af5384d",
+   "excluded_versions": [
+    "re86-4e57566e"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "ALIASED-RESOLVABLE(parity)",
+   "insample_resolver": "parity",
+   "mode": "resolver",
+   "holdout": {
+    "streams": [
+     "phase1_v5/re86-8af5384d",
+     "sched_v1/re86-8af5384d",
+     "w0_eval_s1/re86-8af5384d",
+     "war_eval_v1/re86-8af5384d",
+     "war_eval_v2/re86-8af5384d",
+     "war_eval_v3/re86-8af5384d",
+     "war_v2_eval_s1/re86-8af5384d"
+    ],
+    "train_streams": [
+     "phase1_v5/re86-8af5384d",
+     "w0_eval_s1/re86-8af5384d",
+     "war_eval_v2/re86-8af5384d",
+     "war_v2_eval_s1/re86-8af5384d"
+    ],
+    "holdout_streams": [
+     "sched_v1/re86-8af5384d",
+     "war_eval_v1/re86-8af5384d",
+     "war_eval_v3/re86-8af5384d"
+    ],
+    "thresholds": {
+     "det": 0.99,
+     "wilson_lb": 0.95
+    },
+    "train_verdict": "LOW-SUPPORT",
+    "resolver": null,
+    "resolver_class": null,
+    "train_det_resolved": null,
+    "status": "DROP-FIT-FAILED",
+    "validated": false,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/re86-8af5384d",
+      "split": "TRAIN",
+      "actions": 185,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "sched_v1/re86-8af5384d",
+      "split": "HOLDOUT",
+      "actions": 85,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "w0_eval_s1/re86-8af5384d",
+      "split": "TRAIN",
+      "actions": 87,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v1/re86-8af5384d",
+      "split": "HOLDOUT",
+      "actions": 296,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v2/re86-8af5384d",
+      "split": "TRAIN",
+      "actions": 163,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v3/re86-8af5384d",
+      "split": "HOLDOUT",
+      "actions": 237,
+      "repeat_visits": 6,
+      "determinism": 0.5,
+      "wilson_lb": 0.1876163064826506
+     },
+     {
+      "stream": "war_v2_eval_s1/re86-8af5384d",
+      "split": "TRAIN",
+      "actions": 140,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     }
+    ]
+   },
+   "sensitivity_35": {
+    "status": "DROP-FIT-FAILED",
+    "resolver": null,
+    "holdout": null
+   },
+   "validated_verdict": "ALIASED-UNRESOLVED",
+   "changed": true,
+   "ewm_carrier": "NO",
+   "resync_viable": "NO",
+   "banking": "FULL-REPLAY-ONLY"
+  },
+  {
+   "game": "s5i5",
+   "engine_version": "s5i5-18d95033",
+   "excluded_versions": [
+    "s5i5-a48e4b1d"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "ALIASED-RESOLVABLE(parity)",
+   "insample_resolver": "parity",
+   "mode": "resolver",
+   "holdout": {
+    "streams": [
+     "phase1_v5/s5i5-18d95033",
+     "sched_v1/s5i5-18d95033",
+     "w0_eval_s1/s5i5-18d95033",
+     "war_eval_v1/s5i5-18d95033",
+     "war_eval_v2/s5i5-18d95033",
+     "war_eval_v3/s5i5-18d95033",
+     "war_v2_eval_s1/s5i5-18d95033"
+    ],
+    "train_streams": [
+     "phase1_v5/s5i5-18d95033",
+     "w0_eval_s1/s5i5-18d95033",
+     "war_eval_v2/s5i5-18d95033",
+     "war_v2_eval_s1/s5i5-18d95033"
+    ],
+    "holdout_streams": [
+     "sched_v1/s5i5-18d95033",
+     "war_eval_v1/s5i5-18d95033",
+     "war_eval_v3/s5i5-18d95033"
+    ],
+    "thresholds": {
+     "det": 0.99,
+     "wilson_lb": 0.95
+    },
+    "train_verdict": "LOW-SUPPORT",
+    "resolver": null,
+    "resolver_class": null,
+    "train_det_resolved": null,
+    "status": "DROP-FIT-FAILED",
+    "validated": false,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/s5i5-18d95033",
+      "split": "TRAIN",
+      "actions": 69,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "sched_v1/s5i5-18d95033",
+      "split": "HOLDOUT",
+      "actions": 74,
+      "repeat_visits": 2,
+      "determinism": 1.0,
+      "wilson_lb": 0.3423802275066531
+     },
+     {
+      "stream": "w0_eval_s1/s5i5-18d95033",
+      "split": "TRAIN",
+      "actions": 40,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v1/s5i5-18d95033",
+      "split": "HOLDOUT",
+      "actions": 69,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v2/s5i5-18d95033",
+      "split": "TRAIN",
+      "actions": 51,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v3/s5i5-18d95033",
+      "split": "HOLDOUT",
+      "actions": 62,
+      "repeat_visits": 4,
+      "determinism": 0.75,
+      "wilson_lb": 0.3006418425824019
+     },
+     {
+      "stream": "war_v2_eval_s1/s5i5-18d95033",
+      "split": "TRAIN",
+      "actions": 52,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     }
+    ]
+   },
+   "sensitivity_35": {
+    "status": "DROP-FIT-FAILED",
+    "resolver": null,
+    "holdout": null
+   },
+   "validated_verdict": "ALIASED-UNRESOLVED",
+   "changed": true,
+   "ewm_carrier": "NO",
+   "resync_viable": "NO",
+   "banking": "FULL-REPLAY-ONLY"
+  },
+  {
+   "game": "sb26",
+   "engine_version": "sb26-7fbdac44",
+   "excluded_versions": [],
+   "n_streams": 8,
+   "insample_verdict": "ALIASED-RESOLVABLE(parity)",
+   "insample_resolver": "parity",
+   "mode": "resolver",
+   "holdout": {
+    "streams": [
+     "phase1_v5/sb26-7fbdac44",
+     "sched_v1/sb26-7fbdac44",
+     "seed1/sb26-7fbdac44",
+     "w0_eval_s1/sb26-7fbdac44",
+     "war_eval_v1/sb26-7fbdac44",
+     "war_eval_v2/sb26-7fbdac44",
+     "war_eval_v3/sb26-7fbdac44",
+     "war_v2_eval_s1/sb26-7fbdac44"
+    ],
+    "train_streams": [
+     "phase1_v5/sb26-7fbdac44",
+     "seed1/sb26-7fbdac44",
+     "war_eval_v1/sb26-7fbdac44",
+     "war_eval_v3/sb26-7fbdac44"
+    ],
+    "holdout_streams": [
+     "sched_v1/sb26-7fbdac44",
+     "w0_eval_s1/sb26-7fbdac44",
+     "war_eval_v2/sb26-7fbdac44",
+     "war_v2_eval_s1/sb26-7fbdac44"
+    ],
+    "thresholds": {
+     "det": 0.99,
+     "wilson_lb": 0.95
+    },
+    "train_verdict": "ALIASED-RESOLVABLE(hist1)",
+    "resolver": "hist1",
+    "resolver_class": "hidden-history",
+    "train_det_resolved": 1.0,
+    "holdout": {
+     "base_determinism": 1.0,
+     "base_repeat_visits": 217,
+     "determinism": 1.0,
+     "repeat_visits": 190,
+     "modal_hits": 190,
+     "wilson_lb": 0.9801824705402803
+    },
+    "status": "KEEP",
+    "validated": true,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/sb26-7fbdac44",
+      "split": "TRAIN",
+      "actions": 102,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "sched_v1/sb26-7fbdac44",
+      "split": "HOLDOUT",
+      "actions": 183,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "seed1/sb26-7fbdac44",
+      "split": "TRAIN",
+      "actions": 173,
+      "repeat_visits": 2,
+      "determinism": 1.0,
+      "wilson_lb": 0.3423802275066531
+     },
+     {
+      "stream": "w0_eval_s1/sb26-7fbdac44",
+      "split": "HOLDOUT",
+      "actions": 225,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v1/sb26-7fbdac44",
+      "split": "TRAIN",
+      "actions": 111,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v2/sb26-7fbdac44",
+      "split": "HOLDOUT",
+      "actions": 256,
+      "repeat_visits": 2,
+      "determinism": 1.0,
+      "wilson_lb": 0.3423802275066531
+     },
+     {
+      "stream": "war_eval_v3/sb26-7fbdac44",
+      "split": "TRAIN",
+      "actions": 174,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_v2_eval_s1/sb26-7fbdac44",
+      "split": "HOLDOUT",
+      "actions": 567,
+      "repeat_visits": 123,
+      "determinism": 1.0,
+      "wilson_lb": 0.9697144856546903
+     }
+    ]
+   },
+   "sensitivity_35": {
+    "status": "DROP-FIT-FAILED",
+    "resolver": null,
+    "holdout": null
+   },
+   "validated_verdict": "ALIASED-RESOLVABLE(hist1)",
+   "changed": false,
+   "ewm_carrier": "HISTORY-AUGMENT",
+   "resync_viable": "N/A",
+   "banking": "FULL-REPLAY-ONLY"
+  },
+  {
+   "game": "sc25",
+   "engine_version": "sc25-635fd71a",
+   "excluded_versions": [
+    "sc25-f9b21a2f"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "ALIASED-RESOLVABLE(mod5)",
+   "insample_resolver": "mod5",
+   "mode": "resolver",
+   "holdout": {
+    "streams": [
+     "phase1_v5/sc25-635fd71a",
+     "sched_v1/sc25-635fd71a",
+     "w0_eval_s1/sc25-635fd71a",
+     "war_eval_v1/sc25-635fd71a",
+     "war_eval_v2/sc25-635fd71a",
+     "war_eval_v3/sc25-635fd71a",
+     "war_v2_eval_s1/sc25-635fd71a"
+    ],
+    "train_streams": [
+     "phase1_v5/sc25-635fd71a",
+     "w0_eval_s1/sc25-635fd71a",
+     "war_eval_v2/sc25-635fd71a",
+     "war_v2_eval_s1/sc25-635fd71a"
+    ],
+    "holdout_streams": [
+     "sched_v1/sc25-635fd71a",
+     "war_eval_v1/sc25-635fd71a",
+     "war_eval_v3/sc25-635fd71a"
+    ],
+    "thresholds": {
+     "det": 0.99,
+     "wilson_lb": 0.95
+    },
+    "train_verdict": "ALIASED-RESOLVABLE(mod4)",
+    "resolver": "mod4",
+    "resolver_class": "hidden-phase",
+    "train_det_resolved": 1.0,
+    "holdout": {
+     "base_determinism": 0.6724137931034483,
+     "base_repeat_visits": 116,
+     "determinism": 0.9310344827586207,
+     "repeat_visits": 29,
+     "modal_hits": 27,
+     "wilson_lb": 0.7803541984972431
+    },
+    "status": "DROP-HOLDOUT",
+    "validated": false,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/sc25-635fd71a",
+      "split": "TRAIN",
+      "actions": 185,
+      "repeat_visits": 12,
+      "determinism": 1.0,
+      "wilson_lb": 0.7575059933447591
+     },
+     {
+      "stream": "sched_v1/sc25-635fd71a",
+      "split": "HOLDOUT",
+      "actions": 251,
+      "repeat_visits": 6,
+      "determinism": 0.6666666666666666,
+      "wilson_lb": 0.299993315138392
+     },
+     {
+      "stream": "w0_eval_s1/sc25-635fd71a",
+      "split": "TRAIN",
+      "actions": 143,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v1/sc25-635fd71a",
+      "split": "HOLDOUT",
+      "actions": 184,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v2/sc25-635fd71a",
+      "split": "TRAIN",
+      "actions": 235,
+      "repeat_visits": 6,
+      "determinism": 1.0,
+      "wilson_lb": 0.6096657120978346
+     },
+     {
+      "stream": "war_eval_v3/sc25-635fd71a",
+      "split": "HOLDOUT",
+      "actions": 102,
+      "repeat_visits": 4,
+      "determinism": 1.0,
+      "wilson_lb": 0.5101091635454027
+     },
+     {
+      "stream": "war_v2_eval_s1/sc25-635fd71a",
+      "split": "TRAIN",
+      "actions": 241,
+      "repeat_visits": 12,
+      "determinism": 1.0,
+      "wilson_lb": 0.7575059933447591
+     }
+    ]
+   },
+   "sensitivity_35": {
+    "status": "DROP-HOLDOUT",
+    "resolver": "mod4",
+    "holdout": {
+     "base_determinism": 0.6742424242424242,
+     "base_repeat_visits": 132,
+     "determinism": 0.9354838709677419,
+     "repeat_visits": 31,
+     "modal_hits": 29,
+     "wilson_lb": 0.7928136326370187
+    }
+   },
+   "validated_verdict": "ALIASED-UNRESOLVED",
+   "changed": true,
+   "ewm_carrier": "NO",
+   "resync_viable": "NO",
+   "banking": "FULL-REPLAY-ONLY"
+  },
+  {
+   "game": "sk48",
+   "engine_version": "sk48-d8078629",
+   "excluded_versions": [
+    "sk48-41055498"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "ALIASED-UNRESOLVED",
+   "insample_resolver": null,
+   "mode": "unchanged",
+   "validated_verdict": "ALIASED-UNRESOLVED",
+   "changed": false,
+   "ewm_carrier": "NO",
+   "resync_viable": "NO",
+   "banking": "FULL-REPLAY-ONLY"
+  },
+  {
+   "game": "sp80",
+   "engine_version": "sp80-589a99af",
+   "excluded_versions": [
+    "sp80-0ee2d095"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "CLEAN",
+   "insample_resolver": null,
+   "mode": "clean-certificate",
+   "clean_cert": {
+    "determinism": 1.0,
+    "repeat_visits": 489,
+    "wilson_lb": 0.992205487683836,
+    "confirmed": true,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/sp80-589a99af",
+      "split": "HOLDOUT",
+      "actions": 389,
+      "repeat_visits": 121,
+      "determinism": 1.0,
+      "wilson_lb": 0.9692293020525218
+     },
+     {
+      "stream": "sched_v1/sp80-589a99af",
+      "split": "HOLDOUT",
+      "actions": 249,
+      "repeat_visits": 45,
+      "determinism": 1.0,
+      "wilson_lb": 0.9213484012671117
+     },
+     {
+      "stream": "w0_eval_s1/sp80-589a99af",
+      "split": "HOLDOUT",
+      "actions": 156,
+      "repeat_visits": 6,
+      "determinism": 1.0,
+      "wilson_lb": 0.6096657120978346
+     },
+     {
+      "stream": "war_eval_v1/sp80-589a99af",
+      "split": "HOLDOUT",
+      "actions": 240,
+      "repeat_visits": 65,
+      "determinism": 1.0,
+      "wilson_lb": 0.9441984686771432
+     },
+     {
+      "stream": "war_eval_v2/sp80-589a99af",
+      "split": "HOLDOUT",
+      "actions": 223,
+      "repeat_visits": 19,
+      "determinism": 1.0,
+      "wilson_lb": 0.8318207759473837
+     },
+     {
+      "stream": "war_eval_v3/sp80-589a99af",
+      "split": "HOLDOUT",
+      "actions": 184,
+      "repeat_visits": 10,
+      "determinism": 1.0,
+      "wilson_lb": 0.7224672001371106
+     },
+     {
+      "stream": "war_v2_eval_s1/sp80-589a99af",
+      "split": "HOLDOUT",
+      "actions": 217,
+      "repeat_visits": 15,
+      "determinism": 1.0,
+      "wilson_lb": 0.7961166989641514
+     }
+    ]
+   },
+   "validated_verdict": "CLEAN",
+   "changed": false,
+   "ewm_carrier": "SAFE",
+   "resync_viable": "NOT-NEEDED",
+   "banking": "PREFIX-SAFE"
+  },
+  {
+   "game": "su15",
+   "engine_version": "su15-1944f8ab",
+   "excluded_versions": [
+    "su15-4c352900"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "CLEAN",
+   "insample_resolver": null,
+   "mode": "clean-certificate",
+   "clean_cert": {
+    "determinism": 1.0,
+    "repeat_visits": 338,
+    "wilson_lb": 0.9887624548703173,
+    "confirmed": true,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/su15-1944f8ab",
+      "split": "HOLDOUT",
+      "actions": 145,
+      "repeat_visits": 24,
+      "determinism": 1.0,
+      "wilson_lb": 0.8620237953250198
+     },
+     {
+      "stream": "sched_v1/su15-1944f8ab",
+      "split": "HOLDOUT",
+      "actions": 227,
+      "repeat_visits": 55,
+      "determinism": 1.0,
+      "wilson_lb": 0.9347150988829136
+     },
+     {
+      "stream": "w0_eval_s1/su15-1944f8ab",
+      "split": "HOLDOUT",
+      "actions": 224,
+      "repeat_visits": 61,
+      "determinism": 1.0,
+      "wilson_lb": 0.9407561321018872
+     },
+     {
+      "stream": "war_eval_v1/su15-1944f8ab",
+      "split": "HOLDOUT",
+      "actions": 96,
+      "repeat_visits": 4,
+      "determinism": 1.0,
+      "wilson_lb": 0.5101091635454027
+     },
+     {
+      "stream": "war_eval_v2/su15-1944f8ab",
+      "split": "HOLDOUT",
+      "actions": 178,
+      "repeat_visits": 10,
+      "determinism": 1.0,
+      "wilson_lb": 0.7224672001371106
+     },
+     {
+      "stream": "war_eval_v3/su15-1944f8ab",
+      "split": "HOLDOUT",
+      "actions": 26,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_v2_eval_s1/su15-1944f8ab",
+      "split": "HOLDOUT",
+      "actions": 191,
+      "repeat_visits": 4,
+      "determinism": 1.0,
+      "wilson_lb": 0.5101091635454027
+     }
+    ]
+   },
+   "validated_verdict": "CLEAN",
+   "changed": false,
+   "ewm_carrier": "SAFE",
+   "resync_viable": "NOT-NEEDED",
+   "banking": "PREFIX-SAFE"
+  },
+  {
+   "game": "tn36",
+   "engine_version": "tn36-ef4dde99",
+   "excluded_versions": [
+    "tn36-ab4f63cc"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "CLEAN",
+   "insample_resolver": null,
+   "mode": "clean-certificate",
+   "clean_cert": {
+    "determinism": 1.0,
+    "repeat_visits": 31,
+    "wilson_lb": 0.889744604539564,
+    "confirmed": false,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/tn36-ef4dde99",
+      "split": "HOLDOUT",
+      "actions": 111,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "sched_v1/tn36-ef4dde99",
+      "split": "HOLDOUT",
+      "actions": 124,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "w0_eval_s1/tn36-ef4dde99",
+      "split": "HOLDOUT",
+      "actions": 142,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v1/tn36-ef4dde99",
+      "split": "HOLDOUT",
+      "actions": 116,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v2/tn36-ef4dde99",
+      "split": "HOLDOUT",
+      "actions": 144,
+      "repeat_visits": 2,
+      "determinism": 1.0,
+      "wilson_lb": 0.3423802275066531
+     },
+     {
+      "stream": "war_eval_v3/tn36-ef4dde99",
+      "split": "HOLDOUT",
+      "actions": 124,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_v2_eval_s1/tn36-ef4dde99",
+      "split": "HOLDOUT",
+      "actions": 171,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     }
+    ]
+   },
+   "validated_verdict": "CLEAN",
+   "changed": false,
+   "ewm_carrier": "SAFE",
+   "resync_viable": "NOT-NEEDED",
+   "banking": "PREFIX-SAFE (LB<0.95 \u2014 flagged)"
+  },
+  {
+   "game": "tr87",
+   "engine_version": "tr87-cd924810",
+   "excluded_versions": [],
+   "n_streams": 8,
+   "insample_verdict": "ALIASED-RESOLVABLE(parity)",
+   "insample_resolver": "parity",
+   "mode": "resolver",
+   "holdout": {
+    "streams": [
+     "phase1_v5/tr87-cd924810",
+     "sched_v1/tr87-cd924810",
+     "seed1/tr87-cd924810",
+     "w0_eval_s1/tr87-cd924810",
+     "war_eval_v1/tr87-cd924810",
+     "war_eval_v2/tr87-cd924810",
+     "war_eval_v3/tr87-cd924810",
+     "war_v2_eval_s1/tr87-cd924810"
+    ],
+    "train_streams": [
+     "phase1_v5/tr87-cd924810",
+     "seed1/tr87-cd924810",
+     "war_eval_v1/tr87-cd924810",
+     "war_eval_v3/tr87-cd924810"
+    ],
+    "holdout_streams": [
+     "sched_v1/tr87-cd924810",
+     "w0_eval_s1/tr87-cd924810",
+     "war_eval_v2/tr87-cd924810",
+     "war_v2_eval_s1/tr87-cd924810"
+    ],
+    "thresholds": {
+     "det": 0.99,
+     "wilson_lb": 0.95
+    },
+    "train_verdict": "ALIASED-RESOLVABLE(parity)",
+    "resolver": "parity",
+    "resolver_class": "hidden-phase",
+    "train_det_resolved": 1.0,
+    "holdout": {
+     "base_determinism": 0.9607843137254902,
+     "base_repeat_visits": 51,
+     "determinism": 1.0,
+     "repeat_visits": 49,
+     "modal_hits": 49,
+     "wilson_lb": 0.9273021807795035
+    },
+    "status": "DROP-HOLDOUT",
+    "validated": false,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/tr87-cd924810",
+      "split": "TRAIN",
+      "actions": 259,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "sched_v1/tr87-cd924810",
+      "split": "HOLDOUT",
+      "actions": 272,
+      "repeat_visits": 10,
+      "determinism": 1.0,
+      "wilson_lb": 0.7224672001371106
+     },
+     {
+      "stream": "seed1/tr87-cd924810",
+      "split": "TRAIN",
+      "actions": 261,
+      "repeat_visits": 3,
+      "determinism": 1.0,
+      "wilson_lb": 0.4385029682449545
+     },
+     {
+      "stream": "w0_eval_s1/tr87-cd924810",
+      "split": "HOLDOUT",
+      "actions": 315,
+      "repeat_visits": 14,
+      "determinism": 1.0,
+      "wilson_lb": 0.7846891972623642
+     },
+     {
+      "stream": "war_eval_v1/tr87-cd924810",
+      "split": "TRAIN",
+      "actions": 127,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v2/tr87-cd924810",
+      "split": "HOLDOUT",
+      "actions": 254,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v3/tr87-cd924810",
+      "split": "TRAIN",
+      "actions": 183,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_v2_eval_s1/tr87-cd924810",
+      "split": "HOLDOUT",
+      "actions": 69,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     }
+    ]
+   },
+   "sensitivity_35": {
+    "status": "DROP-FIT-FAILED",
+    "resolver": null,
+    "holdout": null
+   },
+   "validated_verdict": "ALIASED-UNRESOLVED",
+   "changed": true,
+   "ewm_carrier": "NO",
+   "resync_viable": "NO",
+   "banking": "FULL-REPLAY-ONLY"
+  },
+  {
+   "game": "tu93",
+   "engine_version": "tu93-0768757b",
+   "excluded_versions": [
+    "tu93-2b534c15"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "CLEAN",
+   "insample_resolver": null,
+   "mode": "clean-certificate",
+   "clean_cert": {
+    "determinism": 1.0,
+    "repeat_visits": 667,
+    "wilson_lb": 0.9942736711182889,
+    "confirmed": true,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/tu93-0768757b",
+      "split": "HOLDOUT",
+      "actions": 69,
+      "repeat_visits": 8,
+      "determinism": 1.0,
+      "wilson_lb": 0.6755924351161198
+     },
+     {
+      "stream": "sched_v1/tu93-0768757b",
+      "split": "HOLDOUT",
+      "actions": 144,
+      "repeat_visits": 85,
+      "determinism": 1.0,
+      "wilson_lb": 0.9567605161859485
+     },
+     {
+      "stream": "w0_eval_s1/tu93-0768757b",
+      "split": "HOLDOUT",
+      "actions": 100,
+      "repeat_visits": 30,
+      "determinism": 1.0,
+      "wilson_lb": 0.8864866068260312
+     },
+     {
+      "stream": "war_eval_v1/tu93-0768757b",
+      "split": "HOLDOUT",
+      "actions": 154,
+      "repeat_visits": 46,
+      "determinism": 1.0,
+      "wilson_lb": 0.9229264369144197
+     },
+     {
+      "stream": "war_eval_v2/tu93-0768757b",
+      "split": "HOLDOUT",
+      "actions": 128,
+      "repeat_visits": 24,
+      "determinism": 1.0,
+      "wilson_lb": 0.8620237953250198
+     },
+     {
+      "stream": "war_eval_v3/tu93-0768757b",
+      "split": "HOLDOUT",
+      "actions": 314,
+      "repeat_visits": 88,
+      "determinism": 1.0,
+      "wilson_lb": 0.9581729333351077
+     },
+     {
+      "stream": "war_v2_eval_s1/tu93-0768757b",
+      "split": "HOLDOUT",
+      "actions": 148,
+      "repeat_visits": 110,
+      "determinism": 1.0,
+      "wilson_lb": 0.9662560647018357
+     }
+    ]
+   },
+   "validated_verdict": "CLEAN",
+   "changed": false,
+   "ewm_carrier": "SAFE",
+   "resync_viable": "NOT-NEEDED",
+   "banking": "PREFIX-SAFE"
+  },
+  {
+   "game": "vc33",
+   "engine_version": "vc33-5430563c",
+   "excluded_versions": [
+    "vc33-9851e02b"
+   ],
+   "n_streams": 7,
+   "insample_verdict": "ALIASED-RESOLVABLE(parity)",
+   "insample_resolver": "parity",
+   "mode": "resolver",
+   "holdout": {
+    "streams": [
+     "phase1_v5/vc33-5430563c",
+     "sched_v1/vc33-5430563c",
+     "w0_eval_s1/vc33-5430563c",
+     "war_eval_v1/vc33-5430563c",
+     "war_eval_v2/vc33-5430563c",
+     "war_eval_v3/vc33-5430563c",
+     "war_v2_eval_s1/vc33-5430563c"
+    ],
+    "train_streams": [
+     "phase1_v5/vc33-5430563c",
+     "w0_eval_s1/vc33-5430563c",
+     "war_eval_v2/vc33-5430563c",
+     "war_v2_eval_s1/vc33-5430563c"
+    ],
+    "holdout_streams": [
+     "sched_v1/vc33-5430563c",
+     "war_eval_v1/vc33-5430563c",
+     "war_eval_v3/vc33-5430563c"
+    ],
+    "thresholds": {
+     "det": 0.99,
+     "wilson_lb": 0.95
+    },
+    "train_verdict": "LOW-SUPPORT",
+    "resolver": null,
+    "resolver_class": null,
+    "train_det_resolved": null,
+    "status": "DROP-FIT-FAILED",
+    "validated": false,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/vc33-5430563c",
+      "split": "TRAIN",
+      "actions": 58,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "sched_v1/vc33-5430563c",
+      "split": "HOLDOUT",
+      "actions": 110,
+      "repeat_visits": 2,
+      "determinism": 1.0,
+      "wilson_lb": 0.3423802275066531
+     },
+     {
+      "stream": "w0_eval_s1/vc33-5430563c",
+      "split": "TRAIN",
+      "actions": 69,
+      "repeat_visits": 2,
+      "determinism": 0.5,
+      "wilson_lb": 0.09453120573423071
+     },
+     {
+      "stream": "war_eval_v1/vc33-5430563c",
+      "split": "HOLDOUT",
+      "actions": 88,
+      "repeat_visits": 0,
+      "determinism": null,
+      "wilson_lb": null
+     },
+     {
+      "stream": "war_eval_v2/vc33-5430563c",
+      "split": "TRAIN",
+      "actions": 152,
+      "repeat_visits": 2,
+      "determinism": 1.0,
+      "wilson_lb": 0.3423802275066531
+     },
+     {
+      "stream": "war_eval_v3/vc33-5430563c",
+      "split": "HOLDOUT",
+      "actions": 165,
+      "repeat_visits": 22,
+      "determinism": 1.0,
+      "wilson_lb": 0.8513451253913791
+     },
+     {
+      "stream": "war_v2_eval_s1/vc33-5430563c",
+      "split": "TRAIN",
+      "actions": 55,
+      "repeat_visits": 2,
+      "determinism": 1.0,
+      "wilson_lb": 0.3423802275066531
+     }
+    ]
+   },
+   "sensitivity_35": {
+    "status": "DROP-FIT-FAILED",
+    "resolver": null,
+    "holdout": null
+   },
+   "validated_verdict": "ALIASED-UNRESOLVED",
+   "changed": true,
+   "ewm_carrier": "NO",
+   "resync_viable": "NO",
+   "banking": "FULL-REPLAY-ONLY"
+  },
+  {
+   "game": "wa30",
+   "engine_version": "wa30-ee6fef47",
+   "excluded_versions": [],
+   "n_streams": 8,
+   "insample_verdict": "ALIASED-RESOLVABLE(mod4)",
+   "insample_resolver": "mod4",
+   "mode": "resolver",
+   "holdout": {
+    "streams": [
+     "phase1_v5/wa30-ee6fef47",
+     "sched_v1/wa30-ee6fef47",
+     "seed1/wa30-ee6fef47",
+     "w0_eval_s1/wa30-ee6fef47",
+     "war_eval_v1/wa30-ee6fef47",
+     "war_eval_v2/wa30-ee6fef47",
+     "war_eval_v3/wa30-ee6fef47",
+     "war_v2_eval_s1/wa30-ee6fef47"
+    ],
+    "train_streams": [
+     "phase1_v5/wa30-ee6fef47",
+     "seed1/wa30-ee6fef47",
+     "war_eval_v1/wa30-ee6fef47",
+     "war_eval_v3/wa30-ee6fef47"
+    ],
+    "holdout_streams": [
+     "sched_v1/wa30-ee6fef47",
+     "w0_eval_s1/wa30-ee6fef47",
+     "war_eval_v2/wa30-ee6fef47",
+     "war_v2_eval_s1/wa30-ee6fef47"
+    ],
+    "thresholds": {
+     "det": 0.99,
+     "wilson_lb": 0.95
+    },
+    "train_verdict": "ALIASED-UNRESOLVED",
+    "resolver": null,
+    "resolver_class": null,
+    "train_det_resolved": null,
+    "status": "DROP-FIT-FAILED",
+    "validated": false,
+    "per_stream": [
+     {
+      "stream": "phase1_v5/wa30-ee6fef47",
+      "split": "TRAIN",
+      "actions": 502,
+      "repeat_visits": 122,
+      "determinism": 0.6885245901639344,
+      "wilson_lb": 0.601654199745008
+     },
+     {
+      "stream": "sched_v1/wa30-ee6fef47",
+      "split": "HOLDOUT",
+      "actions": 272,
+      "repeat_visits": 48,
+      "determinism": 0.75,
+      "wilson_lb": 0.6121562719049204
+     },
+     {
+      "stream": "seed1/wa30-ee6fef47",
+      "split": "TRAIN",
+      "actions": 391,
+      "repeat_visits": 138,
+      "determinism": 0.6884057971014492,
+      "wilson_lb": 0.6069136068529344
+     },
+     {
+      "stream": "w0_eval_s1/wa30-ee6fef47",
+      "split": "HOLDOUT",
+      "actions": 196,
+      "repeat_visits": 29,
+      "determinism": 0.7586206896551724,
+      "wilson_lb": 0.5789239838218866
+     },
+     {
+      "stream": "war_eval_v1/wa30-ee6fef47",
+      "split": "TRAIN",
+      "actions": 107,
+      "repeat_visits": 8,
+      "determinism": 1.0,
+      "wilson_lb": 0.6755924351161198
+     },
+     {
+      "stream": "war_eval_v2/wa30-ee6fef47",
+      "split": "HOLDOUT",
+      "actions": 198,
+      "repeat_visits": 14,
+      "determinism": 0.6428571428571429,
+      "wilson_lb": 0.387644231039074
+     },
+     {
+      "stream": "war_eval_v3/wa30-ee6fef47",
+      "split": "TRAIN",
+      "actions": 335,
+      "repeat_visits": 11,
+      "determinism": 1.0,
+      "wilson_lb": 0.7411670330319683
+     },
+     {
+      "stream": "war_v2_eval_s1/wa30-ee6fef47",
+      "split": "HOLDOUT",
+      "actions": 389,
+      "repeat_visits": 30,
+      "determinism": 0.9666666666666667,
+      "wilson_lb": 0.8332960900859081
+     }
+    ]
+   },
+   "sensitivity_35": {
+    "status": "DROP-FIT-FAILED",
+    "resolver": null,
+    "holdout": null
+   },
+   "validated_verdict": "ALIASED-UNRESOLVED",
+   "changed": true,
+   "ewm_carrier": "NO",
+   "resync_viable": "NO",
+   "banking": "FULL-REPLAY-ONLY"
+  }
+ ]
+}

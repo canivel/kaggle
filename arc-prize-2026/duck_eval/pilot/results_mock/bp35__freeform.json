@@ -1,0 +1,376 @@
+{
+  "game": "bp35",
+  "scaffold": "freeform",
+  "mock": true,
+  "data_caveat": "Observation histories are LEVEL-0 RANDOM-EXPLORATION recordings (exec_wm/collect_observations.py), 200 tuples/game - NOT duck agent trajectories. Pre-registered caveat: transition coverage reflects random policy state visitation only.",
+  "split": {
+    "train": 140,
+    "heldout": 60,
+    "train_frac": 0.7,
+    "kind": "temporal"
+  },
+  "baselines_5step": {
+    "identity_frame": {
+      "n_windows": 56,
+      "exact_pct": 0.0,
+      "changed_stratum": {
+        "n": 56,
+        "exact_pct": 0.0
+      },
+      "unchanged_stratum": {
+        "n": 0,
+        "exact_pct": 0.0
+      }
+    },
+    "pure_lookup": {
+      "n_windows": 56,
+      "exact_pct": 0.0,
+      "changed_stratum": {
+        "n": 56,
+        "exact_pct": 0.0
+      },
+      "unchanged_stratum": {
+        "n": 0,
+        "exact_pct": 0.0
+      }
+    },
+    "lookup_identity_fallback": {
+      "n_windows": 56,
+      "exact_pct": 0.0,
+      "changed_stratum": {
+        "n": 56,
+        "exact_pct": 0.0
+      },
+      "unchanged_stratum": {
+        "n": 0,
+        "exact_pct": 0.0
+      }
+    }
+  },
+  "regimes": {
+    "capped6k": {
+      "regime": "capped6k",
+      "evidence_transitions": 66,
+      "evidence_token_cap": 6000,
+      "template_game": null,
+      "iterations": [
+        {
+          "iter": 1,
+          "prompt_tokens": 7127,
+          "completion_tokens": 52,
+          "finish_reason": "stop",
+          "truncated": false,
+          "source_chars": 118,
+          "gzip_kb": 0.1162109375,
+          "compile_error": null,
+          "train_exact_pct": 0.0,
+          "train_errors": 0,
+          "heldout_5step_exact_pct": 0.0,
+          "class_a": false
+        },
+        {
+          "iter": 2,
+          "prompt_tokens": 8238,
+          "completion_tokens": 52,
+          "finish_reason": "stop",
+          "truncated": false,
+          "source_chars": 118,
+          "gzip_kb": 0.1162109375,
+          "compile_error": null,
+          "train_exact_pct": 0.0,
+          "train_errors": 0,
+          "heldout_5step_exact_pct": 0.0,
+          "class_a": false
+        },
+        {
+          "iter": 3,
+          "prompt_tokens": 9349,
+          "completion_tokens": 52,
+          "finish_reason": "stop",
+          "truncated": false,
+          "source_chars": 118,
+          "gzip_kb": 0.1162109375,
+          "compile_error": null,
+          "train_exact_pct": 0.0,
+          "train_errors": 0,
+          "heldout_5step_exact_pct": 0.0,
+          "class_a": false
+        },
+        {
+          "iter": 4,
+          "prompt_tokens": 10460,
+          "completion_tokens": 52,
+          "finish_reason": "stop",
+          "truncated": false,
+          "source_chars": 118,
+          "gzip_kb": 0.1162109375,
+          "compile_error": null,
+          "train_exact_pct": 0.0,
+          "train_errors": 0,
+          "heldout_5step_exact_pct": 0.0,
+          "class_a": false
+        }
+      ],
+      "best_iter": 1,
+      "best_source": "def simulate(state, action_id, x, y):\n    # degenerate mock candidate: frame never changes\n    return state, 0, False\n",
+      "final": {
+        "compile_error": null,
+        "baselines_5step": {
+          "identity_frame": {
+            "n_windows": 56,
+            "exact_pct": 0.0,
+            "changed_stratum": {
+              "n": 56,
+              "exact_pct": 0.0
+            },
+            "unchanged_stratum": {
+              "n": 0,
+              "exact_pct": 0.0
+            }
+          },
+          "pure_lookup": {
+            "n_windows": 56,
+            "exact_pct": 0.0,
+            "changed_stratum": {
+              "n": 56,
+              "exact_pct": 0.0
+            },
+            "unchanged_stratum": {
+              "n": 0,
+              "exact_pct": 0.0
+            }
+          },
+          "lookup_identity_fallback": {
+            "n_windows": 56,
+            "exact_pct": 0.0,
+            "changed_stratum": {
+              "n": 56,
+              "exact_pct": 0.0
+            },
+            "unchanged_stratum": {
+              "n": 0,
+              "exact_pct": 0.0
+            }
+          }
+        },
+        "heldout_5step": {
+          "n_windows": 56,
+          "exact_pct": 0.0,
+          "changed_stratum": {
+            "n": 56,
+            "exact_pct": 0.0
+          },
+          "unchanged_stratum": {
+            "n": 0,
+            "exact_pct": 0.0
+          }
+        },
+        "best_baseline_pct": 0.0,
+        "class_a": false,
+        "class_a_margin_pp": 0.0,
+        "gzip_kb": 0.1162109375,
+        "acceptance_score": -0.232421875,
+        "one_step_replay_heldout": {
+          "n": 60,
+          "errors": 0,
+          "state_exact_pct": 0.0,
+          "pixel_match_pct": 97.17529296875,
+          "reward_acc_pct": 0.0,
+          "done_acc_pct": 100.0,
+          "changed_stratum": {
+            "n": 60,
+            "exact_pct": 0.0
+          }
+        },
+        "one_step_replay_train": {
+          "n": 140,
+          "errors": 0,
+          "state_exact_pct": 0.0,
+          "pixel_match_pct": 98.06675502232143,
+          "reward_acc_pct": 0.0,
+          "done_acc_pct": 100.0,
+          "changed_stratum": {
+            "n": 140,
+            "exact_pct": 0.0
+          }
+        },
+        "memorization_gap_pp": 0.0
+      },
+      "tokens": {
+        "prompt_total": 35174,
+        "completion_total": 208,
+        "total": 35382,
+        "tokens_to_first_class_a": null,
+        "completion_per_call": [
+          52,
+          52,
+          52,
+          52
+        ]
+      }
+    },
+    "uncapped32k": {
+      "regime": "uncapped32k",
+      "evidence_transitions": 140,
+      "evidence_token_cap": 24000,
+      "template_game": null,
+      "iterations": [
+        {
+          "iter": 1,
+          "prompt_tokens": 14863,
+          "completion_tokens": 52,
+          "finish_reason": "stop",
+          "truncated": false,
+          "source_chars": 118,
+          "gzip_kb": 0.1162109375,
+          "compile_error": null,
+          "train_exact_pct": 0.0,
+          "train_errors": 0,
+          "heldout_5step_exact_pct": 0.0,
+          "class_a": false
+        },
+        {
+          "iter": 2,
+          "prompt_tokens": 15974,
+          "completion_tokens": 52,
+          "finish_reason": "stop",
+          "truncated": false,
+          "source_chars": 118,
+          "gzip_kb": 0.1162109375,
+          "compile_error": null,
+          "train_exact_pct": 0.0,
+          "train_errors": 0,
+          "heldout_5step_exact_pct": 0.0,
+          "class_a": false
+        },
+        {
+          "iter": 3,
+          "prompt_tokens": 17085,
+          "completion_tokens": 52,
+          "finish_reason": "stop",
+          "truncated": false,
+          "source_chars": 118,
+          "gzip_kb": 0.1162109375,
+          "compile_error": null,
+          "train_exact_pct": 0.0,
+          "train_errors": 0,
+          "heldout_5step_exact_pct": 0.0,
+          "class_a": false
+        },
+        {
+          "iter": 4,
+          "prompt_tokens": 18196,
+          "completion_tokens": 52,
+          "finish_reason": "stop",
+          "truncated": false,
+          "source_chars": 118,
+          "gzip_kb": 0.1162109375,
+          "compile_error": null,
+          "train_exact_pct": 0.0,
+          "train_errors": 0,
+          "heldout_5step_exact_pct": 0.0,
+          "class_a": false
+        }
+      ],
+      "best_iter": 1,
+      "best_source": "def simulate(state, action_id, x, y):\n    # degenerate mock candidate: frame never changes\n    return state, 0, False\n",
+      "final": {
+        "compile_error": null,
+        "baselines_5step": {
+          "identity_frame": {
+            "n_windows": 56,
+            "exact_pct": 0.0,
+            "changed_stratum": {
+              "n": 56,
+              "exact_pct": 0.0
+            },
+            "unchanged_stratum": {
+              "n": 0,
+              "exact_pct": 0.0
+            }
+          },
+          "pure_lookup": {
+            "n_windows": 56,
+            "exact_pct": 0.0,
+            "changed_stratum": {
+              "n": 56,
+              "exact_pct": 0.0
+            },
+            "unchanged_stratum": {
+              "n": 0,
+              "exact_pct": 0.0
+            }
+          },
+          "lookup_identity_fallback": {
+            "n_windows": 56,
+            "exact_pct": 0.0,
+            "changed_stratum": {
+              "n": 56,
+              "exact_pct": 0.0
+            },
+            "unchanged_stratum": {
+              "n": 0,
+              "exact_pct": 0.0
+            }
+          }
+        },
+        "heldout_5step": {
+          "n_windows": 56,
+          "exact_pct": 0.0,
+          "changed_stratum": {
+            "n": 56,
+            "exact_pct": 0.0
+          },
+          "unchanged_stratum": {
+            "n": 0,
+            "exact_pct": 0.0
+          }
+        },
+        "best_baseline_pct": 0.0,
+        "class_a": false,
+        "class_a_margin_pp": 0.0,
+        "gzip_kb": 0.1162109375,
+        "acceptance_score": -0.232421875,
+        "one_step_replay_heldout": {
+          "n": 60,
+          "errors": 0,
+          "state_exact_pct": 0.0,
+          "pixel_match_pct": 97.17529296875,
+          "reward_acc_pct": 0.0,
+          "done_acc_pct": 100.0,
+          "changed_stratum": {
+            "n": 60,
+            "exact_pct": 0.0
+          }
+        },
+        "one_step_replay_train": {
+          "n": 140,
+          "errors": 0,
+          "state_exact_pct": 0.0,
+          "pixel_match_pct": 98.06675502232143,
+          "reward_acc_pct": 0.0,
+          "done_acc_pct": 100.0,
+          "changed_stratum": {
+            "n": 140,
+            "exact_pct": 0.0
+          }
+        },
+        "memorization_gap_pp": 0.0
+      },
+      "tokens": {
+        "prompt_total": 66118,
+        "completion_total": 208,
+        "total": 66326,
+        "tokens_to_first_class_a": null,
+        "completion_per_call": [
+          52,
+          52,
+          52,
+          52
+        ]
+      }
+    }
+  },
+  "started_utc": "2026-07-07T18:57:03Z",
+  "wall_s": 2.1
+}

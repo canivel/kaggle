@@ -1,0 +1,15 @@
+{
+  "id": "canivel/arc3-vlm-agent",
+  "title": "arc3-vlm-agent",
+  "code_file": "arc3-vlm-agent.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": false,
+  "dataset_sources": [],
+  "competition_sources": ["arc-prize-2026-arc-agi-3"],
+  "kernel_sources": [],
+  "model_sources": ["qwen-lm/qwen2.5-vl/transformers/7b-instruct/1"],
+  "keywords": ["arc-agi-3", "vlm", "qwen"]
+}

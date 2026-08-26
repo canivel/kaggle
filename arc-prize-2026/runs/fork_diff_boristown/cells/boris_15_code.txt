@@ -1,0 +1,16 @@
+# Keep the deserialized benchmark and solver exactly as provided by benchmark_initial.pkl.
+# No trajectory memory, loop detector, action suppression, prompt hint, budget override,
+# model change, sampling change, game reordering, or other score-sensitive customization.
+
+BASELINE_CUSTOMIZATION_STATUS = {
+    "benchmark_changed": False,
+    "solver_changed": False,
+    "local_budget_changed": False,
+    "model_facing_state_changed": False,
+    "dataset_modified": False,
+}
+
+print(
+    "taaf.kaggle: customization disabled: "
+    f"{BASELINE_CUSTOMIZATION_STATUS}"
+)

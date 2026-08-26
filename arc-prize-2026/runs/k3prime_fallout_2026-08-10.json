@@ -1,0 +1,2381 @@
+{
+ "provenance": {
+  "generated_utc": "2026-08-10T12:47:09.281730+00:00",
+  "script": "duck_eval/r24_prep/k3prime_fallout.py",
+  "purpose": "D1 A22 re-screen under K3'; D2 K3' type-II recalibration (R25 methodology N1); D3 protocol numbers; D4 warpack-specific null scope+price.",
+  "cost": "$0, CPU-only, zero Kaggle pushes, read-only",
+  "upstream": [
+   "learnings/sweeps/gate_recalibration_2026-08-09.md",
+   "runs/gate_recalibration_2026-08-09.json",
+   "learnings/war_room/r24_minutes_2026-08-09.md",
+   "learnings/panel/round25/methodology.md (N1, N4, N5)"
+  ]
+ },
+ "inventory": {
+  "n_runs": 31,
+  "duplicates": [
+   [
+    "runs/kernel_pulls/compaction_v2/benchmark.json",
+    "runs/kernel_pulls/a22_v2_1/benchmark.json"
+   ],
+   [
+    "runs/tmp_pullback_gate_eval_s2v3/benchmark.json",
+    "runs/kernel_pulls/gate_eval_v2/benchmark.json"
+   ]
+  ],
+  "runs": [
+   {
+    "path": "runs/a22_compaction_v1/benchmark.json",
+    "label": "duck-harness-kaggle-compaction-v1-continuation-v1",
+    "start": "2026-08-02T13:23:57.297606",
+    "end": "2026-08-02T15:36:17.343329",
+    "lc_total": 17,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-compaction-v1-continuation-v1"
+   },
+   {
+    "path": "runs/a22_v2_seed1/benchmark.json",
+    "label": "duck-harness-kaggle-compaction-v2-continuation-v1",
+    "start": "2026-08-05T12:55:28.902121",
+    "end": "2026-08-05T15:08:10.635125",
+    "lc_total": 14,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-compaction-v2-continuation-v1"
+   },
+   {
+    "path": "runs/kernel_pulls/a22_v2_1/benchmark.json",
+    "label": "duck-harness-kaggle-compaction-v2.1-continuation-v1",
+    "start": "2026-08-06T13:02:13.967860",
+    "end": "2026-08-06T15:15:10.366302",
+    "lc_total": 13,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-compaction-v2.1-continuation-v1"
+   },
+   {
+    "path": "runs/kernel_pulls/compaction_v2/benchmark.json",
+    "label": "duck-harness-kaggle-compaction-v2.1-continuation-v1",
+    "start": "2026-08-06T13:02:13.967860",
+    "end": "2026-08-06T15:15:10.366302",
+    "lc_total": 13,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": "runs/kernel_pulls/a22_v2_1/benchmark.json"
+   },
+   {
+    "path": "runs/kernel_pulls/gate_eval_v1/benchmark.json",
+    "label": "duck-harness-kaggle",
+    "start": "2026-07-31T12:34:22.316248",
+    "end": "2026-07-31T14:46:50.352541",
+    "lc_total": 18,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle"
+   },
+   {
+    "path": "runs/kernel_pulls/gate_eval_v2/benchmark.json",
+    "label": "duck-harness-kaggle",
+    "start": "2026-08-01T12:36:24.458930",
+    "end": "2026-08-01T14:48:51.603442",
+    "lc_total": 19,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle"
+   },
+   {
+    "path": "runs/kernel_pulls/phase1_v5/benchmark.json",
+    "label": "duck-harness-kaggle-phase1-v2",
+    "start": "2026-07-12T12:41:31.671353",
+    "end": "2026-07-12T14:54:25.777387",
+    "lc_total": 15,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-phase1-v2"
+   },
+   {
+    "path": "runs/kernel_pulls/sched_v1/benchmark.json",
+    "label": "duck-harness-kaggle-sched-v1",
+    "start": "2026-07-13T00:02:13.087245",
+    "end": "2026-07-13T02:15:06.604830",
+    "lc_total": 17,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-sched-v1"
+   },
+   {
+    "path": "runs/kernel_pulls/sentinel_eval_v1/benchmark.json",
+    "label": "duck-harness-kaggle-sentinel-v2",
+    "start": "2026-07-22T12:47:18.500108",
+    "end": "2026-07-22T14:59:33.312904",
+    "lc_total": 12,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-sentinel-v2"
+   },
+   {
+    "path": "runs/kernel_pulls/sentinel_eval_v2/benchmark.json",
+    "label": "duck-harness-kaggle-sentinel-v2",
+    "start": "2026-07-23T13:07:58.841063",
+    "end": "2026-07-23T15:20:06.388241",
+    "lc_total": 16,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-sentinel-v2"
+   },
+   {
+    "path": "runs/kernel_pulls/w0_cont_eval/benchmark.json",
+    "label": "duck-harness-kaggle-continuation-v1",
+    "start": "2026-07-24T12:48:45.293756",
+    "end": "2026-07-24T15:00:53.830618",
+    "lc_total": 10,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-continuation-v1"
+   },
+   {
+    "path": "runs/kernel_pulls/w0_eval_s1/benchmark.json",
+    "label": "duck-harness-kaggle-continuation-v1",
+    "start": "2026-07-18T12:44:56.789456",
+    "end": "2026-07-18T14:57:19.934279",
+    "lc_total": 16,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-continuation-v1"
+   },
+   {
+    "path": "runs/kernel_pulls/war_eval_v1/benchmark.json",
+    "label": "duck-harness-kaggle-warpack-v1",
+    "start": "2026-07-14T12:49:36.690499",
+    "end": "2026-07-14T15:01:56.925651",
+    "lc_total": 22,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-warpack-v1"
+   },
+   {
+    "path": "runs/kernel_pulls/war_eval_v2/benchmark.json",
+    "label": "duck-harness-kaggle-warpack-v1",
+    "start": "2026-07-15T12:56:51.614572",
+    "end": "2026-07-15T15:09:19.908704",
+    "lc_total": 15,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-warpack-v1"
+   },
+   {
+    "path": "runs/kernel_pulls/war_eval_v3/benchmark.json",
+    "label": "duck-harness-kaggle-warpack-v1",
+    "start": "2026-07-16T12:37:16.134393",
+    "end": "2026-07-16T14:50:05.511513",
+    "lc_total": 13,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-warpack-v1"
+   },
+   {
+    "path": "runs/kernel_pulls/war_v2_eval_s1/benchmark.json",
+    "label": "duck-harness-kaggle-warpack-v1-ledger-v2-ledger+escalation",
+    "start": "2026-07-16T17:02:50.784190",
+    "end": "2026-07-16T19:15:51.208633",
+    "lc_total": 12,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-warpack-v1-ledger-v2-ledger+escalation"
+   },
+   {
+    "path": "runs/null10/seed101/benchmark.json",
+    "label": "duck-null-seed101",
+    "start": "2026-07-11T17:15:56.737507",
+    "end": "2026-07-11T19:28:33.929215",
+    "lc_total": 16,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-null-seedNNN"
+   },
+   {
+    "path": "runs/null10/seed102/benchmark.json",
+    "label": "duck-null-seed102",
+    "start": "2026-07-11T19:29:15.585819",
+    "end": "2026-07-11T21:42:00.154045",
+    "lc_total": 11,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-null-seedNNN"
+   },
+   {
+    "path": "runs/null10/seed103/benchmark.json",
+    "label": "duck-null-seed103",
+    "start": "2026-07-11T21:42:51.521778",
+    "end": "2026-07-11T23:55:54.900378",
+    "lc_total": 16,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-null-seedNNN"
+   },
+   {
+    "path": "runs/null10/seed104/benchmark.json",
+    "label": "duck-null-seed104",
+    "start": "2026-07-11T23:56:42.350283",
+    "end": "2026-07-12T02:09:23.362895",
+    "lc_total": 15,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-null-seedNNN"
+   },
+   {
+    "path": "runs/null10/seed105/benchmark.json",
+    "label": "duck-null-seed105",
+    "start": "2026-07-12T02:10:07.692620",
+    "end": "2026-07-12T04:23:16.037365",
+    "lc_total": 16,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-null-seedNNN"
+   },
+   {
+    "path": "runs/null10/seed106/benchmark.json",
+    "label": "duck-null-seed106",
+    "start": "2026-07-12T04:23:55.526865",
+    "end": "2026-07-12T06:36:40.001495",
+    "lc_total": 15,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-null-seedNNN"
+   },
+   {
+    "path": "runs/null10/seed107/benchmark.json",
+    "label": "duck-null-seed107",
+    "start": "2026-07-12T06:37:23.158123",
+    "end": "2026-07-12T08:50:09.083601",
+    "lc_total": 14,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-null-seedNNN"
+   },
+   {
+    "path": "runs/null10/seed108/benchmark.json",
+    "label": "duck-null-seed108",
+    "start": "2026-07-12T08:50:51.131802",
+    "end": "2026-07-12T11:03:34.707123",
+    "lc_total": 18,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-null-seedNNN"
+   },
+   {
+    "path": "runs/null10/seed109/benchmark.json",
+    "label": "duck-null-seed109",
+    "start": "2026-07-12T11:04:31.661687",
+    "end": "2026-07-12T13:17:22.169430",
+    "lc_total": 18,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-null-seedNNN"
+   },
+   {
+    "path": "runs/null10/seed110/benchmark.json",
+    "label": "duck-null-seed110",
+    "start": "2026-07-12T13:18:20.641053",
+    "end": "2026-07-12T15:30:59.712145",
+    "lc_total": 13,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-null-seedNNN"
+   },
+   {
+    "path": "runs/phase1_ab/seed1/benchmark.json",
+    "label": "duck-phase1-seed1",
+    "start": "2026-07-10T13:53:29.115513",
+    "end": "2026-07-10T16:06:30.143408",
+    "lc_total": 19,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-phase1-seedNNN"
+   },
+   {
+    "path": "runs/phase1_v2/seed201/benchmark.json",
+    "label": "duck-v2-seed201",
+    "start": "2026-07-12T15:31:52.077862",
+    "end": "2026-07-12T17:44:37.966556",
+    "lc_total": 14,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-v2-seedNNN"
+   },
+   {
+    "path": "runs/phase1_v2/seed202/benchmark.json",
+    "label": "duck-v2-seed202",
+    "start": "2026-07-12T17:46:14.659046",
+    "end": "2026-07-12T19:58:57.639875",
+    "lc_total": 13,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-v2-seedNNN"
+   },
+   {
+    "path": "runs/phase1_v2/seed203/benchmark.json",
+    "label": "duck-v2-seed203",
+    "start": "2026-07-12T19:59:54.409007",
+    "end": "2026-07-12T22:12:38.606865",
+    "lc_total": 16,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "6a67ec8b",
+    "duplicate_of": null,
+    "family": "duck-v2-seedNNN"
+   },
+   {
+    "path": "runs/phase1_v2_screen/seed1/benchmark.json",
+    "label": "duck-harness-kaggle-phase1v2",
+    "start": "2026-07-11T12:45:34.838980",
+    "end": "2026-07-11T14:57:55.723147",
+    "lc_total": 17,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle-phase1v2"
+   },
+   {
+    "path": "runs/tmp_pullback_duckgate_v1post/benchmark.json",
+    "label": "duck-harness-kaggle",
+    "start": "2026-08-01T12:38:57.579082",
+    "end": "2026-08-01T14:51:40.827082",
+    "lc_total": 21,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": null,
+    "family": "duck-harness-kaggle"
+   },
+   {
+    "path": "runs/tmp_pullback_gate_eval_s2v3/benchmark.json",
+    "label": "duck-harness-kaggle",
+    "start": "2026-08-01T12:36:24.458930",
+    "end": "2026-08-01T14:48:51.603442",
+    "lc_total": 19,
+    "prefix_set_md5": "f69ecaeb",
+    "instance_id_md5": "a86c5566",
+    "duplicate_of": "runs/kernel_pulls/gate_eval_v2/benchmark.json"
+   }
+  ],
+  "families": {
+   "duck-harness-kaggle": {
+    "m": 3,
+    "runs": [
+     "runs/kernel_pulls/gate_eval_v1/benchmark.json",
+     "runs/kernel_pulls/gate_eval_v2/benchmark.json",
+     "runs/tmp_pullback_duckgate_v1post/benchmark.json"
+    ],
+    "lc_totals": [
+     18,
+     19,
+     21
+    ],
+    "mean_lc_per_game": [
+     0.72,
+     0.76,
+     0.84
+    ],
+    "s_base": 0.06110100926607786,
+    "ss": 0.007466666666666665,
+    "df": 2
+   },
+   "duck-harness-kaggle-compaction-v1-continuation-v1": {
+    "m": 1,
+    "runs": [
+     "runs/a22_compaction_v1/benchmark.json"
+    ],
+    "lc_totals": [
+     17
+    ],
+    "mean_lc_per_game": [
+     0.68
+    ],
+    "s_base": 0.0,
+    "ss": 0.0,
+    "df": 0
+   },
+   "duck-harness-kaggle-compaction-v2-continuation-v1": {
+    "m": 1,
+    "runs": [
+     "runs/a22_v2_seed1/benchmark.json"
+    ],
+    "lc_totals": [
+     14
+    ],
+    "mean_lc_per_game": [
+     0.56
+    ],
+    "s_base": 0.0,
+    "ss": 0.0,
+    "df": 0
+   },
+   "duck-harness-kaggle-compaction-v2.1-continuation-v1": {
+    "m": 1,
+    "runs": [
+     "runs/kernel_pulls/a22_v2_1/benchmark.json"
+    ],
+    "lc_totals": [
+     13
+    ],
+    "mean_lc_per_game": [
+     0.52
+    ],
+    "s_base": 0.0,
+    "ss": 0.0,
+    "df": 0
+   },
+   "duck-harness-kaggle-continuation-v1": {
+    "m": 2,
+    "runs": [
+     "runs/kernel_pulls/w0_cont_eval/benchmark.json",
+     "runs/kernel_pulls/w0_eval_s1/benchmark.json"
+    ],
+    "lc_totals": [
+     10,
+     16
+    ],
+    "mean_lc_per_game": [
+     0.4,
+     0.64
+    ],
+    "s_base": 0.1697056274847714,
+    "ss": 0.0288,
+    "df": 1
+   },
+   "duck-harness-kaggle-phase1-v2": {
+    "m": 1,
+    "runs": [
+     "runs/kernel_pulls/phase1_v5/benchmark.json"
+    ],
+    "lc_totals": [
+     15
+    ],
+    "mean_lc_per_game": [
+     0.6
+    ],
+    "s_base": 0.0,
+    "ss": 0.0,
+    "df": 0
+   },
+   "duck-harness-kaggle-phase1v2": {
+    "m": 1,
+    "runs": [
+     "runs/phase1_v2_screen/seed1/benchmark.json"
+    ],
+    "lc_totals": [
+     17
+    ],
+    "mean_lc_per_game": [
+     0.68
+    ],
+    "s_base": 0.0,
+    "ss": 0.0,
+    "df": 0
+   },
+   "duck-harness-kaggle-sched-v1": {
+    "m": 1,
+    "runs": [
+     "runs/kernel_pulls/sched_v1/benchmark.json"
+    ],
+    "lc_totals": [
+     17
+    ],
+    "mean_lc_per_game": [
+     0.68
+    ],
+    "s_base": 0.0,
+    "ss": 0.0,
+    "df": 0
+   },
+   "duck-harness-kaggle-sentinel-v2": {
+    "m": 2,
+    "runs": [
+     "runs/kernel_pulls/sentinel_eval_v1/benchmark.json",
+     "runs/kernel_pulls/sentinel_eval_v2/benchmark.json"
+    ],
+    "lc_totals": [
+     12,
+     16
+    ],
+    "mean_lc_per_game": [
+     0.48,
+     0.64
+    ],
+    "s_base": 0.11313708498984762,
+    "ss": 0.012800000000000006,
+    "df": 1
+   },
+   "duck-harness-kaggle-warpack-v1": {
+    "m": 3,
+    "runs": [
+     "runs/kernel_pulls/war_eval_v1/benchmark.json",
+     "runs/kernel_pulls/war_eval_v2/benchmark.json",
+     "runs/kernel_pulls/war_eval_v3/benchmark.json"
+    ],
+    "lc_totals": [
+     22,
+     15,
+     13
+    ],
+    "mean_lc_per_game": [
+     0.88,
+     0.6,
+     0.52
+    ],
+    "s_base": 0.18903262505010435,
+    "ss": 0.07146666666666666,
+    "df": 2
+   },
+   "duck-harness-kaggle-warpack-v1-ledger-v2-ledger+escalation": {
+    "m": 1,
+    "runs": [
+     "runs/kernel_pulls/war_v2_eval_s1/benchmark.json"
+    ],
+    "lc_totals": [
+     12
+    ],
+    "mean_lc_per_game": [
+     0.48
+    ],
+    "s_base": 0.0,
+    "ss": 0.0,
+    "df": 0
+   },
+   "duck-null-seedNNN": {
+    "m": 10,
+    "runs": [
+     "runs/null10/seed101/benchmark.json",
+     "runs/null10/seed102/benchmark.json",
+     "runs/null10/seed103/benchmark.json",
+     "runs/null10/seed104/benchmark.json",
+     "runs/null10/seed105/benchmark.json",
+     "runs/null10/seed106/benchmark.json",
+     "runs/null10/seed107/benchmark.json",
+     "runs/null10/seed108/benchmark.json",
+     "runs/null10/seed109/benchmark.json",
+     "runs/null10/seed110/benchmark.json"
+    ],
+    "lc_totals": [
+     16,
+     11,
+     16,
+     15,
+     16,
+     15,
+     14,
+     18,
+     18,
+     13
+    ],
+    "mean_lc_per_game": [
+     0.64,
+     0.44,
+     0.64,
+     0.6,
+     0.64,
+     0.6,
+     0.56,
+     0.72,
+     0.72,
+     0.52
+    ],
+    "s_base": 0.08599741598185119,
+    "ss": 0.06655999999999998,
+    "df": 9
+   },
+   "duck-phase1-seedNNN": {
+    "m": 1,
+    "runs": [
+     "runs/phase1_ab/seed1/benchmark.json"
+    ],
+    "lc_totals": [
+     19
+    ],
+    "mean_lc_per_game": [
+     0.76
+    ],
+    "s_base": 0.0,
+    "ss": 0.0,
+    "df": 0
+   },
+   "duck-v2-seedNNN": {
+    "m": 3,
+    "runs": [
+     "runs/phase1_v2/seed201/benchmark.json",
+     "runs/phase1_v2/seed202/benchmark.json",
+     "runs/phase1_v2/seed203/benchmark.json"
+    ],
+    "lc_totals": [
+     14,
+     13,
+     16
+    ],
+    "mean_lc_per_game": [
+     0.56,
+     0.52,
+     0.64
+    ],
+    "s_base": 0.06110100926607786,
+    "ss": 0.007466666666666665,
+    "df": 2
+   }
+  },
+  "all_share_prefix_set": true,
+  "instance_id_sets": [
+   "6a67ec8b",
+   "a86c5566"
+  ]
+ },
+ "D1_a22_rescreen": {
+  "config_audit": {
+   "runs": {
+    "a22_v1": {
+     "dir": "runs/a22_compaction_v1",
+     "label": "duck-harness-kaggle-compaction-v1-continuation-v1",
+     "git_status_md5": "5bca49febc467a579924176dfefe4265",
+     "log_banners": {
+      "arc3-duck-compaction-eval.log": {
+       "has_no_warpack_banner": true,
+       "has_warpack_banking": false,
+       "n_COMPACTION_lines": 1452
+      }
+     }
+    },
+    "a22_v2": {
+     "dir": "runs/a22_v2_seed1",
+     "label": "duck-harness-kaggle-compaction-v2-continuation-v1",
+     "git_status_md5": "5bca49febc467a579924176dfefe4265",
+     "log_banners": {
+      "arc3-duck-compaction-eval.log": {
+       "has_no_warpack_banner": true,
+       "has_warpack_banking": false,
+       "n_COMPACTION_lines": 2617
+      }
+     }
+    },
+    "a22_v2_1": {
+     "dir": "runs/kernel_pulls/a22_v2_1",
+     "label": "duck-harness-kaggle-compaction-v2.1-continuation-v1",
+     "git_status_md5": "5bca49febc467a579924176dfefe4265",
+     "log_banners": {
+      "arc3-duck-compaction-eval.log": {
+       "has_no_warpack_banner": true,
+       "has_warpack_banking": false,
+       "n_COMPACTION_lines": 2780
+      }
+     }
+    },
+    "war_eval_v1": {
+     "dir": "runs/kernel_pulls/war_eval_v1",
+     "label": "duck-harness-kaggle-warpack-v1",
+     "git_status_md5": "5bca49febc467a579924176dfefe4265",
+     "log_banners": {
+      "arc3-duck-war-eval.log": {
+       "has_no_warpack_banner": false,
+       "has_warpack_banking": true,
+       "n_COMPACTION_lines": 0
+      }
+     }
+    },
+    "war_eval_v2": {
+     "dir": "runs/kernel_pulls/war_eval_v2",
+     "label": "duck-harness-kaggle-warpack-v1",
+     "git_status_md5": "5bca49febc467a579924176dfefe4265",
+     "log_banners": {
+      "arc3-duck-war-eval.log": {
+       "has_no_warpack_banner": false,
+       "has_warpack_banking": true,
+       "n_COMPACTION_lines": 0
+      }
+     }
+    },
+    "war_eval_v3": {
+     "dir": "runs/kernel_pulls/war_eval_v3",
+     "label": "duck-harness-kaggle-warpack-v1",
+     "git_status_md5": "5bca49febc467a579924176dfefe4265",
+     "log_banners": {
+      "arc3-duck-war-eval.log": {
+       "has_no_warpack_banner": false,
+       "has_warpack_banking": true,
+       "n_COMPACTION_lines": 0
+      }
+     }
+    },
+    "w0_eval_s1": {
+     "dir": "runs/kernel_pulls/w0_eval_s1",
+     "label": "duck-harness-kaggle-continuation-v1",
+     "git_status_md5": "5bca49febc467a579924176dfefe4265",
+     "log_banners": {
+      "arc3-duck-w0-continuation-eval.log": {
+       "has_no_warpack_banner": true,
+       "has_warpack_banking": false,
+       "n_COMPACTION_lines": 0
+      }
+     }
+    },
+    "w0_cont_eval": {
+     "dir": "runs/kernel_pulls/w0_cont_eval",
+     "label": "duck-harness-kaggle-continuation-v1",
+     "git_status_md5": "5bca49febc467a579924176dfefe4265",
+     "log_banners": {
+      "arc3-duck-w0-continuation-eval.log": {
+       "has_no_warpack_banner": true,
+       "has_warpack_banking": false,
+       "n_COMPACTION_lines": 0
+      }
+     }
+    }
+   },
+   "git_status_is_identical_across_all_arms": true,
+   "git_status_note": "git_status.txt is byte-identical across ALL of these arms including arms of demonstrably DIFFERENT configs (warpack vs no-warpack). It records workstation repo commits, not the arm config, so 'byte-identical git_status.txt' (r24 minutes 3.3a) is NOT evidence of same-config.",
+   "verdict": "A22 arms banner 'NO warpack/ledger-graft/sentinel' and carry label ...-continuation-v1; war_eval_v1/v2/v3 banner 'warpack: banking' and carry label ...-warpack-v1. The A22 arms and their as-screened baseline are DIFFERENT CONFIGS."
+  },
+  "baseline_families": {
+   "warpack_v1": {
+    "m": 3,
+    "runs": [
+     "runs/kernel_pulls/war_eval_v1/benchmark.json",
+     "runs/kernel_pulls/war_eval_v2/benchmark.json",
+     "runs/kernel_pulls/war_eval_v3/benchmark.json"
+    ],
+    "lc_totals": [
+     22,
+     15,
+     13
+    ],
+    "mean_lc_per_game": [
+     0.88,
+     0.6,
+     0.52
+    ],
+    "s_base": 0.18903262505010435,
+    "ss": 0.07146666666666666,
+    "df": 2
+   },
+   "continuation_v1": {
+    "m": 2,
+    "runs": [
+     "runs/kernel_pulls/w0_cont_eval/benchmark.json",
+     "runs/kernel_pulls/w0_eval_s1/benchmark.json"
+    ],
+    "lc_totals": [
+     10,
+     16
+    ],
+    "mean_lc_per_game": [
+     0.4,
+     0.64
+    ],
+    "s_base": 0.1697056274847714,
+    "ss": 0.0288,
+    "df": 1
+   }
+  },
+  "arms": {
+   "a22_v1": {
+    "old_K3": {
+     "source": "runs/a22_compaction_v1/m1m2m3_screen.json",
+     "baseline": "runs/kernel_pulls/war_eval_v1 (arc3-duck-war-eval seed 1, ledger-OFF)",
+     "mean_dlc": -0.2,
+     "worst_dlc": -2,
+     "signflip_p_exact": 0.234375,
+     "verdict": "FAIL",
+     "old_K3_mean_leg": ">= -0.128",
+     "old_K3_worst_leg": ">= -1.0",
+     "recomputed_mean_dlc_vs_war_v1": -0.2,
+     "recompute_matches_screen": true
+    },
+    "vs_warpack_m3_alpha05": {
+     "arm": "a22_v1",
+     "baseline_family": [
+      "runs/kernel_pulls/war_eval_v1/benchmark.json",
+      "runs/kernel_pulls/war_eval_v2/benchmark.json",
+      "runs/kernel_pulls/war_eval_v3/benchmark.json"
+     ],
+     "m": 3,
+     "s_base": 0.18903262505010435,
+     "df": 2,
+     "t95": 2.9199855803537242,
+     "inflation_sqrt_1_plus_1_over_m": 1.1547005383792515,
+     "k3prime_line": -0.6373629883726917,
+     "mean_dlc": 0.013333333333333348,
+     "worst_dlc": -1.3333333333333333,
+     "n_le_m2": 0,
+     "arm_lc_total": 17,
+     "base_lc_total": 16.666666666666668,
+     "verdict": "PASS",
+     "margin": 0.650696321706025,
+     "n_nonzero_games": 17
+    },
+    "vs_warpack_m3_alpha10": {
+     "arm": "a22_v1",
+     "baseline_family": [
+      "runs/kernel_pulls/war_eval_v1/benchmark.json",
+      "runs/kernel_pulls/war_eval_v2/benchmark.json",
+      "runs/kernel_pulls/war_eval_v3/benchmark.json"
+     ],
+     "m": 3,
+     "s_base": 0.18903262505010435,
+     "df": 2,
+     "t95": 2.9199855803537242,
+     "inflation_sqrt_1_plus_1_over_m": 1.1547005383792515,
+     "k3prime_line": -0.4115853120992081,
+     "mean_dlc": 0.013333333333333348,
+     "worst_dlc": -1.3333333333333333,
+     "n_le_m2": 0,
+     "arm_lc_total": 17,
+     "base_lc_total": 16.666666666666668,
+     "verdict": "PASS",
+     "margin": 0.4249186454325415,
+     "n_nonzero_games": 17
+    },
+    "vs_continuation_m2_alpha05": {
+     "arm": "a22_v1",
+     "baseline_family": [
+      "runs/kernel_pulls/w0_cont_eval/benchmark.json",
+      "runs/kernel_pulls/w0_eval_s1/benchmark.json"
+     ],
+     "m": 2,
+     "s_base": 0.1697056274847714,
+     "df": 1,
+     "t95": 6.313751514675037,
+     "inflation_sqrt_1_plus_1_over_m": 1.224744871391589,
+     "k3prime_line": -1.3122886091738541,
+     "mean_dlc": 0.16,
+     "worst_dlc": -1.0,
+     "n_le_m2": 0,
+     "arm_lc_total": 17,
+     "base_lc_total": 13.0,
+     "verdict": "PASS",
+     "margin": 1.472288609173854,
+     "n_nonzero_games": 7
+    },
+    "vs_war_v1_single_m1_fallback": {
+     "baseline": "runs/kernel_pulls/war_eval_v1",
+     "m": 1,
+     "line": -0.2,
+     "mean_dlc": -0.2,
+     "verdict": "PASS",
+     "note": "sealed K3' m=1 fixed fallback, measured type-I 2.2% on null10"
+    }
+   },
+   "a22_v2": {
+    "old_K3": {
+     "source": "runs/a22_v2_seed1/m1m2m3_screen.json",
+     "baseline": "runs/kernel_pulls/war_eval_v1 (arc3-duck-war-eval seed 1, ledger-OFF)",
+     "mean_dlc": -0.32,
+     "worst_dlc": -2,
+     "signflip_p_exact": 0.0556640625,
+     "verdict": "FAIL",
+     "old_K3_mean_leg": ">= -0.128",
+     "old_K3_worst_leg": ">= -1.0",
+     "recomputed_mean_dlc_vs_war_v1": -0.32,
+     "recompute_matches_screen": true
+    },
+    "vs_warpack_m3_alpha05": {
+     "arm": "a22_v2",
+     "baseline_family": [
+      "runs/kernel_pulls/war_eval_v1/benchmark.json",
+      "runs/kernel_pulls/war_eval_v2/benchmark.json",
+      "runs/kernel_pulls/war_eval_v3/benchmark.json"
+     ],
+     "m": 3,
+     "s_base": 0.18903262505010435,
+     "df": 2,
+     "t95": 2.9199855803537242,
+     "inflation_sqrt_1_plus_1_over_m": 1.1547005383792515,
+     "k3prime_line": -0.6373629883726917,
+     "mean_dlc": -0.10666666666666665,
+     "worst_dlc": -1.3333333333333333,
+     "n_le_m2": 0,
+     "arm_lc_total": 14,
+     "base_lc_total": 16.666666666666668,
+     "verdict": "PASS",
+     "margin": 0.530696321706025,
+     "n_nonzero_games": 16
+    },
+    "vs_warpack_m3_alpha10": {
+     "arm": "a22_v2",
+     "baseline_family": [
+      "runs/kernel_pulls/war_eval_v1/benchmark.json",
+      "runs/kernel_pulls/war_eval_v2/benchmark.json",
+      "runs/kernel_pulls/war_eval_v3/benchmark.json"
+     ],
+     "m": 3,
+     "s_base": 0.18903262505010435,
+     "df": 2,
+     "t95": 2.9199855803537242,
+     "inflation_sqrt_1_plus_1_over_m": 1.1547005383792515,
+     "k3prime_line": -0.4115853120992081,
+     "mean_dlc": -0.10666666666666665,
+     "worst_dlc": -1.3333333333333333,
+     "n_le_m2": 0,
+     "arm_lc_total": 14,
+     "base_lc_total": 16.666666666666668,
+     "verdict": "PASS",
+     "margin": 0.3049186454325415,
+     "n_nonzero_games": 16
+    },
+    "vs_continuation_m2_alpha05": {
+     "arm": "a22_v2",
+     "baseline_family": [
+      "runs/kernel_pulls/w0_cont_eval/benchmark.json",
+      "runs/kernel_pulls/w0_eval_s1/benchmark.json"
+     ],
+     "m": 2,
+     "s_base": 0.1697056274847714,
+     "df": 1,
+     "t95": 6.313751514675037,
+     "inflation_sqrt_1_plus_1_over_m": 1.224744871391589,
+     "k3prime_line": -1.3122886091738541,
+     "mean_dlc": 0.04,
+     "worst_dlc": -1.0,
+     "n_le_m2": 0,
+     "arm_lc_total": 14,
+     "base_lc_total": 13.0,
+     "verdict": "PASS",
+     "margin": 1.3522886091738542,
+     "n_nonzero_games": 12
+    },
+    "vs_war_v1_single_m1_fallback": {
+     "baseline": "runs/kernel_pulls/war_eval_v1",
+     "m": 1,
+     "line": -0.2,
+     "mean_dlc": -0.32,
+     "verdict": "FAIL",
+     "note": "sealed K3' m=1 fixed fallback, measured type-I 2.2% on null10"
+    }
+   },
+   "a22_v2_1": {
+    "old_K3": {
+     "source": "runs/kernel_pulls/a22_v2_1/m1m2m3_screen.json",
+     "baseline": "runs/kernel_pulls/war_eval_v1 (arc3-duck-war-eval seed 1, ledger-OFF)",
+     "mean_dlc": -0.36,
+     "worst_dlc": -2,
+     "signflip_p_exact": 0.078125,
+     "verdict": "FAIL",
+     "old_K3_mean_leg": ">= -0.128",
+     "old_K3_worst_leg": ">= -1.0",
+     "recomputed_mean_dlc_vs_war_v1": -0.36,
+     "recompute_matches_screen": true
+    },
+    "vs_warpack_m3_alpha05": {
+     "arm": "a22_v2_1",
+     "baseline_family": [
+      "runs/kernel_pulls/war_eval_v1/benchmark.json",
+      "runs/kernel_pulls/war_eval_v2/benchmark.json",
+      "runs/kernel_pulls/war_eval_v3/benchmark.json"
+     ],
+     "m": 3,
+     "s_base": 0.18903262505010435,
+     "df": 2,
+     "t95": 2.9199855803537242,
+     "inflation_sqrt_1_plus_1_over_m": 1.1547005383792515,
+     "k3prime_line": -0.6373629883726917,
+     "mean_dlc": -0.14666666666666664,
+     "worst_dlc": -1.3333333333333333,
+     "n_le_m2": 0,
+     "arm_lc_total": 13,
+     "base_lc_total": 16.666666666666668,
+     "verdict": "PASS",
+     "margin": 0.49069632170602506,
+     "n_nonzero_games": 16
+    },
+    "vs_warpack_m3_alpha10": {
+     "arm": "a22_v2_1",
+     "baseline_family": [
+      "runs/kernel_pulls/war_eval_v1/benchmark.json",
+      "runs/kernel_pulls/war_eval_v2/benchmark.json",
+      "runs/kernel_pulls/war_eval_v3/benchmark.json"
+     ],
+     "m": 3,
+     "s_base": 0.18903262505010435,
+     "df": 2,
+     "t95": 2.9199855803537242,
+     "inflation_sqrt_1_plus_1_over_m": 1.1547005383792515,
+     "k3prime_line": -0.4115853120992081,
+     "mean_dlc": -0.14666666666666664,
+     "worst_dlc": -1.3333333333333333,
+     "n_le_m2": 0,
+     "arm_lc_total": 13,
+     "base_lc_total": 16.666666666666668,
+     "verdict": "PASS",
+     "margin": 0.2649186454325415,
+     "n_nonzero_games": 16
+    },
+    "vs_continuation_m2_alpha05": {
+     "arm": "a22_v2_1",
+     "baseline_family": [
+      "runs/kernel_pulls/w0_cont_eval/benchmark.json",
+      "runs/kernel_pulls/w0_eval_s1/benchmark.json"
+     ],
+     "m": 2,
+     "s_base": 0.1697056274847714,
+     "df": 1,
+     "t95": 6.313751514675037,
+     "inflation_sqrt_1_plus_1_over_m": 1.224744871391589,
+     "k3prime_line": -1.3122886091738541,
+     "mean_dlc": 0.0,
+     "worst_dlc": -1.0,
+     "n_le_m2": 0,
+     "arm_lc_total": 13,
+     "base_lc_total": 13.0,
+     "verdict": "PASS",
+     "margin": 1.3122886091738541,
+     "n_nonzero_games": 10
+    },
+    "vs_war_v1_single_m1_fallback": {
+     "baseline": "runs/kernel_pulls/war_eval_v1",
+     "m": 1,
+     "line": -0.2,
+     "mean_dlc": -0.36,
+     "verdict": "FAIL",
+     "note": "sealed K3' m=1 fixed fallback, measured type-I 2.2% on null10"
+    }
+   }
+  },
+  "legality": {
+   "r16_seal": {
+    "source": "learnings/panel/r16_circulation.md L417-418 (section 11)",
+    "claim": "control band = 4-run set {war_eval_v1,v2,v3,w0_eval_s1}, n=4, LEGAL"
+   },
+   "r17_seal": {
+    "source": "runs/sealed/r17_thresholds.json -> thresholds.control_band",
+    "sealed_at": "2026-07-22",
+    "verdict": "n=4 pooled band ILLEGAL (config-diff exceeds {(f)}: warpack)",
+    "fallback": "2 fresh W0 seeds -> band {w0_s1,w0_s2,w0_s3}, n=3",
+    "gpu_h": 4.4
+   },
+   "r17_reanchor": {
+    "amended_2026-07-23": "R17 OBJ-C / methodology N1 (learnings/panel/round17/methodology.md line 27); discharge learnings/panel/r17_discharge_memo.md. APPEND-ONLY new key.",
+    "rule": "W1/W2 sentinel score comparisons anchor to the LEGAL control w0_s1 (not the illegal warpack baseline); widen to {w0_s1,w0_s2,w0_s3} once fallback seeds land; warpack comparison is DIAGNOSTIC ONLY",
+    "legal_control_w0_s1": 1.731,
+    "illegal_warpack_3seed_baseline_diagnostic_only": 1.454
+   },
+   "conflict": "R16 section 11 sealed the n=4 warpack-inclusive band as LEGAL on 07-19/20; R17 sealed it ILLEGAL on 07-22 (config-diff exceeds the {(f)} envelope) and prescribed 2 fresh W0 seeds as the fix. The 08-09 recalibration cited the R16 band without noting the R17 override."
+  },
+  "under_corrected_gate": {
+   "a22_v1": {
+    "warpack_m3_s_warpack_df2": {
+     "m": 3,
+     "s_hat": 0.18903262505010435,
+     "s_hat_df": 2,
+     "C": 2.02,
+     "line": -0.38184590260121076,
+     "mean_dlc": 0.013333333333333348,
+     "verdict": "PASS",
+     "margin": 0.3951792359345441,
+     "SE_of_statistic": 0.21827607391659867,
+     "min_detectable_harm_at_80pct_power": 0.5655470464094202,
+     "min_detectable_harm_in_levels_over_25_games": 14.138676160235505,
+     "power_vs_true_harm_0_20": 0.2023940306142129,
+     "meets_m_ge_3_precondition": true
+    },
+    "warpack_m3_s_pooled_df6": {
+     "m": 3,
+     "s_hat": 0.14173527750312867,
+     "s_hat_df": 6,
+     "C": 2.02,
+     "line": -0.28630526055631994,
+     "mean_dlc": 0.013333333333333348,
+     "verdict": "PASS",
+     "margin": 0.2996385938896533,
+     "SE_of_statistic": 0.16366180124019528,
+     "min_detectable_harm_at_80pct_power": 0.42404303248006825,
+     "min_detectable_harm_in_levels_over_25_games": 10.601075812001707,
+     "power_vs_true_harm_0_20": 0.29897907680982566,
+     "meets_m_ge_3_precondition": true
+    },
+    "continuation_m2_s_cont_df1": {
+     "m": 2,
+     "s_hat": 0.1697056274847714,
+     "s_hat_df": 1,
+     "C": 2.1,
+     "line": -0.3563818177180199,
+     "mean_dlc": 0.16,
+     "verdict": "PASS",
+     "margin": 0.5163818177180199,
+     "SE_of_statistic": 0.20784609690826522,
+     "min_detectable_harm_at_80pct_power": 0.5313050928760159,
+     "min_detectable_harm_in_levels_over_25_games": 13.282627321900398,
+     "power_vs_true_harm_0_20": 0.2259075664553899,
+     "meets_m_ge_3_precondition": false
+    },
+    "continuation_m2_s_pooled_df6": {
+     "m": 2,
+     "s_hat": 0.14173527750312867,
+     "s_hat_df": 6,
+     "C": 2.1,
+     "line": -0.2976440827565702,
+     "mean_dlc": 0.16,
+     "verdict": "PASS",
+     "margin": 0.4576440827565702,
+     "SE_of_statistic": 0.1735895542172205,
+     "min_detectable_harm_at_80pct_power": 0.443737051585783,
+     "min_detectable_harm_in_levels_over_25_games": 11.093426289644576,
+     "power_vs_true_harm_0_20": 0.2868877832173481,
+     "meets_m_ge_3_precondition": false
+    }
+   },
+   "a22_v2": {
+    "warpack_m3_s_warpack_df2": {
+     "m": 3,
+     "s_hat": 0.18903262505010435,
+     "s_hat_df": 2,
+     "C": 2.02,
+     "line": -0.38184590260121076,
+     "mean_dlc": -0.10666666666666665,
+     "verdict": "PASS",
+     "margin": 0.27517923593454413,
+     "SE_of_statistic": 0.21827607391659867,
+     "min_detectable_harm_at_80pct_power": 0.5655470464094202,
+     "min_detectable_harm_in_levels_over_25_games": 14.138676160235505,
+     "power_vs_true_harm_0_20": 0.2023940306142129,
+     "meets_m_ge_3_precondition": true
+    },
+    "warpack_m3_s_pooled_df6": {
+     "m": 3,
+     "s_hat": 0.14173527750312867,
+     "s_hat_df": 6,
+     "C": 2.02,
+     "line": -0.28630526055631994,
+     "mean_dlc": -0.10666666666666665,
+     "verdict": "PASS",
+     "margin": 0.1796385938896533,
+     "SE_of_statistic": 0.16366180124019528,
+     "min_detectable_harm_at_80pct_power": 0.42404303248006825,
+     "min_detectable_harm_in_levels_over_25_games": 10.601075812001707,
+     "power_vs_true_harm_0_20": 0.29897907680982566,
+     "meets_m_ge_3_precondition": true
+    },
+    "continuation_m2_s_cont_df1": {
+     "m": 2,
+     "s_hat": 0.1697056274847714,
+     "s_hat_df": 1,
+     "C": 2.1,
+     "line": -0.3563818177180199,
+     "mean_dlc": 0.04,
+     "verdict": "PASS",
+     "margin": 0.3963818177180199,
+     "SE_of_statistic": 0.20784609690826522,
+     "min_detectable_harm_at_80pct_power": 0.5313050928760159,
+     "min_detectable_harm_in_levels_over_25_games": 13.282627321900398,
+     "power_vs_true_harm_0_20": 0.2259075664553899,
+     "meets_m_ge_3_precondition": false
+    },
+    "continuation_m2_s_pooled_df6": {
+     "m": 2,
+     "s_hat": 0.14173527750312867,
+     "s_hat_df": 6,
+     "C": 2.1,
+     "line": -0.2976440827565702,
+     "mean_dlc": 0.04,
+     "verdict": "PASS",
+     "margin": 0.3376440827565702,
+     "SE_of_statistic": 0.1735895542172205,
+     "min_detectable_harm_at_80pct_power": 0.443737051585783,
+     "min_detectable_harm_in_levels_over_25_games": 11.093426289644576,
+     "power_vs_true_harm_0_20": 0.2868877832173481,
+     "meets_m_ge_3_precondition": false
+    }
+   },
+   "a22_v2_1": {
+    "warpack_m3_s_warpack_df2": {
+     "m": 3,
+     "s_hat": 0.18903262505010435,
+     "s_hat_df": 2,
+     "C": 2.02,
+     "line": -0.38184590260121076,
+     "mean_dlc": -0.14666666666666664,
+     "verdict": "PASS",
+     "margin": 0.23517923593454412,
+     "SE_of_statistic": 0.21827607391659867,
+     "min_detectable_harm_at_80pct_power": 0.5655470464094202,
+     "min_detectable_harm_in_levels_over_25_games": 14.138676160235505,
+     "power_vs_true_harm_0_20": 0.2023940306142129,
+     "meets_m_ge_3_precondition": true
+    },
+    "warpack_m3_s_pooled_df6": {
+     "m": 3,
+     "s_hat": 0.14173527750312867,
+     "s_hat_df": 6,
+     "C": 2.02,
+     "line": -0.28630526055631994,
+     "mean_dlc": -0.14666666666666664,
+     "verdict": "PASS",
+     "margin": 0.1396385938896533,
+     "SE_of_statistic": 0.16366180124019528,
+     "min_detectable_harm_at_80pct_power": 0.42404303248006825,
+     "min_detectable_harm_in_levels_over_25_games": 10.601075812001707,
+     "power_vs_true_harm_0_20": 0.29897907680982566,
+     "meets_m_ge_3_precondition": true
+    },
+    "continuation_m2_s_cont_df1": {
+     "m": 2,
+     "s_hat": 0.1697056274847714,
+     "s_hat_df": 1,
+     "C": 2.1,
+     "line": -0.3563818177180199,
+     "mean_dlc": 0.0,
+     "verdict": "PASS",
+     "margin": 0.3563818177180199,
+     "SE_of_statistic": 0.20784609690826522,
+     "min_detectable_harm_at_80pct_power": 0.5313050928760159,
+     "min_detectable_harm_in_levels_over_25_games": 13.282627321900398,
+     "power_vs_true_harm_0_20": 0.2259075664553899,
+     "meets_m_ge_3_precondition": false
+    },
+    "continuation_m2_s_pooled_df6": {
+     "m": 2,
+     "s_hat": 0.14173527750312867,
+     "s_hat_df": 6,
+     "C": 2.1,
+     "line": -0.2976440827565702,
+     "mean_dlc": 0.0,
+     "verdict": "PASS",
+     "margin": 0.2976440827565702,
+     "SE_of_statistic": 0.1735895542172205,
+     "min_detectable_harm_at_80pct_power": 0.443737051585783,
+     "min_detectable_harm_in_levels_over_25_games": 11.093426289644576,
+     "power_vs_true_harm_0_20": 0.2868877832173481,
+     "meets_m_ge_3_precondition": false
+    }
+   }
+  }
+ },
+ "D2_type_II_recalibration": {
+  "reviewer_substitution": {
+   "null10_pair_sd_of_mean_dlc": 0.1223000546638738,
+   "s_base_implied_pair_sd_over_sqrt2": 0.0864791979923106,
+   "s_base_direct_run_level_sd": 0.08599741598185119,
+   "sealed_fallbacks": {
+    "m1": -0.2,
+    "m_ge_3": -0.19,
+    "alpha_0_10": -0.16
+   },
+   "lines_by_m": {
+    "1": {
+     "m": 1,
+     "line_from_pair_sd_over_sqrt2": null,
+     "line_from_direct_run_sd": null,
+     "t95_df_m_minus_1": null,
+     "sqrt_1_plus_1_over_m": 1.4142135623730951
+    },
+    "2": {
+     "m": 2,
+     "line_from_pair_sd_over_sqrt2": -0.6687207026530886,
+     "line_from_direct_run_sd": -0.6649952101411358,
+     "t95_df_m_minus_1": 6.313751514675037,
+     "sqrt_1_plus_1_over_m": 1.224744871391589
+    },
+    "3": {
+     "m": 3,
+     "line_from_pair_sd_over_sqrt2": -0.29158268341162386,
+     "line_from_direct_run_sd": -0.2899582547086461,
+     "t95_df_m_minus_1": 2.9199855803537242,
+     "sqrt_1_plus_1_over_m": 1.1547005383792515
+    },
+    "4": {
+     "m": 4,
+     "line_from_pair_sd_over_sqrt2": -0.22753890364018478,
+     "line_from_direct_run_sd": -0.22627126757280075,
+     "t95_df_m_minus_1": 2.3533634348018233,
+     "sqrt_1_plus_1_over_m": 1.118033988749895
+    },
+    "5": {
+     "m": 5,
+     "line_from_pair_sd_over_sqrt2": -0.20195669993628973,
+     "line_from_direct_run_sd": -0.20083158421852249,
+     "t95_df_m_minus_1": 2.1318467863266495,
+     "sqrt_1_plus_1_over_m": 1.0954451150103321
+    },
+    "9": {
+     "m": 9,
+     "line_from_pair_sd_over_sqrt2": -0.16951096666749207,
+     "line_from_direct_run_sd": -0.16856660853036826,
+     "t95_df_m_minus_1": 1.8595480375308973,
+     "sqrt_1_plus_1_over_m": 1.0540925533894598
+    },
+    "10": {
+     "m": 10,
+     "line_from_pair_sd_over_sqrt2": -0.16626361436044848,
+     "line_from_direct_run_sd": -0.16533734746329307,
+     "t95_df_m_minus_1": 1.8331129326562368,
+     "sqrt_1_plus_1_over_m": 1.0488088481701516
+    }
+   },
+   "reviewer_claimed": {
+    "s_base": 0.0865,
+    "m3": -0.292,
+    "m5": -0.202,
+    "m10": -0.166
+   },
+   "reproduces": {
+    "m3": true,
+    "m5": true,
+    "m10": true
+   },
+   "miscalibration_confirmed": true,
+   "m_ge_3_fallback_reproducible_from_formula": false
+  },
+  "measured_operating_characteristics": {
+   "harm_model": "location shift: every game's arm lc reduced by delta (mean dlc shifts by -delta)",
+   "null_corpus": "runs/null10, 10 same-config vanilla runs x 25 games; exhaustive draws",
+   "sealed_K3prime": {
+    "1": {
+     "m": 1,
+     "mode": "sealed",
+     "alpha": 0.05,
+     "n_draws": 90,
+     "line_mean": -0.2,
+     "line_sd": 0.0,
+     "line_min": -0.2,
+     "line_max": -0.2,
+     "line_p05": -0.2,
+     "line_p95": -0.2,
+     "type_I": 0.022222222222222223,
+     "power_at_dlc_minus_0.1": 0.2111111111111111,
+     "power_at_dlc_minus_0.2": 0.4444444444444444,
+     "power_at_dlc_minus_0.3": 0.7888888888888889,
+     "min_detectable_harm_at_80pct_power": 0.33
+    },
+    "2": {
+     "m": 2,
+     "mode": "sealed",
+     "alpha": 0.05,
+     "n_draws": 360,
+     "line_mean": -0.5443567563980432,
+     "line_sd": 0.3824928002264619,
+     "line_min": -1.5310033773694967,
+     "line_max": -0.0,
+     "line_p05": -1.0935738409782119,
+     "line_p95": 0.0,
+     "type_I": 0.07222222222222222,
+     "power_at_dlc_minus_0.1": 0.12777777777777777,
+     "power_at_dlc_minus_0.2": 0.20833333333333334,
+     "power_at_dlc_minus_0.3": 0.29444444444444445,
+     "min_detectable_harm_at_80pct_power": 0.88
+    },
+    "3": {
+     "m": 3,
+     "mode": "sealed",
+     "alpha": 0.05,
+     "n_draws": 840,
+     "line_mean": -0.26362188101413037,
+     "line_sd": 0.12081668060629416,
+     "line_min": -0.5450639749993618,
+     "line_max": -0.0,
+     "line_p05": -0.4862747761242984,
+     "line_p95": -0.07786628214276604,
+     "type_I": 0.07023809523809524,
+     "power_at_dlc_minus_0.1": 0.1988095238095238,
+     "power_at_dlc_minus_0.2": 0.39404761904761904,
+     "power_at_dlc_minus_0.3": 0.580952380952381,
+     "min_detectable_harm_at_80pct_power": 0.44
+    },
+    "5": {
+     "m": 5,
+     "mode": "sealed",
+     "alpha": 0.05,
+     "n_draws": 1260,
+     "line_mean": -0.19359305843600702,
+     "line_sd": 0.05345391154933114,
+     "line_min": -0.2909326552592445,
+     "line_max": -0.051164322871839626,
+     "line_p05": -0.2691197989740562,
+     "line_p95": -0.10650703130801584,
+     "type_I": 0.0992063492063492,
+     "power_at_dlc_minus_0.1": 0.18095238095238095,
+     "power_at_dlc_minus_0.2": 0.4738095238095238,
+     "power_at_dlc_minus_0.3": 0.8198412698412698,
+     "min_detectable_harm_at_80pct_power": 0.29
+    },
+    "9": {
+     "m": 9,
+     "mode": "sealed",
+     "alpha": 0.05,
+     "n_draws": 10,
+     "line_mean": -0.16792880947594793,
+     "line_sd": 0.015442238590638835,
+     "line_min": -0.17869635394962244,
+     "line_max": -0.13002069569065638,
+     "line_p05": -0.17869635394962244,
+     "line_p95": -0.14304962399592913,
+     "type_I": 0.1,
+     "power_at_dlc_minus_0.1": 0.2,
+     "power_at_dlc_minus_0.2": 0.5,
+     "power_at_dlc_minus_0.3": 1.0,
+     "min_detectable_harm_at_80pct_power": 0.22
+    }
+   },
+   "corrected_K3prime2": {
+    "1": {
+     "m": 1,
+     "mode": "corrected",
+     "alpha": 0.05,
+     "n_draws": 90,
+     "line_mean": -0.1974441068427673,
+     "line_sd": 0.0077106359953244994,
+     "line_min": -0.2,
+     "line_max": -0.17444106842767299,
+     "line_p05": -0.2,
+     "line_p95": -0.17444106842767299,
+     "type_I": 0.05555555555555555,
+     "power_at_dlc_minus_0.1": 0.2222222222222222,
+     "power_at_dlc_minus_0.2": 0.4444444444444444,
+     "power_at_dlc_minus_0.3": 0.7888888888888889,
+     "min_detectable_harm_at_80pct_power": 0.33
+    },
+    "2": {
+     "m": 2,
+     "mode": "corrected",
+     "alpha": 0.05,
+     "n_draws": 360,
+     "line_mean": -0.1914337720125537,
+     "line_sd": 0.014736774154371194,
+     "line_min": -0.2,
+     "line_max": -0.1510703967216644,
+     "line_p05": -0.2,
+     "line_p95": -0.1510703967216644,
+     "type_I": 0.08055555555555556,
+     "power_at_dlc_minus_0.1": 0.18611111111111112,
+     "power_at_dlc_minus_0.2": 0.45555555555555555,
+     "power_at_dlc_minus_0.3": 0.8194444444444444,
+     "min_detectable_harm_at_80pct_power": 0.29
+    },
+    "3": {
+     "m": 3,
+     "mode": "corrected",
+     "alpha": 0.05,
+     "n_draws": 840,
+     "line_mean": -0.18395679400992793,
+     "line_sd": 0.01605760603815139,
+     "line_min": -0.19575204800427118,
+     "line_max": -0.14243053594457447,
+     "line_p05": -0.19575204800427118,
+     "line_p95": -0.14243053594457447,
+     "type_I": 0.09285714285714286,
+     "power_at_dlc_minus_0.1": 0.1880952380952381,
+     "power_at_dlc_minus_0.2": 0.5047619047619047,
+     "power_at_dlc_minus_0.3": 0.8845238095238095,
+     "min_detectable_harm_at_80pct_power": 0.28
+    },
+    "5": {
+     "m": 5,
+     "mode": "corrected",
+     "alpha": 0.05,
+     "n_draws": 1260,
+     "line_mean": -0.17451673804013743,
+     "line_sd": 0.01523055741769361,
+     "line_min": -0.18570669850083446,
+     "line_max": -0.13512147058300117,
+     "line_p05": -0.18570669850083446,
+     "line_p95": -0.13512147058300117,
+     "type_I": 0.1,
+     "power_at_dlc_minus_0.1": 0.19047619047619047,
+     "power_at_dlc_minus_0.2": 0.515079365079365,
+     "power_at_dlc_minus_0.3": 0.9222222222222223,
+     "min_detectable_harm_at_80pct_power": 0.26
+    },
+    "9": {
+     "m": 9,
+     "mode": "corrected",
+     "alpha": 0.05,
+     "n_draws": 10,
+     "line_mean": -0.16792880947594793,
+     "line_sd": 0.015442238590638835,
+     "line_min": -0.17869635394962244,
+     "line_max": -0.13002069569065638,
+     "line_p05": -0.17869635394962244,
+     "line_p95": -0.14304962399592913,
+     "type_I": 0.1,
+     "power_at_dlc_minus_0.1": 0.2,
+     "power_at_dlc_minus_0.2": 0.5,
+     "power_at_dlc_minus_0.3": 1.0,
+     "min_detectable_harm_at_80pct_power": 0.22
+    }
+   },
+   "note": "'corrected_K3prime2' here is an INTERMEDIATE diagnostic (pooled-df t form, clamped) kept for the record. The RECOMMENDED gate is under the top-level key corrected_gate_K3pp, whose numbers are the ones published in duck_eval/SCREEN_PROTOCOL.md. Both instruments are exhaustive-subset draws (finite pool of 10), which is why their type-I rises with m; the bootstrap instrument under corrected_gate_K3pp.measured_on_null10 is the primary one."
+  },
+  "monotonicity": {
+   "sealed": {
+    "m": [
+     1,
+     2,
+     3,
+     5,
+     9
+    ],
+    "mean_line_magnitude": [
+     0.2,
+     0.5444,
+     0.2636,
+     0.1936,
+     0.1679
+    ],
+    "monotone_non_increasing": false
+   },
+   "corrected": {
+    "m": [
+     1,
+     2,
+     3,
+     5,
+     9
+    ],
+    "mean_line_magnitude": [
+     0.1974,
+     0.1914,
+     0.184,
+     0.1745,
+     0.1679
+    ],
+    "monotone_non_increasing": true
+   }
+  },
+  "diagnosis": {
+   "t_multipliers": {
+    "1": 6.313751514675037,
+    "2": 2.9199855803537242,
+    "4": 2.1318467863266495,
+    "6": 1.9431802805153042,
+    "8": 1.8595480375308973,
+    "9": 1.8331129326562368,
+    "20": 1.7247182429207868,
+    "50": 1.675905025163097
+   },
+   "parametric_line_in_units_of_s_base": {
+    "1": null,
+    "2": 7.732734786839128,
+    "3": 3.3717089216940965,
+    "4": 2.631140307989636,
+    "5": 2.3353211480320035,
+    "9": 1.9601357390313026,
+    "10": 1.9225850634649964
+   },
+   "m1_fallback_in_units_of_s_base": 2.325651273547659,
+   "cause": "The sealed K3' mixes two constructions on two different scales. The m=1 fallback -0.200 is an EMPIRICAL 5th percentile of the null10 pair distribution (= 2.33 * s_base). The m>=2 line is a PARAMETRIC t prediction interval whose multiplier t(0.95,m-1)*sqrt(1+1/m) is 8.93 at m=1(hypothetically), 3.37 at m=3, 2.21 at m=5, 1.93 at m=9. The parametric family is itself monotone; the break is the splice: at m=3 the parametric multiplier (3.37) is 1.45x the empirical m=1 multiplier (2.33), so buying two extra baseline runs WIDENS the pass band. The driver is t(0.95,df=2)=2.920 (1.78x the large-sample 1.645) applied to a df=2 variance estimate, not the sqrt(1+1/m) inflation (which correctly shrinks 1.414 -> 1.155 -> 1.054).",
+   "fix": "Estimate s_base with the largest df available (pool same-harness-family within-family sums of squares) so t is ~1.65-1.75 at every m, and clamp the line so its magnitude is monotone non-increasing in m."
+  },
+  "bootstrap_calibration": {
+   "run_means": [
+    0.64,
+    0.44,
+    0.64,
+    0.6,
+    0.64,
+    0.6,
+    0.56,
+    0.72,
+    0.72,
+    0.52
+   ],
+   "sigma_run": 0.08599741598185119,
+   "identity": "mean dlc == M_arm - mean(M_baseline); per-game structure cancels exactly",
+   "by_m": {
+    "1": {
+     "m": 1,
+     "n_boot": 400000,
+     "stat_sd": 0.11544145985904125,
+     "theory_sd": 0.12161871201057473,
+     "q05": -0.2,
+     "q10": -0.15999999999999992,
+     "c05_multiplier_of_sigma": 2.325651273547659,
+     "normal_theory_multiplier": 2.3263813101037414,
+     "c05_monotone_envelope": 2.325651273547659
+    },
+    "2": {
+     "m": 2,
+     "n_boot": 400000,
+     "stat_sd": 0.09985543326894576,
+     "theory_sd": 0.10532489417670131,
+     "q05": -0.18,
+     "q10": -0.1399999999999999,
+     "c05_multiplier_of_sigma": 2.093086146192893,
+     "normal_theory_multiplier": 2.0147053134391637,
+     "c05_monotone_envelope": 2.093086146192893
+    },
+    "3": {
+     "m": 3,
+     "n_boot": 400000,
+     "stat_sd": 0.09414687874747302,
+     "theory_sd": 0.09930126253346802,
+     "q05": -0.17333333333333334,
+     "q10": -0.1333333333333333,
+     "c05_multiplier_of_sigma": 2.0155644370746377,
+     "normal_theory_multiplier": 1.8994823856338687,
+     "c05_monotone_envelope": 2.0155644370746377
+    },
+    "4": {
+     "m": 4,
+     "n_boot": 400000,
+     "stat_sd": 0.09120755863987853,
+     "theory_sd": 0.09614803401237304,
+     "q05": -0.16999999999999998,
+     "q10": -0.13,
+     "c05_multiplier_of_sigma": 1.9768035825155097,
+     "normal_theory_multiplier": 1.8391659114935772,
+     "c05_monotone_envelope": 1.9768035825155097
+    },
+    "5": {
+     "m": 5,
+     "n_boot": 400000,
+     "stat_sd": 0.0893650571115309,
+     "theory_sd": 0.09420544924083035,
+     "q05": -0.16800000000000004,
+     "q10": -0.128,
+     "c05_multiplier_of_sigma": 1.9535470697800337,
+     "normal_theory_multiplier": 1.8020072141919965,
+     "c05_monotone_envelope": 1.9535470697800337
+    },
+    "6": {
+     "m": 6,
+     "n_boot": 400000,
+     "stat_sd": 0.08809949592503295,
+     "theory_sd": 0.09288782561858228,
+     "q05": -0.1666666666666668,
+     "q10": -0.1266666666666667,
+     "c05_multiplier_of_sigma": 1.9380427279563837,
+     "normal_theory_multiplier": 1.7768030748134884,
+     "c05_monotone_envelope": 1.9380427279563837
+    },
+    "9": {
+     "m": 9,
+     "n_boot": 400000,
+     "stat_sd": 0.08600868830483784,
+     "theory_sd": 0.09064923579720506,
+     "q05": -0.1688888888888888,
+     "q10": -0.12888888888888872,
+     "c05_multiplier_of_sigma": 1.9638832976624665,
+     "normal_theory_multiplier": 1.7339822503256614,
+     "c05_monotone_envelope": 1.9380427279563837
+    },
+    "10": {
+     "m": 10,
+     "n_boot": 400000,
+     "stat_sd": 0.08555895860362076,
+     "theory_sd": 0.09019485080153473,
+     "q05": -0.16799999999999998,
+     "q10": -0.1279999999999999,
+     "c05_multiplier_of_sigma": 1.953547069780033,
+     "normal_theory_multiplier": 1.7252905552398994,
+     "c05_monotone_envelope": 1.9380427279563837
+    }
+   },
+   "note": "i.i.d. bootstrap over the 10 null10 run means, 400k draws per m, seed 20260810"
+  },
+  "corrected_gate_K3pp": {
+   "form": "mean dlc >= -C(m) * s_hat ;  C(m) = published multiplier schedule (below)",
+   "c1_measured_at_m1": 2.325651273547659,
+   "c1_normal_theory_1_645_times_sqrt2": 2.3263813101037414,
+   "C_by_m": {
+    "1": 2.33,
+    "2": 2.1,
+    "3": 2.02,
+    "4": 1.98,
+    "5": 1.96,
+    "6": 1.94,
+    "9": 1.94,
+    "10": 1.94
+   },
+   "C_measured_monotone_envelope": {
+    "1": 2.325651273547659,
+    "2": 2.093086146192893,
+    "3": 2.0155644370746377,
+    "4": 1.9768035825155097,
+    "5": 1.9535470697800337,
+    "6": 1.9380427279563837,
+    "9": 1.9380427279563837,
+    "10": 1.9380427279563837
+   },
+   "C_normal_theory_shape_for_reference": {
+    "1": 2.325651273547659,
+    "2": 2.014073083235905,
+    "3": 1.8988863132818752,
+    "4": 1.8385887669204757,
+    "5": 1.8014417303072305,
+    "6": 1.7762455001837663,
+    "9": 1.7334381132038412,
+    "10": 1.7247491456396251
+   },
+   "monotone_non_increasing_in_m": true,
+   "s_hat_rule": "pooled run-to-run sd of per-game mean lc for the comparator's harness family, estimated by pooling within-family sums of squares across same-rail control families; publish s_hat, its df (require >= 4) and the families used",
+   "measured_on_null10": {
+    "corrected": {
+     "1": {
+      "m": 1,
+      "line": -0.20037397923771327,
+      "C": 2.33,
+      "s_hat": 0.08599741598185119,
+      "type_I": 0.019935,
+      "power_at_dlc_minus_0.1": 0.189825,
+      "power_at_dlc_minus_0.2": 0.40006,
+      "power_at_dlc_minus_0.3": 0.8093625,
+      "min_detectable_harm_at_80pct_power": 0.297496459983841
+     },
+     "3": {
+      "m": 3,
+      "line": -0.17371478028333942,
+      "C": 2.02,
+      "s_hat": 0.08599741598185119,
+      "type_I": 0.0438225,
+      "power_at_dlc_minus_0.1": 0.20767,
+      "power_at_dlc_minus_0.2": 0.5674225,
+      "power_at_dlc_minus_0.3": 0.9183325,
+      "min_detectable_harm_at_80pct_power": 0.2529712843324309
+     },
+     "5": {
+      "m": 5,
+      "line": -0.16855493532442833,
+      "C": 1.96,
+      "s_hat": 0.08599741598185119,
+      "type_I": 0.047885,
+      "power_at_dlc_minus_0.1": 0.210385,
+      "power_at_dlc_minus_0.2": 0.607685,
+      "power_at_dlc_minus_0.3": 0.9423575,
+      "min_detectable_harm_at_80pct_power": 0.24378130515835106
+     },
+     "9": {
+      "m": 9,
+      "line": -0.1668349870047913,
+      "C": 1.94,
+      "s_hat": 0.08599741598185119,
+      "type_I": 0.052405,
+      "power_at_dlc_minus_0.1": 0.1988025,
+      "power_at_dlc_minus_0.2": 0.6452,
+      "power_at_dlc_minus_0.3": 0.95234,
+      "min_detectable_harm_at_80pct_power": 0.23910201811380138
+     }
+    },
+    "sealed_bootstrap": {
+     "1": {
+      "m": 1,
+      "line_mean": -0.2,
+      "line_sd": 0.0,
+      "line_p05": -0.2,
+      "frac_degenerate_s_sub_eq_0": 0.0,
+      "type_I": 0.0199875,
+      "power_at_dlc_minus_0.1": 0.18967,
+      "power_at_dlc_minus_0.2": 0.39882,
+      "power_at_dlc_minus_0.3": 0.808825
+     },
+     "3": {
+      "m": 3,
+      "line_mean": -0.24210937752305484,
+      "line_sd": 0.13055933328833658,
+      "line_p05": -0.4862747761242984,
+      "frac_degenerate_s_sub_eq_0": 0.0462875,
+      "type_I": 0.0713675,
+      "power_at_dlc_minus_0.1": 0.2174225,
+      "power_at_dlc_minus_0.2": 0.4477525,
+      "power_at_dlc_minus_0.3": 0.64327
+     },
+     "5": {
+      "m": 5,
+      "line_mean": -0.1790079559132287,
+      "line_sd": 0.06499010724578264,
+      "line_p05": -0.28791772772716134,
+      "frac_degenerate_s_sub_eq_0": 0.0030575,
+      "type_I": 0.0737425,
+      "power_at_dlc_minus_0.1": 0.252095,
+      "power_at_dlc_minus_0.2": 0.5636925,
+      "power_at_dlc_minus_0.3": 0.848215
+     },
+     "9": {
+      "m": 9,
+      "line_mean": -0.15526914222138385,
+      "line_sd": 0.03827839118545596,
+      "line_p05": -0.21511937804969086,
+      "frac_degenerate_s_sub_eq_0": 1.75e-05,
+      "type_I": 0.0729925,
+      "power_at_dlc_minus_0.1": 0.2750875,
+      "power_at_dlc_minus_0.2": 0.6579975,
+      "power_at_dlc_minus_0.3": 0.9415375
+     }
+    }
+   },
+   "lines_at_vanilla_sigma": {
+    "1": -0.20037397923771327,
+    "3": -0.17371478028333942,
+    "5": -0.16855493532442833,
+    "9": -0.1668349870047913
+   },
+   "lines_at_warpack_sigma_0_189": {
+    "1": -0.44037000000000004,
+    "3": -0.38178,
+    "5": -0.37044,
+    "9": -0.36666
+   },
+   "lines_at_pooled_buildrail_sigma_0_1417": {
+    "1": -0.3302542,
+    "3": -0.28631480000000004,
+    "5": -0.2778104,
+    "9": -0.2749756
+   }
+  }
+ },
+ "D4_warpack_null": {
+  "free_warpack_null": {
+   "runs": [
+    "runs/kernel_pulls/war_eval_v1/benchmark.json",
+    "runs/kernel_pulls/war_eval_v2/benchmark.json",
+    "runs/kernel_pulls/war_eval_v3/benchmark.json"
+   ],
+   "lc_totals": [
+    22,
+    15,
+    13
+   ],
+   "mean_lc_per_game": [
+    0.88,
+    0.6,
+    0.52
+   ],
+   "s_base": 0.18903262505010435,
+   "df": 2,
+   "n_independent_pairs": 3,
+   "n_ordered_pairs": 6,
+   "sigma_90pct_CI": [
+    0.10921574842872529,
+    0.8346539802008134
+   ],
+   "relative_SE_of_sigma_hat": 0.5,
+   "precision_note": "df=2. The 90% CI on sigma spans 0.109-0.835, a 7.6x range. The point estimate 0.189 carries no more information than 'somewhere between half and four times the vanilla figure'.",
+   "variance_ratio_vs_vanilla": {
+    "F": 4.831730769230771,
+    "df1": 2,
+    "df2": 9,
+    "p_one_sided": 0.03755142394780431,
+    "CI_90": [
+     1.135143134609143,
+     93.66225887866517
+    ],
+    "CI_95": [
+     0.8454907895591209,
+     190.30681586040447
+    ],
+    "vanilla_s_base": 0.08599741598185119
+   }
+  },
+  "pooled_buildrail_null": {
+   "families": {
+    "duck-harness-kaggle-warpack-v1": {
+     "m": 3,
+     "runs": [
+      "runs/kernel_pulls/war_eval_v1/benchmark.json",
+      "runs/kernel_pulls/war_eval_v2/benchmark.json",
+      "runs/kernel_pulls/war_eval_v3/benchmark.json"
+     ],
+     "lc_totals": [
+      22,
+      15,
+      13
+     ],
+     "mean_lc_per_game": [
+      0.88,
+      0.6,
+      0.52
+     ],
+     "s_base": 0.18903262505010435,
+     "ss": 0.07146666666666666,
+     "df": 2
+    },
+    "duck-harness-kaggle": {
+     "m": 3,
+     "runs": [
+      "runs/kernel_pulls/gate_eval_v1/benchmark.json",
+      "runs/kernel_pulls/gate_eval_v2/benchmark.json",
+      "runs/tmp_pullback_duckgate_v1post/benchmark.json"
+     ],
+     "lc_totals": [
+      18,
+      19,
+      21
+     ],
+     "mean_lc_per_game": [
+      0.72,
+      0.76,
+      0.84
+     ],
+     "s_base": 0.06110100926607786,
+     "ss": 0.007466666666666665,
+     "df": 2
+    },
+    "duck-harness-kaggle-continuation-v1": {
+     "m": 2,
+     "runs": [
+      "runs/kernel_pulls/w0_cont_eval/benchmark.json",
+      "runs/kernel_pulls/w0_eval_s1/benchmark.json"
+     ],
+     "lc_totals": [
+      10,
+      16
+     ],
+     "mean_lc_per_game": [
+      0.4,
+      0.64
+     ],
+     "s_base": 0.1697056274847714,
+     "ss": 0.0288,
+     "df": 1
+    },
+    "duck-harness-kaggle-sentinel-v2": {
+     "m": 2,
+     "runs": [
+      "runs/kernel_pulls/sentinel_eval_v1/benchmark.json",
+      "runs/kernel_pulls/sentinel_eval_v2/benchmark.json"
+     ],
+     "lc_totals": [
+      12,
+      16
+     ],
+     "mean_lc_per_game": [
+      0.48,
+      0.64
+     ],
+     "s_base": 0.11313708498984762,
+     "ss": 0.012800000000000006,
+     "df": 1
+    }
+   },
+   "pooled_ss": 0.12053333333333333,
+   "pooled_df": 6,
+   "s_pooled": 0.14173527750312867,
+   "bartlett": {
+    "stat": 1.7526496815334178,
+    "p": 0.6252926907875755
+   },
+   "vs_vanilla": {
+    "F": 2.7163461538461546,
+    "df1": 6,
+    "df2": 9,
+    "p_one_sided": 0.08632568959949616
+   },
+   "sigma_90pct_CI": [
+    0.09783930162945906,
+    0.27148376166593563
+   ],
+   "note": "All four families run the SAME 25 game instance ids on the SAME free build rail; pooling their within-family sums of squares raises df from 2 to 6 at zero cost. Note the spread ACROSS families: the plain 'duck-harness-kaggle' family (m=3) has s_base BELOW vanilla's, while warpack's is 2.2x it -- with df=2 each, that is what a df=2 variance estimate looks like when it is pure noise."
+  },
+  "precision_vs_m": {
+   "curve": {
+    "2": {
+     "df": 1,
+     "t95": 6.313751514675037,
+     "multiplier": 7.732734786839128,
+     "rel_SE_sigma": 0.7071067811865475,
+     "sigma_CI90_width_ratio": 31.25601488111803,
+     "line_if_sigma_is_0_189": -1.4614868747125953,
+     "power_vs_dlc_minus_0_20": 2.522261008605529e-08,
+     "power_vs_dlc_minus_0_30": 2.6143447537809927e-07
+    },
+    "3": {
+     "df": 2,
+     "t95": 2.9199855803537242,
+     "multiplier": 3.3717089216940965,
+     "rel_SE_sigma": 0.5,
+     "sigma_CI90_width_ratio": 7.642249329505007,
+     "line_if_sigma_is_0_189": -0.6372529862001842,
+     "power_vs_dlc_minus_0_20": 0.022558790400667453,
+     "power_vs_dlc_minus_0_30": 0.06113177078301688
+    },
+    "4": {
+     "df": 3,
+     "t95": 2.3533634348018233,
+     "multiplier": 2.631140307989636,
+     "rel_SE_sigma": 0.4082482904638631,
+     "sigma_CI90_width_ratio": 4.712815362805512,
+     "line_if_sigma_is_0_189": -0.4972855182100412,
+     "power_vs_dlc_minus_0_20": 0.07973154168487406,
+     "power_vs_dlc_minus_0_30": 0.17524539674282136
+    },
+    "5": {
+     "df": 4,
+     "t95": 2.1318467863266495,
+     "multiplier": 2.3353211480320035,
+     "rel_SE_sigma": 0.35355339059327373,
+     "sigma_CI90_width_ratio": 3.6536836769096803,
+     "line_if_sigma_is_0_189": -0.4413756969780487,
+     "power_vs_dlc_minus_0_20": 0.12183839734575308,
+     "power_vs_dlc_minus_0_30": 0.2473522971261845
+    },
+    "6": {
+     "df": 5,
+     "t95": 2.0150483733330233,
+     "multiplier": 2.1765010003866467,
+     "rel_SE_sigma": 0.31622776601683794,
+     "sigma_CI90_width_ratio": 3.108783891324437,
+     "line_if_sigma_is_0_189": -0.41135868907307627,
+     "power_vs_dlc_minus_0_20": 0.15025401245572795,
+     "power_vs_dlc_minus_0_30": 0.2927073638915507
+    },
+    "7": {
+     "df": 6,
+     "t95": 1.9431802805153042,
+     "multiplier": 2.0773471001210138,
+     "rel_SE_sigma": 0.2886751345948129,
+     "sigma_CI90_width_ratio": 2.7747925132796825,
+     "line_if_sigma_is_0_189": -0.3926186019228716,
+     "power_vs_dlc_minus_0_20": 0.17021301083270757,
+     "power_vs_dlc_minus_0_30": 0.3233341249588929
+    },
+    "8": {
+     "df": 7,
+     "t95": 1.8945786050900062,
+     "multiplier": 2.00950406872514,
+     "rel_SE_sigma": 0.2672612419124244,
+     "sigma_CI90_width_ratio": 2.5476419755369264,
+     "line_if_sigma_is_0_189": -0.37979626898905144,
+     "power_vs_dlc_minus_0_20": 0.18488691929608558,
+     "power_vs_dlc_minus_0_30": 0.3452943367297051
+    },
+    "9": {
+     "df": 8,
+     "t95": 1.8595480375308973,
+     "multiplier": 1.9601357390313026,
+     "rel_SE_sigma": 0.25,
+     "sigma_CI90_width_ratio": 2.382195069212972,
+     "line_if_sigma_is_0_189": -0.3704656546769162,
+     "power_vs_dlc_minus_0_20": 0.19609560054438285,
+     "power_vs_dlc_minus_0_30": 0.361781286921387
+    },
+    "10": {
+     "df": 9,
+     "t95": 1.8331129326562368,
+     "multiplier": 1.9225850634649964,
+     "rel_SE_sigma": 0.23570226039551587,
+     "sigma_CI90_width_ratio": 2.2557131097799266,
+     "line_if_sigma_is_0_189": -0.36336857699488434,
+     "power_vs_dlc_minus_0_20": 0.20492494746414636,
+     "power_vs_dlc_minus_0_30": 0.3746053659877929
+    },
+    "11": {
+     "df": 10,
+     "t95": 1.8124611228116754,
+     "multiplier": 1.8930539026193318,
+     "rel_SE_sigma": 0.22360679774997896,
+     "sigma_CI90_width_ratio": 2.1554822228831694,
+     "line_if_sigma_is_0_189": -0.3577871875950537,
+     "power_vs_dlc_minus_0_20": 0.21205512520084902,
+     "power_vs_dlc_minus_0_30": 0.3848621454267341
+    },
+    "12": {
+     "df": 11,
+     "t95": 1.7958848187040433,
+     "multiplier": 1.8692161830268033,
+     "rel_SE_sigma": 0.21320071635561041,
+     "sigma_CI90_width_ratio": 2.0738255072116765,
+     "line_if_sigma_is_0_189": -0.3532818585920658,
+     "power_vs_dlc_minus_0_20": 0.2179315063772902,
+     "power_vs_dlc_minus_0_30": 0.39325136188362964
+    }
+   },
+   "note": "power columns assume the true sigma equals the warpack point estimate 0.189 and that the pooled-df correction is NOT applied (i.e. the sealed K3' form)."
+  },
+  "precision_vs_m_corrected_form": {
+   "2": {
+    "line": -0.4304421932716572,
+    "power_vs_minus_0_20": 0.1597391609798533,
+    "power_vs_minus_0_30": 0.2865398376031679
+   },
+   "3": {
+    "line": -0.40582479169493246,
+    "power_vs_minus_0_20": 0.1728100092411643,
+    "power_vs_minus_0_30": 0.3138720310877374
+   },
+   "4": {
+    "line": -0.3929381649281419,
+    "power_vs_minus_0_20": 0.1806043788523104,
+    "power_vs_minus_0_30": 0.33003289395231994
+   },
+   "5": {
+    "line": -0.3849992018158112,
+    "power_vs_minus_0_20": 0.18578214268641635,
+    "power_vs_minus_0_30": 0.3407025270850481
+   },
+   "6": {
+    "line": -0.37961433239533504,
+    "power_vs_minus_0_20": 0.18947185062406258,
+    "power_vs_minus_0_30": 0.3482711116435634
+   },
+   "7": {
+    "line": -0.3757207491371773,
+    "power_vs_minus_0_20": 0.19223448581633895,
+    "power_vs_minus_0_30": 0.3539182329312336
+   },
+   "8": {
+    "line": -0.3727738742339463,
+    "power_vs_minus_0_20": 0.19438048944404468,
+    "power_vs_minus_0_30": 0.3582928247067151
+   },
+   "9": {
+    "line": -0.37046565467691617,
+    "power_vs_minus_0_20": 0.19609560054438302,
+    "power_vs_minus_0_30": 0.3617812869213871
+   },
+   "10": {
+    "line": -0.368608672283011,
+    "power_vs_minus_0_20": 0.1974977627951912,
+    "power_vs_minus_0_30": 0.3646280116411396
+   },
+   "11": {
+    "line": -0.36708233582078975,
+    "power_vs_minus_0_20": 0.19866547201649304,
+    "power_vs_minus_0_30": 0.3669951127500794
+   },
+   "12": {
+    "line": -0.36580552382764286,
+    "power_vs_minus_0_20": 0.1996529967511051,
+    "power_vs_minus_0_30": 0.36899435472905023
+   }
+  },
+  "power_design": {
+   "rule": "80% power one-sided at the corrected gate: (C + z_0.80) * sigma * sqrt(1/k + 1/m) <= |harm|, C = 1.94 (m>=6), z_0.80 = 0.8416; k = arm seeds, m = baseline seeds",
+   "by_family": {
+    "warpack_sigma_0_189": {
+     "harm_0.10": {
+      "required_sqrt_1overk_plus_1overm": 0.19018162636394476,
+      "balanced_k_eq_m": 56,
+      "total_builds_balanced": 112,
+      "asymptotic_power_with_infinite_baseline_and_1_arm_seed": 0.07912366513225111
+     },
+     "harm_0.20": {
+      "required_sqrt_1overk_plus_1overm": 0.3803632527278895,
+      "balanced_k_eq_m": 14,
+      "total_builds_balanced": 28,
+      "asymptotic_power_with_infinite_baseline_and_1_arm_seed": 0.18889338523043042
+     },
+     "harm_0.30": {
+      "required_sqrt_1overk_plus_1overm": 0.5705448790918343,
+      "balanced_k_eq_m": 7,
+      "total_builds_balanced": 14,
+      "asymptotic_power_with_infinite_baseline_and_1_arm_seed": 0.3620545794115746
+     }
+    },
+    "pooled_buildrail_sigma_0_1417": {
+     "harm_0.10": {
+      "required_sqrt_1overk_plus_1overm": 0.2536456180930752,
+      "balanced_k_eq_m": 32,
+      "total_builds_balanced": 64,
+      "asymptotic_power_with_infinite_baseline_and_1_arm_seed": 0.10851589282430607
+     },
+     "harm_0.20": {
+      "required_sqrt_1overk_plus_1overm": 0.5072912361861504,
+      "balanced_k_eq_m": 8,
+      "total_builds_balanced": 16,
+      "asymptotic_power_with_infinite_baseline_and_1_arm_seed": 0.29843092545444205
+     },
+     "harm_0.30": {
+      "required_sqrt_1overk_plus_1overm": 0.7609368542792255,
+      "balanced_k_eq_m": 4,
+      "total_builds_balanced": 8,
+      "asymptotic_power_with_infinite_baseline_and_1_arm_seed": 0.5700973257491898
+     }
+    },
+    "vanilla_sigma_0_086": {
+     "harm_0.10": {
+      "required_sqrt_1overk_plus_1overm": 0.4180420034418426,
+      "balanced_k_eq_m": 12,
+      "total_builds_balanced": 24,
+      "asymptotic_power_with_infinite_baseline_and_1_arm_seed": 0.21852795268666397
+     },
+     "harm_0.20": {
+      "required_sqrt_1overk_plus_1overm": 0.8360840068836852,
+      "balanced_k_eq_m": 3,
+      "total_builds_balanced": 6,
+      "asymptotic_power_with_infinite_baseline_and_1_arm_seed": 0.6501225228241435
+     },
+     "harm_0.30": {
+      "required_sqrt_1overk_plus_1overm": 1.2541260103255276,
+      "balanced_k_eq_m": 2,
+      "total_builds_balanced": 4,
+      "asymptotic_power_with_infinite_baseline_and_1_arm_seed": 0.9392462416707767
+     }
+    }
+   },
+   "note": "the asymptotic column is the ceiling: even an INFINITE baseline with one arm seed cannot exceed it, because sigma (not df) is the binding constraint"
+  },
+  "price": {
+   "measured_build_hours": {
+    "n": 31,
+    "mean": 2.2110182051702507,
+    "min": 2.2020964383333332,
+    "max": 2.218984651388889
+   },
+   "minutes_5_4_budget": "12-13 builds/week (30 GPU-h / 2.2-2.4 h) -- learnings/war_room/r24_minutes_2026-08-09.md section 5.4",
+   "r17_sealed_price_of_a_legal_control_band": {
+    "source": "runs/sealed/r17_thresholds.json -> thresholds.control_band",
+    "fallback": "2 fresh W0 seeds -> band {w0_s1,w0_s2,w0_s3}, n=3",
+    "gpu_h": 4.4
+   }
+  }
+ },
+ "D3_protocol": {
+  "canonical_file": "duck_eval/SCREEN_PROTOCOL.md",
+  "created_because": "no canonical screen-protocol file existed; the gate lived inline in runs/kernel_pulls/a22_v2_1/_screen_m1m2.py L116-119 (and v1/v2 twins), restated per-arm in each prereg, and numerically in runs/sealed/r17_thresholds.json",
+  "hard_preconditions": {
+   "P1_same_config_legality": "baseline family must match the arm's config except the one pre-registered change, verified from run-log mechanism banners; label alone insufficient; git_status.txt is not evidence (byte-identical across all pulls). Warpack band is ILLEGAL as a control for {(f)}-envelope arms per R17 seal.",
+   "P2_m_ge_3": "baseline = per-game mean of m >= 3 same-config runs; m<3 => NOT SCREENABLE",
+   "P3_sigma_df_ge_4": "sigma_hat pooled across same-rail control families, df >= 4"
+  },
+  "gate": "mean dlc >= -C(m) * sigma_hat",
+  "C_schedule": {
+   "1": 2.33,
+   "2": 2.1,
+   "3": 2.02,
+   "4": 1.98,
+   "5": 1.96,
+   "6": 1.94,
+   "9": 1.94,
+   "10": 1.94
+  },
+  "standing_sigma_pooled": {
+   "value": 0.14173527750312867,
+   "df": 6
+  },
+  "struck_legs": [
+   "worst-game dlc >= -1.0 (type-I 50%/60%)",
+   "#(dlc<=-2)<=2 is advisory, never gating",
+   "actions_per_level_completed may not be a co-primary"
+  ],
+  "mandatory_seal_items": [
+   "baseline family paths + banner evidence",
+   "m",
+   "sigma_hat + df + families pooled",
+   "line + measured type-I + corpus",
+   "80%-power detection floor in levels",
+   "power-honesty clause if power < 50%"
+  ],
+  "family_screenability": {
+   "duck-harness-kaggle": {
+    "m": 3,
+    "lc_totals": [
+     18,
+     19,
+     21
+    ],
+    "screenable": true
+   },
+   "duck-harness-kaggle-continuation-v1": {
+    "m": 2,
+    "lc_totals": [
+     10,
+     16
+    ],
+    "screenable": false
+   },
+   "duck-harness-kaggle-sentinel-v2": {
+    "m": 2,
+    "lc_totals": [
+     12,
+     16
+    ],
+    "screenable": false
+   },
+   "duck-harness-kaggle-warpack-v1": {
+    "m": 3,
+    "lc_totals": [
+     22,
+     15,
+     13
+    ],
+    "screenable": true
+   },
+   "duck-null-seedNNN": {
+    "m": 10,
+    "lc_totals": [
+     16,
+     11,
+     16,
+     15,
+     16,
+     15,
+     14,
+     18,
+     18,
+     13
+    ],
+    "screenable": true
+   },
+   "duck-v2-seedNNN": {
+    "m": 3,
+    "lc_totals": [
+     14,
+     13,
+     16
+    ],
+    "screenable": true
+   }
+  }
+ },
+ "rulings": {
+  "D1": {
+   "status": "FORMALLY OPEN AND UNWORKED",
+   "headline": "A22 compaction: screened by a broken instrument against an illegal, high-outlier, single-run baseline; not shown to help, not shown to harm; NOT re-screenable at $0 today.",
+   "k3prime_as_sealed_warpack_m3_line": -0.6374,
+   "arms_pass_every_calibrated_line_on_disk": true,
+   "legal_family": "duck-harness-kaggle-continuation-v1 (m=2, FAILS the m>=3 precondition)",
+   "power_at_affordable_m": {
+    "warpack_m3": 0.202,
+    "pooled_m3": 0.299
+   },
+   "min_detectable_harm_levels": {
+    "warpack_m3": 14.1,
+    "pooled_m3": 10.6
+   },
+   "recommendation": "NO builds. Negative EV vs lane (a), which was ratified on independent grounds and keeps the budget.",
+   "revival_conditions": [
+    "R1 lane (a) free instrumentation + R25 N3 discharged",
+    "R2 a surviving mechanism claim (non-harm is not a reason to run)",
+    "R3 continuation-v1 control family reaches m>=3 (1 seed short)",
+    "R4 prereg publishes sigma_hat/df/line/power-floor-in-levels",
+    "R5 power<50% => declared exploratory probe, not a screen"
+   ]
+  },
+  "D2": {
+   "n1_miscalibration_reproduced": true,
+   "sealed_m3_line": -0.2916,
+   "sealed_m1_fallback": -0.2,
+   "looser_at_m3_than_m1": true,
+   "m_ge_3_fallback_minus_0_190_reproducible_from_formula": false,
+   "corrected_gate": "K3'' : mean dlc >= -C(m)*sigma_hat, C = 2.33/2.10/2.02/1.98/1.96/1.94",
+   "monotone": true
+  },
+  "D4": {
+   "recommendation": "Do NOT spend build-rail runs on a warpack-specific null; adopt the free pooled build-rail sigma_hat = 0.1417 (df 6).",
+   "cost_avoided_builds_to_match_pooling": 5,
+   "cost_avoided_builds_for_a_powered_screen": 16,
+   "weeks_of_rail": 1.2307692307692308,
+   "exception": "1 W0 continuation seed (2.2 GPU-h) to close the R17-sealed legal control band at m=3 -- only when an arm on that harness is actually queued"
+  }
+ }
+}
