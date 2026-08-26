@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- macOS port of the Windows Scheduled Task "ARCDailyIterate".
+     08:23 headless Claude iterate session: reads overnight results, executes
+     the plan's next step, refills the submission queue. Idempotent per day-file,
+     so an overlap with the Windows box is safe.
+     Times are LOCAL (machine TZ America/New_York, same as the Windows box). -->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.arc.dailyiterate</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/danilocanivel/Projects/kaggle/arc-prize-2026/scripts/daily_iterate.sh</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/danilocanivel/Projects/kaggle/arc-prize-2026</string>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key><integer>8</integer>
+        <key>Minute</key><integer>23</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/danilocanivel/Projects/kaggle/arc-prize-2026/runs/launchd.dailyiterate.out</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/danilocanivel/Projects/kaggle/arc-prize-2026/runs/launchd.dailyiterate.err</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+    <key>ProcessType</key>
+    <string>Background</string>
+</dict>
+</plist>
