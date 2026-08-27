@@ -62,9 +62,13 @@ STRUCTURED_RUNTIME_STATE_ADDENDUM = (
     "- `valid_actions` is the current list of valid action names.\n"
     "- Call `action(actions)` to execute one or more real environment actions from Python.\n"
     "- Pass `action(actions)` a list like `['LEFT']` or `[{'action': 'MOUSE', 'row': 4, 'col': 7}]`.\n"
-    "- One action usually returns one frame, but a single action can result in a short multi-frame animation; `current_frame` is always the final frame of that animation. When present, `last_action_result['animation']['worth_inspecting']` means the hidden frames are worth reading, and `['board_unchanged']` means the action's only visible effect -- a rejected click, a consumed attempt, a bounce off a wall -- lives in those hidden frames, not a no-op; no `animation` key means nothing was hidden. Call `animation()` for the diff timeline in either case.\n"
-    "- `animation()` costs no in-game action and no action budget.\n"
+    "- One action usually returns one frame, but a single action can result in a short multi-frame animation; `current_frame` is always the final frame of that animation. When present, `last_action_result['animation']['worth_inspecting']` means the hidden frames are worth reading, and `['board_unchanged']` means the action's only visible effect -- a rejected click, a consumed attempt, a bounce off a wall -- lives in those hidden frames, not a no-op; no `animation` key means nothing was hidden.\n"
     "- After `action(actions)` returns, `current_frame`, `previous_frame`, `history`, `transitions`, `valid_actions`, and `last_action_result` are refreshed.\n"
+)
+
+ANIMATION_RETRIEVAL_ADDENDUM = (
+    "- Call `animation()` for the diff timeline in either case.\n"
+    "- `animation()` costs no in-game action and no action budget.\n"
 )
 
 MULTIMODAL_CONTEXT_ADDENDUM = (

@@ -19,6 +19,7 @@ from inference.agent.prompts import (
     GAME_OVERVIEW_ADDENDUM,
     PYTHON_ADDENDUM,
     STRUCTURED_RUNTIME_STATE_ADDENDUM,
+    ANIMATION_RETRIEVAL_ADDENDUM,
     MULTIMODAL_CONTEXT_ADDENDUM,
     TOOL_CALL_FORMAT_GUIDANCE,
     VISUAL_GAME_ADDENDUM,
@@ -502,10 +503,23 @@ def _format_model_response_meta(
     return "\n".join(lines)
 
 
-def _build_system_prompt(*, tool_output_tokens: int) -> str:
+def _build_system_prompt(*, tool_output_tokens: int, animation_retrieval: bool) -> str:
+    """The system prompt, matched to the globals actually injected.
+
+    `animation()` must only be advertised when the sandbox really provides it.
+    _python_tool_description already gates the TOOL DESCRIPTION on this -- see
+    its docstring, which records 18 turns burned on NameError across 8 games --
+    but STRUCTURED_RUNTIME_STATE_ADDENDUM kept advertising it unconditionally,
+    so the same defect survived in the system prompt. Measured on the real
+    private_edge2_v3 Kaggle pull (awareness=True, retrieval=False): 29
+    NameErrors across 13 of 25 games, 1.86% of all actions, against a decision
+    budget already known to be binding.
+    """
     prompt = "You are a coding agent solving a grid-based puzzle game."
     prompt += GAME_OVERVIEW_ADDENDUM
     prompt += STRUCTURED_RUNTIME_STATE_ADDENDUM
+    if animation_retrieval:
+        prompt += ANIMATION_RETRIEVAL_ADDENDUM
     if current_grid_image_enabled():
         prompt += MULTIMODAL_CONTEXT_ADDENDUM
     prompt += VISUAL_GAME_ADDENDUM
@@ -1096,8 +1110,12 @@ class ToolAgent:
         self._tool_output_tokens = max(64, _LOCAL_ANALYZER_TOOL_OUTPUT_TOKENS)
         self._tool_output_chars = max(256, self._tool_output_tokens * 4)
         self._save_request_logs = bool(save_request_logs)
+        # Resolved here rather than at line ~1124 because the system prompt is
+        # built above that point and must agree with the injected globals.
+        self._animation_retrieval_enabled = bool(animation_awareness) and bool(animation_retrieval)
         self._system_prompt = _build_system_prompt(
             tool_output_tokens=self._tool_output_tokens,
+            animation_retrieval=self._animation_retrieval_enabled,
         )
         self._request_safety_margin_tokens = _REQUEST_SAFETY_MARGIN_TOKENS
         self._context_budget_tokens = max(
@@ -1121,7 +1139,7 @@ class ToolAgent:
         self._animation_awareness_enabled = bool(animation_awareness)
         # Retrieval reads the metadata stage's summaries, so it cannot run on
         # its own; the solver resolves the same conjunction for its own half.
-        self._animation_retrieval_enabled = bool(animation_awareness) and bool(animation_retrieval)
+        # _animation_retrieval_enabled is set above, before the system prompt is built.
         # Merged into the per-attempt experiment event by the solver session,
         # so retrieval stays separable from the metadata stage in log analysis.
         self.animation_counters: dict[str, int] = {}
