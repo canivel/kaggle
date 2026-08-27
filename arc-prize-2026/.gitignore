@@ -27,3 +27,4 @@ __pycache__/
 *.pyc
 .venv/
 scripts/bench_token.cmd
+kaggle-data

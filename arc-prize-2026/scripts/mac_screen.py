@@ -1,0 +1,358 @@
+"""LOCAL SCREENING RUNNER  [MAC-SCREEN]  (lane: local-rail)
+
+Runs the campaign's REAL vehicle -- the frozen fork's HarnessSolver + ToolAgent
+-- against the REAL 25 official games, driven by the local Qwen3.8-27B served
+by mlx_lm.server. Emits the campaign's canonical `benchmark.json` so every
+existing scorer and `local_gate` read a local run unchanged.
+
+WHAT THIS IS FOR
+    Ranking and eliminating candidates so Kaggle slots are not spent on arms
+    that could have been killed on this box.
+
+WHAT THIS IS NOT
+    A verdict. Env-mismatch is confirmed 5x and the Mac widens it (8-bit MLX on
+    Metal vs FP8 on CUDA, no reasoning parser). Every number this writes is
+    stamped [MAC-SCREEN]. No sealed verdict, no queue-head promotion, no band
+    read comes from it. See MIGRATION_MACBOOK.md and the local_gate footer.
+
+TIMING -- READ BEFORE LAUNCHING A FULL RUN
+    A real 25-game run is ~3000-4900 LLM-driven actions. At the measured local
+    rate (18.1 tok/s generation) a full sweep is TENS OF HOURS. Screen on a
+    subset with a capped action budget; that is what screening is for.
+    `--estimate` prints the projection without running anything.
+
+USAGE
+    # terminal 1
+    ./scripts/serve_local_model.sh
+    # terminal 2
+    .venv/bin/python scripts/mac_screen.py --label baseline --games 3 --max-actions 40
+    .venv/bin/python scripts/mac_screen.py --label baseline --games 25 --estimate
+"""
+from __future__ import annotations
+
+import argparse
+import asyncio
+import datetime as dt
+import json
+import os
+import shutil
+import statistics
+import sys
+import tempfile
+import time
+import urllib.error
+import urllib.request
+from pathlib import Path
+
+# scripts/ contains queue.py, which shadows the stdlib `queue` and breaks every
+# downstream harness import (urllib3/threading/concurrent.futures pull it in).
+# Running `python scripts/mac_screen.py` puts scripts/ on sys.path[0], so strip
+# it before anything else imports. Same guard as local_gate.py.
+_SELF_DIR = Path(__file__).resolve().parent
+sys.path[:] = [p for p in sys.path if p and Path(p).resolve() != _SELF_DIR]
+
+ROOT = Path(__file__).resolve().parents[1]
+BUNDLE = ROOT / "duck_eval" / "private" / "bundle_20260815" / "src" / "ARC3-Inference"
+OUT_ROOT = ROOT / "runs" / "mac_screen"
+INDEX = OUT_ROOT / "INDEX.jsonl"
+
+DEFAULT_BASE_URL = "http://127.0.0.1:1234/v1"
+# Measured on this box: mlx-community/Qwen3.8-27B-8bit, 8-bit MLX on Metal.
+MEASURED_TOK_S = 18.1
+# Observed in real artifacts (runs/kernel_pulls/q38_v2, phase1_v2_screen, null10).
+ACTIONS_PER_GAME = 190
+# Rough generated tokens per action; thinking mode is far more verbose.
+TOKENS_PER_ACTION_THINK = 900
+TOKENS_PER_ACTION_NOTHINK = 180
+
+
+def _now() -> str:
+    return dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+# ---------------------------------------------------------------------------
+# preflight
+# ---------------------------------------------------------------------------
+def check_server(base_url: str) -> tuple[bool, str]:
+    """Is a local OpenAI-shaped server up, and which model is it serving?"""
+    try:
+        with urllib.request.urlopen(f"{base_url}/models", timeout=10) as r:
+            data = json.load(r)
+        ids = [m.get("id") for m in data.get("data", [])]
+        if not ids:
+            return False, "server up but serving no model"
+        return True, ids[0]
+    except urllib.error.URLError as exc:
+        return False, f"cannot reach {base_url} ({exc.reason})"
+    except Exception as exc:  # noqa: BLE001
+        return False, f"{type(exc).__name__}: {exc}"
+
+
+def estimate(n_games: int, max_actions: int | None, thinking: bool) -> dict:
+    per_game = min(max_actions, ACTIONS_PER_GAME) if max_actions else ACTIONS_PER_GAME
+    actions = n_games * per_game
+    tpa = TOKENS_PER_ACTION_THINK if thinking else TOKENS_PER_ACTION_NOTHINK
+    tokens = actions * tpa
+    hours = tokens / MEASURED_TOK_S / 3600
+    return {
+        "games": n_games,
+        "actions_per_game": per_game,
+        "total_actions": actions,
+        "tokens_per_action": tpa,
+        "projected_generated_tokens": tokens,
+        "measured_tok_s": MEASURED_TOK_S,
+        "projected_hours": round(hours, 2),
+    }
+
+
+# ---------------------------------------------------------------------------
+# the run
+# ---------------------------------------------------------------------------
+def build_games(n_games: int, game_ids: list[str] | None):
+    import re_arc
+    import taaf.game_api
+
+    official = sorted(re_arc.list_game_ids(datasets=["train", "eval"], include_tags="official"))
+    if game_ids:
+        wanted = []
+        for want in game_ids:
+            hit = [g for g in official if g == want or g.split("-")[0] == want]
+            if not hit:
+                raise SystemExit(f"unknown game id {want!r}; official prefixes: "
+                                 f"{sorted({g.split('-')[0] for g in official})}")
+            wanted.extend(hit)
+        chosen = wanted
+    else:
+        chosen = official[:n_games]
+    return chosen, [taaf.game_api.GameAPI(env_name=g) for g in chosen]
+
+
+def run_benchmark(args, model_id: str, chosen: list[str], games) -> Path:
+    import taaf.benchmark
+    sys.path.insert(0, str(BUNDLE))
+    from inference.framework.solver import HarnessSolver
+
+    solver = HarnessSolver(
+        label=f"mac-screen-{args.label}",
+        model=model_id,
+        concurrency=args.concurrency,
+        max_actions_per_game=args.max_actions,
+        kaggle_enable_vllm=False,   # the model is already served by mlx_lm.server
+        start_local_server=False,   # ... so the harness must not start its own
+        analyzer_timeout=args.analyzer_timeout,
+        animation_awareness=True,
+        animation_retrieval=False,
+        hard_noop_guard=True,
+        save_request_logs=True,
+    )
+    job = Path(tempfile.mkdtemp(prefix=f"macscreen-{args.label}-"))
+    bm = taaf.benchmark.Benchmark(
+        label=f"[MAC-SCREEN] {args.label}",
+        games=games,
+        solver=solver,
+        n_passes=1,
+        job_dir=job,
+        periodic_save_interval_s=60.0,
+    )
+    asyncio.run(bm.run())
+    return job
+
+
+# ---------------------------------------------------------------------------
+# diagnosis -- "what is going wrong and what to fix next"
+# ---------------------------------------------------------------------------
+def diagnose(bench: dict) -> dict:
+    runs = bench.get("game_runs", [])
+    per_game, cleared, stuck, zero_action = [], [], [], []
+    scores, lc_total = [], 0
+
+    for r in runs:
+        gid = r.get("game_id", "?")
+        lc = r.get("levels_completed", 0) or 0
+        nl = r.get("number_of_levels", 0) or 0
+        acts = sum(r.get("actions_per_level") or [])
+        score = r.get("final_score", 0.0) or 0.0
+        note = (r.get("solver_note") or "").strip()
+        state = r.get("state", "")
+        lc_total += lc
+        scores.append(score)
+        row = {"game_id": gid, "levels_completed": lc, "number_of_levels": nl,
+               "actions": acts, "final_score": score, "state": state,
+               "solver_note": note[:400]}
+        per_game.append(row)
+        if lc > 0:
+            cleared.append(gid)
+        if acts == 0:
+            zero_action.append(gid)
+        elif lc == 0:
+            stuck.append(gid)
+
+    findings = []
+    if zero_action:
+        findings.append({
+            "severity": "critical",
+            "what": f"{len(zero_action)} game(s) took ZERO actions: {zero_action[:6]}",
+            "means": "the solver never issued an action -- harness wiring, model "
+                     "endpoint, or tool-call parsing failed, not a reasoning failure",
+            "fix_next": "check the request logs; confirm the model returns tool_calls "
+                        "in a shape the ToolAgent parses (mlx_lm.server has no "
+                        "vLLM tool-call parser)",
+        })
+    if stuck:
+        findings.append({
+            "severity": "high",
+            "what": f"{len(stuck)} game(s) acted but cleared no level: {stuck[:6]}",
+            "means": "the agent is acting but not solving -- a genuine reasoning or "
+                     "planning failure, which IS what screening should surface",
+            "fix_next": "read solver_note per game; compare against a Kaggle run of "
+                        "the same arm to separate local quantisation drift from a "
+                        "real arm regression",
+        })
+    if not runs:
+        findings.append({
+            "severity": "critical",
+            "what": "no game_runs in the artifact",
+            "means": "the benchmark produced nothing",
+            "fix_next": "check the harness raised before the first game started",
+        })
+
+    return {
+        "n_games": len(runs),
+        "levels_completed_total": lc_total,
+        "games_cleared": cleared,
+        "games_stuck": stuck,
+        "games_zero_action": zero_action,
+        "mean_score": round(statistics.fmean(scores), 6) if scores else 0.0,
+        "total_actions": sum(p["actions"] for p in per_game),
+        "per_game": per_game,
+        "findings": findings,
+    }
+
+
+def main() -> int:
+    p = argparse.ArgumentParser(description="Local [MAC-SCREEN] runner for the ARC campaign")
+    p.add_argument("--label", required=True, help="short slug for this iteration")
+    p.add_argument("--games", type=int, default=3, help="how many official games (default 3)")
+    p.add_argument("--game-ids", default=None, help="comma-separated ids/prefixes, e.g. ft09,ar25")
+    p.add_argument("--max-actions", type=int, default=40, help="action cap per game (default 40)")
+    p.add_argument("--concurrency", type=int, default=1, help="parallel games (default 1; each "
+                                                              "holds the single local server)")
+    p.add_argument("--analyzer-timeout", type=float, default=600.0)
+    p.add_argument("--base-url", default=os.environ.get("LOCAL_LLM_BASE_URL", DEFAULT_BASE_URL))
+    p.add_argument("--no-think", action="store_true", help="disable thinking (much faster, no trace)")
+    p.add_argument("--note", default="", help="free text recorded with the iteration")
+    p.add_argument("--estimate", action="store_true", help="print the time projection and exit")
+    args = p.parse_args()
+
+    n_games = len(args.game_ids.split(",")) if args.game_ids else args.games
+    est = estimate(n_games, args.max_actions, thinking=not args.no_think)
+
+    if args.estimate:
+        print(json.dumps(est, indent=2))
+        print(f"\n  ~{est['projected_hours']:.1f} h projected at {MEASURED_TOK_S} tok/s "
+              f"({'thinking ON' if not args.no_think else 'thinking OFF'})")
+        return 0
+
+    ok, model_id = check_server(args.base_url)
+    if not ok:
+        print(f"[mac_screen] LOCAL SERVER NOT READY: {model_id}", file=sys.stderr)
+        print("  start it with:  ./scripts/serve_local_model.sh", file=sys.stderr)
+        return 2
+    print(f"[mac_screen] server OK at {args.base_url}, serving {model_id}")
+    print(f"[mac_screen] projection: ~{est['projected_hours']:.1f} h "
+          f"({est['total_actions']} actions)")
+
+    os.environ["OPENAI_BASE_URL"] = args.base_url
+    os.environ.setdefault("OPENAI_API_KEY", "local")
+
+    chosen, games = build_games(args.games, args.game_ids.split(",") if args.game_ids else None)
+    print(f"[mac_screen] games: {chosen}")
+
+    stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
+    out = OUT_ROOT / f"{stamp}_{args.label}"
+    out.mkdir(parents=True, exist_ok=True)
+
+    started = time.time()
+    started_iso = _now()
+    error = None
+    try:
+        job = run_benchmark(args, model_id, chosen, games)
+    except KeyboardInterrupt:
+        print("\n[mac_screen] interrupted", file=sys.stderr)
+        return 130
+    except Exception as exc:  # noqa: BLE001
+        error = f"{type(exc).__name__}: {exc}"
+        job = None
+        print(f"[mac_screen] RUN FAILED: {error}", file=sys.stderr)
+    elapsed = time.time() - started
+
+    bench = {}
+    if job and (job / "benchmark.json").is_file():
+        shutil.copy2(job / "benchmark.json", out / "benchmark.json")
+        bench = json.loads((out / "benchmark.json").read_text(encoding="utf-8"))
+        # keep the request logs -- they are the evidence for wiring failures
+        for extra in ("request_logs", "solver_logs"):
+            src = job / extra
+            if src.is_dir():
+                shutil.copytree(src, out / extra, dirs_exist_ok=True)
+
+    diag = diagnose(bench) if bench else {"findings": [
+        {"severity": "critical", "what": "no benchmark.json produced",
+         "means": error or "the harness exited before writing an artifact",
+         "fix_next": "read the traceback above"}]}
+
+    record = {
+        "label": args.label,
+        "stamp": stamp,
+        "started": started_iso,
+        "finished": _now(),
+        "elapsed_s": round(elapsed, 1),
+        "lane": "MAC-SCREEN",
+        "certifies": False,
+        "model": model_id,
+        "base_url": args.base_url,
+        "thinking": not args.no_think,
+        "games": chosen,
+        "max_actions_per_game": args.max_actions,
+        "concurrency": args.concurrency,
+        "note": args.note,
+        "estimate": est,
+        "error": error,
+        "results": diag,
+        "results_path": str(out.relative_to(ROOT)),
+    }
+    (out / "iteration.json").write_text(json.dumps(record, indent=2), encoding="utf-8")
+    OUT_ROOT.mkdir(parents=True, exist_ok=True)
+    with INDEX.open("a", encoding="utf-8") as fh:
+        slim = {k: record[k] for k in ("label", "stamp", "elapsed_s", "model", "thinking",
+                                       "games", "max_actions_per_game", "results_path", "error")}
+        slim["levels_completed_total"] = diag.get("levels_completed_total")
+        slim["mean_score"] = diag.get("mean_score")
+        fh.write(json.dumps(slim) + "\n")
+
+    # ---- report -----------------------------------------------------------
+    print("\n" + "=" * 78)
+    print(f"  [MAC-SCREEN] {args.label}   {elapsed/60:.1f} min")
+    print("=" * 78)
+    if bench:
+        print(f"  games {diag['n_games']}   levels_completed {diag['levels_completed_total']}"
+              f"   mean_score {diag['mean_score']}   actions {diag['total_actions']}")
+        for row in diag["per_game"]:
+            mark = "OK " if row["levels_completed"] else ("!! " if row["actions"] == 0 else " . ")
+            print(f"   {mark}{row['game_id']:<20} lc={row['levels_completed']}/{row['number_of_levels']:<3}"
+                  f" actions={row['actions']:<5} score={row['final_score']}")
+    if diag["findings"]:
+        print("\n  WHAT IS GOING WRONG / WHAT TO FIX NEXT")
+        for f in diag["findings"]:
+            print(f"   [{f['severity'].upper()}] {f['what']}")
+            print(f"        means    : {f['means']}")
+            print(f"        fix next : {f['fix_next']}")
+    print(f"\n  artifact : {out.relative_to(ROOT)}/benchmark.json")
+    print(f"  iteration: {out.relative_to(ROOT)}/iteration.json")
+    print("  SCREEN ONLY -- this licenses a Kaggle build, never a verdict.")
+    print("=" * 78)
+    return 0 if not error else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
