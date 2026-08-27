@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- THE nightly rail on macOS. Replaces the four StartCalendarInterval agents.
+
+     StartCalendarInterval does NOT fire on this machine (verified with a bare
+     probe: due 11:24, still runs=0 twenty minutes later, on AC, awake, nothing
+     disabled). StartInterval DOES fire reliably, so scheduling happens here and
+     the calendar logic lives in scripts/sched_tick.sh.
+
+     Every 5 minutes the tick checks each target window and runs whatever is due
+     and unstamped for today. More robust than a calendar trigger on a laptop:
+     a missed minute is picked up on the next tick rather than skipped. All the
+     downstream jobs are idempotent, so a late or repeated tick is safe. -->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.arc.tick</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/danilocanivel/Projects/kaggle/arc-prize-2026/scripts/sched_tick.sh</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/danilocanivel/Projects/kaggle/arc-prize-2026</string>
+
+    <key>StartInterval</key>
+    <integer>300</integer>
+
+    <key>StandardOutPath</key>
+    <string>/Users/danilocanivel/Projects/kaggle/arc-prize-2026/runs/launchd.tick.out</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/danilocanivel/Projects/kaggle/arc-prize-2026/runs/launchd.tick.err</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+    <key>LowPriorityIO</key>
+    <false/>
+</dict>
+</plist>
