@@ -34,17 +34,42 @@ TOP_K="${LOCAL_MODEL_TOP_K:-20}"
 # reasoning: measured 3 of 4 harness calls returning finish_reason="length"
 # with exactly 512 completion tokens and NO tool_call emitted. That reads as a
 # reasoning failure in the artifact when it is really a serving cap.
-MAX_TOKENS="${LOCAL_MODEL_MAX_TOKENS:-4096}"
+MAX_TOKENS="${LOCAL_MODEL_MAX_TOKENS:-8192}"
+
+# THINKING -- the decisive knob for screening throughput on this hardware.
+#
+# MEASURED with thinking ON: reasoning length GROWS with context (76 -> 421 ->
+# 7836 -> 9603 chars as the prompt went 4k -> 8k tokens), and generation runs
+# ~13 tok/s, so a 4096-token reasoning response costs ~320 SECONDS and STILL
+# truncates. Raising the cap only buys proportionally more wall-clock.
+#
+# For a rail whose job is USE-testing -- does the arm act, does tool-call
+# parsing hold, does the model reach for the affordance -- the reasoning trace
+# is not what is being measured, and thinking OFF is 10-20x faster with no
+# truncation. Thinking ON remains right when the TRACE is the object of study.
+#
+# This is a deliberate deviation from the Kaggle config; label any run made
+# with it, and never compare its latency or token counts to a Kaggle draw.
+THINKING="${LOCAL_MODEL_THINKING:-1}"
 
 # PROMPT CACHING -- the single biggest speed lever for agent loops.
 # The harness resends a long, near-identical prefix (game state + history) on
 # every turn, so without a KV cache each call re-prefills tens of thousands of
 # tokens and prefill dominates wall-clock (measured ~2.6 min/call without it).
 # This is the MLX equivalent of the `--enable-prefix-caching` the Kaggle vLLM
-# rail already runs with. 8 distinct caches covers concurrent games; the byte
-# cap keeps KV well clear of the ~29GB weights inside 64GB unified memory.
-CACHE_SIZE="${LOCAL_MODEL_CACHE_SIZE:-8}"
-CACHE_BYTES="${LOCAL_MODEL_CACHE_BYTES:-12000000000}"
+# rail already runs with. The byte cap must keep KV well clear of the ~29GB
+# weights inside 64GB of UNIFIED memory -- there is no separate VRAM to spill to.
+#
+# SIZED DOWN 2026-08-27 AFTER A HARD MACHINE HANG. The previous values (8
+# caches / 12GB) were reckless on a 64GB box: 29GB weights + 12GB KV = 41GB
+# before the harness, Python, the browser and the OS. And 8 caches was 8x what
+# the workload needs -- mac_screen runs concurrency=1, so one live cache plus
+# one spare is the whole requirement. The hang was not proven to be memory
+# pressure (no panic log survived the force-reboot) but this configuration
+# should never have been set, and headroom is worth more than a marginal
+# cache-hit rate.
+CACHE_SIZE="${LOCAL_MODEL_CACHE_SIZE:-2}"
+CACHE_BYTES="${LOCAL_MODEL_CACHE_BYTES:-4000000000}"
 
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -53,6 +78,25 @@ while [ $# -gt 0 ]; do
         *) echo "unknown arg: $1" >&2; exit 2 ;;
     esac
 done
+
+# ---- MEMORY PREFLIGHT ------------------------------------------------------
+# Unified memory means the model, the KV cache, the harness and the OS all draw
+# on the same 64GB. Refuse to start rather than take the machine down: a hard
+# hang on 2026-08-27 cost an overnight run and a force-reboot.
+TOTAL_GB=$(( $(sysctl -n hw.memsize) / 1073741824 ))
+FREE_PAGES=$(vm_stat | awk '/Pages free/ {gsub(/\./,"",$3); print $3}')
+INACTIVE_PAGES=$(vm_stat | awk '/Pages inactive/ {gsub(/\./,"",$3); print $3}')
+PAGE=$(vm_stat | head -1 | grep -oE '[0-9]+')
+AVAIL_GB=$(( (FREE_PAGES + INACTIVE_PAGES) * PAGE / 1073741824 ))
+NEED_GB=$(( 29 + CACHE_BYTES / 1073741824 + 6 ))   # weights + KV + headroom
+echo "  memory  : ${AVAIL_GB}GB available of ${TOTAL_GB}GB; this config wants ~${NEED_GB}GB"
+if [ "$AVAIL_GB" -lt "$NEED_GB" ]; then
+    echo "" >&2
+    echo "  REFUSING TO START: only ${AVAIL_GB}GB available, ~${NEED_GB}GB needed." >&2
+    echo "  Close other apps, or lower LOCAL_MODEL_CACHE_BYTES (currently $CACHE_BYTES)." >&2
+    echo "  Override deliberately with ARC_SKIP_MEM_CHECK=1." >&2
+    [ "${ARC_SKIP_MEM_CHECK:-0}" = "1" ] || exit 3
+fi
 
 MLX_SERVER="$(command -v mlx_lm.server || echo "$HOME/.local/bin/mlx_lm.server")"
 if [ ! -x "$MLX_SERVER" ]; then
@@ -79,6 +123,14 @@ BANNER
 # proxy takes $PORT, so every request and every response body -- including the
 # <think> block, which arrives inline in message.content because mlx_lm.server
 # has no reasoning parser -- lands in runs/llm_traces/YYYY-MM-DD.jsonl.
+THINK_ARGS=""
+if [ "$THINKING" != "1" ]; then
+    THINK_ARGS='{"enable_thinking": false}'
+    echo "  thinking: OFF (fast screening; deviates from the Kaggle config)"
+else
+    echo "  thinking: ON  (max_tokens $MAX_TOKENS; expect ~5 min/call)"
+fi
+
 if [ "${ARC_NO_TRACE:-0}" != "1" ]; then
     UPSTREAM=$(( PORT + 1 ))
     "$REPO/.venv/bin/python" "$REPO/scripts/llm_proxy.py" \
@@ -100,6 +152,7 @@ exec "$MLX_SERVER" \
     --top-p "$TOP_P" \
     --top-k "$TOP_K" \
     --max-tokens "$MAX_TOKENS" \
+    ${THINK_ARGS:+--chat-template-args "$THINK_ARGS"} \
     --prompt-cache-size "$CACHE_SIZE" \
     --prompt-cache-bytes "$CACHE_BYTES" \
     --log-level INFO
