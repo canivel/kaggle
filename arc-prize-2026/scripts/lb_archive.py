@@ -14,7 +14,9 @@ Two things this fixes:
 HEARTBEAT: every run writes runs/lb_daily/heartbeat/lb_archive_<date>.json, success OR failure.
 Standing incident (ARCMorningCheck refused 2 days via MultipleInstancesPolicy=IgnoreNew, unnoticed
 because a refused task looks exactly like a healthy idle one): silence from an automation must not
-read as success.  `--check` asserts the dated artifact exists and is fresh, and exits nonzero if not.
+read as success.  `--check` asserts the dated artifact exists and is fresh (exit 1 if not) AND that the
+PRIOR day's archive exists (exit 2 if not) -- a diff needs both sides, and a healthy today hid a
+missing yesterday on 2026-08-27.
 
 Usage:
     python scripts/lb_archive.py                 # pull + archive + heartbeat
@@ -372,6 +374,30 @@ def cmd_check(args):
         "HEARTBEAT OK  %s  rows=%s  pull_utc=%s  sha=%s"
         % (date, hb["rows"], hb.get("pull_utc"), hb["sha256"][:12])
     )
+
+    # ---- PRIOR-DAY ASSERTION (added 2026-08-27) --------------------------------------------
+    # A healthy today is NOT enough: a diff needs BOTH sides.  On 2026-08-27 the Mac had a
+    # perfectly OK today-heartbeat and no 08-26 archive at all (the `*.csv` gitignore rule
+    # dropped 08-22..08-26 during the machine move), so `lb_diff` was blind while every check
+    # in this function passed.  A separate exit code, deliberately: "tomorrow's diff will be
+    # blind" is a DIFFERENT incident from "the archiver did not run", and collapsing them into
+    # exit 1 is how a real gap gets read as a routine failure and skipped.
+    prev = (dt.date.fromisoformat(date) - dt.timedelta(days=1)).isoformat()
+    prev_full = os.path.join(LB_DIR, "lb_full_%s.csv" % prev)
+    prev_top = os.path.join(LB_DIR, "lb_%s.csv" % prev)
+    if not os.path.exists(prev_full):
+        degraded = os.path.exists(prev_top)
+        print("PRIOR-DAY ARCHIVE MISSING for %s (%s)" % (prev, prev_full))
+        if degraded:
+            print("  -> only a top-20 archive exists: NO SubmissionCount, so no dScore/dSub and")
+            print("     no full-board diff. --allow-partial gives a labelled DEGRADED diff only.")
+        else:
+            print("  -> there is NO yesterday. A diff against %s is impossible; any dScore" % date)
+            print("     column reported for today has no artifact behind it.")
+        print("  -> Kaggle serves only TODAY's board: a missing archive cannot be re-pulled.")
+        print("     Recover it from the other machine if one exists, or accept the gap.")
+        return 2
+    print("PRIOR-DAY OK  %s present -- a full diff %s -> %s is possible" % (prev, prev, date))
     return 0
 
 
@@ -445,7 +471,9 @@ def main(argv=None):
     p.add_argument("--outdir", default=LB_DIR)
     p.add_argument("--date", default=None, help="YYYY-MM-DD, defaults to today (local)")
     p.add_argument("--kaggle-cmd", default=DEFAULT_KAGGLE)
-    p.add_argument("--check", action="store_true", help="assert today's heartbeat; exit 1 if absent/stale")
+    p.add_argument("--check", action="store_true",
+                   help="assert today's heartbeat AND yesterday's archive; "
+                        "exit 1 if today is absent/stale, 2 if the prior day is missing")
     p.add_argument("--index", action="store_true", help="rebuild archive_index.json only, no network")
     p.add_argument("--dry-run", action="store_true")
     args = p.parse_args(argv)
