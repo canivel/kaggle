@@ -5,21 +5,30 @@ Runs the campaign's REAL vehicle -- the frozen fork's HarnessSolver + ToolAgent
 by mlx_lm.server. Emits the campaign's canonical `benchmark.json` so every
 existing scorer and `local_gate` read a local run unchanged.
 
-WHAT THIS IS FOR
-    Ranking and eliminating candidates so Kaggle slots are not spent on arms
-    that could have been killed on this box.
+WHAT THIS IS FOR -- and the timing forces the answer
+    MEASURED on this box: ~182 s per LLM call with the prompt cache on (326 s
+    without). The harness issues ~2.4 calls per action. That makes a full
+    25-game sweep ~576 HOURS and even a 3-game/40-action screen ~15 h, so this
+    CANNOT be used to rank arms by score. `--estimate` prints the projection.
+
+    What it CAN do cheaply -- and this is the high-value use -- is measure
+    MECHANICAL and BEHAVIOURAL failure in a handful of turns:
+      * does the arm act at all, or does tool-call parsing silently fail?
+      * does the model USE an affordance it was given, or ignore it?
+      * does the observation layer actually yield usable data?
+    Those are exactly the failures that killed the last three arms: P2
+    CERTIFIED but dead on delivery (10.73% use against a 25% bar), and exec-WM
+    starved of transitions (9/18 games yielded zero). Both are visible in a
+    1-game / 8-action probe costing ~1 h -- no Kaggle slot, no GPU spend.
+    The campaign's own standing rule says it: PRE-MEASURE THE USE, NOT JUST
+    THE FIRE. That is what this box is for.
 
 WHAT THIS IS NOT
-    A verdict. Env-mismatch is confirmed 5x and the Mac widens it (8-bit MLX on
-    Metal vs FP8 on CUDA, no reasoning parser). Every number this writes is
-    stamped [MAC-SCREEN]. No sealed verdict, no queue-head promotion, no band
-    read comes from it. See MIGRATION_MACBOOK.md and the local_gate footer.
-
-TIMING -- READ BEFORE LAUNCHING A FULL RUN
-    A real 25-game run is ~3000-4900 LLM-driven actions. At the measured local
-    rate (18.1 tok/s generation) a full sweep is TENS OF HOURS. Screen on a
-    subset with a capped action budget; that is what screening is for.
-    `--estimate` prints the projection without running anything.
+    A verdict, and not a score ranker. Env-mismatch is confirmed 5x and the Mac
+    widens it (8-bit MLX on Metal vs FP8 on CUDA, no reasoning parser). Every
+    number this writes is stamped [MAC-SCREEN]. No sealed verdict, no queue-head
+    promotion, no band read comes from it. See MIGRATION_MACBOOK.md and the
+    local_gate footer.
 
 USAGE
     # terminal 1
@@ -57,13 +66,20 @@ OUT_ROOT = ROOT / "runs" / "mac_screen"
 INDEX = OUT_ROOT / "INDEX.jsonl"
 
 DEFAULT_BASE_URL = "http://127.0.0.1:1234/v1"
-# Measured on this box: mlx-community/Qwen3.8-27B-8bit, 8-bit MLX on Metal.
-MEASURED_TOK_S = 18.1
+
+# MEASURED END-TO-END ON THIS BOX, 2026-08-27, against the real harness.
+# Do NOT estimate from tok/s: generation is 18.1 tok/s but PREFILL dominates,
+# because the harness resends a long game-state+history prefix every turn.
+# Measured seconds per /chat/completions call, one game, identical workload:
+#   no prompt cache : 326 s/call  (21 calls / 108.5 min)
+#   prompt cache on : 182 s/call  (1.8x faster; still ~3 min/call)
+SEC_PER_CALL_CACHED = 182.0
+SEC_PER_CALL_UNCACHED = 326.0
+# The harness issues more LLM calls than actions (analyzer + agent, retries).
+# Observed ~2.4 calls per action on the ft09 smoke.
+CALLS_PER_ACTION = 2.4
 # Observed in real artifacts (runs/kernel_pulls/q38_v2, phase1_v2_screen, null10).
 ACTIONS_PER_GAME = 190
-# Rough generated tokens per action; thinking mode is far more verbose.
-TOKENS_PER_ACTION_THINK = 900
-TOKENS_PER_ACTION_NOTHINK = 180
 
 
 def _now() -> str:
@@ -88,19 +104,24 @@ def check_server(base_url: str) -> tuple[bool, str]:
         return False, f"{type(exc).__name__}: {exc}"
 
 
-def estimate(n_games: int, max_actions: int | None, thinking: bool) -> dict:
+def estimate(n_games: int, max_actions: int | None, cached: bool = True) -> dict:
+    """Project wall-clock from MEASURED call latency, not from tok/s.
+
+    Thinking on/off barely moves this: prefill of the resent prefix dominates,
+    not generation length.
+    """
     per_game = min(max_actions, ACTIONS_PER_GAME) if max_actions else ACTIONS_PER_GAME
     actions = n_games * per_game
-    tpa = TOKENS_PER_ACTION_THINK if thinking else TOKENS_PER_ACTION_NOTHINK
-    tokens = actions * tpa
-    hours = tokens / MEASURED_TOK_S / 3600
+    calls = actions * CALLS_PER_ACTION
+    sec = SEC_PER_CALL_CACHED if cached else SEC_PER_CALL_UNCACHED
+    hours = calls * sec / 3600
     return {
         "games": n_games,
         "actions_per_game": per_game,
         "total_actions": actions,
-        "tokens_per_action": tpa,
-        "projected_generated_tokens": tokens,
-        "measured_tok_s": MEASURED_TOK_S,
+        "projected_llm_calls": round(calls),
+        "sec_per_call_measured": sec,
+        "prompt_cache": cached,
         "projected_hours": round(hours, 2),
     }
 
@@ -245,12 +266,12 @@ def main() -> int:
     args = p.parse_args()
 
     n_games = len(args.game_ids.split(",")) if args.game_ids else args.games
-    est = estimate(n_games, args.max_actions, thinking=not args.no_think)
+    est = estimate(n_games, args.max_actions, cached=True)
 
     if args.estimate:
         print(json.dumps(est, indent=2))
-        print(f"\n  ~{est['projected_hours']:.1f} h projected at {MEASURED_TOK_S} tok/s "
-              f"({'thinking ON' if not args.no_think else 'thinking OFF'})")
+        print(f"\n  ~{est['projected_hours']:.1f} h projected "
+              f"({est['projected_llm_calls']} calls x {est['sec_per_call_measured']:.0f}s measured)")
         return 0
 
     ok, model_id = check_server(args.base_url)
