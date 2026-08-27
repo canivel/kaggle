@@ -1807,3 +1807,34 @@ q38-field) after the Seagate archive restore; nightly rail rebuilt as
 traced to the Mac sleeping (`pmset -c sleep 0`); local Qwen3.8-27B screening
 rail built and measured at ~182 s/call, which bounds it to USE-testing rather
 than score ranking. Detail in `MIGRATION_MACBOOK.md`.
+
+### PENDING VEHICLE CHANGE (not yet on Kaggle) — animation() prompt gate
+
+**Committed locally, gated 51/0, deliberately NOT given its own slot.**
+
+The system prompt advertised `animation()` unconditionally while the sandbox
+injects it only when `awareness AND retrieval`. `_python_tool_description` was
+already gated on this (its docstring records "18 turns on NameError across 8
+games" from Experiment 4); `STRUCTURED_RUNTIME_STATE_ADDENDUM` was missed, so
+the defect survived in the system prompt. Now gated the same way; awareness
+semantics (`worth_inspecting`, `board_unchanged`) deliberately preserved.
+
+MEASURED on the real pull `runs/kernel_pulls/private_edge2_v3`
+(effective_flags AWARENESS=True RETRIEVAL=False, i.e. this shipped):
+**29 NameErrors across 13 of 25 games = 29/1555 actions = 1.86%.**
+
+**WHY IT DOES NOT GET A SLOT.** 1555 actions bought 20 levels = 78 actions per
+level, so 29 recovered actions is **~0.37 levels, best case, against an lc MDE
+of 11.1** -- roughly 30x below detectability, and far inside the field floor's
+own noise (sd 0.3010; draws 1.14-1.92). A standalone arm would be another n=1
+draw indistinguishable from the floor: the 0-for-6 adoption sweep again.
+
+**HOW TO SHIP IT.** The vehicle attaches `jakobbrggen/taaf-kaggle-source-anim-
+20260807-anim`, a THIRD-PARTY dataset with no version we can push, so this
+needs the campaign's "ONE inserted patch cell" idiom. **Fold it into the next
+vehicle rebuild that is happening for another reason** rather than building an
+arm for it.
+
+Found by reading the model's reasoning trace, not by counting: the turn scored
+healthy on every mechanical metric (finish_reason=tool_calls, n_tool_calls=1)
+while the action was wasted probing for a phantom tool.
