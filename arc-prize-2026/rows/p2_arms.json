@@ -1,0 +1,4 @@
+[
+ {"arm":"p2_retry_seed1","kernel":"canivel/arc3-p2-retry-eval v1","patch_sha":"1c862d05ed462b17","code_sha":"ea36ecca3efba73e","lc_total":24,"mean_score":3.2316,"trim1":2.6718,"total_actions":2081,"games":25,"won":0,"d1":"24/25 PASS","d2":"0.1073 FAIL","certified":true},
+ {"arm":"comparator_certified_field_floor","kernel":"canivel/arc3-q38-field-eval v1","lc_total":28,"mean_score":6.173,"trim1":3.189,"note":"n=1; MDE 11.1 means P2 is NOT distinguishable from this. mean_score is 50.4% a single game (sb26=77.78)."}
+]
