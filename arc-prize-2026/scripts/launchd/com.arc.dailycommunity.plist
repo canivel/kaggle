@@ -32,7 +32,7 @@
 
     <key>RunAtLoad</key>
     <false/>
-    <key>ProcessType</key>
-    <string>Background</string>
+    <key>LowPriorityIO</key>
+    <false/>
 </dict>
 </plist>

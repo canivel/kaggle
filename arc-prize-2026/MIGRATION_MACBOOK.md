@@ -155,3 +155,89 @@ the only box that can.
    `~/.claude/projects/-Users-danilocanivel-Projects-kaggle/memory/`.
 6. Clone `../kaos`; then a plain `uv sync` (no `--no-dev`) works again.
 7. Keep the Windows tasks running until each Mac job has fired once.
+
+---
+
+## EXECUTION LOG — 2026-08-27 (overnight results)
+
+### launchd fires, but `ProcessType Background` deferred it by ~3 HOURS
+The four agents were loaded 08-26 evening. Overnight evidence:
+
+| job | scheduled | actually fired | lateness |
+|---|---|---|---|
+| dailysubmit | 18:37 EDT | 21:50 EDT | **+3h13m** |
+| dailysubmit | 20:07 EDT | 23:19 EDT | **+3h12m** |
+
+A consistent ~3h12m deferral.
+
+**ROOT CAUSE: the MacBook was running on BATTERY.** macOS aggressively defers
+background work on battery power, and `StartCalendarInterval` delivery is part
+of that. This explains every observation: the multi-hour deferrals, two separate
+probe jobs failing to fire on time (one with no `ProcessType` at all), and why
+`launchctl kickstart` ALWAYS worked -- user-initiated work is not deferred.
+
+**THE RULE: the nightly rail requires the MacBook to be plugged into AC.**
+The old Windows desktop was mains-powered by definition; a laptop is not, and
+this is the single biggest reliability difference between the two boxes.
+`sudo pmset -c sleep 0` only governs AC behaviour and does nothing about this.
+
+A secondary contributor, fixed anyway: `<key>ProcessType</key><string>Background
+</string>` in the plists tells macOS the job is interruptible and may be
+deferred under load. **For this daemon that is dangerous**: the windows are anchored to the
+20:00 EDT UTC-day boundary, so an 18:37 job firing 3h late lands in the NEXT
+UTC day and would submit against the wrong day.
+
+**Fixed 08-27**: `ProcessType` removed from all four plists, `LowPriorityIO`
+set false. `launchctl print` now reports `spawn type = daemon (3)` instead of
+`background (5)`. Re-copy to `~/Library/LaunchAgents` and re-bootstrap after
+any plist edit -- launchd reads the file at bootstrap time.
+
+**Earlier misdiagnosis, recorded so it is not repeated**: this was first read as
+"launchd calendar delivery is dead, needs Login Items approval in System
+Settings". That was WRONG. The jobs fire; they were deferred. `crontab` also
+works -- it is just very slow to return (~12 min), which read as a hang. No
+System Settings changes are needed.
+
+### Dual-running safety CONFIRMED under real conditions
+The Windows box is still live and still running `ARCDailySubmit` -- it made the
+2026-08-27 00:07:09Z submission (the auto-refill field-floor filler), not the
+Mac. Both deferred Mac runs then correctly logged
+`{"skip": "already-submitted-today"}`. **The per-UTC-day idempotency guard held
+with two rails live at once.** Overlap is safe, as the checklist claimed.
+
+Consequence: the Windows box is REACHABLE, so the missing gate evidence
+(`runs/kernel_pulls/*_v1`, `runs/tufa_example_run`) can still be copied off it.
+
+### Local Qwen3.8-27B serving is UP and validated
+- `mlx-community/Qwen3.8-27B-8bit`, 30GB, in the shared HF cache.
+- **The VLM risk did NOT materialise**: despite `vision_config` /
+  `Qwen3_5ForConditionalGeneration`, plain `mlx-lm` loads and generates. No
+  `mlx-vlm` needed.
+- Measured: **19.1 tok/s generation**, 29.4 tok/s prompt, **peak memory
+  28.911 GB** on 64GB -- matches the 8-bit estimate, ~35GB headroom.
+- Confirmed as predicted: no reasoning parser, so `<think>` content stays in
+  `content` rather than `reasoning_content`. The harness absorbs this via
+  `_strip_think_tags`.
+- `scripts/serve_local_model.sh` serves it on 127.0.0.1:1234, the port the
+  frozen fork's harness already targets -- drop-in, no harness changes.
+
+### Download gotchas on this machine (cost hours; do not rediscover)
+- **`HF_HUB_DISABLE_XET=1` is REQUIRED.** With HF's Xet backend the download
+  thrashed: ~1GB pulled over the network, 30MB written to disk, 0 MB/s
+  sustained. Disabling Xet fixed it outright.
+- Transient DNS/read failures killed a plain `snapshot_download` at ~7GB.
+  Always wrap in a retry loop -- `snapshot_download` resumes from
+  `.incomplete` files, so retrying is cheap.
+- An `HF_TOKEN` (now in `.env`) silences the rate-limit warning but did NOT
+  measurably raise throughput; observed rate varied 5-33 MB/s with network
+  conditions, not with auth.
+
+### Still open
+1. `sudo pmset -c sleep 0` -- laptop still sleeps on AC.
+2. Confirm the fixed plists fire ON TIME (next natural tests: dailyiterate
+   08:23, dailycommunity/morningcheck 06:00).
+3. Copy `runs/kernel_pulls/{q38_field,execwm,p1_notes,budget_t3,private_base,
+   q38graft}_v1` + `runs/tufa_example_run` off the Windows box -> gate goes
+   green.
+4. Claude Code memory dir still not copied from the Windows box.
+5. Keep Windows tasks running until each Mac job has fired ON SCHEDULE once.
