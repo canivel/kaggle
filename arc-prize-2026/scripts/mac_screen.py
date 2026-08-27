@@ -81,7 +81,11 @@ DEFAULT_BASE_URL = "http://127.0.0.1:1234/v1"
 # Re-measured 2026-08-27 on the 4-bit build (now the default): generation runs
 # 32.9 tok/s vs 13.1 on 8-bit, and generation is ~75% of wall-clock, so call
 # latency falls roughly 2.5x. 8-bit figures kept for comparison.
-SEC_PER_CALL_CACHED = 73.0        # 4-bit; was 182.0 on 8-bit
+SEC_PER_CALL_CACHED = 39.0        # 4-bit MEASURED under the real harness
+                                  # (73.0 was extrapolated from an isolated
+                                  # benchmark and too pessimistic: the harness
+                                  # issues many SHORT calls where 4-bit's faster
+                                  # prefill pays too, not just generation)
 SEC_PER_CALL_UNCACHED = 130.0     # 4-bit; was 326.0 on 8-bit
 SEC_PER_CALL_8BIT = 182.0
 # The harness issues more LLM calls than actions (analyzer + agent, retries).
