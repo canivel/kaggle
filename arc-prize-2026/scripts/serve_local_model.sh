@@ -18,7 +18,17 @@
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-MODEL="${LOCAL_MODEL:-mlx-community/Qwen3.8-27B-8bit}"
+# DEFAULT IS 4-BIT. Measured on this box, same prompt, same sampler:
+#            gen tok/s   peak mem   answer
+#   8-bit         13.1     28.97GB   correct
+#   4-bit         32.9     15.59GB   correct, same key insight
+# 2.5x faster and 13GB less resident. The memory headroom matters as much as
+# the speed: two hard machine hangs on 2026-08-27 came from running the 29GB
+# build at sustained full GPU load.
+# Quality was matched on ONE reasoning task, not established in general -- for
+# work where fidelity to the Kaggle FP8 rail matters, pin the 8-bit build:
+#   LOCAL_MODEL=mlx-community/Qwen3.8-27B-8bit ./scripts/serve_local_model.sh
+MODEL="${LOCAL_MODEL:-mlx-community/Qwen3.8-27B-4bit}"
 PORT="${LOCAL_MODEL_PORT:-1234}"
 HOST="127.0.0.1"
 
@@ -88,7 +98,12 @@ FREE_PAGES=$(vm_stat | awk '/Pages free/ {gsub(/\./,"",$3); print $3}')
 INACTIVE_PAGES=$(vm_stat | awk '/Pages inactive/ {gsub(/\./,"",$3); print $3}')
 PAGE=$(vm_stat | head -1 | grep -oE '[0-9]+')
 AVAIL_GB=$(( (FREE_PAGES + INACTIVE_PAGES) * PAGE / 1073741824 ))
-NEED_GB=$(( 29 + CACHE_BYTES / 1073741824 + 6 ))   # weights + KV + headroom
+case "$MODEL" in
+    *4bit*) WEIGHTS_GB=16 ;;
+    *6bit*) WEIGHTS_GB=22 ;;
+    *)      WEIGHTS_GB=29 ;;
+esac
+NEED_GB=$(( WEIGHTS_GB + CACHE_BYTES / 1073741824 + 6 ))   # weights + KV + headroom
 echo "  memory  : ${AVAIL_GB}GB available of ${TOTAL_GB}GB; this config wants ~${NEED_GB}GB"
 if [ "$AVAIL_GB" -lt "$NEED_GB" ]; then
     echo "" >&2

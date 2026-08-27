@@ -6,10 +6,12 @@ by mlx_lm.server. Emits the campaign's canonical `benchmark.json` so every
 existing scorer and `local_gate` read a local run unchanged.
 
 WHAT THIS IS FOR -- and the timing forces the answer
-    MEASURED on this box: ~182 s per LLM call with the prompt cache on (326 s
-    without). The harness issues ~2.4 calls per action. That makes a full
-    25-game sweep ~576 HOURS and even a 3-game/40-action screen ~15 h, so this
-    CANNOT be used to rank arms by score. `--estimate` prints the projection.
+    MEASURED on this box with the 4-bit build and the prompt cache on: ~73 s
+    per LLM call (was 182 s on 8-bit). The harness issues ~2.4 calls per
+    action, so a 1-game/60-action probe is ~2.9 h and a full 25-game sweep is
+    still ~231 HOURS. Local therefore CANNOT rank arms by score -- and the
+    field floor's own draw noise (1.14 / 1.16 / 1.92 on IDENTICAL code) would
+    swamp any local ordering anyway. `--estimate` prints the projection.
 
     What it CAN do cheaply -- and this is the high-value use -- is measure
     MECHANICAL and BEHAVIOURAL failure in a handful of turns:
@@ -19,13 +21,16 @@ WHAT THIS IS FOR -- and the timing forces the answer
     Those are exactly the failures that killed the last three arms: P2
     CERTIFIED but dead on delivery (10.73% use against a 25% bar), and exec-WM
     starved of transitions (9/18 games yielded zero). Both are visible in a
-    1-game / 8-action probe costing ~1 h -- no Kaggle slot, no GPU spend.
+    1-game / 8-action probe costing ~25 MINUTES on 4-bit -- no Kaggle slot, no
+    GPU spend. This rail has already earned that: reading ONE reasoning trace
+    found the `animation()` phantom-tool defect, which was costing 29 actions
+    across 13 of 25 games on the certified Kaggle vehicle.
     The campaign's own standing rule says it: PRE-MEASURE THE USE, NOT JUST
     THE FIRE. That is what this box is for.
 
 WHAT THIS IS NOT
     A verdict, and not a score ranker. Env-mismatch is confirmed 5x and the Mac
-    widens it (8-bit MLX on Metal vs FP8 on CUDA, no reasoning parser). Every
+    widens it (4-bit MLX on Metal vs FP8 on CUDA). Every
     number this writes is stamped [MAC-SCREEN]. No sealed verdict, no queue-head
     promotion, no band read comes from it. See MIGRATION_MACBOOK.md and the
     local_gate footer.
@@ -73,8 +78,12 @@ DEFAULT_BASE_URL = "http://127.0.0.1:1234/v1"
 # Measured seconds per /chat/completions call, one game, identical workload:
 #   no prompt cache : 326 s/call  (21 calls / 108.5 min)
 #   prompt cache on : 182 s/call  (1.8x faster; still ~3 min/call)
-SEC_PER_CALL_CACHED = 182.0
-SEC_PER_CALL_UNCACHED = 326.0
+# Re-measured 2026-08-27 on the 4-bit build (now the default): generation runs
+# 32.9 tok/s vs 13.1 on 8-bit, and generation is ~75% of wall-clock, so call
+# latency falls roughly 2.5x. 8-bit figures kept for comparison.
+SEC_PER_CALL_CACHED = 73.0        # 4-bit; was 182.0 on 8-bit
+SEC_PER_CALL_UNCACHED = 130.0     # 4-bit; was 326.0 on 8-bit
+SEC_PER_CALL_8BIT = 182.0
 # The harness issues more LLM calls than actions (analyzer + agent, retries).
 # Observed ~2.4 calls per action on the ft09 smoke.
 CALLS_PER_ACTION = 2.4
@@ -260,7 +269,10 @@ def main() -> int:
                                                               "holds the single local server)")
     p.add_argument("--analyzer-timeout", type=float, default=600.0)
     p.add_argument("--base-url", default=os.environ.get("LOCAL_LLM_BASE_URL", DEFAULT_BASE_URL))
-    p.add_argument("--no-think", action="store_true", help="disable thinking (much faster, no trace)")
+    p.add_argument("--no-think", action="store_true",
+                   help="assert the SERVER is running with thinking disabled. The harness "
+                        "sends no chat_template_kwargs, so thinking is a SERVER-side setting: "
+                        "start it with LOCAL_MODEL_THINKING=0 ./scripts/serve_local_model.sh")
     p.add_argument("--note", default="", help="free text recorded with the iteration")
     p.add_argument("--estimate", action="store_true", help="print the time projection and exit")
     args = p.parse_args()
@@ -273,6 +285,10 @@ def main() -> int:
         print(f"\n  ~{est['projected_hours']:.1f} h projected "
               f"({est['projected_llm_calls']} calls x {est['sec_per_call_measured']:.0f}s measured)")
         return 0
+
+    if args.no_think:
+        print("[mac_screen] --no-think: verify the server was started with "
+              "LOCAL_MODEL_THINKING=0; this flag cannot change a running server.")
 
     ok, model_id = check_server(args.base_url)
     if not ok:
