@@ -28,3 +28,9 @@ __pycache__/
 .venv/
 scripts/bench_token.cmd
 kaggle-data
+
+# LB full archives must survive machine migrations (morning-check steps 6-8);
+# the bare *.csv rule above silently dropped 08-22..08-26 on the Mac move.
+!runs/lb_daily/*.csv
+runs/launchd.*.out
+runs/launchd.*.err
