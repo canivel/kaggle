@@ -1789,3 +1789,21 @@ Discovered at end-of-session while pushing: `origin/main` had three unseen commi
 **The residual risk is a race, not a logic error.** Both daemons fire at 18:37. If both read the submission list *before* either submits, both proceed, and we spend two of the day's submissions on one queue head — plus a possible double queue-pop. Last night the two fires were ~2h08m apart, which is why the guard was never actually contended. That spacing is luck, not design.
 
 **NOT ACTED ON — deliberately.** Disabling a nightly rail on either machine is an operational change the principal should make, not something to do unilaterally at the end of a session: the Mac session may be mid-migration and relying on its rail, and this box's tasks are what has been carrying the campaign. **Ruling needed: which box owns the nightly window?** Until then, note that the failure mode is bounded (double-submit at worst, guarded in the common case) and that the `submission_log.jsonl` union-merge above is the correct conflict resolution for any future collision. This is the 08-18 one-lane-one-operator ruling reappearing at the level of *machines* rather than kernels.
+
+### 2026-08-27 [MAC] — migration completed; rail restored on the Mac
+
+**Session was KILLED mid-run** (the launchd agent it started under was booted out
+at 11:48 while the scheduler was being rebuilt), so this entry is closed by hand
+rather than by the iterate session that opened it. It also could not have done
+useful work: `runs/daily_iterate.log` shows it refused to load the workspace's
+46 `permissions.allow` entries because `/Users/danilocanivel/Projects/kaggle` has
+`hasTrustDialogAccepted: false` on this machine. **Headless iterate sessions on
+the Mac are blocked until that is set** — trust is per-machine and git does not
+carry it, so it belongs on the migration checklist.
+
+Migration outcome this session: local gate GREEN (13/0 self-test, 43/0 on
+q38-field) after the Seagate archive restore; nightly rail rebuilt as
+`com.arc.tick` after `StartCalendarInterval` was found dead and the real cause
+traced to the Mac sleeping (`pmset -c sleep 0`); local Qwen3.8-27B screening
+rail built and measured at ~182 s/call, which bounds it to USE-testing rather
+than score ranking. Detail in `MIGRATION_MACBOOK.md`.

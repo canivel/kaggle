@@ -132,3 +132,55 @@ This campaign's returns have come from instruments, not mechanisms, and today pr
 **Verdict 2026-08-26: hypothesis CONFIRMED again — the cadence signature held for a fourth straight day (top 10 all flat-while-drawing except Tufa +0.09; two +1.0-class steps from outside it, each on 1–2 draws). The class is RE-SCOPED one step earlier: refutation against recorded history presupposes a readable record, and we verified on our own archive that our lineage's record is corrupt at the level-win frame — the one frame carrying the only ground truth about the objective. That is the first item in this class that is (a) measured on our own data, (b) not a graft we would have to import, and (c) cheap. Two standing arguments were retired today by evidence rather than by preference: "our lineage reads `frame[-1]`, audited, no defect" (scope error — mid-level only) and "the graft distributor sits below us" (1.54 → 1.93). Neither retirement supplies validation for any graft; the board-validation gap is unchanged.**
 
 **Verdict 2026-08-27: hypothesis CONFIRMED for a fifth straight day, and the mechanism class was PRICED for the first time.** The cadence signature held hard -- 26 of the top 30 gained exactly 0.00 while submitting, and both real steps (rfbr +1.18 on 13 lifetime subs, MindsAI +0.89 on 130) arrived on a single draw with no sub-count spike, from outside the top 5. The **control arm moved**: @Abstraction Lab & MindsAI, verified same-TeamId/same-roster across four archives, stepped +0.89 to #7 after sitting at 2.05 the entire campaign -- pedigree still doesn't predict this board, but it plainly doesn't preclude a step either. The decisive new evidence is a **price on the leading mechanism class**: Polyphony implements the class exactly, on our engine class, and publishes **19.8%** while `Retrodict` publishes 99.9% -- so "has a verifier" is not the discriminator, and adoption of this class must be costed against a mid-table reference, not a ceiling one. Two instrument gains landed instead, both verified by execution rather than report (`set_level`: 25/25 games, 182 levels, free; and the discovery that every prior comment sweep read truncated text). **Falsifier 5 remains untested -- still zero board validation for any graft in this class -- and falsifier 1 (private machinery) is untouched: the public ceiling is FOYSAL 2.23, frozen 9 days, while seven teams sit above 2.9 with zero public artifacts between them.**
+
+---
+
+### ★ ADDENDUM 2026-08-27 (second, independent community pass, 13:26Z) — FALSIFIER #6 FIRES
+
+Source: `brief_2026-08-27_ADDENDUM.md`. Three changes to this document's standing claims.
+
+**1. FALSIFIER #6 IS DISCHARGED — it fired.** It read: *"'local→LB transfer is broken and rail-side,
+not capability-side' would die if a team ever reported a local score that tracked its LB score
+proportionally. **Not observed.**"* It is now observed. Topic 732854, **mikelou1, 08-26 11:03Z**
+[V-doc]: *"Got 2.8 on 25 games and 2.4 on lb."* Author resolved to the board: **team "Proving AGI",
+rank #34, 2.43, 26 subs** [V] — LB half independently confirmed, and **above the frozen public
+ceiling** (2.23), so not a duck-floor artifact.
+
+| team | local | LB | ratio |
+|---|---|---|---|
+| **mikelou1 / Proving AGI** | **2.8** | **2.4** (board 2.43) | **0.87** |
+| duck harness (reported) | 2.1 | ~1.4 | 0.67 |
+| Pellegrin's own harness | 5.0–5.4 | ~1.4 | ~0.27 |
+| daoviet (board 1.99) | 6.8 | 1.19 | 0.17 |
+
+**Restated law: the collapse is a property of over-fitted local harnesses, not of the rail.** The
+relation is inverse — the higher the local score, the worse the transfer. Consequence for us: the
+0-for-36 screening record (`feedback_screen_calibration_range`) is evidence about **our screen**, not
+proof that screening cannot work. Calibration target for any future screen: an absolute number near
+our LB (~1.9–2.4). **A local screen reading 5+ is a red flag about the screen, not a result.**
+
+**2. The cadence evidence for the 5th "flat day" is WEAKER THAN RECORDED, on two counts** [V].
+(a) `lb_diff.py 08-26→08-27` **could not run** — the 08-26 full archive never migrated from Windows
+(bare `*.csv` in `.gitignore`) — and it **exits 0 on failure**, which is how "exit 0" was recorded.
+So *"308 submitted, 74 (24.0%) gained, median gainer 0.22/draw"*, *"26 of 30 gained exactly 0.00"*
+and *"19 in, 1 out"* have **no supporting artifact on this box** and should be struck; only the ~14
+teams with an endpoint in yesterday's brief table or the 08-26 heartbeat carry a real Δ.
+(b) The 10:00Z pull happens **before the previous night's draws finish scoring** (`SubmissionCount`
+does not increment until a run completes, and runs take up to 9 h). Measured: **Tong Hui Kang read
+IDLE 3.39/54 at 10:00:40Z and was 3.88/55 at 13:26:10Z — a +0.49 top-5 STEP recorded as idle.**
+5 of the top 30 submitted inside the at-risk window. **The daily gainer rate is a floor, not a point
+estimate, and it is biased toward showing more flats — i.e. toward confirming this document's own
+hypothesis.** The hypothesis still stands on step SIZES (MindsAI +0.89 [V], both endpoints in the
+heartbeat), but the flat-day counting must be re-derived from 08-28, when a real diff is possible.
+
+**3. Ledger entry 2 ("refutation against recorded history") takes its first two rail-side hits.**
+Both from the 08:48 iterate run (commit `46afb34`), which ran *before* the community brief and so is
+not reflected in it: **EXEC-WM's BREAK-clustering hypothesis is REFUTED by its own artifact** — the
+latch fired **zero** times and a mislabelled reason string caused two days of wrong diagnosis; the
+real defect is **data starvation** (26/32 level-instances at no-verified-model, 9/18 games with zero
+transitions) while **retrodiction was 810/818 where data existed**. That ratio is the useful part:
+*the belief-checking machinery works; the record feeding it is empty.* This **sharpens** the 08-26
+re-scoping (record integrity is the precondition) from a frame-*selection* bug to a frame-*supply*
+bug. And **Polyphony's sticky 0.55 deadline is refuted pre-build** — 39.3% of our floor level
+completions land after that mark. **The one rail-matched implementation of this mechanism class
+publishes 19.8%, and the first of its constants we priced against our own data was harmful.**
