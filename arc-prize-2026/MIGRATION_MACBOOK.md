@@ -241,3 +241,70 @@ Consequence: the Windows box is REACHABLE, so the missing gate evidence
    green.
 4. Claude Code memory dir still not copied from the Windows box.
 5. Keep Windows tasks running until each Mac job has fired ON SCHEDULE once.
+
+---
+
+## ROOT CAUSE (final) — the Mac SLEPT. 2026-08-27
+
+Two diagnoses earlier in this file are WRONG. Superseded, kept so the wrong
+trails are not re-walked:
+
+| # | claimed cause | how it was refuted |
+|---|---|---|
+| 1 | launchd calendar delivery dead, needs Login Items approval | jobs DID fire, hours late; `crontab` writes worked too (just slow) |
+| 2 | `ProcessType Background` deferral | a bare probe with NO `ProcessType` also missed |
+| 3 | battery power | probe still missed on **AC at 100%** |
+
+**ACTUAL CAUSE: `pmset -g custom` reported `sleep 1` on AC POWER** — system
+sleep after ONE MINUTE idle. `pmset -g log` shows `DarkWake from Deep Idle`
+waking only on user activity. launchd timers do not fire while asleep, so the
+machine was simply unconscious through every scheduled window.
+
+It fits every observation the other theories could not:
+
+- jobs firing hours late == firing when the machine next WAKES
+- `StartInterval` running twice then stopping 21 min == slept between ticks
+- `launchctl kickstart` always working == machine awake, being driven by hand
+- AC changing nothing == `sleep 1` applies on AC too
+
+**FIX (a setting, not code):**
+```
+sudo pmset -c sleep 0        # applied 2026-08-27, verified `sleep 0`
+sudo pmset -c disablesleep 1 # optional: also ignore lid-close
+```
+The Windows desktop was mains-powered and never slept. **This is the single
+largest reliability difference between the two boxes**, and nothing else about
+the rail matters until it is set.
+
+### Scheduler replaced: com.arc.tick
+`StartCalendarInterval` silently SKIPS a window slept through — it does not
+catch up. The four calendar agents are retired. `scripts/sched_tick.sh` now
+runs from ONE `StartInterval` agent (`com.arc.tick`, 300s) and does the
+calendar logic in shell:
+
+- per-day stamps claim a slot BEFORE running, so a long job cannot be
+  double-started by the next tick
+- a catch-up bound stops a stale 06:00 job firing at midnight; the submit
+  windows are exempt (anchored to the 20:00 EDT UTC-day boundary, and the
+  daemon self-skips a UTC day already covered)
+- a missed window is picked up on the NEXT TICK rather than lost — which is
+  what a laptop actually needs
+
+### Local screening rail — built and measured
+`scripts/mac_screen.py` runs the REAL frozen-fork HarnessSolver against the
+REAL 25 official games on local Qwen3.8-27B, emitting canonical
+`benchmark.json` so every scorer and `local_gate` read it unchanged.
+
+Unblocking required: `re_arc` installed from the vendored `arc-agi-3-local`
+snapshot under `runs/harness_diff_0813/...` (no GitHub); `kaggle-data` symlink;
+and the `scripts/queue.py` stdlib-shadow guard `local_gate` already carries.
+
+**MEASURED, and it bounds the use case:** ~182 s per LLM call with prompt
+caching on (326 s without — caching is now enabled in `serve_local_model.sh`,
+the MLX equivalent of the Kaggle rail's `--enable-prefix-caching`). At ~2.4
+calls/action that is **~576 h for a full 25-game sweep**. Local screening
+therefore CANNOT rank arms by score. What it CAN do in ~1 h is catch
+mechanical and behavioural failure — does the arm act, does tool-call parsing
+hold, **does the model USE the affordance**, does the observation layer yield
+data. Those are exactly what killed P2 (10.73% use vs a 25% bar) and exec-WM
+(9/18 games yielding zero transitions).
