@@ -34,3 +34,5 @@ kaggle-data
 !runs/lb_daily/*.csv
 runs/launchd.*.out
 runs/launchd.*.err
+scripts/bench_token.sh
+scripts/bench_token.*
