@@ -17,6 +17,7 @@
 
 set -euo pipefail
 
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MODEL="${LOCAL_MODEL:-mlx-community/Qwen3.8-27B-8bit}"
 PORT="${LOCAL_MODEL_PORT:-1234}"
 HOST="127.0.0.1"
@@ -26,6 +27,14 @@ HOST="127.0.0.1"
 TEMP="${LOCAL_MODEL_TEMP:-0.7}"
 TOP_P="${LOCAL_MODEL_TOP_P:-0.8}"
 TOP_K="${LOCAL_MODEL_TOP_K:-20}"
+
+# MAX TOKENS -- do not leave this at the server default.
+# The harness sends `max_tokens: null`, so the SERVER's default applies, and
+# mlx_lm.server defaults to 512. A thinking model blows through 512 mid-
+# reasoning: measured 3 of 4 harness calls returning finish_reason="length"
+# with exactly 512 completion tokens and NO tool_call emitted. That reads as a
+# reasoning failure in the artifact when it is really a serving cap.
+MAX_TOKENS="${LOCAL_MODEL_MAX_TOKENS:-4096}"
 
 # PROMPT CACHING -- the single biggest speed lever for agent loops.
 # The harness resends a long, near-identical prefix (game state + history) on
@@ -66,13 +75,31 @@ cat <<BANNER
 ────────────────────────────────────────────────────────────────────
 BANNER
 
+# TRACING: unless ARC_NO_TRACE=1, mlx binds an internal port and a logging
+# proxy takes $PORT, so every request and every response body -- including the
+# <think> block, which arrives inline in message.content because mlx_lm.server
+# has no reasoning parser -- lands in runs/llm_traces/YYYY-MM-DD.jsonl.
+if [ "${ARC_NO_TRACE:-0}" != "1" ]; then
+    UPSTREAM=$(( PORT + 1 ))
+    "$REPO/.venv/bin/python" "$REPO/scripts/llm_proxy.py" \
+        --listen "$PORT" --upstream "$UPSTREAM" &
+    PROXY_PID=$!
+    trap 'kill $PROXY_PID 2>/dev/null' EXIT INT TERM
+    echo "  tracing : runs/traces.db  (proxy $PORT -> $UPSTREAM)"
+    BIND_PORT="$UPSTREAM"
+else
+    echo "  tracing : DISABLED (ARC_NO_TRACE=1)"
+    BIND_PORT="$PORT"
+fi
+
 exec "$MLX_SERVER" \
     --model "$MODEL" \
     --host "$HOST" \
-    --port "$PORT" \
+    --port "$BIND_PORT" \
     --temp "$TEMP" \
     --top-p "$TOP_P" \
     --top-k "$TOP_K" \
+    --max-tokens "$MAX_TOKENS" \
     --prompt-cache-size "$CACHE_SIZE" \
     --prompt-cache-bytes "$CACHE_BYTES" \
     --log-level INFO

@@ -36,3 +36,7 @@ runs/launchd.*.out
 runs/launchd.*.err
 scripts/bench_token.sh
 scripts/bench_token.*
+runs/traces.db
+runs/traces.db-wal
+runs/traces.db-shm
+runs/llm_traces/

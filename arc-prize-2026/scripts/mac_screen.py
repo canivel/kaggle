@@ -308,14 +308,22 @@ def main() -> int:
     elapsed = time.time() - started
 
     bench = {}
-    if job and (job / "benchmark.json").is_file():
-        shutil.copy2(job / "benchmark.json", out / "benchmark.json")
-        bench = json.loads((out / "benchmark.json").read_text(encoding="utf-8"))
-        # keep the request logs -- they are the evidence for wiring failures
-        for extra in ("request_logs", "solver_logs"):
-            src = job / extra
-            if src.is_dir():
-                shutil.copytree(src, out / extra, dirs_exist_ok=True)
+    if job:
+        # Keep the WHOLE job dir. The harness writes its evidence to the job
+        # ROOT, not to tidy subdirectories: `<game>_requests.jsonl` (every
+        # request AND response snapshot, so the model's raw content -- which on
+        # mlx_lm.server carries the <think> block inline, there being no
+        # reasoning parser), `prompts/<game>.log`, intermediate states, movies.
+        # Cherry-picking named subdirs silently dropped all of it. Copy
+        # everything; disk is cheap and these traces ARE the diagnosis.
+        for item in job.iterdir():
+            dest = out / item.name
+            if item.is_dir():
+                shutil.copytree(item, dest, dirs_exist_ok=True)
+            else:
+                shutil.copy2(item, dest)
+        if (out / "benchmark.json").is_file():
+            bench = json.loads((out / "benchmark.json").read_text(encoding="utf-8"))
 
     diag = diagnose(bench) if bench else {"findings": [
         {"severity": "critical", "what": "no benchmark.json produced",
