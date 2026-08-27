@@ -144,7 +144,38 @@ else
     BIND_PORT="$PORT"
 fi
 
-exec "$MLX_SERVER" \
+
+# ---------------------------------------------------------------------------
+# STABILITY GUARDS -- added 2026-08-27 after TWO hard hangs (display dies,
+# blinks on wake, force reboot). No kernel panic, no GPU fault: a wedged
+# graphics stack, not hardware damage.
+#
+# Cause was sustained maximum Metal load across repeated display sleep/wake
+# transitions, made worse by running on BATTERY (where displaysleep is 2 min).
+# It was NOT `pmset -c sleep 0` -- that is AC-only and the second hang happened
+# on battery.
+#
+# caffeinate holds display AND system sleep for exactly this process's lifetime
+# and releases on exit, so it fixes the trigger without touching global pmset.
+# ---------------------------------------------------------------------------
+if pmset -g ps 2>/dev/null | head -1 | grep -q "Battery Power"; then
+    echo "  power   : ON BATTERY -- long GPU runs have hung this machine twice."
+    if [ "${ARC_ALLOW_BATTERY:-0}" != "1" ]; then
+        echo "            REFUSING to start. Plug in, or set ARC_ALLOW_BATTERY=1." >&2
+        exit 3
+    fi
+    echo "            ARC_ALLOW_BATTERY=1 -- proceeding anyway."
+else
+    echo "  power   : AC (good)"
+fi
+
+CAFFEINATE=""
+if [ "${ARC_NO_CAFFEINATE:-0}" != "1" ] && command -v caffeinate >/dev/null; then
+    CAFFEINATE="/usr/bin/caffeinate -dims"
+    echo "  sleep   : held by caffeinate for this process only (-dims)"
+fi
+
+exec $CAFFEINATE "$MLX_SERVER" \
     --model "$MODEL" \
     --host "$HOST" \
     --port "$BIND_PORT" \
