@@ -134,6 +134,35 @@ decodes parse this feed identically, checked).
 runs/ledger.json" was at least partly this artifact rather than real movement.**
 `feedback_audit_the_instrument`, and the fourth instrument defect in three days.
 
+## 5. ★ THE AFFORDANCE AUDIT MANUFACTURED ITS OWN FINDINGS — AND THE GAP IT LEFT MATTERS MORE
+
+`scripts/affordance_audit.py` (added this morning, `43b9606`, to automate the
+5-for-5 failure class) had never been run. Run today it produced **14 confident
+findings** off the local trace store — all six game actions, plus `transitions`,
+`history`, `animation`, `previous_frame`, `last_transition`, and more, every one
+"0.0% used".
+
+**All 14 were artefacts.** That store is 211 calls with `game_id` and
+`action_num` **NULL on every row** and **zero actions played** — last night's
+latency screens, not gameplay. The tool computed `uses / n_actions`, coerced the
+zero denominator to a 0.0 rate, and reported a low rate as a finding. On a corpus
+with no gameplay an **empty `transitions` is correctly not queried**.
+
+Fixed: a `GAMEPLAY_DEPENDENT` set and an `UNMEASURED-NO-GAMEPLAY` verdict. 16
+non-findings suppressed on that corpus, while the genuine findings on a real
+**2,971-action** gameplay pull — RESET and ACTION5, `AVAILABLE-NOT-ADVERTISED` —
+**survive unchanged**. That is the negative control on my own guard: it had to be
+shown not to suppress a true finding.
+
+**The gap it leaves is the more important half.** Our ★★★ standing root cause —
+*the harness exposes `transitions` and the agent never queries it* — is
+**currently unmeasurable on both instruments we own**: a Kaggle pull retains only
+a last-call prose snapshot (`UNMEASURED`), and the local store has no games
+(`UNMEASURED-NO-GAMEPLAY`). **No number we hold currently supports or refutes a
+claim the campaign has treated as established for weeks.** Closing it needs one
+local-rail run on an actual game — CPU-only, slot-free, and now the cheapest
+open item on the board.
+
 ## 4. OPEN QUESTIONS
 
 1. **Does seed pinning collapse our draw variance?** The whole point of the arm.
@@ -147,6 +176,8 @@ runs/ledger.json" was at least partly this artifact rather than real movement.**
    is the honest first build. CPU-only, slot-free.
 4. **Unclaimed free measurement:** sub-classify the exec-WM `residual` bucket
    (animation vs second object vs enemy). Free, and it decides Gate B's design.
-5. **Two nightly rails.** The 08-27 addendum's ruling request. The Mac now owns
+5. **Can we even see `transitions` use?** Neither instrument can today (§5).
+   One local game run closes it and re-grounds the campaign's ★★★ root cause.
+6. **Two nightly rails.** The 08-27 addendum's ruling request. The Mac now owns
    the window (`com.arc.tick`); Windows tasks were disabled 08-27 per memory.
    Treat as resolved unless a double-fire appears in `submission_log.jsonl`.

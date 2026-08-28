@@ -156,11 +156,23 @@ def use_from_local() -> tuple[collections.Counter, collections.Counter, int, int
 # ---------------------------------------------------------------------------
 # the audit
 # ---------------------------------------------------------------------------
+# Globals whose USE is only possible once actions have been played. On a corpus
+# with zero gameplay an empty `transitions` is CORRECTLY not queried, so a 0%
+# rate there is not a preference failure -- it is no measurement at all.
+GAMEPLAY_DEPENDENT = {
+    "transitions", "last_transition", "previous_frame", "history",
+    "last_action", "last_action_frame", "last_action_result", "animation",
+    "latest_frame",
+}
+
+
 def audit(adv: dict[str, str], injects: dict[str, str],
           actions: collections.Counter, globals_used: collections.Counter,
           n_actions: int, n_turns: int, measured_globals: bool = True) -> list[dict]:
     rows = []
     prompt, tooldesc = adv["system_prompt"], adv["tool_description"]
+    # A corpus with no actions played cannot measure gameplay-dependent use.
+    gameplay = n_actions > 0
 
     for g in SANDBOX_GLOBALS:
         in_prompt = f"`{g}`" in prompt or f"{g}(" in prompt
@@ -169,12 +181,15 @@ def audit(adv: dict[str, str], injects: dict[str, str],
         cond = injects.get(g, "-")
         uses = globals_used.get(g, 0)
         rate = uses / n_turns if n_turns else 0.0
+        g_measured = measured_globals and (gameplay or g not in GAMEPLAY_DEPENDENT)
         rows.append({"name": g, "kind": "sandbox_global", "available": available,
                      "condition": cond, "advertised_prompt": in_prompt,
                      "advertised_tool": in_tool, "uses": uses,
-                     "denominator": n_turns, "rate": rate, "measured": measured_globals,
+                     "denominator": n_turns, "rate": rate, "measured": g_measured,
                      "verdict": verdict(available, in_prompt or in_tool, rate,
-                                        measured_globals)})
+                                        g_measured,
+                                        no_gameplay=not gameplay and not measured_globals is False
+                                        and g in GAMEPLAY_DEPENDENT and not gameplay)})
 
     for a in GAME_ACTIONS:
         in_prompt = a in prompt
@@ -185,13 +200,14 @@ def audit(adv: dict[str, str], injects: dict[str, str],
                      "available": uses > 0 or a != "RESET",
                      "condition": "valid_actions", "advertised_prompt": in_prompt,
                      "advertised_tool": in_tool, "uses": uses,
-                     "denominator": n_actions, "rate": rate, "measured": True,
-                     "verdict": verdict(True, in_prompt or in_tool, rate)})
+                     "denominator": n_actions, "rate": rate, "measured": gameplay,
+                     "verdict": verdict(True, in_prompt or in_tool, rate, gameplay,
+                                        no_gameplay=not gameplay)})
     return rows
 
 
 def verdict(available: bool, advertised: bool, rate: float,
-            measured: bool = True) -> str:
+            measured: bool = True, no_gameplay: bool = False) -> str:
     """Advertisement only matters when USE is low.
 
     An affordance the model reaches for 28% of the time is discoverable by
@@ -202,7 +218,7 @@ def verdict(available: bool, advertised: bool, rate: float,
     if advertised and not available:
         return "ADVERTISED-NOT-AVAILABLE"     # fires regardless of use: it cannot be used
     if not measured:
-        return "UNMEASURED"
+        return "UNMEASURED-NO-GAMEPLAY" if no_gameplay else "UNMEASURED"
     if rate >= UNUSED_FLOOR:
         return "OK"                            # used enough; advertisement moot
     if available and not advertised:
@@ -213,7 +229,8 @@ def verdict(available: bool, advertised: bool, rate: float,
 
 
 SEVERITY = {"ADVERTISED-NOT-AVAILABLE": 0, "AVAILABLE-NOT-ADVERTISED": 1,
-            "ADVERTISED-UNUSED": 2, "UNMEASURED": 3, "OK": 4}
+            "ADVERTISED-UNUSED": 2, "UNMEASURED": 3,
+            "UNMEASURED-NO-GAMEPLAY": 3, "OK": 4}
 
 EXPLAIN = {
     "ADVERTISED-NOT-AVAILABLE":
@@ -228,6 +245,12 @@ EXPLAIN = {
         "this source cannot measure sandbox-global use -- a Kaggle pull keeps "
         "only a last-call prose snapshot. Run with --local, where the trace "
         "store holds full tool_call arguments. NOT a finding.",
+    "UNMEASURED-NO-GAMEPLAY":
+        "this corpus contains ZERO played actions, so use of a "
+        "gameplay-dependent affordance cannot be measured on it: an empty "
+        "`transitions` is CORRECTLY not queried. A zero denominator silently "
+        "reported as a 0% rate is how this tool would otherwise manufacture "
+        "its own headline finding. NOT a finding -- get a corpus with games.",
     "ADVERTISED-UNUSED":
         "advertised AND available, and still not reached for. A PREFERENCE "
         "failure, not a discovery one -- making it louder is the wrong repair "

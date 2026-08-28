@@ -101,3 +101,38 @@ means the bundle moved and the arm's premise is void -> VOID, not REJECT).
 - `duck_eval/seed/test_seed_graft.py` -> **18/0**, 6 of them negative controls
 - N4 determinism: builder rebuilt twice -> byte-identical
 - preflight structural (duck-harness family): 6 ok, 0 warn
+
+---
+
+## 8. TONIGHT'S HEAD RULE — SEALED PRE-DATA (appended 08:45, build still RUNNING)
+
+The 08-27 session lost a night because a head rule existed but was never
+*evaluated*: the artifact was never pulled and the scorer never run. This rule is
+therefore stated now, before any result exists, and its evaluation is a required
+step, not an option.
+
+**`canivel/arc3-q38-seed-eval` v1 REPLACES the field-floor filler as tonight's
+queue head IFF all three hold:**
+
+- **(a) TERMINAL COMPLETE by 18:00 EDT.** Not RUNNING, not ERROR.
+- **(b) CERTIFIES** under `duck_eval/q38/q38field_score.py` — the floor's own
+  instrument, which is correct here because q38-seed is a registered SIBLING of
+  q38-field (same vehicle bytes) and their artifacts must certify under each
+  other.
+- **(c) THE TREATMENT IS CONFIRMED TO HAVE FIRED IN THE REAL RUN.** The pulled
+  kernel log must contain the banner
+  `taaf.kaggle: SEED ARM injected LOCAL_ANALYZER_SEED = 20260828`.
+  **A local test proving the graft can fire is not evidence that it did.** This
+  is the P1/P2 delivery lesson applied in advance: 96.3% delivery with no
+  behaviour change, then 1.3% use against a 30% bar, then 10.73% against 25%.
+  Here delivery is binary and cheap to check, so there is no excuse for
+  inferring it.
+
+**If ANY of (a)/(b)/(c) fails, the certified field floor heads** and the seed arm
+is diagnosed, not submitted. A failure of (c) specifically is a **VOID**, not a
+REJECT: it would mean the arm never ran, and it must not consume one of the four
+committed draws.
+
+**Draw accounting.** A submission under this rule is **draw 1 of the 4** committed
+in §4. No verdict may be written until draw 4. If the arm does not head tonight,
+the count does not advance.
