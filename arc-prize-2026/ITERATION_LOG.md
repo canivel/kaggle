@@ -1921,3 +1921,126 @@ action so calls/action is poorly estimated there -- 81 calls without finishing
 an action against 6 finished in 27 is a large enough gap to act on, but the
 ratio itself is not precise. A negative result of this size still saved a slot:
 this arm would have failed on Kaggle, and it cost ~40 minutes here.
+
+### 2026-08-28 [MAC] — morning check: overnight 1.26 (config mean falls a 3rd straight draw); control arm DID NOT MOVE; 1.55-1.65 band flat
+
+**Overnight draw: 1.26** (`canivel/arc3-q38-field-eval` v1, submitted 00:11:01 UTC, COMPLETE,
+the deliberate Arm 0 field-floor head — not a filler). Below our banked max of 1.92, so the
+board `Score` is unchanged. **Certified Q38 field-floor config draws now 1.59 / 1.58 / 1.63 /
+1.16 / 1.92 / 1.14 / 1.26 → n=7, mean 1.4686, sd 0.2897.** The config mean has fallen on three
+consecutive draws (1.5760 → 1.5033 → 1.4686) and the 1.92 is a max-of-seven, not a level. Per
+`project_arc_final_selection_rule` we select the final two by CONFIG MEAN, so each floor draw
+is buying estimate precision on the thing we actually select on — and the estimate is drifting
+DOWN, not up.
+
+**Queue: NOT empty.** Daemon auto-refilled post-submit at 00:11:03 (`queue_remaining: 1`) with
+the field-floor filler `canivel/arc3-q38-field-eval` v1, `trusted-fork`, upstream
+`foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b`. No filler entry needed from me.
+
+**Kernels: nothing in flight.** `canivel/arc3-q38-field-eval` COMPLETE, `canivel/arc3-duck-repro`
+COMPLETE — both terminal, matching the 08-27 handoff ("no build is in flight and no kernel is
+running").
+
+**Daemon health: CLEAN.** Last five `runs/submission_log.jsonl` records = three
+`already-submitted-today` skips (03:19, 16:12, 22:40 on 08-27), one `ok: true` submit, one
+`queue_autorefill`. **No skip reason other than already-submitted-today.**
+
+**Heartbeat ASSERTED.** `scripts/lb_archive.py` archived **2589 rows** with `SubmissionCount`
+present (pull_utc 2026-08-28T10:15:05Z); `--check` printed `HEARTBEAT OK  2026-08-28  rows=2589
+sha=19d7f21f1cd7` and `PRIOR-DAY OK`, exit 0. Full 08-27 → 08-28 diff was possible.
+
+**Board: us #193 of 2589 on a FLAT 1.92 — fourth consecutive day of pure drift under us**
+(#146 → #159 → #182 → #193, score unchanged throughout). Score lines: prize/top-5 **3.37**
+(flat), gold/top-13 **2.72** (2.70), top-50 2.32, top-100 2.14, top-250 1.81. Board grew
+2564 → 2589 rows.
+
+**(a) CONTROL ARM — verbatim, the line the campaign needs:**
+
+```
+team                    score   prev  dScore   subs  dSubs   dRank   d/draw  flags
+Jack Cole (MindsAI)      2.94   2.94   +0.00    131     +1      -2   0.0000  DREW-NO-GAIN(1 new subs, 0.00)
+Tufa Labs                4.67   4.67   +0.00    120     +1      +0   0.0000  DREW-NO-GAIN(1 new subs, 0.00)
+```
+
+**NEITHER CONTROL TEAM MOVED.** Both spent a draw and got nothing: 0.0000 Δscore per
+Δsubmission each. The two teams who wrote the TTT literature and the harness we fork have the
+means, the motive and the cadence to swap in a commodity engine, and did not gain over this
+window. **The commodity-engine / shared-regime story is WEAK on this evidence.** This is a
+measurement about SCORES only — it names no method (UNKNOWN for both teams).
+
+**(b) The 1.55–1.65 band:** 48 → **51 teams** (+3; 5 entered, 2 left), median score **1.60 →
+1.60 (+0.00)**, median subs 12.5 → 12.0. **The band is FLAT.** A drop-in engine swap
+propagating through the duck-harness lineage would lift this median; it did not move at all.
+What moved were individuals, which is what team-specific work looks like — but neither reading
+names a method.
+
+**(c) Large Δscore on ≤3 new submissions, quoted as Δscore per Δsubmission:** EndeavourRyo
+**+2.16/draw** (1 draw, 3 subs total, → 2.38), JIAWEILI0001 **+1.32/draw** (1 draw → 1.53),
+XiaoYan12 **+1.04/draw** (1 draw → 2.31), ShoaibSSM **+0.84/draw** (1 draw, 4 subs total →
+2.32), OzanM. **+0.81/draw** (1 draw → 2.98), NNbody **+0.62/draw** (1 draw, 2 subs total →
+1.31), Paul Kamau **+0.55/draw** (1 draw → 2.45), MachineLP **+0.34/draw** (2 draws → 1.36),
+Matija Ludvig **+0.265/draw** (2 draws → 2.15). Context for all of it: **284 teams submitted,
+only 52 (18.3%) gained anything**, 308 new submissions total, median gain among gainers
+**0.1850/draw**. Four-fifths of the draws bought zero. Because public `Score` is a max over
+submissions, a bare Δscore is partly just an extra draw — these per-draw figures are the only
+honest form, and even they cannot separate a better method from a better draw.
+
+**Summary.** Nothing broke and nothing was fixed: the overnight 1.26 landed COMPLETE below our
+1.92 max, the queue self-refilled to one field-floor entry, both known kernels are terminal, the
+daemon logged only already-submitted-today skips, and the full 2589-row archive + heartbeat
+asserted OK with a clean prior-day diff. The two findings worth carrying: **our config mean fell
+for the third consecutive draw to 1.4686 (n=7, sd 0.2897)** — the selection statistic is moving
+away from us while the banked 1.92 max stays frozen and the board drifts past us at ~11 ranks/day
+on that flat score — and **both control teams drew and gained nothing while the 1.55–1.65 band
+median stayed exactly 1.60**, which is the second consecutive day the shared-engine story has
+failed to show up in score data. All method statements above are **UNKNOWN** evidence class; the
+instrument measures Score, SubmissionCount, Rank, TeamName and LastSubmissionDate, and
+`LastSubmissionDate` (most recent) cannot date the run that produced `Score` (best). No action
+taken beyond logging; nothing in this check licenses a slot.
+
+### 2026-08-28 [MAC] — the 7920s clock is 99% TOKEN GENERATION. Measured on the certified rail.
+
+Decomposed from `runs/kernel_pulls/private_edge2_v3/vllm-openai-server.log`
+(797 throughput samples over the 2.21h run). This is KAGGLE data, not local.
+
+```
+25 games run CONCURRENTLY on one vLLM server: mean 24.7 running requests
+Waiting: 0.01 reqs          <- no queueing; the GPU is not contended
+aggregate generation        368 tok/s
+per-stream generation       14.9 tok/s
+GPU busy                    100% of samples
+total generated tokens      2,926,399
+```
+
+**THE DECOMPOSITION:**
+```
+2,926,399 generated tokens / 1,555 actions = 1,882 tokens per action
+1,882 tokens / 14.9 tok/s per stream       = 126.3 s
+observed seconds per action                = 127.4 s
+=> generation accounts for 99% of the clock
+```
+Python sandbox, game execution and harness overhead together are ~1 s/action.
+Every game ends at exactly `final_wallclock_seconds: 7920.7` having completed
+~62 actions. **The decision budget is a TOKEN budget wearing a clock's clothes.**
+
+**WHY THIS MATTERS FOR EVERY FUTURE ARM.** Actions per game is
+7920 / (tokens_per_action / 14.9). Halving tokens-per-action doubles the budget:
+1,882 -> 62 actions; 941 -> 124 actions. This is why the addition sweep went
+0-for-6 -- every addition SPENDS tokens against a budget that was already
+binding. An intervention that reduces tokens-per-action BUYS turns instead, and
+is categorically different from anything tried so far.
+
+**CONNECTS TO THE LOCAL CONTEXT FINDING.** Kaggle runs at mean `message_count`
+15.9 (max 43) with ~21k-token prompts -- squarely inside the band where local
+measurement showed reasoning inflating 19x (>=14 messages: 13,958 chars vs 727
+at <=8). Trimming is already refuted as the fix (4.9x worse per action). The
+live hypothesis is SUMMARY-CARRYING: make the compact world model REPLACE
+dropped history. Its success metric is now precise and measurable locally:
+**generated tokens per action.**
+
+**Incidental:** Kaggle prefix cache hit rate is only 34%. Not the bottleneck --
+prefill is not what the clock buys -- but it is unexpectedly low.
+
+**CAVEAT.** 1,882 tokens/action is generation of ALL kinds; reasoning is not
+separated from answer tokens here. The local traces DO separate them and show
+reasoning dominant, but that split has not been confirmed on the Kaggle rail.
