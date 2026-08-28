@@ -43,7 +43,10 @@
       "Bash(export PATH=\"$PATH:/c/Python313/Scripts\")",
       "mcp__kaos__mh_start_search",
       "Bash(uv run:*)",
-      "Bash(/c/Users/dcani/AppData/Roaming/Python/Python313/Scripts/kaggle competitions:*)"
+      "Bash(/c/Users/dcani/AppData/Roaming/Python/Python313/Scripts/kaggle competitions:*)",
+      "Bash(echo \"=== PWD/repo ===\" && git log --oneline -3 && echo && echo \"=== kaggle creds ===\" && ls -la ~/.kaggle/ 2>&1 | head -5 && echo && echo \"=== memory dir ===\" && ls /Users/danilocanivel/.claude/projects/-Users-danilocanivel-Projects-kaggle/memory/ 2>&1 | head -40 && echo \"count: $\\(ls /Users/danilocanivel/.claude/projects/-Users-danilocanivel-Projects-kaggle/memory/ 2>/dev/null | wc -l\\)\")",
+      "Read(//Users/danilocanivel/**)",
+      "Read(//Users/danilocanivel/.claude/projects/-Users-danilocanivel-Projects-kaggle/memory/**)"
     ]
   }
 }

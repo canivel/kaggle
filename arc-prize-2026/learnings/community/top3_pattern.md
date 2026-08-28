@@ -184,3 +184,94 @@ re-scoping (record integrity is the precondition) from a frame-*selection* bug t
 bug. And **Polyphony's sticky 0.55 deadline is refuted pre-build** — 39.3% of our floor level
 completions land after that mark. **The one rail-matched implementation of this mechanism class
 publishes 19.8%, and the first of its constants we priced against our own data was harmful.**
+
+---
+
+### VERDICT 2026-08-28 — hypothesis CONFIRMED for a sixth day; the mechanism class INVERTS; and the top tier says out loud that it is private
+
+**Cadence (first REAL diff in three days — both sides are full archives on this box).** 282 teams
+submitted, **52 (18.4%) gained anything**, median gainer **0.20/draw**. Three genuinely new steps, all
+on a single draw with no sub-count spike: **OzanM. +0.81** (2.17→2.98, #8), **Scott Le Grand +0.31**
+(#58), **Daniel Franzen +0.16** (#7). **cstl, the #1 at 5.99, did not submit at all.** Control arm
+**did not move for a sixth day**: Jack Cole/MindsAI +0.00 on +1, Tufa Labs +0.00 on +1 — `lb_diff`
+readout unchanged: *"the commodity-engine / shared-regime story is WEAK on this evidence."*
+
+**The ADDENDUM's lag bias reproduced itself exactly, one day later** [V]. Tong Hui Kang's +0.49 to
+#4 appears in today's diff as a STEP; it is **not new** — the ADDENDUM dated it to before 13:26Z on
+08-27, and it re-surfaces only because the archived 08-27 pull was taken at **10:00Z** while his run
+landed at **01:11Z** and had not finished scoring. **Excluded from today's step count.** The
+correction is now demonstrated rather than predicted: the daily gainer rate is a **floor**, biased
+toward more flats, i.e. toward confirming this document's own hypothesis. Expect the same correction
+against today's flags tomorrow.
+
+**FALSIFIER 1 (private machinery) TAKES ITS FIRST DIRECT TESTIMONY — and it holds.** Topic 732854,
+**OverfitOracle, 08-27 18:20** [V-doc], asked point-blank by Spen whether his jump came from
+*"fundamental changes to your harness … or just tweaks and a good scoring run"*: *"I am not gonna
+share something very important but was a **very different approach in the harness + model** achieving
+5.0+ stable on public 25 games. **We completely redesigned it** leading to a good stable increase."*
+This moves one top-tier row from [UNKNOWN] to **[INFERRED: private whole-system redesign, not a flag
+or a graft]** on the author's own statement, and it **actively rejects** Brüggen's 08-26 conjecture
+that one public idea leaked to three teams simultaneously. The public ceiling is still **FOYSAL 2.23,
+frozen for 10 days**, with eight teams above 2.9 and zero public artifacts between them.
+
+**★ THE MECHANISM CLASS INVERTS.** For four days the leading class was *refutation against recorded
+history* (exec world models, verifiers, retrodiction). Today's external radar establishes that **the
+two independent 100%-class systems chose AGAINST it on purpose** [V, NVIDIA AVO blog, verbatim]:
+*"Rather than centering our ARC-AGI-3 system on explicit programmatic world-model construction, **as
+explored by Tycho**, we adopted the direct-interaction design principles described by VISTA."* AVO's
+four parts are a main loop, **persistent memory as search-state continuation** (*"resume from the
+current state rather than repeatedly reconstructing the search"*), a **supervisor that detects
+stagnation and redirects the agent**, and swappable tools — on **Claude Opus 5, text-only 64x64
+grids, no code or weights released, public set only, reimplemented task interface**. Retrodict
+(99.9%, fully open) reaches comparable numbers via replay-verification but relegates the executable
+simulator to a **fallback after 300 stuck actions**. **Restated class:** the world model is *one*
+route and the ceiling systems declined it; what they share is **memory that survives across
+invocations** plus **a mechanism that notices the agent is not progressing**. Note this lands on our
+own live thread — 08-27's finding that context drives reasoning 19x, that naive trimming is 4.9x
+worse per action, and that the indicated arm is **summary-carrying**.
+
+**Instrument corrections, both retiring claims this document has relied on** [V]:
+1. **The topic sweep has been under-paged ~3x all campaign** — 193 topics on exhaustive paging, not
+   the 61 (or 40) that prior briefs called "all topics".
+2. **`arcprize.org/leaderboard/community` is DATE-sorted, not score-sorted.** The 08-27 reading that
+   Polyphony *"is fifteen places below a system that scores 100%"* was row order, not rank. The score
+   facts (Polyphony 19.8%, Tycho 100.0%) survive; the framing does not.
+
+**★★ NEW ENTRY TO THE LEDGER — the first rival artifact that is graftable to OUR vehicle with zero
+structural risk, and the first that CLOSES a lever family for us.** `yocybercode` (team
+**Thuitanium**, #310, 1.70, 13 subs) published **six kernels in one three-hour burst on 08-27**,
+forming a **2x2 factorial + baseline + byte-identical replicate** over `LOCAL_ANALYZER_SEED`,
+`YIELD_SECONDS` (60→180) and `TEMPERATURE` (0.6→1.0) — every one pinning
+**`jakobbrggen/taaf-kaggle-source-anim-20260807-anim`, our exact vehicle**, with the solver untouched
+and every intervention a `str.replace` in the setup command. **All levers verified present in our own
+bundle at their baseline values; `SEED` is ABSENT, which is why v1-1 injects rather than replaces**
+[V, read from our `setup_commands.json`]. Each version ships **build-time TEETH** that abort if the
+injection silently no-ops (*"the duckv25 shape"*), if a key is injected twice (*"two values would
+race"*), or if an untested variable drifted — `feedback_guard_never_fired` and
+`feedback_verify_treatment_can_fire` as five lines of assertion.
+**And their R35 probe closes a family for us** [V-doc]: the output-token distribution has **no fat
+tail** — *"a cap at 8,192 saves 0.98% of output; at 12,288 it saves nothing at all"* — with
+`duckv9`'s 768-cap scoring **0.22** because `finish_reason` came back `length` 704 against
+`tool_calls` 68, *truncating the tool call that carried the action*. Combined with our own 08-27
+refutation of context trimming (4.9x worse per action), **"cheapen the decision to buy decision
+budget" is now dead on two independent instruments.** The remaining lever is value-per-turn.
+
+**A third team independently derives our selection discipline** [V-doc]. Scott Le Grand, topic
+737230, 08-27: *"The variance on submissions of the same notebook is insane. **I have to submit at
+least 4 times before I remotely believe differences between 2 approaches.**"* Spen supplies the
+mechanism: *"depending on scheduling and timeouts … certain games get more time than others … the
+exact same submission can get a much lower score."* This confirms `feedback_seed_vs_own_config` from
+outside, **and prices the Thuitanium ladder**: six single draws cannot separate six configs. It also
+predicts a ceiling on seed-pinning — if the dominant variance is **scheduler** rather than
+**sampler**, `LOCAL_ANALYZER_SEED` will not collapse it, which is precisely what v1-1 vs v1-1-r2
+exists to measure.
+
+**A seven-report public→LB divisor table, the first EXTERNAL calibration of our screen** [V-doc, all
+topic 732854]: Nick Pellegrin 5.0–5.4→1.4–1.8 · OverfitOracle 5.0+→1.6 · daoviet 6.8→1.19 · Fususu
+3.8→0.9–1.8 · Scott Le Grand 3.8→~0.9 · mikelou1 2.8→2.4 · donk666 3.5–7.5. **Central tendency ~3x**,
+and it sharpens the 08-27 ADDENDUM's inverse law rather than contradicting it: the higher the local
+score, the worse the transfer. **A local 6.173 is a ~2.0 board expectation, not a 6.**
+
+**FALSIFIER 5 STILL UNTESTED for a sixth day: zero board validation of any individual graft.**
+Thuitanium's ladder sits at 1.70 and its per-version scores are not observable through the CLI, so it
+validates nothing yet either — it is a **design we can read, not a result we can read**.

@@ -284,9 +284,30 @@ ARMS: dict[str, Arm] = {
         scorer_path=DUCK / "q38" / "q38field_score.py",
         artifact=RUNS / "kernel_pulls" / "q38_field_v1",
         notebook=_FIELD_NB, kernel="canivel/arc3-q38-field-eval",
-        expect_n_cells=11,
+        expect_n_cells=11, sibling_arms=("q38-seed",),
         forbidden_tokens=("taaf_grafts", "install(bm", "reasoning_effort", "litellm"),
         note="hand-rebased FOYSAL vehicle: no builder, so N4 (determinism) is N/A",
+    ),
+    # SEED arm (2026-08-28): the certified field floor + ONE injected variable,
+    # LOCAL_ANALYZER_SEED, which is ABSENT from the pinned bundle. Same vehicle
+    # bytes everywhere else, so it is a q38-field SIBLING: their artifacts must
+    # certify under each other and neither is a cross-arm negative control for
+    # the other.
+    "q38-seed": Arm(
+        name="q38-seed", scorer_module="q38field_score",
+        scorer_path=DUCK / "q38" / "q38field_score.py",
+        artifact=None,
+        notebook=NOTEBOOKS / "q38-seed-eval" / "arc3-q38-seed-eval.ipynb",
+        kernel="canivel/arc3-q38-seed-eval",
+        builder_path=DUCK / "seed" / "build_seed_kernel.py",
+        base_notebook=_FIELD_NB,
+        expect_diff_cells=(5,), expect_n_cells=11,
+        forbidden_tokens=("taaf_grafts", "install(bm", "reasoning_effort", "litellm"),
+        required_literals=(("ANALYZER_SEED", "20260828"),),
+        extra_suites=(("seed_graft", (str(DUCK / "seed" / "test_seed_graft.py"),)),),
+        sibling_arms=("q38-field",),
+        note="field floor + injected LOCAL_ANALYZER_SEED; teeth assert the "
+             "6 untested analyzer variables did not drift",
     ),
     "graft-floor": Arm(
         name="graft-floor", scorer_module="graft_score",
@@ -971,11 +992,21 @@ def check_notebook(rep: Report, arm: Arm, nb_path: Path | None, fast: bool) -> N
     if arm.required_literals:
         bad = []
         for name, want in arm.required_literals:
-            m = re.search(rf"^{re.escape(name)}\s*=\s*(True|False)\b", whole, re.M)
+            # Booleans keep their original exact-token match; string/int
+            # literals are supported too, so an arm can pin a VALUE (a wrong
+            # seed is a different config, which is precisely an N3 failure).
+            m = re.search(
+                rf"^{re.escape(name)}\s*=\s*"
+                rf"(True|False|\"[^\"\n]*\"|'[^'\n]*'|-?\d+)\s*$",
+                whole, re.M)
             if m is None:
                 bad.append(f"{name}: literal assignment not found")
-            elif m.group(1) != want:
-                bad.append(f"{name} = {m.group(1)}, arm {arm.name} requires {want}")
+            else:
+                got = m.group(1)
+                if got[:1] in "\"'":
+                    got = got[1:-1]
+                if got != want:
+                    bad.append(f"{name} = {got}, arm {arm.name} requires {want}")
         if bad:
             rep.bad("N", "N3.flags",
                     "staged notebook is NOT the arm you asked for", "\n".join(bad))

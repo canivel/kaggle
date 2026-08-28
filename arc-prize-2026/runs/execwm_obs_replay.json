@@ -1,0 +1,1180 @@
+{
+ "pooled": {
+  "residual": 641,
+  "noop": 366,
+  "no-candidate": 139,
+  "move": 1243,
+  "too-small": 5
+ },
+ "games": {
+  "ar25": {
+   "reasons": {
+    "residual": 65,
+    "noop": 11,
+    "no-candidate": 6
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 11,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION2",
+     "n": 28,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION3",
+     "n": 16,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION4",
+     "n": 17,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION5",
+     "n": 10,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    }
+   ],
+   "transitions": 83
+  },
+  "bp35": {
+   "reasons": {
+    "move": 53,
+    "residual": 23,
+    "noop": 44
+   },
+   "actions": [
+    {
+     "action": "ACTION3",
+     "n": 45,
+     "moves": 26,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      6
+     ],
+     "top_share": 0.8846153846153846
+    },
+    {
+     "action": "ACTION4",
+     "n": 75,
+     "moves": 27,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": [
+      0,
+      -6
+     ],
+     "top_share": 0.5925925925925926
+    }
+   ],
+   "transitions": 206
+  },
+  "cd82": {
+   "reasons": {
+    "noop": 33,
+    "residual": 35,
+    "no-candidate": 6
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 14,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION2",
+     "n": 16,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION3",
+     "n": 14,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION4",
+     "n": 15,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION5",
+     "n": 15,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    }
+   ],
+   "transitions": 80
+  },
+  "cn04": {
+   "reasons": {
+    "residual": 80,
+    "no-candidate": 1,
+    "noop": 2
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 16,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION2",
+     "n": 24,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION3",
+     "n": 18,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION4",
+     "n": 16,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION5",
+     "n": 9,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    }
+   ],
+   "transitions": 95
+  },
+  "dc22": {
+   "reasons": {
+    "move": 83,
+    "noop": 14
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 28,
+     "moves": 20,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      -2,
+      0
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION2",
+     "n": 21,
+     "moves": 19,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      2,
+      0
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION3",
+     "n": 25,
+     "moves": 22,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      -2
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION4",
+     "n": 23,
+     "moves": 22,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      2
+     ],
+     "top_share": 1.0
+    }
+   ],
+   "transitions": 118
+  },
+  "ft09": {
+   "reasons": {},
+   "actions": [],
+   "transitions": 101
+  },
+  "g50t": {
+   "reasons": {
+    "noop": 8,
+    "residual": 11,
+    "no-candidate": 6,
+    "move": 6
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 4,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION2",
+     "n": 14,
+     "moves": 6,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      6,
+      0
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION3",
+     "n": 4,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION4",
+     "n": 4,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION5",
+     "n": 5,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    }
+   ],
+   "transitions": 31
+  },
+  "ka59": {
+   "reasons": {
+    "move": 77,
+    "noop": 5,
+    "residual": 1
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 21,
+     "moves": 20,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      -3,
+      0
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION2",
+     "n": 23,
+     "moves": 21,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      3,
+      0
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION3",
+     "n": 19,
+     "moves": 19,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      -3
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION4",
+     "n": 20,
+     "moves": 17,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      3
+     ],
+     "top_share": 0.9411764705882353
+    }
+   ],
+   "transitions": 87
+  },
+  "lf52": {
+   "reasons": {
+    "noop": 150,
+    "residual": 33
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 30,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION2",
+     "n": 43,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION3",
+     "n": 51,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION4",
+     "n": 59,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    }
+   ],
+   "transitions": 208
+  },
+  "lp85": {
+   "reasons": {},
+   "actions": [],
+   "transitions": 27
+  },
+  "ls20": {
+   "reasons": {
+    "move": 709,
+    "residual": 45,
+    "noop": 5,
+    "no-candidate": 4
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 342,
+     "moves": 323,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      -5,
+      0
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION2",
+     "n": 228,
+     "moves": 199,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      5,
+      0
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION3",
+     "n": 47,
+     "moves": 43,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      -5
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION4",
+     "n": 146,
+     "moves": 144,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      5
+     ],
+     "top_share": 1.0
+    }
+   ],
+   "transitions": 773
+  },
+  "m0r0": {
+   "reasons": {
+    "move": 38,
+    "residual": 34,
+    "noop": 11,
+    "no-candidate": 3
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 26,
+     "moves": 13,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      -5,
+      0
+     ],
+     "top_share": 0.9230769230769231
+    },
+    {
+     "action": "ACTION2",
+     "n": 18,
+     "moves": 10,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      4,
+      0
+     ],
+     "top_share": 0.7
+    },
+    {
+     "action": "ACTION3",
+     "n": 17,
+     "moves": 10,
+     "distinct": 3,
+     "gate_a": false,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      -4
+     ],
+     "top_share": 0.6
+    },
+    {
+     "action": "ACTION4",
+     "n": 15,
+     "moves": 5,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      -4
+     ],
+     "top_share": 0.6
+    },
+    {
+     "action": "ACTION5",
+     "n": 10,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    }
+   ],
+   "transitions": 88
+  },
+  "r11l": {
+   "reasons": {},
+   "actions": [],
+   "transitions": 26
+  },
+  "re86": {
+   "reasons": {
+    "residual": 119,
+    "no-candidate": 15,
+    "move": 25,
+    "too-small": 4,
+    "noop": 2
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 50,
+     "moves": 10,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      -3,
+      0
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION2",
+     "n": 27,
+     "moves": 2,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": false,
+     "gate_union": true,
+     "majority_delta": [
+      3,
+      0
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION3",
+     "n": 35,
+     "moves": 4,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      -3
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION4",
+     "n": 38,
+     "moves": 9,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      3
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION5",
+     "n": 15,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    }
+   ],
+   "transitions": 167
+  },
+  "s5i5": {
+   "reasons": {},
+   "actions": [],
+   "transitions": 56
+  },
+  "sb26": {
+   "reasons": {
+    "no-candidate": 14
+   },
+   "actions": [
+    {
+     "action": "ACTION5",
+     "n": 14,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    }
+   ],
+   "transitions": 62
+  },
+  "sc25": {
+   "reasons": {
+    "noop": 3,
+    "move": 19
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 4,
+     "moves": 3,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      -2,
+      -2
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION2",
+     "n": 4,
+     "moves": 4,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      2,
+      0
+     ],
+     "top_share": 0.75
+    },
+    {
+     "action": "ACTION3",
+     "n": 10,
+     "moves": 8,
+     "distinct": 3,
+     "gate_a": false,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      4
+     ],
+     "top_share": 0.625
+    },
+    {
+     "action": "ACTION4",
+     "n": 4,
+     "moves": 4,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      -4
+     ],
+     "top_share": 1.0
+    }
+   ],
+   "transitions": 33
+  },
+  "sk48": {
+   "reasons": {
+    "move": 62,
+    "no-candidate": 50,
+    "residual": 56,
+    "noop": 29
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 61,
+     "moves": 32,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      -6,
+      0
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION2",
+     "n": 59,
+     "moves": 30,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      6,
+      0
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION3",
+     "n": 42,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION4",
+     "n": 35,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    }
+   ],
+   "transitions": 206
+  },
+  "sp80": {
+   "reasons": {
+    "move": 20,
+    "no-candidate": 12,
+    "noop": 13
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 9,
+     "moves": 6,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      -4,
+      0
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION2",
+     "n": 17,
+     "moves": 14,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      4,
+      0
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION3",
+     "n": 5,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION4",
+     "n": 7,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION5",
+     "n": 7,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    }
+   ],
+   "transitions": 46
+  },
+  "su15": {
+   "reasons": {},
+   "actions": [],
+   "transitions": 44
+  },
+  "tn36": {
+   "reasons": {},
+   "actions": [],
+   "transitions": 48
+  },
+  "tr87": {
+   "reasons": {
+    "residual": 103,
+    "no-candidate": 8,
+    "move": 17
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 99,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION2",
+     "n": 4,
+     "moves": 0,
+     "distinct": 0,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": null,
+     "top_share": 0.0
+    },
+    {
+     "action": "ACTION3",
+     "n": 12,
+     "moves": 8,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      -7
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION4",
+     "n": 13,
+     "moves": 9,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      7
+     ],
+     "top_share": 1.0
+    }
+   ],
+   "transitions": 129
+  },
+  "tu93": {
+   "reasons": {
+    "noop": 26,
+    "move": 57,
+    "residual": 3
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 22,
+     "moves": 18,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      6,
+      0
+     ],
+     "top_share": 0.8333333333333334
+    },
+    {
+     "action": "ACTION2",
+     "n": 21,
+     "moves": 20,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      -6,
+      0
+     ],
+     "top_share": 0.9
+    },
+    {
+     "action": "ACTION3",
+     "n": 16,
+     "moves": 4,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": [
+      0,
+      6
+     ],
+     "top_share": 0.5
+    },
+    {
+     "action": "ACTION4",
+     "n": 27,
+     "moves": 15,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      -6
+     ],
+     "top_share": 0.6
+    }
+   ],
+   "transitions": 90
+  },
+  "vc33": {
+   "reasons": {},
+   "actions": [],
+   "transitions": 31
+  },
+  "wa30": {
+   "reasons": {
+    "move": 77,
+    "noop": 10,
+    "too-small": 1,
+    "no-candidate": 14,
+    "residual": 33
+   },
+   "actions": [
+    {
+     "action": "ACTION1",
+     "n": 56,
+     "moves": 43,
+     "distinct": 4,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": [
+      0,
+      -4
+     ],
+     "top_share": 0.37209302325581395
+    },
+    {
+     "action": "ACTION2",
+     "n": 14,
+     "moves": 8,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      -4,
+      0
+     ],
+     "top_share": 0.625
+    },
+    {
+     "action": "ACTION3",
+     "n": 20,
+     "moves": 9,
+     "distinct": 1,
+     "gate_a": true,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      4
+     ],
+     "top_share": 1.0
+    },
+    {
+     "action": "ACTION4",
+     "n": 26,
+     "moves": 14,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": true,
+     "gate_union": true,
+     "majority_delta": [
+      0,
+      -4
+     ],
+     "top_share": 0.9285714285714286
+    },
+    {
+     "action": "ACTION5",
+     "n": 19,
+     "moves": 3,
+     "distinct": 2,
+     "gate_a": false,
+     "gate_majority": false,
+     "gate_union": false,
+     "majority_delta": [
+      0,
+      -4
+     ],
+     "top_share": 0.6666666666666666
+    }
+   ],
+   "transitions": 137
+  }
+ }
+}

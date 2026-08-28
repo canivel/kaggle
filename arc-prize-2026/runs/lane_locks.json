@@ -157,6 +157,14 @@
     "COMPARATOR TABLE (all n=1, MDE 11.1 -- NONE of these are distinguishable): floor lc 28 / mean 6.173 / trim1 3.189; p1 lc 27 / 4.762 / 4.057; execwm lc 25 / 3.006 / 2.330; p2 lc 24 / 3.232 / 2.672. The floor's headline mean is 50.4% ONE GAME (sb26=77.78) and on trim1 the floor ranks THIRD of four -- the ranking flips with the statistic (feedback_screen_calibration_range)."
    ],
    "registered_by": "iterate session 2026-08-27"
+  },
+  {
+   "lane": "seed (LOCAL_ANALYZER_SEED variance decomposition)",
+   "kernel": "canivel/arc3-q38-seed-eval",
+   "owner": "iterate session 2026-08-28",
+   "date": "2026-08-28",
+   "planned_action": "SLOT 1 (08-28) TAKEN AT REGISTRATION TIME, pre-push, per the 08-21 lesson. Fresh slug; certified field floor + ONE injected variable (LOCAL_ANALYZER_SEED=20260828), which is ABSENT from the pinned bundle. Treatment-can-fire PROVEN pre-build by direct source read (env -> tool_agent.py:159 -> :1536 -> openai_compat.py, provider vllm, default -1 means no seed on the wire today). Prereg learnings/war_room/seed_arm_prereg_2026-08-28.md SEALED pre-push: n=4 seeded draws committed BEFORE the first, 2-draw reads FORBIDDEN, primary statistic is draw SD vs the floor's 0.2897 (n=7), NOT score. Gates at seal time: q38-seed 55/0, self-test 13/0, q38-field 52/0 (no regression), seed_graft 18/0 incl. 6 negative controls.",
+   "registered_by": "iterate session 2026-08-28 at take-time (pre-push)"
   }
  ],
  "note_2026_08_21": "Both kernels pushed on 08-21 (06:45, 06:50) were UNREGISTERED until 08:40, i.e. the collision guard was blind for ~2h on the exact failure mode it was created for (the 08-18 v2 double-push). Registering must happen AT push time, not after."

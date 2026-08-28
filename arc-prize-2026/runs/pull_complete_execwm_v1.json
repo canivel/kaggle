@@ -1,0 +1,16 @@
+{
+ "pull": "runs/kernel_pulls/execwm_v1/artifacts",
+ "complete": true,
+ "problems": [],
+ "facts": {
+  "log_files": 30,
+  "log_files_nonempty": 30,
+  "largest_log": 369796,
+  "model_sources": [
+   "taaf_setup_env.json",
+   "prompts/ar25-0c556536_p0.log",
+   "vllm-openai-server.log"
+  ],
+  "unexpected_empty_files": []
+ }
+}

@@ -2089,3 +2089,5 @@ understood, not used).
 valid GameAction" even though member ACTION3 has value 3 — the enum's value
 lookup is broken. Build `{m.value: m for m in GameAction}` and never call the
 constructor. Also `available_actions` returns numpy ints.
+
+### 2026-08-28 — (in progress; stub written at session start)

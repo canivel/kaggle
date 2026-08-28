@@ -1,0 +1,16 @@
+benchmark: [MAC-SCREEN] cache-ab
+solver:    mac-screen-cache-ab
+games:     1
+passes:    1
+runs:      1 (won: 0)
+started:   2026-08-27 09:25:54
+ended:     in progress
+mean score:    0.00
+median score:  0.00
+total actions: 1
+total tokens:  7083
+generated tokens/sec: 0.28 (job wallclock)
+total wallclock: 495.7s
+
+per-game (mean across passes):
+  ft09-0d8bbf25: score=0.00, levels=0.0/6, actions=1, tokens=7083

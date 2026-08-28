@@ -1,0 +1,77 @@
+{
+ "pooled": {
+  "overlap": 354,
+  "bystander": 117,
+  "diffuse": 44,
+  "co-mover": 126
+ },
+ "games": {
+  "ar25": {
+   "overlap": 65
+  },
+  "bp35": {
+   "overlap": 23
+  },
+  "cd82": {
+   "overlap": 35
+  },
+  "cn04": {
+   "overlap": 80
+  },
+  "dc22": {},
+  "ft09": {},
+  "g50t": {
+   "bystander": 6,
+   "diffuse": 4,
+   "overlap": 1
+  },
+  "ka59": {
+   "overlap": 1
+  },
+  "lf52": {
+   "overlap": 32,
+   "co-mover": 1
+  },
+  "lp85": {},
+  "ls20": {
+   "overlap": 1,
+   "co-mover": 27,
+   "diffuse": 17
+  },
+  "m0r0": {
+   "bystander": 34
+  },
+  "r11l": {},
+  "re86": {
+   "bystander": 51,
+   "overlap": 18,
+   "co-mover": 30,
+   "diffuse": 20
+  },
+  "s5i5": {},
+  "sb26": {},
+  "sc25": {},
+  "sk48": {
+   "bystander": 26,
+   "overlap": 30
+  },
+  "sp80": {},
+  "su15": {},
+  "tn36": {},
+  "tr87": {
+   "overlap": 62,
+   "co-mover": 41
+  },
+  "tu93": {
+   "overlap": 3
+  },
+  "vc33": {},
+  "wa30": {
+   "overlap": 3,
+   "co-mover": 27,
+   "diffuse": 3
+  }
+ },
+ "n_residual": 641,
+ "bystander_max_cells": 6
+}

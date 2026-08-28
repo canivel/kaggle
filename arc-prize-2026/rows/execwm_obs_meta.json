@@ -1,0 +1,70 @@
+{
+ "mechanism": "Observation-layer replay of exec-WM v1: reclassify every retained move-action transition through the SHIPPED detect_translation/mine code (not a reimplementation) to locate where transition evidence is lost between the frame feed and the rule set.",
+ "summary": "The 'data starvation' re-diagnosis of exec-WM v1 is REFUTED by its own retained artifact. Across 2394 move-action transitions in 25 games, 51.9% (1243) are already clean single-sprite translations; the feed is rich. In the zero-candidate games the board changes on 85-100% of move actions (lf52 and tr87 at 100% mined ZERO rules; g50t at 74.2% mined four) and median changed-cells is indistinguishable between failing (46) and working (54) games. The loss is entirely inside the extractor, in two over-strict gates: GATE B (detect_translation requires a move to explain EVERY interior diff cell) discards 641 transitions (26.8%) as 'unexplained' whenever any change co-occurs; GATE A (mine() admits a rule only if len(deltas)==1) discards a rule outright on a single dissenting delta, e.g. one blocked move, and also fences blocker mining.",
+ "lesson": "THREE successive diagnoses of the SAME number were wrong, each corrected only by reading the artifact instead of the prior summary: (1) 'raise the probe budget' - closed arithmetically by the probe histogram; (2) 'BREAK clustering' - refuted, the latch fired zero times and the cause was a mislabelled reason string; (3) 'the observation layer is data-starved' - refuted here, over half the transitions are clean. A fallback-reason string names the gate that FIRED, never the quantity that was MISSING; counting reasons will keep producing new wrong diagnoses. Replay the raw evidence through the shipped classifier instead. Corollary that generalises: when relaxing an upstream filter, check whether an INDEPENDENT downstream gate already prices the risk - here mining is held to a stricter standard (exact consensus) than the arm holds an LLM's guess, which enters as a mere candidate for a 0.90-precision prequential verifier.",
+ "prereg": {
+  "file": "learnings/execwm_prereg_2026-08-25.md",
+  "arm": "exec-WM v1",
+  "exp_supersedes": 58,
+  "prestated_v2_constraint": "a v2 may NOT be a probe-budget tweak; it must widen the rule class / object model (click-addressable objects, non-constant deltas, multi-object dynamics)"
+ },
+ "design": "CPU-only replay, no network, no GPU, no kernel push, zero submission slots. Artifacts re-pulled 2026-08-27 and verified complete (both large logs present; only 0-byte file a legitimately empty __init__.py).",
+ "measured": {
+  "move_action_transitions": 2394,
+  "classified": {
+   "move": 1243,
+   "residual": 641,
+   "noop": 366,
+   "no_candidate": 139,
+   "too_small": 5
+  },
+  "move_share": 0.519,
+  "residual_share": 0.268,
+  "board_changed_rate_zero_candidate_games": "0.85-1.00",
+  "median_changed_cells": {
+   "failing": 46,
+   "working": 54,
+   "mixed": 32
+  },
+  "level_instances": 32,
+  "zero_candidate_level_instances": 15,
+  "candidates_mined_but_sum_n_zero": 6,
+  "no_verified_model_fallbacks": 26,
+  "gate_a_union_rule_recovery": {
+   "m0r0": [
+    0,
+    4
+   ],
+   "tu93": [
+    0,
+    3
+   ],
+   "sc25": [
+    2,
+    4
+   ],
+   "wa30": [
+    1,
+    3
+   ],
+   "ka59": [
+    3,
+    4
+   ],
+   "bp35": [
+    0,
+    1
+   ],
+   "net_rules": 12,
+   "games_crossing_MIN_VERIFIED_MOVES": [
+    "m0r0",
+    "tu93"
+   ],
+   "games_losing_a_rule": []
+  }
+ },
+ "sealed_reading_rule": "Diagnostic, not a scored arm: no lc verdict, no board draw, no kill-budget charge. The claim under test was the 08-27 handoff's premise that transition extraction returns EMPTY.",
+ "robustness": "The reason-tracer is asserted line-by-line against the shipped detect_translation (a drift raises). Union gate is reported instead of majority-replacement precisely because majority ALONE drops a unanimous low-n rule (re86 4->3); the union loses nothing.",
+ "why_informative": "This null is informative because it CLOSES the last cheap explanation for exec-WM's 31/32 fallback rate and redirects a re-seed that was about to be spent on the wrong layer. The arm was one build away from 'repair the feed' work on a feed that is demonstrably fine. It also re-validates the ORIGINAL sealed bench_meta lesson (the binding constraint is object identification and rule-class coverage, upstream of planner and verifier), which two days of re-diagnosis had drifted away from, and it converts the sealed prestated_v2_constraint from a prohibition into a ranked, measured build order: Gate B (641 transitions) >> Gate A (+12 rules, 2 games made plannable), with Gate A far cheaper.",
+ "not_done": "No v2 built, no kernel pushed (slot decision; lane_locks.json entries are stale from 08-20/08-21). The union gate predicts what mining WOULD ADMIT, not what verify() confirms at 0.90 precision, and not a score. The residual bucket is counted but not sub-classified (animation vs second object vs enemy) - next measurement, free."
+}

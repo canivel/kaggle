@@ -4,9 +4,10 @@
       "kernel": "canivel/arc3-q38-field-eval",
       "version": 1,
       "file": "submission.parquet",
-      "message": "ARM 0 FIELD FLOOR - DELIBERATE HEAD (iterate session 2026-08-27, replacing the auto-refill message). Not a default and not an empty queue: no arm cleared a promotion gate today. P2 read CERTIFIED / DELIVERY FAILURE (D1 24/25 PASS, D2 10.73% vs the sealed 25% bar -> re-scope-never-re-read, seed 2 refused, exp 57); EXEC-WM re-scoped to a CPU-only observation-layer repair after its BREAK-clustering hypothesis was REFUTED by its own artifact (exp 58); the Polyphony sticky-deadline arm was refuted on fireability pre-build (39.3% of floor level completions land after the 0.55 mark, exp 59). Head rationale: the certified floor is our best config (best draw 1.92) and project_arc_final_selection_rule selects the final two by CONFIG MEAN, so this draw tightens the estimate we actually select on (config n=6, mean 1.5033, sd 0.3010). [post-submit]",
+      "message": "AUTO-REFILL 2026-08-28 \u2014 FIELD-FLOOR filler (Arm 0 default nightly head; auto-armed by scripts/daily_submit.py because the queue was empty). Replace with the day's build if one clears the promotion gates. [post-submit]",
       "preflight_mode": "trusted-fork",
-      "upstream": "foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b"
+      "upstream": "foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b",
+      "auto_refill": true
     }
   ],
   "history": [
@@ -532,6 +533,15 @@
       "upstream": "foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b",
       "auto_refill": true,
       "submitted_at": "2026-08-27T00:07:14Z"
+    },
+    {
+      "kernel": "canivel/arc3-q38-field-eval",
+      "version": 1,
+      "file": "submission.parquet",
+      "message": "ARM 0 FIELD FLOOR - DELIBERATE HEAD (iterate session 2026-08-27, replacing the auto-refill message). Not a default and not an empty queue: no arm cleared a promotion gate today. P2 read CERTIFIED / DELIVERY FAILURE (D1 24/25 PASS, D2 10.73% vs the sealed 25% bar -> re-scope-never-re-read, seed 2 refused, exp 57); EXEC-WM re-scoped to a CPU-only observation-layer repair after its BREAK-clustering hypothesis was REFUTED by its own artifact (exp 58); the Polyphony sticky-deadline arm was refuted on fireability pre-build (39.3% of floor level completions land after the 0.55 mark, exp 59). Head rationale: the certified floor is our best config (best draw 1.92) and project_arc_final_selection_rule selects the final two by CONFIG MEAN, so this draw tightens the estimate we actually select on (config n=6, mean 1.5033, sd 0.3010). [post-submit]",
+      "preflight_mode": "trusted-fork",
+      "upstream": "foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b",
+      "submitted_at": "2026-08-28T00:11:03Z"
     }
   ],
   "notes": [

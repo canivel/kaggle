@@ -41,18 +41,43 @@ ORIGIN_DRAW = "2026-07-08"  # "Q2: Cottaar/Tufa duck-harness EXACT repro (Milest
 CLI = ["uvx", "--from", "kaggle==2.0.0", "kaggle"]
 
 
-def fetch_rows() -> list[dict]:
-    out = subprocess.run(
-        CLI + ["competitions", "submissions", COMP, "-v"],
-        capture_output=True,
-        text=True,
-        encoding="cp1252",
-        errors="replace",
-    ).stdout
+# The CLI defaults to the 50 most recent submissions. This ledger is the FULL
+# null pool, so a default fetch turns it into a sliding window that silently
+# drops its oldest members as we submit: on 2026-08-28 it had shrunk 37 -> 35
+# and moved the sealed promotion bar with it. Page to the maximum and refuse to
+# report a number that could be truncated.
+PAGE_SIZE = 200  # CLI maximum
+
+
+def _decode(raw: bytes) -> str:
+    # utf-8 on macOS/Linux; cp1252 was a Windows-console assumption that does not
+    # travel. Both decode this feed identically today, so utf-8 is the safe pin.
+    return raw.decode("utf-8", errors="replace")
+
+
+def _parse(out: str) -> list[dict]:
     # The pinned CLI prints an upgrade warning above the CSV header; find the real header.
     lines = out.splitlines()
     start = next(i for i, ln in enumerate(lines) if ln.startswith("fileName,"))
     return list(csv.DictReader(io.StringIO("\n".join(lines[start:]))))
+
+
+def fetch_rows() -> list[dict]:
+    raw = subprocess.run(
+        CLI + ["competitions", "submissions", COMP, "-v",
+               "--page-size", str(PAGE_SIZE)],
+        capture_output=True,
+    ).stdout
+    rows = _parse(_decode(raw))
+    if len(rows) >= PAGE_SIZE:
+        raise SystemExit(
+            f"ledger: fetched {len(rows)} rows at the {PAGE_SIZE}-row CLI maximum, "
+            "so the null pool may be TRUNCATED and the promotion bar would be "
+            "computed on a sliding window. Add --page-token paging before "
+            "trusting this number. (This guard exists because the silent "
+            "50-row default already cost the ledger 2 members.)"
+        )
+    return rows
 
 
 def draws(rows: list[dict]) -> list[tuple[str, float]]:

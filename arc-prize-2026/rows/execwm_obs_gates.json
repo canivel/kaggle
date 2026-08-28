@@ -1,0 +1,23 @@
+[
+ {
+  "gate": "premise",
+  "name": "transition extraction returns EMPTY (08-27 handoff premise)",
+  "passed": false,
+  "kill": false,
+  "detail": "REFUTED: 1243/2394 (51.9%) of move-action transitions classify as clean single-sprite translations."
+ },
+ {
+  "gate": "G-B",
+  "name": "detect_translation must explain EVERY interior diff cell",
+  "passed": false,
+  "kill": false,
+  "detail": "641 transitions (26.8%) discarded as residual; concentrated in the failing games (cn04 80/95, re86 119/167, tr87 103/129, ar25 65/83)."
+ },
+ {
+  "gate": "G-A",
+  "name": "mine() admits a rule only if len(deltas)==1",
+  "passed": false,
+  "kill": false,
+  "detail": "Union (unanimous OR >=60% majority, n>=3) recovers +12 rules across 6 games, loses none; m0r0 0->4 and tu93 0->3 cross MIN_VERIFIED_MOVES=2. Safe: verify() is an independent gate at VERIFY_PRECISION=0.90 / VERIFY_MIN_N=3."
+ }
+]
