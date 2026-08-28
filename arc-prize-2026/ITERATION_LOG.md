@@ -1886,3 +1886,38 @@ should transfer — it is a property of attention over longer histories, not of 
 quantisation — but the magnitude may not, and the a22 compaction artifacts on
 disk should be re-read before anyone builds on this. Nothing here licenses a
 slot; it licenses a measurement.
+
+### 2026-08-27 [MAC] — context trimming REFUTED as an intervention; the finding survives, the fix does not
+
+Matched A/B, same game (ft09), same 4-bit model, same action cap, only
+`LOCAL_ANALYZER_CONTEXT_WINDOW` changed. Baseline 32768 -> budget 31744 (which
+NEVER FIRED: sessions peak ~12k, so nothing was ever trimmed -- the 31744 figure
+recorded in memory as "the agent FORGOT" has been sitting far above the working
+range this whole time). Treatment 9216 -> budget 8192, so `_trim_messages`
+actually engages.
+
+|          | calls | actions | calls/action | mean think | mean s | LLM s/action |
+|----------|-------|---------|--------------|------------|--------|--------------|
+| baseline |    27 |       6 |          4.5 |      6,022 |  123 s |        555 s |
+| trim8192 |    81 |       1 |         81.0 |      1,415 |   33 s |      2,707 s |
+
+**MECHANISM CONFIRMED: 3.7x faster per call, 4.3x less reasoning.**
+**INTERVENTION REFUTED: 4.9x WORSE per action.**
+
+`_trim_messages` DELETES the oldest history blocks and replaces them with
+nothing. The agent loses what it learned, re-derives it, and pays more in
+retries than it saves per call. **Dropping history is not compacting it.**
+
+**WHAT THIS SHARPENS.** The context->reasoning finding stands (19x inflation,
+173x collapse across a compaction boundary). What is refuted is the naive fix.
+The untested and now clearly indicated intervention is SUMMARY-CARRYING: the
+harness already instructs the model to maintain a "compact working world model"
+and mech-C measured it at 96.3% delivery. Make that summary REPLACE trimmed
+history instead of accompanying full history. That is a different arm from
+either "trim" or "carry more", and it is the one the evidence points at.
+
+**CAVEATS.** One game per arm, 4-bit local, and the treatment completed only ONE
+action so calls/action is poorly estimated there -- 81 calls without finishing
+an action against 6 finished in 27 is a large enough gap to act on, but the
+ratio itself is not precise. A negative result of this size still saved a slot:
+this arm would have failed on Kaggle, and it cost ~40 minutes here.
