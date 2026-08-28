@@ -1838,3 +1838,51 @@ arm for it.
 Found by reading the model's reasoning trace, not by counting: the turn scored
 healthy on every mechanical metric (finish_reason=tool_calls, n_tool_calls=1)
 while the action was wasted probing for a phantom tool.
+
+### 2026-08-27 [MAC] — CONTEXT LOAD DRIVES REASONING LENGTH ~19x; 35% of calls burn 81% of the clock
+
+**Measured on the first clean local run** (ft09, 4-bit, 23 harness calls, full
+tracing in `runs/traces.db`). This is a LOCAL [MAC-SCREEN] observation and is
+not a verdict — but the mechanism is one the Kaggle rail shares.
+
+| carried context | reasoning | latency |
+|---|---|---|
+| fresh, <=8 msgs (n=9) | 727 chars | 26 s |
+| loaded, >=14 msgs (n=8) | 13,958 chars | 269 s |
+
+**19x reasoning inflation, 10.3x latency inflation.** corr(n_messages,
+think_chars) = **0.74**. And the cost is concentrated: **8 of 23 calls
+consumed 2156s of 2670s = 81% of wall-clock.**
+
+**THE CONFOUND IS RULED OUT.** "Later in a game is simply harder" would predict
+long reasoning late — not a collapse across ONE call boundary at the SAME point
+in the SAME game. The harness's own compaction gives two natural experiments:
+
+```
+PRE  #83  19 msgs  12067 ptok  21106 think  411s
+POST #84   4 msgs   4417 ptok    122 think   11s     <- 173x / 37x
+PRE  #75  21 msgs  11053 ptok   1860 think   29s
+POST #76   6 msgs   4907 ptok    100 think   10s     <- 19x / 3x
+```
+
+Only the carried context changed. **Context causes the inflation.**
+
+**THIS REFRAMES THE OPEN FORGETTING QUESTION.** mech-C measured the carried
+world model at 96.3% delivery with NO behaviour change, leaving "forgetting
+REFUTED or DELIVERY-WITHOUT-USE?" open. Tonight says neither: the problem was
+never memory. Carrying history is EXPENSIVE — not in prompt tokens, which are
+cheap, but in the reasoning it induces. That is where a binding decision budget
+goes (675/675 games died on the 7920s clock at 12.8% of design turns).
+
+**WHAT IT SUGGESTS, NOT YET A PREREG.** Compaction already exists and already
+works — it simply fires too late. Damage is visible by ~14 messages; the
+observed resets happened at 19-21. Compacting harder, and carrying the world
+model FORWARD in place of raw history, is a direct attack on the budget rather
+than an efficiency nicety. That is a testable arm.
+
+**CAVEATS, stated because the effect size invites over-reading.** n=2 boundaries
+in ONE game on the 4-bit local build, not the Kaggle FP8 rail. The direction
+should transfer — it is a property of attention over longer histories, not of a
+quantisation — but the magnitude may not, and the a22 compaction artifacts on
+disk should be re-read before anyone builds on this. Nothing here licenses a
+slot; it licenses a measurement.
