@@ -1,0 +1,190 @@
+{
+  "games": 25,
+  "walks_per_game": 8,
+  "depth": 6,
+  "seed": 20260828,
+  "reset_ok": 192,
+  "reset_tried": 192,
+  "reset_fidelity": 1.0,
+  "walks": 200,
+  "returned_naturally": 10,
+  "return_rate": 0.05,
+  "board_changing_moves": 1008,
+  "per_game": [
+    {
+      "game": "ar25-0c556536",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "bp35-0a0ad940",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "cd82-fb555c5d",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "cn04-2fe56bfb",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "dc22-fdcac232",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "ft09-0d8bbf25",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "g50t-5849a774",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "ka59-38d34dbb",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "lf52-271a04aa",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "lp85-305b61c3",
+      "reset_ok": 0,
+      "reset_tried": 0,
+      "returned_naturally": 8,
+      "walks": 8
+    },
+    {
+      "game": "ls20-9607627b",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "m0r0-492f87ba",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "r11l-495a7899",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "re86-8af5384d",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "s5i5-18d95033",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "sb26-7fbdac44",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "sc25-635fd71a",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "sk48-d8078629",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 2,
+      "walks": 8
+    },
+    {
+      "game": "sp80-589a99af",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "su15-1944f8ab",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "tn36-ef4dde99",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "tr87-cd924810",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "tu93-0768757b",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "vc33-5430563c",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    },
+    {
+      "game": "wa30-ee6fef47",
+      "reset_ok": 8,
+      "reset_tried": 8,
+      "returned_naturally": 0,
+      "walks": 8
+    }
+  ]
+}

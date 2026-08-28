@@ -2044,3 +2044,48 @@ prefill is not what the clock buys -- but it is unexpectedly low.
 **CAVEAT.** 1,882 tokens/action is generation of ALL kinds; reasoning is not
 separated from answer tokens here. The local traces DO separate them and show
 reasoning dominant, but that split has not been confirmed on the Kaggle rail.
+
+### 2026-08-28 [MAC] — RESET replicated on OUR instrument: 192/192 perfect undo, 25/25 games
+
+`scripts/reset_probe.py` — no LLM, no GPU, no slot. Drives the real engine
+offline through `taaf.game_api` across all 25 official games.
+
+```
+25 games x 8 walks x depth 6, seed 20260828
+board-changing moves observed : 1008
+RESET restored the opening    : 192/192 = 100.0%   [thtennant: 306/306 = 100.0%]
+walks that returned unaided   :  10/200 =   5.0%   [thtennant one-wayness: 90.1%]
+```
+
+**RESET FIDELITY IS AN EXACT REPLICATION.** 100.0% on 192 trials spanning every
+official game, byte-exact board comparison, no exceptions. Another team's number
+is now our measurement.
+
+**THE SECOND METRIC IS NOT THE SAME METRIC — stated so nobody quotes it as one.**
+Theirs is "states with no way back", established by search. Ours is "random walks
+that did not happen to return", which is strictly weaker: a walk failing to
+return does not prove no path exists. It agrees in direction and magnitude (95%
+did not return vs their 90.1% cannot) and that is all it establishes.
+
+**THE CASE FOR THE ARM IS NOW COMPLETE AND OURS:**
+- RESET is a perfect undo — 192/192, ours, 25/25 games
+- The environment is overwhelmingly one-way — 95% of walks never returned
+- RESET appears NOWHERE in the prompt text; the model meets it as a bare token
+- RESET is used **7/1555 = 0.45%** on our certified pull (`affordance_audit.py`
+  on private_edge2_v3), matching thtennant's 3 in ~1980 independently
+
+That is `feedback_advertise_where_model_reads` with every component verified on
+our own artifacts. It is the strongest candidate the campaign currently has.
+
+**HONEST TENSION, unresolved.** `feedback_prompt_is_noise` retired prompt A/B
+testing. The distinction claimed here is that this is not tuning phrasing but
+advertising a 100%-reliable affordance that is currently invisible. The burden
+of proof sits on that distinction and this probe does not discharge it — it
+establishes the affordance is real and unused, not that telling the model will
+change behaviour. P1 and P2 both died at exactly that step (delivered,
+understood, not used).
+
+**ENGINE GOTCHA worth keeping:** `arcengine.GameAction(3)` RAISES "3 is not a
+valid GameAction" even though member ACTION3 has value 3 — the enum's value
+lookup is broken. Build `{m.value: m for m in GameAction}` and never call the
+constructor. Also `available_actions` returns numpy ints.
