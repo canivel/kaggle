@@ -1,0 +1,16 @@
+{
+ "mechanism": "A stagnation supervisor needs a REDIRECT TARGET. Measure, on 662 archived game-passes, whether a non-empty set of DECLARED-but-never-pressed controls exists at the moment a supervisor would fire; then measure on the real offline engine whether those controls actually move the board.",
+ "summary": "FIRES: 72.7% of 510 K=25 stagnation windows have a non-empty untried discrete set (60.8% excluding ACTION7). ACTION7 is declared in 137 passes and pressed 0 times in 33,820 turns. But one-press liveness at the level-1 opening is ~53%, NOT the field's 91% (their comparable one-press figure is 69%), ACTION7 is live in only 2/6 games, and passes pressing the full declared set reach mean level 1.66 vs 1.69 for those leaving actions untried -- no outcome advantage.",
+ "lesson": "Fireability is not value. The treatment CAN fire on our rail, which is what feedback_verify_treatment_can_fire demands before a build -- but the same free instruments that proved fireability also refuted the field's headline liveness rate and found zero outcome benefit. The licensed rule is the narrow sub-case, not the general graft: 53.1% of stagnation windows occur with EVERY declared arrow key still unpressed while MOUSE was pressed 28,270 times pooled, so 'press the unpressed arrows' costs <=4 actions and is better evidenced than 'press everything untried'.",
+ "scope_caveats": [
+  "level-1 opening only; GameAPI has no set_level so depth is uncovered",
+  "ACTION7 liveness n=6",
+  "1 of 25 games failed to start and is excluded, not dropped silently",
+  "92 passes carried no declared line and are UNMEASURED",
+  "outcome comparison is observational and confounded"
+ ],
+ "instruments": [
+  "scripts/untried_probe.py",
+  "scripts/action_profile_probe.py"
+ ]
+}

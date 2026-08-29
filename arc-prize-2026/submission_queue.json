@@ -4,7 +4,7 @@
       "kernel": "canivel/arc3-q38-field-eval",
       "version": 1,
       "file": "submission.parquet",
-      "message": "AUTO-REFILL 2026-08-28 \u2014 FIELD-FLOOR filler (Arm 0 default nightly head; auto-armed by scripts/daily_submit.py because the queue was empty). Replace with the day's build if one clears the promotion gates. [post-submit]",
+      "message": "AUTO-REFILL 2026-08-29 \u2014 FIELD-FLOOR filler (Arm 0 default nightly head; auto-armed by scripts/daily_submit.py because the queue was empty). Replace with the day's build if one clears the promotion gates. [post-submit]",
       "preflight_mode": "trusted-fork",
       "upstream": "foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b",
       "auto_refill": true
@@ -542,6 +542,16 @@
       "preflight_mode": "trusted-fork",
       "upstream": "foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b",
       "submitted_at": "2026-08-28T00:11:03Z"
+    },
+    {
+      "kernel": "canivel/arc3-q38-field-eval",
+      "version": 1,
+      "file": "submission.parquet",
+      "message": "AUTO-REFILL 2026-08-28 \u2014 FIELD-FLOOR filler (Arm 0 default nightly head; auto-armed by scripts/daily_submit.py because the queue was empty). Replace with the day's build if one clears the promotion gates. [post-submit]",
+      "preflight_mode": "trusted-fork",
+      "upstream": "foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b",
+      "auto_refill": true,
+      "submitted_at": "2026-08-29T11:41:14Z"
     }
   ],
   "notes": [

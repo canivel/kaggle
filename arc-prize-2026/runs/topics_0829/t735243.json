@@ -1,0 +1,145 @@
+{
+  "topic": {
+    "id": 735243,
+    "title": "Qwen 3.8 release",
+    "authorName": "OverfitOracle",
+    "commentCount": 19,
+    "votes": 5,
+    "postDate": "2026-08-14T16:53:32.610000"
+  },
+  "comments": [
+    {
+      "id": 3513082,
+      "authorName": "Ya Xu",
+      "votes": 2,
+      "postDate": "2026-08-15T07:10:50.417000",
+      "content": "<p>It's already achieving a consistent 2x score on the local 25 dataset. I'm actually surprised because DeepSeek-V4-Flash seems only slightly better than Qwen-3.6 27B 8Bit, but Qwen-3.8 27B 8Bit is significantly better. </p>"
+    },
+    {
+      "id": 3513106,
+      "authorName": "OverfitOracle",
+      "votes": 0,
+      "postDate": "2026-08-15T08:52:35.433000",
+      "content": "<p>the top 3 teams jumped their position after the release of the model is it due to that model or just an coincidence</p>"
+    },
+    {
+      "id": 3513108,
+      "authorName": "Ya Xu",
+      "votes": 0,
+      "postDate": "2026-08-15T08:59:15.033000",
+      "content": "<p>I don't think 3 * 2.0+ score in 12 hours is a coincidence. The 1.86 has been there for quite a while.</p>"
+    },
+    {
+      "id": 3513164,
+      "authorName": "Ravindra",
+      "votes": -2,
+      "postDate": "2026-08-15T13:05:17.303000",
+      "content": "<p>Yeah, but I think Cstl had already scored 2.70 before Qwen3.8-27B was released.</p>"
+    },
+    {
+      "id": 3513250,
+      "authorName": "Scott Le Grand",
+      "votes": -1,
+      "postDate": "2026-08-15T19:59:06.210000",
+      "content": "<p>And I'm going to guess early access to the model maybe the root cause there, saying that as my first submission with it is 6 hours in because of issues I had downloading it. But I am genuinely suspicious of the performance boost and I think that the runners of this competition need to do an ablation test as to whether the increase in performance hits all 110 games roughly equally or only the ones that were in the supposedly elite private validation set.</p>\n<p>The response if so is obvious, rescore against the games that weren't in that validation set retroactively and going forward. Otherwise, nice work on the model! But it's intellectually dishonest to not behave as if we live in an age of ruthless benchmaxing.</p>"
+    },
+    {
+      "id": 3513329,
+      "authorName": "",
+      "votes": 0,
+      "postDate": "2026-08-16T06:06:12.130000",
+      "content": ""
+    },
+    {
+      "id": 3513225,
+      "authorName": "Naga Bhanuja",
+      "votes": -3,
+      "postDate": "2026-08-15T17:10:14.417000",
+      "content": "<p>\ud83d\udca1 ARC-AGI-3 Idea: What if we combine a new custom execution sandbox with a tweaked DuckHarness?The sandbox would let the model test grid changes and self-correct in real time. Running this loop with Qwen3.8-27B should give us the perfect balance of reasoning power and speed.Thoughts on this setup? Any obvious bottlenecks?</p>"
+    },
+    {
+      "id": 3513331,
+      "authorName": "Ya Xu",
+      "votes": 3,
+      "postDate": "2026-08-16T06:09:20.467000",
+      "content": "<p>Next time you copy something from ChatGPT, don't forget to remove the emoji at the start of each sentence.</p>"
+    },
+    {
+      "id": 3514013,
+      "authorName": "M Farrel Aditya",
+      "votes": 0,
+      "postDate": "2026-08-18T07:58:02.050000",
+      "content": "<p>yes thats have a lot of potential</p>"
+    },
+    {
+      "id": 3514009,
+      "authorName": "Tanaka Ai24",
+      "votes": 0,
+      "postDate": "2026-08-18T07:44:54.630000",
+      "content": "<p>It was definitely one of the components that helped me \ud83e\udd23</p>"
+    },
+    {
+      "id": 3513349,
+      "authorName": "FOYSAL",
+      "votes": 0,
+      "postDate": "2026-08-16T07:12:18.770000",
+      "content": "<p>You can now use Qwen 3.8 27B \n<a href=\"https://www.kaggle.com/models/foysalemonshanto/qwen3-8-27b-fp8-repacked-v1/\" target=\"_blank\">https://www.kaggle.com/models/foysalemonshanto/qwen3-8-27b-fp8-repacked-v1/</a></p>"
+    },
+    {
+      "id": 3512917,
+      "authorName": "Jacco Jurg",
+      "votes": 0,
+      "postDate": "2026-08-14T18:04:51.203000",
+      "content": "<p>I am monitoring the leaderboard - lets see if there is a spike. The benchmarks look wilde for the 27B.</p>"
+    },
+    {
+      "id": 3512920,
+      "authorName": "OverfitOracle",
+      "votes": 0,
+      "postDate": "2026-08-14T18:13:40.277000",
+      "content": "<p>Yes i am also having some huge expectations from this model.</p>"
+    },
+    {
+      "id": 3513714,
+      "authorName": "Scott Le Grand",
+      "votes": 0,
+      "postDate": "2026-08-17T11:58:43.963000",
+      "content": "<p>I was at around #20 before the release of this on Friday, now I'm at #40. I'd call that a spike. But weirdly, while all my runs on the public data are ~2x, all my nightly submissions dropped 30-50%, which I'm guessing is a bug that only shows up in the nightly submissions, and, well, happy trails figuring that out.</p>"
+    },
+    {
+      "id": 3513725,
+      "authorName": "Drona Bajaj",
+      "votes": 1,
+      "postDate": "2026-08-17T12:41:30.663000",
+      "content": "<p>Interesting, I had the same issue, idk about timezones tho, but overnight submissions are worse for me consistently</p>"
+    },
+    {
+      "id": 3513748,
+      "authorName": "Scott Le Grand",
+      "votes": 0,
+      "postDate": "2026-08-17T14:23:39.097000",
+      "content": "<p>This article argues it overthinks things on the default xhigh reasoning level. Running experiments today to test that out, but no idea why public wouldn't get hit but private would.</p>\n<p><a href=\"https://simonwillison.net/2026/Aug/16/qwen-38-27b/\" target=\"_blank\">https://simonwillison.net/2026/Aug/16/qwen-38-27b/</a></p>"
+    },
+    {
+      "id": 3513755,
+      "authorName": "Ya Xu",
+      "votes": 1,
+      "postDate": "2026-08-17T14:44:42.150000",
+      "content": "<p>In both my local and public LB experiments 'xhigh' is simply better than 'low'. It helps agents to complete multiple levels in one run.</p>"
+    },
+    {
+      "id": 3513788,
+      "authorName": "Scott Le Grand",
+      "votes": 1,
+      "postDate": "2026-08-17T15:53:11.613000",
+      "content": "<p>The most I ever saw locally before 3.8 was 5 level 3s reached in 130 minutes and a couple miracles that made it to level 5 (crazy outlier single run top local RHAE 3.6 or so, but rarely over 2, LB 1.5). 3.8 has taken things to 3.8 locally, regularly &gt;2, and 50% &gt;3. And yep, they have absolutely cracked 3.8 secret sauce here. I went from 40 to 102 in the past few hours.</p>"
+    },
+    {
+      "id": 3513773,
+      "authorName": "Van-Phuc Huynh",
+      "votes": 0,
+      "postDate": "2026-08-17T15:12:30.387000",
+      "content": "<p>I\u2019m seeing quite a few 2.x scores now. Maybe a few teams have already found the \u201csecret sauce\u201d for this competition , or perhaps some of these are simply multiple/spam accounts running the same solution?</p>"
+    }
+  ]
+}

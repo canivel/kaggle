@@ -1,0 +1,162 @@
+[
+  {
+    "id": 689621,
+    "title": "Too few submissions",
+    "authorName": "",
+    "commentCount": 4,
+    "votes": -2,
+    "postDate": "2026-04-09T05:17:29.060000"
+  },
+  {
+    "id": 689597,
+    "title": "Clarification on private model (non-LLM)",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 0,
+    "postDate": "2026-04-09T02:57:26.584000"
+  },
+  {
+    "id": 689492,
+    "title": "What is the API rate limit?",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 2,
+    "postDate": "2026-04-08T19:05:19.155000"
+  },
+  {
+    "id": 688481,
+    "title": "Clarification on using local open-weight Qwen3.5 in ARC-AGI-3",
+    "authorName": "",
+    "commentCount": 3,
+    "votes": 2,
+    "postDate": "2026-04-06T01:04:49.270000"
+  },
+  {
+    "id": 688220,
+    "title": "SETUP SERVER PROBLEM IS IN HERE IS CAN HELP TO SETUP SERVER API OKAY,THANK YOU? TypeError: Agent.__init__() missing 5 required positional arguments: 'game_id', 'agent_name', 'ROOT_URL', 'record', and 'arc_env'",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": -4,
+    "postDate": "2026-04-05T03:39:29.224000"
+  },
+  {
+    "id": 688135,
+    "title": "in private eval: can agent keep re-playing a game until it hits 100%?",
+    "authorName": "",
+    "commentCount": 6,
+    "votes": 1,
+    "postDate": "2026-04-04T18:30:35.708000"
+  },
+  {
+    "id": 688114,
+    "title": "Tackling ARC-AGI 3: Leveraging Puzzle Games to Address Data Scarcity",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 2,
+    "postDate": "2026-04-04T16:53:31.001000"
+  },
+  {
+    "id": 687950,
+    "title": "Is Offline BFS \"Cheating the Spirit\" of ARC-AGI-3?",
+    "authorName": "",
+    "commentCount": 11,
+    "votes": 12,
+    "postDate": "2026-04-04T06:02:50.010000"
+  },
+  {
+    "id": 687788,
+    "title": "Just want to share results for public set.",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 1,
+    "postDate": "2026-04-03T17:01:43.995000"
+  },
+  {
+    "id": 687655,
+    "title": "Human scores visible to agents",
+    "authorName": "",
+    "commentCount": 3,
+    "votes": 18,
+    "postDate": "2026-04-03T11:42:35.751000"
+  },
+  {
+    "id": 687648,
+    "title": "ARC3 Offline Agent Evaluation and Recording Viewer",
+    "authorName": "",
+    "commentCount": 10,
+    "votes": 23,
+    "postDate": "2026-04-03T11:22:40.455000"
+  },
+  {
+    "id": 687484,
+    "title": "Is Possible To Not Use A Agent From Host?",
+    "authorName": "",
+    "commentCount": 4,
+    "votes": 2,
+    "postDate": "2026-04-03T04:08:49.108000"
+  },
+  {
+    "id": 687483,
+    "title": "Host?,What Is The Minimum Game requierement for submission best score in this competitition?",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 1,
+    "postDate": "2026-04-03T04:07:40.952000"
+  },
+  {
+    "id": 687449,
+    "title": "Animations in the UI",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 0,
+    "postDate": "2026-04-03T02:36:05.550000"
+  },
+  {
+    "id": 687225,
+    "title": "Multiple Accounts",
+    "authorName": "",
+    "commentCount": 5,
+    "votes": 6,
+    "postDate": "2026-04-02T17:34:21.786000"
+  },
+  {
+    "id": 687187,
+    "title": "How long can we play a game.",
+    "authorName": "",
+    "commentCount": 3,
+    "votes": 2,
+    "postDate": "2026-04-02T15:35:17.308000"
+  },
+  {
+    "id": 687134,
+    "title": "What if AGI isn't about doing everything but about knowing what it can't do?",
+    "authorName": "",
+    "commentCount": 4,
+    "votes": 5,
+    "postDate": "2026-04-02T11:00:20.868000"
+  },
+  {
+    "id": 686532,
+    "title": "Are the games guaranteed to be fully observable?",
+    "authorName": "",
+    "commentCount": 4,
+    "votes": 0,
+    "postDate": "2026-03-31T17:03:57.959000"
+  },
+  {
+    "id": 686503,
+    "title": "5 Minute Commit Run Limit",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 0,
+    "postDate": "2026-03-31T15:55:22.019000"
+  },
+  {
+    "id": 686501,
+    "title": "setup arc engine agents?",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 3,
+    "postDate": "2026-03-31T15:44:50.336000"
+  }
+]

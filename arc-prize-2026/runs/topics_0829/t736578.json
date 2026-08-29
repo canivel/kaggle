@@ -1,0 +1,26 @@
+{
+  "topic": {
+    "id": 736578,
+    "title": "Public vs. Private Discrepancy",
+    "authorName": "Nick Pellegrin",
+    "commentCount": 2,
+    "votes": 4,
+    "postDate": "2026-08-21T15:56:38.510000"
+  },
+  "comments": [
+    {
+      "id": 3515375,
+      "authorName": "Son Pham",
+      "votes": 3,
+      "postDate": "2026-08-21T16:08:13.763000",
+      "content": "<p>It is always gonna be the case because:</p>\n<ol>\n<li>Public set is often easier.</li>\n<li>Public set being public for a while often means that other models can train on it, in a way \"overfitting\" the challenge.</li>\n</ol>"
+    },
+    {
+      "id": 3515380,
+      "authorName": "Nick Pellegrin",
+      "votes": 0,
+      "postDate": "2026-08-21T16:24:23.483000",
+      "content": "<p>That makes sense, I'm not expecting to see no drop, I just assumed the size of the drop would be a bit more consistent between duck's harness and my harness (which are admittedly similar).</p>"
+    }
+  ]
+}

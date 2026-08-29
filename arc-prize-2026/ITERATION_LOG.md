@@ -2111,3 +2111,232 @@ constructor. Also `available_actions` returns numpy ints.
 **ALSO TODAY, not by this session:** the RESET replication landed this morning (`cdb234e`) — **192/192 = 100.0%** perfect undo across all 25 official games, byte-exact. Tennant's fidelity figure is now our own measurement. The one-wayness number is deliberately NOT claimed as replicated: ours is a strictly weaker random-walk metric and the commit says so.
 
 **TONIGHT'S HEAD — SEALED PRE-DATA, because the 08-27 night was lost to a rule that existed but was never evaluated.** The seed arm replaces the floor filler IFF (a) TERMINAL COMPLETE by 18:00, (b) it CERTIFIES under the floor's own scorer (correct here: it is a registered SIBLING, same vehicle bytes), and (c) **the pulled kernel log carries the banner proving the seed injection fired in the real run.** A local test proving a graft *can* fire is not evidence that it *did* — that is the P1/P2 delivery lesson applied in advance. Failure of (c) is a **VOID**, not a REJECT, and must not consume one of the four committed draws.
+
+---
+
+### 2026-08-28 (evening, WINDOWS box) — HOST RULING REVERSED; and the re-draw strategy is refuted arithmetically, not rhetorically
+
+**HOST.** On 08-27 the four Windows Scheduled Tasks were disabled and the Mac was ruled owner of the nightly window. **The principal reversed that tonight: submissions run from the Windows box again.** All four tasks re-enabled and verified with `schtasks /v` (Next Run Time populated; the CIM `NextRunTime` field is stale on disabled tasks and must not be used for this check). **The Mac launchd rail is still loaded and has NOT been disabled** — `com.arc.dailysubmit` at 18:37 + 20:07. Two rails are armed again. The cross-machine guard (`already-submitted-today`, derived from the Kaggle submission list) held on 08-26 only because the two fires were ~2h08m apart; both triggers are 18:37, so it is a timing guard, not a logic guard. **ACTION OWED ON THE MAC: unload `com.arc.dailysubmit`.** Until then the bounded worst case is two of one day's draws spent on one queue head.
+
+**A FILING ERROR, corrected.** The 08-27 host ruling was appended to `f:\kaggle\ITERATION_LOG.md` — a 5-line stub at the git root — not to this file. The campaign log is `arc-prize-2026/ITERATION_LOG.md`. The substance is folded in above; the stub is left untouched. Last fires before the 08-27 disarm: submit 08-26 20:07 rc 0, morning-check + community-brief 08-27 06:00 rc 0, iterate 08-27 08:23 rc 0; no daemon process was live, no autorun referenced the campaign, `CronList` empty. The generalised lesson is now doubly earned: *shared state guarded by a read-then-act check is safe only while exactly one actor is armed; a second actor converts a logic guard into a timing guard, and timing guards hold by luck.*
+
+**THE BOARD, PULLED FRESH** (`2026-08-29T01:01:21` public LB, **2,599 teams**). We are **#200 with 1.92 on 124 submissions.** Top-10 line **2.80**. Cutoffs: #1 5.99 · #3 4.67 · #5 3.37 · #10 2.80 · #50 2.32 · #100 2.15 · #150 2.03 · #200 1.92 · #300 1.72. **201 teams sit at or above our best draw.**
+
+**★★★ THE RE-DRAW STRATEGY IS ARITHMETICALLY DEAD — the finding of the night.** The field-floor config's seven public draws are 1.59 / 1.58 / 1.63 / 1.16 / 1.92 / 1.14 / 1.26 → **n=7, mean 1.469, sd 0.290.** Our board rank is set by the **max** (1.92); a private-set clone scores the **mean** (1.469), which is exactly what `project_arc_final_selection_rule` already says we must select on. Reaching 2.80 on a single draw of this config is **+4.6σ ⇒ P ≈ 2.2e-06, one draw in ~463,000**; across **all 66 remaining days ≈ 1.4e-04.** **There is no lucky draw that reaches the top 10.** Every night spent on another floor filler is a ticket in that lottery.
+
+**★★ THE BOARD ALSO SAYS DRAW COUNT IS NOT HOW THE TOP IS WON.** rfbr **#5 on 15 submissions**; Tony G **#6 on 14**; Tony Li **#10 on 14**. We have **124**. Tufa Labs (121) and MindsAI (131) are the only high-count teams anywhere near the top, and both sit below #3. **Submission count is uncorrelated with position at the top of this board. We have been spending the campaign's scarcest resource — one draw per day — on variance sampling of a config whose distribution we already know to three decimals.**
+
+**COMMUNITY EVIDENCE — the local screen does not transfer, and six independent teams now say so.** Forum 732854: Nick Pellegrin **5.0–5.4 local → 1.4–1.8 LB**; daoviet **6.8 → 1.19**; OverfitOracle **5.0+ → 1.6**; Fususu **3.8 → 0.9–1.8**; Scott Le Grand **3.8 → 0.9**; mikelou1 **2.8 → 2.4** (the only tight pair). OverfitOracle also states the LB set is **110 games** against the public **25**. This retires local `mean_score` as a promotion signal for good — `feedback_screen_calibration_range` is no longer our idiosyncratic worry, it is the field's shared condition.
+
+**WHAT THE TOP IS DOING — one disclosed architecture, and it indicts us precisely.** Forum 737617 attributes the simultaneous top-3 jump to NVIDIA's AVO post. Fetched and read to source: AVO scores **100.00 RHAE on the 25-game public set, 183/183 levels, 6,624 actions**, wrapping **Claude Opus 5** — and the post states explicitly that these are **"not results on the semi-private or fully private competition sets"**, with no Kaggle submission mentioned. So the headline is **non-comparable** (the standing finding on published ARC-AGI-3 headlines applies again), and the model it wraps is unreachable behind Kaggle's no-internet rule. **What transfers is the architecture, and our own 08-22 entry already mapped it:** (a) persistent memory → our **P1**, built and read **DELIVERY FAILURE at 1.3% use**; (b) **a supervision loop that detects stagnation and redirects → WE HAVE NEVER BUILT IT**; (c) inspect→plan→implement→evaluate → the cadence family, still sealed.
+
+**★★★ (b) IS THE GAP, AND TONIGHT'S PULL RE-CONFIRMS IT ON FRESH DATA.** Standing measurements: median **88% of each game's wallclock elapses after its last level clear** (8/25 games: 100%), **45.2% of actions are immediate repeats**, and `hard_noop_guard` — the only stagnation detector we ship — **has never fired in 5,255 actions** (`feedback_guard_never_fired`). Tonight's seed-arm artifact adds: **25/25 games ran to the 7,920 s cap**, 10/25 scored zero, lc 24, local mean_score 4.480 / trim1 3.627. Combined with `feedback_decision_budget_binding` (675/675 games died on the clock at 12.8% of design turns): **the clock is the binding constraint, and the overwhelming majority of it is burned after the agent has stopped making progress.** We have known this for six days and shipped nothing against it.
+
+**SEED ARM — VOID, by its own sealed rule.** `canivel/arc3-q38-seed-eval` is TERMINAL COMPLETE (a) and is a registered sibling of the floor (b). Condition (c) required **the pulled kernel log to carry the banner proving the seed injection fired in the real run**. `arc3-q38-seed-eval.log` pulled **0 bytes** on an otherwise complete 136 MB pull whose sibling logs arrived intact — the same real-and-distinct 0-byte failure recorded for P1 on 08-27, now observed twice. `taaf_setup_env.json` **does** carry `LOCAL_ANALYZER_SEED = 20260828` with `LOCAL_ANALYZER_PROVIDER = vllm`, which satisfies the *precondition* of the injection chain (`seed >= 0`, provider `vllm`) but is **not the banner the seal names**. **Ruled VOID, not REJECT — and deliberately not re-read onto an evidence surface chosen after seeing the data.** Reinterpreting a sealed gate to admit an arm is precisely the failure the seals exist to prevent. It consumes none of the four committed draws. It was in any case an **instrument, not a score arm**, so admitting it would not have moved the board.
+
+**HANDOFF — the pivot.** Re-drawing the floor cannot reach the top 10; that is arithmetic now, not opinion. The one AVO component we have never built is the one our own data names as the largest single gap, and it attacks the one constraint we have proven is binding. **Next build: a real stagnation supervisor** — detect no-progress (no level clear within N actions, immediate-repeat rate over threshold, belief unchanged across turns) and force a strategy change, measured against the 88%-after-last-clear and 45.2%-repeat baselines already banked. It must be gated on `feedback_verify_treatment_can_fire` (prove it fires in the real run before it earns a slot) and must be read on a **delivery metric before any score metric** — P1 and P2 both died at delivery, not at effect. Tonight's queue head is the floor filler and the rail fires 18:37 EDT (22:37 UTC), 82 minutes inside the window; left as-is, because no arm cleared a gate today.
+
+---
+
+### 2026-08-29 (06:00 morning check, WINDOWS box)
+
+**1. OVERNIGHT SCORE — THERE ISN'T ONE. A DRAW WAS LOST.**
+`kaggle competitions submissions` head is still **2026-08-28 00:11:01, publicScore 1.26** (the deliberate
+Arm-0 floor head). **Nothing was submitted in the 08-28 night window.** Confirmed on three independent
+surfaces: the submissions list (no row after 08-28 00:11), `runs/submission_log.jsonl` (last event
+`2026-08-28T00:11:03Z`, then silence — no fire, no `already-submitted-today` skip, nothing), and the board
+itself (`SubmissionCount` 124, **dSubs +0**). The certified field-floor config therefore stands **unchanged at
+n=7, mean 1.4686, sd 0.2897**; today's read adds no information to the estimate we select on.
+
+**ROOT CAUSE — the disarm/re-arm straddled the window, and neither rail covered it.** `ARCDailySubmit`
+reports `LastRunTime = 2026-08-26 20:07, LastResult 0, NextRunTime = 2026-08-29 18:37`. It was disabled on
+08-27 (Mac ruled owner) and re-enabled on 08-28 *evening* — after 18:37 had already passed — so the Windows
+rail has not fired on either the 08-27 or the 08-28 night. The Mac launchd rail, which was supposed to be
+covering 08-27/08-28, **also did not fire**: its last log line is `2026-08-27T03:19:45Z`. The 08-27 draw was
+saved only because the Windows task fired at 00:11 UTC before the disarm; the 08-28 draw had no such luck.
+
+**★ THE HANDOFF, NOT THE HOST, IS THE DEFECT.** The 08-27 note and the 08-28 reversal each named a single
+owner and each was individually correct. What neither did was verify that the *transition* left the next
+window covered. Two rails armed is the failure mode the campaign already logged; **two rails armed and
+neither firing is the same bug wearing the opposite sign**, and it costs a draw rather than duplicating one.
+The standing incident note applies verbatim and for the second time this week: *silence from an automation is
+NOT success* — a rail that never fired is indistinguishable from a healthy idle one unless you read
+`NextRunTime` against the window you needed covered. **ACTION OWED, unchanged and now overdue: unload
+`com.arc.dailysubmit` on the Mac.** Tonight's Windows fire is scheduled 18:37 and is the only armed cover.
+
+**2. QUEUE — NON-EMPTY, no action taken.** Head is `canivel/arc3-q38-field-eval` v1, `trusted-fork`,
+auto-refill stamped 08-28. It survived the missed window because nothing consumed it. Left in place; per the
+08-28 handoff it is a floor filler and the pivot build has not landed.
+
+**3. KERNEL BUILDS — both terminal, both COMPLETE.** `canivel/arc3-q38-field-eval`
+`KernelWorkerStatus.COMPLETE`; `canivel/arc3-q38-seed-eval` `KernelWorkerStatus.COMPLETE` (already ruled
+**VOID** on 08-28 by its own sealed condition (c) — the 0-byte log — and that ruling is not reopened here).
+No slug is left running.
+
+**4. DAEMON HEALTH — no skips to flag, because there were no events at all.** Every skip in the log is
+`already-submitted-today`; the anomaly is the *absence* of records after `2026-08-28T00:11:03Z`, covered in
+section 1. `ARCCommunityBrief` and `ARCMorningCheck` are both Running with `LastResult 267009`
+(0x41301 = task currently running — this session); `ARCDailyIterate` Ready, last result 0, next 08-29 08:23.
+
+**5-7. LB ARCHIVE — FULL PULL OK, HEARTBEAT ASSERTED.** `lb_archive.py` wrote **2,603 rows** with
+`SubmissionCount=True` to `runs/lb_daily/lb_full_2026-08-29.csv` (pull_utc `2026-08-29T10:01:01Z`);
+`--check` printed **HEARTBEAT OK** (sha `a420868632f2`) **and PRIOR-DAY OK**, exit 0. Top-15 snapshot archived
+to `runs/lb_daily/lb_2026-08-29.csv`; `runs/lb_ground_truth.md` refreshed.
+
+**THE BOARD.** We are **#203 of 2,603 at 1.92 on 124 submissions** — **-10 ranks on a flat score**, the
+**fifth consecutive day of pure drift** (#146 → #159 → #182 → #193 → #203, score unchanged throughout). Lines:
+#1 5.99 · #3 4.67 · #5 3.37 · #10 2.80 · #50 2.32 · #100 2.15 · #200 1.92 · #250 1.82. Note the gold and prize
+lines did **not** move (2.72 / 3.37); the drift under us is arrivals and mid-field draws, not a rising top.
+
+**8. LB DIFF 2026-08-28 -> 2026-08-29** (both sides full coverage, no `--allow-partial` needed, exit 0).
+
+**(a) CONTROL ARM — NEITHER TEAM MOVED, for the second consecutive window.**
+`Jack Cole (MindsAI)  2.94 -> 2.94  dScore +0.00  subs 131  dSubs +0  -> IDLE (did not submit at all)`
+`Tufa Labs           4.67 -> 4.67  dScore +0.00  subs 121  dSubs +1  -> dScore/dSub 0.0000, DREW-NO-GAIN`
+The two teams who wrote the TTT literature and the harness we fork have the means, the motive and the cadence
+to drop in a new engine. One of them sat out entirely and the other bought a draw and got nothing for it.
+**On this evidence the commodity-engine / shared-regime story is WEAK.** That is a statement about SCORES;
+it names no method, and the evidence class for any method reading here remains **UNKNOWN**.
+
+**(b) THE 1.55-1.65 BAND — GREW, DID NOT LIFT.** 51 -> **57 teams (+6; 7 entered, 1 left)**, median score
+**1.60 -> 1.60 (+0.00)**, median subs **12.0 -> 14.0 (+2.0)**. A drop-in engine swap would show as the band's
+*median score* rising. What actually happened is more teams and more draws at an unchanged median — arrivals
+and best-of-N, not a lift.
+
+**(c) LARGE dScore ON <=3 NEW DRAWS — quoted as dScore per dSubmission throughout.** The whole top of the
+mover list is **single-draw** and therefore genuinely large per draw: `nithar1609 +1.45 on +1 (1.4500/draw,
+0.15 -> 1.60)`, `Kenneth Lie +1.21 on +1`, `vaultguard +1.13 on +1`, `ed +1.04 on +1`, `Yogi Godara +1.04 on
++1`, `kaptaan45 +0.98 on +1`, `Positive Quark +0.93 on +1`. Above our own score: `Boopathi Raja 1.99, +0.68 on
++1`; `Gu 2.49, +0.66 on +1`; `maplewolf 1.94, +0.65 on +1`; `Thuitanium 2.02, +0.32 on +2 (0.1600/draw)`.
+**None of these is a lucky max-over-N artefact** — a first- or second-draw jump of +1.0 is a step, and that is
+what the per-draw normalisation is for. In the top-8 watchlist only `Daniel Franzen +0.11 on +1` moved at all.
+
+**THE COUNTER-WEIGHT, and it is the number of the day.** Of **278 teams that submitted, only 53 (19.1%)
+gained anything** across **301 new submissions**; median dScore/dSub among *gainers* is **0.2000**. Among the
+15 teams that bought **2** draws, **13 gained exactly 0.00** — including **cstl at #1 (+0.00 on +2)**. This is
+our own arithmetic reflected back off the whole field: **buying draws does not buy score.** Our 124
+submissions against rfbr's 15 at #5 and Tony Li's 14 at #10 remain the cleanest statement of it.
+
+**9. SUMMARY.** The morning's real finding is not on the leaderboard — it is that **we did not submit last
+night**, and that the loss was invisible on every surface except the ones this check reads: a scheduled task
+whose `NextRunTime` had skipped past the window it was re-armed to cover, a daemon log that went quiet rather
+than logging a skip, and a `SubmissionCount` that failed to increment. Both host rails were nominally armed
+and neither fired; the Mac unload is still owed and is now the only thing standing between tonight's 18:37
+Windows fire and a repeat of the 08-26 double-fire. Everything else is stable and uninformative in the way
+this instrument usually is: both build slugs terminal COMPLETE, queue non-empty with the floor filler intact,
+full archive of 2,603 rows with heartbeat asserted OK, and a board on which we drifted -10 ranks to #203
+without moving a decimal. The diff says the field is not sharing an engine — **neither control team gained,
+and the 1.55-1.65 band grew by six teams at an unchanged median** — while the genuine steps are all
+single-draw jumps by individual teams, and **19.1% of submitters gained anything at all**. That last figure is
+the 08-28 arithmetic confirmed on 2,603 rows rather than on our seven: the draw we lost last night was worth
+very little, and the draws we keep spending on the floor are worth about as much. **The pivot named in the
+08-28 handoff — a real stagnation supervisor, gated on fireability and read on delivery before score — is
+still the only thing on the board's evidence that would change our number.** No arm cleared a gate overnight;
+tonight's head stays the filler.
+
+---
+
+### 2026-08-29 — THE MAC IS GONE; WINDOWS IS THE SOLE RAIL; the 08-29 window was empty and is now covered
+
+**HOST — FINAL.** The principal **deleted the Mac**. There is no launchd rail any more. The Windows box is the **only** automation: `ARCDailySubmit` (18:37 + 20:07), `ARCDailyIterate` (08:23), `ARCMorningCheck` (06:00), `ARCCommunityBrief` (06:00), all Enabled and verified via `schtasks /v`. **The two-rail race recorded on 08-27/08-28 is CLOSED and the "unload owed on the Mac" action item is VOID.** `scripts/launchd/` and the macOS branches of `scripts/_arc_env.sh` are now dead code, retained only for history. Memory corrected across `ref_arc_daily_submit`, `ref_arc_daily_iterate`, `ref_arc_daily_protocol` and `feedback_one_armed_rail`, all four of which still asserted the Mac owned the window.
+
+**THE WINDOW WAS EMPTY AND NOBODY WAS GOING TO NOTICE UNTIL 22:37 UTC.** The 08-29 window (00:00–23:59 UTC) had **no submission**, and the rail's first fire was not due until 18:37 EDT = 22:37 UTC — 11 hours out, with 82 minutes of margin. Cause: `ARCDailySubmit` last ran **08-26 20:07** and did not fire on 08-27 or 08-28 at all, because the tasks were disabled for the migration that was then reversed. **Two consecutive windows (08-28 evening onward) were carried only by the Mac, and one window was lost outright.** Submitted manually on the principal's order at **2026-08-29T11:41:14Z**, confirmed on the board at 11:41:11 UTC: `canivel/arc3-q38-field-eval` v1, the field-floor filler, `ok: true`, queue auto-refilled to 1.
+
+**Cadence note, benign and self-correcting:** with today's draw banked at 11:41 UTC, tonight's 18:37 EDT fire will correctly skip on `already-submitted-today`, and the 20:07 EDT fire (00:07 UTC 08-30) opens the next window. The rail therefore settles back onto the **00:07 UTC slot — the maximum-margin position** — without intervention.
+
+**What this draw is, honestly.** It is a floor filler, and per the 08-28 finding a floor draw cannot move us toward the top 10 (mean 1.469, sd 0.290; P(≥2.80 on one draw) ≈ 2.2e-06). It was submitted because an **empty window is strictly worse than a filler** and no arm has cleared a gate — filler as insurance, not as strategy. It does not change the pivot: **the next build is the stagnation supervisor**, the one AVO component we have never built and the one our own data (88% of clock after last level clear, 45.2% immediate repeats, `hard_noop_guard` 0 fires in 5,255 actions, 25/25 games at the 7,920 s cap) names as the largest single gap.
+
+### 2026-08-29 (build session) — THE SUPERVISOR FINALLY HAS A TARGET, AND THE SAME FREE INSTRUMENTS THAT FOUND IT REFUTED THE FIELD'S HEADLINE RATE
+
+**Day shape.** STEP 1 was already complete on arrival (`ARCMorningCheck` 06:00,
+`ARCCommunityBrief` 06:11 → `learnings/community/brief_2026-08-29.md`), and the
+08-29 window was covered manually at **11:41:14Z** with the field-floor filler
+(`runs/submission_log.jsonl`, queue auto-refilled to 1). Saturday ⇒ **no panel**.
+So this was a pure build day, spent on the community brief's handoff #3.
+Brief: `learnings/daily_brief_2026-08-29.md`. Verdict:
+`runs/untried_gate_0829/RESULT.md`. KAOS `exp_id 66`, **admitted to the public
+bench registry** (`tb1:e4196f46…`).
+
+**★ A30 — THE UNTRIED-SET FIREABILITY GATE: FIRES.** Two new CPU-only instruments,
+zero GPU / zero slot / zero model call: `scripts/untried_probe.py` (662 archived
+game-passes, 27 arms, 33,820 turns) and `scripts/action_profile_probe.py` (24
+official games driven on the real offline engine — the same rail that replicated
+RESET at 192/192 on 08-28).
+
+```
+K=25 stagnation windows                       510
+  non-empty untried set (discrete)            72.7%  (371/510)
+  ... excluding ACTION7 entirely              60.8%  (310/510)
+  EVERY declared arrow key still untried      53.1%  (271/510)   <- the sub-finding
+K=10 -> 65.8% (499/758)      K=50 -> 75.7% (199/263)
+declared line recoverable    99.3%  (33,568/33,820 turns)
+declared set stable in level 100.0% (948/948 blocks)
+```
+
+`feedback_verify_treatment_can_fire` is **satisfied** — unlike banking, which was
+built, shipped, and could never fire.
+
+**★ THE TWO NUMBERS WORTH REMEMBERING.** **ACTION7 is declared in 137 passes and
+pressed 0 times in 33,820 turns** — tennant's named case reproduced on our own
+archive and stronger than his (his: 0 presses in 12 passes). Beside it, the
+inversion: **RESET is pressed 229 times while never appearing in the declared
+list.** The agent reaches for the undocumented control and ignores the advertised
+one. And **53.1% of long stalls happen with every arrow key still unpressed** while
+MOUSE was pressed **28,270** times pooled — half our stagnation is the agent
+clicking a mouse having never once tried moving.
+
+**★ AND THE SAME INSTRUMENTS DISCOUNT THE ARM THREE WAYS — this is the honest half.**
+Our offline one-press liveness at the level-1 opening is **~53%**, not the field's
+91%; the fair comparator is tennant's own *one-press* figure of **69%** (411/600),
+and we are below even that. **ACTION7 is live in 2/6 games.** And the only
+outcome-linked evidence we hold shows **no benefit at all**: passes pressing the
+full discrete set reached mean max level **1.66**, passes leaving ≥1 untried
+reached **1.69**. Confounded, weak in either direction — and it does not support
+the graft. **Fireability is not value.**
+
+**WHAT IS LICENSED.** The stagnation supervisor stays the right build; it now has a
+concrete non-empty target at the instant it fires. The rule the evidence supports
+is **narrower than `untried`**: *on a stagnation window, if no declared arrow key
+has ever been pressed this game, press the unpressed arrows* — 53.1% of windows,
+≤4 actions against a ~600-action budget, ~53% measured liveness. **NOT licensed:**
+adopting `untried` wholesale. **FALSIFIER 5 stands — no individual graft has board
+validation and this supplies none.** Scope stated so it is never over-quoted:
+level-1 opening only (`GameAPI` has `number_of_levels`, no setter); ACTION7 n=6;
+`cn04-65d47d14` failed to start and is excluded, not dropped; 92 passes carried no
+declared line and are reported UNMEASURED.
+
+**★ INSTRUMENT FAILURE 1 — KAOS AGENTS CANNOT DO THIS CAMPAIGN'S WORK.** `kaos run`
+**did not expand `@file`** (the agent's stored `task` is the literal path string),
+and KAOS agents run in an **isolated virtual filesystem** — they cannot read
+`runs/kernel_pulls/` or write real artifacts. An earlier agent's stored result says
+it verbatim: *"Write was also not approved, so I'll report inline."* `kaos doctor
+proposer` also reports **`fable-panel` and `opus5-panel` both wall-timeout at 30s**;
+only `opus5-code` passes. **The KAOS-native mandate's spawning mechanism therefore
+cannot be used for any task that touches local files**, which is nearly all of ours.
+The mandate's *intent* was met by other means: `experiment log`, `bench harvest`,
+`validate` and `push` all worked and the verdict is in the public registry. Owed:
+file upstream per the KAOS AI-feedback policy.
+
+**★ INSTRUMENT FAILURE 2 — MY OWN PROBE WAS WRONG TWICE BEFORE IT WAS RIGHT.** Its
+first run printed clean, plausible tables resting on two defects: `MOUSE(row=23,
+col=60)` was comma-split into junk tokens, and the declared/executed regexes were
+matching **the model's own prose quoting the prompt back** instead of the
+harness-authored `[USER PROMPT]` block — i.e. harvesting the agent's speculation as
+ground truth. Both fixed and commented in the source. Had that first output been
+written up it would have read exactly like a finding. `feedback_audit_the_instrument`
+paid for itself again, and this time before the verdict rather than after.
+
+**HANDOFF.** State: window covered (11:41Z, floor filler, board-confirmed); queue
+non-empty at 1; no arm has cleared a promotion gate, so tonight's 18:37 fire will
+correctly skip on `already-submitted-today` and the rail settles back onto the
+00:07 UTC slot — the maximum-margin position — without intervention. The pivot is
+unchanged and is now *targeted* rather than merely named: build the stagnation
+supervisor around the arrow-key redirect, not the general `untried` rule.
+**Tomorrow is Sunday: the weekly is due** — full panel on `daily_brief_2026-08-29.md`,
+`kaos_ingest.py` + `dream run`, and the failure-fingerprint pair **in the mandatory
+order** (`fingerprint_backfill.py` the WRITER, then `fingerprint_report.py --brief`
+the READER; never paste a table printed under a STALE banner). **Tomorrow's first
+action:** lift the liveness measurement off the level-1 opening by driving deeper
+levels through real play — free CPU, and it either promotes or kills the one rule
+this gate licensed. Second: stratify the 1.66-vs-1.69 null by declared-set size to
+see whether the no-benefit result survives its confound.

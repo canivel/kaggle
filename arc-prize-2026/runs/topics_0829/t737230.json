@@ -1,0 +1,40 @@
+{
+  "topic": {
+    "id": 737230,
+    "title": "This competition is actually hilarious.",
+    "authorName": "\u5b88\u94f6\u6444\u91d1\u96be\u94dc",
+    "commentCount": 4,
+    "votes": -6,
+    "postDate": "2026-08-24T11:47:55.304000"
+  },
+  "comments": [
+    {
+      "id": 3517949,
+      "authorName": "Ivan Martin Valle",
+      "votes": 1,
+      "postDate": "2026-08-28T18:43:04.507000",
+      "content": "<p>The whole point of the competition is that humans score 100%, and relatively quickly. A lot of the solutions use LLMs, which are naturally stochastic, which leads to the wide range of scores. But this isn't an LLM harness competition.</p>\n<p>I do get the frustration though. The 9 hours is very limited. I spent a lot of time optimizing for level completeness, but then I realized <strong>action</strong> efficiency was scoring better. Locally, I can get occasionally get super human scores. However, that is meaningless because I didn't take into account <strong>time</strong> efficiency, and once I started optimizing for token efficiency, then I started moving in score.</p>\n<p>If someone invented AGI, but it needed double the GPU resources and double the time resources, that solution would perform badly or not even be able to run at all on Kaggle. Human wetware has tons of neurons and synapses which allows for emergent intelligence out of nowhere. But the silicon hardware we are allotted for the competition is orders less in capacity, which kind of establishes a wall that may not even be possible to overcome within the 9 hours. Although they're still giving away money and it's achieving the goal of even randos like me with no ML background to try because who doesn't want $1 million, so that's something. Plus I'm learning a lot.</p>"
+    },
+    {
+      "id": 3517664,
+      "authorName": "Scott Le Grand",
+      "votes": 1,
+      "postDate": "2026-08-27T19:56:04.453000",
+      "content": "<p>The variance on submissions of the same notebook is insane. I have to submit at least 4 times before I remotely believe differences between 2 approaches.</p>"
+    },
+    {
+      "id": 3516453,
+      "authorName": "Fususu",
+      "votes": 1,
+      "postDate": "2026-08-24T12:10:12.447000",
+      "content": "<p>Agree, on my local harness, gpt5.6 or other strong models like opus 5.0 got 95-100% win all the games! And the hidden rerun scoring is flake all the time.   </p>"
+    },
+    {
+      "id": 3516559,
+      "authorName": "Spen",
+      "votes": 0,
+      "postDate": "2026-08-24T17:27:13.727000",
+      "content": "<p>I'm not sure if teams have been improving their memory management, but based on the public workbooks that have been shared it seems like most of these submissions act more like a slot machine pull than trying to achieve a goal. Without enough resources, depending on scheduling and timeouts of the game workloads, certain games get more time than others. If your submission happens to give more time to games that it ends up being successful in, that's great and you get a higher score. If not, the exact same submission can get a much lower score. It really seems like it incentivizes the wrong behavior and frustrates users, even if they know what's going on under the hood. I think one reason this is having an outsized impact is that the overall scores are still so low that even a small variance can cause a large change percentage wise.</p>"
+    }
+  ]
+}

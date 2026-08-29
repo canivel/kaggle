@@ -275,3 +275,80 @@ score, the worse the transfer. **A local 6.173 is a ~2.0 board expectation, not 
 **FALSIFIER 5 STILL UNTESTED for a sixth day: zero board validation of any individual graft.**
 Thuitanium's ladder sits at 1.70 and its per-version scores are not observable through the CLI, so it
 validates nothing yet either — it is a **design we can read, not a result we can read**.
+
+### ★ SHARPENING 2026-08-29 — THE CLASS ACQUIRES A NUMBER, AND ONE OF OUR OWN CLOSURES IS RE-SCOPED
+
+**Board (2026-08-29T10:01:01Z, 2603 rows):** the **entire top 50 is frozen to the cent**. Two
+genuine top-10 steps, both single-draw, no sub-count spike: **Tong Hui Kang +0.39 -> 4.27 (#4)** and
+**Daniel Franzen +0.11 -> 3.15 (#7)**. **cstl bought TWO draws at 5.99 and gained nothing** — the
+sharpest single-day instance of *the flats are the control arm* this document has recorded: the #1
+team cannot buy its way up its own distribution either. Franzen (+0.16 then +0.11) is now the only
+multi-day climber in the top 10 and the one trajectory that does NOT fit the step-function shape;
+[INF] incremental tuning rather than a capability step. Control arm flat a **seventh** day (MindsAI
+IDLE, Tufa +0.00 on +1). Field-wide 278 submitted, **53 (19.1%) gained**, median gainer 0.20/draw.
+Duck band 1.55-1.65: 51 -> **57 teams, median 1.60 — 13th flat day**. FOYSAL frozen at 2.23, 11th
+day. **Zero new topics for a third day; exactly ONE new comment field-wide.** Machinery still
+private: nothing public above 2.23.
+
+**★★ THE MECHANISM CLASS IS NOW QUANTIFIED, AND IT IS MEMORY-AS-COMPACTED-ARTIFACT.** A third
+100%-class system joins AVO and VISTA: **Symbolica's Arcgentica** — orchestrator/subagent, subagents
+return **compressed textual summaries**, *"constraining context growth… without exceeding context
+limits"* [V-doc]. And the **Agno ARC-AGI-Arcade** (released 08-25, open source,
+`github.com/agno-agi/arc-agi-arcade`) supplies the first NUMBER this class has ever had [V-doc]:
+the agent keeps a **per-game manual** of *"mechanics, hazards, hypotheses"*, and
+**Gemini-3.7-Flash goes from a cold 37.33 RHAE to 96.42 — above the 95.4 human baseline — when
+"seeded with gpt-5.6's manuals", using 3x FEWER tokens.** A 2.6x capability multiplier on a *weak*
+model from a *compacted memory artifact*, at a third of the token cost.
+
+**This forces a correction to our own 08-28 conclusion.** That brief closed the "cheapen the
+decision" family on two instruments — Thuitanium's R35 (**output cap**: 8192 saves 0.98%, 12288
+saves nothing) and our own 08-27 result (**context trim**: 4.9x worse per action). Both measured
+**TRUNCATION**. Neither measured **SUBSTITUTION**. Truncation deletes information the next call must
+re-derive; compaction pays once so the re-derivation is unnecessary. **Truncation stays dead;
+compaction was never tested** and now has three arrows: Arcade (quantified), Arcgentica
+(architectural), and Ivan Martin Valle on-rail — *"once I started optimizing for token efficiency,
+then I started moving in score"* — **discounted hard: #491, 1.33, 40 subs** [V]. It matters uniquely
+to us because our own decomposition puts **99% of the binding 7920 s clock in token generation**.
+**Generalisation trap, named in advance:** the Arcade seeds manuals for the **25 public** games and
+the LB set is **110**; precomputing public manuals is overfitting. Only the **within-run** mechanism
+transfers.
+
+**★★ AND THE SUPERVISOR GAP FINALLY HAS A REDIRECT TARGET.** For six days the AVO component (b) —
+*a supervisor that detects stagnation and redirects* — has been named as our largest never-built gap
+(88% of each game's clock elapses after its last level clear; 45.2% immediate repeats;
+`hard_noop_guard` 0 fires in 5,255 actions). It has never had a **destination**. `thtennant/arc3-duck-v28`
+(08-28, = v27 + one graft, `untried`; diffed cell-by-cell, exactly one cell differs) supplies one,
+measured offline through `set_level` — the free instrument we replicated RESET on at 192/192
+[V-doc, his 600 action-level pairs over 150 level openings]:
+
+```
+declared action list identical on every level    25/25 games
+declared actions that move the board            545/600 = 91%
+... found by ONE press at the level opening     411/600 = 69%
+permanently dead on all six levels                3/25 games
+liveness transfers across a level boundary     431/445 = 97%
+inertness transfers across a level boundary      30/55 = 55%  (an UPPER bound)
+```
+against a behavioural half: **only 41% of 32 archived passes ever pressed every declared action**;
+*"sk48's ACTION7 moves the board on 40/40 presses at every one of six levels and was pressed ZERO
+times in 12 archived passes, while ACTION6 — dead 0/40 — was pressed in 10 of them."*
+> *"The agent is not overspending on exploration; it is UNDERSPENDING, on the one axis where a probe
+> costs exactly one action and the declared list says in advance that the control exists."*
+
+**arXiv 2605.25931** (*"Explore Before You Solve: The Speed–Depth Trade-off in Epistemic Agents for
+ARC-AGI-3"*) argues the same under-exploration thesis independently [V direction; magnitudes [UNK],
+the PDF tables did not extract]. Two instruments — a competitor's archive and a paper — converging.
+The `55%` line is what licenses the graft's restraint: it never suppresses, never orders, never
+predicts, because *liveness transfers and inertness is a coin flip*.
+
+**COUNTER-EVIDENCE, unmoved.** **FALSIFIER 5 survives a SEVENTH day: zero board validation of any
+individual graft.** **Thuitanium 1.70 -> 2.02 (+0.32 on +2 subs, #310 -> #153)** now sits above our
+best-ever draw (1.92) on **15 lifetime subs against our 124**, running our vehicle byte-for-byte —
+but +0.32 on two draws is ~+1.9 sigma off our own floor (mean 1.469, sd 0.290), which Scott Le
+Grand's own n>=4 rule says decides nothing, and its per-version scores remain unobservable. It is
+still **a design we can read, not a result we can read.** All of today's strongest mechanism evidence
+is **off-rail** (GPT-5.6, Gemini-3.7-Flash, frontier orchestrators); none of it has been shown on a
+27B offline rail. **And our own contribution to the evidence base today is nothing: the submit rail
+did not fire** — `ARCDailySubmit` last ran 08-26, the Mac produced nothing on 08-28, sub count frozen
+at 124. `feedback_one_armed_rail` guards the *overlap* of a host handover; the **gap** was unguarded,
+and it cost a draw.

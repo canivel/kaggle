@@ -1,0 +1,162 @@
+[
+  {
+    "id": 704278,
+    "title": "Did the 100 submission limit per team get lifted?",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 1,
+    "postDate": "2026-06-04T04:28:15.507000"
+  },
+  {
+    "id": 703990,
+    "title": "Phase B scoring 30\u00d7 lower than local evaluation",
+    "authorName": "",
+    "commentCount": 5,
+    "votes": 1,
+    "postDate": "2026-06-02T20:11:03.245000"
+  },
+  {
+    "id": 703879,
+    "title": "DeepSeek-V4 Telemetry: Running a 284B MoE at 0.00 GB Active VRAM  for competition",
+    "authorName": "",
+    "commentCount": 5,
+    "votes": 0,
+    "postDate": "2026-06-02T14:02:25.005000"
+  },
+  {
+    "id": 703506,
+    "title": "How to run GPT-OSS on RTX 6000?",
+    "authorName": "",
+    "commentCount": 7,
+    "votes": 1,
+    "postDate": "2026-05-31T19:21:51.550000"
+  },
+  {
+    "id": 703488,
+    "title": "Making deterministic solutions",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 0,
+    "postDate": "2026-05-31T14:16:01.662000"
+  },
+  {
+    "id": 703426,
+    "title": "I did \"autoresearch\" in a hackathon and won some GPU credits",
+    "authorName": "",
+    "commentCount": 4,
+    "votes": 14,
+    "postDate": "2026-05-31T04:54:54.847000"
+  },
+  {
+    "id": 703416,
+    "title": "How I fixed the \"Kaggle error\" in ARC-AGI-3 submissions",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 4,
+    "postDate": "2026-05-30T23:00:26.644000"
+  },
+  {
+    "id": 703056,
+    "title": "Milestone 1 - Evaluation",
+    "authorName": "",
+    "commentCount": 3,
+    "votes": 2,
+    "postDate": "2026-05-28T08:32:55.651000"
+  },
+  {
+    "id": 702970,
+    "title": "Parameter size ",
+    "authorName": "",
+    "commentCount": 3,
+    "votes": 0,
+    "postDate": "2026-05-27T18:54:29.528000"
+  },
+  {
+    "id": 702478,
+    "title": "Exploring LLM + Reasoning Approaches for ARC-AGI-3 - Anyone Going Deep Into This?",
+    "authorName": "",
+    "commentCount": 4,
+    "votes": 3,
+    "postDate": "2026-05-24T04:02:18.431000"
+  },
+  {
+    "id": 702079,
+    "title": "not safe to assume available actions stay the same throughout a game play?",
+    "authorName": "",
+    "commentCount": 3,
+    "votes": 0,
+    "postDate": "2026-05-21T02:19:56.045000"
+  },
+  {
+    "id": 701810,
+    "title": "Hicham Cr Style ",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 0,
+    "postDate": "2026-05-19T18:33:38.264000"
+  },
+  {
+    "id": 700486,
+    "title": "Arc 3 website test dataset. Is anybody getting higher than Average game score: 4.74%. ",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 1,
+    "postDate": "2026-05-17T15:09:39.588000"
+  },
+  {
+    "id": 700442,
+    "title": "Diffusion of memory?",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 2,
+    "postDate": "2026-05-17T13:40:48.743000"
+  },
+  {
+    "id": 699900,
+    "title": "Concerning for competition rule: direct access to game code?",
+    "authorName": "",
+    "commentCount": 3,
+    "votes": 0,
+    "postDate": "2026-05-15T17:34:44.666000"
+  },
+  {
+    "id": 699859,
+    "title": "Keep getting Kaggle Error.",
+    "authorName": "",
+    "commentCount": 18,
+    "votes": 0,
+    "postDate": "2026-05-15T14:15:20.069000"
+  },
+  {
+    "id": 699817,
+    "title": "Do we need to handle timeout explicitly?",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 0,
+    "postDate": "2026-05-15T11:02:57.394000"
+  },
+  {
+    "id": 699517,
+    "title": "Update python version in Kaggle notebook",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 0,
+    "postDate": "2026-05-14T04:35:52.056000"
+  },
+  {
+    "id": 699208,
+    "title": "Submissions not running 9 hours",
+    "authorName": "",
+    "commentCount": 9,
+    "votes": 12,
+    "postDate": "2026-05-13T05:24:02.534000"
+  },
+  {
+    "id": 698749,
+    "title": "competition submission crashes",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 1,
+    "postDate": "2026-05-11T14:17:24.689000"
+  }
+]

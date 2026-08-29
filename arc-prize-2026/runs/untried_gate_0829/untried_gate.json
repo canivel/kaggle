@@ -1,0 +1,424 @@
+{
+ "n_passes": 662,
+ "arms": {
+  "a17_canary_v3": {
+   "passes": 4,
+   "turns": 436,
+   "declared_turns": 436,
+   "cov_passes": 4,
+   "cov_full_disc": 3,
+   "gate25_win": 4,
+   "gate25_nonempty_disc": 1
+  },
+  "a17_v5": {
+   "passes": 4,
+   "turns": 63,
+   "declared_turns": 63,
+   "cov_passes": 4,
+   "cov_full_disc": 3,
+   "gate25_win": 0,
+   "gate25_nonempty_disc": 0
+  },
+  "a17_v6": {
+   "passes": 4,
+   "turns": 428,
+   "declared_turns": 428,
+   "cov_passes": 4,
+   "cov_full_disc": 3,
+   "gate25_win": 4,
+   "gate25_nonempty_disc": 1
+  },
+  "a17_v6_full": {
+   "passes": 4,
+   "turns": 428,
+   "declared_turns": 428,
+   "cov_passes": 4,
+   "cov_full_disc": 3,
+   "gate25_win": 4,
+   "gate25_nonempty_disc": 1
+  },
+  "a17_v7": {
+   "passes": 4,
+   "turns": 409,
+   "declared_turns": 409,
+   "cov_passes": 4,
+   "cov_full_disc": 3,
+   "gate25_win": 4,
+   "gate25_nonempty_disc": 1
+  },
+  "a22_v2_1": {
+   "passes": 50,
+   "turns": 1739,
+   "declared_turns": 1739,
+   "cov_passes": 25,
+   "cov_full_disc": 17,
+   "gate25_win": 22,
+   "gate25_nonempty_disc": 17
+  },
+  "animation_v1": {
+   "passes": 25,
+   "turns": 1478,
+   "declared_turns": 1478,
+   "cov_passes": 25,
+   "cov_full_disc": 19,
+   "gate25_win": 25,
+   "gate25_nonempty_disc": 18
+  },
+  "compaction_v2": {
+   "passes": 50,
+   "turns": 1739,
+   "declared_turns": 1739,
+   "cov_passes": 25,
+   "cov_full_disc": 17,
+   "gate25_win": 22,
+   "gate25_nonempty_disc": 17
+  },
+  "effnote_v1": {
+   "passes": 25,
+   "turns": 1444,
+   "declared_turns": 1444,
+   "cov_passes": 25,
+   "cov_full_disc": 18,
+   "gate25_win": 22,
+   "gate25_nonempty_disc": 17
+  },
+  "engine_misfire_0817": {
+   "passes": 25,
+   "turns": 1270,
+   "declared_turns": 1270,
+   "cov_passes": 25,
+   "cov_full_disc": 19,
+   "gate25_win": 20,
+   "gate25_nonempty_disc": 16
+  },
+  "execwm_v1": {
+   "passes": 25,
+   "turns": 1262,
+   "declared_turns": 1010,
+   "cov_passes": 25,
+   "cov_full_disc": 15,
+   "gate25_win": 18,
+   "gate25_nonempty_disc": 14
+  },
+  "gate_eval_v1": {
+   "passes": 25,
+   "turns": 1514,
+   "declared_turns": 1514,
+   "cov_passes": 25,
+   "cov_full_disc": 19,
+   "gate25_win": 25,
+   "gate25_nonempty_disc": 18
+  },
+  "p1_notes_v1": {
+   "passes": 25,
+   "turns": 980,
+   "declared_turns": 980,
+   "cov_passes": 25,
+   "cov_full_disc": 16,
+   "gate25_win": 13,
+   "gate25_nonempty_disc": 11
+  },
+  "p1_v1": {
+   "passes": 25,
+   "turns": 1519,
+   "declared_turns": 1519,
+   "cov_passes": 25,
+   "cov_full_disc": 18,
+   "gate25_win": 25,
+   "gate25_nonempty_disc": 19
+  },
+  "p2_retry_v1": {
+   "passes": 25,
+   "turns": 985,
+   "declared_turns": 985,
+   "cov_passes": 25,
+   "cov_full_disc": 14,
+   "gate25_win": 15,
+   "gate25_nonempty_disc": 11
+  },
+  "phase1_v5": {
+   "passes": 25,
+   "turns": 2157,
+   "declared_turns": 2157,
+   "cov_passes": 25,
+   "cov_full_disc": 19,
+   "gate25_win": 25,
+   "gate25_nonempty_disc": 18
+  },
+  "private_edge2_v3": {
+   "passes": 25,
+   "turns": 1002,
+   "declared_turns": 1002,
+   "cov_passes": 25,
+   "cov_full_disc": 18,
+   "gate25_win": 18,
+   "gate25_nonempty_disc": 17
+  },
+  "sched_v1": {
+   "passes": 25,
+   "turns": 1484,
+   "declared_turns": 1484,
+   "cov_passes": 25,
+   "cov_full_disc": 19,
+   "gate25_win": 25,
+   "gate25_nonempty_disc": 17
+  },
+  "seed_0829": {
+   "passes": 25,
+   "turns": 982,
+   "declared_turns": 982,
+   "cov_passes": 25,
+   "cov_full_disc": 16,
+   "gate25_win": 17,
+   "gate25_nonempty_disc": 13
+  },
+  "sentinel_eval_v1": {
+   "passes": 47,
+   "turns": 1561,
+   "declared_turns": 1561,
+   "cov_passes": 25,
+   "cov_full_disc": 18,
+   "gate25_win": 26,
+   "gate25_nonempty_disc": 19
+  },
+  "sentinel_eval_v2": {
+   "passes": 45,
+   "turns": 1533,
+   "declared_turns": 1533,
+   "cov_passes": 25,
+   "cov_full_disc": 18,
+   "gate25_win": 25,
+   "gate25_nonempty_disc": 19
+  },
+  "w0_cont_eval": {
+   "passes": 25,
+   "turns": 1535,
+   "declared_turns": 1535,
+   "cov_passes": 25,
+   "cov_full_disc": 19,
+   "gate25_win": 26,
+   "gate25_nonempty_disc": 20
+  },
+  "w0_eval_s1": {
+   "passes": 25,
+   "turns": 1601,
+   "declared_turns": 1601,
+   "cov_passes": 25,
+   "cov_full_disc": 19,
+   "gate25_win": 24,
+   "gate25_nonempty_disc": 17
+  },
+  "war_eval_v1": {
+   "passes": 25,
+   "turns": 1686,
+   "declared_turns": 1686,
+   "cov_passes": 25,
+   "cov_full_disc": 18,
+   "gate25_win": 24,
+   "gate25_nonempty_disc": 17
+  },
+  "war_eval_v2": {
+   "passes": 25,
+   "turns": 1493,
+   "declared_turns": 1493,
+   "cov_passes": 25,
+   "cov_full_disc": 19,
+   "gate25_win": 24,
+   "gate25_nonempty_disc": 16
+  },
+  "war_eval_v3": {
+   "passes": 25,
+   "turns": 1540,
+   "declared_turns": 1540,
+   "cov_passes": 25,
+   "cov_full_disc": 19,
+   "gate25_win": 26,
+   "gate25_nonempty_disc": 18
+  },
+  "war_v2_eval_s1": {
+   "passes": 25,
+   "turns": 1552,
+   "declared_turns": 1552,
+   "cov_passes": 25,
+   "cov_full_disc": 18,
+   "gate25_win": 27,
+   "gate25_nonempty_disc": 18
+  }
+ },
+ "pooled": {
+  "declared_line_recoverability": [
+   33568,
+   33820
+  ],
+  "declared_stable_within_level": [
+   948,
+   948
+  ],
+  "passes_pressing_full_declared_set": [
+   381,
+   570
+  ],
+  "passes_pressing_full_DISCRETE_set": [
+   407,
+   570
+  ],
+  "gate": {
+   "10": {
+    "windows": 758,
+    "nonempty_any": 606,
+    "nonempty_discrete": 499,
+    "mean_untried_size": 2.42,
+    "size_hist": {
+     "0": 259,
+     "1": 86,
+     "2": 44,
+     "3": 32,
+     "4": 136,
+     "5": 186,
+     "6": 15
+    }
+   },
+   "25": {
+    "windows": 510,
+    "nonempty_any": 437,
+    "nonempty_discrete": 371,
+    "mean_untried_size": 2.737,
+    "size_hist": {
+     "0": 139,
+     "1": 65,
+     "2": 23,
+     "3": 20,
+     "4": 100,
+     "5": 153,
+     "6": 10
+    }
+   },
+   "50": {
+    "windows": 263,
+    "nonempty_any": 242,
+    "nonempty_discrete": 199,
+    "mean_untried_size": 3.03,
+    "size_hist": {
+     "0": 64,
+     "1": 26,
+     "2": 15,
+     "3": 4,
+     "4": 45,
+     "5": 105,
+     "6": 4
+    }
+   }
+  },
+  "press_counts": {
+   "MOUSE": 28270,
+   "RIGHT": 11573,
+   "UP": 9805,
+   "LEFT": 8561,
+   "DOWN": 8103,
+   "SPACE": 4714,
+   "RESET": 229
+  },
+  "never_pressed_in_pass": {
+   "ACTION7": 137,
+   "DOWN": 19,
+   "UP": 17,
+   "LEFT": 14,
+   "RIGHT": 7,
+   "SPACE": 6
+  },
+  "unmeasured_passes": [
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\ar25-0c556536_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\bp35-0a0ad940_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\cd82-fb555c5d_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\cn04-2fe56bfb_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\dc22-fdcac232_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\ft09-0d8bbf25_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\g50t-5849a774_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\ka59-38d34dbb_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\lf52-271a04aa_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\lp85-305b61c3_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\ls20-9607627b_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\m0r0-492f87ba_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\r11l-495a7899_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\re86-8af5384d_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\s5i5-18d95033_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\sb26-7fbdac44_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\sc25-635fd71a_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\sk48-d8078629_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\sp80-589a99af_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\su15-1944f8ab_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\tn36-ef4dde99_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\tr87-cd924810_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\tu93-0768757b_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\vc33-5430563c_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\a22_v2_1\\artifacts\\wa30-ee6fef47_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\ar25-0c556536_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\bp35-0a0ad940_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\cd82-fb555c5d_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\cn04-2fe56bfb_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\dc22-fdcac232_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\ft09-0d8bbf25_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\g50t-5849a774_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\ka59-38d34dbb_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\lf52-271a04aa_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\lp85-305b61c3_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\ls20-9607627b_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\m0r0-492f87ba_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\r11l-495a7899_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\re86-8af5384d_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\s5i5-18d95033_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\sb26-7fbdac44_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\sc25-635fd71a_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\sk48-d8078629_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\sp80-589a99af_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\su15-1944f8ab_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\tn36-ef4dde99_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\tr87-cd924810_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\tu93-0768757b_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\vc33-5430563c_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\compaction_v2\\artifacts\\wa30-ee6fef47_p0_tool_compaction_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\ar25-0c556536_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\bp35-0a0ad940_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\cd82-fb555c5d_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\cn04-2fe56bfb_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\dc22-fdcac232_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\ft09-0d8bbf25_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\g50t-5849a774_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\ka59-38d34dbb_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\lf52-271a04aa_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\lp85-305b61c3_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\ls20-9607627b_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\m0r0-492f87ba_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\r11l-495a7899_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\re86-8af5384d_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\sb26-7fbdac44_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\sc25-635fd71a_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\sk48-d8078629_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\sp80-589a99af_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\su15-1944f8ab_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\tn36-ef4dde99_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\tr87-cd924810_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v1\\artifacts\\wa30-ee6fef47_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\ar25-0c556536_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\bp35-0a0ad940_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\cd82-fb555c5d_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\cn04-2fe56bfb_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\dc22-fdcac232_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\ft09-0d8bbf25_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\g50t-5849a774_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\ka59-38d34dbb_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\lf52-271a04aa_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\ls20-9607627b_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\m0r0-492f87ba_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\re86-8af5384d_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\sb26-7fbdac44_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\sc25-635fd71a_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\sk48-d8078629_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\sp80-589a99af_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\su15-1944f8ab_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\tn36-ef4dde99_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\tr87-cd924810_p0_tool_sentinel_events.jsonl",
+   "F:\\kaggle\\arc-prize-2026\\runs\\kernel_pulls\\sentinel_eval_v2\\artifacts\\wa30-ee6fef47_p0_tool_sentinel_events.jsonl"
+  ]
+ }
+}

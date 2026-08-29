@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-28 06:15:05",
+  "generated": "2026-08-29 06:01:02",
   "note": "top20 archives were produced by `leaderboard --show -v | head -N`: no SubmissionCount, no team members, and a visibility floor equal to the min score shown. They CANNOT support a full-board diff or any delta-submissions claim. Full archives come from `leaderboard -d`.",
   "archives": [
     {
@@ -10,8 +10,8 @@
       "has_submission_count": false,
       "visibility_floor": 1.54,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-06 06:01:30",
-      "sha256": "885c39bee1d642dc",
+      "pull_local": "mtime 2026-08-28 20:59:08",
+      "sha256": "651fe2d196b5cebb",
       "supports_full_board_diff": false
     },
     {
@@ -22,8 +22,8 @@
       "has_submission_count": false,
       "visibility_floor": 1.49,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-07 06:01:42",
-      "sha256": "fbdf8f710274516b",
+      "pull_local": "mtime 2026-08-28 20:59:08",
+      "sha256": "a83afeeb6ebe8a98",
       "supports_full_board_diff": false
     },
     {
@@ -34,8 +34,8 @@
       "has_submission_count": false,
       "visibility_floor": 1.5,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-08 06:01:22",
-      "sha256": "583443eb26258492",
+      "pull_local": "mtime 2026-08-28 20:59:08",
+      "sha256": "02b240912df3d363",
       "supports_full_board_diff": false
     },
     {
@@ -46,8 +46,8 @@
       "has_submission_count": false,
       "visibility_floor": 1.5,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-09 06:00:58",
-      "sha256": "a54d7595bb019f05",
+      "pull_local": "mtime 2026-08-28 20:59:08",
+      "sha256": "992be83d74bb4eeb",
       "supports_full_board_diff": false
     },
     {
@@ -58,7 +58,7 @@
       "has_submission_count": false,
       "visibility_floor": 1.5,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-10 06:01:28",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "18653792a9c0fe68",
       "supports_full_board_diff": false
     },
@@ -70,7 +70,7 @@
       "has_submission_count": false,
       "visibility_floor": 1.5,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-11 06:02:14",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "e68ad1017a75d6fb",
       "supports_full_board_diff": false
     },
@@ -82,8 +82,8 @@
       "has_submission_count": false,
       "visibility_floor": 1.54,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-12 06:01:00",
-      "sha256": "183b10b3f49c18d4",
+      "pull_local": "mtime 2026-08-28 20:59:08",
+      "sha256": "cb56000db482ed6a",
       "supports_full_board_diff": false
     },
     {
@@ -94,7 +94,7 @@
       "has_submission_count": false,
       "visibility_floor": 1.56,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-13 06:01:46",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "b99f63246ea7a144",
       "supports_full_board_diff": false
     },
@@ -106,7 +106,7 @@
       "has_submission_count": false,
       "visibility_floor": 1.56,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-14 08:31:16",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "802c0316d9a0ed2e",
       "supports_full_board_diff": false
     },
@@ -118,8 +118,8 @@
       "has_submission_count": false,
       "visibility_floor": 1.6,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-15 10:16:34",
-      "sha256": "ea0d4d3b1a1dd0be",
+      "pull_local": "mtime 2026-08-28 20:59:08",
+      "sha256": "f2d5b03d176f5715",
       "supports_full_board_diff": false
     },
     {
@@ -130,7 +130,7 @@
       "has_submission_count": false,
       "visibility_floor": 1.62,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-16 06:01:28",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "7a56d41b4f9d47e6",
       "supports_full_board_diff": false
     },
@@ -142,7 +142,7 @@
       "has_submission_count": false,
       "visibility_floor": 1.88,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-17 06:01:56",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "abb7edefdb23464a",
       "supports_full_board_diff": false
     },
@@ -154,7 +154,7 @@
       "has_submission_count": false,
       "visibility_floor": 1.97,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-18 06:01:36",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "5257f89ec1de1b65",
       "supports_full_board_diff": false
     },
@@ -166,7 +166,7 @@
       "has_submission_count": false,
       "visibility_floor": 2.23,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-19 06:01:28",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "0da49cb18fb17f4e",
       "supports_full_board_diff": false
     },
@@ -178,7 +178,7 @@
       "has_submission_count": true,
       "visibility_floor": 2.35,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-22 06:03:46",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "1a625c9adfc4c2e8",
       "supports_full_board_diff": true
     },
@@ -190,7 +190,7 @@
       "has_submission_count": true,
       "visibility_floor": 2.41,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-22 06:03:46",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "a3985cbf1b338a8f",
       "supports_full_board_diff": true
     },
@@ -202,7 +202,7 @@
       "has_submission_count": true,
       "visibility_floor": 2.45,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-22 06:03:26",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "64a2866804c22c3a",
       "supports_full_board_diff": true
     },
@@ -214,7 +214,7 @@
       "has_submission_count": true,
       "visibility_floor": 2.47,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-23 06:01:08",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "91c01f70156d0895",
       "supports_full_board_diff": true
     },
@@ -226,7 +226,7 @@
       "has_submission_count": true,
       "visibility_floor": 2.53,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-24 06:01:16",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "2d453d6b85638de7",
       "supports_full_board_diff": true
     },
@@ -238,7 +238,7 @@
       "has_submission_count": true,
       "visibility_floor": 2.57,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-25 06:02:48",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "7416a0aad57aa951",
       "supports_full_board_diff": true
     },
@@ -250,8 +250,8 @@
       "has_submission_count": false,
       "visibility_floor": 2.55,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-26 06:00:50",
-      "sha256": "4c76f62cb8245039",
+      "pull_local": "mtime 2026-08-28 20:59:08",
+      "sha256": "883cf2057a8e7faf",
       "supports_full_board_diff": false
     },
     {
@@ -262,8 +262,20 @@
       "has_submission_count": false,
       "visibility_floor": null,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-27 06:01:22",
+      "pull_local": "mtime 2026-08-28 20:59:08",
       "sha256": "836a4dfc146fc98b",
+      "supports_full_board_diff": false
+    },
+    {
+      "file": "lb_2026-08-28.csv",
+      "date": "2026-08-28",
+      "coverage": "top20",
+      "rows": 21,
+      "has_submission_count": false,
+      "visibility_floor": null,
+      "pull_utc": null,
+      "pull_local": "mtime 2026-08-28 20:59:08",
+      "sha256": "7149be3ed64062f0",
       "supports_full_board_diff": false
     },
     {
@@ -346,8 +358,8 @@
       "has_submission_count": true,
       "visibility_floor": 0.0,
       "pull_utc": null,
-      "pull_local": "mtime 2026-08-21 08:33:30",
-      "sha256": "b0fd1b094fdd04a5",
+      "pull_local": "mtime 2026-08-28 20:59:08",
+      "sha256": "592a39d177fa861c",
       "supports_full_board_diff": true
     },
     {
@@ -432,6 +444,18 @@
       "pull_utc": "2026-08-28T10:15:05Z",
       "pull_local": "2026-08-28 06:15:05",
       "sha256": "19d7f21f1cd70da1",
+      "supports_full_board_diff": true
+    },
+    {
+      "file": "lb_full_2026-08-29.csv",
+      "date": "2026-08-29",
+      "coverage": "full",
+      "rows": 2603,
+      "has_submission_count": true,
+      "visibility_floor": 0.0,
+      "pull_utc": "2026-08-29T10:01:01Z",
+      "pull_local": "2026-08-29 06:01:01",
+      "sha256": "a420868632f24b6e",
       "supports_full_board_diff": true
     }
   ]

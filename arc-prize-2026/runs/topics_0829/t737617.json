@@ -1,0 +1,33 @@
+{
+  "topic": {
+    "id": 737617,
+    "title": "Sudden increase in top 3 teams?",
+    "authorName": "Drona Bajaj",
+    "commentCount": 3,
+    "votes": 6,
+    "postDate": "2026-08-26T11:51:51.429000"
+  },
+  "comments": [
+    {
+      "id": 3517218,
+      "authorName": "Jakob Br\u00fcggen",
+      "votes": 6,
+      "postDate": "2026-08-26T13:42:32.247000",
+      "content": "<p>I also noticed this score increase recently. Though I can't tell for sure of course, I suspect that it has to be through a public new harness or idea which performs very well. This is the only explanation I have for three teams achieving a much better score almost simultaneously. I couldn't find a specific paper or release which was published recently and brought a significant score increase with small open source models (else i would have implemented it already and be up there as well) but I found a couple of interesting ideas mainly on the community leaderboard: <a href=\"https://arcprize.org/leaderboard/community\" target=\"_blank\">https://arcprize.org/leaderboard/community</a>. The one that stands out to me is the Polyphony Agent - ARC (Ruiyang Yu et al.) because it also uses a 27b model under relatively similar circumstances. However this harness was already  presented in the beginning of July, so it might also have nothing to do with the score increase. Hope this helps and if you or anyone else finds anything else which could be the cause i would love to hear about it too.</p>"
+    },
+    {
+      "id": 3517310,
+      "authorName": "Halla Yang",
+      "votes": 1,
+      "postDate": "2026-08-26T18:14:16.740000",
+      "content": "<p>perhaps some ideas derived from this nvidia post <a href=\"https://developer.nvidia.com/blog/nvidia-avo-reaches-100-on-arc-agi-3-demonstrating-a-frontier-level-general-purpose-architecture-for-long-horizon-autonomous-agents/\" target=\"_blank\">https://developer.nvidia.com/blog/nvidia-avo-reaches-100-on-arc-agi-3-demonstrating-a-frontier-level-general-purpose-architecture-for-long-horizon-autonomous-agents/</a></p>"
+    },
+    {
+      "id": 3517541,
+      "authorName": "OverfitOracle",
+      "votes": 0,
+      "postDate": "2026-08-27T12:24:36.913000",
+      "content": "<p>Can be the reason but cant say anything. As they didn't shared any code</p>"
+    }
+  ]
+}

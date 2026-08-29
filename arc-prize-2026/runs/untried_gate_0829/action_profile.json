@@ -1,0 +1,728 @@
+{
+ "games": 24,
+ "seed": 20260829,
+ "mouse_samples": 20,
+ "scope": "level-1 opening only",
+ "live": {
+  "ACTION1": 8,
+  "ACTION2": 8,
+  "ACTION3": 9,
+  "ACTION4": 9,
+  "ACTION5": 4,
+  "ACTION6": 13,
+  "ACTION7": 2
+ },
+ "tried": {
+  "ACTION1": 15,
+  "ACTION2": 15,
+  "ACTION3": 16,
+  "ACTION4": 16,
+  "ACTION5": 8,
+  "ACTION6": 18,
+  "ACTION7": 6
+ },
+ "declared_count": {
+  "ACTION1": 15,
+  "ACTION2": 15,
+  "ACTION3": 16,
+  "ACTION4": 16,
+  "ACTION5": 8,
+  "ACTION6": 18,
+  "ACTION7": 6
+ },
+ "per_game": [
+  {
+   "game": "ar25-e3c63847",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4",
+    "ACTION5",
+    "ACTION6",
+    "ACTION7"
+   ],
+   "n_levels": 8,
+   "results": {
+    "ACTION1": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION5": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION6": {
+     "moved_board": false,
+     "samples": 20
+    },
+    "ACTION7": {
+     "moved_board": false,
+     "samples": 1
+    }
+   }
+  },
+  {
+   "game": "bp35-0a0ad940",
+   "declared": [
+    "RESET",
+    "ACTION3",
+    "ACTION4",
+    "ACTION6",
+    "ACTION7"
+   ],
+   "n_levels": 9,
+   "results": {
+    "ACTION3": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION6": {
+     "moved_board": true,
+     "samples": 20
+    },
+    "ACTION7": {
+     "moved_board": true,
+     "samples": 1
+    }
+   }
+  },
+  {
+   "game": "cd82-fb555c5d",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4",
+    "ACTION5",
+    "ACTION6"
+   ],
+   "n_levels": 6,
+   "results": {
+    "ACTION1": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION5": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION6": {
+     "moved_board": true,
+     "samples": 20
+    }
+   }
+  },
+  {
+   "game": "dc22-4c9bff3e",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4",
+    "ACTION6"
+   ],
+   "n_levels": 6,
+   "results": {
+    "ACTION1": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION6": {
+     "moved_board": true,
+     "samples": 20
+    }
+   }
+  },
+  {
+   "game": "ft09-0d8bbf25",
+   "declared": [
+    "RESET",
+    "ACTION6"
+   ],
+   "n_levels": 6,
+   "results": {
+    "ACTION6": {
+     "moved_board": true,
+     "samples": 20
+    }
+   }
+  },
+  {
+   "game": "g50t-5849a774",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4",
+    "ACTION5"
+   ],
+   "n_levels": 7,
+   "results": {
+    "ACTION1": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION5": {
+     "moved_board": false,
+     "samples": 1
+    }
+   }
+  },
+  {
+   "game": "ka59-9f096b4a",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4",
+    "ACTION6"
+   ],
+   "n_levels": 7,
+   "results": {
+    "ACTION1": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION6": {
+     "moved_board": true,
+     "samples": 20
+    }
+   }
+  },
+  {
+   "game": "lf52-271a04aa",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4",
+    "ACTION6",
+    "ACTION7"
+   ],
+   "n_levels": 10,
+   "results": {
+    "ACTION1": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION6": {
+     "moved_board": true,
+     "samples": 20
+    },
+    "ACTION7": {
+     "moved_board": true,
+     "samples": 1
+    }
+   }
+  },
+  {
+   "game": "lp85-305b61c3",
+   "declared": [
+    "RESET",
+    "ACTION6"
+   ],
+   "n_levels": 8,
+   "results": {
+    "ACTION6": {
+     "moved_board": true,
+     "samples": 20
+    }
+   }
+  },
+  {
+   "game": "ls20-9607627b",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4"
+   ],
+   "n_levels": 7,
+   "results": {
+    "ACTION1": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": false,
+     "samples": 1
+    }
+   }
+  },
+  {
+   "game": "m0r0-dadda488",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4",
+    "ACTION5",
+    "ACTION6"
+   ],
+   "n_levels": 6,
+   "results": {
+    "ACTION1": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION5": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION6": {
+     "moved_board": false,
+     "samples": 20
+    }
+   }
+  },
+  {
+   "game": "r11l-aa269680",
+   "declared": [
+    "RESET",
+    "ACTION6"
+   ],
+   "n_levels": 6,
+   "results": {
+    "ACTION6": {
+     "moved_board": true,
+     "samples": 20
+    }
+   }
+  },
+  {
+   "game": "re86-4e57566e",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4",
+    "ACTION5"
+   ],
+   "n_levels": 8,
+   "results": {
+    "ACTION1": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION5": {
+     "moved_board": true,
+     "samples": 1
+    }
+   }
+  },
+  {
+   "game": "s5i5-a48e4b1d",
+   "declared": [
+    "RESET",
+    "ACTION6"
+   ],
+   "n_levels": 8,
+   "results": {
+    "ACTION6": {
+     "moved_board": true,
+     "samples": 20
+    }
+   }
+  },
+  {
+   "game": "sb26-7fbdac44",
+   "declared": [
+    "RESET",
+    "ACTION5",
+    "ACTION6",
+    "ACTION7"
+   ],
+   "n_levels": 8,
+   "results": {
+    "ACTION5": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION6": {
+     "moved_board": false,
+     "samples": 20
+    },
+    "ACTION7": {
+     "moved_board": false,
+     "samples": 1
+    }
+   }
+  },
+  {
+   "game": "sc25-f9b21a2f",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4",
+    "ACTION6"
+   ],
+   "n_levels": 6,
+   "results": {
+    "ACTION1": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION6": {
+     "moved_board": false,
+     "samples": 20
+    }
+   }
+  },
+  {
+   "game": "sk48-41055498",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4",
+    "ACTION6",
+    "ACTION7"
+   ],
+   "n_levels": 8,
+   "results": {
+    "ACTION1": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION6": {
+     "moved_board": false,
+     "samples": 20
+    },
+    "ACTION7": {
+     "moved_board": false,
+     "samples": 1
+    }
+   }
+  },
+  {
+   "game": "sp80-0ee2d095",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4",
+    "ACTION5",
+    "ACTION6"
+   ],
+   "n_levels": 6,
+   "results": {
+    "ACTION1": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION5": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION6": {
+     "moved_board": true,
+     "samples": 20
+    }
+   }
+  },
+  {
+   "game": "su15-4c352900",
+   "declared": [
+    "RESET",
+    "ACTION6",
+    "ACTION7"
+   ],
+   "n_levels": 9,
+   "results": {
+    "ACTION6": {
+     "moved_board": true,
+     "samples": 20
+    },
+    "ACTION7": {
+     "moved_board": false,
+     "samples": 1
+    }
+   }
+  },
+  {
+   "game": "tn36-ab4f63cc",
+   "declared": [
+    "RESET",
+    "ACTION6"
+   ],
+   "n_levels": 7,
+   "results": {
+    "ACTION6": {
+     "moved_board": true,
+     "samples": 20
+    }
+   }
+  },
+  {
+   "game": "tr87-cd924810",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4"
+   ],
+   "n_levels": 6,
+   "results": {
+    "ACTION1": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": false,
+     "samples": 1
+    }
+   }
+  },
+  {
+   "game": "tu93-2b534c15",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4"
+   ],
+   "n_levels": 9,
+   "results": {
+    "ACTION1": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": true,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": true,
+     "samples": 1
+    }
+   }
+  },
+  {
+   "game": "vc33-9851e02b",
+   "declared": [
+    "RESET",
+    "ACTION6"
+   ],
+   "n_levels": 7,
+   "results": {
+    "ACTION6": {
+     "moved_board": true,
+     "samples": 20
+    }
+   }
+  },
+  {
+   "game": "wa30-ee6fef47",
+   "declared": [
+    "RESET",
+    "ACTION1",
+    "ACTION2",
+    "ACTION3",
+    "ACTION4",
+    "ACTION5"
+   ],
+   "n_levels": 9,
+   "results": {
+    "ACTION1": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION2": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION3": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION4": {
+     "moved_board": false,
+     "samples": 1
+    },
+    "ACTION5": {
+     "moved_board": false,
+     "samples": 1
+    }
+   }
+  }
+ ],
+ "errors": [
+  {
+   "game": "cn04-65d47d14",
+   "stage": "start",
+   "err": "AssertionError('base_actions_per_level has 6 entries; number_of_levels is 5')"
+  }
+ ]
+}

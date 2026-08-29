@@ -1,0 +1,124 @@
+{
+  "topic": {
+    "id": 732854,
+    "title": "What are your agents scoring on the 25 public games?",
+    "authorName": "Reki",
+    "commentCount": 16,
+    "votes": 7,
+    "postDate": "2026-08-04T19:51:47.319000"
+  },
+  "comments": [
+    {
+      "id": 3517663,
+      "authorName": "Nick Pellegrin",
+      "votes": 1,
+      "postDate": "2026-08-27T19:52:31.327000",
+      "content": "<p>I'm getting around 5.0-5.4 on public and 1.4-1.8 on LB.</p>"
+    },
+    {
+      "id": 3517176,
+      "authorName": "mikelou1",
+      "votes": 1,
+      "postDate": "2026-08-26T11:03:10.900000",
+      "content": "<p>Got 2.8 on 25 games and 2.4 on lb</p>"
+    },
+    {
+      "id": 3517048,
+      "authorName": "daoviet",
+      "votes": 1,
+      "postDate": "2026-08-26T01:40:10.080000",
+      "content": "<p>I got 6.8 locally, then 1.19 public \ud83e\udd72</p>"
+    },
+    {
+      "id": 3517662,
+      "authorName": "Seth Moudry",
+      "votes": 0,
+      "postDate": "2026-08-27T19:43:15.510000",
+      "content": "<p>might be noise</p>"
+    },
+    {
+      "id": 3516455,
+      "authorName": "Fususu",
+      "votes": 1,
+      "postDate": "2026-08-24T12:12:14.673000",
+      "content": "<p>3.8 local, then 0.9-1.8 LB ^^!</p>"
+    },
+    {
+      "id": 3511388,
+      "authorName": "Son Pham",
+      "votes": 1,
+      "postDate": "2026-08-11T03:31:13.133000",
+      "content": "<p>Got 2.8 locally so far</p>"
+    },
+    {
+      "id": 3517379,
+      "authorName": "donk666",
+      "votes": 0,
+      "postDate": "2026-08-27T01:43:47.030000",
+      "content": "<p>between 3.5-7.5</p>"
+    },
+    {
+      "id": 3514406,
+      "authorName": "PRASHANT SHUKLA91",
+      "votes": 0,
+      "postDate": "2026-08-19T08:38:43.753000",
+      "content": "<p>Anyone who broke the bottlenecks of won games: 0/25 so far.</p>"
+    },
+    {
+      "id": 3514473,
+      "authorName": "Scott Le Grand",
+      "votes": 0,
+      "postDate": "2026-08-19T13:23:22.243000",
+      "content": "<p>I had an alternative approach based on using Claude Fable to build game-specific solvers that solved 7 of the 25 public games and hit ~38% RHAE overall at 116/183 levels. That really worked, but it's utterly impractical here because it needed Claude access and it took 5 days to slog through the 25 games, not two hours and an RTX Pro 6000.</p>\n<p>The second approach was to build a general solver using what it learned from the previous effort. That got to 8 levels out of 183 but it kept overfitting so it has been discarded as well.</p>"
+    },
+    {
+      "id": 3508571,
+      "authorName": "Reki",
+      "votes": 0,
+      "postDate": "2026-08-04T19:53:10.640000",
+      "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F13918144%2F2f22af2f60cbd1d1020c5020833a08c2%2F40a4e1e6c79648c35e8ec53b4301772b.png?generation=1785873187250718&amp;alt=media\" alt=\"\"></p>"
+    },
+    {
+      "id": 3514283,
+      "authorName": "Scott Le Grand",
+      "votes": 0,
+      "postDate": "2026-08-18T22:05:29.303000",
+      "content": "<p>My highest is 3.8, but the same agent submitted gets 0.9 or so. It's a general LLM agent descended from duck.</p>"
+    },
+    {
+      "id": 3515022,
+      "authorName": "",
+      "votes": 1,
+      "postDate": "2026-08-20T15:49:19.210000",
+      "content": ""
+    },
+    {
+      "id": 3515051,
+      "authorName": "OverfitOracle",
+      "votes": 1,
+      "postDate": "2026-08-20T16:51:43.520000",
+      "content": "<p>Our harness looks stable at 5.0+ on 25 games and 1.6 on the 110 games after submission</p>"
+    },
+    {
+      "id": 3517629,
+      "authorName": "Spen",
+      "votes": 0,
+      "postDate": "2026-08-27T18:15:24.257000",
+      "content": "<p>Did you make any fundamental changes to your harness to jump to your current score, or just tweaks and a good scoring run?</p>"
+    },
+    {
+      "id": 3517631,
+      "authorName": "",
+      "votes": 0,
+      "postDate": "2026-08-27T18:19:08.727000",
+      "content": ""
+    },
+    {
+      "id": 3517632,
+      "authorName": "OverfitOracle",
+      "votes": 0,
+      "postDate": "2026-08-27T18:20:21.437000",
+      "content": "<p>I am not gonna share something very important but was a very different  approach in the harness + model achieving 5.0+ stable on public 25 games. We completely redesigned it leading to a good stable increase.</p>"
+    }
+  ]
+}

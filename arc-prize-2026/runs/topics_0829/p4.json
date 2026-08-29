@@ -1,0 +1,162 @@
+[
+  {
+    "id": 718638,
+    "title": "Clarification requested: does a no-op ACTION6 (unchanged frame) count as an action on the scored server?",
+    "authorName": "",
+    "commentCount": 6,
+    "votes": 2,
+    "postDate": "2026-07-03T20:03:33.968000"
+  },
+  {
+    "id": 718572,
+    "title": "looking for teammates.",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 1,
+    "postDate": "2026-07-03T17:46:30.690000"
+  },
+  {
+    "id": 717778,
+    "title": "What does it look like if you exceed the 9h limit on computation?",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 0,
+    "postDate": "2026-07-02T13:44:38.763000"
+  },
+  {
+    "id": 717133,
+    "title": "Tufa Labs\u2019 Winning Solution for ARC-AGI-3 Milestone 1",
+    "authorName": "",
+    "commentCount": 18,
+    "votes": 62,
+    "postDate": "2026-07-01T14:47:58.064000"
+  },
+  {
+    "id": 717055,
+    "title": "Bug: Score mismatch in Notebooks Page",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 0,
+    "postDate": "2026-07-01T12:23:57.129000"
+  },
+  {
+    "id": 716719,
+    "title": "Code for milestone 3rd place open sourced [LB 0.86]",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 7,
+    "postDate": "2026-06-30T22:12:53.127000"
+  },
+  {
+    "id": 716711,
+    "title": "[0.79 public score] Open source code for Milestone 1 - Gemma 4 31B QAT Pruned Vocab + LeWM/JEPA dynamics model",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 8,
+    "postDate": "2026-06-30T21:44:41.613000"
+  },
+  {
+    "id": 716696,
+    "title": "Code for milestone 1st place open sourced - writeup tomorrow",
+    "authorName": "",
+    "commentCount": 16,
+    "votes": 37,
+    "postDate": "2026-06-30T21:10:43.953000"
+  },
+  {
+    "id": 716691,
+    "title": "Suggestion for next ARC Prize competition!",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 0,
+    "postDate": "2026-06-30T21:04:43.918000"
+  },
+  {
+    "id": 716637,
+    "title": "Milestone Update: Adaptive Strategy Under Changing Conditions",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": -3,
+    "postDate": "2026-06-30T19:40:23.032000"
+  },
+  {
+    "id": 716504,
+    "title": "Find out if game level or game is concluded",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 0,
+    "postDate": "2026-06-30T17:01:16.471000"
+  },
+  {
+    "id": 716369,
+    "title": "Insanely Fast Scoring?",
+    "authorName": "",
+    "commentCount": 6,
+    "votes": 1,
+    "postDate": "2026-06-30T13:32:35.369000"
+  },
+  {
+    "id": 716295,
+    "title": "Submission parallelism questions",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 1,
+    "postDate": "2026-06-30T10:45:06.659000"
+  },
+  {
+    "id": 715721,
+    "title": "Huge discrepancy between public and hidden results?",
+    "authorName": "",
+    "commentCount": 7,
+    "votes": 0,
+    "postDate": "2026-06-29T08:46:28.234000"
+  },
+  {
+    "id": 715611,
+    "title": "[Dataset] \ud83d\ude80 Released Human VCGT Dataset: Human Video + LLM-Annotated Explanations for Imitation Learning",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 6,
+    "postDate": "2026-06-29T02:28:40.759000"
+  },
+  {
+    "id": 714574,
+    "title": "Broken link in data page",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 0,
+    "postDate": "2026-06-26T15:06:16.785000"
+  },
+  {
+    "id": 714501,
+    "title": "Which information is actually available in a submission? API documentation",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 1,
+    "postDate": "2026-06-26T12:17:45.616000"
+  },
+  {
+    "id": 714128,
+    "title": "Solver stops after 3 hours despite 8-hour documentation",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 0,
+    "postDate": "2026-06-25T17:37:43.824000"
+  },
+  {
+    "id": 713921,
+    "title": "Action Cap of 5*human baseline clarification",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 1,
+    "postDate": "2026-06-25T09:57:43.470000"
+  },
+  {
+    "id": 713643,
+    "title": "Copied a random notebook, got 0.10 in just 3 hours - what's actually happening under the hood?",
+    "authorName": "",
+    "commentCount": 3,
+    "votes": 2,
+    "postDate": "2026-06-24T20:53:31.234000"
+  }
+]
