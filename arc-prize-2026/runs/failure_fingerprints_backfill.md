@@ -1,6 +1,6 @@
 # Failure-fingerprint backfill — campaign history validation
 
-Generated 2026-08-23 by scripts/fingerprint_backfill.py. Store: `runs/failure_fingerprints.json` (23 incidents).
+Generated 2026-08-30 by scripts/fingerprint_backfill.py. Store: `runs/failure_fingerprints.json` (23 incidents).
 
 Two-tier design (Kimi-3 review cycle, corrected adopt #3): tier 1 = build-rail logs (rich: stage marker + normalized error; silent deaths keyed by last-progress marker + elapsed bucket); tier 2 = scored-rail submissions (coarse: slug, version, status class, score class, docker/machine). **Scored reruns are hidden executions — no logs exist, ever**; tier 2 never pretends otherwise.
 
@@ -32,7 +32,7 @@ Two-tier design (Kimi-3 review cycle, corrected adopt #3): tier 1 = build-rail l
 | inc-t1-010 | 2026-08-17 | 1 | - | - | ERROR | none | `4adc306b8ab3107d` | high | runs/kernel_pulls/q38low_v1/q38low.log |
 | inc-t1-011 | 2026-08-18 | 1 | canivel/arc3-graft-floor-eval | - | ERROR | none | `474fe5420b4aa57e` | high | runs/kernel_pulls/graft_floor_v2/arc3-graft-floor-eval.log |
 
-Tier-1 log scan: 51 retained build logs scanned, 7 contained failure signals (all retained pulls are COMPLETE eval builds — the scored-rail deaths above have no logs by construction, which is exactly why tier 2 exists).
+Tier-1 log scan: 57 retained build logs scanned, 7 contained failure signals (all retained pulls are COMPLETE eval builds — the scored-rail deaths above have no logs by construction, which is exactly why tier 2 exists).
 
 ## 2. Q1 — family collapse
 

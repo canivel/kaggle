@@ -352,3 +352,71 @@ is **off-rail** (GPT-5.6, Gemini-3.7-Flash, frontier orchestrators); none of it 
 did not fire** — `ARCDailySubmit` last ran 08-26, the Mac produced nothing on 08-28, sub count frozen
 at 124. `feedback_one_armed_rail` guards the *overlap* of a host handover; the **gap** was unguarded,
 and it cost a draw.
+
+
+---
+
+### VERDICT 2026-08-30 — hypothesis CONFIRMED for a ninth day; and ledger entry 4 is repriced BY ITS OWN AUTHOR
+
+**Cadence [V, full-archive diff 2603 -> 2624 rows].** The **top five did not move at all for a second
+consecutive day** — cstl 5.99, Lord Han Solo 4.99, Tufa 4.67, Tong Hui Kang 4.27, rfbr 3.37, every
+one of them `DREW-NO-GAIN` on exactly +1 sub. Both real steps came from **outside** the top five, on
+single draws, from teams with an order of magnitude fewer lifetime draws than us:
+
+| team | dScore | draws | lifetime subs | new rank | public artifacts |
+|---|---|---|---|---|---|
+| **Youssef Nader @ Aurelic** (`gamingconceited`) | **+1.58** | 1 | **12** | **#6** | **none** [V, checked] |
+| **Liao Zixu** (`liaozixu`) | **+0.92** | 1 | **15** | **#9** | **none** [V, checked] |
+
+Field median among gainers **0.23/draw** (292 submitted, 59 = 20.2% gained anything). **Control arm
+flat for an eighth consecutive day** (Jack Cole/MindsAI +0.00 on +1; Tufa Labs +0.00 on +1). The
+**#10 line moved 2.80 -> 2.98 (+0.18) in one night** while we sat at 2.05, so the gap to top-10
+widened from 0.88 to **0.93**. Falsifiers 1 and 2 both untouched: nine teams above 2.9, zero public
+artifacts between them; not one step this window carried a sub-count spike.
+
+**THE LOAD-BEARING UPDATE — ledger entry 4 ("grafts/score-mechanics compound") is repriced from
+inside the lineage.** `thtennant/arc3-duck-bench` (new public kernel, 08-29 12:51) states in its own
+cell-12 rationale [V-doc]:
+
+> *"Ten grafts have been built for this stack, every one argued from a real measurement of the
+> environment, and **not one has been shown to change the score** — because the only offline
+> instrument available is a commit run of 4 game-passes, and **two byte-identical runs of v22 scored
+> 1.82 and 0.00** (2026-08-23)."*
+
+And the board [V]: **`Beyond Good and Eval` (alancai27, thtennant) = 1.93 on 39 lifetime subs, #207**
+— **0.12 BELOW us** on a fifth of the draws. This is the strongest form the counter-evidence has
+taken. Every prior version of it was ours (`feedback_stop_redrawing`, the 0-for-6 adoption sweep);
+this one is the graft author's, on his own data, published voluntarily, against his own interest.
+
+**Third instance of the same shape in four days, now stated as a rule.** Polyphony *is* the leading
+mechanism class (certified-policy-gated planning, Qwen3.6-27B) and publishes **19.8%** while
+`Retrodict` publishes 99.9%. `lucifer19/blackcat-avo-variation-c10` (08-29) implements the AVO
+stagnation-supervisor idea — *"per-game/pass lineage of states, actions, utility, and stagnation
+epochs… never overrides a valid primary action"* — **on our exact vehicle** (anim-20260807 bundle +
+Q38-FP8 repacked + RtxPro6000), and its author sits at **1.47 / 20 subs / #436**. tennant implements
+thirteen grafts, each argued from a real measurement, and sits at **1.93**.
+
+> **Naming a mechanism, measuring a mechanism, and shipping a mechanism that scores are three
+> different things. Every public implementation of the top tier's described mechanism class that we
+> can read sits BELOW the duck floor's own ceiling. FALSIFIER 5 survives an EIGHTH day: still zero
+> board validation of any individual graft, and the accumulating evidence now points the other way.**
+
+**What DID arrive is an instrument, and that matches this campaign's entire return history.** `bench`
+(`bench.py`, 11,430 B, shipped in the 08-29 12:51 bundle republish — the exact version our own
+`canivel/arc3-tv28-fork` mounted) plays **four tagged replicas of ONE game in a single offline
+Save & Run**, two arms x two replicates, arm letter read from each run's own artifact path so labels
+cannot drift. **Arm B suppresses the graft TEXT only** — every graft in the stack is informational
+and chooses no action, so B is a placebo on an identical code path, not a rebuild. **Zero gateway,
+zero submission, zero draws.** Its honest ceiling: n=2/arm on one game against a 1.82/0.00-class
+spread makes it a **kill** instrument, never a promotion instrument. Every real gain this campaign
+has booked came from an instrument (`set_level`: 25/25 games, 182 levels, free; `--format json`
+un-truncating the comment sweep; `lb_diff`) and **not once from an adopted mechanism** — which is
+now the strongest regularity in this document.
+
+**Our own contribution to the evidence base [V].** The rail fired: **2026-08-30 00:19:33, TV28 fork
+draw 1, public 1.62**, config n=1; public max **2.05** banked and unchanged; **#153 of 2624**. Two
+accounting defects found the same morning and both belong to `project_arc_final_selection_rule`,
+which selects the final two submissions by CONFIG MEAN: (a) the kernel shipped **all thirteen**
+grafts while the submission description names four; (b) `dataset_sources` pins the bundle by **slug
+with no version**, and the author republished it **11.5 hours before our draw**. A config whose code
+can change under us has no config mean.

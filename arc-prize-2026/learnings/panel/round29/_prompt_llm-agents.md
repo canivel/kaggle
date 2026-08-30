@@ -1,0 +1,267 @@
+You are Professor of LLM Agents and Scaffolding (tool-use, agentic harnesses, prompt-based control of foundation models; reviews for NeurIPS/ICLR; allergic to 'we will prompt it better' hand-waving).
+
+You are reviewer #2 on a 5-person adversarial review panel evaluating a competition
+strategy proposal for ARC-AGI-3 (Kaggle, deadline Nov 2 2026).
+
+GROUND-TRUTH LEADERBOARD STATE (refreshed 2026-08-30 from the live Kaggle API; the
+draw-by-draw submission ledger is at runs/lb_ground_truth.md; treat THESE numbers as canonical —
+any different numbers you may remember from earlier rounds were a stale briefing):
+# LB Ground Truth (refreshed by ARCMorningCheck)
+
+**Last refresh: 2026-08-30 06:00 local (pull_utc 2026-08-30T10:00:47Z), full download, 2624 rows, SubmissionCount present.**
+Source: `runs/lb_daily/lb_full_2026-08-30.csv` (heartbeat sha 578857f57a8f, `--check` exit 0, `HEARTBEAT OK`, `PRIOR-DAY OK`).
+
+## Us
+- **Canivel — Rank 153 of 2624, Score 2.05, SubmissionCount 126, LastSubmissionDate 2026-08-30 00:19:33.**
+- Yesterday: #203 of 2603 at 1.92 → **+50 ranks**, bought entirely by the **2.05 draw of 2026-08-29 11:41**, which was a **+2.01σ variance draw of an UNCHANGED kernel version** (same slug, same version as the 1.14 and 1.26 draws), not an improvement. See ITERATION_LOG 2026-08-29 (night).
+- **Since that draw the rank has already decayed: #147/2616 last night → #153/2624 this morning, -6 on a flat score in under 12 hours.** Holding a score is losing rank on this board.
+- Two submissions landed in this window (124 → 126): the 08-29 11:41 field-floor filler (**2.05**) and the 08-30 00:19 `arc3-tv28-fork` draw 1 (**1.62**, COMPLETE, n=1 on a fresh config — no verdict).
+- Public `Score` is a **max over submissions**; the banked **2.05 is a max of eight** field-floor draws (1.59 / 1.58 / 1.63 / 1.16 / 1.92 / 1.14 / 1.26 / 2.05 → **config mean 1.5413, sd 0.3376, n=8**), not a level. `project_arc_final_selection_rule` selects the final two by **config mean**, so 1.5413 is the number that matters and 2.05 is the number that does not.
+
+## Score lines (this pull)
+
+| line | score | prev (08-29) |
+|---|---|---|
+| top-5 (prize) | 3.37 | 3.37 |
+| **top-10** | **2.98** | **2.94** |
+| top-13 (gold) | 2.78 | 2.72 |
+| top-50 | 2.37 | 2.32 |
+| top-100 | 2.16 | 2.15 |
+| top-250 | 1.84 | 1.82 |
+| us (#153) | 2.05 | 1.92 (#203) |
+
+**The top-10 line moved for the second consecutive day (2.80 → 2.94 → 2.98).** Every line at or below top-13 also drifted up. Against our floor config (mean 1.5413, sd 0.3376) the top-10 line is **+4.27σ**.
+
+## Top 15
+
+| rank | team | score | subs | last sub |
+|---|---|---|---|---|
+| 1 | cstl | 5.99 | 40 | 2026-08-29 19:25:36 |
+| 2 | Lord Han Solo | 4.99 | 47 | 2026-08-29 22:18:06 |
+| 3 | Tufa Labs | 4.67 | 122 | 2026-08-29 17:42:40 |
+| 4 | Tong Hui Kang | 4.27 | 57 | 2026-08-29 23:54:16 |
+| 5 | rfbr | 3.37 | 16 | 2026-08-29 14:52:26 |
+| 6 | **Youssef Nader @ Aurelic** | **3.19** | **12** | 2026-08-29 20:03:18 |
+| 7 | Tony G | 3.17 | 14 | 2026-08-27 06:36:21 |
+| 8 | Daniel Franzen | 3.15 | 56 | 2026-08-29 21:20:45 |
+| 9 | **Liao Zixu** | **3.13** | **15** | 2026-08-29 13:07:35 |
+| 10 | OzanM. | 2.98 | 100 | 2026-08-29 07:02:05 |
+| 11 | Abstraction Lab & MindsAI (Jack Cole) | 2.94 | 132 | 2026-08-29 19:56:56 |
+| 12 | Tony Li | 2.80 | 15 | 2026-08-29 03:44:50 |
+| 13 | Tatu Helander | 2.78 | 75 | 2026-08-29 07:53:32 |
+| 14 | Akhil Tolani | 2.73 | 79 | 2026-08-28 18:14:47 |
+| 15 | AbeLincoln1865 | 2.72 | 20 | 2026-08-28 16:30:29 |
+
+Two new entrants to the top 10 this window, **both on a single draw and both from low lifetime submission counts** — Youssef Nader @ Aurelic (+1.58 on 1 draw, 12 subs) and Liao Zixu (+0.92 on 1 draw, 15 subs). Neither gain is explicable as draw-count grinding. Method **UNKNOWN** for both.
+
+## Control arm (08-29 → 08-30)
+
+| team | score | Δscore | subs | Δsubs | **Δ/draw** |
+|---|---|---|---|---|---|
+| Jack Cole — Abstraction Lab & MindsAI | 2.94 | +0.00 | 132 | +1 | **0.0000** |
+| Tufa Labs | 4.67 | +0.00 | 122 | +1 | **0.0000** |
+
+**Both control teams bought a draw and gained exactly nothing.** The authors of the TTT literature and of the harness we fork did not move. On this evidence the commodity-engine / shared-regime story is **weak**. This is a measurement about scores, not about method.
+
+## The 1.55–1.65 band (this window)
+
+| | old (08-29) | new (08-30) | delta |
+|---|---|---|---|
+| teams in band | 57 | 53 | **-4** |
+| median score | 1.60 | 1.60 | +0.00 |
+| median subs | 14.0 | 9.0 | **-5.0** |
+
+Band **shrank** by 4 (4 entered, 8 left) on a **flat median score** and a sharply lower median draw count. A drop-in engine swap would lift the band as a body; this is individual transit through it. Not the shape of an engine swap.
+
+## Draws bought vs gain (this window)
+- 292 teams submitted; **only 59 (20.2%) gained anything**; 317 new submissions total.
+- Median Δscore/Δsub among gainers **0.2300**; max **1.5800** (Youssef Nader @ Aurelic, 1 draw, 1.61 → 3.19).
+- **~80% of teams who paid for a draw gained 0.00.** This is the base rate against which every single-draw "improvement" — including our own 2.05 and our 1.62 — must be read.
+
+## Evidence discipline
+This instrument measures **Score, SubmissionCount, Rank, TeamName, LastSubmissionDate** — nothing else. **Do not infer method from movement.** `LastSubmissionDate` is the team's MOST RECENT submission while `Score` is their BEST; they need not be the same submission, so this file **cannot date a scoring run**. Every method claim carries an evidence class (DISCLOSED / INFERRED / UNKNOWN) per `learnings/top6_evidence_audit_2026-08-15.md`. All movement above is **UNKNOWN**. Today's tally: 0 DISCLOSED / 0 INFERRED / 9 UNKNOWN.
+
+PANEL RULES — READ CAREFULLY:
+- You are UNBIASED and RIGOROUS. You have no stake in the proposal passing.
+- Do NOT be agreeable. A proposal that passes round 1 unchanged indicates REVIEW FAILURE.
+- Attack the weakest LOAD-BEARING assumptions, not typos.
+- Every objection must be specific and actionable (not "needs more detail").
+- Distinguish severity: FATAL (invalidates the plan), MAJOR (must fix before execution),
+  MINOR (should fix).
+- You review ONLY within your expertise; note explicitly what you cannot judge.
+- If evidence is missing for a claim, say exactly what experiment/data would supply it.
+
+THE PROPOSAL (sha256 of the full document: 10d671ba731227b2; full length 23467 chars;
+if the text below does not end with the literal line "## END OF PROPOSAL ##",
+your copy is TRUNCATED — file that as an objection and review only what you see):
+=====================================================================
+# ARC-AGI-3 Daily Community Brief — 2026-08-30
+
+**Method:** LB full archive `2026-08-30T10:01:08Z` (**2624 rows**, `scripts/lb_archive.py`, heartbeat OK) + `scripts/lb_diff.py 08-29→08-30` on the **Windows box** (`.venv` CLI 2.0.0 for board/kernels/datasets; `march-madness-2026/.venv` CLI **2.2.2** for `competitions topics`). Discussions: **193 topics paged to exhaustion** (10 pages, `-s new`, `--format json`), **all 155 comment trees pulled and decoded UTF-8 — 675 of 675 comments = 100% coverage** (reached only after eight retry rounds against API rate-limiting; see Gaps). Kernels: `dateCreated` p1–p2 + `voteCount` p1; **four new kernels pulled and read** (`thtennant/arc3-duck-bench`, `lucifer19/blackcat-avo-variation-c10`, `sahasawatt/thui-v6-0`, `ikevayansky/arc-novelty-anchor-v1`). Datasets: full file census on `thtennant/taaf-kaggle-source-share-fork`; republish check on all three tracked bundles. External radar: web + `arcprize.org/leaderboard/community`. Diff base: `brief_2026-08-29.md`.
+
+**Tags:** [V] verified this session on a board/artifact/our own read · [V-doc] verbatim claim inside a verified artifact · [INF] inference · [UNK] unknown. **A kernel badge score is the AUTHOR'S BEST DRAW, never a config mean.**
+
+---
+
+## ★★★ HEADLINE — THE AUTHOR OF THE STACK WE FORKED LAST NIGHT PUBLISHED, THE SAME DAY, (a) THE STATEMENT THAT NONE OF IT HAS EVER BEEN SHOWN TO MOVE THE SCORE AND (b) THE FREE INSTRUMENT THAT COULD SETTLE IT
+
+Two facts landed within hours of each other and they belong in the same sentence.
+
+**Fact 1 — we drew 1.62 on the TV28 fork.** [V, `kaggle competitions submissions`] Newest submission **2026-08-30 00:19:33 UTC, public 1.62**, description *"TV28 FORK draw 1 — byte-faithful fork of thtennant/arc3-duck-v28"*. Our public max **2.05 is banked and unchanged**; board rank **#153 of 2624** (+50 on the day, from the 08-29 11:41 filler's 2.05 landing inside this window). Config n=1.
+
+**Fact 2 — `thtennant/arc3-duck-bench` (NEW public kernel, last run 2026-08-29 12:51)** [V, pulled and read cell-by-cell]. Its cell-12 rationale, verbatim:
+
+> *"bench is a MEASUREMENT harness and this kernel is never submitted. **Ten grafts have been built for this stack, every one argued from a real measurement of the environment, and not one has been shown to change the score** — because the only offline instrument available is a commit run of 4 game-passes, and **two byte-identical runs of v22 scored 1.82 and 0.00** (2026-08-23)."* [V-doc]
+
+Price that against the board, which is the part that matters: **Teddy Tennant's team is `Beyond Good and Eval`, #207, 1.93, 39 lifetime subs** [V, `TeamMemberUserNames=alancai27,thtennant`]. **We are #153 at 2.05 on 126.** The stack's own author, running it natively for a month, sits **0.12 below us** and says in his own kernel that he cannot show any of it works. Last night we spent one of our scarcest resources on a byte-faithful fork of it and drew **0.43 below our own banked max**.
+
+This is not a new lesson; it is `feedback_stop_redrawing` and `feedback_verify_treatment_can_fire` arriving from a third party with his own numbers attached. **The correct read of 1.62 is "one draw of an unvalidated config", not "the grafts hurt"** — the instrument that would separate those two readings is Fact 3.
+
+**Fact 3 — the instrument is already mounted in our kernel.** `bench.py` (11,430 B) shipped in the **08-29 12:51 republish of `thtennant/taaf-kaggle-source-share-fork`** — the exact bundle version our `canivel/arc3-tv28-fork` mounted at 00:19. What it does [V, read from `arc3-duck-bench` cells 12 + 14]:
+
+```
+BENCH_GAME = "m0r0";  BENCH_TAGS = ("A0", "B0", "A1", "B1")
+bm.games = make_replicas(bm.games, BENCH_GAME, BENCH_TAGS)      # guarded on `not TRUE_SUBMISSION`
+install(bm, flags={..., "bench": {"A": [], "B": ["*"]}})        # A = full stack, B = suppress all graft text
+```
+
+Four tagged replicas of **one** game, played in a single offline Save & Run — **no gateway, no submission, no draw spent**. The arm letter is read out of each run's own artifact path *"so the arm labels in benchmark.json cannot drift from the arms that were actually played."* Arm B *"gives the harness's own stock world-model methods back, which reproduces the v12 floor's prompt exactly."*
+
+**Why the control is clean and not the usual offline-screen trap:** *"Every graft in the stack is INFORMATIONAL: none of them chooses an action, and their whole effect is the text goalkeep's digest puts in the prompt. So an arm can be turned off by suppressing that text and nothing else changes — same code path, same wrappers, same engine calls."* [V-doc] That is a placebo control, not a rebuild — the failure mode that made every prior offline comparison of ours uninterpretable.
+
+**This is the first free comparator this campaign has been offered.** `feedback_screen_calibration_range` records that **0 of 36 artifacts ever produced a board draw above the local floor** and that every sealed band lives above the range we have submitted from. A paired within-run A/B does not fix calibration to the LB — it fixes something we have never had at all: **an A-vs-B on the same rail, same night, same engine, at 2 replicates per arm, for zero draws.** Tennant built it for exactly the reason we would: because 1.82-and-0.00 on byte-identical code makes single-draw comparison worthless.
+
+**Honest ceiling on it, stated before anyone over-reads it:** n=2 per arm on ONE game (m0r0) cannot separate arms whose true effect is small — with a within-config spread of the 1.82/0.00 class, a 2v2 detects only a large effect. It is a **kill instrument**, not a promotion instrument: it can show "the stack does nothing / hurts on m0r0", it cannot certify a gain. That is still worth more than another draw, because the thing we most need to know about the TV28 arm is whether to stop.
+
+---
+
+## ★★ SECOND — OUR SUBMISSION DESCRIPTION UNDERSTATES WHAT WE ACTUALLY SHIPPED, AND OUR CONFIG IS NOT PINNED
+
+Two accounting defects found by reading our own kernel against the bundle census. Neither changes the 1.62; both corrupt the ledger that `project_arc_final_selection_rule` selects the final two submissions from.
+
+**(a) We shipped 13 grafts, not 4.** [V, `notebooks/tennant-v28-fork/*.ipynb` cell 12]
+
+```
+install(bm, flags={"efficiency": True, "retry_guard": True, "shortcircuit": True, "goalkeep": True,
+  "hudmask": True, "clickmap": True, "searchmap": True, "clockwatch": True, "lawbook": True,
+  "winframe": True, "carryover": True, "undo": True, "untried": True})
+```
+
+The submission description says *"Grafts armed: clickmap/goalkeep/hudmask/searchmap."* The live flag dict is **identical to `arc3-duck-bench`'s minus the `bench` key** — all thirteen. `clockwatch`, `lawbook`, `winframe`, `carryover`, `undo`, `untried` were live and unrecorded. Whatever 1.62 measures, it is not the four-graft arm the ledger will say it was.
+
+**(b) The bundle is pinned by SLUG, not by version, and the author republished it mid-flight.** [V] Our `kernel-metadata.json` names `thtennant/taaf-kaggle-source-share-fork` bare. That dataset was republished **2026-08-29 12:51** (593,607 B; title now *"taaf source share fork (banking)"*), adding `bench.py` and carrying a `composite.py` that grew **12,116 → 24,798 B** against the copy in `runs/fork_audit/`. Our draw fired **11½ hours later**. So:
+
+> **Every future redraw of the TV28 fork is a different agent unless the version is pinned.** A config whose code can change under us has no config mean, and CONFIG MEAN is the rule the final two submissions are chosen by. This is `feedback_kaggle_dataset_code_sync` in its second form: not stale code, but *live* code we do not control.
+
+---
+
+## ★★ THIRD — THE BOARD SAYS THE SAME THING IT HAS SAID FOR EIGHT DAYS, AND THE #10 LINE MOVED 0.18 IN A NIGHT
+
+**Top 5 frozen to the cent for a second consecutive day** — cstl 5.99, Lord Han Solo 4.99, Tufa 4.67, Tong Hui Kang 4.27, rfbr 3.37, all `DREW-NO-GAIN` on +1 sub each. **The movement is entirely at #6–#9**, and it is the ladder signature again, twice:
+
+- **Youssef Nader @ Aurelic: +1.58 on ONE draw → 3.19, #6, on 12 lifetime subs** [V]. Team renamed today (`Youssef Nader` → `Youssef Nader @ Aurelic`, TeamId 15767021 stable). **No public kernels** (`gamingconceited`, checked) [V].
+- **Liao Zixu: +0.92 on ONE draw → 3.13, #9, on 15 lifetime subs** [V]. **No public kernels** (`liaozixu`) [V].
+
+d/draw 1.58 and 0.92 against a field median of **0.23** among gainers. Both are capability steps by the document's own definition, both from teams with sub-counts an order of magnitude below ours, both artifact-dark. **The public ceiling is unchanged: FOYSAL 2.23, frozen 12 days.**
+
+**Control arm flat for an eighth consecutive day** — Jack Cole/MindsAI +0.00 on +1, Tufa Labs +0.00 on +1. `lb_diff` readout verbatim: *"NEITHER CONTROL TEAM MOVED ⇒ the commodity-engine / shared-regime story is WEAK on this evidence."*
+
+**The line we are chasing moved and we did not.** #10: **2.80 → 2.98 (+0.18)**. Gap from our 2.05 to #10 widened **0.75 → 0.93**. Teams at or above our 2.05: **156**.
+
+---
+
+## TOP 10 RANKED FINDS
+
+Ranked by expected impact on OUR next submission.
+
+1. **[KERNEL, V] `thtennant/arc3-duck-bench` (08-29 12:51) — a paired, within-run, ZERO-DRAW A/B rig, and `bench.py` is already in the bundle our kernel mounts.** Four tagged replicas of one game (`m0r0`, tags A0/B0/A1/B1) in one offline Save & Run; arm letter read from the artifact path; arm B suppresses all graft *text* only, so it is a placebo control on an identical code path. → **ACTION: run it. Cell-12 flag `"bench": {"A": [], "B": ["*"]}` + the cell-14 replica block, both already guarded on `not TRUE_SUBMISSION`. One GPU session, no submission, no draw.** First free comparator of the campaign.
+2. **[KERNEL, V-doc] The same kernel states the stack has never been shown to work — and its author's board row is BELOW ours.** *"Ten grafts… not one has been shown to change the score… two byte-identical runs of v22 scored 1.82 and 0.00."* `Beyond Good and Eval` **1.93 / 39 subs / #207** vs us **2.05 / 126 / #153** [V]. → **ACTION: do not redraw the TV28 fork tonight on the strength of 1.62 (n=1). Redraw only after bench returns, or not at all.**
+3. **[OURS, V] Our TV28 fork shipped ALL 13 grafts; the description names 4.** → **ACTION: correct the experiment/ledger row before the 1.62 is entered as a four-graft datapoint.** Costs nothing; leaving it wrong corrupts a config mean the deadline rule depends on.
+4. **[DATASET, V] `thtennant/taaf-kaggle-source-share-fork` republished 08-29 12:51 (adds `bench.py` 11,430 B; `composite.py` 12,116 → 24,798 B), 11½ h before our draw; our fork pins the slug with no version.** → **ACTION: pin the dataset VERSION in `kernel-metadata.json` before any TV28 redraw.** Otherwise the arm has no reproducible identity.
+5. **[BOARD, V] Two artifact-dark single-draw steps into the top 10 — Youssef Nader @ Aurelic +1.58 (12 subs, #6), Liao Zixu +0.92 (15 subs, #9) — while the top 5 sat flat to the cent for a 2nd day and the #10 line moved 2.80 → 2.98.** → **No action — watch.** Confirms the ladder hypothesis for a ninth day and re-prices the target: gold-adjacent is now 2.98, not 2.80.
+6. **[DISCUSSION, V-doc] The ONLY new comment field-wide since yesterday: Seth Moudry, topic 736578, 2026-08-30 02:29 — *"There's a lot of variance, so the best you can do is to try to mitigate that. Submit that harness multiple times, increase sampling, etc."*** Third independent field statement in four days (Scott Le Grand 08-27: *"I have to submit at least 4 times before I remotely believe differences between 2 approaches"*; tennant's 1.82/0.00). → **No new action — this is the standing constraint, and find #1 is the only cheap answer to it that does not cost draws.** Price him honestly: Moudry is not in the board's top 30 and this is folk advice, not a measurement.
+7. **[KERNEL, V-doc] `clockwatch`'s scoring arithmetic, read from bench cell 12: the score is `min(raw, cap)` with `cap = 100·Σ(i completed)/Σ(i all)`, and *"on every game this project has scored the CAP bound, not the efficiency term — tn36 cleared level 1 in 24 actions against a baseline of 32, saturating the efficiency term at 115, and still scored the cap's 3.57."*** Plus: *"every archived game ends on the 7920 s per-game wall-clock and NONE on the action cap"*, *"~30.7 tok/s so that wall-clock is really a fixed ~240k generated-token budget"*, *"97.6–98.3% of every generated token is reasoning"*, *"12 of 12 games ended INSIDE an analysis step that never produced an action."* → **No action — this is independent third-party replication of `feedback_decision_budget_binding` AND `feedback_visible_vs_hidden_channel`, from a different team's archive.** It closes the efficiency question: the efficiency term is saturated and the cap binds.
+8. **[KERNEL, V] `lucifer19/blackcat-avo-variation-c10` (08-29 10:43) — first NVIDIA-AVO-derived agent on OUR EXACT VEHICLE** (`jakobbrggen/taaf-kaggle-source-anim-20260807-anim` + `foysalemonshanto/qwen3-8-27b-fp8-repacked-v1` + RtxPro6000). Mechanism, verbatim: *"records a per-game/pass lineage of states, actions, utility, and **stagnation epochs**… enriches the agent contract but **never overrides a valid primary action**."* Cites `2603.24517v1_avo` and disclaims it: *"its B200 attention results are not ARC-AGI-3 score evidence."* → **No action — watch.** This is the closest public artifact to `feedback_arc_supervision_gap` (the never-built stagnation supervisor), but the author's board row is **Krizsó Gergely 1.47 / 20 subs / #436** [V] — an implementation of the mechanism we most want, sitting 0.58 below us. Same shape as the Polyphony 19.8% price: naming ≠ shipping.
+9. **[DATASETS, V] Census: `jakobbrggen/taaf-kaggle-source` UNCHANGED since 08-26 15:20 (4th flat day); our pinned `anim-20260807-anim` UNCHANGED for 23 days (08-07 15:59).** Only tennant's fork moved. → **No action.**
+10. **[EXTERNAL, V] Radar is quiet. `arcprize.org/leaderboard/community` unchanged — newest entry still Tycho 100.0% (2026-07-29); Retrodict 99.9%, baseline1 99.0%, NOOA 85.1%, OPINE-World 78.4%, human harness 95.3%.** No new arXiv or vendor result since Agno's ARC-AGI-Arcade (08-25) and NVIDIA AVO (08-21), both already in yesterday's brief. → **No action.**
+
+---
+
+## LEADERBOARD DELTA (board-verified, full archive 2026-08-30T10:01:08Z, 2624 rows)
+
+| # | team | score | Δ vs 08-29 | subs | Δsubs | flag |
+|---|---|---|---|---|---|---|
+| 1 | cstl | 5.99 | +0.00 | 40 | +1 | DREW-NO-GAIN — 5th flat day |
+| 2 | Lord Han Solo | 4.99 | +0.00 | 47 | +1 | DREW-NO-GAIN |
+| 3 | Tufa Labs | 4.67 | +0.00 | 122 | +1 | DREW-NO-GAIN (control arm) |
+| 4 | Tong Hui Kang | 4.27 | +0.00 | 57 | +1 | DREW-NO-GAIN |
+| 5 | rfbr | 3.37 | +0.00 | 16 | +1 | DREW-NO-GAIN |
+| **6** | **Youssef Nader @ Aurelic** | **3.19** | **+1.58** | **12** | **+1** | **STEP — largest d/draw on the board** |
+| 7 | Tony G | 3.17 | +0.00 | 14 | +0 | IDLE (3rd day) |
+| 8 | Daniel Franzen | 3.15 | +0.00 | 56 | +1 | DREW-NO-GAIN |
+| **9** | **Liao Zixu** | **3.13** | **+0.92** | **15** | **+1** | **STEP** |
+| 10 | OzanM. | 2.98 | +0.00 | 100 | +1 | DREW-NO-GAIN |
+| 11 | Abstraction Lab & MindsAI | 2.94 | +0.00 | 132 | +1 | DREW-NO-GAIN (control arm) |
+| 22 | ThomasG | 2.60 | +0.71 | 121 | +1 | STEP |
+| 79 | FOYSAL (public ceiling) | 2.23 | +0.00 | 99 | +0 | frozen kernel, 12th day |
+| **153** | **Canivel (us)** | **2.05** | **+0.13** | **126** | **+2** | **STEP (the 08-29 filler's 2.05 landed in-window); rank +50** |
+| 166 | Thuitanium (the ladder) | 2.02 | +0.00 | 15 | +0 | IDLE |
+| 207 | Beyond Good and Eval (tennant, graft author) | 1.93 | +0.00 | 39 | +1 | DREW-NO-GAIN |
+| 327 | Helmut AGI (Brüggen, bundle distributor) | 1.71 | +0.00 | 72 | +1 | DREW-NO-GAIN |
+| 436 | Krizsó Gergely (BlackCat AVO) | 1.47 | +0.00 | 20 | +1 | DREW-NO-GAIN |
+
+**Lines (computed identically on both archives):** #1 5.99 (+0.00) · #3 4.67 (+0.00) · #5 3.37 (+0.00) · **#10 2.98 (+0.18)** · #13 2.78 (+0.06) · #20 2.65 (+0.08) · #30 2.53 (+0.04) · #50 2.37 (+0.05) · #100 2.16 (+0.01) · #150 2.05 (+0.02) · #200 1.94 (+0.02) · #250 1.84 (+0.02) · #300 1.75 (+0.02). **Gap to #10: 0.93 (was 0.88 at our 1.92 vs 2.80 — the line moved away faster than we moved toward it). Teams at or above our 2.05: 156.**
+
+**Entries/exits:** 21 in, **0 out** (2603 → 2624). Largest new entrant **Yuhang Huang #21 at 2.62 on ONE lifetime sub** [V] — the Diya Sharma pattern again (2.69 on 1 sub, 08-24).
+
+**Field-wide:** **292 teams submitted, 59 (20.2%) gained anything**; median dScore/dSub among gainers **0.23**, max **1.58** (Youssef Nader). *(Lag bias applies as always: the 10:01Z pull precedes completion of overnight runs, so 20.2% is a FLOOR and today's IDLE/DREW-NO-GAIN flags need re-report correction tomorrow. Do not read 19.1% → 20.2% as a trend.)*
+
+**Control arm:** flat for an **eighth consecutive day**.
+
+**The 1.55–1.65 band:** 57 → **53 teams (−4), median 1.60 (+0.00) — 14th consecutive flat day**; median subs in band 14.0 → 9.0.
+
+**Our own row:** newest submission **2026-08-30 00:19:33 UTC = 1.62** (TV28 fork draw 1). Public max **2.05**, banked 08-29 11:41 (auto-refill field-floor filler). Recent draw sequence: 1.15, 0.41, 1.59, 1.58, 1.63, 1.16, 1.92, 1.14, 1.26, **2.05**, **1.62**.
+
+---
+
+## TOP-3 PATTERN UPDATE (delta vs 08-29)
+
+The cadence signature held for a **ninth** day and today it separated cleanly into its two halves: the **top five did not move at all** (all five drew, all five gained exactly 0.00 — second consecutive day frozen to the cent), while **both real steps came from outside it on single draws** — Youssef Nader @ Aurelic +1.58 on 12 lifetime subs and Liao Zixu +0.92 on 15, neither with any public kernel or dataset, against a field median of 0.23/draw among the 20.2% of submitters who gained anything. Falsifier 1 (private machinery) is untouched: the public ceiling is FOYSAL's 2.23, frozen twelve days, while nine teams sit above 2.9 with zero public artifacts between them. Falsifier 2 (capability steps, not draw-grinding) is untouched: no step this window came with a sub-count spike.
+
+**What changed is the price on ledger entry 4 (grafts/score-mechanics compound), and it changed from inside.** The graft lineage's own author published, in a public kernel, that **ten grafts argued from real environment measurements have never been shown to change the score**, and that **two byte-identical runs of the same version scored 1.82 and 0.00** — and his board row is 1.93 on 39 subs, 0.12 *below* ours on a fifth of the draws. That is now the third independent instance of the same shape this document has recorded: Polyphony implements the leading mechanism class exactly and publishes 19.8%; BlackCat implements the AVO stagnation-supervisor idea on our exact vehicle and sits at 1.47; tennant implements thirteen measured grafts and sits at 1.93. **Naming a mechanism, measuring a mechanism, and shipping a mechanism that scores are three different things, and this board keeps putting all three in the same week.**
+
+The one genuinely new asset today is not a mechanism at all but an **instrument** — `bench`, a within-run placebo-controlled A/B costing zero draws — which fits this campaign's actual return history exactly (`set_level`, the JSON comment sweep, `lb_diff`: every real gain has come from an instrument, never from an adopted mechanism).
+
+---
+
+## DECISION HANDOFF → iterate session (08:23)
+
+**1. Run the bench arm offline tonight — it is the day's only zero-draw experiment.** [expected cost: one Kaggle GPU session, ~9 h wall; **0 submissions, 0 draws**; ~30 min of edit] Take `canivel/arc3-tv28-fork`, add `"bench": {"A": [], "B": ["*"]}` to the cell-12 flag dict and copy the cell-14 `make_replicas` block verbatim from `thtennant/arc3-duck-bench` (both are already guarded on `not TRUE_SUBMISSION`, so the arm is provably inert in a real rerun — verify that guard yourself before pushing, per `feedback_audit_the_instrument`). Reads out A (full 13-graft stack) vs B (all graft text suppressed → stock v12 prompt) at 2 replicates each on `m0r0`. **Pre-register the read before the data lands:** this is a KILL instrument at n=2/arm, not a promotion instrument — the only conclusion it can license is "stop", and only on a large gap. Do not let it promote anything.
+
+**2. Do NOT make the TV28 fork tonight's head on the strength of 1.62.** [expected cost: none — this is a decision not to spend] Its config is n=1, its author's own kernel says the stack has never been shown to work, and his board row is below ours. Standing rule applies: head = certified field floor unless an arm clears a promotion gate. **If the fork is redrawn at any point, pin `thtennant/taaf-kaggle-source-share-fork` to an explicit dataset VERSION first** — it was republished 11½ h before our draw, and an unpinned slug means the config has no identity, which breaks `project_arc_final_selection_rule`'s config-mean selection.
+
+**3. Correct the 1.62's ledger row before it is banked, and re-derive the ledger.** [expected cost: ~10 min] The submission description names four grafts; the kernel shipped thirteen (`clockwatch`, `lawbook`, `winframe`, `carryover`, `undo`, `untried` were live and unrecorded), and it ran against the 08-29 12:51 bundle, not the 08-28 v28 bundle. Also **`runs/ledger.json` is stale — `latest_date` is 2026-08-20** and ten draws have landed since; the promotion bar (n=37, 0.9316/0.1771, bar 1.089) is currently being read against a ten-day-old distribution.
+
+---
+
+## GAPS (named, none blocking)
+
+- **CLOSED, but the instrument defect it exposed is real and recurring.** Comment coverage is **100% — 155/155 trees, 675/675 comments** — but only after **eight** retry rounds. The Kaggle API 429s after roughly 100 consecutive `topics show` calls and **the CLI then writes a zero-byte file and exits 0**: a rate-limited sweep is indistinguishable from a complete one unless you check file sizes. The first pass this morning silently lost 84 of 155 trees and would have reported "1 new comment" with the same confidence it does now. **Any brief that walked the tree without a non-empty assertion should be treated as possibly partial** — this is the fourth consecutive day this sweep has produced a `feedback_audit_the_instrument` finding (under-paging, the table renderer's 200-char truncation, the cp1252 encoder, now the silent 429). The sweep script should assert `size > 0` per tree and fail loudly.
+- **Kernel-author artifact checks for `tehnar`, `lordhansolo`, `huikang` 429'd** and are carried forward as [UNK] — they were [UNK] yesterday too, so no claim changed.
+- **`lb_diff`'s hardcoded TOP8 watchlist is stale** — it still tracks Nikita Sorokin, Yusaku Muroya, MLRush and Andy liu, none of whom is inside the top 30. The top-10 table above is computed from the archive directly, not from that list; the watchlist should be re-derived or dropped.
+- **No board-verified score exists for `arc3-duck-bench`** and none can — it is explicitly never submitted. Its numbers are the author's offline measurements, tagged [V-doc] throughout.
+- **The 1.62's runtime graft banner has not been pulled back.** `TAAF_GRAFTS FEATURES={...} API_VERSION=1` is printed by `install()`; until the kernel log is read, "13 grafts were live" is [V] on the source and [UNK] on the run (`install()` is blanket-guarded and falls back to stock on any error). That check belongs to the iterate session.
+
+## END OF PROPOSAL ##
+=====================================================================
+
+OUTPUT FORMAT (exactly this structure):
+## Summary (2 sentences)
+## Objections
+For each: [SEVERITY] title — body (2-5 sentences, specific)
+(minimum 3 objections in round 1; in later rounds, review your prior objections'
+resolution first, then add new ones only if real)
+## Questions for the authors (numbered)
+## What I cannot judge
+## Verdict: ACCEPT | MAJOR-REVISION | REJECT
+## Score: N/10

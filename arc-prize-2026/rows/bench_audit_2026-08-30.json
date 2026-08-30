@@ -1,0 +1,21 @@
+{
+ "date": "2026-08-30",
+ "kernels": [
+  "canivel/arc3-tv28-bench",
+  "canivel/arc3-tv28-bench-sb26"
+ ],
+ "draws_spent": 0,
+ "submissions": 0,
+ "m0r0_lc_sd_withinconfig": 0.218,
+ "m0r0_p_lc_gt0_withinconfig": 0.05,
+ "m0r0_n_archive": 76,
+ "sb26_lc_sd_withinconfig": 0.3,
+ "sb26_p_lc_gt0_withinconfig": 1.0,
+ "panel_round": 29,
+ "panel_accepts": 0,
+ "panel_fatal": 1,
+ "amendment": "learnings/war_room/bench_prereg_amendment2_2026-08-30.md",
+ "mechanism": "A measurement instrument can be inert for the same reason a treatment can. m0r0's within-config level-clear rate is 0.05 (1 of 20 clone replicates; lc sd 0.218, never cleared 2 levels in 76 retained runs), so a 2v2 bench A/B has no resolution on it regardless of the graft effect size. Pricing the MEASUREMENT's dynamic range against retained artifacts is a distinct pre-build gate from verifying the TREATMENT can fire, and it is cheap: both numbers came from artifacts already on disk.",
+ "summary": "Built the field's free zero-draw within-run placebo A/B rig byte-faithfully (all 17 cells identical to the author's kernel, env metadata byte-matched, pull-back verified), then refused its game: m0r0 is the lowest-resolution of all 25 games on two independent instruments (LAST on the 20-clone within-config set, #18/25 on the 76-run all-config archive). Slot 1 demoted to a rig replication; slot 2 re-aimed at sb26 via a single-token change with structural preflight ALLOW 0/0 enforcing the declared diff. Panel R29 then returned a FATAL that neither session can license a kill at n=2/arm (minimum permutation p = 1/6); accepted in full and sealed as amendment 2. Zero draws, zero submissions.",
+ "lesson": "Audit the instrument's DYNAMIC RANGE before spending a session on it, not merely whether the treatment can fire. And guard the KILL direction as explicitly as the PROMOTE direction: an underpowered null reads as a kill, so a prereg that only forbids over-promotion is still asymmetric. Numeric kill gate + minimum n must be sealed before the first replicate."
+}

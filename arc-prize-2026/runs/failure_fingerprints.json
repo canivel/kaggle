@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-08-23T12:24:13Z",
+  "updated": "2026-08-30T12:29:41Z",
   "incidents": [
     {
       "id": "inc-t2-001",
@@ -662,6 +662,13 @@
       "stage": "Removed temporary vLLM install at <path>"
     },
     {
+      "log": "runs/kernel_pulls/execwm_v1/arc3-execwm-eval.log",
+      "run_key": "runs/kernel_pulls/execwm_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
       "log": "runs/kernel_pulls/gate_eval_v1/arc3-duck-gate-eval.log",
       "run_key": "runs/kernel_pulls/gate_eval_v1",
       "has_error": false,
@@ -697,8 +704,22 @@
       "stage": "GRAFT-EVAL seed=<n> mode=graft-floor-local25 grafts=thtennant/taaf-kaggle-source-share-fork REPLACES jeroencottaar/taaf-kaggle-source-share (verified stock + <n> additive files, <n> stock bytes changed) flags=efficiency+retry_guard+shortcircuit+goalkeep+hudmask FORBIDDEN=banking+transfer engine=driessmit1/vrfai-qwen3-<n>-27b-fp8-hf-snapshot (UNCHANGED, vrfai/Qwen3.<n>-27B-FP8) wheels=driessmit1/arc3-vllm-h100-wheelhouse-v3 (UNCHANGED, vLLM <n>.<n>) audited_bundle_sha=<hex> baseline=duck-harness-kaggle m=<n> lc 18<path> primary=mean_dlc HARM<=-<n> SIGNAL>=+<n> secondary=mean_score NON-INFERENTIAL"
     },
     {
+      "log": "runs/kernel_pulls/p1_notes_v1/stdout.log",
+      "run_key": "runs/kernel_pulls/p1_notes_v1",
+      "has_error": false,
+      "fingerprint": "454886985ad04fdb",
+      "stage": "PYTEARDOWN"
+    },
+    {
       "log": "runs/kernel_pulls/p1_v1/arc3-duck-p1-eval.log",
       "run_key": "runs/kernel_pulls/p1_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/p2_retry_v1/arc3-p2-retry-eval.log",
+      "run_key": "runs/kernel_pulls/p2_retry_v1",
       "has_error": false,
       "fingerprint": "2fac07761b935898",
       "stage": "Removed temporary vLLM install at <path>"
@@ -788,6 +809,13 @@
       "stage": "Removed temporary vLLM install at <path>"
     },
     {
+      "log": "runs/kernel_pulls/seed_0829/stdout.log",
+      "run_key": "runs/kernel_pulls/seed_0829",
+      "has_error": false,
+      "fingerprint": "454886985ad04fdb",
+      "stage": "PYTEARDOWN"
+    },
+    {
       "log": "runs/kernel_pulls/sentinel_eval_v1/arc3-duck-sentinel-eval.log",
       "run_key": "runs/kernel_pulls/sentinel_eval_v1",
       "has_error": false,
@@ -807,6 +835,20 @@
       "has_error": false,
       "fingerprint": "d8a0f839bc1f0aa1",
       "stage": "No diagnostics.html \ufffd minimal diagnostics (real submission) suppresses it."
+    },
+    {
+      "log": "runs/kernel_pulls/tv28_fork_v1/arc3-tv28-fork.log",
+      "run_key": "runs/kernel_pulls/tv28_fork_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
+    },
+    {
+      "log": "runs/kernel_pulls/tv28_v1/arc3-tv28-fork.log",
+      "run_key": "runs/kernel_pulls/tv28_v1",
+      "has_error": false,
+      "fingerprint": "2fac07761b935898",
+      "stage": "Removed temporary vLLM install at <path>"
     },
     {
       "log": "runs/kernel_pulls/w0_cont_eval/arc3-duck-w0-continuation-eval.log",

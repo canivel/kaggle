@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-29 06:01:02",
+  "generated": "2026-08-30 06:01:10",
   "note": "top20 archives were produced by `leaderboard --show -v | head -N`: no SubmissionCount, no team members, and a visibility floor equal to the min score shown. They CANNOT support a full-board diff or any delta-submissions claim. Full archives come from `leaderboard -d`.",
   "archives": [
     {
@@ -279,6 +279,30 @@
       "supports_full_board_diff": false
     },
     {
+      "file": "lb_2026-08-29.csv",
+      "date": "2026-08-29",
+      "coverage": "top20",
+      "rows": 16,
+      "has_submission_count": false,
+      "visibility_floor": null,
+      "pull_utc": null,
+      "pull_local": "mtime 2026-08-29 06:01:36",
+      "sha256": "30cd7095981510e7",
+      "supports_full_board_diff": false
+    },
+    {
+      "file": "lb_2026-08-30.csv",
+      "date": "2026-08-30",
+      "coverage": "top20",
+      "rows": 15,
+      "has_submission_count": false,
+      "visibility_floor": null,
+      "pull_utc": null,
+      "pull_local": "mtime 2026-08-30 06:01:01",
+      "sha256": "aa927a09ef73a128",
+      "supports_full_board_diff": false
+    },
+    {
       "file": "lb_full_2026-08-15.csv",
       "date": "2026-08-15",
       "coverage": "full",
@@ -456,6 +480,18 @@
       "pull_utc": "2026-08-29T10:01:01Z",
       "pull_local": "2026-08-29 06:01:01",
       "sha256": "a420868632f24b6e",
+      "supports_full_board_diff": true
+    },
+    {
+      "file": "lb_full_2026-08-30.csv",
+      "date": "2026-08-30",
+      "coverage": "full",
+      "rows": 2624,
+      "has_submission_count": true,
+      "visibility_floor": 0.0,
+      "pull_utc": "2026-08-30T10:01:08Z",
+      "pull_local": "2026-08-30 06:01:09",
+      "sha256": "578857f57a8f2fc7",
       "supports_full_board_diff": true
     }
   ]

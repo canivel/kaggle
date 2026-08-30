@@ -165,6 +165,22 @@
    "date": "2026-08-28",
    "planned_action": "SLOT 1 (08-28) TAKEN AT REGISTRATION TIME, pre-push, per the 08-21 lesson. Fresh slug; certified field floor + ONE injected variable (LOCAL_ANALYZER_SEED=20260828), which is ABSENT from the pinned bundle. Treatment-can-fire PROVEN pre-build by direct source read (env -> tool_agent.py:159 -> :1536 -> openai_compat.py, provider vllm, default -1 means no seed on the wire today). Prereg learnings/war_room/seed_arm_prereg_2026-08-28.md SEALED pre-push: n=4 seeded draws committed BEFORE the first, 2-draw reads FORBIDDEN, primary statistic is draw SD vs the floor's 0.2897 (n=7), NOT score. Gates at seal time: q38-seed 55/0, self-test 13/0, q38-field 52/0 (no regression), seed_graft 18/0 incl. 6 negative controls.",
    "registered_by": "iterate session 2026-08-28 at take-time (pre-push)"
+  },
+  {
+   "lane": "bench (paired within-run A/B on the 13-graft stack)",
+   "kernel": "canivel/arc3-tv28-bench",
+   "owner": "iterate session 2026-08-30",
+   "date": "2026-08-30",
+   "planned_action": "SLOT 1 (08-30) TAKEN AT REGISTRATION TIME, pre-push, per the 08-21 lesson. Zero-draw measurement arm: all 17 cells byte-identical to thtennant/arc3-duck-bench, env metadata byte-matched, cells 12+14 transplanted verbatim from that kernel into our tv28 fork. Prereg learnings/war_room/bench_prereg_2026-08-30.md SEALED pre-push: KILL instrument only, n=2/arm on m0r0, A>B is FORBIDDEN from promoting anything. Preflight trusted-fork 0 FAIL / 1 WARN (unpushed). NEVER QUEUED, NEVER SUBMITTED: the replica block is guarded on `not TRUE_SUBMISSION` (build-time assert). NO submissions, NO queue edits (daemon owns the window; head stays the certified field floor).",
+   "registered_by": "iterate session 2026-08-30 at take-time (pre-push)"
+  },
+  {
+   "lane": "bench-sb26 (paired within-run A/B, dynamic-range-corrected)",
+   "kernel": "canivel/arc3-tv28-bench-sb26",
+   "owner": "iterate session 2026-08-30",
+   "date": "2026-08-30",
+   "planned_action": "SLOT 2 (08-30) TAKEN AT REGISTRATION TIME, pre-push. Same bench rig as slot 1 with ONE token changed (BENCH_GAME m0r0 -> sb26), because m0r0 was measured to be the WORST of 25 games for this read (1 of 20 clone replicates ever cleared a level; never cleared 2 in 76 retained runs). Prereg AMENDMENT 1 sealed pre-push. NEVER QUEUED, NEVER SUBMITTED (replica block guarded on `not TRUE_SUBMISSION`, build-time assert). Both daily slots are now SPENT. NO submissions, NO queue edits.",
+   "registered_by": "iterate session 2026-08-30 at take-time (pre-push)"
   }
  ],
  "note_2026_08_21": "Both kernels pushed on 08-21 (06:45, 06:50) were UNREGISTERED until 08:40, i.e. the collision guard was blind for ~2h on the exact failure mode it was created for (the 08-18 v2 double-push). Registering must happen AT push time, not after."

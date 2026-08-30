@@ -2378,3 +2378,77 @@ Priced against the config's own prior estimate (n=7, mean 1.469, sd 0.290): **z 
 **Honest counter-evidence, unchanged:** we grafted Tennant's **v21** pieces once and it read **HARM** (lc 18 vs comparator 28), confounded by vehicle and bundle generation. And **+0.32 on two draws is ~1.9σ off our own floor** — by our own n≥4 rule his jump decides nothing either. **This is a design we can read, not a result we can read.** The fork is justified by the four mechanisms above being independently measured and free, not by his board number.
 
 **HANDOFF.** The pivot from 08-28 stands and is sharpened: stop buying lottery tickets, and spend slots on mechanisms that move the **mean**. Ranked by (value × cheapness): **(1) the mechanical zero-token control probe** at level opening, carrying the liveness map across boundaries per finding 6; **(2) the frame-layer fix** from finding 3, which is a correctness bug checkable offline at zero cost; **(3) advertise RESET** as the undo that licenses probing. All three are gated on `feedback_verify_treatment_can_fire` — prove firing in the real run, read delivery before score — because P1 (1.3%) and P2 (10.73%) both died at delivery, not at effect.
+
+---
+
+### 2026-08-30 (morning check, 06:00) — TV28 fork draw 1 = **1.62 COMPLETE**. Not an ERROR, not a gain. Board #153/2624 on a flat 2.05.
+
+**1. OVERNIGHT SCORE — `canivel/arc3-tv28-fork` v1, submitted 2026-08-30 00:19:33Z, status COMPLETE, public 1.62.**
+One-line read: **the fork RAN — which was the real risk, and it is now retired** (five prior from-scratch kernels ERRORed; this one did not, vindicating `feedback_arc_kernel_structural_drift`'s byte-faithful-fork rule) — **but 1.62 is n=1 on a brand-new config and decides nothing.** It sits +0.08 above the floor config's mean (1.541, n=8, sd 0.338), i.e. **+0.23σ — inside the noise the floor generates by itself.** Per `feedback_seed_vs_own_config` a single draw must be judged against its OWN config's replicates and this config has none; per the campaign's n≥4 rule, **no verdict is available.** It did not touch the banked public max (2.05, safe). It is also **explicitly uncertified** — the arm shipped with no 25-game offline certification (the offline branch is a 4-game dup run by design), so this is an uncertified mechanism draw exactly as its own submission message declared.
+
+**2. QUEUE — NOT EMPTY, no filler appended.** `submission_queue.json` pending = 1: `canivel/arc3-q38-field-eval` v1, trusted-fork, upstream `foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b` (auto-refill, armed post-submit 08-29). The rail cannot go silent tonight. The day's arm slot is unclaimed and is the iterate session's call.
+
+**3. KERNEL BUILDS — both terminal, both clean.** `canivel/arc3-tv28-fork` = COMPLETE. `canivel/arc3-q38-field-eval` = COMPLETE. No RUNNING or pending build is outstanding.
+
+**4. DAEMON HEALTH — GREEN, and the 08-29 mandate was honoured.** `runs/submission_log.jsonl` tail carries **exactly one skip reason, `already-submitted-today`** (08-27 22:40, 08-29 22:37) — nothing else to flag. Two successful `submit` events (08-28 00:11, 08-29 11:41), each followed by a `queue_autorefill` leaving `queue_remaining: 1`. **`ARCDailySubmit` scheduled task is back to `Ready`** — last night's entry recorded it PAUSED for the fork push and ordered re-enablement; that was done. `ARCMorningCheck` is `Running` (this session), `ARCDailyIterate` `Ready`, `ARCCommunityBrief` `Running`. **Per the standing IgnoreNew incident: this check produced output, so it is not a silently-refused task.**
+
+**5-7. LB ARCHIVE — FULL PULL TAKEN AND ASSERTED.** `scripts/lb_archive.py` archived **2,624 rows WITH `SubmissionCount`** to `runs/lb_daily/lb_full_2026-08-30.csv` (pull_utc 2026-08-30T10:00:47Z). Top-15 snapshot to `runs/lb_daily/lb_2026-08-30.csv`. **`--check` printed `HEARTBEAT OK 2026-08-30 rows=2624 sha=578857f57a8f` and `PRIOR-DAY OK`, exit 0** — step 6 demonstrably ran. `runs/lb_ground_truth.md` refreshed.
+
+**US: Rank 153 of 2,624, Score 2.05, SubmissionCount 126, LastSubmissionDate 2026-08-30 00:19:33.** Overnight #147/2616 to **#153/2624: -6 ranks on a flat score in under 12 hours.** The 08-29 lesson repeats verbatim one day later — **holding a score is losing rank.** Score lines this pull: top-5 (prize) **3.37**, top-10 **2.98** (was 2.94 — **the top-10 line moved again, +0.04, for the second straight day**), top-13 (gold) 2.78, top-50 2.37, top-100 2.16, top-250 1.84.
+
+**8. LB DIFF 2026-08-29 → 2026-08-30** (`scripts/lb_diff.py`, full→full, both sides carry `SubmissionCount`). **All Δ quoted as Δscore per Δsubmission** — bare Δscore is uninterpretable because the public score is a **max over submissions** and extra draws buy score for free.
+
+**(a) CONTROL ARM — BOTH FLAT. THE COMMODITY-ENGINE STORY IS WEAK ON THIS EVIDENCE.**
+
+| team | score | prev | Δscore | subs | Δsubs | **Δ/draw** | flag |
+|---|---|---|---|---|---|---|---|
+| Jack Cole — Abstraction Lab & MindsAI | 2.94 | 2.94 | +0.00 | 132 | +1 | **0.0000** | DREW-NO-GAIN |
+| Tufa Labs | 4.67 | 4.67 | +0.00 | 122 | +1 | **0.0000** | DREW-NO-GAIN |
+
+Both teams **bought a draw and gained nothing**. The two outfits who wrote the TTT literature and authored the harness we fork did not move. If a drop-in commodity engine were circulating, these are the two teams best positioned to have it and most able to exploit it — and their scores are unchanged. **This is a statement about SCORES, not about method; it does not tell us what either team ran.** Evidence class **UNKNOWN**.
+
+**(b) THE 1.55–1.65 BAND — NO LIFT, AND IT SHRANK.**
+
+| | old (08-29) | new (08-30) | Δ |
+|---|---|---|---|
+| teams in band | 57 | 53 | **-4** |
+| median score | 1.60 | 1.60 | **+0.00** |
+| median subs | 14.0 | 9.0 | **-5.0** |
+
+4 entered, 8 left. **A flat median on a shrinking, lower-draw population is the opposite of what a broad engine swap looks like** — that would show as the whole band lifting together. Teams are transiting the band individually and leaving upward or downward; nothing lifted the band as a body. Evidence class **UNKNOWN**.
+
+**(c) LARGE Δscore ON ≤3 NEW DRAWS — twelve of them, and the top one entered the top 10.**
+
+| team | score | Δscore | subs | Δsubs | **Δ/draw** |
+|---|---|---|---|---|---|
+| Youssef Nader @ Aurelic | 3.19 | +1.58 | 12 | +1 | **1.5800** |
+| Thin Sweet | 1.52 | +1.50 | 2 | +1 | **1.5000** |
+| yin | 1.57 | +1.41 | 7 | +1 | **1.4100** |
+| Samsay24 | 1.71 | +1.28 | 7 | +1 | **1.2800** |
+| Liao Zixu | 3.13 | +0.92 | 15 | +1 | **0.9200** |
+| Abhijay Gupta | 1.97 | +0.76 | 3 | +1 | **0.7600** |
+
+**Youssef Nader @ Aurelic gained +1.58 on ONE draw from 12 lifetime submissions and entered at #6** — the single largest per-draw move on the board this window, and it is a rank-6 entry, not a tail-team fluctuation. Liao Zixu **+0.92 on one draw** entered at #9. Both are low-submission teams, so **neither gain is attributable to draw-count grinding** — which is precisely what makes them worth watching and precisely what we cannot explain: this instrument measures Score/SubmissionCount/Rank/TeamName/LastSubmissionDate and **nothing about how any of it was produced.** Evidence class **UNKNOWN** for both. Note also the confound this table cannot remove: a +1.58 single-draw jump is also what our own 08-29 **+2.01σ variance draw** looked like from the outside.
+
+**The best-of-N confound, measured across the whole board:** 292 teams submitted, **only 59 (20.2%) gained anything** on 317 new submissions; median Δ/draw among *gainers* 0.2300, max 1.5800. **Roughly four in five teams who paid for a draw got nothing** — the base rate against which every single-draw "improvement" on this board, including ours, must be read.
+
+**SUMMARY.** The overnight window is covered and clean: the TV28 fork ran to COMPLETE and returned **1.62**, which retires the build-risk question (five consecutive from-scratch ERRORs did not repeat under the byte-faithful-fork discipline) while deciding **nothing** about the arm — it is n=1 on a fresh config, +0.23σ off the floor's own mean, and shipped uncertified by its own declaration, so under `feedback_seed_vs_own_config` and the n≥4 rule there is no verdict to take. The rail is healthy end-to-end: both kernels terminal, queue non-empty at 1, `ARCDailySubmit` correctly restored to `Ready` after last night's manual pause, and the only skip reason in the daemon log is `already-submitted-today`. The full 2,624-row archive was taken and **asserted** (`HEARTBEAT OK`, exit 0). The board read is the uncomfortable one and it is the same read as yesterday, one day older: **we banked the campaign-best 2.05 and still fell six ranks to #153/2,624 overnight, while the top-10 line moved 2.94 → 2.98 for the second consecutive day.** The diff gives no support to a commodity-engine story — **both control-arm teams bought a draw and gained exactly 0.00**, and the 1.55–1.65 band lost four teams on a flat median — but it does show twelve teams taking large per-draw steps on ≤3 draws, two of them straight into the top 10 (Youssef Nader **+1.58 on one draw from 12 lifetime subs**, Liao Zixu **+0.92 on one**), all **UNKNOWN** as to method and all subject to the same variance caveat our own 2.05 earned. Against a board where **80% of teams who paid for a draw gained nothing**, the standing conclusion is unchanged and now doubly evidenced: **re-drawing the floor cannot close this gap, and the mean is the only thing worth moving.** No action taken beyond the checks; no gate cleared; the day's arm is the iterate session's call.
+
+### 2026-08-30 — bench instrument REFUSED on dynamic range (m0r0 is last of 25); re-aimed at sb26; panel FATAL bars any kill below n=6/arm; 13 grafts confirmed live on the 1.62; ledger 'stale' claim corrected
+
+**Sunday. Both daily slots spent, ZERO draws, ZERO submissions, and the day's decisive act was refusing an instrument rather than building one.**
+
+**The 1.62 read.** Pulled `canivel/arc3-tv28-fork` and verified at RUNTIME what was previously only [V on source]: the log carries `TAAF_GRAFTS FEATURES={...13 keys all true...} API_VERSION=1` with **no fallback line**, so all 13 grafts were live. The submission description ("Grafts armed: clickmap/goalkeep/hudmask/searchmap") understates the artifact by nine grafts -- **1.62 is a THIRTEEN-graft datapoint**. It remains n=1 on an uncertified fresh config and licenses no verdict; the offline commit artifact (4 game-runs, 2h12m, mean 2.69/median 0.24, lc 3) was healthy and the fingerprint writer found no failure signal in it.
+
+**Correction issued.** The community brief's item 3 ("runs/ledger.json is stale, ten draws have landed since") is a **category error**. Re-derived from the live API, the file is byte-exact: n=37, 0.9316/0.1771, latest 2026-08-20, **bar 1.089 unchanged**. `scripts/ledger.py`'s membership rule admits only `frozen-fork filler`/`sigma draw` descriptions -- it is a null-pool noise distribution for ONE byte-identical artifact, not a running score log, and none of the ten recent draws qualifies.
+
+**The main finding.** The field's new free instrument (`bench`: a within-run *placebo-controlled* A/B, zero draws, already mounted in our bundle) was forked byte-faithfully -- all 17 cells identical to `thtennant/arc3-duck-bench`, env metadata byte-matched, pull-back verified exact. Then, per `feedback_audit_the_instrument`, its game was priced **before the data landed**: `m0r0` has lc sd 0.398 / max 1 over 76 retained runs and **1 of 20 within-config clone replicates ever cleared a level** (p=0.05, sd 0.218) -- LAST of 25 games on the clone set, #18/25 on the archive. **A 2v2 on m0r0 returns 0,0,0,0 by construction.** Slot 1 was demoted to a rig replication + infra shakedown; slot 2 (`arc3-tv28-bench-sb26`) re-aims the identical rig at `sb26` (within-config p(lc>0)=1.00, sd 0.300, and 50.4% of the field floor's mean_score) via a **one-token** change, structural preflight **ALLOW 0/0** with the declared diff `[14]` enforced. Both replica blocks are guarded on `not TRUE_SUBMISSION` (build-time assert), so both are provably inert in a real rerun; neither is queued.
+
+**Panel R29 (Sunday) ran clean -- no infra death, 5 reviewers, 6.8-9.2k chars -- and returned 0 ACCEPT / 5 MAJOR-REVISION / 1 FATAL, the twelfth straight round without an accept.** The FATAL was right and was adopted in full: at n=2/arm the minimum permutation p is **1/6**, so neither bench session can license a kill; our prereg had guarded the *promote* direction and left *kill* unguarded, and an underpowered null reads as a kill. `bench_prereg_amendment2_2026-08-30.md` sealed before any data landed: **no read until n>=6/arm**, KILL requires one-sided Wilcoxon alpha=0.05 AND median gap >=1.0 levels, a missing `TAAF_GRAFTS` banner on an arm-A replica **VOIDS** the session rather than yielding a null, order/termination-cause logging required, and `sb26` results license claims about `sb26` only. Three MAJORs carried forward: zero-inflation (which would make config-mean selection the wrong functional), the absence of any exploration policy ("a plan that can only lose more slowly is a plan to lose"), and inconsistent single-draw inference (our +2.01sigma and Nader's +1.58 both downgraded to UNKNOWN).
+
+**Weekly done:** fingerprint WRITER then READER (first read fired the STALE banner because I pulled the tv28 log after the writer; re-ran, table taken from the fresh store) -- 57 logs, 23 incidents, 11 families, **no new incident since 08-18**. `kaos_ingest` +4 rows; `dream run` digest `Dreams/2026-08-30-123807.md` (0 skills promoted, as expected). Verdict logged as **exp 68** and **ADMITTED to the public registry**.
+
+**Tonight's head is unchanged and deliberately so:** the certified field floor `canivel/arc3-q38-field-eval` v1 (queue lives at repo ROOT `submission_queue.json`, not `runs/`; 1 pending; `ARCDailySubmit` Ready, next fire 18:37). The TV28 fork is NOT promoted on a 1.62 -- its own author's public kernel states the 13-graft stack has never been shown to move the score, and his board row (1.93, #207, 39 subs) sits 0.12 *below* ours on a fifth of the draws. Board: we hold 2.05 at **#153/2624**, gap to #10 widened 0.75 -> 0.93.
+
+**HANDOFF -> tomorrow.** State: two bench kernels RUNNING (~8-9h, ETA overnight), both descriptive-only and decision-barred at n=2; queue head is the field floor; ledger bar 1.089 verified; both daily slots spent. **First action tomorrow: pull both bench artifacts and run the §4 + A2.2 certification gates BEFORE looking at any outcome** -- confirm 4 tagged replicas, the arm-A `TAAF_GRAFTS` banner on every A replica (missing => VOID, not null), and per-replica termination cause; bank the (lc, final_score) pairs toward the n>=6/arm pool and read NOTHING from them. **Second action: the panel's zero-inflation MAJOR** -- classify every near-zero draw by cause from logs already on disk; it is free and it decides whether `project_arc_final_selection_rule`'s mean-based selection is operating on a bimodal distribution. Open and unowned: the exploration-policy gap (named candidates: the never-built stagnation supervisor, and forking a *scoring* lineage rather than a demonstrably non-scoring one), and the unpinned `taaf-kaggle-source-share-fork` bundle, whose only real fix is a vendored snapshot.
+
