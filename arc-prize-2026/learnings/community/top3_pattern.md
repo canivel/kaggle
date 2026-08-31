@@ -420,3 +420,59 @@ which selects the final two submissions by CONFIG MEAN: (a) the kernel shipped *
 grafts while the submission description names four; (b) `dataset_sources` pins the bundle by **slug
 with no version**, and the author republished it **11.5 hours before our draw**. A config whose code
 can change under us has no config mean.
+
+---
+
+## 2026-08-31 — FALSIFIER 1 BREAKS: THE PUBLIC CEILING IS 2.66, AND IT IS A SERVING-FLAG CHANGE
+
+**The standing claim "no public kernel above FOYSAL's 2.23" is dead as of today.** `romantamrazov/arc-real-agi-solution`
+(78 votes, last run 2026-08-29 08:54) is public and pullable, and its author is a member of **The AGI Boys, #22,
+board-verified 2.66, 48 subs** [V]. The kernel's own comment: *"Fallback = exact MTP3+async serving that produced
+2.66 LB"*, alongside *"V31 keeps the V22 gameplay/prompt/tool policy unchanged"* and *"Diagnostic only; no
+action-policy changes"* [V-doc].
+
+**What it changes is four vLLM launch flags and nothing else.** Against the command our own bundles run
+(`setup_commands.json`, identical in the anim bundle and the tennant fork) we are missing `--kv-cache-dtype fp8`,
+`--speculative-config {"method":"mtp","num_speculative_tokens":3}`, `--async-scheduling`, and we run
+`--max-model-len 65536` where they run **262144** [V]. Same wheelhouse (`driessmit1/arc3-vllm-h100-wheelhouse-v3`,
+`vllm==0.19.0`), same model (`foysalemonshanto/qwen3-8-27b-fp8-repacked-v1`) [V]. Our live kernel's rewrite hook
+touches only `MODEL_OWNER`/`MODEL_SLUG`/`SERVED_MODEL_NAME` and never the argv [V].
+
+**The board corroborates the step even though it cannot corroborate the cause.** The AGI Boys:
+**1.51 (08-16..08-18) → 1.71 (08-19) → 2.66 (08-20), then FROZEN at 2.66 for twelve days across eight further
+submissions** [V]. A +0.95 single draw followed by a flat fortnight is a one-time capability change; their kernel
+names the flags as that change. [V-doc, not [V] — no isolated A/B exists.]
+
+**This sharpens "architecture > model" rather than refuting it.** The document has been reading *architecture* as
+**agent** architecture for six weeks. Today's evidence says the cheapest unexploited architecture is **serving**
+architecture — and it is the only mechanism ever ranked here that our own instruments predicted in advance:
+675/675 games dying on a 7920 s wall that is really a fixed ~240k-token budget; 97.6–98.3% of tokens spent in
+hidden reasoning; 12/12 games ending inside an analysis step that never emitted an action; LB 2.50 ⇔ 1.9× budget.
+**Every one of those says the agent is out of tokens, not out of ideas**, and speculative decoding is the one lever
+that buys tokens without touching the policy. It is also architecture-neutral, so unlike every mechanism arm
+screened this month it transfers to the private set intact.
+
+**FALSIFIER 5 (no board validation of any graft) hardened again, from our own rail.** The TV28 fork is now
+**n=2, mean 1.4900 (1.62, 1.36), against the certified floor's 1.541 (n=8, sd 0.338)** — −0.05, i.e. **0.2σ, two
+draws that decided nothing in either direction** [V]. That makes four independent implementations of measured
+mechanisms all sitting below the floor they were built on: **Polyphony 19.8%, BlackCat 1.47, tennant 1.93, ours
+1.49.** The regularity this document has never had to revise held again: **the day's best find came from reading an
+instrument; the day's two worst numbers came from spending draws.**
+
+**Cadence, tenth day.** cstl **+1.52 → 7.51 on ONE draw** (41 lifetime subs, artifact-dark) — a single step larger
+than our entire score. Franzen +0.90 → 4.05; Kopiczko +1.62 → 3.31; Son Pham +1.15 → 3.58; sawada +0.73 → 3.10.
+**None of the five has a public kernel** [V, all usernames queried]. Falsifier 2 (steps, not draw-grinding) untouched:
+no stepper moved more than 2 subs. **Caveat, and it is load-bearing:** 21 teams stepped ≥ +0.60 today against 2
+yesterday, but the **median gain per draw FELL (0.23 → 0.21)** while only the tail moved, and topic 738216 records a
+Kaggle submission-infrastructure fault live on 08-30 and *"resolved"* 08-31 02:26 [V-doc]. **A fat tail on a flat
+median is a released backlog, not a field that got better.** Do not read the surge as 21 capability events.
+
+**Two instrument defects found, both of which have been silently corrupting this document.** (1) `lb_diff` cannot
+tell draws-bought from a **team merge** — it printed "Kyutai: 18 new subs, DREW-NO-GAIN" when `rfbr → Kyutai`
+absorbed Hippolyte Pilchen (who exited at #421) and submission counts added [V]. (2) **The `competitions topics` CLI
+has never printed topic BODIES**; `ApiDiscussionTopic.content` exists and the renderer drops it. One SDK pull
+immediately surfaced numbers no brief had quoted — Nick Pellegrin, topic 736578: *"local scores … around 2.1% …
+public leaderboard around 1.4% … my own harness … local scores around 5.0-5.4%, but my public leaderboard score is
+still around 1.4%"* [V-doc]. **A harness 2.4× better locally scored identically on the board** — third-party
+confirmation of `feedback_screen_calibration_range`, and a direct warning about how much any offline screen
+(including our own bench rig) can license.

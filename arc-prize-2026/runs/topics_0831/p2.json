@@ -1,0 +1,162 @@
+[
+  {
+    "id": 734994,
+    "title": "Dynamic Value Model: 14% on ARC-AGI 3 public eval with DeepSeek V4 Flash (vs 6% baseline)",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 0,
+    "postDate": "2026-08-13T13:13:00.348000"
+  },
+  {
+    "id": 734989,
+    "title": "All my submissions score 0.00 \u2014 even an exact copy of the official Random Agent sample",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 0,
+    "postDate": "2026-08-13T12:47:09.856000"
+  },
+  {
+    "id": 734843,
+    "title": "Potential persistent memory issue with the Tufa Duck harness",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 2,
+    "postDate": "2026-08-12T19:44:06.629000"
+  },
+  {
+    "id": 734677,
+    "title": "Are the hidden evaluation game files available to the agent?",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 0,
+    "postDate": "2026-08-12T11:24:14.042000"
+  },
+  {
+    "id": 734585,
+    "title": "i can't submit to the competition if i have used up my gpu quota, but the competition scoring does not use my gpu quota.",
+    "authorName": "",
+    "commentCount": 5,
+    "votes": 0,
+    "postDate": "2026-08-12T02:54:33.720000"
+  },
+  {
+    "id": 734414,
+    "title": "Submission finishes in ~30s with Phase-A dummy parquet (no gateway / no score badge) \u2014 Phase B not running?",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 0,
+    "postDate": "2026-08-11T13:02:03.052000"
+  },
+  {
+    "id": 734369,
+    "title": "Write Up: Taaf Anim Agent",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 9,
+    "postDate": "2026-08-11T07:55:33.324000"
+  },
+  {
+    "id": 734233,
+    "title": " Five consecutive \"Kaggle Error\" submissions \u2014 anyone else?",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 0,
+    "postDate": "2026-08-10T16:26:19.798000"
+  },
+  {
+    "id": 734092,
+    "title": "Chimpanzee-1.1: An RPS-Trained Model for ARC-AGI-3",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 0,
+    "postDate": "2026-08-09T20:11:52.535000"
+  },
+  {
+    "id": 734054,
+    "title": "Agent.MAX_ACTIONS defaults to 80, the loop takes 81, and the README never mentions it",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 1,
+    "postDate": "2026-08-09T17:04:00.320000"
+  },
+  {
+    "id": 734046,
+    "title": "(Question to competition owners) - 1- Continuity of task similarity of arc-agi-2(cbebaa4b) and arc-agi-3(cn04)",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 0,
+    "postDate": "2026-08-09T16:39:03.428000"
+  },
+  {
+    "id": 733697,
+    "title": "Solved (sort of): \"system error\" persisted across 7 straight submissions, even reproducing the exact code from the only successful run \u2014 fix was a brand-new kernel",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 1,
+    "postDate": "2026-08-07T22:29:12.576000"
+  },
+  {
+    "id": 732974,
+    "title": "A lot of Kaggle errors",
+    "authorName": "",
+    "commentCount": 3,
+    "votes": 0,
+    "postDate": "2026-08-05T11:40:38.205000"
+  },
+  {
+    "id": 732932,
+    "title": "Paper Track team-up: I have a finished write-up but no leaderboard score",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": -3,
+    "postDate": "2026-08-05T06:44:09.863000"
+  },
+  {
+    "id": 732854,
+    "title": "What are your agents scoring on the 25 public games?",
+    "authorName": "",
+    "commentCount": 16,
+    "votes": 7,
+    "postDate": "2026-08-04T19:51:47.319000"
+  },
+  {
+    "id": 732823,
+    "title": "I'm open sourcing two of my solutions.",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 4,
+    "postDate": "2026-08-04T18:19:04.260000"
+  },
+  {
+    "id": 732706,
+    "title": "Looking for a Python/DSL Developer \u2013 Abstract \"Architect\" Mind (100% on Task r11l)",
+    "authorName": "",
+    "commentCount": 4,
+    "votes": 1,
+    "postDate": "2026-08-04T10:16:06.859000"
+  },
+  {
+    "id": 732419,
+    "title": "Minimalistic All-in-One Toolkit for ARC-AGI-3",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 10,
+    "postDate": "2026-08-02T18:28:19.244000"
+  },
+  {
+    "id": 731522,
+    "title": "[LB 1.17] ARC-AGI-3 Qwen3.6 Duck + 300-Game Diagnostics",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 4,
+    "postDate": "2026-07-31T14:32:40.713000"
+  },
+  {
+    "id": 731290,
+    "title": "Question About Dual Notebook Executions During Competition Submission",
+    "authorName": "",
+    "commentCount": 4,
+    "votes": 0,
+    "postDate": "2026-07-31T03:58:01.488000"
+  }
+]

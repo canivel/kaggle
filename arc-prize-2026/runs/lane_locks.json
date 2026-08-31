@@ -181,6 +181,13 @@
    "date": "2026-08-30",
    "planned_action": "SLOT 2 (08-30) TAKEN AT REGISTRATION TIME, pre-push. Same bench rig as slot 1 with ONE token changed (BENCH_GAME m0r0 -> sb26), because m0r0 was measured to be the WORST of 25 games for this read (1 of 20 clone replicates ever cleared a level; never cleared 2 in 76 retained runs). Prereg AMENDMENT 1 sealed pre-push. NEVER QUEUED, NEVER SUBMITTED (replica block guarded on `not TRUE_SUBMISSION`, build-time assert). Both daily slots are now SPENT. NO submissions, NO queue edits.",
    "registered_by": "iterate session 2026-08-30 at take-time (pre-push)"
+  },
+  {
+   "lane": "serving-mtp3 (A24)",
+   "kernel": "canivel/arc3-serving-mtp3",
+   "owner": "iterate session 2026-08-31",
+   "date": "2026-08-31",
+   "planned_action": "push v1 ~08:40 (slot 1/2); 25-game P1 offline screen; read GATE 0 + tok/s vs 266.28+-10.31 per learnings/war_room/serving_arm_prereg_2026-08-31.md; queue head ONLY if FIRES."
   }
  ],
  "note_2026_08_21": "Both kernels pushed on 08-21 (06:45, 06:50) were UNREGISTERED until 08:40, i.e. the collision guard was blind for ~2h on the exact failure mode it was created for (the 08-18 v2 double-push). Registering must happen AT push time, not after."

@@ -109,6 +109,7 @@ def diff(old_rows, new_rows):
             "rank_old": orr["Rank"] if orr else None,
             "last_sub_new": nr["LastSubmissionDate"],
             "members": nr.get("TeamMemberUserNames"),
+            "members_old": orr.get("TeamMemberUserNames") if orr else None,
         }
         rec["d_score"] = _sub(rec["score_new"], rec["score_old"])
         rec["d_subs"] = _sub(rec["subs_new"], rec["subs_old"])
@@ -125,11 +126,76 @@ def diff(old_rows, new_rows):
                 "renamed": False, "status": "EXIT", "score_new": None, "score_old": orr["Score"],
                 "subs_new": None, "subs_old": orr["SubmissionCount"], "rank_new": None,
                 "rank_old": orr["Rank"], "last_sub_new": None, "members": orr.get("TeamMemberUserNames"),
+                "members_old": orr.get("TeamMemberUserNames"),
                 "d_score": None, "d_subs": None, "d_rank": None, "per_draw": None,
                 "flags": ["EXIT"],
             }
         )
+    annotate_merges(recs)
     return recs
+
+
+# ---------------------------------------------------------------------------
+# TEAM-MERGE detection (added 2026-08-31)
+#
+# WHY: SubmissionCount is ADDITIVE on a merge, so a merge looks exactly like a team
+# that bought a pile of draws.  On 2026-08-31 this printed "Kyutai -- 18 new subs,
+# DREW-NO-GAIN", which is a manufactured story about a well-funded lab brute-forcing
+# the board: `rfbr` renamed to `Kyutai` (TeamId 16609552 stable), absorbed a member,
+# and Hippolyte Pilchen's own team EXITed at #421 in the very same diff.  Nobody
+# bought 18 draws.  A flag that invents competitor behaviour is worse than no flag.
+#
+# The check is member-set based: a merge ADDS usernames to the surviving team, and the
+# absorbed team leaves the board in the same window.  Renames alone are NOT merges.
+# ---------------------------------------------------------------------------
+MERGE_MIN_DSUBS = 5  # only volunteer the weaker "grew, no matching exit" reading above this
+
+
+def _member_set(raw):
+    if not raw:
+        return set()
+    return {m.strip() for m in str(raw).replace(";", ",").split(",") if m.strip()}
+
+
+def annotate_merges(recs):
+    """Reclassify additive submission-count jumps that are merges, not bought draws."""
+    exit_owner = {}
+    for r in recs:
+        if r["status"] == "EXIT":
+            for member in _member_set(r.get("members")):
+                exit_owner[member] = r["name"]
+
+    for r in recs:
+        if r["status"] != "present":
+            continue
+        new_members = _member_set(r.get("members"))
+        old_members = _member_set(r.get("members_old"))
+        if not new_members or not old_members:
+            continue  # membership unknown on one side -- say nothing rather than guess
+        added = new_members - old_members
+        if not added:
+            continue
+
+        absorbed = sorted({exit_owner[m] for m in added if m in exit_owner})
+        d_subs = r["d_subs"] or 0
+        if not absorbed and d_subs < MERGE_MIN_DSUBS:
+            continue
+
+        r["merge"] = {
+            "added_members": sorted(added),
+            "absorbed_teams": absorbed,
+            "d_subs": r["d_subs"],
+            "confidence": "confirmed" if absorbed else "probable",
+        }
+        label = "TEAM-MERGE/%s(+%d member(s)%s; dSubs %s is ADDITIVE, not draws bought)" % (
+            r["merge"]["confidence"],
+            len(added),
+            (" absorbing " + ", ".join(absorbed)) if absorbed else "",
+            dfmt(r["d_subs"], "%+d"),
+        )
+        r["flags"] = [label] + [
+            f for f in r["flags"] if not f.startswith("DREW-NO-GAIN")
+        ]
 
 
 def _sub(a, b):
@@ -333,6 +399,11 @@ def render(old_meta, new_meta, recs, degraded, top_n=15):
     A("5. DRAWS BOUGHT vs GAIN  --  the best-of-N confound, measured")
     A("-" * 96)
     withsubs = [r for r in recs if r["d_subs"] is not None and r["d_subs"] > 0]
+    # A merge's submission count is additive, so it is not a draw purchase.  Excluded
+    # from every statistic below and named explicitly -- a silent exclusion would read
+    # as "covered everything".
+    merged = [r for r in withsubs if r.get("merge")]
+    withsubs = [r for r in withsubs if not r.get("merge")]
     if not withsubs or degraded:
         A("   UNAVAILABLE -- needs SubmissionCount on both sides (full archives only).")
     else:
@@ -355,6 +426,15 @@ def render(old_meta, new_meta, recs, degraded, top_n=15):
         A("")
         A("   READ: a team whose dScore/dSub is tiny across many new draws is climbing the max-over-N")
         A("         order statistic, not its agent. A large dScore on 1-3 draws is a step.")
+    if merged:
+        A("")
+        A("   EXCLUDED as TEAM MERGES (submission counts ADD on a merge; these are not bought draws):")
+        for r in sorted(merged, key=lambda r: -(r["d_subs"] or 0)):
+            m = r["merge"]
+            A("   %-30s dSubs %s  [%s] +%s%s"
+              % (r["name"][:30], dfmt(r["d_subs"], "%+d"), m["confidence"],
+                 ", ".join(m["added_members"]),
+                 (" <- " + ", ".join(m["absorbed_teams"])) if m["absorbed_teams"] else ""))
     A("")
 
     # ---- 6. entries / exits ----------------------------------------------

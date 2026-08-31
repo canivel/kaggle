@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-30 06:01:10",
+  "generated": "2026-08-31 06:00:47",
   "note": "top20 archives were produced by `leaderboard --show -v | head -N`: no SubmissionCount, no team members, and a visibility floor equal to the min score shown. They CANNOT support a full-board diff or any delta-submissions claim. Full archives come from `leaderboard -d`.",
   "archives": [
     {
@@ -492,6 +492,18 @@
       "pull_utc": "2026-08-30T10:01:08Z",
       "pull_local": "2026-08-30 06:01:09",
       "sha256": "578857f57a8f2fc7",
+      "supports_full_board_diff": true
+    },
+    {
+      "file": "lb_full_2026-08-31.csv",
+      "date": "2026-08-31",
+      "coverage": "full",
+      "rows": 2651,
+      "has_submission_count": true,
+      "visibility_floor": 0.0,
+      "pull_utc": "2026-08-31T10:00:47Z",
+      "pull_local": "2026-08-31 06:00:47",
+      "sha256": "b017f7a69b3d16a8",
       "supports_full_board_diff": true
     }
   ]

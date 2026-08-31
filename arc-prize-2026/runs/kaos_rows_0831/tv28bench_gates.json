@@ -1,0 +1,23 @@
+[
+  {
+    "gate": "R29",
+    "name": "n>=6 replicates per arm before any kill or promote",
+    "passed": false,
+    "kill": false,
+    "detail": "n=2 per arm on both kernels. Sealed panel rule 2026-08-30 (FATAL). No verdict may be drawn in either direction."
+  },
+  {
+    "gate": "DR",
+    "name": "instrument has dynamic range on the chosen game",
+    "passed": false,
+    "kill": false,
+    "detail": "m0r0: 3 of 4 replicas scored 0.00; already refused 2026-08-30. sb26: has range (2.78-4.36) and passes this gate."
+  },
+  {
+    "gate": "SEP",
+    "name": "arm separation exceeds within-arm spread",
+    "passed": false,
+    "kill": false,
+    "detail": "sb26 arm A spread 1.58 (2.78, 4.36) vs arm gap 0.79. Within-arm spread exceeds the between-arm gap."
+  }
+]

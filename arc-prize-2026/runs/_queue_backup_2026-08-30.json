@@ -4,9 +4,10 @@
       "kernel": "canivel/arc3-q38-field-eval",
       "version": 1,
       "file": "submission.parquet",
-      "message": "ARM 0 CERTIFIED FIELD FLOOR - deliberate head (iterate session 2026-08-31), placed under the SEALED submit rule in learnings/war_room/serving_arm_prereg_2026-08-31.md. Today's build is the A24 SERVING ARM (canivel/arc3-serving-mtp3 v1): the four vLLM launch flags that the 2.66 public-ceiling artifact (romantamrazov/arc-real-agi-solution, The AGI Boys #22) states are the only thing it changed -- kv-cache-dtype fp8, speculative-config mtp/3, async-scheduling, max-model-len 65536->262144 -- on our exact wheelhouse, model pin and machine shape. It heads tonight ONLY if its 25-game offline screen clears the pre-sealed throughput gate (generated tokens/sec > 297.21 = null mean 266.28 + 3sd, n=3). Until that read exists the floor holds the head: it is our best-characterised config (mean 1.5413, n=8) and project_arc_final_selection_rule selects the final two by CONFIG MEAN, so a floor draw tightens the estimate we actually select on. TV28 fork is NOT redrawn: n=2 at mean 1.49 is below the floor and its bench returned VOID at n=2/arm (kaos exp 70).",
+      "message": "AUTO-REFILL 2026-08-29 \u2014 FIELD-FLOOR filler (Arm 0 default nightly head; auto-armed by scripts/daily_submit.py because the queue was empty). Replace with the day's build if one clears the promotion gates. [post-submit]",
       "preflight_mode": "trusted-fork",
-      "upstream": "foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b"
+      "upstream": "foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b",
+      "auto_refill": true
     }
   ],
   "history": [
@@ -551,15 +552,6 @@
       "upstream": "foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b",
       "auto_refill": true,
       "submitted_at": "2026-08-29T11:41:14Z"
-    },
-    {
-      "kernel": "canivel/arc3-tv28-fork",
-      "version": 1,
-      "file": "submission.parquet",
-      "message": "TV28 FORK draw 2 - second draw of the v28 mechanism config (draw 1 = 1.62). Deliberate: draw 1 sits +0.08 over the field-floor mean (1.541, n=8, sd 0.338), which is inside noise and decides nothing at n=1; a second draw is the only way this config becomes readable. Chosen over a 9th floor draw, which adds no information to a config already known to 3 decimals. Public max 2.05 is banked and cannot be lost (score is a max over submissions). Preflight trusted-fork ALLOW, T3 code cells identical to upstream (8 cells).",
-      "preflight_mode": "trusted-fork",
-      "upstream": "thtennant/arc3-duck-v28",
-      "submitted_at": "2026-08-31T00:07:13Z"
     }
   ],
   "notes": [

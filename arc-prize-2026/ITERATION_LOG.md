@@ -2452,3 +2452,60 @@ Both teams **bought a draw and gained nothing**. The two outfits who wrote the T
 
 **HANDOFF -> tomorrow.** State: two bench kernels RUNNING (~8-9h, ETA overnight), both descriptive-only and decision-barred at n=2; queue head is the field floor; ledger bar 1.089 verified; both daily slots spent. **First action tomorrow: pull both bench artifacts and run the §4 + A2.2 certification gates BEFORE looking at any outcome** -- confirm 4 tagged replicas, the arm-A `TAAF_GRAFTS` banner on every A replica (missing => VOID, not null), and per-replica termination cause; bank the (lc, final_score) pairs toward the n>=6/arm pool and read NOTHING from them. **Second action: the panel's zero-inflation MAJOR** -- classify every near-zero draw by cause from logs already on disk; it is free and it decides whether `project_arc_final_selection_rule`'s mean-based selection is operating on a bimodal distribution. Open and unowned: the exploration-policy gap (named candidates: the never-built stagnation supervisor, and forking a *scoring* lineage rather than a demonstrably non-scoring one), and the unpinned `taaf-kaggle-source-share-fork` bundle, whose only real fix is a vendored snapshot.
 
+
+### 2026-08-31 (morning check, 06:00) — TV28 fork draw 2 = **1.36**. The fork's config mean (1.49, n=2) is now BELOW the floor's (1.5413, n=8). Board #173/2651: **-20 ranks on a flat score in 24h**, and the top-10 line moved a third straight day.
+
+**1. OVERNIGHT SCORE — `canivel/arc3-tv28-fork` v1, submitted 2026-08-31 00:07:09Z, status COMPLETE, public 1.36.**
+One-line read: **the second draw came in 0.26 BELOW the first (1.62 → 1.36), and it did the job it was bought to do — it killed the fork's apparent edge.** TV28 config is now **n=2, draws {1.62, 1.36}, mean 1.49**, versus the field-floor config's **1.5413 (n=8, sd 0.3376)**. Draw 1's "+0.08 over the floor" is gone; the fork now sits **-0.05 under it**. No verdict at n=2 — that is exactly the trap `feedback_seed_vs_own_config` warns about and the campaign's n≥4 rule still binds — but the direction is unfavourable, and the honest statement is that **the TV28 mechanism bundle has produced no evidence of a gain over the floor in two draws.** The banked public max 2.05 is untouched (score is a max over submissions).
+
+**2. QUEUE — NOT EMPTY, no filler appended.** `submission_queue.json` pending = 1: `canivel/arc3-q38-field-eval` v1, trusted-fork, upstream `foysalemonshanto/lb-9-arc3-duck-v12-with-qwen-3-8-27b` (auto-refill). The rail cannot go silent tonight. The day's arm slot is unclaimed and is the iterate session's call.
+
+**3. KERNEL BUILDS — both terminal, both clean.** `canivel/arc3-tv28-fork` = COMPLETE. `canivel/arc3-q38-field-eval` = COMPLETE. No RUNNING or pending build outstanding.
+
+**4. DAEMON HEALTH — GREEN.** `runs/submission_log.jsonl` tail carries **exactly one skip reason, `already-submitted-today`** (08-29 22:37, 08-30 22:37) — nothing else to flag. The 08-31 00:07 submit event recorded `ok: true`, `queue_remaining: 1`. **Per the standing `MultipleInstancesPolicy=IgnoreNew` incident: this check produced output, so it is not a silently-refused task.**
+
+**5–7. LB ARCHIVE — FULL PULL TAKEN AND ASSERTED.** `scripts/lb_archive.py` archived **2,651 rows WITH `SubmissionCount`** to `runs/lb_daily/lb_full_2026-08-31.csv` (pull_utc 2026-08-31T10:00:47Z). Top-15 + our row to `runs/lb_daily/lb_2026-08-31.csv`. **`--check` printed `HEARTBEAT OK 2026-08-31 rows=2651 sha=b017f7a69b3d` and `PRIOR-DAY OK`, exit 0** — step 6 demonstrably ran. `runs/lb_ground_truth.md` refreshed.
+
+**US: Rank 173 of 2,651, Score 2.05, SubmissionCount 127, LastSubmissionDate 2026-08-31 00:07:09.** From **#153/2624 to #173/2651: -20 ranks on a flat score in 24 hours**, after -6 the day before — **-26 in 48h while holding the campaign best.** Score lines this pull: top-5 (prize) **4.05** (was 3.37, **+0.68 in one day**), top-10 **3.17** (was 2.98, **third consecutive daily move: 2.80 → 2.94 → 2.98 → 3.17**), top-13 (gold) 2.98, top-50 2.45, top-100 2.21, top-250 1.88. The top-10 line is now **+4.82σ** above our floor config mean.
+
+**8. LB DIFF 2026-08-30 → 2026-08-31** (`scripts/lb_diff.py`, full→full, both sides carry `SubmissionCount`, exit 0). **All Δ quoted as Δscore per Δsubmission** — bare Δscore is uninterpretable because the public score is a **max over submissions** and extra draws buy score for free.
+
+**(a) CONTROL ARM — Jack Cole FLAT for a second day; Tufa Labs DRIFTED +0.04.**
+
+| team | score | prev | Δscore | subs | Δsubs | **Δ/draw** | flag |
+|---|---|---|---|---|---|---|---|
+| Jack Cole — Abstraction Lab & MindsAI | 2.94 | 2.94 | +0.00 | 133 | +1 | **0.0000** | DREW-NO-GAIN |
+| Tufa Labs | 4.71 | 4.67 | **+0.04** | 123 | +1 | **0.0400** | DRIFT |
+
+Jack Cole **bought a draw and gained exactly nothing for the second consecutive day**, and lost 3 ranks doing it. Tufa Labs moved **+0.04 per draw** — `lb_diff.py` flags this as the shared-regime story "surviving the window", and that framing should be read narrowly: **+0.04 is well inside what a single re-draw of an unchanged config buys** (our own floor config's sd is 0.3376, ~8× that). Neither team's movement supports a drop-in commodity-engine story; the authors of the TTT literature and of the harness we fork are, between them, **+0.04 across two draws**. **This is a statement about SCORES, not about method.** Evidence class **UNKNOWN**.
+
+**(b) THE 1.55–1.65 BAND — NO LIFT, AND IT SHRANK AGAIN.**
+
+| | old (08-30) | new (08-31) | Δ |
+|---|---|---|---|
+| teams in band | 53 | 48 | **-5** |
+| median score | 1.60 | 1.60 | **+0.00** |
+| median subs | 9.0 | 9.0 | **+0.0** |
+
+2 entered, 7 left. **Second straight day of a flat median on a shrinking band** (57 → 53 → 48 over three days, median pinned at 1.60 throughout). A broad engine swap would lift the band as a body. It has not lifted once in three days. Evidence class **UNKNOWN**.
+
+**(c) LARGE Δscore ON ≤3 NEW DRAWS — and #1 took the biggest step on the board.**
+
+| team | score | Δscore | subs | Δsubs | **Δ/draw** |
+|---|---|---|---|---|---|
+| SuperVisor | 2.45 | +2.30 | 2 | +1 | **2.3000** |
+| Dawid Kopiczko | 3.31 | +1.62 | 42 | +1 | **1.6200** |
+| Ebi | 2.59 | +1.58 | 3 | +1 | **1.5800** |
+| Bazinga! | 2.54 | +1.57 | 18 | +1 | **1.5700** |
+| **cstl** | **7.51** | **+1.52** | 41 | +1 | **1.5200** |
+| Luca Beridze | 1.41 | +1.26 | 3 | +1 | **1.2600** |
+| Kenneth Lie | 2.31 | +1.10 | 3 | +1 | **1.1000** |
+| Danial Zakaria | 1.35 | +1.06 | 2 | +1 | **1.0600** |
+
+**cstl went 5.99 → 7.51 on ONE draw** and is now **3.7× our banked max**. `SuperVisor` posted the board's largest per-draw move (+2.30) from **2 lifetime submissions** — impossible to attribute to draw-count grinding, and equally impossible to attribute to anything else with this instrument. Evidence class **UNKNOWN** for every row in this table. The standing confound applies to all of them and to us: a +1.5 single-draw jump is also what our own 08-29 **+2.01σ variance draw** looked like from the outside.
+
+**The best-of-N confound, measured across the whole board:** 308 teams submitted, **only 85 (27.6%) gained anything** on 349 new submissions; median Δ/draw among *gainers* 0.2100, max 2.3000. **Kyutai bought 18 draws in one window and gained 0.00** — the cleanest demonstration yet available that draw-count is not score. Roughly **72% of teams who paid for a draw got nothing.**
+
+**SUMMARY.** The overnight window is covered and clean, and it delivered a genuine piece of information rather than a filler draw: **TV28 fork draw 2 returned 1.36**, which is 0.26 below draw 1 and drags the fork's config mean to **1.49 (n=2) — below the field floor's 1.5413 (n=8).** The draw was bought precisely to make that config readable and it did; the readable answer is **no evidence of a gain**, which retires the +0.08 draw 1 appeared to offer without its ever having been significant. No verdict is claimed at n=2. Infrastructure is healthy end-to-end: both kernels COMPLETE, queue non-empty at 1, daemon log carrying only `already-submitted-today`, and the 2,651-row archive taken and **asserted** (`HEARTBEAT OK`, exit 0). The board read is worse than yesterday's and is the same read for a third time: **we hold the campaign-best 2.05 and fell -20 ranks to #173/2,651, -26 over 48 hours**, while the **top-10 line moved for the third straight day (2.80 → 2.94 → 2.98 → 3.17)** and the prize line jumped **+0.68 in a single day** to 4.05. The diff again gives **no support to a commodity-engine story** — Jack Cole drew and gained 0.00 for the second day running, Tufa Labs drifted +0.04, and the 1.55–1.65 band has now shrunk three days straight on a median pinned at 1.60 — while individual teams take very large per-draw steps, **cstl +1.52 on one draw to 7.51**, all **UNKNOWN** as to method. Against a board where **72% of teams who paid for a draw gained nothing and Kyutai bought 18 draws for 0.00**, the standing conclusion hardens: **re-drawing anything cannot close this gap; the config mean is the only quantity worth moving, and neither the floor (1.5413) nor the fork (1.49) is moving it.** No action taken beyond the checks; no gate cleared; the day's arm is the iterate session's call.
+
+### 2026-08-31 — (in progress; stub written at session start)

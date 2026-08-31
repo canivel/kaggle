@@ -1,0 +1,162 @@
+[
+  {
+    "id": 713921,
+    "title": "Action Cap of 5*human baseline clarification",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 1,
+    "postDate": "2026-06-25T09:57:43.470000"
+  },
+  {
+    "id": 713643,
+    "title": "Copied a random notebook, got 0.10 in just 3 hours - what's actually happening under the hood?",
+    "authorName": "",
+    "commentCount": 3,
+    "votes": 2,
+    "postDate": "2026-06-24T20:53:31.234000"
+  },
+  {
+    "id": 712719,
+    "title": "Confused about notebook timeout",
+    "authorName": "",
+    "commentCount": 5,
+    "votes": 0,
+    "postDate": "2026-06-23T10:16:13.261000"
+  },
+  {
+    "id": 710898,
+    "title": "Is the June 30 Phase 1 ranking based on the public or private leaderboard?",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 0,
+    "postDate": "2026-06-20T18:33:48.232000"
+  },
+  {
+    "id": 710054,
+    "title": "Phase A Testing",
+    "authorName": "",
+    "commentCount": 3,
+    "votes": 1,
+    "postDate": "2026-06-20T04:39:07.785000"
+  },
+  {
+    "id": 709542,
+    "title": "How I'm Building 'Expert' Datasets",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 0,
+    "postDate": "2026-06-19T04:48:09.831000"
+  },
+  {
+    "id": 709355,
+    "title": "View your run time and the historical leaderboard",
+    "authorName": "",
+    "commentCount": 5,
+    "votes": 19,
+    "postDate": "2026-06-18T11:04:47.252000"
+  },
+  {
+    "id": 708633,
+    "title": "Kaggle error -  will using qwen model affect the submission status?",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 0,
+    "postDate": "2026-06-16T14:37:27.170000"
+  },
+  {
+    "id": 708000,
+    "title": "How to get rid of: | INFO | Successfully fetched metadata for game",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 0,
+    "postDate": "2026-06-13T00:08:55.363000"
+  },
+  {
+    "id": 707927,
+    "title": "Common Approaches?",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 0,
+    "postDate": "2026-06-12T16:53:44.640000"
+  },
+  {
+    "id": 707925,
+    "title": "Exploit on .py game file",
+    "authorName": "",
+    "commentCount": 3,
+    "votes": 0,
+    "postDate": "2026-06-12T16:38:21.020000"
+  },
+  {
+    "id": 707901,
+    "title": "[ARC-AGI-3] Persistent Hidden Test Crashes: Heartbeats, Pydantic Validation, and TTA Overhead",
+    "authorName": "",
+    "commentCount": 3,
+    "votes": 0,
+    "postDate": "2026-06-12T13:55:12.155000"
+  },
+  {
+    "id": 707862,
+    "title": "Is the public game bp35 broken?",
+    "authorName": "",
+    "commentCount": 9,
+    "votes": 2,
+    "postDate": "2026-06-12T07:37:19.563000"
+  },
+  {
+    "id": 707717,
+    "title": "Can we assume grid size?",
+    "authorName": "",
+    "commentCount": 1,
+    "votes": 1,
+    "postDate": "2026-06-11T16:06:16.148000"
+  },
+  {
+    "id": 705499,
+    "title": "What is the current_score in this competition? ",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 1,
+    "postDate": "2026-06-10T15:07:05.541000"
+  },
+  {
+    "id": 705424,
+    "title": "[Dataset] ARC-AGI-3 Human Trajectory Dataset on Hugging Face \u2013 Fueling Top-Down Action Planning?",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 2,
+    "postDate": "2026-06-10T04:14:55.513000"
+  },
+  {
+    "id": 705235,
+    "title": "What's the evaluation metric on kaggle?",
+    "authorName": "",
+    "commentCount": 0,
+    "votes": 0,
+    "postDate": "2026-06-09T07:10:18.717000"
+  },
+  {
+    "id": 705198,
+    "title": "Submissions count per day",
+    "authorName": "",
+    "commentCount": 4,
+    "votes": 1,
+    "postDate": "2026-06-09T00:14:28.826000"
+  },
+  {
+    "id": 705094,
+    "title": "5 submissions/day disabled",
+    "authorName": "",
+    "commentCount": 4,
+    "votes": 2,
+    "postDate": "2026-06-08T17:35:59.722000"
+  },
+  {
+    "id": 705068,
+    "title": "What is FrameDataRaw? I want to know about the data structure that the agent observes.",
+    "authorName": "",
+    "commentCount": 2,
+    "votes": 0,
+    "postDate": "2026-06-08T16:36:06.991000"
+  }
+]

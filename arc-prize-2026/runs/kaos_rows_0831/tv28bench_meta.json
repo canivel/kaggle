@@ -1,0 +1,49 @@
+{
+  "prereg": {
+    "file": "learnings/war_room/ (tv28 bench rig, staged 2026-08-30)",
+    "seal_date": "2026-08-30",
+    "verdict_date": "2026-08-31"
+  },
+  "mechanism": "Two Kaggle GPU kernels (canivel/arc3-tv28-bench, canivel/arc3-tv28-bench-sb26) each replay ONE ARC-AGI-3 public game as FOUR tagged replicas of the same offline environment (taaf_grafts.bench.make_replicas assigns distinct external_game_id values so the taaf Benchmark unique-id check passes), split into two arms of two clones each. The arm letter is read back out of each run's own artifact path so the label cannot drift from what was played. Purpose: decide the 13-graft 'TV28 fork' agent-side stack (goalkeep/hudmask/clickmap/searchmap/clockwatch/lawbook installed via the harness's cell-12 flags dict) against its own ungrafted control WITHOUT spending public leaderboard draws.",
+  "design": "1 game x 4 replicas x 1 pass, 7920 s per-game wall clock, concurrency as shipped. Two games attempted on separate kernels: m0r0-492f87ba and sb26-7fbdac44.",
+  "sealed_reading_rule": "Panel rule R29 (FATAL, sealed 2026-08-30): no arm may be KILLED on fewer than n=6 replicates per arm. By symmetry it may not be PROMOTED on fewer either. The rig delivers n=2/arm per kernel-day.",
+  "measured": {
+    "m0r0_arm_scores": {
+      "A0": 4.76,
+      "A1": 0.0,
+      "B0": 0.0,
+      "B1": 0.0,
+      "mean": 1.19,
+      "median": 0.0
+    },
+    "sb26_arm_scores": {
+      "A0": 2.78,
+      "A1": 4.36,
+      "B0": 2.78,
+      "B1": 2.78,
+      "arm_A_mean": 3.57,
+      "arm_B_mean": 2.78,
+      "delta": 0.79
+    },
+    "n_per_arm": 2,
+    "m0r0_generated_tokens_per_game": [
+      243393,
+      241748,
+      244193,
+      239142
+    ],
+    "m0r0_tokens_mean": 242119,
+    "m0r0_tokens_sd": 2100,
+    "m0r0_tokens_cv_pct": 0.9,
+    "wallclock_per_game_s": 7920,
+    "all_games_died_on_clock": true
+  },
+  "robustness": "m0r0 had already been REFUSED as an instrument on 2026-08-30 for lack of dynamic range (it is last of the 25 public games by score; only 1 of 20 archived clones ever scored). Its 4.76/0.00/0.00/0.00 read confirms that refusal rather than contradicting it. sb26 was the re-aimed instrument and does show dynamic range, but at n=2/arm the +0.79 arm gap is uninterpretable against a control whose own two clones landed on the identical value (2.78, 2.78) while the treated arm's landed 1.58 apart.",
+  "summary": "A 4-replica single-game A/B bench built to decide a 13-mechanism agent stack without spending leaderboard draws returned NO VERDICT: at n=2 per arm it is below the pre-sealed n=6 bar in both directions. The same artifact did, however, measure something with high precision: across four full-length replays of one game, GENERATED TOKENS PER GAME was 242,119 +/- 2,100 (0.9% CV) and all four runs terminated on the 7920 s wall clock, never on the action cap.",
+  "lesson": "When an agent-side mechanism's effect size is small relative to per-run variance, a cheap replicate bench does not become informative by being cheap -- it becomes informative only at the replicate count the sealed rule already named, and you should compute that count BEFORE building the rig. The rig cost two GPU-kernel days and returned a number nobody may act on. Conversely, the same run's INCIDENTAL instrumentation (tokens generated per fixed-wall-clock game) had a 0.9% coefficient of variation, i.e. roughly 40x the precision of the score channel it was built to read. If your outcome metric is noisy, look for a tightly-distributed upstream quantity in the same artifact and test the mechanism there instead.",
+  "why_informative": "This null rules out the cheap-replicate route to resolving the graft stack: the design cannot reach its own sealed decision bar within any affordable number of kernel-days, so 'run the bench again' is not a plan. That matters because the stack it was built to judge has now also been drawn twice on the public board (1.62, 1.36; config mean 1.49 vs the ungrafted floor's 1.5413 at n=8), and neither channel can separate the arms. The informative content is therefore about MEASUREMENT DESIGN, not about the grafts: after 13 mechanisms, 2 public draws and 2 bench kernels, the treatment effect remains smaller than the noise of every instrument aimed at it. The precisely-measured token constant in the same artifact is what redirected the next build to the serving layer.",
+  "artifacts": [
+    "runs/bench_pull_0831/a/summary.txt",
+    "runs/bench_pull_0831/b/summary.txt"
+  ]
+}

@@ -1,0 +1,1562 @@
+{
+ "713634": {
+  "id": 713634,
+  "title": "Clarification on deadline for milestone prizes",
+  "authorName": "",
+  "commentCount": 5,
+  "votes": 4,
+  "postDate": "2026-06-24T20:36:05.362000"
+ },
+ "705405": {
+  "id": 705405,
+  "title": "Correcting an Error in Competition Submission Limits",
+  "authorName": "",
+  "commentCount": 12,
+  "votes": 2,
+  "postDate": "2026-06-09T21:39:16.349000"
+ },
+ "697944": {
+  "id": 697944,
+  "title": "Update on Code Requirements",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 11,
+  "postDate": "2026-05-07T22:16:59.523000"
+ },
+ "697720": {
+  "id": 697720,
+  "title": "Update on accelerators",
+  "authorName": "",
+  "commentCount": 6,
+  "votes": 9,
+  "postDate": "2026-05-07T02:12:48.865000"
+ },
+ "695158": {
+  "id": 695158,
+  "title": "Upgraded accelerators",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 20,
+  "postDate": "2026-04-28T18:20:14.975000"
+ },
+ "687384": {
+  "id": 687384,
+  "title": "Welcome to ARC Prize 2026 - ARC-AGI-3 Edition",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 7,
+  "postDate": "2026-04-02T22:37:13.554000"
+ },
+ "684625": {
+  "id": 684625,
+  "title": "How to get started + Competition's Official Discord",
+  "authorName": "",
+  "commentCount": 9,
+  "votes": 8,
+  "postDate": "2026-03-25T16:40:49.697000"
+ },
+ "738294": {
+  "id": 738294,
+  "title": "Unofficial full game names",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 3,
+  "postDate": "2026-08-31T05:19:32.301000"
+ },
+ "738216": {
+  "id": 738216,
+  "title": "Successful run with 25-public set data failed when submitting",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 0,
+  "postDate": "2026-08-30T15:03:47.125000"
+ },
+ "737617": {
+  "id": 737617,
+  "title": "Sudden increase in top 3 teams?",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 6,
+  "postDate": "2026-08-26T11:51:51.429000"
+ },
+ "737230": {
+  "id": 737230,
+  "title": "This competition is actually hilarious.",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": -8,
+  "postDate": "2026-08-24T11:47:55.304000"
+ },
+ "737227": {
+  "id": 737227,
+  "title": "Submission still shows Running >11h",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 1,
+  "postDate": "2026-08-24T11:24:25.677000"
+ },
+ "736578": {
+  "id": 736578,
+  "title": "Public vs. Private Discrepancy",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 4,
+  "postDate": "2026-08-21T15:56:38.510000"
+ },
+ "736540": {
+  "id": 736540,
+  "title": "non-official games for training",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 4,
+  "postDate": "2026-08-21T12:05:03.095000"
+ },
+ "735662": {
+  "id": 735662,
+  "title": "qwen3.8-27B model vs dataset",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 1,
+  "postDate": "2026-08-17T13:03:23.553000"
+ },
+ "735590": {
+  "id": 735590,
+  "title": "ARC-AGI-3 run went backwards on the leaderboard. What are we missing?",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 1,
+  "postDate": "2026-08-17T03:31:36.172000"
+ },
+ "735479": {
+  "id": 735479,
+  "title": "Qwen 3.8 27B",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 2,
+  "postDate": "2026-08-16T07:14:27.311000"
+ },
+ "735381": {
+  "id": 735381,
+  "title": "Too many High Score",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 1,
+  "postDate": "2026-08-15T12:34:04.180000"
+ },
+ "735243": {
+  "id": 735243,
+  "title": "Qwen 3.8 release",
+  "authorName": "",
+  "commentCount": 19,
+  "votes": 5,
+  "postDate": "2026-08-14T16:53:32.610000"
+ },
+ "735147": {
+  "id": 735147,
+  "title": "Submission stuck in \"Queued\" (RTX Pro 6000) for 28+ min — anyone else?",
+  "authorName": "",
+  "commentCount": 7,
+  "votes": 2,
+  "postDate": "2026-08-14T07:52:44.224000"
+ },
+ "686503": {
+  "id": 686503,
+  "title": "5 Minute Commit Run Limit",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-03-31T15:55:22.019000"
+ },
+ "686501": {
+  "id": 686501,
+  "title": "setup arc engine agents?",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 3,
+  "postDate": "2026-03-31T15:44:50.336000"
+ },
+ "686416": {
+  "id": 686416,
+  "title": "Simplified submission framework",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 40,
+  "postDate": "2026-03-31T07:29:19.755000"
+ },
+ "686155": {
+  "id": 686155,
+  "title": "Is it possible to develop and test my code for this competition locally? Any workarounds?",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 5,
+  "postDate": "2026-03-30T15:36:37.300000"
+ },
+ "686041": {
+  "id": 686041,
+  "title": "Submission limit: only 1 per day?",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 1,
+  "postDate": "2026-03-30T07:33:40.102000"
+ },
+ "685939": {
+  "id": 685939,
+  "title": "hi friend i have a problem in setup agents package in this competition is you can have solution to this problem,thank yo?",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 1,
+  "postDate": "2026-03-29T19:40:18.142000"
+ },
+ "685805": {
+  "id": 685805,
+  "title": "What does 0.25 on LB mean?",
+  "authorName": "",
+  "commentCount": 18,
+  "votes": 14,
+  "postDate": "2026-03-29T04:04:38.916000"
+ },
+ "685469": {
+  "id": 685469,
+  "title": "Before Solving ARC, Should We Redefine the Problem Itself?",
+  "authorName": "",
+  "commentCount": 6,
+  "votes": 2,
+  "postDate": "2026-03-28T08:00:07.545000"
+ },
+ "685364": {
+  "id": 685364,
+  "title": "How many of you guys are using AutoResearch 🙂",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-03-27T19:33:44.931000"
+ },
+ "685007": {
+  "id": 685007,
+  "title": "Does using Claude Code/ Codex/ Gemini make you work more or less",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 5,
+  "postDate": "2026-03-26T16:26:24.230000"
+ },
+ "684969": {
+  "id": 684969,
+  "title": " Kaggle Error displayed after submission.",
+  "authorName": "",
+  "commentCount": 10,
+  "votes": 3,
+  "postDate": "2026-03-26T14:44:49.714000"
+ },
+ "684898": {
+  "id": 684898,
+  "title": "environment_files folder purpose",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 3,
+  "postDate": "2026-03-26T12:25:49.367000"
+ },
+ "684852": {
+  "id": 684852,
+  "title": "Do we run on public and private test set?",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 4,
+  "postDate": "2026-03-26T08:33:12.559000"
+ },
+ "684724": {
+  "id": 684724,
+  "title": "Intended compute budget",
+  "authorName": "",
+  "commentCount": 7,
+  "votes": 9,
+  "postDate": "2026-03-25T21:45:05.051000"
+ },
+ "684682": {
+  "id": 684682,
+  "title": "Ambiguity in prize rules",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 0,
+  "postDate": "2026-03-25T19:24:46.846000"
+ },
+ "734994": {
+  "id": 734994,
+  "title": "Dynamic Value Model: 14% on ARC-AGI 3 public eval with DeepSeek V4 Flash (vs 6% baseline)",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-08-13T13:13:00.348000"
+ },
+ "734989": {
+  "id": 734989,
+  "title": "All my submissions score 0.00 — even an exact copy of the official Random Agent sample",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 0,
+  "postDate": "2026-08-13T12:47:09.856000"
+ },
+ "734843": {
+  "id": 734843,
+  "title": "Potential persistent memory issue with the Tufa Duck harness",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 2,
+  "postDate": "2026-08-12T19:44:06.629000"
+ },
+ "734677": {
+  "id": 734677,
+  "title": "Are the hidden evaluation game files available to the agent?",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-08-12T11:24:14.042000"
+ },
+ "734585": {
+  "id": 734585,
+  "title": "i can't submit to the competition if i have used up my gpu quota, but the competition scoring does not use my gpu quota.",
+  "authorName": "",
+  "commentCount": 5,
+  "votes": 0,
+  "postDate": "2026-08-12T02:54:33.720000"
+ },
+ "734414": {
+  "id": 734414,
+  "title": "Submission finishes in ~30s with Phase-A dummy parquet (no gateway / no score badge) — Phase B not running?",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-08-11T13:02:03.052000"
+ },
+ "734369": {
+  "id": 734369,
+  "title": "Write Up: Taaf Anim Agent",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 9,
+  "postDate": "2026-08-11T07:55:33.324000"
+ },
+ "734233": {
+  "id": 734233,
+  "title": " Five consecutive \"Kaggle Error\" submissions — anyone else?",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-08-10T16:26:19.798000"
+ },
+ "734092": {
+  "id": 734092,
+  "title": "Chimpanzee-1.1: An RPS-Trained Model for ARC-AGI-3",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-08-09T20:11:52.535000"
+ },
+ "734054": {
+  "id": 734054,
+  "title": "Agent.MAX_ACTIONS defaults to 80, the loop takes 81, and the README never mentions it",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 1,
+  "postDate": "2026-08-09T17:04:00.320000"
+ },
+ "734046": {
+  "id": 734046,
+  "title": "(Question to competition owners) - 1- Continuity of task similarity of arc-agi-2(cbebaa4b) and arc-agi-3(cn04)",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-08-09T16:39:03.428000"
+ },
+ "733697": {
+  "id": 733697,
+  "title": "Solved (sort of): \"system error\" persisted across 7 straight submissions, even reproducing the exact code from the only successful run — fix was a brand-new kernel",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 1,
+  "postDate": "2026-08-07T22:29:12.576000"
+ },
+ "732974": {
+  "id": 732974,
+  "title": "A lot of Kaggle errors",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 0,
+  "postDate": "2026-08-05T11:40:38.205000"
+ },
+ "732932": {
+  "id": 732932,
+  "title": "Paper Track team-up: I have a finished write-up but no leaderboard score",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": -3,
+  "postDate": "2026-08-05T06:44:09.863000"
+ },
+ "732854": {
+  "id": 732854,
+  "title": "What are your agents scoring on the 25 public games?",
+  "authorName": "",
+  "commentCount": 16,
+  "votes": 7,
+  "postDate": "2026-08-04T19:51:47.319000"
+ },
+ "732823": {
+  "id": 732823,
+  "title": "I'm open sourcing two of my solutions.",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 4,
+  "postDate": "2026-08-04T18:19:04.260000"
+ },
+ "732706": {
+  "id": 732706,
+  "title": "Looking for a Python/DSL Developer – Abstract \"Architect\" Mind (100% on Task r11l)",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 1,
+  "postDate": "2026-08-04T10:16:06.859000"
+ },
+ "732419": {
+  "id": 732419,
+  "title": "Minimalistic All-in-One Toolkit for ARC-AGI-3",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 10,
+  "postDate": "2026-08-02T18:28:19.244000"
+ },
+ "731522": {
+  "id": 731522,
+  "title": "[LB 1.17] ARC-AGI-3 Qwen3.6 Duck + 300-Game Diagnostics",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 4,
+  "postDate": "2026-07-31T14:32:40.713000"
+ },
+ "731290": {
+  "id": 731290,
+  "title": "Question About Dual Notebook Executions During Competition Submission",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 0,
+  "postDate": "2026-07-31T03:58:01.488000"
+ },
+ "730225": {
+  "id": 730225,
+  "title": "Active Neuro-Symbolic Search Engine via Minimum Description Length for Interactive ARC-AGI-3",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": -5,
+  "postDate": "2026-07-28T13:52:03.913000"
+ },
+ "729985": {
+  "id": 729985,
+  "title": "Three clarifications on final scoring mechanics",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 0,
+  "postDate": "2026-07-27T15:26:44.662000"
+ },
+ "728934": {
+  "id": 728934,
+  "title": "Claude Opus 5 achieves 30% on ARC-AGI-3",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 5,
+  "postDate": "2026-07-24T19:04:07.140000"
+ },
+ "728350": {
+  "id": 728350,
+  "title": "Level pass animation - snake halucination",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": -1,
+  "postDate": "2026-07-23T00:00:21.391000"
+ },
+ "728299": {
+  "id": 728299,
+  "title": "Reading the score exactly: finishing 4 of 6 levels scores 47.6, not 66.7",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 1,
+  "postDate": "2026-07-22T19:26:16.861000"
+ },
+ "728278": {
+  "id": 728278,
+  "title": "Is 100% Accuracy Realistic With the Available Compute?",
+  "authorName": "",
+  "commentCount": 11,
+  "votes": 0,
+  "postDate": "2026-07-22T17:54:08.253000"
+ },
+ "728220": {
+  "id": 728220,
+  "title": "When will arc-agi 0.9.9 be available in Competition Notebooks?",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 2,
+  "postDate": "2026-07-22T12:51:38.522000"
+ },
+ "728210": {
+  "id": 728210,
+  "title": "A clarification for the input that enters the agent, FOR THE SAKE OF BETTER SCORE",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": -5,
+  "postDate": "2026-07-22T11:54:55.930000"
+ },
+ "727629": {
+  "id": 727629,
+  "title": "https://schema-harness.github.io/   pub 99%",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 5,
+  "postDate": "2026-07-20T01:08:08.592000"
+ },
+ "727505": {
+  "id": 727505,
+  "title": "Constraint Before Control: A Semantic Architecture for ARC-AGI-3",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 1,
+  "postDate": "2026-07-19T08:13:45.183000"
+ },
+ "727119": {
+  "id": 727119,
+  "title": "500 Submissions Analyzed - Common Errors",
+  "authorName": "",
+  "commentCount": 5,
+  "votes": 11,
+  "postDate": "2026-07-17T20:13:03.261000"
+ },
+ "726903": {
+  "id": 726903,
+  "title": "x(-1)/week is scary.",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 1,
+  "postDate": "2026-07-17T00:33:33.362000"
+ },
+ "726552": {
+  "id": 726552,
+  "title": "Run-to-run variance in the public score for a fixed agent",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 1,
+  "postDate": "2026-07-15T18:17:15.165000"
+ },
+ "726367": {
+  "id": 726367,
+  "title": "How long do you think it'll take until we reach AGI?",
+  "authorName": "",
+  "commentCount": 7,
+  "votes": -2,
+  "postDate": "2026-07-15T07:35:48.204000"
+ },
+ "726340": {
+  "id": 726340,
+  "title": "GPT-5.6 Sol sets a new SOTA on ARC-AGI-3: 7.8%",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-07-15T05:51:42.294000"
+ },
+ "725002": {
+  "id": 725002,
+  "title": "ARC Prize 2026: ARC-AGI-3 Milestone Prize #1",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 13,
+  "postDate": "2026-07-13T22:58:36.019000"
+ },
+ "724890": {
+  "id": 724890,
+  "title": "About using GPU RTX PRO 6000",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 4,
+  "postDate": "2026-07-13T13:11:38.850000"
+ },
+ "724841": {
+  "id": 724841,
+  "title": "Submit Error ~30min? Check for resource.setrlimit(RLIMIT_AS, ...)",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-07-13T07:58:53.196000"
+ },
+ "723792": {
+  "id": 723792,
+  "title": "Kaggle Error after submission",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 0,
+  "postDate": "2026-07-08T08:16:54.538000"
+ },
+ "723752": {
+  "id": 723752,
+  "title": "rerun 中读取 environment_files 自建本地模拟器是否合规",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": -2,
+  "postDate": "2026-07-08T02:05:32.434000"
+ },
+ "723601": {
+  "id": 723601,
+  "title": "Need Team ",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 0,
+  "postDate": "2026-07-07T13:18:45.405000"
+ },
+ "720662": {
+  "id": 720662,
+  "title": "Bottleneck: Human playable synthetic game generation(assuming game types, need +25000 not 25 games)",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 1,
+  "postDate": "2026-07-06T00:49:22.677000"
+ },
+ "718638": {
+  "id": 718638,
+  "title": "Clarification requested: does a no-op ACTION6 (unchanged frame) count as an action on the scored server?",
+  "authorName": "",
+  "commentCount": 6,
+  "votes": 2,
+  "postDate": "2026-07-03T20:03:33.968000"
+ },
+ "718572": {
+  "id": 718572,
+  "title": "looking for teammates.",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 1,
+  "postDate": "2026-07-03T17:46:30.690000"
+ },
+ "717778": {
+  "id": 717778,
+  "title": "What does it look like if you exceed the 9h limit on computation?",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-07-02T13:44:38.763000"
+ },
+ "717133": {
+  "id": 717133,
+  "title": "Tufa Labs’ Winning Solution for ARC-AGI-3 Milestone 1",
+  "authorName": "",
+  "commentCount": 18,
+  "votes": 63,
+  "postDate": "2026-07-01T14:47:58.064000"
+ },
+ "717055": {
+  "id": 717055,
+  "title": "Bug: Score mismatch in Notebooks Page",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-07-01T12:23:57.129000"
+ },
+ "716719": {
+  "id": 716719,
+  "title": "Code for milestone 3rd place open sourced [LB 0.86]",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 7,
+  "postDate": "2026-06-30T22:12:53.127000"
+ },
+ "716711": {
+  "id": 716711,
+  "title": "[0.79 public score] Open source code for Milestone 1 - Gemma 4 31B QAT Pruned Vocab + LeWM/JEPA dynamics model",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 8,
+  "postDate": "2026-06-30T21:44:41.613000"
+ },
+ "716696": {
+  "id": 716696,
+  "title": "Code for milestone 1st place open sourced - writeup tomorrow",
+  "authorName": "",
+  "commentCount": 16,
+  "votes": 37,
+  "postDate": "2026-06-30T21:10:43.953000"
+ },
+ "716691": {
+  "id": 716691,
+  "title": "Suggestion for next ARC Prize competition!",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-06-30T21:04:43.918000"
+ },
+ "716637": {
+  "id": 716637,
+  "title": "Milestone Update: Adaptive Strategy Under Changing Conditions",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": -3,
+  "postDate": "2026-06-30T19:40:23.032000"
+ },
+ "716504": {
+  "id": 716504,
+  "title": "Find out if game level or game is concluded",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 0,
+  "postDate": "2026-06-30T17:01:16.471000"
+ },
+ "716369": {
+  "id": 716369,
+  "title": "Insanely Fast Scoring?",
+  "authorName": "",
+  "commentCount": 6,
+  "votes": 1,
+  "postDate": "2026-06-30T13:32:35.369000"
+ },
+ "716295": {
+  "id": 716295,
+  "title": "Submission parallelism questions",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 1,
+  "postDate": "2026-06-30T10:45:06.659000"
+ },
+ "715721": {
+  "id": 715721,
+  "title": "Huge discrepancy between public and hidden results?",
+  "authorName": "",
+  "commentCount": 7,
+  "votes": 0,
+  "postDate": "2026-06-29T08:46:28.234000"
+ },
+ "715611": {
+  "id": 715611,
+  "title": "[Dataset] 🚀 Released Human VCGT Dataset: Human Video + LLM-Annotated Explanations for Imitation Learning",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 6,
+  "postDate": "2026-06-29T02:28:40.759000"
+ },
+ "714574": {
+  "id": 714574,
+  "title": "Broken link in data page",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-06-26T15:06:16.785000"
+ },
+ "714501": {
+  "id": 714501,
+  "title": "Which information is actually available in a submission? API documentation",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 1,
+  "postDate": "2026-06-26T12:17:45.616000"
+ },
+ "714128": {
+  "id": 714128,
+  "title": "Solver stops after 3 hours despite 8-hour documentation",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 0,
+  "postDate": "2026-06-25T17:37:43.824000"
+ },
+ "713921": {
+  "id": 713921,
+  "title": "Action Cap of 5*human baseline clarification",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 1,
+  "postDate": "2026-06-25T09:57:43.470000"
+ },
+ "713643": {
+  "id": 713643,
+  "title": "Copied a random notebook, got 0.10 in just 3 hours - what's actually happening under the hood?",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 2,
+  "postDate": "2026-06-24T20:53:31.234000"
+ },
+ "712719": {
+  "id": 712719,
+  "title": "Confused about notebook timeout",
+  "authorName": "",
+  "commentCount": 5,
+  "votes": 0,
+  "postDate": "2026-06-23T10:16:13.261000"
+ },
+ "710898": {
+  "id": 710898,
+  "title": "Is the June 30 Phase 1 ranking based on the public or private leaderboard?",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-06-20T18:33:48.232000"
+ },
+ "710054": {
+  "id": 710054,
+  "title": "Phase A Testing",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 1,
+  "postDate": "2026-06-20T04:39:07.785000"
+ },
+ "709542": {
+  "id": 709542,
+  "title": "How I'm Building 'Expert' Datasets",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-06-19T04:48:09.831000"
+ },
+ "709355": {
+  "id": 709355,
+  "title": "View your run time and the historical leaderboard",
+  "authorName": "",
+  "commentCount": 5,
+  "votes": 19,
+  "postDate": "2026-06-18T11:04:47.252000"
+ },
+ "708633": {
+  "id": 708633,
+  "title": "Kaggle error -  will using qwen model affect the submission status?",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-06-16T14:37:27.170000"
+ },
+ "708000": {
+  "id": 708000,
+  "title": "How to get rid of: | INFO | Successfully fetched metadata for game",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-06-13T00:08:55.363000"
+ },
+ "707927": {
+  "id": 707927,
+  "title": "Common Approaches?",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-06-12T16:53:44.640000"
+ },
+ "707925": {
+  "id": 707925,
+  "title": "Exploit on .py game file",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 0,
+  "postDate": "2026-06-12T16:38:21.020000"
+ },
+ "707901": {
+  "id": 707901,
+  "title": "[ARC-AGI-3] Persistent Hidden Test Crashes: Heartbeats, Pydantic Validation, and TTA Overhead",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 0,
+  "postDate": "2026-06-12T13:55:12.155000"
+ },
+ "707862": {
+  "id": 707862,
+  "title": "Is the public game bp35 broken?",
+  "authorName": "",
+  "commentCount": 9,
+  "votes": 2,
+  "postDate": "2026-06-12T07:37:19.563000"
+ },
+ "707717": {
+  "id": 707717,
+  "title": "Can we assume grid size?",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 1,
+  "postDate": "2026-06-11T16:06:16.148000"
+ },
+ "705499": {
+  "id": 705499,
+  "title": "What is the current_score in this competition? ",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 1,
+  "postDate": "2026-06-10T15:07:05.541000"
+ },
+ "705424": {
+  "id": 705424,
+  "title": "[Dataset] ARC-AGI-3 Human Trajectory Dataset on Hugging Face – Fueling Top-Down Action Planning?",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 2,
+  "postDate": "2026-06-10T04:14:55.513000"
+ },
+ "705235": {
+  "id": 705235,
+  "title": "What's the evaluation metric on kaggle?",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-06-09T07:10:18.717000"
+ },
+ "705198": {
+  "id": 705198,
+  "title": "Submissions count per day",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 1,
+  "postDate": "2026-06-09T00:14:28.826000"
+ },
+ "705094": {
+  "id": 705094,
+  "title": "5 submissions/day disabled",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 2,
+  "postDate": "2026-06-08T17:35:59.722000"
+ },
+ "705068": {
+  "id": 705068,
+  "title": "What is FrameDataRaw? I want to know about the data structure that the agent observes.",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 0,
+  "postDate": "2026-06-08T16:36:06.991000"
+ },
+ "705043": {
+  "id": 705043,
+  "title": "Exact timing of milestone prize",
+  "authorName": "",
+  "commentCount": 7,
+  "votes": 21,
+  "postDate": "2026-06-08T14:16:26.896000"
+ },
+ "705022": {
+  "id": 705022,
+  "title": "How is the 1.30 on the LB possible?",
+  "authorName": "",
+  "commentCount": 10,
+  "votes": 2,
+  "postDate": "2026-06-08T12:57:35.601000"
+ },
+ "704278": {
+  "id": 704278,
+  "title": "Did the 100 submission limit per team get lifted?",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 1,
+  "postDate": "2026-06-04T04:28:15.507000"
+ },
+ "703990": {
+  "id": 703990,
+  "title": "Phase B scoring 30× lower than local evaluation",
+  "authorName": "",
+  "commentCount": 5,
+  "votes": 1,
+  "postDate": "2026-06-02T20:11:03.245000"
+ },
+ "703879": {
+  "id": 703879,
+  "title": "DeepSeek-V4 Telemetry: Running a 284B MoE at 0.00 GB Active VRAM  for competition",
+  "authorName": "",
+  "commentCount": 5,
+  "votes": 0,
+  "postDate": "2026-06-02T14:02:25.005000"
+ },
+ "703506": {
+  "id": 703506,
+  "title": "How to run GPT-OSS on RTX 6000?",
+  "authorName": "",
+  "commentCount": 7,
+  "votes": 1,
+  "postDate": "2026-05-31T19:21:51.550000"
+ },
+ "703488": {
+  "id": 703488,
+  "title": "Making deterministic solutions",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-05-31T14:16:01.662000"
+ },
+ "703426": {
+  "id": 703426,
+  "title": "I did \"autoresearch\" in a hackathon and won some GPU credits",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 14,
+  "postDate": "2026-05-31T04:54:54.847000"
+ },
+ "703416": {
+  "id": 703416,
+  "title": "How I fixed the \"Kaggle error\" in ARC-AGI-3 submissions",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 4,
+  "postDate": "2026-05-30T23:00:26.644000"
+ },
+ "703056": {
+  "id": 703056,
+  "title": "Milestone 1 - Evaluation",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 2,
+  "postDate": "2026-05-28T08:32:55.651000"
+ },
+ "702970": {
+  "id": 702970,
+  "title": "Parameter size ",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 0,
+  "postDate": "2026-05-27T18:54:29.528000"
+ },
+ "702478": {
+  "id": 702478,
+  "title": "Exploring LLM + Reasoning Approaches for ARC-AGI-3 - Anyone Going Deep Into This?",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 3,
+  "postDate": "2026-05-24T04:02:18.431000"
+ },
+ "702079": {
+  "id": 702079,
+  "title": "not safe to assume available actions stay the same throughout a game play?",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 0,
+  "postDate": "2026-05-21T02:19:56.045000"
+ },
+ "701810": {
+  "id": 701810,
+  "title": "Hicham Cr Style ",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-05-19T18:33:38.264000"
+ },
+ "700486": {
+  "id": 700486,
+  "title": "Arc 3 website test dataset. Is anybody getting higher than Average game score: 4.74%. ",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 1,
+  "postDate": "2026-05-17T15:09:39.588000"
+ },
+ "700442": {
+  "id": 700442,
+  "title": "Diffusion of memory?",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 2,
+  "postDate": "2026-05-17T13:40:48.743000"
+ },
+ "699900": {
+  "id": 699900,
+  "title": "Concerning for competition rule: direct access to game code?",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 0,
+  "postDate": "2026-05-15T17:34:44.666000"
+ },
+ "699859": {
+  "id": 699859,
+  "title": "Keep getting Kaggle Error.",
+  "authorName": "",
+  "commentCount": 18,
+  "votes": 0,
+  "postDate": "2026-05-15T14:15:20.069000"
+ },
+ "699817": {
+  "id": 699817,
+  "title": "Do we need to handle timeout explicitly?",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-05-15T11:02:57.394000"
+ },
+ "699517": {
+  "id": 699517,
+  "title": "Update python version in Kaggle notebook",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 0,
+  "postDate": "2026-05-14T04:35:52.056000"
+ },
+ "699208": {
+  "id": 699208,
+  "title": "Submissions not running 9 hours",
+  "authorName": "",
+  "commentCount": 9,
+  "votes": 12,
+  "postDate": "2026-05-13T05:24:02.534000"
+ },
+ "698749": {
+  "id": 698749,
+  "title": "competition submission crashes",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 1,
+  "postDate": "2026-05-11T14:17:24.689000"
+ },
+ "698623": {
+  "id": 698623,
+  "title": "Retro Game Training Set For Visual Classification (Labeled Data)",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 5,
+  "postDate": "2026-05-10T22:35:50.738000"
+ },
+ "698507": {
+  "id": 698507,
+  "title": "For ARC-AGI3, please confirm",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 0,
+  "postDate": "2026-05-10T08:39:01.035000"
+ },
+ "698429": {
+  "id": 698429,
+  "title": "From Public Chronos to v7: The Struggle of Teaching an Agent to Actually \"Remember\" Game Mechanics (and seeking advice!)",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-05-09T19:58:43.665000"
+ },
+ "697749": {
+  "id": 697749,
+  "title": "Keep getting Kaggle error on GPU T4x2",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-05-07T05:41:36.082000"
+ },
+ "697564": {
+  "id": 697564,
+  "title": "i cant seem to submit my entry",
+  "authorName": "",
+  "commentCount": 6,
+  "votes": 0,
+  "postDate": "2026-05-06T16:04:31.044000"
+ },
+ "697476": {
+  "id": 697476,
+  "title": "Exploring LLM Integration in Agents: Beyong Traditional DL/ML Methods",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 1,
+  "postDate": "2026-05-06T07:51:26.807000"
+ },
+ "697423": {
+  "id": 697423,
+  "title": "What determines the termination of a game episode during online testing? (WIN / GAME_OVER / MAX_ACTIONS / time limit / custom is_done ?)",
+  "authorName": "",
+  "commentCount": 8,
+  "votes": 1,
+  "postDate": "2026-05-06T01:54:09.661000"
+ },
+ "697407": {
+  "id": 697407,
+  "title": "Score discrepancy on submissions despite high local sim — request scoring trace (Human LB #1)",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 1,
+  "postDate": "2026-05-05T23:05:06.233000"
+ },
+ "696616": {
+  "id": 696616,
+  "title": "Long queue for accessing H100 GPUs",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 4,
+  "postDate": "2026-05-03T05:56:48.338000"
+ },
+ "696615": {
+  "id": 696615,
+  "title": "H100s effectively unavailable",
+  "authorName": "",
+  "commentCount": 10,
+  "votes": 14,
+  "postDate": "2026-05-03T05:56:38.709000"
+ },
+ "695903": {
+  "id": 695903,
+  "title": "[Resource] ARC-AGI-3 Logic & Action Metadata",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 3,
+  "postDate": "2026-04-30T19:26:47.048000"
+ },
+ "695055": {
+  "id": 695055,
+  "title": "Sharing Of Notebooks",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": -1,
+  "postDate": "2026-04-28T11:50:35.213000"
+ },
+ "695046": {
+  "id": 695046,
+  "title": "Better containers",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 5,
+  "postDate": "2026-04-28T10:09:05.025000"
+ },
+ "694757": {
+  "id": 694757,
+  "title": "Potential web UI advantage",
+  "authorName": "",
+  "commentCount": 8,
+  "votes": 0,
+  "postDate": "2026-04-26T20:35:39.136000"
+ },
+ "694750": {
+  "id": 694750,
+  "title": "Understanding how submission works",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 0,
+  "postDate": "2026-04-26T19:49:53.506000"
+ },
+ "694549": {
+  "id": 694549,
+  "title": "Generating training data ideas?",
+  "authorName": "",
+  "commentCount": 23,
+  "votes": 4,
+  "postDate": "2026-04-25T12:23:08.149000"
+ },
+ "694329": {
+  "id": 694329,
+  "title": "The World in 2050 will be dream or dark. We can write it ",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": -13,
+  "postDate": "2026-04-24T12:16:11.385000"
+ },
+ "694153": {
+  "id": 694153,
+  "title": "Is there randomness in the games?",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 0,
+  "postDate": "2026-04-23T16:23:05.890000"
+ },
+ "693839": {
+  "id": 693839,
+  "title": "Understanding action space",
+  "authorName": "",
+  "commentCount": 2,
+  "votes": 0,
+  "postDate": "2026-04-22T14:17:05.881000"
+ },
+ "693366": {
+  "id": 693366,
+  "title": "404 Error for Scorecards and Replays",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 0,
+  "postDate": "2026-04-20T19:55:55.388000"
+ },
+ "693307": {
+  "id": 693307,
+  "title": "Re-attempting a game later: does the scorecard update?",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-04-20T16:08:00.263000"
+ },
+ "693283": {
+  "id": 693283,
+  "title": " Top-ranked users are bots.",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 1,
+  "postDate": "2026-04-20T14:11:17.990000"
+ },
+ "693213": {
+  "id": 693213,
+  "title": "Introducing ARC3.Games: Browser-Based ARCEngine Game Player & Gameplay Database",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 4,
+  "postDate": "2026-04-20T08:32:08.749000"
+ },
+ "693146": {
+  "id": 693146,
+  "title": "Weird result - limiting to available actions does WORSE!!",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 1,
+  "postDate": "2026-04-19T18:59:35.350000"
+ },
+ "693128": {
+  "id": 693128,
+  "title": "Thoughts about why Random does so well.",
+  "authorName": "",
+  "commentCount": 6,
+  "votes": 0,
+  "postDate": "2026-04-19T17:34:27.357000"
+ },
+ "693123": {
+  "id": 693123,
+  "title": "RESET Confusion - UI vs API ",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 1,
+  "postDate": "2026-04-19T17:11:53.257000"
+ },
+ "692883": {
+  "id": 692883,
+  "title": "What knowledge has to be discovered by a live playing agent from a novel game? (locksmith ls20 example)",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 2,
+  "postDate": "2026-04-18T11:36:34.217000"
+ },
+ "692809": {
+  "id": 692809,
+  "title": "What is patched vs standard FrameData?",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 1,
+  "postDate": "2026-04-18T01:01:18.753000"
+ },
+ "692450": {
+  "id": 692450,
+  "title": "Do all entries run for 6 hours?",
+  "authorName": "",
+  "commentCount": 5,
+  "votes": 1,
+  "postDate": "2026-04-16T21:19:26.396000"
+ },
+ "692316": {
+  "id": 692316,
+  "title": "in Private Eval set: can we safely assume that at each level of a game, the grid's width & height would stay the same?",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-04-16T18:17:55.164000"
+ },
+ "692135": {
+  "id": 692135,
+  "title": "How many tries do you get at each level? (Confused 😖)",
+  "authorName": "",
+  "commentCount": 22,
+  "votes": 3,
+  "postDate": "2026-04-16T10:27:35.250000"
+ },
+ "691696": {
+  "id": 691696,
+  "title": "It is 0.66%",
+  "authorName": "",
+  "commentCount": 8,
+  "votes": 24,
+  "postDate": "2026-04-15T15:37:57.379000"
+ },
+ "691143": {
+  "id": 691143,
+  "title": "Stop searching the Action Tree, Discover the Transformation Graph (milestone chain)",
+  "authorName": "",
+  "commentCount": 5,
+  "votes": 5,
+  "postDate": "2026-04-14T02:15:07.089000"
+ },
+ "690861": {
+  "id": 690861,
+  "title": "LLMs and confidence predictions.",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-04-13T07:45:53.082000"
+ },
+ "690834": {
+  "id": 690834,
+  "title": "Has there been a maximum code run adjustment set to 2 minutes?",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 0,
+  "postDate": "2026-04-13T04:48:54.420000"
+ },
+ "690676": {
+  "id": 690676,
+  "title": "Importance of drastic data reduction via re-presentation and a Six stage approach",
+  "authorName": "",
+  "commentCount": 6,
+  "votes": 1,
+  "postDate": "2026-04-12T15:09:09.951000"
+ },
+ "690656": {
+  "id": 690656,
+  "title": "Some ideas on Approaches",
+  "authorName": "",
+  "commentCount": 8,
+  "votes": 3,
+  "postDate": "2026-04-12T12:37:37.367000"
+ },
+ "690654": {
+  "id": 690654,
+  "title": "[Question] Leaderboard Scores Clarification: 66% or 0.66%?",
+  "authorName": "",
+  "commentCount": 9,
+  "votes": 7,
+  "postDate": "2026-04-12T12:29:47.628000"
+ },
+ "690334": {
+  "id": 690334,
+  "title": "Provide some error info for competition submission?",
+  "authorName": "",
+  "commentCount": 5,
+  "votes": 2,
+  "postDate": "2026-04-11T09:48:14.229000"
+ },
+ "689858": {
+  "id": 689858,
+  "title": "submission file to integration with a agent?",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 1,
+  "postDate": "2026-04-09T21:06:42.452000"
+ },
+ "689621": {
+  "id": 689621,
+  "title": "Too few submissions",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": -2,
+  "postDate": "2026-04-09T05:17:29.060000"
+ },
+ "689597": {
+  "id": 689597,
+  "title": "Clarification on private model (non-LLM)",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-04-09T02:57:26.584000"
+ },
+ "689492": {
+  "id": 689492,
+  "title": "What is the API rate limit?",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 2,
+  "postDate": "2026-04-08T19:05:19.155000"
+ },
+ "688481": {
+  "id": 688481,
+  "title": "Clarification on using local open-weight Qwen3.5 in ARC-AGI-3",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 2,
+  "postDate": "2026-04-06T01:04:49.270000"
+ },
+ "688220": {
+  "id": 688220,
+  "title": "SETUP SERVER PROBLEM IS IN HERE IS CAN HELP TO SETUP SERVER API OKAY,THANK YOU? TypeError: Agent.__init__() missing 5 required positional arguments: 'game_id', 'agent_name', 'ROOT_URL', 'record', and 'arc_env'",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": -4,
+  "postDate": "2026-04-05T03:39:29.224000"
+ },
+ "688135": {
+  "id": 688135,
+  "title": "in private eval: can agent keep re-playing a game until it hits 100%?",
+  "authorName": "",
+  "commentCount": 6,
+  "votes": 1,
+  "postDate": "2026-04-04T18:30:35.708000"
+ },
+ "688114": {
+  "id": 688114,
+  "title": "Tackling ARC-AGI 3: Leveraging Puzzle Games to Address Data Scarcity",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 2,
+  "postDate": "2026-04-04T16:53:31.001000"
+ },
+ "687950": {
+  "id": 687950,
+  "title": "Is Offline BFS \"Cheating the Spirit\" of ARC-AGI-3?",
+  "authorName": "",
+  "commentCount": 11,
+  "votes": 12,
+  "postDate": "2026-04-04T06:02:50.010000"
+ },
+ "687788": {
+  "id": 687788,
+  "title": "Just want to share results for public set.",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 1,
+  "postDate": "2026-04-03T17:01:43.995000"
+ },
+ "687655": {
+  "id": 687655,
+  "title": "Human scores visible to agents",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 18,
+  "postDate": "2026-04-03T11:42:35.751000"
+ },
+ "687648": {
+  "id": 687648,
+  "title": "ARC3 Offline Agent Evaluation and Recording Viewer",
+  "authorName": "",
+  "commentCount": 10,
+  "votes": 23,
+  "postDate": "2026-04-03T11:22:40.455000"
+ },
+ "687484": {
+  "id": 687484,
+  "title": "Is Possible To Not Use A Agent From Host?",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 2,
+  "postDate": "2026-04-03T04:08:49.108000"
+ },
+ "687483": {
+  "id": 687483,
+  "title": "Host?,What Is The Minimum Game requierement for submission best score in this competitition?",
+  "authorName": "",
+  "commentCount": 0,
+  "votes": 1,
+  "postDate": "2026-04-03T04:07:40.952000"
+ },
+ "687449": {
+  "id": 687449,
+  "title": "Animations in the UI",
+  "authorName": "",
+  "commentCount": 1,
+  "votes": 0,
+  "postDate": "2026-04-03T02:36:05.550000"
+ },
+ "687225": {
+  "id": 687225,
+  "title": "Multiple Accounts",
+  "authorName": "",
+  "commentCount": 5,
+  "votes": 6,
+  "postDate": "2026-04-02T17:34:21.786000"
+ },
+ "687187": {
+  "id": 687187,
+  "title": "How long can we play a game.",
+  "authorName": "",
+  "commentCount": 3,
+  "votes": 2,
+  "postDate": "2026-04-02T15:35:17.308000"
+ },
+ "687134": {
+  "id": 687134,
+  "title": "What if AGI isn't about doing everything but about knowing what it can't do?",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 5,
+  "postDate": "2026-04-02T11:00:20.868000"
+ },
+ "686532": {
+  "id": 686532,
+  "title": "Are the games guaranteed to be fully observable?",
+  "authorName": "",
+  "commentCount": 4,
+  "votes": 0,
+  "postDate": "2026-03-31T17:03:57.959000"
+ }
+}

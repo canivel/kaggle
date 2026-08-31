@@ -1,0 +1,30 @@
+1 7.51 cstl | gatamaz,tehnar
+2 4.99 Lord Han Solo | lordhansolo
+3 4.71 Tufa Labs | dlorah,driessmit1,infinitecreativity,jeroencottaar,pressman1,stefano1283
+4 4.27 Tong Hui Kang | huikang
+5 4.05 Daniel Franzen | dfranzen
+6 3.58 Son Pham & Mark Barney | markbarney,sonphamorg
+7 3.37 Kyutai | hippolytepilchen,romainfabre
+8 3.31 Dawid Kopiczko | dawkopi
+9 3.19 Youssef Nader @ Aurelic | gamingconceited
+10 3.17 Tony G | junvalue
+11 3.13 Liao Zixu | liaozixu
+12 3.10 sawada | sawada
+13 2.98 OzanM. | analyticaobscura
+14 2.94 Abstraction Lab & MindsAI | alisalmanrana,jcole75,kimura0415,sumirinn,ultsaza
+15 2.80 Tony Li | tonylica
+16 2.78 Tatu Helander | tatuhelander
+17 2.73 Akhil Tolani | saltb0x
+18 2.72 AbeLincoln1865 | abelincoln1865
+19 2.71 Seok, Jeongeum | seokjeongeum
+20 2.70 wking edewd | wkingedewd
+21 2.69 Diya Sharma | diyasharmanexa
+22 2.66 The AGI Boys | johnjanson,naladwepo,romanrozen,romantamrazov
+23 2.65 Tecnod8.AI | aksharthegamer,ravinderonkaggle
+24 2.65 Vineeth Sai Varikuntla | vineethsaivs
+25 2.65 Jonathan Wang2022 | jonathanwang2022
+26 2.62 Yuhang Huang | shingingz
+27 2.60 ThomasG | thomasgamet
+28 2.59 AI Winter | aiwinter,stoneshek
+29 2.59 Ebi | ebinan92
+30 2.59 Kumar Abhijeet | krabhijeet
